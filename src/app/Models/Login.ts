@@ -1,11 +1,9 @@
 import { Kontaktolysninger } from "./Kontaktoplysninger";
 
-export class Archive{
+export class Login{
 
-
-  public ArchiveId: number;
+  public LoginId : number;
   public KontaktolysningerId:number;
   public Kontaktolysninger:Kontaktolysninger;
-  public Oprettet :Date;
-
+  public LoginTime :Date;
 }

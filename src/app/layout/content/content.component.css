@@ -3,13 +3,14 @@
   background-color: rgb(255, 255, 255);
 }
 
-#imge{
+#imgeUp{
   background-image: url('/assets/images/Background-website-01.jpg');
   background-position:center center;
   background-repeat: no-repeat;
   background-size: cover;
   width: auto;
-  height: 15%;
-
+  height: 100%;
 
 }
+
+

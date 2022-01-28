@@ -6,6 +6,7 @@ import { ContentComponent } from './content/content.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import {MatIconModule} from '@angular/material/icon';
+import {MatCardModule} from '@angular/material/card';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import {MatIconModule} from '@angular/material/icon';
     CommonModule,
     LayoutRoutingModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    MatCardModule
 
   ],
   exports:[

@@ -1,11 +1,12 @@
+import { Bruger } from "./Bruger";
 import { Forum } from "./Forum";
-import { Kontaktolysninger } from "./Kontaktoplysninger";
+
 
 export class Post
 {
   public Id:number;
-  public KontaktolysningerId:number;
-  public Kontaktolysninger:Kontaktolysninger;
+  public BrugerId:number;
+  public Bruger: Bruger;
   public Titel:string;
   public Indhold:string;
   public Oprettet:Date;

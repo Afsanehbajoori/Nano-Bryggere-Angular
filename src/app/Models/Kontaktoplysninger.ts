@@ -1,6 +1,6 @@
 export class Kontaktolysninger {
 
-  public KontaktoplysningerId: number;
+  public Id: number;
   public Enavn : string;
   public Fnavn: string;
   public Addresselinje1: string;

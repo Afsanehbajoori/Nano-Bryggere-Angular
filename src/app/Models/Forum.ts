@@ -4,7 +4,7 @@ import { Tags } from "./Tags";
 export class Forum
 
 {
-  public ForumId:number;
+  public Id:number;
   public Titel:string;
   public Beskrivele:string;
   public Oprettet : Date;

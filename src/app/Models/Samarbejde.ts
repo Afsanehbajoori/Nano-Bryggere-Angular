@@ -3,7 +3,7 @@ import { Øl } from "./Øl";
 
 export class Samarbejde{
 
-  public SamarbejdeId: number;
+  public Id: number;
   public ØlId:number;
   public Øl: Øl;
   public Titel:string;

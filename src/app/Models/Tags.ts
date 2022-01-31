@@ -4,7 +4,7 @@ import { Øl } from "./Øl";
 
 export class Tags
 {
-  public TagsId: number;
+  public Id: number;
   public navn: string;
   public Events: Events;
   public Forum: FormBuilder;

@@ -1,9 +1,10 @@
-import { Kontaktolysninger } from "./Kontaktoplysninger";
+import { Bruger } from "./Bruger";
+
 
 export class Login{
 
-  public LoginId : number;
-  public KontaktolysningerId:number;
-  public Kontaktolysninger:Kontaktolysninger;
+  public Id : number;
+  public BrugerId: number;
+  public Bruger : Bruger;
   public LoginTime :Date;
 }

@@ -10,7 +10,7 @@ export enum RolleNavn
 
 export class Rolle
 {
-  public RolleId : number;
+  public Id : number;
   public Level:number;
   public RolleNavn : RolleNavn;
 

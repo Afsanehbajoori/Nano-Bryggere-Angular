@@ -2,8 +2,8 @@ import { Bryggeri } from "./Bryggeri";
 import { Tags } from "./Tags";
 
 export class Øl {
-  
-  public ØlId: number;
+
+  public Id: number;
   public Land: string;
   public BryggeriId:number;
   public Bryggeri: Bryggeri;

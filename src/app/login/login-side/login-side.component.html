@@ -1,27 +1,36 @@
-        <mat-card  class="mat-card-body">
-            <mat-toolbar class="login-header">Login</mat-toolbar>
-            <form [formGroup]="loginForm" fxLayoutAlign="stretch" fxLayout="column">
-                <mat-form-field class="full-width">
-                    <input matInput formControlName="email" placeholder="Email" class="input-control">
-                    <!-- <mat-error *ngIf="email.errors?.['required']"> -->
-                    <mat-error>
-                        Vær Venlig at udfyld feltet med din email
-                    </mat-error>
-                </mat-form-field>
-                <mat-form-field class="full-width">
-                    <!-- <input matInput type="password" placeholder="Password" formControlName="password" class="input-control"> -->
-                    <input matInput type="password" placeholder="Password" class="input-control">
-                </mat-form-field>
-                <!-- <button mat-raised-button type="submit" class="login-btn" (click)="getData()">Login</button> -->
-                <button mat-raised-button type="submit" class="login-btn">Login</button>
-                <button mat-raised-button type="submit" class="login-btn" style="background-color: darkolivegreen;">Registre</button>
-                <div>
-                    <span><a routerLink="glemtpassword" routerLinkActive="active">Glemt Password</a></span>
-                </div>
-                <!-- <button mat-raised-button type="submit" style="border-color: transparent; background-color: transparent; 
-                color: rgb(164, 209, 87);" (click)="OnSubmit()">Glemt Password?</button> -->
-            </form>
-        </mat-card>
-        <!-- <div *ngFor='let data of datas | async'>
-        {{data | json}}
-      </div> -->
+<mat-card class="main" id="imgeUp">
+  <mat-card-title class="txt" style="margin-top: 100px;">
+    Velkommen til Login side
+  </mat-card-title>
+  <mat-card-content class="container">
+
+    <form [formGroup]="loginForm"  class="example-form" >
+        <mat-form-field class="example-full-width" appearance="fill" >
+            <input matInput formControlName="email" placeholder="Email" class="input-control">
+            <!-- <mat-error *ngIf="email.errors?.['required']"> -->
+            <mat-error>
+                Vær Venlig at udfyld feltet med din email
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <!-- <input matInput type="password" placeholder="Password" formControlName="password" class="input-control"> -->
+            <input matInput type="password" placeholder="Password" class="input-control">
+        </mat-form-field>
+        <!-- <button mat-raised-button type="submit" class="login-btn" (click)="getData()">Login</button> -->
+        <button mat-raised-button type="submit" class="login-btn">Login</button>
+        <!-- <button mat-raised-button type="submit"  routerLink="registrer" class="login-btn" style="background-color: darkolivegreen;">Registre</button> -->
+        <div style="margin-top: 20px;">
+          <span><a routerLink="registrer" routerLinkActive="active">registrer</a></span>
+
+
+            <span style="margin-left: 320px;"><a routerLink="glemtpassword" routerLinkActive="active">Glemt Password</a></span>
+          </div>
+        <!-- <button mat-raised-button type="submit" style="border-color: transparent; background-color: transparent;
+        color: rgb(164, 209, 87);" (click)="OnSubmit()">Glemt Password?</button> -->
+    </form>
+  </mat-card-content>
+</mat-card>
+
+<!-- <div *ngFor='let data of datas | async'>
+{{data | json}}
+</div> -->

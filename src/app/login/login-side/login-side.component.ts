@@ -14,7 +14,6 @@ import { Login } from 'src/app/Models/Login';
 export class LoginSideComponent implements OnInit {
   logins: Bruger
   roller: Rolle
-
   loginForm : FormGroup;
   @Input() loginDetails = {Brugernavn: ''}
   constructor(

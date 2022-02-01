@@ -11,9 +11,8 @@ import { Rolle } from 'src/app/Models/Rolle';
 export class LoginSideComponent implements OnInit {
   logins: Bruger
   roller: Rolle
-
   loginForm : FormGroup;
-  
+
   constructor() { }
 
   ngOnInit(): void {
@@ -23,6 +22,6 @@ export class LoginSideComponent implements OnInit {
     }
     );
   }
-  
+
 
 }

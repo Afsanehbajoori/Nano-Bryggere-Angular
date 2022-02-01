@@ -8,15 +8,15 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./registrer.component.css']
 })
 export class RegistrerComponent implements OnInit {
-  FormGroupFNavn!:FormGroup ;
-  FormGroupENavn!:FormGroup;
-  FormGroupAdd1!:FormGroup;
-  FormGroupAdd2!:FormGroup;
-  FormGroupPost!:FormGroup;
-  FormGroupBy!:FormGroup;
-  FormGroupEmail!:FormGroup;
-  FormGroupTel!:FormGroup;
-  FormGroupPW!:FormGroup;
+  FormGroupFNavn:FormGroup;
+  FormGroupENavn:FormGroup;
+  FormGroupAdd1:FormGroup;
+  FormGroupAdd2:FormGroup;
+  FormGroupPost:FormGroup;
+  FormGroupBy:FormGroup;
+  FormGroupEmail:FormGroup;
+  FormGroupTel:FormGroup;
+  FormGroupPW:FormGroup;
 
   constructor(private _formBuilder: FormBuilder) { }
 

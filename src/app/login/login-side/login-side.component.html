@@ -13,13 +13,11 @@
                     <input matInput type="password" placeholder="Password" class="input-control">
                 </mat-form-field>
                 <!-- <button mat-raised-button type="submit" class="login-btn" (click)="getData()">Login</button> -->
-                <button mat-raised-button type="submit" class="login-btn">Login</button>
-                <button mat-raised-button type="submit" class="login-btn" style="background-color: darkolivegreen;">Registre</button>
+                <button mat-raised-button type="submit" class="login-btn" (click)="onSubmitLogin()">Login</button>
+                <button mat-raised-button type="submit" class="login-btn" (click)="onSubmitRegistre()" style="background-color: darkolivegreen;">Registre</button>
                 <div>
                     <span><a routerLink="glemtpassword" routerLinkActive="active">Glemt Password</a></span>
                 </div>
-                <!-- <button mat-raised-button type="submit" style="border-color: transparent; background-color: transparent; 
-                color: rgb(164, 209, 87);" (click)="OnSubmit()">Glemt Password?</button> -->
             </form>
         </mat-card>
         <!-- <div *ngFor='let data of datas | async'>

@@ -17,7 +17,7 @@
             <input matInput type="password" placeholder="Password" class="input-control">
         </mat-form-field>
         <!-- <button mat-raised-button type="submit" class="login-btn" (click)="getData()">Login</button> -->
-        <button mat-raised-button type="submit" class="login-btn">Login</button>
+        <button mat-raised-button type="submit" (click)="onSubmitLogin()" class="login-btn">Login</button>
         <!-- <button mat-raised-button type="submit"  routerLink="registrer" class="login-btn" style="background-color: darkolivegreen;">Registre</button> -->
         <div style="margin-top: 20px;">
           <span><a routerLink="registrer" routerLinkActive="active">registrer</a></span>

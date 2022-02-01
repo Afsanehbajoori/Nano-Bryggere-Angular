@@ -1,0 +1,39 @@
+.mat-stepper-vertical {
+  margin-top: 8px;
+
+}
+
+.mat-form-field {
+  margin-top: 10px;
+}
+
+
+.container {
+  font-family: arial;
+  display: flex;
+  justify-content: center;
+  height: auto;
+  }
+
+.txt{
+  margin-bottom: 30px;
+  font-weight: bolder;
+  font-size: 25px;
+  font-family: 'Times New Roman', Times, serif;
+  font-style: italic;
+  text-align: center;
+
+}
+
+.main{
+  height: 100%;
+  background-color: rgb(255, 255, 255);
+}
+
+#imgeUp{
+  background-image: url('/assets/images/Background-website-01.jpg');
+  background-position:center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: auto;
+}

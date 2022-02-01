@@ -7,16 +7,20 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { SletProfilComponent } from './slet-profil/slet-profil.component';
 import { RedigerOlComponent } from './rediger-ol/rediger-ol.component';
 import { OpretteOlComponent } from './oprette-ol/oprette-ol.component';
+import { ProfilComponent } from './profil/profil.component';
+import { KatalogComponent } from './katalog/katalog.component';
 
 const routes: Routes = [
   {path:'', component:ForsideComponent},
   {path:'main', component:ForsideComponent},
   {path:'event' , component:EventSideComponent},
   {path:'certifikat' , component:CertifikatComponent},
-  {path:'**' , component: NotFoundComponent},
+  {path:'profil', component:ProfilComponent},
   {path:'sletprofil', component:SletProfilComponent},
   {path:'redigerol',component:RedigerOlComponent},
-  {path:'opretteol',component:OpretteOlComponent}
+  {path:'opretteol',component:OpretteOlComponent},
+  {path:'katalog', component:KatalogComponent},
+  {path:'**' , component: NotFoundComponent},
 ];
 
 @NgModule({

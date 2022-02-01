@@ -1,1 +1,29 @@
-<p>login-side works!</p>
+<div class="div-screen">
+    <div fxLayoutAlign="center center" fxFlexFill class="main-div">
+        <mat-card fxflex="25" class="login-box">
+            <mat-toolbar class="login-header">Login</mat-toolbar>
+            <form [formGroup]="loginForm" fxLayoutAlign="stretch" fxLayout="column">
+                <mat-form-field>
+                    <input matInput formControlName="email" placeholder="Email" class="input-control">
+                    <!-- <mat-error *ngIf="email.errors?.['required']"> -->
+                    <mat-error>
+                        Vær Venlig at udfyld feltet med din email
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <!-- <input matInput type="password" placeholder="Password" formControlName="password" class="input-control"> -->
+                    <input matInput type="password" placeholder="Password" class="input-control">
+                </mat-form-field>
+                <!-- <button mat-raised-button type="submit" class="login-btn" (click)="getData()">Login</button> -->
+                <button mat-raised-button type="submit" class="login-btn">Login</button>
+                <button mat-raised-button type="submit"
+                    style="margin-bottom: 10px; margin-top: 10px; background-color: darkolivegreen;">Registre</button>
+                <button routerLink="registre" style="background-color: transparent; color: rgb(164, 209, 87);">Glemt
+                    Password?</button>
+            </form>
+        </mat-card>
+        <!-- <div *ngFor='let data of datas | async'>
+        {{data | json}}
+      </div> -->
+    </div>
+</div>

@@ -10,7 +10,12 @@ import { OlBrugerSideComponent } from './ol-bruger-side/ol-bruger-side.component
 import { OpretteOlComponent } from './oprette-ol/oprette-ol.component';
 import { RedigerOlComponent } from './rediger-ol/rediger-ol.component';
 import { SletProfilComponent } from './slet-profil/slet-profil.component';
-
+import { ProfilComponent } from './profil/profil.component';
+import { KatalogComponent } from './katalog/katalog.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -21,11 +26,17 @@ import { SletProfilComponent } from './slet-profil/slet-profil.component';
     OlBrugerSideComponent,
     OpretteOlComponent,
     RedigerOlComponent,
-    SletProfilComponent
+    SletProfilComponent,
+    ProfilComponent,
+    KatalogComponent
   ],
   imports: [
     CommonModule,
-    MainRoutingModule
+    MainRoutingModule,
+    MatCardModule,
+    MatGridListModule,
+    MatToolbarModule,
+    MatListModule,
   ],
   exports: [
     NotFoundComponent,
@@ -35,7 +46,9 @@ import { SletProfilComponent } from './slet-profil/slet-profil.component';
     OlBrugerSideComponent,
     OpretteOlComponent,
     RedigerOlComponent,
-    SletProfilComponent
+    SletProfilComponent,
+    ProfilComponent,
+    KatalogComponent
   ]
 
 })

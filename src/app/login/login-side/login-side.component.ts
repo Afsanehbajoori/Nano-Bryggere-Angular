@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Bruger } from 'src/app/Models/Bruger';
 import { Rolle } from 'src/app/Models/Rolle';
+import { Router } from '@angular/router';
+import { RestApiService } from 'src/app/shared/rest-api.service';
+import { Login } from 'src/app/Models/Login';
 
 @Component({
   selector: 'app-login-side',
@@ -13,8 +16,11 @@ export class LoginSideComponent implements OnInit {
   roller: Rolle
 
   loginForm : FormGroup;
-  
-  constructor() { }
+  @Input() loginDetails = {Brugernavn: ''}
+  constructor(
+    public router: Router,
+    public restApi: RestApiService
+    ) { }
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -23,6 +29,9 @@ export class LoginSideComponent implements OnInit {
     }
     );
   }
-  
-
+  addLogin(datalogin: Login){
+    this.restApi.createLogins(this.loginDetails).subscribe((data: {}) => {
+      this.router.navigate(['../main/main'])
+    })
+  }
 }

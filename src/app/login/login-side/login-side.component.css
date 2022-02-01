@@ -66,3 +66,6 @@
     max-width: 500px;
     width: 100%;
   }
+  .example-spacer {
+    flex: 1 1 auto;
+  }

@@ -16,6 +16,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
+import {MatIconModule} from '@angular/material/icon'
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { MatListModule } from '@angular/material/list';
     MatGridListModule,
     MatToolbarModule,
     MatListModule,
+    MatIconModule
   ],
   exports: [
     NotFoundComponent,

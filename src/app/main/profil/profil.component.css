@@ -4,25 +4,39 @@
     height: 70%;
 }
 .profil-card{
-    width: 100%; 
-    height: 10%; 
+    width: 100%;
+    height: 10%;
     background-color: rgb(37, 37, 37);
     text-align: center;
 }
 .profil-section-holder{
-    background-color: #FFAF66; 
+    background-color: #FFAF66;
     height: 80%;
 }
 .profil-section{
-    height: 100%; 
+    height: 100%;
     text-align: center;
-    border-style: solid; 
-    border-width: thin; 
+    border-style: solid;
+    border-width: thin;
     border-color: black;
 }
 .section-text{
-    color: black; 
+    color: black;
 }
 .btn-profil{
     width: 200px; height: 50px; font-size: 15px;
+}
+
+
+.main{
+  height: 100%;
+  background-color: rgb(255, 255, 255);
+}
+
+#imgeUp{
+  background-image: url('/assets/images/Background-website-01.jpg');
+  background-position:center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: auto;
 }

@@ -11,6 +11,7 @@ import { Login } from 'src/app/Models/Login';
   templateUrl: './login-side.component.html',
   styleUrls: ['./login-side.component.css']
 })
+
 export class LoginSideComponent implements OnInit {
   logins: Bruger
   roller: Rolle
@@ -18,11 +19,16 @@ export class LoginSideComponent implements OnInit {
   id = this.actRoute.snapshot.params['id'];
   loginForm : FormGroup;
   @Input() loginDetails = {Brugernavn: ''}
+
+
+ 
+
   constructor(
     public router: Router,
     public restApi: RestApiService,
     public actRoute: ActivatedRoute
     ) { }
+
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({

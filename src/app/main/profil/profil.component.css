@@ -70,3 +70,10 @@
   cursor:pointer;
 }
 
+.containStyle{
+  background-color: rgb(252, 252, 252);
+  margin-left: 50px;
+  margin-right: 50px;
+  padding-left: 40px;
+  font-style: oblique;
+}

@@ -1,40 +1,96 @@
-<div class="div-screen">
-    <div fxLayoutAlign="center" fxFlexFill class="main-div">
-        <mat-card fxflex="25">
-            <div class="profil-card">
-            </div>
-            <div fxLayout="column" class="profil-section-holder">
-                <div fxLayout="rows" style="height: 100%;">
-                    <div class="profil-section" style="width: 60%;">
-                        <form fxLayout="column">
-                            <div style="margin-bottom: 60px;"></div>
-                            <div fxLayout="row" class="profil-info">
-                                <h1 class="section-text" style="padding-right: 195px; padding-left: 5px;">Fornavn</h1>
-                                <h1 class="section-text">Email</h1>
-                            </div>
-                            <div fxLayout="row" class="profil-info">
-                                <h1 style="color: black; padding-left: 5px; padding-right: 175px;">Efternavn</h1>
-                                <h1 style="color: black;">TelefonNr</h1>
-                            </div>
-                            <div fxLayout="row" class="profil-info">
-                                <h1 class="section-text" style="padding-right: 140px; padding-left: 5px;">AddresseNr1</h1>
-                                <h1 class="section-text">By</h1>
-                            </div>
-                            <div fxLayout="row">
-                                <h1 style="color: black; padding-left: 5px; padding-right: 140px;">AddresseNr2</h1>
-                                <h1 style="color: black;">PostNr</h1>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="profil-section" style="width: 40%; height: 100%;">
-                        <img src="" style="background-color: white;  width: 60%; height: 60%;">               
-                        <div fxLayout="row" style="width: 100%; justify-content: center; padding: 50px 0;">
-                            <button mat-raised-button type class="btn-profil" style="background-color: #af2121; border-radius: 21px; color: black;">Slet</button>
-                            <button mat-raised-button type class="btn-profil" style="background-color: #21af5c; border-radius: 21px; color: black;">Rediger</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </mat-card>
+<mat-drawer-container class="example-container" >
+  <mat-drawer #drawer mode="side" opened class="main" id="imgeUp">
+    <div class="sidebar">
+      <h1 id="headerStyle">Profil Side</h1>
+      <button class="btnStyle" (click)="showFillerP = !showFillerP">Vis Kontakt Oplysninger</button>
+      <button class="btnStyle" (click)="showFillerB = !showFillerB">Vis Bryggeri Oplysninger</button>
     </div>
-</div>
+
+  </mat-drawer>
+  <mat-drawer-content class="main" id="imgeUp">
+    <mat-card *ngIf="showFillerP">
+      <mat-card-content>
+
+       <mat-accordion class="example-headers-align" multi>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Kontakt Oplysninger
+              </mat-panel-title>
+              <mat-panel-description>
+                <mat-icon>account_circle</mat-icon>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <mat-card style="background-color: rgb(252, 252, 252);">
+              <p>Fornavn:</p>
+            </mat-card>
+            <mat-card style="background-color: rgb(252, 252, 252);">
+            <p>Efternavn:</p>
+          </mat-card>
+            <mat-card style="background-color: rgb(252, 252, 252);">
+            <p>Addresselinje1:</p>
+          </mat-card>
+            <mat-card style="background-color: rgb(252, 252, 252);">
+            <p>Addresselinje2:</p>
+          </mat-card>
+            <mat-card style="background-color: rgb(252, 252, 252);">
+            <p>Telefonnr:</p>
+          </mat-card>
+            <mat-card style="background-color: rgb(252, 252, 252);">
+            <p>Email:</p>
+          </mat-card>
+            <mat-card style="background-color: rgb(252, 252, 252);">
+            <p>Postnr:</p>
+          </mat-card>
+            <mat-card style="background-color: rgb(252, 252, 252);">
+            <p>By:</p>
+          </mat-card>
+          <mat-action-row>
+            <button mat-button color="primary" (click)="sletProfil()" class="btnMainStyle" >Slet Profil</button>
+            <button mat-button color="primary" (click)="redigerProfil()" class="btnMainStyle">Rediger Profil</button>
+          </mat-action-row>
+          </mat-expansion-panel>
+        </mat-accordion>
+
+      </mat-card-content>
+
+
+    </mat-card>
+    <mat-card *ngIf="showFillerB" >
+
+      <mat-card-content>
+        <mat-accordion class="example-headers-align" multi>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Bryggeri Oplysninger
+              </mat-panel-title>
+              <mat-panel-description>
+                <mat-icon>work</mat-icon>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <mat-card style="background-color: rgb(252, 252, 252);">
+              <p>Logo:</p>
+            </mat-card>
+            <mat-card style="background-color: rgb(252, 252, 252);">
+              <p>Navn:</p>
+            </mat-card>
+              <mat-card style="background-color: rgb(252, 252, 252);">
+              <p>Beskrivelse:</p>
+            </mat-card>
+            <mat-action-row>
+              <button mat-button color="primary" (click)="sletBryggeri()" class="btnMainStyle" >Slet Bryggeri</button>
+              <button mat-button color="primary" (click)="redigerBryggeri()" class="btnMainStyle">Rediger Bryggeri</button>
+            </mat-action-row>
+            </mat-expansion-panel>
+        </mat-accordion>
+      </mat-card-content>
+    </mat-card>
+
+  </mat-drawer-content>
+
+</mat-drawer-container>
+
+
+
+

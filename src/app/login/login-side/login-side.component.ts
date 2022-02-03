@@ -11,15 +11,14 @@ import { Login } from 'src/app/Models/Login';
   templateUrl: './login-side.component.html',
   styleUrls: ['./login-side.component.css']
 })
+
 export class LoginSideComponent implements OnInit {
   logins: Bruger
   roller: Rolle
   loginForm : FormGroup;
   @Input() loginDetails = {Brugernavn: ''}
-  constructor(
-    public router: Router,
-    public restApi: RestApiService
-    ) { }
+
+  constructor(public router: Router,public restApi: RestApiService) { }
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({

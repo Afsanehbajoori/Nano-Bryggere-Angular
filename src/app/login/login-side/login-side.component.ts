@@ -42,11 +42,11 @@ export class LoginSideComponent implements OnInit {
   //     this.router.navigate(['../main/main'])
   //   })
   // }
-  // loadLogin(){
-  //   return this.restApi.getLogin().subscribe((data: {}) => {
-  //     this.login = data;
-  //   })
-  // }
+  loadLogin(){
+    return this.restApi.getLogin().subscribe((data: {}) => {
+      this.login = data;
+    })
+  }
   // deleteLogin(id : any){
   //   if(window.confirm('Are you sure, you want to delete?')){
   //     this.restApi.deleteLogin(id).subscribe(data => {

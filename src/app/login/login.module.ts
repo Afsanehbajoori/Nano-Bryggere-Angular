@@ -9,7 +9,7 @@ import { EditPasswordComponent } from './edit-password/edit-password.component';
 import { RedigerSletBrugerComponent } from './rediger-slet-bruger/rediger-slet-bruger.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import {MatIconModule} from '@angular/material/icon'
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
@@ -35,7 +35,8 @@ import { MatStepperModule} from '@angular/material/stepper';
     MatToolbarModule,
     FormsModule,
     ReactiveFormsModule,
-    MatStepperModule
+    MatStepperModule,
+    MatIconModule
   ],
   exports:[
     EditPasswordComponent,

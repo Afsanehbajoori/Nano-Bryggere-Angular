@@ -1,4 +1,4 @@
-<mat-drawer-container class="example-container" >
+<mat-drawer-container class="example-container">
   <mat-drawer #drawer mode="side" opened class="main" id="imgeUp">
     <div class="sidebar">
       <h1 id="headerStyle">Profil Side</h1>
@@ -11,7 +11,7 @@
     <mat-card *ngIf="showFillerP">
       <mat-card-content>
 
-       <mat-accordion class="example-headers-align" multi>
+        <mat-accordion class="example-headers-align" multi>
           <mat-expansion-panel>
             <mat-expansion-panel-header>
               <mat-panel-title>
@@ -25,38 +25,37 @@
               <p>Fornavn:</p>
             </mat-card>
             <mat-card class="containStyle">
-            <p>Efternavn:</p>
-          </mat-card>
+              <p>Efternavn:</p>
+            </mat-card>
             <mat-card class="containStyle">
-            <p>Addresselinje1:</p>
-          </mat-card>
+              <p>Addresselinje1:</p>
+            </mat-card>
             <mat-card class="containStyle">
-            <p>Addresselinje2:</p>
-          </mat-card>
+              <p>Addresselinje2:</p>
+            </mat-card>
             <mat-card class="containStyle">
-            <p>Telefonnr:</p>
-          </mat-card>
+              <p>Telefonnr:</p>
+            </mat-card>
             <mat-card class="containStyle">
-            <p>Email:</p>
-          </mat-card>
+              <p>Email:</p>
+            </mat-card>
             <mat-card class="containStyle">
-            <p>Postnr:</p>
-          </mat-card>
+              <p>Postnr:</p>
+            </mat-card>
             <mat-card class="containStyle">
-            <p>By:</p>
-          </mat-card>
-          <mat-action-row>
-            <button mat-button color="primary" (click)="sletProfil()" class="btnMainStyle" >Slet Profil</button>
-            <button mat-button color="primary" (click)="redigerProfil()" class="btnMainStyle">Rediger Profil</button>
-          </mat-action-row>
+              <p>By:</p>
+            </mat-card>
+            <mat-action-row>
+              <button mat-button color="primary" (click)="sletProfil()" class="btnMainStyle">Slet Profil</button>
+              <button mat-button color="primary" (click)="redigerProfil()" class="btnMainStyle">Rediger Profil</button>
+            </mat-action-row>
           </mat-expansion-panel>
         </mat-accordion>
 
       </mat-card-content>
 
-
     </mat-card>
-    <mat-card *ngIf="showFillerB" >
+    <mat-card *ngIf="showFillerB">
 
       <mat-card-content>
         <mat-accordion class="example-headers-align" multi>
@@ -75,14 +74,15 @@
             <mat-card class="containStyle">
               <p>Navn:</p>
             </mat-card>
-              <mat-card class="containStyle">
+            <mat-card class="containStyle">
               <p>Beskrivelse:</p>
             </mat-card>
             <mat-action-row>
-              <button mat-button color="primary" (click)="sletBryggeri()" class="btnMainStyle" >Slet Bryggeri</button>
-              <button mat-button color="primary" (click)="redigerBryggeri()" class="btnMainStyle">Rediger Bryggeri</button>
+              <button mat-button color="primary" (click)="sletBryggeri()" class="btnMainStyle">Slet Bryggeri</button>
+              <button mat-button color="primary" (click)="redigerBryggeri()" class="btnMainStyle">Rediger
+                Bryggeri</button>
             </mat-action-row>
-            </mat-expansion-panel>
+          </mat-expansion-panel>
         </mat-accordion>
       </mat-card-content>
     </mat-card>
@@ -90,7 +90,3 @@
   </mat-drawer-content>
 
 </mat-drawer-container>
-
-
-
-

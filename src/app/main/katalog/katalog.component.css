@@ -19,3 +19,23 @@
   color: black; 
   font-weight: bold;
   }
+
+  .containStyle{
+    background-color: rgb(252, 252, 252);
+    margin-left: 50px;
+    margin-right: 50px;
+    padding-left: 40px;
+    font-style: oblique;
+  }
+  
+.example-headers-align .mat-expansion-panel-header-title,
+.example-headers-align .mat-expansion-panel-header-description {
+  flex-basis: 0;
+  margin-top: 10px;
+  font-style: oblique;
+}
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+
+}

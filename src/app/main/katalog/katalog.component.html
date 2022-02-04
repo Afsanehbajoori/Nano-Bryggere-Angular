@@ -1,72 +1,76 @@
 <div class="main" id="imgeUp">
-    <mat-toolbar class="login-header" style="background: linear-gradient(#238ff5, #23baf5); justify-content: center;">
-        <button mat-raised-button style="background-color: rgb(30, 122, 228); width: 120px; height: 40px; border-width: 0;">Opret øl</button>
-        <!-- <h1>{{beer.Nave}}</h1>  -->
-        <form class="example-form">
-            <mat-form-field class="example-full-width" appearance="fill">
+    <mat-toolbar class="login-header" style="background: linear-gradient(#238ff5, #23baf5);">
+        <button mat-raised-button
+            style="background-color: rgb(30, 122, 228); width: 120px; height: 40px; border-width: 0; margin-right: 20px;">Opret
+            øl</button>
+        <form class="example-form" style="justify-content: center;">
+            <mat-form-field>
                 <input matInput placeholder="Søgning" type="search">
             </mat-form-field>
         </form>
     </mat-toolbar>
-        <table style="width: 100%; height: 100%; justify-content: center; display: flex;">
-            <mat-accordion class="example-headers-align" multi style="width: 100%;">
-                <mat-expansion-panel>
-                  <mat-expansion-panel-header style="background: linear-gradient(rgb(30, 122, 228), rgb(75, 127, 185));; justify-content: center; width: 100%;">
-                    <mat-panel-title>
-                      Øl Navn
+    <table style="width: 100%; height: 100%; display: flex;">
+        <mat-accordion class="example-headers-align" multi style="width: 100%;">
+            <!-- <mat-expansion-panel *ngFor="let beer of beertests"> -->
+            <mat-expansion-panel>
+                <mat-expansion-panel-header
+                    style="background: linear-gradient(rgb(30, 122, 228), rgb(75, 127, 185)); justify-content: center; width: 100%;">
+                    <mat-panel-title class="centers" style="justify-content: center;">
+                        Øl Navn
+                        <!-- {{beer.Id}} -->
                     </mat-panel-title>
-                    <mat-action-row>
+                    <mat-action-row class="centers" style="justify-content: center;">
                         <button mat-button class="btnMainStyle">Slet Øl</button>
                         <button mat-button class="btnMainStyle">Rediger Øl</button>
-                      </mat-action-row>
-                  </mat-expansion-panel-header>
-                  <mat-card class="containStyle">
+                    </mat-action-row>
+                </mat-expansion-panel-header>
+                <mat-card class="containStyle">
                     <p>Type:</p>
                     <!-- <p>{{beer.Type}}</p> -->
-                  </mat-card>
-                  <mat-card class="containStyle">
+                </mat-card>
+                <mat-card class="containStyle">
                     <p>Procent:</p>
                     <!-- <p>{{beer.Procent}}</p> -->
-                  </mat-card>
-                  <mat-card class="containStyle">
+                </mat-card>
+                <mat-card class="containStyle">
                     <p>Smag:</p>
                     <!-- <p>{{beer.smag}}</p> -->
-                  </mat-card>
-                  <mat-card class="containStyle">
+                </mat-card>
+                <mat-card class="containStyle">
                     <p>Beskrivelse:</p>
                     <!-- <p>{{beer.Beskrivelse}}</p> -->
-                  </mat-card>
-                  <mat-card class="containStyle">
+                </mat-card>
+                <mat-card class="containStyle">
                     <p>Etiket:</p>
                     <!-- <p>{{beer.Etiket}}</p> -->
-                  </mat-card>
-                  <mat-card class="containStyle">
+                </mat-card>
+                <mat-card class="containStyle">
                     <p>Antal:</p>
                     <!-- <p>{{beer.Antal}}</p> -->
-                  </mat-card>
-                </mat-expansion-panel>
-              </mat-accordion>
-            <!-- <mat-list *ngFor="let beer of beers"> -->
-            <!-- <mat-list class="list" style="height: 100%; width: 80%; text-align: center;">
-                <mat-toolbar style="background: linear-gradient(rgb(30, 122, 228), rgb(75, 127, 185));; justify-content: center;">
-                    <button mat-stroked-button>Lager</button>
-                     <h1>{{beer.Nave}}</h1>
-                    <h1>Navn</h1>
-                </mat-toolbar>
-                <div layout="row" layout-align="center center" style="width: 100%; grid-template-columns: 1fr 1fr; display: grid; align-items:center; justify-content:center;">
-                    <mat-list-item class="list-item-set" style="background-color: tomato; width: auto;">item1</mat-list-item>
-                    <mat-list-item class="list-item-set" style="background-color: grey; width: 100%; text-align: center;">item2</mat-list-item>
-                    <mat-list-item class="list-item-set" style="background-color: lightblue;">item3</mat-list-item>
-                    <mat-list-item class="list-item-set" style="background-color: lightgreen;">item4</mat-list-item>
-                    <mat-list-item class="list-item-set" style="background-color: rgb(255, 221, 71);">item5</mat-list-item>
-                    <mat-list-item class="list-item-set" style="background-color: rgb(99, 71, 255);">item6</mat-list-item>
-                    <mat-list-item style="color: black;">{{beer.Type}}</mat-list-item>
-                    <mat-list-item style="color: black;">{{beer.Procent}}</mat-list-item>
-                    <mat-list-item style="color: black;">{{beer.smag}}</mat-list-item>
-                    <mat-list-item style="color: black;">{{beer.Beskrivelse}}</mat-list-item>
-                    <mat-list-item style="color: black;">{{beer.Etiket}}</mat-list-item>
-                    <mat-list-item style="color: black;">{{beer.Antal}}</mat-list-item>
-                </div>
-            </mat-list> -->
-        </table>
+                </mat-card>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </table>
 </div>
+<!-- <mat-list *ngFor="let beer of beers"> -->
+<!-- <mat-list class="list" style="height: 100%; width: 80%; text-align: center;">
+            <mat-toolbar style="background: linear-gradient(rgb(30, 122, 228), rgb(75, 127, 185));; justify-content: center;">
+                <button mat-stroked-button>Lager</button>
+                 <h1>{{beer.Nave}}</h1>
+                <h1>Navn</h1>
+            </mat-toolbar>
+            <div layout="row" layout-align="center center" style="width: 100%; grid-template-columns: 1fr 1fr; display: grid; align-items:center; justify-content:center;">
+                <mat-list-item class="list-item-set" style="background-color: tomato; width: auto;">item1</mat-list-item>
+                <mat-list-item class="list-item-set" style="background-color: grey; width: 100%; text-align: center;">item2</mat-list-item>
+                <mat-list-item class="list-item-set" style="background-color: lightblue;">item3</mat-list-item>
+                <mat-list-item class="list-item-set" style="background-color: lightgreen;">item4</mat-list-item>
+                <mat-list-item class="list-item-set" style="background-color: rgb(255, 221, 71);">item5</mat-list-item>
+                <mat-list-item class="list-item-set" style="background-color: rgb(99, 71, 255);">item6</mat-list-item>
+                <mat-list-item style="color: black;">{{beer.Type}}</mat-list-item>
+                <mat-list-item style="color: black;">{{beer.Procent}}</mat-list-item>
+                <mat-list-item style="color: black;">{{beer.smag}}</mat-list-item>
+                <mat-list-item style="color: black;">{{beer.Beskrivelse}}</mat-list-item>
+                <mat-list-item style="color: black;">{{beer.Etiket}}</mat-list-item>
+                <mat-list-item style="color: black;">{{beer.Antal}}</mat-list-item>
+            </div>
+        </mat-list> -->

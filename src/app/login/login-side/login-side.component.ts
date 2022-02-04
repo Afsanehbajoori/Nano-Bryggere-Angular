@@ -20,15 +20,11 @@ export class LoginSideComponent implements OnInit {
   loginForm : FormGroup;
   @Input() loginDetails = {Brugernavn: ''}
 
-
- 
-
   constructor(
     public router: Router,
     public restApi: RestApiService,
     public actRoute: ActivatedRoute
     ) { }
-
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({

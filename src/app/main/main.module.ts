@@ -75,7 +75,9 @@ import { RedigerBryggeriDialogBoxComponent } from './rediger-bryggeri-dialog-box
     SletProfilComponent,
     ProfilComponent,
     KatalogComponent,
-    SletDialogBoxComponent
+    SletDialogBoxComponent,
+    RedigerProfilDialogBoxComponent,
+    RedigerBryggeriDialogBoxComponent
   ]
 
 })

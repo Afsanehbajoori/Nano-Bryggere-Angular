@@ -23,6 +23,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { SletDialogBoxComponent } from './slet-dialog-box/slet-dialog-box.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -35,8 +37,10 @@ import {MatExpansionModule} from '@angular/material/expansion';
     RedigerOlComponent,
     SletProfilComponent,
     ProfilComponent,
-    KatalogComponent
+    KatalogComponent,
+    SletDialogBoxComponent
   ],
+  entryComponents:[SletDialogBoxComponent],
   imports: [
     CommonModule,
     MainRoutingModule,
@@ -51,7 +55,10 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatFormFieldModule,
     MatIconModule,
     MatSidenavModule,
-    MatExpansionModule
+
+    MatExpansionModule,
+    MatDialogModule
+
   ],
   exports: [
     NotFoundComponent,
@@ -63,7 +70,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     RedigerOlComponent,
     SletProfilComponent,
     ProfilComponent,
-    KatalogComponent
+    KatalogComponent,
+    SletDialogBoxComponent
   ]
 
 })

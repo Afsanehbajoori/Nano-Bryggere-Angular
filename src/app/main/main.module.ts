@@ -48,7 +48,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatInputModule,
     FormsModule,
     ReactiveFormsModule,
-    MatFormFieldModule
+    MatFormFieldModule,
     MatIconModule,
     MatSidenavModule,
     MatExpansionModule

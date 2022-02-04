@@ -12,10 +12,14 @@ import { RedigerOlComponent } from './rediger-ol/rediger-ol.component';
 import { SletProfilComponent } from './slet-profil/slet-profil.component';
 import { ProfilComponent } from './profil/profil.component';
 import { KatalogComponent } from './katalog/katalog.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatExpansionModule} from '@angular/material/expansion';
@@ -23,7 +27,6 @@ import { SletDialogBoxComponent } from './slet-dialog-box/slet-dialog-box.compon
 import { MatDialogModule } from '@angular/material/dialog';
 import { RedigerProfilDialogBoxComponent } from './rediger-profil-dialog-box/rediger-profil-dialog-box.component';
 import { RedigerBryggeriDialogBoxComponent } from './rediger-bryggeri-dialog-box/rediger-bryggeri-dialog-box.component';
-
 
 @NgModule({
   declarations: [
@@ -49,8 +52,14 @@ import { RedigerBryggeriDialogBoxComponent } from './rediger-bryggeri-dialog-box
     MatGridListModule,
     MatToolbarModule,
     MatListModule,
+    MatButtonModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
     MatIconModule,
     MatSidenavModule,
+
     MatExpansionModule,
     MatDialogModule
 

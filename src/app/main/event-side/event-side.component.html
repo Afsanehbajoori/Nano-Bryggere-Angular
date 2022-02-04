@@ -1,10 +1,10 @@
 <div style="width: 100%;">
     <mat-toolbar style="width: 100%;">
-        <Input type="search">
+        <Input mat-Input type="search">
         <span>Nano-Bryggere</span>
     </mat-toolbar>
-    <div fxLayoutAlign="center center" style="width: 100%;">
-        <table class="main-div" style="width: 80%;">
+    <div fxLayoutAlign="center center" style="width: 100%; justify-content: center;">
+        <table style="width: 80%;">
             <!-- <mat-list *ngFor="let event of events"> -->
             <mat-list style="background-color: #FFAF66;">
                 <mat-toolbar class="login-header" style="background-color: #42a0f8; justify-content: center;">
@@ -17,6 +17,11 @@
                 <mat-list-item style="color: black;">item4</mat-list-item>
                 <mat-list-item style="color: black;">item5</mat-list-item>
                 <mat-list-item style="color: black;">item6</mat-list-item>
+                <!-- <mat-list-item style="color: black;">{{event.Titel}}</mat-list-item>
+                <mat-list-item style="color: black;">{{event.Beskrivelse}}</mat-list-item>
+                <mat-list-item style="color: black;">{{event.StartDato}}</mat-list-item>
+                <mat-list-item style="color: black;">{{event.SlutDato}}</mat-list-item>
+                <mat-list-item style="color: black;">{{event.Lokation}}</mat-list-item>-->
             </mat-list>
         </table>
     </div>

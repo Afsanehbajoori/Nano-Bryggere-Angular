@@ -1,7 +1,7 @@
 <div mat-dialog-content>
   <p>Er du sikker på du vil slette det?</p>
  </div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()" class="btnMainStyle" mat-dialog-close mat-dialog-close="false">Nej</button>
-  <button mat-button cdkFocusInitial (click)="onYesClick()" class="btnMainStyle" mat-dialog-close mat-dialog-close="true">Ja</button>
+<div mat-dialog-actions class="btn-container">
+  <button mat-button (click)="onNoClick()"  mat-dialog-close mat-dialog-close="false">Nej</button>
+  <button mat-button cdkFocusInitial (click)="onYesClick()"  mat-dialog-close mat-dialog-close="true">Ja</button>
 </div>

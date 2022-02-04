@@ -1,0 +1,21 @@
+.main{
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+  }
+
+#imgeUp{
+    background-image: url('/assets/images/Background-website-01.jpg');
+    background-position:center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: auto;
+  }
+  
+.list {
+    justify-content: center;
+  }
+
+.list-item-set{
+  color: black; 
+  font-weight: bold;
+  }

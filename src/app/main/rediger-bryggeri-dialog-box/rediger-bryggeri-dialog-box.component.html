@@ -1,8 +1,23 @@
 <h1 mat-dialog-title>Rediger Bryggerioplysninger</h1>
 <div mat-dialog-content>
+  <form class="example-form">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Logo</mat-label>
+      <input matInput >
+    </mat-form-field>
 
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Navn</mat-label>
+      <input matInput >
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Beskrivelse</mat-label>
+      <input matInput >
+    </mat-form-field>
+  </form>
  </div>
 <div mat-dialog-actions class="btn-container">
-  <button mat-button (click)="onCancelClick()"  mat-dialog-close mat-dialog-close="false">Annuler</button>
+  <button mat-button (click)="onCancelClick()"  mat-dialog-close mat-dialog-close="false">Annulere</button>
   <button mat-button cdkFocusInitial (click)="onSaveClick()"  mat-dialog-close mat-dialog-close="true">Gem Ændringer</button>
 </div>

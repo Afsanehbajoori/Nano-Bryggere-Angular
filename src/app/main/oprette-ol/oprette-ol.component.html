@@ -1,1 +1,38 @@
-<p>oprette-ol works!</p>
+<mat-card class="main" id="imgeUp">
+    <mat-card-title class="txt" style="margin-top: 100px;">
+    </mat-card-title>
+    <mat-card-content class="container">
+
+        <form [formGroup]="OpretForm" class="example-form">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <input matInput formControlName="navn" placeholder="Navn" class="input-control">
+                <!-- <mat-error *ngIf="navn.errors?.['required']"> -->
+                <mat-error>
+                    Vær Venlig at udfyld feltet med din email
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="fill">
+
+                <input matInput type="password" placeholder="Type" class="input-control">
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="fill">
+
+                <input matInput type="password" placeholder="Procent" class="input-control">
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="fill">
+
+                <input matInput type="password" placeholder="Smag" class="input-control">
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="fill">
+
+                <input matInput type="password" placeholder="beskrivelse" class="input-control">
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="fill">
+
+                <input matInput type="password" placeholder="etiket" class="input-control">
+            </mat-form-field>
+
+            <button mat-raised-button type="submit" (click)="onSubmitOl()" class="login-btn">Opret Øl</button>
+        </form>
+    </mat-card-content>
+</mat-card>

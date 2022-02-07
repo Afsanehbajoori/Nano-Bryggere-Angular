@@ -4,13 +4,12 @@ import { Tags } from "./Tags";
 
 export class Events
 {
-  public Id : number;
-  public Titel: string;
-  public Beskrivelse:string;
-  public StartDato: Date;
-  public SlutDato: Date;
-  public Lokation:string;
-  public Tags:Tags;
-  public Deltagere : Bruger;
-
+  public id : number;
+  public titel: string;
+  public beskrivelse:string;
+  public startDato: Date;
+  public slutDato: Date;
+  public lokation:string;
+  public tags:Tags;
+  public deltagere : Bruger;
 }

@@ -1,0 +1,10 @@
+.btn-container{
+  margin-top: 30px;
+  text-align: center;
+  cursor:pointer;
+  font-style: italic;
+  font-size: 15px;
+  border:none;
+  background-color: white;
+  justify-content: space-between;
+}

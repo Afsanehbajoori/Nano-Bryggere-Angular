@@ -23,6 +23,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { SletDialogBoxComponent } from './slet-dialog-box/slet-dialog-box.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { RedigerProfilDialogBoxComponent } from './rediger-profil-dialog-box/rediger-profil-dialog-box.component';
+import { RedigerBryggeriDialogBoxComponent } from './rediger-bryggeri-dialog-box/rediger-bryggeri-dialog-box.component';
 
 @NgModule({
   declarations: [
@@ -35,8 +39,12 @@ import {MatExpansionModule} from '@angular/material/expansion';
     RedigerOlComponent,
     SletProfilComponent,
     ProfilComponent,
-    KatalogComponent
+    KatalogComponent,
+    SletDialogBoxComponent,
+    RedigerProfilDialogBoxComponent,
+    RedigerBryggeriDialogBoxComponent
   ],
+  entryComponents:[SletDialogBoxComponent , RedigerProfilDialogBoxComponent , RedigerBryggeriDialogBoxComponent],
   imports: [
     CommonModule,
     MainRoutingModule,
@@ -51,7 +59,10 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatFormFieldModule,
     MatIconModule,
     MatSidenavModule,
-    MatExpansionModule
+
+    MatExpansionModule,
+    MatDialogModule
+
   ],
   exports: [
     NotFoundComponent,
@@ -63,7 +74,10 @@ import {MatExpansionModule} from '@angular/material/expansion';
     RedigerOlComponent,
     SletProfilComponent,
     ProfilComponent,
-    KatalogComponent
+    KatalogComponent,
+    SletDialogBoxComponent,
+    RedigerProfilDialogBoxComponent,
+    RedigerBryggeriDialogBoxComponent
   ]
 
 })

@@ -59,10 +59,8 @@ import { RedigerBryggeriDialogBoxComponent } from './rediger-bryggeri-dialog-box
     MatFormFieldModule,
     MatIconModule,
     MatSidenavModule,
-
     MatExpansionModule,
     MatDialogModule
-
   ],
   exports: [
     NotFoundComponent,

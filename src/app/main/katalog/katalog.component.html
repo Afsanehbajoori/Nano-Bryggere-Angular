@@ -1,8 +1,7 @@
 <div class="main" id="imgeUp">
     <mat-toolbar class="login-header" style="background: linear-gradient(#238ff5, #23baf5);">
-        <button mat-raised-button
-            style="background-color: rgb(30, 122, 228); width: 120px; height: 40px; border-width: 0; margin-right: 20px;">Opret
-            øl</button>
+        <button mat-raised-button style="background-color: rgb(30, 122, 228); width: 120px; height: 40px; border-width: 0; margin-right: 20px;"
+        (click)="onOpretOl()">Opret øl</button>
         <form class="example-form" style="justify-content: center;">
             <mat-form-field>
                 <input matInput placeholder="Søgning" type="search">
@@ -19,8 +18,8 @@
                         {{beer.navn}}
                     </mat-panel-title>
                     <mat-action-row class="centers" style="justify-content: center;">
-                        <button mat-button class="btnMainStyle">Slet Øl</button>
-                        <button mat-button class="btnMainStyle">Rediger Øl</button>
+                        <button mat-button class="btnMainStyle" (click)="onSletOl()">Slet Øl</button>
+                        <button mat-button class="btnMainStyle" (click)="onRedigerOl()">Rediger Øl</button>
                     </mat-action-row>
                 </mat-expansion-panel-header>
                 <mat-card class="containStyle">

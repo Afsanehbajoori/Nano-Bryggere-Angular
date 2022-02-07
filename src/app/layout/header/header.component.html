@@ -1,12 +1,71 @@
-<mat-toolbar color="primary" >
+<mat-toolbar style="background-color: rgb(69, 69, 214);" >
     <mat-toolbar-row>
-      <span>Nano Bryggere</span>
+
+
+
+      <Button mat-button [matMenuTriggerFor]="menu" class="menuBarStyle" >
+        <mat-icon >menu</mat-icon>
+      </Button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item [matMenuTriggerFor]="login"><mat-icon aria-hidden="false">login</mat-icon>Login</button>
+        <button mat-menu-item [matMenuTriggerFor]="main"><mat-icon aria-hidden="false">home</mat-icon>Main</button>
+        <button mat-menu-item [matMenuTriggerFor]="forum"><mat-icon aria-hidden="false">chat</mat-icon>Forum</button>
+      </mat-menu>
+
+      <mat-menu #login="matMenu">
+        <button mat-menu-item >
+          <span><a href="/login/login"  style="text-decoration:none">Login</a></span>
+        </button>
+        <button mat-menu-item >
+          <span><a href="/login/glemtpassword"  style="text-decoration:none">Glemt Password</a></span>
+        </button>
+        <button mat-menu-item >
+          <span><a href="/login/editpassword"  style="text-decoration:none">Edit Password</a></span>
+        </button>
+        <button mat-menu-item >
+          <span><a href="/login/registrer"  style="text-decoration:none">Registere</a></span>
+        </button>
+
+      </mat-menu>
+
+      <mat-menu #main="matMenu">
+        <button mat-menu-item>
+          <span><a href="/main/main"  style="text-decoration:none">Forside</a></span>
+        </button>
+        <button mat-menu-item >
+          <span><a href="/main/profil"  style="text-decoration:none">Profil</a></span>
+        </button>
+        <button mat-menu-item >
+          <span><a href="/main/katalog"  style="text-decoration:none">Katalog</a></span>
+        </button>
+        <button mat-menu-item >
+          <span><a href="/main/event"  style="text-decoration:none">Events</a></span>
+        </button>
+        <button mat-menu-item >
+          <span><a href="/main/certifikat"  style="text-decoration:none">Certifikat</a></span>
+        </button>
+
+
+
+      </mat-menu>
+
+      <mat-menu #forum="matMenu">
+        <button mat-menu-item >
+          <span><a href="/forum/forum"  style="text-decoration:none">Forside</a></span>
+        </button>
+        <button mat-menu-item >
+          <span><a href="/forum/forumpost"  style="text-decoration:none">Post</a></span>
+        </button>
+        <button mat-menu-item >
+          <span><a href="/forum/forumtags"  style="text-decoration:none">Tags</a></span>
+        </button>
+
+
+      </mat-menu>
+
       <span class="example-spacer"></span>
-      <span type="button" mat-button  >
-        <mat-icon>menu</mat-icon>
-      </span>
 
-
+      <span>Nano Bryggere</span>
     </mat-toolbar-row>
 
 

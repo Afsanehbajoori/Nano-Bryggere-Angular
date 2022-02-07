@@ -1,11 +1,84 @@
-<div style="width: 100%;">
+<div class="main" id="imgeUp">
+    <mat-toolbar class="login-header" style="background: linear-gradient(#238ff5, #23baf5);">
+        <!-- *ngif="Rolle.RolleNavn >= Moderator" puttes ind i button nedenunder -->
+        <button mat-raised-button style="background-color: rgb(30, 122, 228); width: 120px; height: 40px; border-width: 0; margin-right: 20px;">Opret Event</button>
+        <form class="example-form" style="justify-content: center;">
+            <mat-form-field>
+                <input matInput placeholder="Søgning" type="search">
+            </mat-form-field>
+        </form>
+    </mat-toolbar>
+    <table style="width: 100%; height: 100%; display: flex;">
+        <mat-accordion class="example-headers-align" multi style="width: 100%;">
+            <!-- <mat-expansion-panel *ngFor="let event of eventtests"> -->
+            <mat-expansion-panel>
+                <mat-expansion-panel-header
+                    style="background: linear-gradient(rgb(30, 122, 228), rgb(75, 127, 185)); justify-content: center; width: 100%;">
+                    <mat-panel-title class="centers" style="justify-content: center;">
+                        Event Titel
+                        <!-- {{event.Titel}} -->
+                    </mat-panel-title>
+                    <!-- *ngif="Rolle.RolleNavn >= Moderator" puttes i action-row´en nedenunder -->
+                    <mat-action-row class="centers" style="justify-content: center;">
+                        <button mat-button class="btnMainStyle">Slet Event</button>
+                        <button mat-button class="btnMainStyle">Rediger Event</button>
+                    </mat-action-row>
+                </mat-expansion-panel-header>
+                <mat-card class="containStyle">
+                    <p>Beskrivelse:</p>
+                    <!-- <p>{{event.Beskrivelse}}</p> -->
+                </mat-card>
+                <mat-card class="containStyle">
+                    <p>StartDato:</p>
+                    <!-- <p>{{event.StartDato}}</p> -->
+                </mat-card>
+                <mat-card class="containStyle">
+                    <p>SlutDato:</p>
+                    <!-- <p>{{event.SlutDato}}</p> -->
+                </mat-card>
+                <mat-card class="containStyle">
+                    <p>Lokation:</p>
+                    <!-- <p>{{event.Lokation}}</p> -->
+                </mat-card>
+                <mat-card class="containStyle">
+                    <p>Tags:</p>
+                    <!-- <p>{{event.Tags}}</p> -->
+                </mat-card>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </table>
+</div>
+<!-- <mat-list *ngFor="let beer of beers"> -->
+<!-- <mat-list class="list" style="height: 100%; width: 80%; text-align: center;">
+            <mat-toolbar style="background: linear-gradient(rgb(30, 122, 228), rgb(75, 127, 185));; justify-content: center;">
+                <button mat-stroked-button>Lager</button>
+                 <h1>{{beer.Nave}}</h1>
+                <h1>Navn</h1>
+            </mat-toolbar>
+            <div layout="row" layout-align="center center" style="width: 100%; grid-template-columns: 1fr 1fr; display: grid; align-items:center; justify-content:center;">
+                <mat-list-item class="list-item-set" style="background-color: tomato; width: auto;">item1</mat-list-item>
+                <mat-list-item class="list-item-set" style="background-color: grey; width: 100%; text-align: center;">item2</mat-list-item>
+                <mat-list-item class="list-item-set" style="background-color: lightblue;">item3</mat-list-item>
+                <mat-list-item class="list-item-set" style="background-color: lightgreen;">item4</mat-list-item>
+                <mat-list-item class="list-item-set" style="background-color: rgb(255, 221, 71);">item5</mat-list-item>
+                <mat-list-item class="list-item-set" style="background-color: rgb(99, 71, 255);">item6</mat-list-item>
+                <mat-list-item style="color: black;">{{beer.Type}}</mat-list-item>
+                <mat-list-item style="color: black;">{{beer.Procent}}</mat-list-item>
+                <mat-list-item style="color: black;">{{beer.smag}}</mat-list-item>
+                <mat-list-item style="color: black;">{{beer.Beskrivelse}}</mat-list-item>
+                <mat-list-item style="color: black;">{{beer.Etiket}}</mat-list-item>
+                <mat-list-item style="color: black;">{{beer.Antal}}</mat-list-item>
+            </div>
+        </mat-list> -->
+
+<!-- <div style="width: 100%;">
     <mat-toolbar style="width: 100%;">
         <Input mat-Input type="search">
         <span>Nano-Bryggere</span>
     </mat-toolbar>
     <div fxLayoutAlign="center center" style="width: 100%; justify-content: center;">
         <table style="width: 80%;">
-            <!-- <mat-list *ngFor="let event of events"> -->
+             <mat-list *ngFor="let event of events">
             <mat-list style="background-color: #FFAF66;">
                 <mat-toolbar class="login-header" style="background-color: #42a0f8; justify-content: center;">
                     <button mat-raised-button style="background-color: rgb(30, 122, 228); width: 120px; height: 40px;">Lager</button>
@@ -17,12 +90,12 @@
                 <mat-list-item style="color: black;">item4</mat-list-item>
                 <mat-list-item style="color: black;">item5</mat-list-item>
                 <mat-list-item style="color: black;">item6</mat-list-item>
-                <!-- <mat-list-item style="color: black;">{{event.Titel}}</mat-list-item>
+                 <mat-list-item style="color: black;">{{event.Titel}}</mat-list-item>
                 <mat-list-item style="color: black;">{{event.Beskrivelse}}</mat-list-item>
                 <mat-list-item style="color: black;">{{event.StartDato}}</mat-list-item>
                 <mat-list-item style="color: black;">{{event.SlutDato}}</mat-list-item>
-                <mat-list-item style="color: black;">{{event.Lokation}}</mat-list-item>-->
+                <mat-list-item style="color: black;">{{event.Lokation}}</mat-list-item>
             </mat-list>
         </table>
     </div>
-</div>
+</div> -->

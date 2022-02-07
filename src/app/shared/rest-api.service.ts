@@ -27,28 +27,28 @@ export class RestApiService {
       catchError(this.handleError)
     )
   }
-  getLogins(id: any): Observable<Login> {
+  getLogins(id: number): Observable<Login> {
     return this.http.get<Login>(this.apiUrl + '/Logins/' + id)
     .pipe(
       retry(1),
       catchError(this.handleError)
     )
   }
-  createLogins(id: any): Observable<Login> {
+  createLogins(id: number): Observable<Login> {
     return this.http.post<Login>(this.apiUrl + '/Logins', JSON.stringify(Login), this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)
     )
   }
-  updateLogin(id:any, login: Login): Observable<Login>{
+  updateLogin(id:number, login: Login): Observable<Login>{
     return this.http.put<Login>(this.apiUrl + '/logins/' + id, JSON.stringify(this.stringifying), this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)
     )
   }
-  deleteLogin(id: any){
+  deleteLogin(id: number){
     return this.http.delete<Login>(this.apiUrl + '/Logins/' + id, this.httpOptions)
     .pipe(
       retry(1),
@@ -65,28 +65,28 @@ export class RestApiService {
       catchError(this.handleError)
     )
   }
-  getData(id: any, endpoint: string): Observable<any> {
+  getData(id: number, endpoint: string): Observable<any> {
     return this.http.get<any>(this.apiUrl + endpoint + id)
     .pipe(
       retry(1),
       catchError(this.handleError)
     )
   }
-  createData(id: any, endpoint: string): Observable<any> {
+  createData(id: number, endpoint: string): Observable<any> {
     return this.http.post<any>(this.apiUrl + endpoint, JSON.stringify(this.stringifying), this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)
     )
   }
-  updateData(id:any, endpoint: string, data: any): Observable<any>{
+  updateData(id:number, endpoint: string, data: any): Observable<any>{
     return this.http.put<any>(this.apiUrl + endpoint + id, JSON.stringify(this.stringifying), this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)
     )
   }
-  deleteData(id: any, endpoint: string){
+  deleteData(id: number, endpoint: string){
     return this.http.delete<any>(this.apiUrl + endpoint + id, this.httpOptions)
     .pipe(
       retry(1),

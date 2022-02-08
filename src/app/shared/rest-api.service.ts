@@ -19,7 +19,7 @@ export class RestApiService {
       'Content-Type': 'application/json'
     })
   }
-  //api forbindelse. disse kald er 
+  //api forbindelse. disse kald er
   getLogin(): Observable<Login> {
     return this.http.get<Login>(this.apiUrl + '/Logins')
     .pipe(
@@ -66,7 +66,7 @@ export class RestApiService {
     )
   }
   getData(id: number, endpoint: string): Observable<any> {
-    return this.http.get<any>(this.apiUrl + endpoint + id)
+    return this.http.get<any>(this.apiUrl + endpoint +'/'+ id)
     .pipe(
       retry(1),
       catchError(this.handleError)

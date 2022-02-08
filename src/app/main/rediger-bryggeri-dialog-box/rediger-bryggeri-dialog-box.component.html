@@ -1,23 +1,33 @@
 <h1 mat-dialog-title>Rediger Bryggerioplysninger</h1>
 <div mat-dialog-content>
-  <form class="example-form">
-    <mat-form-field class="example-full-width" appearance="fill">
+  <form [formGroup]="updateBryggeriForm" (ngSubmit)="onSaveClick()" class="example-form"  >
+    <input
+    type="text"
+    class="form-control"
+    formControlName="idCtl"
+    autocomplete="id"
+    [placeholder]="'Auto Assigned Id' "
+    readonly
+  />
+  <span hidden translate>Id</span>
+      <mat-form-field class="example-full-width" appearance="fill" >
       <mat-label>Logo</mat-label>
-      <input matInput >
+      <input matInput  formControlName="logoCtl">
     </mat-form-field>
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Navn</mat-label>
-      <input matInput >
+      <input matInput  formControlName="navnCtl">
     </mat-form-field>
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Beskrivelse</mat-label>
-      <input matInput >
+      <input matInput  formControlName="beskrivelseCtl">
     </mat-form-field>
-  </form>
- </div>
+
 <div mat-dialog-actions class="btn-container">
   <button mat-button (click)="onCancelClick()"  mat-dialog-close mat-dialog-close="false">Annulere</button>
-  <button mat-button cdkFocusInitial (click)="onSaveClick()"  mat-dialog-close mat-dialog-close="true">Gem Ændringer</button>
+  <button mat-button cdkFocusInitial mat-dialog-close mat-dialog-close="true" >Gem Ændringer</button>
+</div>
+</form>
 </div>

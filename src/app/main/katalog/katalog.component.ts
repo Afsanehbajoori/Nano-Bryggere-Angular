@@ -12,8 +12,6 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 export class KatalogComponent implements OnInit {
   beertests: Øl[];
   beer = new Øl;
-  logins: Login[];
-  login = new Login;
   endpoints = '/Øller';
   //endpoints = '/Logins';
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Events } from 'src/app/Models/Events';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 @Component({
@@ -12,6 +13,7 @@ export class EventkalenderSideComponent implements OnInit {
   endpoints = '/Events';
   constructor(
     public restApi: RestApiService, 
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -22,4 +24,7 @@ export class EventkalenderSideComponent implements OnInit {
       this.eventtest = events;
     })
   }
+  onOpretEvents() {
+    this.router.navigate(['../events/oprette']);
+  };
 }

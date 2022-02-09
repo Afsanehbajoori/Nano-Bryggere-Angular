@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { RestApiService } from 'src/app/shared/rest-api.service';
 
 @Component({
   selector: 'app-oprette',
@@ -6,10 +9,37 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./oprette.component.css']
 })
 export class OpretteComponent implements OnInit {
+  OpretForm: FormGroup;
+  eventtests: Event[];
+  event: Event;
+  endpoints = '/Events';
 
-  constructor() { }
+  constructor(
+    public restApi: RestApiService,
+    private router: Router,
+    public actRoute: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
+    this.OpretForm = new FormGroup({
+      titel: new FormControl('', Validators.required),
+      beskrivelse: new FormControl('', Validators.required),
+      // startDato: new FormControl('', Validators.required),
+      // slutDato: new FormControl('', Validators.required),
+      lokation: new FormControl('', Validators.required)
+    });
   }
+  onSletEvent() {
+    return this.router.navigate(['../events/events'])
+  };
 
+  onSubmitEvent() {
+    this.event;
+    this.eventtests = this.OpretForm.value;
+    this.restApi.createData(this.eventtests, this.endpoints).subscribe((data) => {
+      this.event = data;
+      console.log(data);
+      this.router.navigate(['../events/events'])
+    })
+  }
 }

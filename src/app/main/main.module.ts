@@ -27,6 +27,7 @@ import { SletDialogBoxComponent } from './slet-dialog-box/slet-dialog-box.compon
 import { MatDialogModule } from '@angular/material/dialog';
 import { RedigerProfilDialogBoxComponent } from './rediger-profil-dialog-box/rediger-profil-dialog-box.component';
 import { RedigerBryggeriDialogBoxComponent } from './rediger-bryggeri-dialog-box/rediger-bryggeri-dialog-box.component';
+import {MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -59,10 +60,13 @@ import { RedigerBryggeriDialogBoxComponent } from './rediger-bryggeri-dialog-box
     MatFormFieldModule,
     MatIconModule,
     MatSidenavModule,
-
+    MatSnackBarModule,
     MatExpansionModule,
     MatDialogModule
 
+  ],
+  providers:[
+    {provide:MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue : {duration:2500}}
   ],
   exports: [
     NotFoundComponent,

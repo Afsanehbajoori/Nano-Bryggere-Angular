@@ -1,51 +1,51 @@
+<!-- <div *ngIf="dataLoaded"> -->
 <h1 mat-dialog-title>Rediger Kontaktoplysninger</h1>
 <div mat-dialog-content>
-  <form class="example-form">
+  <form class="example-form" [formGroup]="RedigerKontaktOplysninger" (submit)="updateKontaktOplysninger()">
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Fornavn:</mat-label>
-      <input matInput >
+      <input matInput formControlName="FnavnCtl">
     </mat-form-field>
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>EfterNavn:</mat-label>
-      <input matInput >
+      <input matInput formControlName="EnavnCtl">
     </mat-form-field>
 
-    <form class="example-form">
+
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Addresselinje1:</mat-label>
-        <input matInput >
+        <input matInput formControlName="Add1Ctl">
       </mat-form-field>
 
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Addresselinje2:</mat-label>
-        <input matInput >
+        <input matInput formControlName="Add2Ctl" >
       </mat-form-field>
 
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Telefonnr:</mat-label>
-        <input matInput >
+        <input matInput formControlName="TelCtl">
       </mat-form-field>
 
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Email:</mat-label>
-        <input matInput >
+        <input matInput formControlName="EmailCtl">
       </mat-form-field>
 
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Postnr:</mat-label>
-        <input matInput >
+        <input matInput formControlName="PostCtl">
       </mat-form-field>
 
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>By:</mat-label>
-        <input matInput >
+        <input matInput formControlName="ByCtl">
       </mat-form-field>
-    </form>
-  </form>
-
- </div>
 <div mat-dialog-actions class="btn-container">
-  <button mat-button (click)="onCancelClick()"  mat-dialog-close mat-dialog-close="false">Annulere</button>
-  <button mat-button cdkFocusInitial (click)="onSaveClick()"  mat-dialog-close mat-dialog-close="true">Gem Ændringer</button>
+  <button mat-button (click)="dialogRefRedigerProfil.close(false)">Annulere</button>
+  <button mat-button cdkFocusInitial (click)="dialogRefRedigerProfil.close(true)">Gem Ændringer</button>
 </div>
+</form>
+</div>
+<!-- </div> -->

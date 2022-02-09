@@ -1,4 +1,4 @@
-<mat-drawer-container class="example-container">
+<mat-drawer-container class="example-container" >
   <mat-drawer #drawer mode="side" opened class="main" id="imgeUp">
     <div class="sidebar">
       <h1 id="headerStyle">Profil Side</h1>
@@ -6,12 +6,11 @@
       <button class="btnStyle" (click)="showFillerB = !showFillerB">Vis Bryggeri Oplysninger</button>
     </div>
   </mat-drawer>
-  <mat-drawer-content class="main" id="imgeUp">
+  <mat-drawer-content class="main" id="imgeUp" *ngIf="kontaktoplysningerList">
     <mat-card *ngIf="showFillerP">
       <mat-card-content>
-        <mat-accordion class="example-headers-align" multi>
-          <mat-expansion-panel>
-            <!-- <mat-expansion-panel *ngFor="let profil of profiltest"> -->
+        <mat-accordion class="example-headers-align" multi >
+          <mat-expansion-panel >
             <mat-expansion-panel-header>
               <mat-panel-title>
                 Kontakt Oplysninger
@@ -20,51 +19,56 @@
                 <mat-icon>account_circle</mat-icon>
               </mat-panel-description>
             </mat-expansion-panel-header>
-            <mat-card class="containStyle">
-              <p>Fornavn:</p>
-              <!--<p>{{profil.Fornavn}}</p> -->
+
+            <!-- <mat-card class="containStyle">
+              <span >Id:</span>
+              <span class="txtStyle">{{kontaktoplysning.Id}}</span>
+            </mat-card> -->
+              <mat-card class="containStyle">
+              <span>Fornavn:</span>
+              <span class="txtStyle"  >{{kontaktoplysningerList.fnavn}}</span>
             </mat-card>
             <mat-card class="containStyle">
-              <p>Efternavn:</p>
-              <!--<p>{{profil.Efternavn}}</p> -->
+              <span>Efternavn:</span>
+              <span  class="txtStyle"  >{{kontaktoplysningerList.enavn}}</span>
             </mat-card>
             <mat-card class="containStyle">
-              <p>Addresselinje1:</p>
-              <!--<p>{{profil.Addresselinje1}}</p> -->
+              <span>Addresselinje1:</span>
+              <span  class="txtStyle" >{{kontaktoplysningerList.addresselinje1}}</span>
             </mat-card>
             <mat-card class="containStyle">
-              <p>Addresselinje2:</p>
-              <!--<p>{{profil.Addresselinje2}}</p> -->
+              <span>Addresselinje2:</span>
+              <span  class="txtStyle"   >{{kontaktoplysningerList.addresselinje2}}</span>
             </mat-card>
             <mat-card class="containStyle">
-              <p>Telefonnr:</p>
-              <!--<p>{{profil.TelefonNr}}</p> -->
+              <span>Telefonnr:</span>
+              <span  class="txtStyle"  >{{kontaktoplysningerList.telefonnr}}</span>
             </mat-card>
             <mat-card class="containStyle">
-              <p>Email:</p>
-              <!--<p>{{profil.Email}}</p> -->
+              <span>Email:</span>
+              <span  class="txtStyle"  >{{kontaktoplysningerList.email}}</span>
             </mat-card>
             <mat-card class="containStyle">
-              <p>Postnr:</p>
-              <!--<p>{{profil.PostNr}}</p> -->
+              <span>Postnr:</span>
+              <span  class="txtStyle"  >{{kontaktoplysningerList.postnr}}</span>
             </mat-card>
             <mat-card class="containStyle">
-              <p>By:</p>
-              <!--<p>{{profil.By}}</p> -->
+              <span>By:</span>
+              <span  class="txtStyle"  >{{kontaktoplysningerList.by}}</span>
             </mat-card>
             <mat-action-row>
               <button mat-button color="primary" (click)="sletProfil()" class="btnMainStyle">Slet Profil</button>
               <button mat-button color="primary" (click)="redigerProfil()" class="btnMainStyle">Rediger Profil</button>
             </mat-action-row>
+
           </mat-expansion-panel>
         </mat-accordion>
       </mat-card-content>
     </mat-card>
     <mat-card *ngIf="showFillerB">
-      <mat-card-content>
-        <mat-accordion class="example-headers-align" multi>
-          <mat-expansion-panel>
-          <!-- <mat-expansion-panel *ngFor="let bryggeri of bryggeritest"> -->
+      <mat-card-content >
+        <mat-accordion class="example-headers-align" multi  *ngIf="bryggeriList">
+          <mat-expansion-panel >
             <mat-expansion-panel-header>
               <mat-panel-title>
                 Bryggeri Oplysninger
@@ -73,17 +77,21 @@
                 <mat-icon>work</mat-icon>
               </mat-panel-description>
             </mat-expansion-panel-header>
+          <!--   <mat-card class="containStyle">
+              <span>Id:</span>
+              <span class="txtStyle">{{bryggeri.Id}}</span>
+            </mat-card> -->
             <mat-card class="containStyle">
-              <p>Logo:</p>
-              <!--<p>{{bryggeri.Logo}}</p> -->
+              <span>Logo:</span>
+              <span class="txtStyle">{{bryggeriList.logo}}</span>
             </mat-card>
             <mat-card class="containStyle">
-              <p>Navn:</p>
-              <!--<p>{{bryggeri.Navn}}</p> -->
+              <span>Navn:</span>
+              <span class="txtStyle">{{bryggeriList.navn}}</span>
             </mat-card>
             <mat-card class="containStyle">
-              <p>Beskrivelse:</p>
-              <!--<p>{{bryggeri.Beskrivelse}}</p> -->
+              <span>Beskrivelse:</span>
+              <span class="txtStyle">{{bryggeriList.beskrivelse}}</span>
             </mat-card>
             <mat-action-row>
               <button mat-button color="primary" (click)="sletBryggeri()" class="btnMainStyle">Slet Bryggeri</button>

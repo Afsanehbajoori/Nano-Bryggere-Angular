@@ -18,6 +18,42 @@ export class RestApiService {
       'Content-Type': 'application/json'
     })
   }
+  //api forbindelse. disse kald er
+  getLogin(): Observable<Login> {
+    return this.http.get<Login>(this.apiUrl + '/Logins')
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+  getLogins(id: number): Observable<Login> {
+    return this.http.get<Login>(this.apiUrl + '/Logins/' + id)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+  createLogins(id: number): Observable<Login> {
+    return this.http.post<Login>(this.apiUrl + '/Logins', JSON.stringify(Login), this.httpOptions)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+  updateLogin(id:number, login: Login): Observable<Login>{
+    return this.http.put<Login>(this.apiUrl + '/logins/' + id, JSON.stringify(this.stringifying), this.httpOptions)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+  deleteLogin(id: number){
+    return this.http.delete<Login>(this.apiUrl + '/Logins/' + id, this.httpOptions)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
   //Dynamisk api forbindelse. metoden bliver kaldt indefra den valgte ts.
   //Inde i constructoren bliver endpointet kaldt via den valgte url navn.
   //Det samme gælder id (som udvælger denne specifikke data via dens id) og data til at sige hvilken tabel, der er snakke om.
@@ -28,8 +64,8 @@ export class RestApiService {
       catchError(this.handleError)
     )
   }
-  getData(endpoint: string, id: any): Observable<any> {
-    return this.http.get<any>(this.apiUrl + endpoint + id)
+  getData(id: number, endpoint: string): Observable<any> {
+    return this.http.get<any>(this.apiUrl + endpoint +'/'+ id)
     .pipe(
       retry(1),
       catchError(this.handleError)

@@ -73,8 +73,16 @@
 
 .containStyle{
   background-color: rgb(252, 252, 252);
-  margin-left: 50px;
-  margin-right: 50px;
+  margin-left: 200px;
+  margin-right: 200px;
   padding-left: 40px;
   font-style: oblique;
+}
+
+.txtStyle{
+  font-style: italic;
+  font-weight: bold;
+  display: flex;
+ justify-content: center;
+ text-align: center;
 }

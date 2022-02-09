@@ -4,11 +4,11 @@ import { Samarbejde } from "./Samarbejde";
 export class Bryggeri{
 
   public Id: number;
-  public Navn: string;
-  public KontaktoplysningerId: number;
-  public Kontaktolysninger : Kontaktolysninger;
-  public Beskrivelse: string;
-  public Logo: string;
-  public Samarbejde: Samarbejde;
+  public navn: string;
+  public kontaktoplysningerId: number;
+  public kontaktolysninger : Kontaktolysninger;
+  public beskrivelse: string;
+  public logo: string;
+  public samarbejde: Samarbejde;
 
 }

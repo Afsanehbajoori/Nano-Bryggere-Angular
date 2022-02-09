@@ -8,9 +8,11 @@
 
 .login-btn{
   margin-top: 40px;
+  margin-left: 20px;
+  margin-right: 20px;
   height: 50px;
   background-color: rgb(155, 152, 152);
-  width: 100%;
+  width: 40%;
   cursor:pointer;
 }
 

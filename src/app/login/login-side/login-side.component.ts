@@ -13,9 +13,10 @@ import { Login } from 'src/app/Models/Login';
 })
 
 export class LoginSideComponent implements OnInit {
-  logins: Bruger
-  roller: Rolle
-  login: any = [];
+  login = new Login;
+  roller: Rolle;
+  logins: Bruger[];
+  endpoints = '/Logins';
   id = this.actRoute.snapshot.params['id'];
   loginForm : FormGroup;
   @Input() loginDetails = {Brugernavn: ''}
@@ -45,8 +46,8 @@ export class LoginSideComponent implements OnInit {
   //   })
   // }
   loadLogin(){
-    return this.restApi.getLogin().subscribe((data: {}) => {
-      this.login = data;
+    return this.restApi.getData(this.endpoints, this.login).subscribe((logins) => {
+      this.login = logins;
     })
   }
   // deleteLogin(id : any){

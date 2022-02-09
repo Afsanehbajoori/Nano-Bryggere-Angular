@@ -10,7 +10,6 @@ import { Rolle } from '../Models/Rolle';
   providedIn: 'root'
 })
 export class RestApiService {
-  stringifying: any = [];
   apiUrl = 'https://localhost:7142/api';
   constructor(private http: HttpClient) { }
 
@@ -72,15 +71,15 @@ export class RestApiService {
       catchError(this.handleError)
     )
   }
-  createData(id: number, endpoint: string): Observable<any> {
-    return this.http.post<any>(this.apiUrl + endpoint, JSON.stringify(this.stringifying), this.httpOptions)
+  createData(data: any, endpoint: string): Observable<any> {
+    return this.http.post<any>(this.apiUrl + endpoint, JSON.stringify(data), this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)
     )
   }
-  updateData(id:number, endpoint: string, data: any): Observable<any>{
-    return this.http.put<any>(this.apiUrl + endpoint + id, JSON.stringify(this.stringifying), this.httpOptions)
+  updateData(id: any, endpoint: string, data: any): Observable<any>{
+    return this.http.put<any>(this.apiUrl + endpoint + id, JSON.stringify(data), this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)

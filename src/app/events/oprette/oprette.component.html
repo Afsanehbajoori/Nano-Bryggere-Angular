@@ -3,9 +3,9 @@
     </mat-card-title>
     <mat-card-content class="container">
 
-        <form  class="example-form">
+        <form [formGroup]="OpretForm" class="example-form">
             <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="text" formControlName="titel" placeholder="Titel" class="input-control">
+                <input matInput type="text" [(ngModel)]="eventOprettelse.titel" class="input-control" formControlName="titel" placeholder="Titel" >
                 <!-- <mat-error *ngIf="navn.errors?.['required']"> -->
                 <mat-error>
                     feltet skal udfyldes 
@@ -13,7 +13,7 @@
             </mat-form-field>
             
             <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="text" formControlName="beskrivelse" placeholder="Beskrivelse" class="input-control">
+                <input matInput type="text" [(ngModel)]="eventOprettelse.beskrivelse" formControlName="beskrivelse" placeholder="Beskrivelse" class="input-control">
                 <mat-error>
                     Dette felt skal udfyldes
                 </mat-error>
@@ -34,13 +34,13 @@
             </mat-form-field> -->
 
             <mat-form-field class="example-full-width" appearance="fill">             
-                <input matInput type="text" formControlName="lokation" placeholder="Lokation" class="input-control">
+                <input matInput type="text" [(ngModel)]="eventOprettelse.lokation" formControlName="lokation" placeholder="Lokation" class="input-control">
                 <mat-error>
                     Dette felt skal udfyldes
                 </mat-error>
             </mat-form-field>
 
-            <button mat-raised-button type="submit" (click)="onSletEvent()" class="login-btn" style="background: linear-gradient(#b60d0d, #ff6e6e);">Annuller</button>
+            <button mat-raised-button type="submit" (click)="onAnnullerEvent()" class="login-btn" style="background: linear-gradient(#b60d0d, #ff6e6e);">Annuller</button>
             
             <button mat-raised-button type="submit" (click)="onSubmitEvent()" class="login-btn" style="background: linear-gradient(#33ff00, #41fd70);">Opret Øl</button>
         </form>

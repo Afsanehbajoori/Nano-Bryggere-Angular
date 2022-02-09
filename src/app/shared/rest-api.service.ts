@@ -78,15 +78,21 @@ export class RestApiService {
       catchError(this.handleError)
     )
   }
+
+
   updateData(id: any, endpoint: string, data: any): Observable<any>{
     return this.http.put<any>(this.apiUrl + endpoint +'/'+ id, JSON.stringify(data), this.httpOptions)
+
     .pipe(
       retry(1),
       catchError(this.handleError)
     )
   }
+
+
   deleteData(id: any, endpoint: string){
     return this.http.delete<any>(this.apiUrl + endpoint +'/'+ id, this.httpOptions)
+
     .pipe(
       retry(1),
       catchError(this.handleError)

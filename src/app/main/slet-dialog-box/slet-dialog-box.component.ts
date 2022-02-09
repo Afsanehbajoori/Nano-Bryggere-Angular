@@ -10,7 +10,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 })
 export class SletDialogBoxComponent implements OnInit {
 
-  constructor( public dialogRef : MatDialogRef<SletDialogBoxComponent> ) { }
+  constructor( public dialogRefSlet : MatDialogRef<SletDialogBoxComponent> ) { }
 
   ngOnInit(): void {
   }

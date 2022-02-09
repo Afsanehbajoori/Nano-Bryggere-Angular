@@ -5,10 +5,15 @@ import {MatAccordion} from '@angular/material/expansion';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { SletDialogBoxComponent } from '../slet-dialog-box/slet-dialog-box.component';
 import { RestApiService } from 'src/app/shared/rest-api.service';
-import { Kontaktolysninger } from 'src/app/Models/Kontaktoplysninger';
-import { Bryggeri } from 'src/app/Models/Bryggeri';
 import { Router, ActivatedRoute } from '@angular/router';
-import { NgForm, FormsModule } from '@angular/forms';
+import { NgForm, FormsModule, FormGroup, FormControl } from '@angular/forms';
+import { audit } from 'rxjs/operators';
+import { AutofillMonitor } from '@angular/cdk/text-field';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ThrowStmt } from '@angular/compiler';
+import { FormBuilder } from '@angular/forms';
+
+
 
 
 
@@ -20,7 +25,8 @@ import { NgForm, FormsModule } from '@angular/forms';
 })
 
 export class ProfilComponent implements OnInit {
-  dialogRef : MatDialogRef<SletDialogBoxComponent>;
+  dialogRefSlet : MatDialogRef<SletDialogBoxComponent>;
+  dialogRefRedigerProfil : MatDialogRef<RedigerProfilDialogBoxComponent>;
   @ViewChild(MatAccordion) accordion: MatAccordion;
   //kontaktoplysningerList: Kontaktolysninger[] ;
   kontaktoplysningerList : any;
@@ -31,16 +37,20 @@ export class ProfilComponent implements OnInit {
   endpointB='/Bryggerier';
   showFillerP = false;
   showFillerB = false;
-  kontaktoplysningerId : number=1;
-  bryggeriId : number =1;
+  kontaktoplysningerId : number=6;
+  bryggeriId : number =4;
+  dataLoaded : boolean=false;
+  RedigerKontaktOplysninger: FormGroup = new FormGroup({});
 
-  constructor(public dialog:MatDialog , public restApi: RestApiService , private router: Router  ) { }
+
+  constructor(public dialog:MatDialog , public restApi: RestApiService , private router: Router , private snackBar : MatSnackBar , private formBuilder : FormBuilder ) { }
 
 
   ngOnInit(): void {
-
+    this.dataLoaded= false;
     this.loadKontaktoplysninger();
     this.loadBryggeri();
+
 
 
   }
@@ -63,17 +73,18 @@ export class ProfilComponent implements OnInit {
   };
 
   sletProfil() {
-      this.dialogRef=this.dialog.open(SletDialogBoxComponent , {
+      this.dialogRefSlet=this.dialog.open(SletDialogBoxComponent , {
         width:'300px',
         disableClose:false
       });
-
-
-      this.dialogRef.afterClosed().subscribe(result => {
-    if(result){
+      this.dialogRefSlet.afterClosed().subscribe(result => {
+      if(result){
       this.restApi.deleteData(this.kontaktoplysningerId , this.endpointK).subscribe((data) => {
         this.kontaktoplysningerList=data;
+        this.snackBar.open("kontakt oplysninger slettet med succes");
         console.log(this.kontaktoplysningerList);
+      } , err => {
+        this.snackBar.open("Bruger skal slettes først");
       })
     }
 
@@ -81,27 +92,59 @@ export class ProfilComponent implements OnInit {
 
   }
 
-  redigerProfil(){
-      let dialogRef=this.dialog.open(RedigerProfilDialogBoxComponent);
-
-      dialogRef.afterClosed().subscribe(result => {console.log('dialog result: ${result}');
+ redigerProfil(){
+      this.dialogRefRedigerProfil=this.dialog.open(RedigerProfilDialogBoxComponent , {
+      disableClose:false
     });
+      //view kontaktoplysninger
+      this.restApi.getData(this.kontaktoplysningerId , this.endpointK)
+      .toPromise()
+      .then(data => {
+        this.kontaktoplysningerList= data;
+        //Object.assign(this.kontaktoplysningerList, data);
+        console.log(this.kontaktoplysningerList);
+        // build the edit form
+        this.RedigerKontaktOplysninger = this.formBuilder.group({
+          'FnavnCtl': new FormControl(this.kontaktoplysningerList.fnavn),
+          'EnavnCtl': new FormControl(this.kontaktoplysningerList.enavn),
+          'Add1Ctl':new FormControl(this.kontaktoplysningerList.addresselinje1),
+          'Add2Ctl': new FormControl(this.kontaktoplysningerList.addresselinje2),
+          'TelCtl':new FormControl(this.kontaktoplysningerList.telefonnr),
+          'EmailCtl' : new FormControl(this.kontaktoplysningerList.email),
+          'PostCtl' : new FormControl(this.kontaktoplysningerList.postnr),
+          'ByCtl' : new FormControl(this.kontaktoplysningerList.by)
+        })
+
+      })
+
+    /*   this.dialogRefRedigerProfil.afterClosed().subscribe(result => {
+        if(result){
+          this.restApi.updateData(this.kontaktoplysningerId , this.endpointK ).subscribe((data) => {
+            this.kontaktoplysningerList=data;
+            console.log(this.kontaktoplysningerList);
+          })
+
+      }
+     }); */
     }
 
+
+
   sletBryggeri(){
-      this.dialogRef=this.dialog.open(SletDialogBoxComponent , {
+      this.dialogRefSlet=this.dialog.open(SletDialogBoxComponent , {
         width:'300px',
         disableClose:false
       });
-
-
-      this.dialogRef.afterClosed().subscribe(result => {
+      this.dialogRefSlet.afterClosed().subscribe(result => {
         if(result){
         this.restApi.deleteData(this.bryggeriId , this.endpointB).subscribe((data) => {
         this.bryggeriList=data;
+        this.snackBar.open("Bryggeri oplysninger slettet med succes");
         console.log(this.bryggeriList);
-      })
-    }
+      }, err => {
+        this.snackBar.open("Øl skal slettes først");
+    })
+  }
 
   });
 

@@ -1,7 +1,6 @@
 import { Component, OnInit ,Inject} from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { RestApiService } from 'src/app/shared/rest-api.service';
-import { Kontaktolysninger } from 'src/app/Models/Kontaktoplysninger';
+
 
 
 @Component({
@@ -11,19 +10,13 @@ import { Kontaktolysninger } from 'src/app/Models/Kontaktoplysninger';
 })
 export class SletDialogBoxComponent implements OnInit {
 
-  constructor( public restApi: RestApiService ) { }
-
-
-    onNoClick(): void {
-      close();
-
-    }
-
-    onYesClick(): void{
-
-    }
+  constructor( public dialogRef : MatDialogRef<SletDialogBoxComponent> ) { }
 
   ngOnInit(): void {
   }
 
 }
+
+
+
+

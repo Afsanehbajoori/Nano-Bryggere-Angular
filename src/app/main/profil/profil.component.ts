@@ -13,8 +13,6 @@ import { NgForm, FormsModule } from '@angular/forms';
 
 
 
-
-
 @Component({
   selector: 'app-profil',
   templateUrl: './profil.component.html',
@@ -22,7 +20,7 @@ import { NgForm, FormsModule } from '@angular/forms';
 })
 
 export class ProfilComponent implements OnInit {
-
+  dialogRef : MatDialogRef<SletDialogBoxComponent>;
   @ViewChild(MatAccordion) accordion: MatAccordion;
   //kontaktoplysningerList: Kontaktolysninger[] ;
   kontaktoplysningerList : any;
@@ -33,7 +31,7 @@ export class ProfilComponent implements OnInit {
   endpointB='/Bryggerier';
   showFillerP = false;
   showFillerB = false;
-  kontaktoplysningerId : number=2;
+  kontaktoplysningerId : number=1;
   bryggeriId : number =1;
 
   constructor(public dialog:MatDialog , public restApi: RestApiService , private router: Router  ) { }
@@ -49,54 +47,71 @@ export class ProfilComponent implements OnInit {
 
   loadKontaktoplysninger(){
 
-    return this.restApi.getData(this.kontaktoplysningerId ,  this.endpointK).subscribe((data) => {
-      this.kontaktoplysningerList = data  ;
-      console.log(this.kontaktoplysningerList);
-    })
-  };
+      return this.restApi.getData(this.kontaktoplysningerId ,  this.endpointK).subscribe((data) => {
+        this.kontaktoplysningerList = data  ;
+        console.log(this.kontaktoplysningerList);
+      })
+    };
 
 
 
   loadBryggeri(){
-  return this.restApi.getData(this.bryggeriId ,this.endpointB).subscribe((data) => {
-      this.bryggeriList = data;
-      console.log(this.bryggeriList);
-  })
-};
+    return this.restApi.getData(this.bryggeriId ,this.endpointB).subscribe((data) => {
+        this.bryggeriList = data;
+        console.log(this.bryggeriList);
+    })
+  };
 
   sletProfil() {
-    let dialogRef=this.dialog.open(SletDialogBoxComponent);
+      this.dialogRef=this.dialog.open(SletDialogBoxComponent , {
+        width:'300px',
+        disableClose:false
+      });
 
-    dialogRef.afterClosed().subscribe(result => {console.log(result);
+
+      this.dialogRef.afterClosed().subscribe(result => {
+    if(result){
+      this.restApi.deleteData(this.kontaktoplysningerId , this.endpointK).subscribe((data) => {
+        this.kontaktoplysningerList=data;
+        console.log(this.kontaktoplysningerList);
+      })
+    }
+
   });
 
   }
 
   redigerProfil(){
-    let dialogRef=this.dialog.open(RedigerProfilDialogBoxComponent);
+      let dialogRef=this.dialog.open(RedigerProfilDialogBoxComponent);
 
-    dialogRef.afterClosed().subscribe(result => {console.log('dialog result: ${result}');
-  });
-  }
+      dialogRef.afterClosed().subscribe(result => {console.log('dialog result: ${result}');
+    });
+    }
 
   sletBryggeri(){
-    let dialogRef =this.dialog.open(SletDialogBoxComponent);
-    /* dialogRef.afterClosed().subscribe(result =>
-      {
+      this.dialogRef=this.dialog.open(SletDialogBoxComponent , {
+        width:'300px',
+        disableClose:false
+      });
+
+
+      this.dialogRef.afterClosed().subscribe(result => {
         if(result){
-          this.restApi.deleteData(id , this.endpointB);
+        this.restApi.deleteData(this.bryggeriId , this.endpointB).subscribe((data) => {
+        this.bryggeriList=data;
+        console.log(this.bryggeriList);
+      })
+    }
 
-        }
-      }
-      ) */
+  });
 
-  }
+    }
 
   redigerBryggeri(){
-    let dialogRef=this.dialog.open(RedigerBryggeriDialogBoxComponent);
+      let dialogRef=this.dialog.open(RedigerBryggeriDialogBoxComponent);
 
-    dialogRef.afterClosed().subscribe(result => {console.log('dialog result: ${result}');
-  });
-  }
+      dialogRef.afterClosed().subscribe(result => {console.log('dialog result: ${result}');
+    });
+    }
 
 }

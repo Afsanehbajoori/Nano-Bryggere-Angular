@@ -87,7 +87,7 @@ export class RestApiService {
     )
   }
   deleteData(id: number, endpoint: string){
-    return this.http.delete<any>(this.apiUrl + endpoint + id, this.httpOptions)
+    return this.http.delete<any>(this.apiUrl + endpoint+'/' + id, this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)

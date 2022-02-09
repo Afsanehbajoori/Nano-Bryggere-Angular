@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RestApiService } from 'src/app/shared/rest-api.service';
@@ -9,6 +9,7 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./oprette.component.css']
 })
 export class OpretteComponent implements OnInit {
+  @Input() eventstest = Event;
   OpretForm: FormGroup;
   eventtests: Event[];
   event: Event;
@@ -35,11 +36,10 @@ export class OpretteComponent implements OnInit {
 
   onSubmitEvent() {
     this.event;
-    this.eventtests = this.OpretForm.value;
-    this.restApi.createData(this.eventtests, this.endpoints).subscribe((data) => {
-      this.event = data;
+    console.log(this.eventstest);
+    this.restApi.createData(this.eventstest, this.endpoints).subscribe((data) => {
       console.log(data);
-      this.router.navigate(['../events/events'])
     })
+    this.router.navigate(['../events/events'])
   }
 }

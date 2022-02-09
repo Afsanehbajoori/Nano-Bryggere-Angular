@@ -12,8 +12,6 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 export class KatalogComponent implements OnInit {
   beertests: Øl[];
   beer = new Øl;
-  logins: Login[];
-  login = new Login;
   endpoints = '/Øller';
   //endpoints = '/Logins';
 
@@ -29,9 +27,17 @@ export class KatalogComponent implements OnInit {
   loadOl(){
     return this.restApi.getDatas(this.endpoints).subscribe((beer) => {
       this.beertests = beer;
-      console.log(this.beertests);
     })
   }
+  onRedigerOl() {
+    this.router.navigate(['../main/redigerol']);
+  };
+  onOpretOl() {
+    this.router.navigate(['../main/opretteol']);
+  };
+  onSletOl() {
+    this.router.navigate(['../main/sletol']);
+  };
   // loadLogin(){
   //   return this.restApi.getDatas(this.beer.Id,this.endpoints).subscribe((login) => {
   //     this.logins = login;

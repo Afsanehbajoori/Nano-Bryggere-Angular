@@ -13,9 +13,10 @@ import { Login } from 'src/app/Models/Login';
 })
 
 export class LoginSideComponent implements OnInit {
-  logins: Bruger
-  roller: Rolle
-  login: any = [];
+  login = new Login;
+  roller: Rolle;
+  logins: Bruger[];
+  endpoints = '/Logins';
   id = this.actRoute.snapshot.params['id'];
   loginForm : FormGroup;
   @Input() loginDetails = {Brugernavn: ''}
@@ -28,7 +29,7 @@ export class LoginSideComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.email]),
+      email: new FormControl('', Validators.required),
       password: new FormControl('', [Validators.required, Validators.minLength(3)])
     }
     );
@@ -39,16 +40,18 @@ export class LoginSideComponent implements OnInit {
   onSubmitRegistre () {
     this.router.navigate(['../login/registrer']);
   };
+  loadLogin(){
+    return this.restApi.getData(this.login.Id, this.endpoints).subscribe((logins) => {
+      this.login = logins;
+    })
+  }
+
   // addLogin(datalogin: Login){
   //   this.restApi.createLogins(this.loginDetails).subscribe((data: {}) => {
   //     this.router.navigate(['../main/main'])
   //   })
   // }
-  loadLogin(){
-    return this.restApi.getLogin().subscribe((data: {}) => {
-      this.login = data;
-    })
-  }
+
   // deleteLogin(id : any){
   //   if(window.confirm('Are you sure, you want to delete?')){
   //     this.restApi.deleteLogin(id).subscribe(data => {
@@ -56,6 +59,7 @@ export class LoginSideComponent implements OnInit {
   //     })
   //   }  
   // }
+  
   // updateLogin(){
   //   if(window.confirm('Are you sure, you want to update?')){
   //     this.restApi.updateLogin(this.id, this.login).subscribe(data => {

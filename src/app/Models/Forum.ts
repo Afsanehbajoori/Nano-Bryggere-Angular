@@ -5,9 +5,9 @@ export class Forum
 
 {
   public Id:number;
-  public Titel:string;
-  public Beskrivele:string;
-  public Oprettet : Date;
-  public Tags: Tags;
-  public Post:Post;
+  public titel:string;
+  public beskrivele:string;
+  public oprettet : Date;
+  public tags: Tags;
+  public post:Post;
 }

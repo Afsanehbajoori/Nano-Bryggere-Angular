@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Login } from 'src/app/Models/Login';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Øl } from 'src/app/Models/Øl';
 import { RestApiService } from 'src/app/shared/rest-api.service';
+import { SletDialogBoxComponent } from '../slet-dialog-box/slet-dialog-box.component';
 
 @Component({
   selector: 'app-katalog',
@@ -13,12 +14,12 @@ export class KatalogComponent implements OnInit {
   beertests: Øl[];
   beer = new Øl;
   endpoints = '/Øller';
-  //endpoints = '/Logins';
-
 
   constructor(
+    public dialog: MatDialog,
     public restApi: RestApiService, 
-    private router: Router
+    public router: Router,
+    public actRoute: ActivatedRoute 
   ) { }
 
   ngOnInit(): void {
@@ -29,18 +30,22 @@ export class KatalogComponent implements OnInit {
       this.beertests = beer;
     })
   }
-  onRedigerOl() {
-    this.router.navigate(['../main/redigerol']);
+
+  onRedigerOl(id:any) {
+    this.router.navigate(['../main/redigerol/',id]);
   };
+
   onOpretOl() {
-    this.router.navigate(['../main/opretteol']);
+    this.router.navigate(['../main/opretteol',]);
   };
-  onSletOl() {
-    this.router.navigate(['../main/sletol']);
+
+  onSletOl(id: any) {
+    let dialogRef = this.dialog.open(SletDialogBoxComponent);
+    console.log(this.beer.id);
+    dialogRef.afterClosed().subscribe(result => {
+      this.restApi.deleteData(id, this.endpoints).subscribe(data => {
+        this.loadOl();
+      })
+    });
   };
-  // loadLogin(){
-  //   return this.restApi.getDatas(this.beer.Id,this.endpoints).subscribe((login) => {
-  //     this.logins = login;
-  //   })
-  // }
 }

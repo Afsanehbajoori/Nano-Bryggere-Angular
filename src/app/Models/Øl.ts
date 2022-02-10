@@ -3,7 +3,7 @@ import { Tags } from "./Tags";
 
 export class Øl {
 
-  public Id: number;
+  public id: number;
   public land: string;
   public bryggeriId:number;
   public bryggeri: Bryggeri;

@@ -9,8 +9,7 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./oprette.component.css']
 })
 export class OpretteComponent implements OnInit {
-  @Input() eventstest = { titel: '', beskrivelse: '', lokation: ''}
-  @Input() eventOprettelse = { titel: '', beskrivelse: '', lokation: '' }
+  @Input() eventOprettelse = { titel: '', beskrivelse: '', lokation: '' };
   OpretForm: FormGroup;
   eventtests: Event[];
   event: Event;
@@ -37,10 +36,10 @@ export class OpretteComponent implements OnInit {
 
   onSubmitEvent() {
     this.event;
-    console.log(this.eventstest);
+    console.log(this.eventOprettelse);
     this.restApi.createData(this.eventOprettelse, this.endpoints).subscribe((data) => {
       console.log(data);
+      this.router.navigate(['../events/events'])
     })
-    this.router.navigate(['../events/events'])
   }
 }

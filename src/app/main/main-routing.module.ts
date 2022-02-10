@@ -17,7 +17,7 @@ const routes: Routes = [
   {path:'certifikat' , component:CertifikatComponent},
   {path:'profil', component:ProfilComponent},
   {path:'sletprofil', component:SletProfilComponent},
-  {path:'redigerol',component:RedigerOlComponent},
+  {path:'redigerol/:id',component:RedigerOlComponent},
   {path:'opretteol',component:OpretteOlComponent},
   {path:'katalog', component:KatalogComponent},
   {path:'**' , component: NotFoundComponent},

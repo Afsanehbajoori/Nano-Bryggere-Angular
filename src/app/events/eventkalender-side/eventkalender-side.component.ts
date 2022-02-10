@@ -23,7 +23,7 @@ export class EventkalenderSideComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadEvent();
-    this.loadSingleEvent()
+    // this.loadSingleEvent();
   }
   loadEvent() {
     return this.restApi.getDatas(this.endpoints).subscribe((events) => {
@@ -32,13 +32,13 @@ export class EventkalenderSideComponent implements OnInit {
       console.log(this.eventtest);
     });
   }
-  loadSingleEvent(){
-    // this.panel.id.
-    return this.restApi.getData(2, this.endpoints).subscribe((events) => {
-      this.event = events;
-      console.log(this.event.titel);
-    });
-  }
+  // loadSingleEvent(){
+  //   // this.panel.id.
+  //   return this.restApi.getData(this.event.id, this.endpoints).subscribe((events) => {
+  //     this.event = events;
+  //     console.log(this.event.titel);
+  //   });
+  // }
 
   onOpdaterEvent(id: any){
     this.router.navigate(['../events/rediger' + id]);
@@ -48,13 +48,13 @@ export class EventkalenderSideComponent implements OnInit {
     this.router.navigate(['../events/oprette']);
   };
   onSletEvent(id: any) {
-    this.loadSingleEvent();
+    // this.loadSingleEvent();
     // this.event.id = ;
     let dialogRef = this.dialog.open(SletDialogBoxComponent);
     console.log(this.event.id);
     dialogRef.afterClosed().subscribe(result => {
       this.restApi.deleteData(id, this.endpoints).subscribe(data => {
-        this.loadEvent()
+        this.loadEvent();
       })
     });
   }

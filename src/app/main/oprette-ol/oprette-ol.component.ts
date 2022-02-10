@@ -15,7 +15,7 @@ interface Bryg{
   styleUrls: ['./oprette-ol.component.css']
 })
 export class OpretteOlComponent implements OnInit {
-  @Input() olOpret : Øl;
+  @Input() olOprettelse = { navn: '', type: '', smag: '', procent: null, land: '', bryggeriId: null, etiket: '', beskrivelse:'' };
   brygs: Bryg[] = [
     {value:'1', view: 'Ja'},
     {value:'2', view: 'Nej'}
@@ -50,16 +50,16 @@ export class OpretteOlComponent implements OnInit {
   //     this.router.navigate(['../main/main'])
   //   })
   // }
-
-  onSletOl() {
+  onAnnullerOl() {
         return this.router.navigate(['../main/katalog'])
   };
 
   onSubmitOl() {
-    this.beertests = this.OpretForm.value;
-    console.log(this.beertests);
-    this.restApi.createData(this.beertests, this.endpoints).subscribe((data : {}) => {
-      return this.router.navigate(['../main/katalog'])
+    this.beer;
+    console.log(this.olOprettelse);
+    this.restApi.createData(this.olOprettelse, this.endpoints).subscribe((data) => {
+      console.log(data);
+      this.router.navigate(['../main/katalog'])
     })
   }
 }

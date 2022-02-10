@@ -60,7 +60,7 @@ export class RedigerOlComponent implements OnInit {
   };
 
   onSubmitOl() {
-    this.beers = this.olRediger;
+    this.beer;
     console.log(this.olRediger);
     this.restApi.updateData(this.olId, this.endpoints, this.beers).subscribe((data) => {
       console.log(data);

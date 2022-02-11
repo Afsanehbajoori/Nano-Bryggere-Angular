@@ -6,33 +6,33 @@
         <form [formGroup]="RedigerForm" class="example-form" *ngIf="olList">
             <mat-form-field class="example-full-width" appearance="fill">
                 <input matInput type="text" [(ngModel)]="olRediger.navn" formControlName="navn" placeholder="{{olList.navn}}" class="input-control">
-                <!-- <mat-error *ngIf="navn.errors?.['required']"> -->
+                
                 <mat-error>
-                    feltet skal udfyldes 
+                    feltet skal udfyldes
                 </mat-error>
             </mat-form-field>
-            
+
             <mat-form-field class="example-full-width" appearance="fill">
                 <input matInput type="text" [(ngModel)]="olRediger.type" formControlName="type" placeholder="{{olList.type}}" class="input-control">
                 <mat-error>
                     Dette felt skal udfyldes
                 </mat-error>
             </mat-form-field>
-            
+
             <mat-form-field class="example-full-width" appearance="fill">
                 <input matInput type="text" [(ngModel)]="olRediger.smag" formControlName="smag" placeholder="{{olList.smag}}" class="input-control">
                 <mat-error>
                     Dette felt skal udfyldes
                 </mat-error>
             </mat-form-field>
-            
+
             <mat-form-field class="example-full-width" appearance="fill">
                 <input matInput type="number" [(ngModel)]="olRediger.procent" formControlName="procent" placeholder="{{olList.procent}}" class="input-control">
                 <mat-error>
                     Dette felt skal udfyldes
                 </mat-error>
             </mat-form-field>
-            
+
             <!-- <mat-form-field class="example-full-width" appearance="fill">
                 <input matInput type="text" formControlName="argang" placeholder="Årgang" class="input-control">
                 <mat-error>
@@ -40,14 +40,14 @@
                 </mat-error>
             </mat-form-field> -->
 
-            <mat-form-field class="example-full-width" appearance="fill">             
+            <mat-form-field class="example-full-width" appearance="fill">
                 <input matInput type="text" [(ngModel)]="olRediger.land" formControlName="land" placeholder="{{olList.land}}" class="input-control">
                 <mat-error>
                     Dette felt skal udfyldes
                 </mat-error>
             </mat-form-field>
 
-            <mat-form-field class="example-full-width" appearance="fill">             
+            <mat-form-field class="example-full-width" appearance="fill">
                 <input matInput type="number" [(ngModel)]="olRediger.bryggeriId" formControlName="bryggerid" placeholder="{{olList.bryggeriId}}" class="input-control">
                 <mat-error>
                     Dette felt skal udfyldes
@@ -65,22 +65,22 @@
                 </mat-error>
             </mat-form-field> -->
 
-            <mat-form-field class="example-full-width" appearance="fill">             
+            <mat-form-field class="example-full-width" appearance="fill">
                 <input matInput type="text" [(ngModel)]="olRediger.etiket" formControlName="etiket" placeholder="{{olList.etiket}}" class="input-control">
                 <mat-error>
                     Dette felt skal udfyldes
                 </mat-error>
             </mat-form-field>
-            
+
             <mat-form-field class="example-full-width" appearance="fill">
                 <input matInput type="text" [(ngModel)]="olRediger.beskrivelse" formControlName="beskrivelse" placeholder="{{olList.beskrivelse}}" class="input-control">
                 <mat-error>
                     Dette felt skal udfyldes
                 </mat-error>
             </mat-form-field>
-            
+
             <button mat-raised-button type="submit" (click)="onAnnullerOl()" class="login-btn" style="background: linear-gradient(#b60d0d, #ff6e6e);">Annuller</button>
-            
+
             <button mat-raised-button type="submit" (click)="onSubmitOl()" class="login-btn" style="background: linear-gradient(#33ff00, #41fd70);">Opret Øl</button>
         </form>
     </mat-card-content>

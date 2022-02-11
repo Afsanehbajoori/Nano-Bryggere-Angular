@@ -3,8 +3,7 @@
 
         <form [formGroup]="RedigerForm" class="example-form" *ngIf="olList">
             <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="text" [(ngModel)]="olList.navn" formControlName="navn"
-                    placeholder="{{olList.navn}}" class="input-control">
+                <input matInput type="text" [(ngModel)]="olList.navn" formControlName="navn" placeholder="{{olList.navn}}" class="input-control">
                 <!-- <mat-error *ngIf="navn.errors?.['required']"> -->
                 <mat-error>
                     udfyld feltet
@@ -84,7 +83,7 @@
                     udfyld feltet
                 </mat-error>
             </mat-form-field>
-
+          
             <mat-form-field class="example-full-width" appearance="fill">
                 <input matInput type="text" [(ngModel)]="olList.antal" formControlName="antal"
                     placeholder="{{olList.antal}}" class="input-control">

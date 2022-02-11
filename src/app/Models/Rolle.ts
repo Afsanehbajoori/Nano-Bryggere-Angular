@@ -10,8 +10,8 @@ export enum RolleNavn
 
 export class Rolle
 {
-  public Id : number;
-  public Level:number;
-  public RolleNavn : RolleNavn;
+  public id : number;
+  public level:number;
+  public rolleNavn : RolleNavn;
 
 }

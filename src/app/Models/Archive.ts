@@ -3,11 +3,11 @@ import { Kontaktolysninger } from "./Kontaktoplysninger";
 
 export class Archive{
 
-  public Id: number;
-  public BrugerId:number;
-  public Bruger:Bruger;
-  public KontaktolysningerId:number;
-  public Kontaktolysninger:Kontaktolysninger;
-  public Oprettet :Date;
+  public id: number;
+  public brugerId:number;
+  public bruger:Bruger;
+  public kontaktolysningerId:number;
+  public kontaktolysninger:Kontaktolysninger;
+  public oprettet :Date;
 
 }

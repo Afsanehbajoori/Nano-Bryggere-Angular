@@ -1,6 +1,4 @@
 <mat-card class="main" id="imgeUp">
-    <mat-card-title class="txt" style="margin-top: 100px;">
-    </mat-card-title>
     <mat-card-content class="container">
 
         <form [formGroup]="OpretForm" class="example-form">
@@ -74,6 +72,13 @@
             
             <mat-form-field class="example-full-width" appearance="fill">
                 <input matInput type="text" [(ngModel)]="olOprettelse.beskrivelse" formControlName="beskrivelse" placeholder="Beskrivelse" class="input-control">
+                <mat-error>
+                    Dette felt skal udfyldes
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill">
+                <input matInput type="text" [(ngModel)]="olOprettelse.antal" formControlName="beskrivelse" placeholder="Antal" class="input-control">
                 <mat-error>
                     Dette felt skal udfyldes
                 </mat-error>

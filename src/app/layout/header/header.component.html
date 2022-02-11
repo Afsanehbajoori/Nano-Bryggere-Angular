@@ -7,9 +7,10 @@
         <mat-icon >menu</mat-icon>
       </Button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item [matMenuTriggerFor]="login"><mat-icon aria-hidden="false">login</mat-icon>Login</button>
+        <button mat-menu-item [matMenuTriggerFor]="login" *ngIf=""><mat-icon aria-hidden="false">login</mat-icon>Login</button>
         <button mat-menu-item [matMenuTriggerFor]="main"><mat-icon aria-hidden="false">home</mat-icon>Main</button>
         <button mat-menu-item [matMenuTriggerFor]="forum"><mat-icon aria-hidden="false">chat</mat-icon>Forum</button>
+        <button mat-menu-item [matMenuTriggerFor]="event"><mat-icon aria-hidden="false">calendar_today</mat-icon>Event</button>
       </mat-menu>
 
       <mat-menu #login="matMenu">
@@ -44,9 +45,6 @@
         <button mat-menu-item >
           <span><a href="/main/certifikat"  style="text-decoration:none">Certifikat</a></span>
         </button>
-
-
-
       </mat-menu>
 
       <mat-menu #forum="matMenu">
@@ -59,8 +57,15 @@
         <button mat-menu-item >
           <span><a href="/forum/forumtags"  style="text-decoration:none">Tags</a></span>
         </button>
+      </mat-menu>
 
-
+      <mat-menu #event="matMenu">
+        <button mat-menu-item >
+          <span><a href="/events/mineevents"  style="text-decoration:none">Mine Events</a></span>
+        </button>
+        <button mat-menu-item >
+          <span><a href="/events/events"  style="text-decoration:none">Søg Events</a></span>
+        </button>
       </mat-menu>
 
       <span class="example-spacer"></span>

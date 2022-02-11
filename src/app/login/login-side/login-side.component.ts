@@ -13,7 +13,7 @@ import { Login } from 'src/app/Models/Login';
 })
 
 export class LoginSideComponent implements OnInit {
-  login = new Login;
+  login : any = {};
   roller: Rolle;
   logins: Bruger[];
   endpoints = '/Logins';
@@ -24,8 +24,7 @@ export class LoginSideComponent implements OnInit {
   constructor(
     public router: Router,
     public restApi: RestApiService,
-    public actRoute: ActivatedRoute
-    ) { }
+    public actRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -34,37 +33,18 @@ export class LoginSideComponent implements OnInit {
     }
     );
   }
+  
   onSubmitLogin () {
     this.router.navigate(['../main/main']);
   };
+
   onSubmitRegistre () {
     this.router.navigate(['../login/registrer']);
   };
+
   loadLogin(){
-    return this.restApi.getData(this.login.Id, this.endpoints).subscribe((logins) => {
+    return this.restApi.getData(this.login.id, this.endpoints).subscribe((logins) => {
       this.login = logins;
     })
   }
-
-  // addLogin(datalogin: Login){
-  //   this.restApi.createLogins(this.loginDetails).subscribe((data: {}) => {
-  //     this.router.navigate(['../main/main'])
-  //   })
-  // }
-
-  // deleteLogin(id : any){
-  //   if(window.confirm('Are you sure, you want to delete?')){
-  //     this.restApi.deleteLogin(id).subscribe(data => {
-  //       this.loadLogin()
-  //     })
-  //   }  
-  // }
-  
-  // updateLogin(){
-  //   if(window.confirm('Are you sure, you want to update?')){
-  //     this.restApi.updateLogin(this.id, this.login).subscribe(data => {
-  //       this.router.navigate(['../main/main'])
-  //     })
-  //   }
-  // }
 }

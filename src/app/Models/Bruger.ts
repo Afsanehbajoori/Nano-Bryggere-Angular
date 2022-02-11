@@ -4,14 +4,14 @@ import { Rolle } from "./Rolle";
 
 export class Bruger {
 
-  public Id: number;
-  public Brugernavn: string;
-  public Pw : string;
-  public RolleId:number;
-  public Rolle: Rolle;
-  public KontaktoplysningerId: number;
-  public Kontaktoplysninger: Kontaktolysninger;
-  public Events: Events;
+  public id: number;
+  public brugernavn: string;
+  public pw : string;
+  public rolleId:number;
+  public rolle: Rolle;
+  public kontaktoplysningerId: number;
+  public kontaktoplysninger: Kontaktolysninger;
+  public events: Events;
 
 
 

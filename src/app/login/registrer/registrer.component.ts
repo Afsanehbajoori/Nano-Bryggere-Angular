@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-
+import { Component, OnInit, Input } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { RestApiService } from 'src/app/shared/rest-api.service';
 
 @Component({
   selector: 'app-registrer',
@@ -8,20 +8,39 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./registrer.component.css']
 })
 export class RegistrerComponent implements OnInit {
-  FormGroupFNavn:FormGroup;
-  FormGroupENavn:FormGroup;
+  RegistrerFormGroup:any = new FormGroup({}) ;
+  endpointK = '/Kontaktoplysninger';
+  newUser : any;
+
+ /*  FormGroupENavn:FormGroup;
   FormGroupAdd1:FormGroup;
   FormGroupAdd2:FormGroup;
   FormGroupPost:FormGroup;
   FormGroupBy:FormGroup;
   FormGroupEmail:FormGroup;
   FormGroupTel:FormGroup;
-  FormGroupPW:FormGroup;
+  FormGroupPW:FormGroup; */
 
-  constructor(private _formBuilder: FormBuilder) { }
+  constructor(private _formBuilder: FormBuilder ,
+    public restApi: RestApiService ) { }
 
   ngOnInit(): void {
-    this.FormGroupFNavn = this._formBuilder.group({
+
+    this.RegistrerFormGroup = this._formBuilder.group({
+      'FNavnCtrl' : new FormControl('' , Validators.required),
+      'ENavnCtrl': new FormControl('' , Validators.required),
+      'Add1Ctrl': new FormControl(''),
+      'Add2Ctrl': new FormControl(''),
+      'PostCtrl' : new FormControl(''),
+      'ByCtrl': new FormControl(''),
+      'EmailCtrl' : new FormControl('' , Validators.email ),
+      'TelCtrl': new FormControl(''),
+      // 'PWCtrl': new FormControl('' , Validators.required)
+    });
+
+
+
+    /* this.FormGroupFNavn = this._formBuilder.group({
       FNavnCtrl: ['', Validators.required],
     });
 
@@ -51,7 +70,20 @@ export class RegistrerComponent implements OnInit {
       PWCtrl: ['', Validators.required],
     });
 
+ */
+  }
 
+  createUser(){
+
+    console.log(this.RegistrerFormGroup.value);
+
+   /*  this.newUser =this.RegistrerFormGroup.value;
+    console.log(this.newUser); */
+
+   this.restApi.createData(this.newUser , this.endpointK).subscribe((data) => {
+    // this.newUser=data;
+     console.log(data);
+    })
   }
 
 }

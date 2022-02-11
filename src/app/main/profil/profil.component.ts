@@ -2,20 +2,20 @@ import { RedigerBryggeriDialogBoxComponent } from './../rediger-bryggeri-dialog-
 import { RedigerProfilDialogBoxComponent } from './../rediger-profil-dialog-box/rediger-profil-dialog-box.component';
 import { Component, OnInit , Inject , ViewChild, Input } from '@angular/core';
 import {MatAccordion} from '@angular/material/expansion';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA , MatDialogConfig} from '@angular/material/dialog';
 import { SletDialogBoxComponent } from '../slet-dialog-box/slet-dialog-box.component';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm, FormsModule, FormGroup, FormControl } from '@angular/forms';
-import { audit } from 'rxjs/operators';
+import { audit, subscribeOn } from 'rxjs/operators';
 import { AutofillMonitor } from '@angular/cdk/text-field';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ThrowStmt } from '@angular/compiler';
 import { FormBuilder } from '@angular/forms';
+import { Injectable, ViewContainerRef } from '@angular/core';
 
 
-
-
+@Injectable()
 
 
 @Component({
@@ -25,34 +25,33 @@ import { FormBuilder } from '@angular/forms';
 })
 
 export class ProfilComponent implements OnInit {
+  @ViewChild(MatAccordion) accordion: MatAccordion;
   dialogRefSlet : MatDialogRef<SletDialogBoxComponent>;
   dialogRefRedigerProfil : MatDialogRef<RedigerProfilDialogBoxComponent>;
-  @ViewChild(MatAccordion) accordion: MatAccordion;
-  //kontaktoplysningerList: Kontaktolysninger[] ;
+  dialogRefRedigerBryggeri : MatDialogRef<RedigerBryggeriDialogBoxComponent>;
   kontaktoplysningerList : any;
-  //kontaktoplysning= new Kontaktolysninger();
   bryggeriList : any;
-  //bryggeri = new Bryggeri;
   endpointK = '/Kontaktoplysninger';
   endpointB='/Bryggerier';
   showFillerP = false;
   showFillerB = false;
   kontaktoplysningerId : number=6;
   bryggeriId : number =4;
-  dataLoaded : boolean=false;
-  RedigerKontaktOplysninger: FormGroup = new FormGroup({});
 
 
-  constructor(public dialog:MatDialog , public restApi: RestApiService , private router: Router , private snackBar : MatSnackBar , private formBuilder : FormBuilder ) { }
+
+
+  constructor(public dialog:MatDialog,
+      public restApi: RestApiService ,
+      private router: Router ,
+      private snackBar : MatSnackBar ,
+      private formBuilder : FormBuilder ) { }
 
 
   ngOnInit(): void {
-    this.dataLoaded= false;
+
     this.loadKontaktoplysninger();
     this.loadBryggeri();
-
-
-
   }
 
   loadKontaktoplysninger(){
@@ -75,7 +74,7 @@ export class ProfilComponent implements OnInit {
   sletProfil() {
       this.dialogRefSlet=this.dialog.open(SletDialogBoxComponent , {
         width:'300px',
-        disableClose:false
+        disableClose:true
       });
       this.dialogRefSlet.afterClosed().subscribe(result => {
       if(result){
@@ -93,47 +92,48 @@ export class ProfilComponent implements OnInit {
   }
 
  redigerProfil(){
-      this.dialogRefRedigerProfil=this.dialog.open(RedigerProfilDialogBoxComponent , {
-      disableClose:false
-    });
-      //view kontaktoplysninger
-      this.restApi.getData(this.kontaktoplysningerId , this.endpointK)
-      .toPromise()
-      .then(data => {
-        this.kontaktoplysningerList= data;
-        //Object.assign(this.kontaktoplysningerList, data);
-        console.log(this.kontaktoplysningerList);
-        // build the edit form
-        this.RedigerKontaktOplysninger = this.formBuilder.group({
-          'FnavnCtl': new FormControl(this.kontaktoplysningerList.fnavn),
-          'EnavnCtl': new FormControl(this.kontaktoplysningerList.enavn),
-          'Add1Ctl':new FormControl(this.kontaktoplysningerList.addresselinje1),
-          'Add2Ctl': new FormControl(this.kontaktoplysningerList.addresselinje2),
-          'TelCtl':new FormControl(this.kontaktoplysningerList.telefonnr),
-          'EmailCtl' : new FormControl(this.kontaktoplysningerList.email),
-          'PostCtl' : new FormControl(this.kontaktoplysningerList.postnr),
-          'ByCtl' : new FormControl(this.kontaktoplysningerList.by)
-        })
 
-      })
+   const dialogConfig = new MatDialogConfig();
+   dialogConfig.disableClose= true;
+   dialogConfig.autoFocus=true;
+   dialogConfig.width="40%";
+   this.dialogRefRedigerProfil=this.dialog.open(RedigerProfilDialogBoxComponent , dialogConfig);
 
-    /*   this.dialogRefRedigerProfil.afterClosed().subscribe(result => {
-        if(result){
-          this.restApi.updateData(this.kontaktoplysningerId , this.endpointK ).subscribe((data) => {
-            this.kontaktoplysningerList=data;
-            console.log(this.kontaktoplysningerList);
-          })
+  this.dialogRefRedigerProfil.afterClosed().subscribe(result => {
+    this.kontaktoplysningerList= result;
+    this.restApi.updateData(this.kontaktoplysningerId , this.endpointK , this.kontaktoplysningerList).subscribe((data) =>
+    {
+      console.log(this.kontaktoplysningerList);
+    })
 
-      }
-     }); */
-    }
+
+
+});
+
+}
+
+redigerBryggeri(){
+  const dialogConfig = new MatDialogConfig();
+  dialogConfig.disableClose= true;
+  dialogConfig.autoFocus=true;
+  dialogConfig.width="40%";
+  this.dialogRefRedigerBryggeri=this.dialog.open(RedigerBryggeriDialogBoxComponent , dialogConfig);
+
+  this.dialogRefRedigerBryggeri.afterClosed().subscribe(result => {
+    this.bryggeriList=result;
+    this.restApi.updateData(this.bryggeriId , this .endpointB , this.bryggeriList).subscribe((data) =>
+    {
+      console.log(this.bryggeriList);
+    })
+});
+}
 
 
 
   sletBryggeri(){
       this.dialogRefSlet=this.dialog.open(SletDialogBoxComponent , {
         width:'300px',
-        disableClose:false
+        disableClose:true
       });
       this.dialogRefSlet.afterClosed().subscribe(result => {
         if(result){
@@ -150,11 +150,6 @@ export class ProfilComponent implements OnInit {
 
     }
 
-  redigerBryggeri(){
-      let dialogRef=this.dialog.open(RedigerBryggeriDialogBoxComponent);
 
-      dialogRef.afterClosed().subscribe(result => {console.log('dialog result: ${result}');
-    });
-    }
 
 }

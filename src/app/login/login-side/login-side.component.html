@@ -6,14 +6,14 @@
 
     <form [formGroup]="loginForm"  class="example-form" >
         <mat-form-field class="example-full-width" appearance="fill" >
-            <input matInput formControlName="email" [(ngModel)]="login.brugernavn" placeholder="Email" class="input-control">
+            <input matInput formControlName="brugernavn" [(ngModel)]="login.brugernavn" placeholder="Brugernavn" class="input-control">
             <!-- <mat-error *ngIf="email.errors?.['required']"> -->
             <mat-error>
                 Vær Venlig at udfyld feltet med din email
             </mat-error>
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="fill">
-            <input matInput formControlName="email" [(ngModel)]="login.pw" placeholder="Password" class="input-control" type="password">
+            <input matInput formControlName="password" [(ngModel)]="login.pw" placeholder="Password" class="input-control" type="password">
         </mat-form-field>
         <button mat-raised-button type="submit" (click)="onSubmitLogin()" class="login-btn">Login</button>
         <div style="margin-top: 20px;">

@@ -4,7 +4,6 @@ import { Bruger } from 'src/app/Models/Bruger';
 import { Rolle } from 'src/app/Models/Rolle';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RestApiService } from 'src/app/shared/rest-api.service';
-import { Login } from 'src/app/Models/Login';
 
 @Component({
   selector: 'app-login-side',
@@ -14,37 +13,45 @@ import { Login } from 'src/app/Models/Login';
 
 export class LoginSideComponent implements OnInit {
   login : any = {};
-  roller: Rolle;
-  logins: Bruger[];
-  endpoints = '/Logins';
-  id = this.actRoute.snapshot.params['id'];
+  endpoints = '/Brugere';
   loginForm : FormGroup;
-  @Input() loginDetails = {Brugernavn: ''}
 
   constructor(
     public router: Router,
     public restApi: RestApiService,
-    public actRoute: ActivatedRoute) { }
+    public actRoute: ActivatedRoute,
+    //public auth: AuthService
+    ) { }
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
-      email: new FormControl('', Validators.required),
+      brugernavn: new FormControl('', Validators.required),
       password: new FormControl('', [Validators.required, Validators.minLength(3)])
-    }
-    );
+    });
   }
   
   onSubmitLogin () {
-    this.router.navigate(['../main/main']);
+    // this.auth.user$.subscribe(
+    //   (profile) => (this.profileJson = JSON.stringify(profile, null,2))
+    // )
+    this.restApi.getDatas(this.endpoints).subscribe((logins) => {
+      this.login = logins.find((l:Bruger) => {
+        console.log(this.login)
+
+        //return l.brugernavn == this.loginForm.value.brugernavn && l.pw == this.loginForm.value.password
+      });
+      if(this.login){
+        alert("Login Succes");
+        this.loginForm.reset();
+       // this.router.navigate(['../main/main']);
+      }
+      else{
+        alert("Ingen Match");
+      }
+    });
   };
 
   onSubmitRegistre () {
     this.router.navigate(['../login/registrer']);
   };
-
-  loadLogin(){
-    return this.restApi.getData(this.login.id, this.endpoints).subscribe((logins) => {
-      this.login = logins;
-    })
-  }
 }

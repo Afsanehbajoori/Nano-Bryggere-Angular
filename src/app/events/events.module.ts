@@ -11,11 +11,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RedigerEventsComponent } from './rediger-events/rediger-events.component';
 
 @NgModule({
   declarations: [
     EventkalenderSideComponent,
-    OpretteComponent
+    OpretteComponent,
+    RedigerEventsComponent
   ],
   imports: [
     CommonModule,

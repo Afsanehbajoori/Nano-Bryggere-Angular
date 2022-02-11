@@ -3,9 +3,9 @@ import { Øl } from "./Øl";
 
 export class Samarbejde{
 
-  public Id: number;
-  public ØlId:number;
-  public Øl: Øl;
-  public Titel:string;
-  public Bryggeri : Bryggeri;
+  public id: number;
+  public ølId:number;
+  public øl: Øl;
+  public titel:string;
+  public bryggeri : Bryggeri;
 }

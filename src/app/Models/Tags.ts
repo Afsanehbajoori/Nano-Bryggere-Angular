@@ -4,11 +4,11 @@ import { Øl } from "./Øl";
 
 export class Tags
 {
-  public Id: number;
+  public id: number;
   public navn: string;
-  public Events: Events;
-  public Forum: FormBuilder;
-  public Øl : Øl;
+  public events: Events;
+  public forum: FormBuilder;
+  public øl : Øl;
 
 
 }

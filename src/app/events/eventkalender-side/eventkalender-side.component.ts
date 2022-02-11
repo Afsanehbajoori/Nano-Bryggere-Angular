@@ -11,9 +11,8 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./eventkalender-side.component.css']
 })
 export class EventkalenderSideComponent implements OnInit {
-  @ViewChild(MatExpansionPanel) panel: MatExpansionPanel;
-  public eventtest: Events[];
-  public event = new Events;
+
+  public events: Events[];
   endpoints = '/Events';
   constructor(
     public dialog: MatDialog,
@@ -23,39 +22,31 @@ export class EventkalenderSideComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadEvent();
-    // this.loadSingleEvent();
   }
+
   loadEvent() {
-    return this.restApi.getDatas(this.endpoints).subscribe((events) => {
-      this.eventtest = events;
-      this.event.titel = events.titel;
-      console.log(this.eventtest);
+    return this.restApi.getDatas(this.endpoints).subscribe((data) => {
+      this.events = data;
     });
   }
-  // loadSingleEvent(){
-  //   // this.panel.id.
-  //   return this.restApi.getData(this.event.id, this.endpoints).subscribe((events) => {
-  //     this.event = events;
-  //     console.log(this.event.titel);
-  //   });
-  // }
 
   onOpdaterEvent(id: any){
-    this.router.navigate(['../events/rediger' + id]);
+    this.router.navigate(['../events/rediger/' + id]);
   }
 
   onOpretEvents() {
     this.router.navigate(['../events/oprette']);
   };
+
   onSletEvent(id: any) {
-    // this.loadSingleEvent();
-    // this.event.id = ;
     let dialogRef = this.dialog.open(SletDialogBoxComponent);
-    console.log(this.event.id);
     dialogRef.afterClosed().subscribe(result => {
-      this.restApi.deleteData(id, this.endpoints).subscribe(data => {
-        this.loadEvent();
-      })
+      if(result == true)
+      {
+        this.restApi.deleteData(id, this.endpoints).subscribe(data => {
+          this.loadEvent();
+        })
+      }
     });
   }
 }

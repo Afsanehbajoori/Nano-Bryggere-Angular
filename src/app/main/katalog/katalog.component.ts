@@ -11,7 +11,7 @@ import { SletDialogBoxComponent } from '../slet-dialog-box/slet-dialog-box.compo
   styleUrls: ['./katalog.component.css']
 })
 export class KatalogComponent implements OnInit {
-  beertests: Øl[];
+  beers: Øl[];
   beer = new Øl;
   endpoints = '/Øller';
 
@@ -27,7 +27,7 @@ export class KatalogComponent implements OnInit {
   }
   loadOl(){
     return this.restApi.getDatas(this.endpoints).subscribe((beer) => {
-      this.beertests = beer;
+      this.beers = beer;
     })
   }
 
@@ -41,7 +41,6 @@ export class KatalogComponent implements OnInit {
 
   onSletOl(id: any) {
     let dialogRef = this.dialog.open(SletDialogBoxComponent);
-    console.log(this.beer.id);
     dialogRef.afterClosed().subscribe(result => {
       this.restApi.deleteData(id, this.endpoints).subscribe(data => {
         this.loadOl();

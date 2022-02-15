@@ -7,12 +7,15 @@ import { RedigerSletComponent } from './rediger-slet/rediger-slet.component';
 import { OpretteComponent } from './oprette/oprette.component';
 import { ForumPostComponent } from './forum-post/forum-post.component';
 import { ForumTagsComponent } from './forum-tags/forum-tags.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatExpansionModule} from '@angular/material/expansion';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,10 @@ import { MatButtonModule } from '@angular/material/button';
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatDialogModule
   ],
   exports:[
     ForsideComponent,

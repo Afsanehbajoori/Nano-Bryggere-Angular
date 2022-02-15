@@ -1,8 +1,6 @@
 <mat-toolbar style="background-color: rgb(69, 69, 214);" >
     <mat-toolbar-row>
 
-
-
       <Button mat-button [matMenuTriggerFor]="menu" class="menuBarStyle" >
         <mat-icon >menu</mat-icon>
       </Button>
@@ -26,7 +24,6 @@
         <button mat-menu-item >
           <span><a href="/login/registrer"  style="text-decoration:none">Registere</a></span>
         </button>
-
       </mat-menu>
 
       <mat-menu #main="matMenu">
@@ -38,9 +35,6 @@
         </button>
         <button mat-menu-item >
           <span><a href="/main/katalog"  style="text-decoration:none">Katalog</a></span>
-        </button>
-        <button mat-menu-item >
-          <span><a href="/main/event"  style="text-decoration:none">Events</a></span>
         </button>
         <button mat-menu-item >
           <span><a href="/main/certifikat"  style="text-decoration:none">Certifikat</a></span>
@@ -61,7 +55,7 @@
 
       <mat-menu #event="matMenu">
         <button mat-menu-item >
-          <span><a href="/events/mineevents"  style="text-decoration:none">Mine Events</a></span>
+          <!-- <span><a href="/events/mineevents"  style="text-decoration:none">Mine Events</a></span> -->
         </button>
         <button mat-menu-item >
           <span><a href="/events/events"  style="text-decoration:none">Søg Events</a></span>
@@ -72,8 +66,6 @@
 
       <span>Nano Bryggere</span>
     </mat-toolbar-row>
-
-
 
 </mat-toolbar>
 

@@ -8,9 +8,12 @@ import { OlAdminSideComponent } from './ol-admin-side/ol-admin-side.component';
 const routes: Routes = [
   {path:'',component:AdminForsideComponent},
   {path:'admin',component:AdminForsideComponent},
-  {path:'brugeradmin' , component:BrugerAdminSideComponent},
+  {path:'brugeradmin', component:BrugerAdminSideComponent},
   {path:'eventadmin',component:EventAdminSideComponent},
   {path:'oladmin',component:OlAdminSideComponent}
+  // {path:'brugeradminrediger',component:OlAdminSideComponent},
+  // {path:'oladminrediger',component:OlAdminSideComponent},
+  // {path:'eventadminrediger',component:OlAdminSideComponent}
 ];
 
 @NgModule({

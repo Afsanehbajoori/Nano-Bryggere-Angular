@@ -11,8 +11,6 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 export class OpretteComponent implements OnInit {
   @Input() eventOprettelse = { titel: '', beskrivelse: '', lokation: '' };
   OpretForm: FormGroup;
-  eventtests: Event[];
-  event: Event;
   endpoints = '/Events';
 
   constructor(
@@ -35,10 +33,8 @@ export class OpretteComponent implements OnInit {
   };
 
   onSubmitEvent() {
-    this.event;
     console.log(this.eventOprettelse);
     this.restApi.createData(this.eventOprettelse, this.endpoints).subscribe((data) => {
-      console.log(data);
       this.router.navigate(['../events/events'])
     })
   }

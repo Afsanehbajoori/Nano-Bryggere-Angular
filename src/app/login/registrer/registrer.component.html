@@ -4,7 +4,7 @@
     <form [formGroup]="BrugerFormGroup"  novalidate>
 <mat-vertical-stepper>
 
-    <mat-step [stepControl]="BrugerFormGroup">
+<!--     <mat-step [stepControl]="BrugerFormGroup">
       <ng-template matStepLabel>kontaktoplysningerId</ng-template>
       <mat-form-field appearance="fill">
         <mat-label>kontaktoplysningerId</mat-label>
@@ -15,7 +15,8 @@
         <button mat-button matStepperNext>Next</button>
       </div>
 
-  </mat-step>
+  </mat-step> -->
+
       <mat-step [stepControl]="BrugerFormGroup">
         <!-- <form [formGroup]="FormGroupFNavn"> -->
           <ng-template matStepLabel>Indtast din Fornavn</ng-template>
@@ -131,10 +132,7 @@
     </mat-step>
 
 
-
-
-
-    <mat-step [stepControl]="BrugerFormGroup" >
+<!--      <mat-step [stepControl]="BrugerFormGroup" >
       <ng-template matStepLabel>RolleId</ng-template>
       <mat-form-field appearance="fill">
         <mat-label>RolleId</mat-label>
@@ -144,13 +142,19 @@
         <button mat-button matStepperPrevious>Back</button>
         <button mat-button matStepperNext>Next</button>
       </div>
+  </mat-step> -->
 
-  </mat-step>
       <mat-step [stepControl]="BrugerFormGroup">
         <ng-template matStepLabel>Vælg Rolle</ng-template>
         <mat-form-field appearance="fill">
           <mat-label>rolleNavn</mat-label>
-          <input matInput formControlName="rolleNavn" placeholder="Fx. nils1236" [(ngModel)]="newUser.rolleNavn" >
+          <select matNativeControl formControlName="rolleNavn"  [(ngModel)]="newUser.rolleNavn">
+            <option value="" selected></option>
+            <option value="AnonymBruger">AnonymBruger</option>
+            <option value="Bruger">Bruger</option>
+            <option value="Moderator">Moderator</option>
+            <option value="Administrator">Administrator</option>
+          </select>
         </mat-form-field>
         <div>
           <button mat-button matStepperPrevious>Back</button>
@@ -159,7 +163,7 @@
       <!-- </form> -->
     </mat-step>
 
-    <mat-step [stepControl]="BrugerFormGroup">
+  <!--  <mat-step [stepControl]="BrugerFormGroup">
       <ng-template matStepLabel>Level</ng-template>
       <mat-form-field appearance="fill">
         <mat-label>Level</mat-label>
@@ -170,9 +174,7 @@
         <button mat-button matStepperNext>Next</button>
       </div>
 
-    </mat-step>
-
-
+    </mat-step> -->
 
 
       <mat-step [stepControl]="BrugerFormGroup">

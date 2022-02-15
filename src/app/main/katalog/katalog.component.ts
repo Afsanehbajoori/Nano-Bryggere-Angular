@@ -36,7 +36,7 @@ export class KatalogComponent implements OnInit {
   };
 
   onOpretOl() {
-    this.router.navigate(['../main/opretteol',]);
+    this.router.navigate(['../main/opretteol']);
   };
 
   onSletOl(id: any) {

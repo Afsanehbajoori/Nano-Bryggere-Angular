@@ -12,7 +12,7 @@ const routes: Routes = [
   {path:'forumpost', component:ForumPostComponent},
   {path:'forumtags', component:ForumTagsComponent},
   {path:'oprette',component:OpretteComponent},
-  {path:'redigerslet', component:RedigerSletComponent}
+  {path:'redigerslet/:id', component:RedigerSletComponent}
 ];
 
 @NgModule({

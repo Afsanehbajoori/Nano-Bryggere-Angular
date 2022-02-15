@@ -1,0 +1,74 @@
+.menu{
+    height: 100vh;
+}
+
+.login-form {
+    padding: 20;
+}
+
+.login-btn{
+  margin-top: 40px;
+  margin-left: 20px;
+  margin-right: 20px;
+  height: 50px;
+  background-color: rgb(155, 152, 152);
+  width: 40%;
+  cursor:pointer;
+}
+
+.login-header{
+    text-align: center;
+    background-color: rgb(66, 138, 231);
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.input-control{
+    height: 25px;
+}
+
+.mat-card-body{
+    max-width: 600px;
+    margin: 2em auto;
+    text-align: center;
+    height: 500px;
+    max-height: 800px;
+}
+.main{
+  height: 100%;
+  background-color: rgb(255, 255, 255);
+}
+
+#imgeUp{
+  background-image: url('/assets/images/Background-website-01.jpg');
+  background-position:center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: auto;
+}
+.txt{
+  margin-bottom: 30px;
+  font-weight: bolder;
+  font-size: 25px;
+  font-family: 'Times New Roman', Times, serif;
+  font-style: italic;
+  text-align: center;
+
+}
+.container {
+  margin-top: 150px;
+  font-family: arial;
+  display: flex;
+  justify-content: center;
+  height: auto;
+  }
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  .example-spacer {
+    flex: 1 1 auto;
+  }

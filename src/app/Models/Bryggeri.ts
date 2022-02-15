@@ -3,7 +3,7 @@ import { Samarbejde } from "./Samarbejde";
 
 export class Bryggeri{
 
-  public Id: number;
+  public id: number;
   public navn: string;
   public kontaktoplysningerId: number;
   public kontaktolysninger : Kontaktolysninger;

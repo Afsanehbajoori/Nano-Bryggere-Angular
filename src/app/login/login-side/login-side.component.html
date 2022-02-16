@@ -4,8 +4,8 @@
   </mat-card-title>
   <mat-card-content class="container">
 
-    <form [formGroup]="loginForm"  class="example-form" >
-        <mat-form-field class="example-full-width" appearance="fill" >
+    <form [formGroup]="loginForm"  class="example-form">
+        <mat-form-field class="example-full-width" appearance="fill">
             <input matInput formControlName="email" [(ngModel)]="login.brugernavn" placeholder="Email" class="input-control">
             <!-- <mat-error *ngIf="email.errors?.['required']"> -->
             <mat-error>

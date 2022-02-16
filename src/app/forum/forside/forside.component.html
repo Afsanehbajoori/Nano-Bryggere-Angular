@@ -1,7 +1,8 @@
 <div class="main" id="imgeUp">
     <mat-toolbar class="login-header" style="background: linear-gradient(#238ff5, #23baf5);">
         <button mat-raised-button
-            style="background-color: rgb(30, 122, 228); width: 120px; height: 40px; border-width: 0; margin-right: 20px;" (click)="onOpretForum()">Opret
+            style="background-color: rgb(30, 122, 228); width: 120px; height: 40px; border-width: 0; margin-right: 20px;"
+            (click)="onOpretForum()">Opret
             Forum</button>
         <form class="example-form" style="justify-content: center;">
             <mat-form-field>
@@ -27,20 +28,23 @@
                     <p>Beskrivelse:</p>
                     <p>{{forum.beskrivelse}}</p>
                 </mat-card>
+                <button mat-button class="btnMainStyle" (click)="onOpretPost()">Indsend Kommentar</button>
+                <mat-expansion-panel *ngFor="let forum of forums">
+                    <mat-expansion-panel-header *ngFor="let post of posts"
+                        style="background: linear-gradient(rgb(30, 122, 228), rgb(75, 127, 185)); justify-content: center; width: 100%;">
+                        <mat-panel-title class="centers" style="justify-content: center;">
+                            {{post.titel}}
+                        </mat-panel-title>
+                        <mat-card class="containStyle">
+                            <p>{{post.oprettet}}</p>
+                        </mat-card>
+                        <mat-action-row class="centers" style="justify-content: center;">
+                            <button mat-button class="btnMainStyle" (click)="onSletPost(forum.id)">Slet Post</button>
+                            <button mat-button class="btnMainStyle" (click)="onOpdaterPost(forum.id)">Rediger Post</button>
+                        </mat-action-row>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
             </mat-expansion-panel>
-            <mat-expansion-panel-header *ngFor="let post of posts"
-                style="background: linear-gradient(rgb(30, 122, 228), rgb(75, 127, 185)); justify-content: center; width: 100%;">
-                <mat-panel-title class="centers" style="justify-content: center;">
-                    {{post.titel}}
-                </mat-panel-title>
-                <mat-card class="containStyle">
-                    <p>{{post.oprettet}}</p>
-                </mat-card>
-                <mat-action-row class="centers" style="justify-content: center;">
-                    <button mat-button class="btnMainStyle">Slet Post</button>
-                    <button mat-button class="btnMainStyle">Rediger Post</button>
-                </mat-action-row>
-            </mat-expansion-panel-header>
         </mat-accordion>
     </table>
 </div>

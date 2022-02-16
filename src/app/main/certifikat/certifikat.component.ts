@@ -1,6 +1,8 @@
+import { HttpClient, HttpEventType } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { Bruger } from 'src/app/Models/Bruger';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 
 @Component({
@@ -9,35 +11,52 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./certifikat.component.css']
 })
 export class CertifikatComponent implements OnInit {
-  // beers: Øl[];
-  // beer = new Øl;
-  endpoints = '/Øller';
-  
+  endpoints = '/Brugere';
+  valgtefil: File;
+  bruger : Bruger;
+  file : any;
+  filing = "";
   constructor(
     public dialog: MatDialog,
-    public restApi: RestApiService, 
+    public restApi: RestApiService,
     public router: Router,
-    public actRoute: ActivatedRoute 
+    public http: HttpClient
   ) { }
 
   ngOnInit(): void {
-  
+    // this.loadCertifikat();
   }
 
-  loadOl(){
-    return this.restApi.getDatas(this.endpoints).subscribe((beer) => {
-      // this.beers = beer;
-    })
-  }
+  // loadCertifikat() {
+  //   return this.restApi.getDatas(this.endpoints).subscribe((beer) => {
+  //     this.bruger = beer;
+  //   })
+  // }
+  onSubmitCertifikat(e: any) {
+    if(e.target.file){
+      var reader = new FileReader();
+      reader.readAsDataURL(e.target.files[0]);
+      reader.onload=(event: any)=>{
+        this.filing =e.target.result;
+      }
+    }
+    // this.valgtefil = <File>e.target.files[0];
 
-  //Task:
-  // Vælg fil:
-  //1. sæt data fra input over til string
-  //2. 
-
-  // Upload fil
-  //1. hent brugerens certifikat data.
-  //2. lav if statement som tjekker for data.
-  //3. post hvis der ikke eksister et certifikat for brugeren og udpate hvis den allerede eksister.
-  //4. 
+    // console.log(this.valgtefil);
+    // this.file = this.valgtefil.name;
+  };
+  onUploadCertifikat() {
+    const fd = new FormData();
+    // if(this.bruger.certifikat == null){}
+    fd.append('image', this.valgtefil, this.valgtefil.name)
+    this.restApi.createData(this.bruger, this.endpoints)
+    .subscribe(res => {
+      console.log(res);
+      if(res.type == HttpEventType.UploadProgress){
+        console.log('Upload Progress: ' + Math.round(res.loaded / res.total * 100) + '%');
+      } else if(res.type === HttpEventType.Response){
+        console.log(res);
+      }
+    });
+  };
 }

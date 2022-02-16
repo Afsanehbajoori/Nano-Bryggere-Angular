@@ -54,4 +54,21 @@ export class ForsideComponent implements OnInit {
       })
     });
   };
+
+  onOpretPost() {
+    this.router.navigate(['../forum/opretpost']);
+  };
+
+  onOpdaterPost(id: any){
+    this.router.navigate(['../forum/redigerpost/' + id]);
+  }
+
+  onSletPost(id: any) {
+    let dialogRef = this.dialog.open(SletDialogBoxComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      this.restApi.deleteData(id, this.endpointf).subscribe(data => {
+        this.loadForum();
+      })
+    });
+  };
 }

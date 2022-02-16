@@ -1,10 +1,11 @@
-import { RolleNavn } from './../../Models/Rolle';
 import { Rolle } from 'src/app/Models/Rolle';
 import { Component, OnInit, Input , Injectable  } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 import { Kontaktolysninger } from 'src/app/Models/Kontaktoplysninger';
-import { isNull } from '@angular/compiler/src/output/output_ast';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Router } from '@angular/router';
+
 
 @Injectable()
 @Component({
@@ -14,11 +15,8 @@ import { isNull } from '@angular/compiler/src/output/output_ast';
   styleUrls: ['./registrer.component.css']
 })
 export class RegistrerComponent implements OnInit {
-/*   @Input() Rolle: any ;
-  @Input() Kontaktolysninger: any ; */
 
-
-  @Input() newUser = { pw:'', brugernavn:'', rolleNavn:''  ,rolleId:null, level:'',kontaktoplysningerId: null ,
+@Input() newUser = { pw:'', brugernavn:'', rolleNavn:''  ,rolleId:null, level:'',kontaktoplysningerId: null ,
  fnavn: '', enavn: '', addresselinje1: '', addresselinje2: '', postnr: '',
   by: '', email:'', telefonnr: '' };
 
@@ -27,12 +25,7 @@ export class RegistrerComponent implements OnInit {
   endpointK = '/Kontaktoplysninger';
   endpointB= '/Brugere';
   endpointR= '/Roller';
-
-
-
-  constructor(private _formBuilder: FormBuilder ,
-    public restApi: RestApiService
-     ) { }
+  constructor(private _formBuilder: FormBuilder , public restApi: RestApiService ,public router: Router) { }
 
   ngOnInit(): void {
 
@@ -76,8 +69,11 @@ export class RegistrerComponent implements OnInit {
       this.newUser.rolleId=dataR.id;
       this.restApi.createData(this.newUser , this.endpointB).subscribe((dataB) => {
         console.log(dataB);
+        var brugerId = dataB.id;
+        console.log("brugerId : " ,brugerId);
+        this.router.navigate(["../login/login"]);
+       }) ;
 
-       })
      })
 
     })

@@ -1,10 +1,11 @@
+import { Kontaktolysninger } from 'src/app/Models/Kontaktoplysninger';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Bruger } from 'src/app/Models/Bruger';
-import { Rolle } from 'src/app/Models/Rolle';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RestApiService } from 'src/app/shared/rest-api.service';
-import { Login } from 'src/app/Models/Login';
+
+
 
 @Component({
   selector: 'app-login-side',
@@ -14,31 +15,59 @@ import { Login } from 'src/app/Models/Login';
 
 export class LoginSideComponent implements OnInit {
   login : any = {};
-  roller: Rolle;
   logins: Bruger[];
   endpoints = '/Logins';
+  endpointK = '/Kontaktoplysninger';
+  endpointB= '/Brugere';
   id = this.actRoute.snapshot.params['id'];
-  loginForm : FormGroup;
-  @Input() loginDetails = {Brugernavn: ''}
+  loginForm :any = new FormGroup({}) ;
+
+
+  @Input() loginDetails = {brugernavn: '' , pw:'' , brugerId:null  };
+
 
   constructor(
     public router: Router,
     public restApi: RestApiService,
-    public actRoute: ActivatedRoute) { }
+    public actRoute: ActivatedRoute
+     ) { }
 
   ngOnInit(): void {
+
     this.loginForm = new FormGroup({
-      email: new FormControl('', Validators.required),
-      password: new FormControl('', [Validators.required, Validators.minLength(3)])
+      brugerId:new FormControl(''),
+      brugernavn: new FormControl('', Validators.required),
+      pw: new FormControl('', [Validators.required, Validators.minLength(3)])
+
     }
     );
   }
-  
+
   onSubmitLogin () {
+
+this.restApi.getDatas(this.endpointB).subscribe((res) => {
+   console.log(res);
+  const user = res.find((a:any) => {
+    return a.brugernavn === this.loginDetails.brugernavn && a.pw === this.loginDetails.pw
+  });
+  if(user){
+     console.log(user.kontaktoplysningerId);
+    this.loginDetails.brugerId= user.id;
+    this.restApi.createData(this.loginDetails , this.endpoints).subscribe((res) => {
+      console.log(res);
+    })
+    //alert('login success');
     this.router.navigate(['../main/main']);
+  }
+  else{
+    alert('user ikke findes')
+  }
+})
+
   };
 
   onSubmitRegistre () {
+
     this.router.navigate(['../login/registrer']);
   };
 

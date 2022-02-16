@@ -3,6 +3,9 @@ import { Component, OnInit, Input , Injectable  } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 import { Kontaktolysninger } from 'src/app/Models/Kontaktoplysninger';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Router } from '@angular/router';
+
 
 @Injectable()
 @Component({
@@ -12,12 +15,9 @@ import { Kontaktolysninger } from 'src/app/Models/Kontaktoplysninger';
   styleUrls: ['./registrer.component.css']
 })
 export class RegistrerComponent implements OnInit {
-  @Input() Rolle: any ;
-  @Input() Kontaktolysninger: any ;
 
-
-  @Input() newUser = { pw:'', brugernavn:'',rolleId:'', rolleNavn:'' , level:'',
-  kontaktoplysningerId: '' ,fnavn: '', enavn: '', addresselinje1: '', addresselinje2: '', postnr: '',
+@Input() newUser = { pw:'', brugernavn:'', rolleNavn:''  ,rolleId:null, level:'',kontaktoplysningerId: null ,
+ fnavn: '', enavn: '', addresselinje1: '', addresselinje2: '', postnr: '',
   by: '', email:'', telefonnr: '' };
 
 
@@ -25,12 +25,7 @@ export class RegistrerComponent implements OnInit {
   endpointK = '/Kontaktoplysninger';
   endpointB= '/Brugere';
   endpointR= '/Roller';
-
-
-
-  constructor(private _formBuilder: FormBuilder ,
-    public restApi: RestApiService
-     ) { }
+  constructor(private _formBuilder: FormBuilder , public restApi: RestApiService ,public router: Router) { }
 
   ngOnInit(): void {
 
@@ -58,14 +53,27 @@ export class RegistrerComponent implements OnInit {
 
 
   createUser(){
-   this.restApi.createData(this.newUser , this.endpointB).subscribe((data) => {
-     console.log(data);
-     this.restApi.createData(this.newUser , this.endpointK).subscribe((data) => {
-      console.log(data);
-       this.restApi.createData(this.newUser , this.endpointR).subscribe((data) => {
-        console.log(data);
+   this.restApi.createData(this.newUser , this.endpointK).subscribe((dataK) => {
+     console.log(dataK.id);
+      this.newUser.kontaktoplysningerId= dataK.id;
+      if(this.newUser.rolleNavn == 'AnonymBruger')
+      this.newUser.level=0 + "";
+      if(this.newUser.rolleNavn == 'Bruger')
+      this.newUser.level=100 + "";
+      if(this.newUser.rolleNavn == 'Moderator')
+      this.newUser.level=200 + "";
+      if(this.newUser.rolleNavn == 'Administrator')
+      this.newUser.level=300 + "";
+     this.restApi.createData(this.newUser , this.endpointR).subscribe((dataR) => {
+      console.log(dataR.id);
+      this.newUser.rolleId=dataR.id;
+      this.restApi.createData(this.newUser , this.endpointB).subscribe((dataB) => {
+        console.log(dataB);
+        var brugerId = dataB.id;
+        console.log("brugerId : " ,brugerId);
+        this.router.navigate(["../login/login"]);
+       }) ;
 
-       })
      })
 
     })

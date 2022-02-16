@@ -3,22 +3,8 @@
   <div class="container">
     <form [formGroup]="BrugerFormGroup"  novalidate>
 <mat-vertical-stepper>
-
-    <mat-step [stepControl]="BrugerFormGroup">
-      <ng-template matStepLabel>kontaktoplysningerId</ng-template>
-      <mat-form-field appearance="fill">
-        <mat-label>kontaktoplysningerId</mat-label>
-        <input matInput formControlName="kontaktoplysningerId"  type="number"  [(ngModel)]="newUser.kontaktoplysningerId" >
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-
-  </mat-step>
       <mat-step [stepControl]="BrugerFormGroup">
-        <!-- <form [formGroup]="FormGroupFNavn"> -->
-          <ng-template matStepLabel>Indtast din Fornavn</ng-template>
+        <ng-template matStepLabel>Indtast din Fornavn</ng-template>
           <mat-form-field appearance="fill">
             <mat-label>Name</mat-label>
             <input matInput placeholder="Fx. Alex" formControlName="fnavn" [(ngModel)]="newUser.fnavn" required>
@@ -26,11 +12,8 @@
           <div>
             <button mat-button matStepperNext>Next</button>
           </div>
-        <!-- </form> -->
       </mat-step>
-      <!-- <mat-step [stepControl]="FormGroupENavn"> -->
         <mat-step [stepControl]="BrugerFormGroup">
-        <!-- <form [formGroup]="FormGroupENavn"> -->
           <ng-template matStepLabel>Indtast din Efternavn</ng-template>
           <mat-form-field appearance="fill">
             <mat-label>Efternavn</mat-label>
@@ -40,12 +23,9 @@
             <button mat-button matStepperPrevious>Back</button>
             <button mat-button matStepperNext>Next</button>
           </div>
-        <!-- </form> -->
-      </mat-step>
-      <!-- <mat-step [stepControl]="FormGroupAdd1"> -->
-        <mat-step [stepControl]="BrugerFormGroup">
-        <!-- <form [formGroup]="FormGroupAdd1"> -->
-          <ng-template matStepLabel>Indtast din Adresselinje 1</ng-template>
+        </mat-step>
+           <mat-step [stepControl]="BrugerFormGroup">
+            <ng-template matStepLabel>Indtast din Adresselinje 1</ng-template>
           <mat-form-field appearance="fill">
             <mat-label>Adresselinje 1</mat-label>
             <input matInput formControlName="addresselinje1" placeholder="Fx. Telegrafvej 9" [(ngModel)]="newUser.addresselinje1" required>
@@ -54,12 +34,9 @@
             <button mat-button matStepperPrevious>Back</button>
             <button mat-button matStepperNext>Next</button>
           </div>
-        <!-- </form> -->
-      </mat-step>
+        </mat-step>
 
-      <!-- <mat-step [stepControl]="FormGroupAdd2"> -->
-        <!-- <form [formGroup]="FormGroupAdd2"> -->
-          <mat-step [stepControl]="BrugerFormGroup">
+        <mat-step [stepControl]="BrugerFormGroup">
           <ng-template matStepLabel>Indtast din Adresselinje 2</ng-template>
           <mat-form-field appearance="fill">
             <mat-label>Adresselinje 2</mat-label>
@@ -69,12 +46,9 @@
             <button mat-button matStepperPrevious>Back</button>
             <button mat-button matStepperNext>Next</button>
           </div>
-        <!-- </form> -->
-      </mat-step>
+        </mat-step>
 
-      <!-- <mat-step [stepControl]="FormGroupPost"> -->
-        <!-- <form [formGroup]="FormGroupPost"> -->
-          <mat-step [stepControl]="BrugerFormGroup">
+        <mat-step [stepControl]="BrugerFormGroup">
           <ng-template matStepLabel>Indtast din PostNr</ng-template>
           <mat-form-field appearance="fill">
             <mat-label>PostNr</mat-label>
@@ -84,13 +58,9 @@
             <button mat-button matStepperPrevious>Back</button>
             <button mat-button matStepperNext>Next</button>
           </div>
-        <!-- </form> -->
-      </mat-step>
+        </mat-step>
 
-
-      <!-- <mat-step [stepControl]="FormGroupBy"> -->
-        <!-- <form [formGroup]="FormGroupBy"> -->
-          <mat-step [stepControl]="BrugerFormGroup">
+        <mat-step [stepControl]="BrugerFormGroup">
           <ng-template matStepLabel>Indtast din By</ng-template>
           <mat-form-field appearance="fill">
             <mat-label>By</mat-label>
@@ -100,12 +70,9 @@
             <button mat-button matStepperPrevious>Back</button>
             <button mat-button matStepperNext>Next</button>
           </div>
-        <!-- </form> -->
-      </mat-step>
+        </mat-step>
 
-      <!-- <mat-step [stepControl]="FormGroupEmail"> -->
-        <!-- <form [formGroup]="FormGroupEmail"> -->
-          <mat-step [stepControl]="BrugerFormGroup">
+        <mat-step [stepControl]="BrugerFormGroup">
           <ng-template matStepLabel>Indtast din E-mail</ng-template>
           <mat-form-field appearance="fill">
             <mat-label>E-mail</mat-label>
@@ -115,8 +82,7 @@
             <button mat-button matStepperPrevious>Back</button>
             <button mat-button matStepperNext>Next</button>
           </div>
-        <!-- </form> -->
-      </mat-step>
+        </mat-step>
 
       <mat-step [stepControl]="BrugerFormGroup">
         <ng-template matStepLabel>Indtast din TelefonNr.</ng-template>
@@ -130,50 +96,23 @@
         </div>
     </mat-step>
 
-
-
-
-
-    <mat-step [stepControl]="BrugerFormGroup" >
-      <ng-template matStepLabel>RolleId</ng-template>
-      <mat-form-field appearance="fill">
-        <mat-label>RolleId</mat-label>
-        <input matInput formControlName="rolleId" type="number" [(ngModel)]="newUser.rolleId"  >
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-
-  </mat-step>
       <mat-step [stepControl]="BrugerFormGroup">
         <ng-template matStepLabel>Vælg Rolle</ng-template>
         <mat-form-field appearance="fill">
           <mat-label>rolleNavn</mat-label>
-          <input matInput formControlName="rolleNavn" placeholder="Fx. nils1236" [(ngModel)]="newUser.rolleNavn" >
+          <select matNativeControl formControlName="rolleNavn"  [(ngModel)]="newUser.rolleNavn">
+            <option value="" selected></option>
+            <option value="AnonymBruger">AnonymBruger</option>
+            <option value="Bruger">Bruger</option>
+            <option value="Moderator">Moderator</option>
+            <option value="Administrator">Administrator</option>
+          </select>
         </mat-form-field>
         <div>
           <button mat-button matStepperPrevious>Back</button>
           <button mat-button matStepperNext>Next</button>
         </div>
-      <!-- </form> -->
-    </mat-step>
-
-    <mat-step [stepControl]="BrugerFormGroup">
-      <ng-template matStepLabel>Level</ng-template>
-      <mat-form-field appearance="fill">
-        <mat-label>Level</mat-label>
-        <input matInput formControlName="level"  [(ngModel)]="newUser.level" >
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-
-    </mat-step>
-
-
-
+      </mat-step>
 
       <mat-step [stepControl]="BrugerFormGroup">
         <ng-template matStepLabel>Indtast din brugernavn</ng-template>
@@ -185,8 +124,7 @@
           <button mat-button matStepperPrevious>Back</button>
           <button mat-button matStepperNext>Next</button>
         </div>
-      <!-- </form> -->
-    </mat-step>
+      </mat-step>
 
       <mat-step [stepControl]="BrugerFormGroup">
         <ng-template matStepLabel>Indtast din Password</ng-template>
@@ -198,8 +136,7 @@
           <button mat-button matStepperPrevious>Back</button>
           <button mat-button matStepperNext (click)="createUser()" type="submit">Next</button>
         </div>
-      <!-- </form> -->
-    </mat-step>
+      </mat-step>
 
 
       <mat-step>

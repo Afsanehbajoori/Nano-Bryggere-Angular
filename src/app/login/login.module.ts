@@ -7,7 +7,7 @@ import { RegistrerComponent } from './registrer/registrer.component';
 import { GlemtPasswordComponent } from './glemt-password/glemt-password.component';
 import { EditPasswordComponent } from './edit-password/edit-password.component';
 import { RedigerSletBrugerComponent } from './rediger-slet-bruger/rediger-slet-bruger.component';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon'
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -16,6 +16,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatStepperModule} from '@angular/material/stepper';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,9 @@ import { MatStepperModule} from '@angular/material/stepper';
     FormsModule,
     ReactiveFormsModule,
     MatStepperModule,
-    MatIconModule
+    MatIconModule,
+    MatSelectModule
+
   ],
   exports:[
     EditPasswordComponent,

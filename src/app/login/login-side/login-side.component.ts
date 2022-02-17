@@ -1,4 +1,3 @@
-import { Kontaktolysninger } from 'src/app/Models/Kontaktoplysninger';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Bruger } from 'src/app/Models/Bruger';
@@ -57,7 +56,7 @@ this.restApi.getDatas(this.endpointB).subscribe((res) => {
       console.log(res);
     })
     //alert('login success');
-    this.router.navigate(['../main/main']);
+    this.router.navigate(['../main/profil']);
   }
   else{
     alert('user ikke findes')

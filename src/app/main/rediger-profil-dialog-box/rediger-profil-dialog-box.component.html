@@ -43,7 +43,7 @@
         <input matInput formControlName="ByCtl" placeholder="{{kontaktoplysningerList.by}}" [(ngModel)]="kontaktoplysningerList.by">
       </mat-form-field>
 <div mat-dialog-actions class="btn-container">
- <button mat-button (click)="onClose(false)">Annulere</button>
+ <button mat-button (click)="onClose()">Annulere</button>
   <button mat-button cdkFocusInitial  [mat-dialog-close]="kontaktoplysningerList" >Gem Ændringer</button>
 
 

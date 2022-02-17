@@ -86,3 +86,6 @@
  justify-content: center;
  text-align: center;
 }
+.example-full-width {
+  width: 100%;
+}

@@ -6,7 +6,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA , MatDialogConfig} from '@angul
 import { SletDialogBoxComponent } from '../slet-dialog-box/slet-dialog-box.component';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { NgForm, FormsModule, FormGroup, FormControl } from '@angular/forms';
+import { NgForm, FormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { audit, subscribeOn } from 'rxjs/operators';
 import { AutofillMonitor } from '@angular/cdk/text-field';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -35,23 +35,35 @@ export class ProfilComponent implements OnInit {
   endpointB='/Bryggerier';
   showFillerP = false;
   showFillerB = false;
-  kontaktoplysningerId : number=6;
-  bryggeriId : number =4;
-
-
-
+  showFillerOB = false;
+  kontaktoplysningerId : number=40;
+  bryggeriId : number=1 ;
+  brugerId:number;
+  @Input() newBryggeri={logo:'' , navn:'' , beskrivelse:''};
+  opretteBryggeriForm : any= new FormGroup({});
 
   constructor(public dialog:MatDialog,
       public restApi: RestApiService ,
       private router: Router ,
       private snackBar : MatSnackBar ,
-      private formBuilder : FormBuilder ) { }
+      private _formBuilder : FormBuilder,
+      public actRoute: ActivatedRoute ) { }
 
 
   ngOnInit(): void {
 
     this.loadKontaktoplysninger();
     this.loadBryggeri();
+    this.opretteBryggeriForm = this._formBuilder.group({
+      'logo': new FormControl(''),
+      'navn': new FormControl('' , Validators.required),
+      'beskrivelse':new FormControl('')
+    })
+
+   /*  this.actRoute.params.subscribe(data => {
+      console.log(data)
+    }); */
+
   }
 
   loadKontaktoplysninger(){
@@ -93,18 +105,19 @@ export class ProfilComponent implements OnInit {
 
  redigerProfil(){
 
-   const dialogConfig = new MatDialogConfig();
-   dialogConfig.disableClose= true;
-   dialogConfig.autoFocus=true;
-   dialogConfig.width="40%";
-   this.dialogRefRedigerProfil=this.dialog.open(RedigerProfilDialogBoxComponent , dialogConfig);
+  const dialogConfig = new MatDialogConfig();
+  dialogConfig.disableClose= true;
+  dialogConfig.autoFocus=true;
+  dialogConfig.width="40%";
+  this.dialogRefRedigerProfil=this.dialog.open(RedigerProfilDialogBoxComponent , dialogConfig);
 
   this.dialogRefRedigerProfil.afterClosed().subscribe(result => {
-    this.kontaktoplysningerList= result;
-    this.restApi.updateData(this.kontaktoplysningerId , this.endpointK , this.kontaktoplysningerList).subscribe((data) =>
-    {
-      console.log(this.kontaktoplysningerList);
-    })
+  this.kontaktoplysningerList= result;
+  this.restApi.updateData(this.kontaktoplysningerId , this.endpointK , this.kontaktoplysningerList).subscribe((data) =>
+  {
+    console.log(this.kontaktoplysningerList);
+  })
+
 
 
 
@@ -147,6 +160,23 @@ redigerBryggeri(){
   }
 
   });
+
+    }
+
+
+opretteBryggeri(){
+this.restApi.createData(this.newBryggeri , this.endpointB).subscribe((data) => {
+  console.log(data);
+  this.snackBar.open('Oprette ny bryggei succed')
+  this.opretteBryggeriForm.reset();
+  this.onClose();
+})
+    }
+
+
+onClose(){
+  this.opretteBryggeriForm.reset();
+  close();
 
     }
 

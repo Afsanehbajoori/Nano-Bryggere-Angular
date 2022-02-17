@@ -16,7 +16,7 @@ export class RedigerBryggeriDialogBoxComponent implements OnInit {
   bryggeriList : any;
   endpointB='/Bryggerier';
   RedigerBryggeri:FormGroup = new FormGroup({});
-  bryggeriId : number =4;
+  bryggeriId : number =1 ;
 
   constructor(public dialogRefRedigerProfil : MatDialogRef<RedigerBryggeriDialogBoxComponent>,
     public restApi: RestApiService ,
@@ -40,8 +40,9 @@ export class RedigerBryggeriDialogBoxComponent implements OnInit {
 
 
 
-  onClose(value: boolean){
-    this.dialogRefRedigerProfil.close(value);
+  onClose(){
+    // this.dialogRefRedigerProfil.close();
+    return this.router.navigate(['../main/profil']);
   }
 
 

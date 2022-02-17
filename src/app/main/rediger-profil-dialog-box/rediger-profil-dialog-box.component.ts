@@ -13,7 +13,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class RedigerProfilDialogBoxComponent implements OnInit {
   RedigerKontaktOplysninger: FormGroup = new FormGroup({});
   kontaktoplysningerList : any;
-  kontaktoplysningerId : number=6;
+  kontaktoplysningerId : number =40;
   endpointK = '/Kontaktoplysninger';
 
   constructor( public dialogRefRedigerProfil : MatDialogRef<RedigerProfilDialogBoxComponent> ,
@@ -47,8 +47,8 @@ export class RedigerProfilDialogBoxComponent implements OnInit {
 
 
 
-  onClose(value: boolean){
-    this.dialogRefRedigerProfil.close(value);
+  onClose(){
+    this.dialogRefRedigerProfil.close();
   }
 
 

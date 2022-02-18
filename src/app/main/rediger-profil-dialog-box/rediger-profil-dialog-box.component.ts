@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators ,FormControl} from '@angular/forms';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { RestApiService } from 'src/app/shared/rest-api.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 
 @Component({
@@ -18,8 +18,7 @@ export class RedigerProfilDialogBoxComponent implements OnInit {
 
   constructor( public dialogRefRedigerProfil : MatDialogRef<RedigerProfilDialogBoxComponent> ,
     private formBuilder : FormBuilder ,
-    public restApi: RestApiService ,
-    private snackBar : MatSnackBar
+    public restApi: RestApiService
    ) { }
 
   ngOnInit(): void {
@@ -47,9 +46,9 @@ export class RedigerProfilDialogBoxComponent implements OnInit {
 
 
 
-  onClose(){
+ /*  onClose(){
     this.dialogRefRedigerProfil.close();
-  }
+  } */
 
 
 

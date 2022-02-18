@@ -76,6 +76,10 @@ export class RegistrerComponent implements OnInit {
 
      })
 
+    } , err => {
+       {alert('udfyldt alle felter')
+
+      }
     })
   }
 

@@ -17,16 +17,15 @@
                     </mat-panel-title>
                     <mat-action-row class="centers" style="justify-content: center;">
                         <button mat-button class="btnMainStyle" (click)="onSletBruger(user.id)">Slet Bruger</button>
-                        <!-- <button mat-button class="btnMainStyle" (click)="onRedigerOl(beer.id)">Rediger Øl</button> -->
-                        <button mat-button class="btnMainStyle" (click)="onRedigerBruger(user.id)">Rediger Bruger</button>
+                        <button mat-button class="btnMainStyle" (click)="onFindBruger(user.id)">Se Bruger</button>
                     </mat-action-row>
                 </mat-expansion-panel-header>
                 <mat-card class="containStyle">
-                    <p>Type:</p>
+                    <p>beskrivelse:</p>
                     <p>{{user.beskrivelse}}</p>
                 </mat-card>
                 <mat-card class="containStyle">
-                    <p>Procent:</p>
+                    <p>Logo:</p>
                     <p>{{user.logo}}</p>
                 </mat-card>
             </mat-expansion-panel>

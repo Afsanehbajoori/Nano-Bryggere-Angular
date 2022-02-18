@@ -22,13 +22,14 @@ export class BrugerAdminSideComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    // this.loadBruger();
   }
   loadBruger(){
     return this.restApi.getDatas(this.endpoints).subscribe((user) => {
       this.users = user;
     })
   }
-  onRedigerBruger(id:any) {
+  onFindBruger(id:any) {
     this.router.navigate(['../admin/brugerredigerol/',id]);
   };
 

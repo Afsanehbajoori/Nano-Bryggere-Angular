@@ -13,14 +13,14 @@ import { KatalogComponent } from './katalog/katalog.component';
 const routes: Routes = [
   {path:'', component:ForsideComponent},
   {path:'main', component:ForsideComponent},
-  {path:'event' , component:EventSideComponent},
-  {path:'certifikat' , component:CertifikatComponent},
+  {path:'event', component:EventSideComponent},
+  {path:'certifikat', component:CertifikatComponent},
   {path:'profil', component:ProfilComponent},
   {path:'sletprofil', component:SletProfilComponent},
-  {path:'redigerol/:id',component:RedigerOlComponent},
-  {path:'opretteol',component:OpretteOlComponent},
+  {path:'redigerol/:id', component:RedigerOlComponent},
+  {path:'opretteol', component:OpretteOlComponent},
   {path:'katalog', component:KatalogComponent},
-  {path:'**' , component: NotFoundComponent},
+  {path:'**', component: NotFoundComponent},
 ];
 
 @NgModule({

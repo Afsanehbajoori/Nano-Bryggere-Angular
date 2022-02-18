@@ -104,7 +104,6 @@ export class ProfilComponent implements OnInit {
   }
 
  redigerProfil(){
-
   const dialogConfig = new MatDialogConfig();
   dialogConfig.disableClose= true;
   dialogConfig.autoFocus=true;
@@ -112,14 +111,13 @@ export class ProfilComponent implements OnInit {
   this.dialogRefRedigerProfil=this.dialog.open(RedigerProfilDialogBoxComponent , dialogConfig);
 
   this.dialogRefRedigerProfil.afterClosed().subscribe(result => {
-  this.kontaktoplysningerList= result;
-  this.restApi.updateData(this.kontaktoplysningerId , this.endpointK , this.kontaktoplysningerList).subscribe((data) =>
-  {
-    console.log(this.kontaktoplysningerList);
-  })
-
-
-
+    if(result == true){
+      this.kontaktoplysningerList= result;
+      this.restApi.updateData(this.kontaktoplysningerId , this.endpointK , this.kontaktoplysningerList).subscribe((data) =>
+      {
+        console.log(this.kontaktoplysningerList);
+      })
+    }
 
 });
 
@@ -133,11 +131,14 @@ redigerBryggeri(){
   this.dialogRefRedigerBryggeri=this.dialog.open(RedigerBryggeriDialogBoxComponent , dialogConfig);
 
   this.dialogRefRedigerBryggeri.afterClosed().subscribe(result => {
-    this.bryggeriList=result;
-    this.restApi.updateData(this.bryggeriId , this .endpointB , this.bryggeriList).subscribe((data) =>
-    {
-      console.log(this.bryggeriList);
-    })
+    if(result){
+      this.bryggeriList=result;
+      this.restApi.updateData(this.bryggeriId , this .endpointB , this.bryggeriList).subscribe((data) =>
+      {
+        console.log(this.bryggeriList);
+      })
+    }
+
 });
 }
 
@@ -165,18 +166,24 @@ redigerBryggeri(){
 
 
 opretteBryggeri(){
-this.restApi.createData(this.newBryggeri , this.endpointB).subscribe((data) => {
-  console.log(data);
-  this.snackBar.open('Oprette ny bryggei succed')
-  this.opretteBryggeriForm.reset();
-  this.onClose();
-})
+  if(this.newBryggeri.navn != ''){
+    this.restApi.createData(this.newBryggeri , this.endpointB).subscribe((data) => {
+      if(data == true){
+        console.log(data);
+        this.snackBar.open('Oprette ny bryggei succed')
+        this.onClose();
+      }
+
+    })
+  }
+
     }
 
 
 onClose(){
   this.opretteBryggeriForm.reset();
-  close();
+  this.router.navigate(['/main/profil']);
+  this.showFillerOB = false;
 
     }
 

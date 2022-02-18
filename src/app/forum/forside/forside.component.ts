@@ -17,6 +17,7 @@ export class ForsideComponent implements OnInit {
   posts: Post[];
   endpointf = '/Forumer';
   endpointp = '/Posts';
+  
   constructor(
     public dialog: MatDialog,
     public restApi: RestApiService, 

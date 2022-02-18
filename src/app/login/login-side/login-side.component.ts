@@ -54,6 +54,7 @@ this.restApi.getDatas(this.endpointB).subscribe((res) => {
     this.loginDetails.brugerId= user.id;
     this.restApi.createData(this.loginDetails , this.endpoints).subscribe((res) => {
       console.log(res);
+      sessionStorage.setItem('id', res.id);
     })
     //alert('login success');
     this.router.navigate(['../main/profil']);

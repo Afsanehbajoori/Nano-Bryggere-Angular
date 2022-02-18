@@ -1,0 +1,33 @@
+<mat-card class="main" id="imgeUp">
+    <mat-card-title class="txt" style="margin-top: 100px;">
+      Velkommen til Login side
+    </mat-card-title>
+    <mat-card-content class="container">
+      <form [formGroup]="OlForm" class="example-form">
+        
+          <mat-form-field class="example-full-width" appearance="fill">
+              <input matInput formControlName="navn" class="input-control">
+          </mat-form-field>
+          <mat-form-field class="example-full-width" appearance="fill">
+              <input matInput formControlName="type" class="input-control">
+          </mat-form-field>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <input matInput formControlName="procent" class="input-control">
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <input matInput formControlName="smag" class="input-control">
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <input matInput formControlName="beskrivelse" class="input-control">
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <input matInput formControlName="etiket" class="input-control">
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <input matInput formControlName="årgang" class="input-control">
+        </mat-form-field>
+        <a routerLink="/ol/sogning" routerLinkActive="active"><span class="material-icons black-color">arrow_back</span></a>
+      </form>
+    </mat-card-content>
+  </mat-card>
+  

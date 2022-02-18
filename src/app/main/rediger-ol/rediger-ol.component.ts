@@ -9,6 +9,7 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./rediger-ol.component.css']
 })
 export class RedigerOlComponent implements OnInit {
+  selected = '';
   beerid = this.actRoute.snapshot.params['id'];
   RedigerForm: FormGroup;
   endpoints = '/Øller';
@@ -26,9 +27,9 @@ export class RedigerOlComponent implements OnInit {
       smag: new FormControl(''),
       procent: new FormControl(''),
       bryggerid: new FormControl(''),
-      // argang: new FormControl('', Validators.required),
+      argang: new FormControl('', Validators.required),
       land: new FormControl(''),
-      // process: new FormControl('', Validators.required),
+      process: new FormControl('', Validators.required),
       etiket: new FormControl(''),
       beskrivelse: new FormControl(''),
       // billed: new FormControl('', Validators.required),

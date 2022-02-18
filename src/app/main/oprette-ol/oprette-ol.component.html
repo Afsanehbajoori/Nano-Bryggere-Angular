@@ -31,12 +31,12 @@
                 </mat-error>
             </mat-form-field>
             
-            <!-- <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="text" formControlName="argang" placeholder="Årgang" class="input-control">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <input matInput type="date" [(ngModel)]="olList.årgang" formControlName="argang" placeholder="Årgang" class="input-control">
                 <mat-error>
                     Dette felt skal udfyldes
                 </mat-error>
-            </mat-form-field> -->
+            </mat-form-field>
 
             <mat-form-field class="example-full-width" appearance="fill">             
                 <input matInput type="text" [(ngModel)]="olOprettelse.land" formControlName="land" placeholder="Land" class="input-control">
@@ -52,16 +52,16 @@
                 </mat-error>
             </mat-form-field>
 
-            <!-- <mat-form-field class="example-full-width" appearance="fill">
-                <mat-select type="text" formControlName="process" placeholder="Bryggeprocess" class="input-control">
-                    <mat-option *ngFor="let bryg of brygs" [value]="bryg.value">
-                        {{bryg.view}}
-                    </mat-option>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-select [(value)]="selected" formControlName="bryggeprocess" placeholder="{{olList.bryggeprocess}}">
+                    <mat-option>Ingen</mat-option>
+                    <mat-option value="optionJa">Ja</mat-option>
+                    <mat-option value="optionNej">Nej</mat-option>
                 </mat-select>
                 <mat-error>
-                    Dette felt skal udfyldes
+                    udfyld feltet
                 </mat-error>
-            </mat-form-field> -->
+        </mat-form-field>
 
             <mat-form-field class="example-full-width" appearance="fill">             
                 <input matInput type="text" [(ngModel)]="olOprettelse.etiket" formControlName="etiket" placeholder="Etiket" class="input-control">

@@ -9,6 +9,7 @@
         <button mat-menu-item [matMenuTriggerFor]="main"><mat-icon aria-hidden="false">home</mat-icon>Main</button>
         <button mat-menu-item [matMenuTriggerFor]="forum"><mat-icon aria-hidden="false">chat</mat-icon>Forum</button>
         <button mat-menu-item [matMenuTriggerFor]="event"><mat-icon aria-hidden="false">calendar_today</mat-icon>Event</button>
+        <button mat-menu-item [matMenuTriggerFor]="ol"><mat-icon aria-hidden="false">local_drink</mat-icon>Øl</button>
       </mat-menu>
 
       <mat-menu #login="matMenu">
@@ -62,8 +63,13 @@
         </button>
       </mat-menu>
 
-      <span class="example-spacer"></span>
+      <mat-menu #ol="matMenu">
+        <button mat-menu-item >
+          <span><a href="/ol/sogning"  style="text-decoration:none">Find Øl</a></span>
+        </button>
+      </mat-menu>
 
+      <span class="example-spacer"></span>
       <span>Nano Bryggere</span>
     </mat-toolbar-row>
 

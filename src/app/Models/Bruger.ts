@@ -4,7 +4,7 @@ import { Rolle } from "./Rolle";
 
 export class Bruger {
 
-  public Id: number;
+  public id: number;
   public brugernavn: string;
   public pw : string;
   public rolleId:number;

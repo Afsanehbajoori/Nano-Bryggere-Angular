@@ -15,10 +15,6 @@ interface Bryg{
 })
 export class OpretteOlComponent implements OnInit {
   @Input() olOprettelse = { navn: '', type: '', smag: '', procent: null, land: '', bryggeriId: null, etiket: '', beskrivelse:'', antal: '' };
-  // brygs: Bryg[] = [
-  //   {value:'1', view: 'Ja'},
-  //   {value:'2', view: 'Nej'}
-  // ]
   OpretForm : FormGroup;
   endpoints = '/Øller';
   constructor(
@@ -34,9 +30,9 @@ export class OpretteOlComponent implements OnInit {
       smag: new FormControl('', Validators.required),
       procent: new FormControl('', Validators.required),
       bryggerid: new FormControl('', Validators.required),
-      // argang: new FormControl('', Validators.required),
+      argang: new FormControl('', Validators.required),
       land: new FormControl('', Validators.required),
-      // process: new FormControl('', Validators.required),
+      process: new FormControl('', Validators.required),
       etiket: new FormControl('', Validators.required),
       beskrivelse: new FormControl('', Validators.required),
       // billed: new FormControl('', Validators.required),

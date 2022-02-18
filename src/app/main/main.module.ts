@@ -30,6 +30,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { RedigerProfilDialogBoxComponent } from './rediger-profil-dialog-box/rediger-profil-dialog-box.component';
 import { RedigerBryggeriDialogBoxComponent } from './rediger-bryggeri-dialog-box/rediger-bryggeri-dialog-box.component';
 import {MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS} from '@angular/material/snack-bar';
+import { CertifikatDialogBoxComponent } from './certifikat-dialog-box/certifikat-dialog-box.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import {MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS} from '@angular/materia
     KatalogComponent,
     SletDialogBoxComponent,
     RedigerProfilDialogBoxComponent,
-    RedigerBryggeriDialogBoxComponent
+    RedigerBryggeriDialogBoxComponent,
+    CertifikatDialogBoxComponent
   ],
   entryComponents:[SletDialogBoxComponent , RedigerProfilDialogBoxComponent , RedigerBryggeriDialogBoxComponent],
   imports: [

@@ -15,7 +15,7 @@ export class CertifikatComponent implements OnInit {
   valgtefil: File;
   bruger : Bruger;
   file : any;
-  filing = "";
+  url = "";
   constructor(
     public dialog: MatDialog,
     public restApi: RestApiService,
@@ -37,13 +37,9 @@ export class CertifikatComponent implements OnInit {
       var reader = new FileReader();
       reader.readAsDataURL(e.target.files[0]);
       reader.onload=(event: any)=>{
-        this.filing =e.target.result;
+        this.url =event.target.result;
       }
     }
-    // this.valgtefil = <File>e.target.files[0];
-
-    // console.log(this.valgtefil);
-    // this.file = this.valgtefil.name;
   };
   onUploadCertifikat() {
     const fd = new FormData();

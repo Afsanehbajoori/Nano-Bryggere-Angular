@@ -15,7 +15,7 @@ export class CertifikatComponent implements OnInit {
   valgtefil: File;
   bruger : Bruger;
   file : any;
-  url = "";
+  url : string = "assets/images/Gromit Mug.jpg";
   constructor(
     public dialog: MatDialog,
     public restApi: RestApiService,
@@ -32,12 +32,12 @@ export class CertifikatComponent implements OnInit {
   //     this.bruger = beer;
   //   })
   // }
-  onSubmitCertifikat(e: any) {
-    if(e.target.file){
+  onSubmitCertifikats(event: any) {
+    if(event.target.files){
       var reader = new FileReader();
-      reader.readAsDataURL(e.target.files[0]);
-      reader.onload=(event: any)=>{
-        this.url =event.target.result;
+      reader.readAsDataURL(event.target.files[0]);
+      reader.onload=(e: any)=>{
+        this.url =e.target.result;
       }
     }
   };

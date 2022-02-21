@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-certifikat-dialog-box',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CertifikatDialogBoxComponent implements OnInit {
 
-  constructor() { }
+  constructor( public dialogRefGodkend : MatDialogRef<CertifikatDialogBoxComponent>) { }
 
   ngOnInit(): void {
   }

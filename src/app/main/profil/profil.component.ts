@@ -36,7 +36,7 @@ export class ProfilComponent implements OnInit {
   showFillerP = false;
   showFillerB = false;
   showFillerOB = false;
-  kontaktoplysningerId : number=40;
+  kontaktoplysningerId = sessionStorage.getItem('id');
   bryggeriId : number=1 ;
   brugerId:number;
   @Input() newBryggeri={logo:'' , navn:'' , beskrivelse:''};

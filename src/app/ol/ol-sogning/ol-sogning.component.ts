@@ -25,7 +25,7 @@ export class OlSogningComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // this.loadOl();
+    this.loadOl();
   }
   loadOl(){
     return this.restApi.getDatas(this.endpoints).subscribe((beer) => {

@@ -12,7 +12,6 @@ import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { CertifikatComponent } from './certifikat/certifikat.component';
 import { BrugerCertifikatComponent } from './bruger-certifikat/bruger-certifikat.component';
 
 @NgModule({
@@ -21,7 +20,6 @@ import { BrugerCertifikatComponent } from './bruger-certifikat/bruger-certifikat
     OlAdminSideComponent,
     BrugerAdminSideComponent,
     AdminForsideComponent,
-    CertifikatComponent,
     BrugerCertifikatComponent
   ],
   imports: [

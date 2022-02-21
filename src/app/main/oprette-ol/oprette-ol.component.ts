@@ -17,6 +17,7 @@ export class OpretteOlComponent implements OnInit {
   @Input() olOprettelse = { navn: '', type: '', smag: '', procent: null, land: '', bryggeriId: null, etiket: '', beskrivelse:'', antal: '' };
   OpretForm : FormGroup;
   endpoints = '/Øller';
+  selected = '';
   constructor(
     public restApi: RestApiService, 
     private router: Router,
@@ -30,7 +31,7 @@ export class OpretteOlComponent implements OnInit {
       smag: new FormControl('', Validators.required),
       procent: new FormControl('', Validators.required),
       bryggerid: new FormControl('', Validators.required),
-      argang: new FormControl('', Validators.required),
+      // argang: new FormControl('', Validators.required),
       land: new FormControl('', Validators.required),
       process: new FormControl('', Validators.required),
       etiket: new FormControl('', Validators.required),

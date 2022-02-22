@@ -35,7 +35,7 @@ export class ProfilComponent implements OnInit {
   valgtefil: File;
   url : string = "assets/images/Gromit Mug.jpg";
 
-  @Input() newBryggeri = { logo: '', navn: '', beskrivelse: '', kontaktoplysningerId: '' };
+  @Input() newBryggeri = { logo: '', navn: '', beskrivelse: '', kontaktoplysningerId: 0 };
   opretteBryggeriForm: any = new FormGroup({});
 
   constructor(public dialog: MatDialog,
@@ -60,7 +60,7 @@ export class ProfilComponent implements OnInit {
 
   opretteBryggeri() {
     if (this.newBryggeri.navn != '') {
-      this.newBryggeri.kontaktoplysningerId = this.kontaktoplysningerId.toString();
+      this.newBryggeri.kontaktoplysningerId = this.kontaktoplysningerId;
       this.restApi.createData(this.newBryggeri, this.endpointB).subscribe((data) => {
         console.log("bryggeriId:", data.id);
         console.log("bryggeri:", data)

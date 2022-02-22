@@ -18,13 +18,13 @@ export class BrugerAdminSideComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    public restApi: RestApiService, 
+    public restApi: RestApiService,
     public router: Router,
-    public actRoute: ActivatedRoute 
+    public actRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    // this.loadBruger();
+    this.loadBruger();
   }
   loadBruger(){
     return this.restApi.getDatas(this.endpoints).subscribe((user) => {

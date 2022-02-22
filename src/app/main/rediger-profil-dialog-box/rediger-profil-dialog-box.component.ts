@@ -22,7 +22,7 @@ export class RedigerProfilDialogBoxComponent implements OnInit {
    ) { }
 
   ngOnInit(): void {
-
+    this.kontaktoplysningerId=JSON.parse(localStorage.getItem('kontaktoplysningerId') || '{}');
 
     this.restApi.getData(this.kontaktoplysningerId , this.endpointK)
       .toPromise()

@@ -2,24 +2,22 @@
     <mat-toolbar class="login-header" style="background: linear-gradient(#238ff5, #23baf5);">
         <button mat-raised-button style="background-color: rgb(30, 122, 228); width: 120px; height: 40px; border-width: 0; margin-right: 20px;"
         (click)="onOpretOl()">Opret øl</button>
-        <form class="example-form" style="justify-content: center;">
-            <mat-form-field>
-                <input matInput placeholder="Søgning" type="search">
+        <form class="example-form" style="justify-content: center; width: 100%;">
+            <mat-form-field style="width: 10%;">
+                <input matInput type="search" placeholder="Find øl" [(ngModel)]="searchkey" (ngModelChange)="onFindOl()" [ngModelOptions]="{standalone: true}">
             </mat-form-field>
         </form>
     </mat-toolbar>
     <table style="width: 100%; height: 100%; display: flex;">
         <mat-accordion class="example-headers-align" multi style="width: 100%;">
             <mat-expansion-panel *ngFor="let beer of beers" style="margin-top: 10px;">
-                <mat-expansion-panel-header
-                    style="background: linear-gradient(rgb(30, 122, 228), rgb(75, 127, 185)); justify-content: center; width: 100%;">
+                <mat-expansion-panel-header style="background: linear-gradient(rgb(30, 122, 228), rgb(75, 127, 185)); justify-content: center; width: 100%;">
                     <mat-panel-title class="centers" style="justify-content: center;">
-                        Øl Navn
                         {{beer.navn}}
                     </mat-panel-title>
                     <mat-action-row class="centers" style="justify-content: center;">
                         <button mat-button class="btnMainStyle" (click)="onSletOl(beer.id)">Slet Øl</button>
-                        <!-- <button mat-button class="btnMainStyle" (click)="onRedigerOl(beer.id)">Rediger Øl</button> -->
+                        <!-- <button mat-button class="btnMainStyle" (click)="onVisLager(beer.id)">Vis lager</button> -->
                         <button mat-button class="btnMainStyle" (click)="onRedigerOl(beer.id)">Rediger Øl</button>
                     </mat-action-row>
                 </mat-expansion-panel-header>

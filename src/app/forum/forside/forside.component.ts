@@ -17,7 +17,8 @@ export class ForsideComponent implements OnInit {
   posts: Post[];
   endpointf = '/Forumer';
   endpointp = '/Posts';
-  
+  searchkey: string;
+
   constructor(
     public dialog: MatDialog,
     public restApi: RestApiService, 
@@ -38,6 +39,16 @@ export class ForsideComponent implements OnInit {
     return this.restApi.getDatas(this.endpointp).subscribe((post) => {
       this.posts = post;
     })
+  }
+  onFindForum(){
+    if(this.searchkey == ""){
+      this.ngOnInit();
+    }
+    else{
+      this.forums = this.forums.filter(res =>{
+        return res.titel.toLowerCase().match(this.searchkey.toLowerCase());
+      })
+    }
   }
   onOpretForum() {
     this.router.navigate(['../forum/oprette']);

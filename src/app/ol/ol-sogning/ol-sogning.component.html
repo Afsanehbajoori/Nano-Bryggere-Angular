@@ -1,8 +1,8 @@
 <div class="main" id="imgeUp">
     <mat-toolbar class="login-header" style="background: linear-gradient(#34b8cf, #3f68ee);">
         <form class="example-form" style="justify-content: center;">
-            <mat-form-field>
-                <input matInput placeholder="Søgning" type="search" style="font-size:large;">
+            <mat-form-field >
+                <input matInput type="search" placeholder="Find øl" [(ngModel)]="searchkey" (ngModelChange)="onFindOl()" [ngModelOptions]="{standalone: true}">
             </mat-form-field>
             <mat-form-field style="padding: 50px; font-size:large;">
                 <mat-select [(value)]="selected">
@@ -26,7 +26,7 @@
                         {{beer.navn}}
                     </mat-panel-title>
                     <mat-action-row class="centers" style="justify-content: center;">
-                        <button mat-button class="btnMainStyle" (click)="onFindOl(beer.id)">Vis øl info</button>
+                        <button mat-button class="btnMainStyle" (click)="onVisOlInfo(beer.id)">Vis øl info</button>
                     </mat-action-row>
                 </mat-expansion-panel-header>
                 <mat-card class="containStyle">

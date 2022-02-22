@@ -24,14 +24,9 @@ export class CertifikatComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // this.loadCertifikat();
+
   }
 
-  // loadCertifikat() {
-  //   return this.restApi.getDatas(this.endpoints).subscribe((beer) => {
-  //     this.bruger = beer;
-  //   })
-  // }
   onSubmitCertifikats(event: any) {
     if(event.target.files){
       var reader = new FileReader();

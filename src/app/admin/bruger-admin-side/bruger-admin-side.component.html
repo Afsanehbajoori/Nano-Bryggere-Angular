@@ -1,8 +1,8 @@
 <div class="main" id="imgeUp">
     <mat-toolbar class="login-header" style="background: linear-gradient(#238ff5, #23baf5);">
-        <form class="example-form" style="justify-content: center;">
-            <mat-form-field>
-                <input matInput placeholder="Søgning" type="search">
+        <form class="example-form" style="justify-content: center; width: 100%;">
+            <mat-form-field style="width: 10%;">
+                <input matInput type="search" placeholder="Find Bruger" [(ngModel)]="searchkey" (ngModelChange)="onFindBrugere()" [ngModelOptions]="{standalone: true}">
             </mat-form-field>
         </form>
     </mat-toolbar>
@@ -17,7 +17,7 @@
                     </mat-panel-title>
                     <mat-action-row class="centers" style="justify-content: center;">
                         <button mat-button class="btnMainStyle" (click)="onSletBruger(user.id)">Slet Bruger</button>
-                        <button mat-button class="btnMainStyle" (click)="onFindBruger(user.id)">Se Bruger</button>
+                        <button mat-button class="btnMainStyle" (click)="onVisBruger(user.id)">Se Bruger</button>
                     </mat-action-row>
                 </mat-expansion-panel-header>
                 <mat-card class="containStyle">

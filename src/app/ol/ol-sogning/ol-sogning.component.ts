@@ -15,8 +15,11 @@ export class OlSogningComponent implements OnInit {
   beers: Øl[];
   beer = new Øl;
   bruger = new Bruger;
+  brugers : Bruger[];
   endpoints = '/Øller';
+  searchkey: string;
   data = sessionStorage.getItem('id');
+
   constructor(
     public dialog: MatDialog,
     public restApi: RestApiService, 
@@ -33,7 +36,17 @@ export class OlSogningComponent implements OnInit {
     });
   }
 
-  onFindOl(id:any) {
-    this.router.navigate(['../ol/olside/',id]);
-  };
+  onFindOl(){
+    if(this.searchkey == ""){
+      this.ngOnInit();
+    }
+    else{
+      this.beers = this.beers.filter(res =>{
+        return res.navn.toLowerCase().match(this.searchkey.toLowerCase());
+      })
+    }
+  }
+  onVisOlInfo(id:any){
+    this.router.navigate(['../main/redigerol/',id]);
+  }
 }

@@ -14,6 +14,8 @@ export class BrugerAdminSideComponent implements OnInit {
   users: Bryggeri[];
   user = new Bryggeri;
   endpoints = '/Brugere';
+  searchkey: string;
+
   constructor(
     public dialog: MatDialog,
     public restApi: RestApiService, 
@@ -29,9 +31,20 @@ export class BrugerAdminSideComponent implements OnInit {
       this.users = user;
     })
   }
-  onFindBruger(id:any) {
+  onVisBruger(id:any) {
     this.router.navigate(['../admin/brugerredigerol/',id]);
   };
+
+  onFindBrugere(){
+    if(this.searchkey == ""){
+      this.ngOnInit();
+    }
+    else{
+      this.users = this.users.filter(res =>{
+        return res.navn.toLowerCase().match(this.searchkey.toLowerCase());
+      })
+    }
+  }
 
   onSletBruger(id: any) {
     let dialogRef = this.dialog.open(SletDialogBoxComponent);

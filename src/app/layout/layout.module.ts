@@ -15,7 +15,7 @@ import {MatMenuModule} from '@angular/material/menu';
   declarations: [
     ContentComponent,
     FooterComponent,
-    HeaderComponent
+    HeaderComponent,
   ],
   imports: [
     CommonModule,

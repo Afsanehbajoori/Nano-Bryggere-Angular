@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output,EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Bruger } from 'src/app/Models/Bruger';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -18,7 +18,8 @@ export class LoginSideComponent implements OnInit {
   endpoints = '/Logins';
   endpointK = '/Kontaktoplysninger';
   endpointB= '/Brugere';
-  id = this.actRoute.snapshot.params['id'];
+
+
   loginForm :any = new FormGroup({}) ;
 
 
@@ -41,23 +42,27 @@ export class LoginSideComponent implements OnInit {
     }
     );
   }
+ /*  clearAllLocalStorage(){
+    localStorage.clear();
+  } */
 
   onSubmitLogin () {
 
-this.restApi.getDatas(this.endpointB).subscribe((res) => {
-   console.log(res);
+  this.restApi.getDatas(this.endpointB).subscribe((res) => {
   const user = res.find((a:any) => {
     return a.brugernavn === this.loginDetails.brugernavn && a.pw === this.loginDetails.pw
   });
   if(user){
-     console.log(user.kontaktoplysningerId);
-    this.loginDetails.brugerId= user.id;
-    this.restApi.createData(this.loginDetails , this.endpoints).subscribe((res) => {
-      console.log(res.brugerId);
-      sessionStorage.setItem('id', res.brugerId);
+     console.log("kontaktoplysningerId:",user.kontaktoplysningerId);
+     console.log("userInfo:",user);
+     localStorage.setItem('kontaktoplysningerId' ,JSON.stringify(user.kontaktoplysningerId) );
+     this.loginDetails.brugerId= user.id;
+     this.restApi.createData(this.loginDetails , this.endpoints).subscribe((res) => {
+      console.log("brugerId:" ,res.brugerId);
+
     })
-    //alert('login success');
-    this.router.navigate(['../main/profil']);
+    this.router.navigate(['../main/profil'] );
+
   }
   else{
     alert('user ikke findes')

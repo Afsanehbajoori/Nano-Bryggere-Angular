@@ -16,7 +16,7 @@ export class RedigerBryggeriDialogBoxComponent implements OnInit {
   bryggeriList : any;
   endpointB='/Bryggerier';
   RedigerBryggeri:FormGroup = new FormGroup({});
-  bryggeriId : number =1 ;
+  bryggeriId : number ;
 
   constructor(public dialogRefRedigerProfil : MatDialogRef<RedigerBryggeriDialogBoxComponent>,
     public restApi: RestApiService ,

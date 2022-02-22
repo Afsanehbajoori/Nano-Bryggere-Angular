@@ -38,7 +38,6 @@ export class CertifikatComponent implements OnInit {
   };
   onUploadCertifikat() {
     const fd = new FormData();
-    // if(this.bruger.certifikat == null){}
     fd.append('image', this.valgtefil, this.valgtefil.name)
     this.restApi.createData(this.bruger, this.endpoints)
     .subscribe(res => {

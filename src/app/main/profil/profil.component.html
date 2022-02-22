@@ -1,18 +1,21 @@
-
-<mat-drawer-container class="example-container" >
+<mat-drawer-container class="example-container">
   <mat-drawer #drawer mode="side" opened class="main" id="imgeUp">
     <div class="sidebar">
       <h1 id="headerStyle">Profil Side</h1>
+      <!-- <img [src]="this.bryggeriList.logo" alt="" style="width: 20%; height: 20%;"> -->
+      <img [src]="this.url" alt="" style="width: 20%; height: 20%;">
       <button class="btnStyle" (click)="showFillerP = !showFillerP">Vis Kontakt Oplysninger</button>
       <button class="btnStyle" (click)="showFillerB = !showFillerB">Vis Bryggeri Oplysninger</button>
-      <button class="btnStyle" (click)="showFillerOB = !showFillerOB">Oprette ny Bryggeri</button>
+      <button class="btnStyle" (click)="showFillerOB = !showFillerOB" *ngIf="!bryggeriId">Oprette ny Bryggeri</button>
+      <input type="file" class="btnMainStyle" (change)="onSubmitCertifikats($event)">
+      <button class="btnStyle" (click)="onUploadCertifikat()">Godkend Certifikat</button>
     </div>
   </mat-drawer>
   <mat-drawer-content class="main" id="imgeUp" *ngIf="kontaktoplysningerList">
     <mat-card *ngIf="showFillerP">
       <mat-card-content>
-        <mat-accordion class="example-headers-align" multi >
-          <mat-expansion-panel >
+        <mat-accordion class="example-headers-align" multi>
+          <mat-expansion-panel>
             <mat-expansion-panel-header>
               <mat-panel-title>
                 Kontakt Oplysninger
@@ -22,37 +25,37 @@
               </mat-panel-description>
             </mat-expansion-panel-header>
 
-              <mat-card class="containStyle">
+            <mat-card class="containStyle">
               <span>Fornavn:</span>
-              <span class="txtStyle"  >{{kontaktoplysningerList.fnavn}}</span>
+              <span class="txtStyle">{{kontaktoplysningerList.fnavn}}</span>
             </mat-card>
             <mat-card class="containStyle">
               <span>Efternavn:</span>
-              <span  class="txtStyle"  >{{kontaktoplysningerList.enavn}}</span>
+              <span class="txtStyle">{{kontaktoplysningerList.enavn}}</span>
             </mat-card>
             <mat-card class="containStyle">
               <span>Addresselinje1:</span>
-              <span  class="txtStyle" >{{kontaktoplysningerList.addresselinje1}}</span>
+              <span class="txtStyle">{{kontaktoplysningerList.addresselinje1}}</span>
             </mat-card>
             <mat-card class="containStyle">
               <span>Addresselinje2:</span>
-              <span  class="txtStyle"   >{{kontaktoplysningerList.addresselinje2}}</span>
+              <span class="txtStyle">{{kontaktoplysningerList.addresselinje2}}</span>
             </mat-card>
             <mat-card class="containStyle">
               <span>Telefonnr:</span>
-              <span  class="txtStyle"  >{{kontaktoplysningerList.telefonnr}}</span>
+              <span class="txtStyle">{{kontaktoplysningerList.telefonnr}}</span>
             </mat-card>
             <mat-card class="containStyle">
               <span>Email:</span>
-              <span  class="txtStyle"  >{{kontaktoplysningerList.email}}</span>
+              <span class="txtStyle">{{kontaktoplysningerList.email}}</span>
             </mat-card>
             <mat-card class="containStyle">
               <span>Postnr:</span>
-              <span  class="txtStyle"  >{{kontaktoplysningerList.postnr}}</span>
+              <span class="txtStyle">{{kontaktoplysningerList.postnr}}</span>
             </mat-card>
             <mat-card class="containStyle">
               <span>By:</span>
-              <span  class="txtStyle"  >{{kontaktoplysningerList.by}}</span>
+              <span class="txtStyle">{{kontaktoplysningerList.by}}</span>
             </mat-card>
             <mat-action-row>
               <button mat-button color="primary" (click)="sletProfil()" class="btnMainStyle">Slet Profil</button>
@@ -64,9 +67,9 @@
       </mat-card-content>
     </mat-card>
     <mat-card *ngIf="showFillerB">
-      <mat-card-content >
-        <mat-accordion class="example-headers-align" multi  *ngIf="bryggeriList">
-          <mat-expansion-panel >
+      <mat-card-content>
+        <mat-accordion class="example-headers-align" multi *ngIf="bryggeriList">
+          <mat-expansion-panel>
             <mat-expansion-panel-header>
               <mat-panel-title>
                 Bryggeri Oplysninger
@@ -75,7 +78,7 @@
                 <mat-icon>work</mat-icon>
               </mat-panel-description>
             </mat-expansion-panel-header>
-          <!--   <mat-card class="containStyle">
+            <!--   <mat-card class="containStyle">
               <span>Id:</span>
               <span class="txtStyle">{{bryggeri.Id}}</span>
             </mat-card> -->
@@ -93,17 +96,18 @@
             </mat-card>
             <mat-action-row>
               <button mat-button color="primary" (click)="sletBryggeri()" class="btnMainStyle">Slet Bryggeri</button>
-              <button mat-button color="primary" (click)="redigerBryggeri()" class="btnMainStyle">Rediger Bryggeri</button>
+              <button mat-button color="primary" (click)="redigerBryggeri()" class="btnMainStyle">Rediger
+                Bryggeri</button>
             </mat-action-row>
           </mat-expansion-panel>
         </mat-accordion>
       </mat-card-content>
     </mat-card>
 
-    <mat-card *ngIf="showFillerOB" >
-      <mat-card-content >
-        <mat-accordion class="example-headers-align" multi >
-          <mat-expansion-panel >
+    <mat-card *ngIf="showFillerOB">
+      <mat-card-content>
+        <mat-accordion class="example-headers-align" multi>
+          <mat-expansion-panel>
             <mat-expansion-panel-header>
               <mat-panel-title>
                 Oprette ny Bryggeri
@@ -112,26 +116,28 @@
                 <mat-icon>work</mat-icon>
               </mat-panel-description>
             </mat-expansion-panel-header>
-           <form [formGroup]="opretteBryggeriForm" novalidate class="containStyle">
-             <mat-form-field appearance="fill" class="example-full-width">
-               <mat-label>Logo</mat-label>
-               <input matInput placeholder="billede" formControlName="logo" [(ngModel)]="newBryggeri.logo">
-             </mat-form-field>
-             <mat-form-field appearance="fill" class="example-full-width">
-              <mat-label>Navn</mat-label>
-              <input matInput placeholder="billede" formControlName="navn" [(ngModel)]="newBryggeri.navn" required>
-              <mat-error>
-                feltet skal udfyldes
-              </mat-error>
-            </mat-form-field>
-            <mat-form-field appearance="fill" class="example-full-width">
-              <mat-label>Beskrivelse</mat-label>
-              <input matInput placeholder="billede" formControlName="beskrivelse" [(ngModel)]="newBryggeri.beskrivelse">
-            </mat-form-field>
-           </form>
+            <form [formGroup]="opretteBryggeriForm" novalidate class="containStyle">
+              <mat-form-field appearance="fill" class="example-full-width">
+                <mat-label>Logo</mat-label>
+                <input matInput placeholder="billede" formControlName="logo" [(ngModel)]="newBryggeri.logo">
+              </mat-form-field>
+              <mat-form-field appearance="fill" class="example-full-width">
+                <mat-label>Navn</mat-label>
+                <input matInput placeholder="billede" formControlName="navn" [(ngModel)]="newBryggeri.navn" required>
+                <mat-error>
+                  feltet skal udfyldes
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="fill" class="example-full-width">
+                <mat-label>Beskrivelse</mat-label>
+                <input matInput placeholder="billede" formControlName="beskrivelse"
+                  [(ngModel)]="newBryggeri.beskrivelse">
+              </mat-form-field>
+            </form>
             <mat-action-row>
-              <button mat-button color="primary" (click)="onClose()"  class="btnMainStyle">Annulere</button>
-              <button mat-button color="primary" (click)="opretteBryggeri(); $event.stopPropagation()" class="btnMainStyle">Oprette Bryggeri</button>
+              <button mat-button color="primary" (click)="onClose()" class="btnMainStyle">Annulere</button>
+              <button mat-button color="primary" (click)="opretteBryggeri(); $event.stopPropagation()"
+                class="btnMainStyle">Oprette Bryggeri</button>
             </mat-action-row>
           </mat-expansion-panel>
         </mat-accordion>
@@ -139,4 +145,3 @@
     </mat-card>
   </mat-drawer-content>
 </mat-drawer-container>
-

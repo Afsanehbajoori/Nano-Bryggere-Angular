@@ -24,7 +24,7 @@ export class BrugerAdminSideComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // this.loadBruger();
+    this.loadBruger();
   }
   loadBruger(){
     return this.restApi.getDatas(this.endpoints).subscribe((user) => {

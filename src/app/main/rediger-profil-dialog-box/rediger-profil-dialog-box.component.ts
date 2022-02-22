@@ -13,7 +13,7 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 export class RedigerProfilDialogBoxComponent implements OnInit {
   RedigerKontaktOplysninger: FormGroup = new FormGroup({});
   kontaktoplysningerList : any;
-  kontaktoplysningerId : number =40;
+  kontaktoplysningerId :number;
   endpointK = '/Kontaktoplysninger';
 
   constructor( public dialogRefRedigerProfil : MatDialogRef<RedigerProfilDialogBoxComponent> ,

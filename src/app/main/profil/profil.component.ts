@@ -1,21 +1,15 @@
 import { RedigerBryggeriDialogBoxComponent } from './../rediger-bryggeri-dialog-box/rediger-bryggeri-dialog-box.component';
 import { RedigerProfilDialogBoxComponent } from './../rediger-profil-dialog-box/rediger-profil-dialog-box.component';
-import { Component, OnInit , Inject , ViewChild, Input } from '@angular/core';
+import { Component, OnInit , Inject , ViewChild, Input, EventEmitter } from '@angular/core';
 import {MatAccordion} from '@angular/material/expansion';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA , MatDialogConfig} from '@angular/material/dialog';
 import { SletDialogBoxComponent } from '../slet-dialog-box/slet-dialog-box.component';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm, FormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
-import { audit, subscribeOn } from 'rxjs/operators';
-import { AutofillMonitor } from '@angular/cdk/text-field';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ThrowStmt } from '@angular/compiler';
 import { FormBuilder } from '@angular/forms';
-import { Injectable, ViewContainerRef } from '@angular/core';
 
-
-@Injectable()
 
 
 @Component({
@@ -25,6 +19,7 @@ import { Injectable, ViewContainerRef } from '@angular/core';
 })
 
 export class ProfilComponent implements OnInit {
+
   @ViewChild(MatAccordion) accordion: MatAccordion;
   dialogRefSlet : MatDialogRef<SletDialogBoxComponent>;
   dialogRefRedigerProfil : MatDialogRef<RedigerProfilDialogBoxComponent>;
@@ -36,10 +31,10 @@ export class ProfilComponent implements OnInit {
   showFillerP = false;
   showFillerB = false;
   showFillerOB = false;
-  kontaktoplysningerId = sessionStorage.getItem('id');
-  bryggeriId : number=1 ;
-  brugerId:number;
-  @Input() newBryggeri={logo:'' , navn:'' , beskrivelse:''};
+  kontaktoplysningerId:number;
+  bryggeriId : number;
+
+  @Input() newBryggeri={logo:'' , navn:'' , beskrivelse:'',kontaktoplysningerId:''};
   opretteBryggeriForm : any= new FormGroup({});
 
   constructor(public dialog:MatDialog,
@@ -47,40 +42,63 @@ export class ProfilComponent implements OnInit {
       private router: Router ,
       private snackBar : MatSnackBar ,
       private _formBuilder : FormBuilder,
-      public actRoute: ActivatedRoute ) { }
+      public actRoute: ActivatedRoute ) {}
 
 
   ngOnInit(): void {
+
+    this.kontaktoplysningerId=JSON.parse(localStorage.getItem('kontaktoplysningerId') || '{}');
 
     this.loadKontaktoplysninger();
     this.loadBryggeri();
     this.opretteBryggeriForm = this._formBuilder.group({
       'logo': new FormControl(''),
       'navn': new FormControl('' , Validators.required),
-      'beskrivelse':new FormControl('')
+      'beskrivelse':new FormControl(''),
+      'kontaktoplysningerId': new FormControl('')
     })
 
-   /*  this.actRoute.params.subscribe(data => {
-      console.log(data)
-    }); */
 
   }
 
-  loadKontaktoplysninger(){
+  opretteBryggeri(){
+    if(this.newBryggeri.navn != ''){
+      this.newBryggeri.kontaktoplysningerId=this.kontaktoplysningerId.toString();
+      this.restApi.createData(this.newBryggeri , this.endpointB).subscribe((data) => {
+        console.log("bryggeriId:" , data.id);
+        console.log("bryggeri:" , data)
+       localStorage.setItem('bryggeriId' ,JSON.stringify(data.id) );
+       this.loadBryggeri();
+        if(data){
+          this.snackBar.open('Oprette ny bryggei succed')
+          this.onClose();
 
+        }
+
+      })
+    }
+
+      }
+
+
+  loadKontaktoplysninger(){
       return this.restApi.getData(this.kontaktoplysningerId ,  this.endpointK).subscribe((data) => {
         this.kontaktoplysningerList = data  ;
-        console.log(this.kontaktoplysningerList);
+        //console.log("kontaktoplysningerList:", this.kontaktoplysningerList);
       })
     };
 
 
 
   loadBryggeri(){
-    return this.restApi.getData(this.bryggeriId ,this.endpointB).subscribe((data) => {
+    if(this.bryggeriId=JSON.parse(localStorage.getItem('bryggeriId') || '{}')){
+
+      this.restApi.getData(this.bryggeriId ,this.endpointB).subscribe((data) => {
         this.bryggeriList = data;
-        console.log(this.bryggeriList);
+        //console.log("bryggeriList",this.bryggeriList);
     })
+    }
+    return true;
   };
 
   sletProfil() {
@@ -93,7 +111,7 @@ export class ProfilComponent implements OnInit {
       this.restApi.deleteData(this.kontaktoplysningerId , this.endpointK).subscribe((data) => {
         this.kontaktoplysningerList=data;
         this.snackBar.open("kontakt oplysninger slettet med succes");
-        console.log(this.kontaktoplysningerList);
+       // console.log(this.kontaktoplysningerList);
       } , err => {
         this.snackBar.open("Bruger skal slettes først");
       })
@@ -135,7 +153,7 @@ redigerBryggeri(){
       this.bryggeriList=result;
       this.restApi.updateData(this.bryggeriId , this .endpointB , this.bryggeriList).subscribe((data) =>
       {
-        console.log(this.bryggeriList);
+       // console.log(this.bryggeriList);
       })
     }
 
@@ -154,7 +172,7 @@ redigerBryggeri(){
         this.restApi.deleteData(this.bryggeriId , this.endpointB).subscribe((data) => {
         this.bryggeriList=data;
         this.snackBar.open("Bryggeri oplysninger slettet med succes");
-        console.log(this.bryggeriList);
+       // console.log(this.bryggeriList);
       }, err => {
         this.snackBar.open("Øl skal slettes først");
     })
@@ -165,19 +183,7 @@ redigerBryggeri(){
     }
 
 
-opretteBryggeri(){
-  if(this.newBryggeri.navn != ''){
-    this.restApi.createData(this.newBryggeri , this.endpointB).subscribe((data) => {
-      if(data == true){
-        console.log(data);
-        this.snackBar.open('Oprette ny bryggei succed')
-        this.onClose();
-      }
 
-    })
-  }
-
-    }
 
 
 onClose(){

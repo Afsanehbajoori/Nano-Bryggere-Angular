@@ -14,6 +14,8 @@ export class EventkalenderSideComponent implements OnInit {
 
   public events: Events[];
   endpoints = '/Events';
+  searchkey: string;
+  
   constructor(
     public dialog: MatDialog,
     public restApi: RestApiService,
@@ -28,6 +30,17 @@ export class EventkalenderSideComponent implements OnInit {
     return this.restApi.getDatas(this.endpoints).subscribe((data) => {
       this.events = data;
     });
+  }
+
+  onFindEvent(){
+    if(this.searchkey == ""){
+      this.ngOnInit();
+    }
+    else{
+      this.events = this.events.filter(res =>{
+        return res.titel.toLowerCase().match(this.searchkey.toLowerCase());
+      })
+    }
   }
 
   onOpdaterEvent(id: any){

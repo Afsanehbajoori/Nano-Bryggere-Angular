@@ -1,5 +1,5 @@
 import { Events } from "./Events";
-import { Kontaktolysninger } from "./Kontaktoplysninger";
+import { Kontaktoplysninger } from "./Kontaktoplysninger";
 import { Rolle } from "./Rolle";
 
 export class Bruger {
@@ -10,7 +10,7 @@ export class Bruger {
   public rolleId:number;
   public rolle: Rolle;
   public kontaktoplysningerId: number;
-  public kontaktoplysninger: Kontaktolysninger;
+  public kontaktoplysninger: Kontaktoplysninger;
   public events: Events;
 
 

@@ -13,6 +13,10 @@ import { SletProfilComponent } from './slet-profil/slet-profil.component';
 import { ProfilComponent } from './profil/profil.component';
 import { KatalogComponent } from './katalog/katalog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SletDialogBoxComponent } from './slet-dialog-box/slet-dialog-box.component';
+import { RedigerProfilDialogBoxComponent } from './rediger-profil-dialog-box/rediger-profil-dialog-box.component';
+import { RedigerBryggeriDialogBoxComponent } from './rediger-bryggeri-dialog-box/rediger-bryggeri-dialog-box.component';
+
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -25,10 +29,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
-import { SletDialogBoxComponent } from './slet-dialog-box/slet-dialog-box.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { RedigerProfilDialogBoxComponent } from './rediger-profil-dialog-box/rediger-profil-dialog-box.component';
-import { RedigerBryggeriDialogBoxComponent } from './rediger-bryggeri-dialog-box/rediger-bryggeri-dialog-box.component';
 import {MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS} from '@angular/material/snack-bar';
 import { CertifikatDialogBoxComponent } from './certifikat-dialog-box/certifikat-dialog-box.component';
 
@@ -67,7 +68,6 @@ import { CertifikatDialogBoxComponent } from './certifikat-dialog-box/certifikat
 
     MatSnackBarModule,
 
-
     MatExpansionModule,
     MatDialogModule,
     MatSelectModule,
@@ -91,6 +91,5 @@ import { CertifikatDialogBoxComponent } from './certifikat-dialog-box/certifikat
     RedigerProfilDialogBoxComponent,
     RedigerBryggeriDialogBoxComponent
   ]
-
 })
 export class MainModule { }

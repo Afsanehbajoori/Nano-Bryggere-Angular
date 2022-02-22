@@ -13,11 +13,11 @@ import { SletDialogBoxComponent } from '../slet-dialog-box/slet-dialog-box.compo
 })
 export class KatalogComponent implements OnInit {
   beers: Øl[];
-  beer = new Øl;
   bruger = new Bruger;
   endpoints = '/Øller';
   data = sessionStorage.getItem('id');
-  
+  searchkey: string;
+
   constructor(
     public dialog: MatDialog,
     public restApi: RestApiService, 
@@ -27,11 +27,6 @@ export class KatalogComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadOl()
-  }
-  loadBrugere(){
-    return this.restApi.getData(this.data, this.endpoints).subscribe((bruger) => {
-      this.bruger = bruger;
-    });
   }
   loadOl(){
     return this.restApi.getDatas(this.endpoints).subscribe((beer) => {
@@ -50,9 +45,24 @@ export class KatalogComponent implements OnInit {
   onSletOl(id: any) {
     let dialogRef = this.dialog.open(SletDialogBoxComponent);
     dialogRef.afterClosed().subscribe(result => {
-      this.restApi.deleteData(id, this.endpoints).subscribe(data => {
-        this.loadOl();
-      })
+      console.log(result);
+      if(result == true)
+      {
+        this.restApi.deleteData(id, this.endpoints).subscribe(data => {
+          this.loadOl();
+        })
+      }
     });
   };
+
+  onFindOl(){
+    if(this.searchkey == ""){
+      this.ngOnInit();
+    }
+    else{
+      this.beers = this.beers.filter(res =>{
+        return res.navn.toLowerCase().match(this.searchkey.toLowerCase());
+      })
+    }
+  }
 }

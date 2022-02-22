@@ -1,4 +1,4 @@
-export class Kontaktolysninger {
+export class Kontaktoplysninger {
 
   public id: number;
   public enavn : string;

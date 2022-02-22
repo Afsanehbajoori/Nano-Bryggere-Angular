@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CertifikatDialogBoxComponent } from 'src/app/main/certifikat-dialog-box/certifikat-dialog-box.component';
-import { Kontaktolysninger } from 'src/app/Models/Kontaktoplysninger';
+import { Kontaktoplysninger } from 'src/app/Models/Kontaktoplysninger';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 
 @Component({
@@ -11,8 +11,8 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./bruger-certifikat.component.css']
 })
 export class BrugerCertifikatComponent implements OnInit {
-  oplysninger: Kontaktolysninger[];
-  oplysning = new Kontaktolysninger;
+  oplysninger: Kontaktoplysninger[];
+  oplysning = new Kontaktoplysninger;
   endpoints = '/Kontaktoplysninger';
   constructor(
     public dialog: MatDialog,
@@ -22,6 +22,7 @@ export class BrugerCertifikatComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.loadBruger()
   }
   loadBruger(){
     return this.restApi.getDatas(this.endpoints).subscribe((user) => {

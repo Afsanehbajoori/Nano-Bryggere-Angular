@@ -1,5 +1,5 @@
 import { Bruger } from "./Bruger";
-import { Kontaktolysninger } from "./Kontaktoplysninger";
+import { Kontaktoplysninger } from "./Kontaktoplysninger";
 
 export class Archive{
 
@@ -7,7 +7,7 @@ export class Archive{
   public brugerId:number;
   public bruger:Bruger;
   public kontaktolysningerId:number;
-  public kontaktolysninger:Kontaktolysninger;
+  public kontaktolysninger:Kontaktoplysninger;
   public oprettet :Date;
 
 }

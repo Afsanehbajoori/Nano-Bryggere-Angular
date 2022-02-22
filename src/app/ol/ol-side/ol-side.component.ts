@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RestApiService } from 'src/app/shared/rest-api.service';
@@ -19,7 +19,11 @@ export class OlSideComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    
+    this.OlForm = new FormGroup({
+      'logo': new FormControl(''),
+      'navn': new FormControl('', Validators.required),
+      'beskrivelse':new FormControl('')
+    })
   }
 
   onTilbage() {

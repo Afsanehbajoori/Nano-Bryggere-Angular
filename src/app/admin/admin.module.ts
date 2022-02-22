@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import {MatTreeModule} from '@angular/material/tree';
 import { AdminRoutingModule } from './admin-routing.module';
 import { EventAdminSideComponent } from './event-admin-side/event-admin-side.component';
 import { OlAdminSideComponent } from './ol-admin-side/ol-admin-side.component';
@@ -8,7 +8,7 @@ import { BrugerAdminSideComponent } from './bruger-admin-side/bruger-admin-side.
 import { AdminForsideComponent } from './admin-forside/admin-forside.component';
 import { BrugerCertifikatComponent } from './bruger-certifikat/bruger-certifikat.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import {MatIconModule} from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -40,7 +40,9 @@ import { MatInputModule } from '@angular/material/input';
     MatDialogModule,
     MatSnackBarModule,
     MatSidenavModule,
-    MatInputModule
+    MatInputModule,
+    MatTreeModule,
+    MatIconModule
   ],
   exports:[
     EventAdminSideComponent,

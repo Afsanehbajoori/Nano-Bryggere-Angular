@@ -25,6 +25,7 @@ export class RedigerBryggeriDialogBoxComponent implements OnInit {
     private snackBar : MatSnackBar ) { }
 
   ngOnInit(): void {
+    this.bryggeriId=JSON.parse(localStorage.getItem('bryggeriId') || '{}');
     this.restApi.getData(this.bryggeriId , this.endpointB)
     .toPromise()
     .then(data => {

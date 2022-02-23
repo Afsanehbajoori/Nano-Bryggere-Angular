@@ -39,7 +39,17 @@ export class RedigerBryggeriDialogBoxComponent implements OnInit {
 
   }
 
-
+  onSubmitCertifikats(event: any) {
+    if(event.target.files){
+      var reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]);
+      reader.onload=(e: any)=>{
+        this.bryggeriList.logo =e.target.result;
+        console.log( this.bryggeriList.logo);
+        localStorage.setItem('logo' ,JSON.stringify(this.bryggeriList.logo));
+      }
+    }
+  };
 
   onClose(){
     // this.dialogRefRedigerProfil.close();

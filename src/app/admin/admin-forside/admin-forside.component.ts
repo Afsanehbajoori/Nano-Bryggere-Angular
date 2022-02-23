@@ -10,7 +10,7 @@ interface Search {
 const TREE_DATA: Search[] = [
   {
     name: 'Søge',
-    children: [{name: 'Bruger'}, {name: 'Rolle'},{name: 'Bryggeri'}, {name: 'Øl'} , {name: 'Events'} , {name: 'Forum'} , {name: 'Certifikant'}],
+    children: [{name: 'Bruger'}, {name: 'Rolle'},{name: 'Bryggeri'}, {name: 'Øl'} , {name: 'Events'} , {name: 'Forum'} , {name: 'Certifikant'} , {name: 'Certifikant'}],
   }
 
 ];

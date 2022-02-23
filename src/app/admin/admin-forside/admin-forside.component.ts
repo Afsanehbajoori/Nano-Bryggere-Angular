@@ -10,7 +10,13 @@ interface Search {
 const TREE_DATA: Search[] = [
   {
     name: 'Søge',
-    children: [{name: 'Bruger'}, {name: 'Rolle'},{name: 'Bryggeri'}, {name: 'Øl'} , {name: 'Events'} , {name: 'Forum'} , {name: 'Certifikant'} , {name: 'Certifikant'}],
+    children: [{name: 'Bruger', children:[{name: 'Med BrugerId'} , {name: 'Med Brugernavn'}, {name: 'Med Email'}]},
+    {name: 'Rolle', children:[{name: 'Med RolleId'} , {name: 'Med Rollenavn'}]},
+    {name: 'Bryggeri',children:[{name: 'Med BryggeriId'} , {name: 'Med Bryggerinavn'}]},
+    {name: 'Øl',children:[{name: 'Med ØlId'} , {name: 'Med Ølnavn'} , {name: 'Med Øltype'}]} ,
+    {name: 'Events', children:[{name: 'Med EventsId'} , {name: 'Med Eventstitel'}]} ,
+    {name: 'Forum', children:[{name: 'Med ForumId'} , {name: 'Med ForumTitel'}]} ,
+    {name: 'Certifikant'}],
   }
 
 ];
@@ -24,13 +30,15 @@ const TREE_DATA: Search[] = [
 export class AdminForsideComponent implements OnInit {
   treeControl = new NestedTreeControl<Search>(node => node.children);
   dataSource = new MatTreeNestedDataSource<Search>();
-  showBrugerComponent:boolean=false;
+  showBrugerIdComponent:boolean=false;
   showCetifikantComponent: boolean=false;
   showOlComponent:boolean=false;
   showEventsComponent:boolean=false;
   showBryggeriComponent:boolean=false;
   showRolleComponent:boolean=false;
   showForumComponent:boolean=false;
+  showBrugernavnComponent:boolean=false;
+  showBrugerEmailComponent:boolean=false;
 
 
   constructor() {  this.dataSource.data = TREE_DATA;}
@@ -43,8 +51,16 @@ export class AdminForsideComponent implements OnInit {
   console.log(nodeName);
   switch (nodeName)
   {
-    case 'Bruger':{
-      this.showBrugerComponent=!this.showBrugerComponent;
+    case 'Med BrugerId':{
+      this.showBrugerIdComponent=!this.showBrugerIdComponent;
+      break;
+    }
+    case 'Med Brugernavn':{
+      this.showBrugernavnComponent=!this.showBrugernavnComponent;
+      break;
+    }
+    case 'Med Email':{
+      this.showBrugerEmailComponent=!this.showBrugerEmailComponent;
       break;
     }
     case 'Øl':{

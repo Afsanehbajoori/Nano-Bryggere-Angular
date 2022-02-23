@@ -1,0 +1,48 @@
+.main{
+  height: 100%;
+  background-color: rgb(255, 255, 255);
+}
+
+#imgeUp{
+  background-image: url('/assets/images/Background-website-01.jpg');
+  background-position:center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: auto;
+}
+
+.list {
+  justify-content: center;
+}
+
+.list-item-set{
+color: black;
+font-weight: bold;
+}
+
+.containStyle{
+  background-color: rgb(252, 252, 252);
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-top: 10px;
+  padding-left: 40px;
+  font-style: oblique;
+}
+
+.centers{
+margin: auto;
+width: 10%;
+padding: 10px;
+text-align: center;
+}
+
+.example-headers-align .mat-expansion-panel-header-title,
+.example-headers-align .mat-expansion-panel-header-description {
+flex-basis: 0;
+margin-top: 10px;
+font-style: oblique;
+}
+.example-headers-align .mat-expansion-panel-header-description {
+justify-content: space-between;
+align-items: center;
+}

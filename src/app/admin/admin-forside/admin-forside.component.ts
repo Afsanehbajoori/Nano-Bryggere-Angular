@@ -10,7 +10,7 @@ interface Search {
 const TREE_DATA: Search[] = [
   {
     name: 'Søge',
-    children: [{name: 'Bruger'}, {name: 'Rolle'}, {name: 'Øl'} , {name: 'Events'} , {name: 'Forum '} , {name: 'Certifikant '}],
+    children: [{name: 'Bruger'}, {name: 'Rolle'},{name: 'Bryggeri'}, {name: 'Øl'} , {name: 'Events'} , {name: 'Forum'} , {name: 'Certifikant'}],
   }
 
 ];
@@ -28,6 +28,10 @@ export class AdminForsideComponent implements OnInit {
   showCetifikantComponent: boolean=false;
   showOlComponent:boolean=false;
   showEventsComponent:boolean=false;
+  showBryggeriComponent:boolean=false;
+  showRolleComponent:boolean=false;
+  showForumComponent:boolean=false;
+
 
   constructor() {  this.dataSource.data = TREE_DATA;}
   hasChild = (_: number, node: Search) => !!node.children && node.children.length > 0;
@@ -53,6 +57,18 @@ export class AdminForsideComponent implements OnInit {
     }
     case 'Certifikant':{
       this.showCetifikantComponent=!this.showCetifikantComponent;
+      break;
+    }
+    case 'Bryggeri':{
+      this.showBryggeriComponent=!this.showBryggeriComponent;
+      break;
+    }
+    case 'Forum':{
+      this.showForumComponent=!this.showForumComponent;
+      break;
+    }
+    case 'Rolle':{
+      this.showRolleComponent=!this.showRolleComponent;
       break;
     }
   }

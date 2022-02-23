@@ -48,9 +48,10 @@ export class ProfilComponent implements OnInit {
   ngOnInit(): void {
 
     this.kontaktoplysningerId = JSON.parse(localStorage.getItem('kontaktoplysningerId') || '{}');
+
     this.loadKontaktoplysninger();
     this.loadBryggeri();
-    this.url = JSON.parse(localStorage.getItem('logo') || '{}');
+
     this.opretteBryggeriForm = this._formBuilder.group({
       'logo': new FormControl(''),
       'navn': new FormControl('', Validators.required),
@@ -79,8 +80,7 @@ export class ProfilComponent implements OnInit {
        // console.log("bryggeriId:", data.id);
        // console.log("bryggeri:", data)
         localStorage.setItem('bryggeriId', JSON.stringify(data.id));
-
-        this.loadBryggeri();
+        this.ngOnInit();
         if (data) {
           this.snackBar.open('Oprette ny bryggei succed')
           this.onClose();
@@ -98,15 +98,17 @@ export class ProfilComponent implements OnInit {
 
   loadBryggeri() {
 
-    if (this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}'))
-    if(this.url = JSON.parse(localStorage.getItem('logo') || '{}'))
-    {
+    if (this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}')){
+      if (this.url = JSON.parse(localStorage.getItem('logo') || '{}'))
+      {
 
-      this.restApi.getData(this.bryggeriId, this.endpointB).subscribe((data) => {
-        this.bryggeriList = data;
-        //console.log("bryggeriList",this.bryggeriList);
-      })
+        this.restApi.getData(this.bryggeriId, this.endpointB).subscribe((data) => {
+          this.bryggeriList = data;
+          //console.log("bryggeriList",this.bryggeriList);
+        })
+      }
     }
+
     return true;
   };
 
@@ -154,8 +156,11 @@ export class ProfilComponent implements OnInit {
 
     this.dialogRefRedigerBryggeri.afterClosed().subscribe(result => {
       if (result) {
+
         this.bryggeriList = result;
+
         this.restApi.updateData(this.bryggeriId, this.endpointB, this.bryggeriList).subscribe((data) => {
+          this.ngOnInit();
           // console.log(this.bryggeriList);
         })
       }

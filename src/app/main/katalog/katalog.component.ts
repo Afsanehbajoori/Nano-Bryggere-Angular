@@ -12,30 +12,37 @@ import { SletDialogBoxComponent } from '../slet-dialog-box/slet-dialog-box.compo
   styleUrls: ['./katalog.component.css']
 })
 export class KatalogComponent implements OnInit {
-  beers: Øl[];
+  beers: any;
+  beerliste: Øl[];
+  beer: Øl;
   bruger = new Bruger;
   endpoints = '/Øller';
   data = sessionStorage.getItem('id');
   searchkey: string;
+  bryggeriId: number;
+  bryggeriList: any;
 
   constructor(
     public dialog: MatDialog,
-    public restApi: RestApiService, 
+    public restApi: RestApiService,
     public router: Router,
-    public actRoute: ActivatedRoute 
+    public actRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
     this.loadOl()
   }
-  loadOl(){
-    return this.restApi.getDatas(this.endpoints).subscribe((beer) => {
-      this.beers = beer;
-    });
+  loadOl() {
+    if (this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}')) {
+      this.restApi.getDatas(this.endpoints).subscribe((data) => {
+        this.beerliste = data.filter((res: any) => {
+          return res.bryggeriId === this.bryggeriId});
+      })
+    }
   }
 
-  onRedigerOl(id:any) {
-    this.router.navigate(['../main/redigerol/',id]);
+  onRedigerOl(id: any) {
+    this.router.navigate(['../main/redigerol/', id]);
   };
 
   onOpretOl() {
@@ -46,8 +53,7 @@ export class KatalogComponent implements OnInit {
     let dialogRef = this.dialog.open(SletDialogBoxComponent);
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
-      if(result == true)
-      {
+      if (result == true) {
         this.restApi.deleteData(id, this.endpoints).subscribe(data => {
           this.loadOl();
         })
@@ -55,12 +61,12 @@ export class KatalogComponent implements OnInit {
     });
   };
 
-  onFindOl(){
-    if(this.searchkey == ""){
+  onFindOl() {
+    if (this.searchkey == "") {
       this.ngOnInit();
     }
-    else{
-      this.beers = this.beers.filter(res =>{
+    else {
+      this.beerliste = this.beerliste.filter(res => {
         return res.navn.toLowerCase().match(this.searchkey.toLowerCase());
       })
     }

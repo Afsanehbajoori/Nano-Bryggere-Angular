@@ -30,9 +30,11 @@ export class ProfilComponent implements OnInit {
   showFillerP = false;
   showFillerB = false;
   showFillerOB = false;
+  showOB = false;
   kontaktoplysningerId: number;
   bryggeriId: number;
   valgtefil: File;
+  public show : number;
  // url : string = "assets/images/Gromit Mug.jpg";
   url :string ;
   @Input() newBryggeri = { logo: '', navn: '', beskrivelse: '', kontaktoplysningerId: 0 };
@@ -46,7 +48,6 @@ export class ProfilComponent implements OnInit {
     public actRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-
     this.kontaktoplysningerId = JSON.parse(localStorage.getItem('kontaktoplysningerId') || '{}');
 
     this.loadKontaktoplysninger();
@@ -98,15 +99,19 @@ export class ProfilComponent implements OnInit {
 
   loadBryggeri() {
 
-    if (this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}')){
-      if (this.url = JSON.parse(localStorage.getItem('logo') || '{}'))
-      {
-
-        this.restApi.getData(this.bryggeriId, this.endpointB).subscribe((data) => {
-          this.bryggeriList = data;
-          //console.log("bryggeriList",this.bryggeriList);
-        })
-      }
+      this.restApi.getData(this.bryggeriId, this.endpointB).subscribe((data) => {
+        this.bryggeriList = data;
+        if(this.bryggeriList.kontaktoplysningerId == this.kontaktoplysningerId)
+        {
+          this.show = 1;
+          console.log(this.show);
+        }
+        else{
+          this.show = 0;
+          console.log(this.show);
+        }       
+        //console.log("bryggeriList",this.bryggeriList);
+      })
     }
 
     return true;

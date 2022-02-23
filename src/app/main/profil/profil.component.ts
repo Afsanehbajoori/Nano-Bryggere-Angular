@@ -33,8 +33,8 @@ export class ProfilComponent implements OnInit {
   kontaktoplysningerId: number;
   bryggeriId: number;
   valgtefil: File;
-  url : string = "assets/images/Gromit Mug.jpg";
-
+ // url : string = "assets/images/Gromit Mug.jpg";
+  url :string ;
   @Input() newBryggeri = { logo: '', navn: '', beskrivelse: '', kontaktoplysningerId: 0 };
   opretteBryggeriForm: any = new FormGroup({});
 
@@ -50,6 +50,7 @@ export class ProfilComponent implements OnInit {
     this.kontaktoplysningerId = JSON.parse(localStorage.getItem('kontaktoplysningerId') || '{}');
     this.loadKontaktoplysninger();
     this.loadBryggeri();
+    this.url = JSON.parse(localStorage.getItem('logo') || '{}');
     this.opretteBryggeriForm = this._formBuilder.group({
       'logo': new FormControl(''),
       'navn': new FormControl('', Validators.required),
@@ -58,13 +59,27 @@ export class ProfilComponent implements OnInit {
     })
   }
 
+  onSubmitCertifikats(event: any) {
+    if(event.target.files){
+      var reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]);
+      reader.onload=(e: any)=>{
+        this.bryggeriList.logo =e.target.result;
+        console.log( this.bryggeriList.logo);
+        localStorage.setItem('logo' ,JSON.stringify(this.bryggeriList.logo));
+      }
+    }
+  };
+
   opretteBryggeri() {
     if (this.newBryggeri.navn != '') {
       this.newBryggeri.kontaktoplysningerId = this.kontaktoplysningerId;
+      this.newBryggeri.logo=JSON.parse(localStorage.getItem('logo') || '{}');
       this.restApi.createData(this.newBryggeri, this.endpointB).subscribe((data) => {
-        console.log("bryggeriId:", data.id);
-        console.log("bryggeri:", data)
+       // console.log("bryggeriId:", data.id);
+       // console.log("bryggeri:", data)
         localStorage.setItem('bryggeriId', JSON.stringify(data.id));
+
         this.loadBryggeri();
         if (data) {
           this.snackBar.open('Oprette ny bryggei succed')
@@ -82,7 +97,10 @@ export class ProfilComponent implements OnInit {
   };
 
   loadBryggeri() {
-    if (this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}')) {
+
+    if (this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}'))
+    if(this.url = JSON.parse(localStorage.getItem('logo') || '{}'))
+    {
 
       this.restApi.getData(this.bryggeriId, this.endpointB).subscribe((data) => {
         this.bryggeriList = data;
@@ -167,15 +185,7 @@ export class ProfilComponent implements OnInit {
     this.router.navigate(['/main/profil']);
     this.showFillerOB = false;
   }
-  onSubmitCertifikats(event: any) {
-    if(event.target.files){
-      var reader = new FileReader();
-      reader.readAsDataURL(event.target.files[0]);
-      reader.onload=(e: any)=>{
-        this.bryggeriList.logo =e.target.result;
-      }
-    }
-  };
+
 
   onUploadCertifikat() {
     const fd = new FormData();

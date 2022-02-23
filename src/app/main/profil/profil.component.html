@@ -3,13 +3,11 @@
   <mat-drawer #drawer mode="side" opened class="main" id="imgeUp">
     <div class="sidebar">
       <h1 id="headerStyle">Profil Side</h1>
-      <!-- <img [src]="this.bryggeriList.logo" alt="" style="width: 20%; height: 20%;"> -->
       <img [src]="this.url" alt="" style="width: 20%; height: 20%;">
       <button class="btnStyle" (click)="showFillerP = !showFillerP">Vis Kontakt Oplysninger</button>
       <button class="btnStyle" (click)="showFillerB = !showFillerB">Vis Bryggeri Oplysninger</button>
       <button class="btnStyle" (click)="showFillerOB = !showFillerOB" *ngIf="bryggeriId">Oprette ny Bryggeri</button>
-      <input type="file" class="btnMainStyle" (change)="onSubmitCertifikats($event)">
-      <button class="btnStyle" (click)="onUploadCertifikat()">Opdater Billed</button>
+      <!-- <button class="btnStyle" (click)="onUploadCertifikat()">Opdater Billed</button> -->
     </div>
   </mat-drawer>
   <mat-drawer-content class="main" id="imgeUp" *ngIf="kontaktoplysningerList">
@@ -85,7 +83,8 @@
             </mat-card> -->
             <mat-card class="containStyle">
               <span>Logo:</span>
-              <span class="txtStyle">{{bryggeriList.logo}}</span>
+              <span class="txtStyle"><img [src]="this.bryggeriList.logo" alt="" style="width: 20%; height: 20%;"></span>
+              <!-- <span class="txtStyle">{{bryggeriList.logo}}</span> -->
             </mat-card>
             <mat-card class="containStyle">
               <span>Navn:</span>
@@ -121,6 +120,7 @@
               <mat-form-field appearance="fill" class="example-full-width">
                 <mat-label>Logo</mat-label>
                 <input matInput placeholder="billede" formControlName="logo" [(ngModel)]="newBryggeri.logo">
+                <input type="file" class="btnMainStyle" (change)="onSubmitCertifikats($event)" >
               </mat-form-field>
               <mat-form-field appearance="fill" class="example-full-width">
                 <mat-label>Navn</mat-label>

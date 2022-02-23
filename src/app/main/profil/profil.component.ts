@@ -112,8 +112,6 @@ export class ProfilComponent implements OnInit {
         }       
         //console.log("bryggeriList",this.bryggeriList);
       })
-    }
-
     return true;
   };
 

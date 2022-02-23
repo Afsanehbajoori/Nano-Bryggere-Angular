@@ -4,7 +4,9 @@
 
       <mat-form-field class="example-full-width" appearance="fill" >
       <mat-label>Logo</mat-label>
-      <input matInput  formControlName="logoCtl" placeholder="{{bryggeriList.logo}}" [(ngModel)]="bryggeriList.logo">
+      <input matInput  formControlName="logoCtl"  >
+      <img [src]="this.bryggeriList.logo" alt="" style="width: 20%; height: 20%;">
+      <input type="file" class="btnMainStyle" (change)="onSubmitCertifikats($event)" >
     </mat-form-field>
 
     <mat-form-field class="example-full-width" appearance="fill">

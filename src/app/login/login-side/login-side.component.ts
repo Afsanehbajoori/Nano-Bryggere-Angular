@@ -56,7 +56,7 @@ export class LoginSideComponent implements OnInit {
      console.log("kontaktoplysningerId:",user.kontaktoplysningerId);
      console.log("userInfo:",user.rolleId);
      localStorage.setItem('kontaktoplysningerId' ,JSON.stringify(user.kontaktoplysningerId) );
-     this.loginDetails.brugerId= user.id;
+     this.loginDetails.brugerId = user.id;
      this.restApi.createData(this.loginDetails , this.endpoints).subscribe((res) => {
       console.log("brugerId:" ,res.brugerId);
 

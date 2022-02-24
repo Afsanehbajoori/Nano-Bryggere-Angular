@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
@@ -12,13 +13,15 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./forside.component.css']
 })
 export class ForsideComponent implements OnInit {
+  @Input() postOprettelse = { title: '', indhold: ''};
+  OpretForm : FormGroup;
   forums: Forum[];
   forum = new Forum;
   posts: Post[];
   endpointf = '/Forumer';
   endpointp = '/Posts';
   searchkey: string;
-
+  showforum = false;
   constructor(
     public dialog: MatDialog,
     public restApi: RestApiService, 
@@ -27,6 +30,10 @@ export class ForsideComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.OpretForm = new FormGroup({
+      title: new FormControl('', Validators.required),
+      indhold: new FormControl('', Validators.required),
+    });
     this.loadForum()
     // this.loadPost()
   }
@@ -50,6 +57,21 @@ export class ForsideComponent implements OnInit {
       })
     }
   }
+
+  onAnnullerPost(){
+
+  }
+  
+  onGodkendPost(){
+    this.restApi.createData(this.postOprettelse, this.endpointp).subscribe((data) => {
+      this.router.navigate(['../main/katalog']);
+    });
+  }
+
+  onOpdaterPost(id: any){
+    this.router.navigate(['../forum/redigerpost/' + id]);
+  }
+
   onOpretForum() {
     this.router.navigate(['../forum/oprette']);
   };
@@ -66,14 +88,6 @@ export class ForsideComponent implements OnInit {
       })
     });
   };
-
-  onOpretPost() {
-    this.router.navigate(['../forum/opretpost']);
-  };
-
-  onOpdaterPost(id: any){
-    this.router.navigate(['../forum/redigerpost/' + id]);
-  }
 
   onSletPost(id: any) {
     let dialogRef = this.dialog.open(SletDialogBoxComponent);

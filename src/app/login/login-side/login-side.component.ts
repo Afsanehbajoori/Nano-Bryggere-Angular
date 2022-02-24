@@ -42,15 +42,13 @@ export class LoginSideComponent implements OnInit {
     }
     );
   }
- /*  clearAllLocalStorage(){
-    localStorage.clear();
-  } */
+
 
   onSubmitLogin () {
 
   this.restApi.getDatas(this.endpointB).subscribe((res) => {
   const user = res.find((a:any) => {
-    return a.brugernavn === this.loginDetails.brugernavn && a.pw === this.loginDetails.pw
+    return a.brugernavn.toLowerCase() === this.loginDetails.brugernavn.toLowerCase() && a.pw === this.loginDetails.pw
   });
   if(user){
      console.log("kontaktoplysningerId:",user.kontaktoplysningerId);

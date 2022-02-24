@@ -65,5 +65,10 @@
  text-align: center;
 }
 
-
+.txtHeader{
+  font-size: 15px;
+  font-style: oblique;
+  font-weight: bold;
+  width: 20%;
+}
 

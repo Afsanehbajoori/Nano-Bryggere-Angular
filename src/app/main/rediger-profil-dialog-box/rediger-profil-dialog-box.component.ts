@@ -41,7 +41,8 @@ export class RedigerProfilDialogBoxComponent implements OnInit {
         });
 
 
-      })
+      });
+     
    }
 
 

@@ -138,7 +138,7 @@ export class ProfilComponent implements OnInit {
     this.dialogRefRedigerProfil = this.dialog.open(RedigerProfilDialogBoxComponent, dialogConfig);
 
     this.dialogRefRedigerProfil.afterClosed().subscribe(result => {
-      if (result == true) {
+      if (result) {
         this.kontaktoplysningerList = result;
         this.restApi.updateData(this.kontaktoplysningerId, this.endpointK, this.kontaktoplysningerList).subscribe((data) => {
           console.log(this.kontaktoplysningerList);

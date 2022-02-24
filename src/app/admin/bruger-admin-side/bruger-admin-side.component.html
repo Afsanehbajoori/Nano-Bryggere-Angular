@@ -1,15 +1,17 @@
-<mat-card>
 <div class="main" id="imgeUp">
-    <mat-toolbar class="login-header" style="background: linear-gradient(#6c6c6d, #cfd4d6);"  *ngIf="kontaktoplysninger">
-        <form class="example-form" style="justify-content: center; width: 100%;">
-            <mat-form-field style="width: 15%;" class="txt">
-                <input matInput type="search" placeholder="Find Bruger med Id" [(ngModel)]="searchkey" (ngModelChange)="onFindBrugere()" [ngModelOptions]="{standalone: true}" >
-            </mat-form-field>
-        </form>
-    </mat-toolbar>
-    <table style="width: 100%; height: 100%; display: flex;">
+  <mat-card >
+    <mat-toolbar class="login-header" style="background: linear-gradient(#6c6c6d, #cfd4d6); height: 100px;"  >
+      <form class="example-form" style="justify-content: center; width: 100%;">
+        <mat-form-field  class="txtHeader">
+            <input matInput type="search" placeholder="Find bruger med brugernavn" [(ngModel)]="searchkey" (ngModelChange)="onFindBrugere()" [ngModelOptions]="{standalone: true}" >
+        </mat-form-field>
+    </form>
+   </mat-toolbar>
+  </mat-card>
+    <mat-card>
+    <table style="width: 100%; height: 100%; display: flex;" >
         <mat-accordion class="example-headers-align" multi style="width: 100%;">
-            <mat-expansion-panel *ngFor="let user of users" style="margin-top: 10px;"  [disabled]="clickButton" (click)="clickButton=true" >
+             <mat-expansion-panel *ngFor="let user of users" style="margin-top: 10px;"  [disabled]="clickButton" (click)="clickButton=true" >
                 <mat-expansion-panel-header
                     style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236)); justify-content: center; width: 100%;">
                     <mat-panel-title class="centers" style="justify-content: center;">
@@ -19,12 +21,11 @@
                     <mat-action-row class="centers" style="justify-content: center;">
                         <button mat-button class="btnMainStyle" (click)="onSletBruger(user.id)">Slet </button> |
                         <button mat-button class="btnMainStyle" (click)="onUpdateBruger(user.id)">Update </button> |
-                        <button mat-button class="btnMainStyle" (click)="onOpretteBruger(user.id)">Oprette </button> |
                         <button mat-button class="btnMainStyle" (click)="onVisBruger(user.id)" >vis </button>
                     </mat-action-row>
                 </mat-expansion-panel-header>
-
-                <mat-card class="containStyle" >
+                <div  *ngIf="kontaktoplysninger">
+                <mat-card class="containStyle">
                   <span>Fornavn:</span>
                   <span class="txtStyle">{{kontaktoplysninger.fnavn}}</span>
                 </mat-card>
@@ -56,11 +57,12 @@
                   <span>By:</span>
                   <span class="txtStyle">{{kontaktoplysninger.by}}</span>
                 </mat-card>
-
+              </div>
 
 
             </mat-expansion-panel>
         </mat-accordion>
     </table>
+  </mat-card>
 </div>
-</mat-card>
+

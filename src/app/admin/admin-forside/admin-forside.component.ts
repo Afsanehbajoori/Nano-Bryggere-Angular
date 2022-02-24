@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {MatTreeNestedDataSource} from '@angular/material/tree';
 import {NestedTreeControl} from '@angular/cdk/tree';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
+import { RestApiService } from 'src/app/shared/rest-api.service';
+import { Bruger } from 'src/app/Models/Bruger';
 
 interface Search {
   name: string;
@@ -39,13 +43,20 @@ export class AdminForsideComponent implements OnInit {
   showForumComponent:boolean=false;
   showBrugernavnComponent:boolean=false;
   showBrugerEmailComponent:boolean=false;
+ 
+
+  constructor(  public dialog: MatDialog,
+    public restApi: RestApiService,
+    public router: Router,
+    public actRoute: ActivatedRoute) {  this.dataSource.data = TREE_DATA;}
 
 
-  constructor() {  this.dataSource.data = TREE_DATA;}
   hasChild = (_: number, node: Search) => !!node.children && node.children.length > 0;
+
   ngOnInit(): void {
 
   }
+
 
   showComponent(nodeName : string){
   console.log(nodeName);
@@ -88,6 +99,8 @@ export class AdminForsideComponent implements OnInit {
       break;
     }
   }
+
+
 
 
   }

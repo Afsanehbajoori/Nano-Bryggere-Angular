@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog , MatDialogConfig ,MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
 import { Bruger } from 'src/app/Models/Bruger';
 import { Bryggeri } from 'src/app/Models/Bryggeri';
-import { Kontaktoplysninger } from 'src/app/Models/Kontaktoplysninger';
 import { RestApiService } from 'src/app/shared/rest-api.service';
+import { Kontaktoplysninger } from 'src/app/Models/Kontaktoplysninger';
+import { RedigerProfilDialogBoxComponent } from 'src/app/main/rediger-profil-dialog-box/rediger-profil-dialog-box.component';
+
 
 @Component({
   selector: 'app-bruger-admin-side',
@@ -13,15 +15,22 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./bruger-admin-side.component.css']
 })
 export class BrugerAdminSideComponent implements OnInit {
+  dialogRefSlet: MatDialogRef<SletDialogBoxComponent>;
+  dialogRefRedigerProfil: MatDialogRef<RedigerProfilDialogBoxComponent>;
   users: Bruger[];
-  user = new Bryggeri;
+  user = new Bruger;
   endpoints='/Brugere'
   endpointk = '/Kontaktoplysninger';
   searchkey: string;
   kontaktoplysninger:any;
-  BrugerId = this.actRoute.snapshot.params['id'];
+  id = this.actRoute.snapshot.params['id'];
   kontaktoplysningerId:number;
   clickButton:boolean=true;
+  kontaktoplysningerList: any;
+
+
+
+
   constructor(
     public dialog: MatDialog,
     public restApi: RestApiService,
@@ -31,9 +40,10 @@ export class BrugerAdminSideComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadBruger();
-    this.clickButton=false;
+
   }
   loadBruger(){
+
     return this.restApi.getDatas(this.endpoints).subscribe((user) => {
       this.users = user;
       console.log(this.users);
@@ -42,47 +52,72 @@ export class BrugerAdminSideComponent implements OnInit {
 
   }
   onVisBruger(id:any){
-   this.clickButton=false;
-      this.BrugerId=id;
-      console.log("id:",this.BrugerId);
-      return this.restApi.getData(this.BrugerId , this.endpoints).subscribe((data) => {
-        console.log("kontId:",data.kontaktoplysningerId);
+      this.clickButton=false;
+
+      return this.restApi.getData(id , this.endpoints).subscribe((data) => {
+        //console.log("kontId:",data.kontaktoplysningerId);
         this.kontaktoplysningerId=data.kontaktoplysningerId;
         this.restApi.getData(this.kontaktoplysningerId ,this.endpointk ).subscribe((data) => {
           this.kontaktoplysninger = data;
-          console.log( this.kontaktoplysninger);
+
         })
       })
 
   }
 
 
-  onFindBrugere(){
+ onFindBrugere(){
     if(this.searchkey == ""){
       this.ngOnInit();
     }
     else{
       this.users = this.users.filter(res =>{
         return res.brugernavn.toLowerCase().match(this.searchkey.toLowerCase());
+
       })
+
     }
+
   }
 
   onSletBruger(id: any) {
     let dialogRef = this.dialog.open(SletDialogBoxComponent);
     dialogRef.afterClosed().subscribe(result => {
-      this.restApi.deleteData(id, this.endpoints).subscribe(data => {
-        this.loadBruger();
+      this.restApi.getData(id , this.endpoints).subscribe((data) => {
+        this.kontaktoplysningerId= data.kontaktoplysningerId;
+        console.log("kontId:",this.kontaktoplysningerId);
+        this.restApi.deleteData(this.kontaktoplysningerId, this.endpointk).subscribe(data => {
+          this.loadBruger();
+        })
       })
+
+
     });
   };
 
    onUpdateBruger(id:any) {
-    //this.router.navigate(['../main/',id]);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "40%";
+    this.restApi.getData(id , this.endpoints).subscribe((data) => {
+    this.kontaktoplysningerId= data.kontaktoplysningerId;
+    console.log("kontId:",this.kontaktoplysningerId);
+    localStorage.setItem('kontaktoplysningerId' , this.kontaktoplysningerId.toString());
+    this.dialogRefRedigerProfil = this.dialog.open(RedigerProfilDialogBoxComponent, dialogConfig);
+    this.dialogRefRedigerProfil.afterClosed().subscribe(result => {
+      if (result) {
+        this.kontaktoplysningerList = result;
+        this.restApi.updateData(this.kontaktoplysningerId, this.endpointk, this.kontaktoplysningerList).subscribe((data) => {
+        console.log(this.kontaktoplysningerList);
+        this.loadBruger();
+        })
+      }
+    });
+    })
+
 
   };
 
-  onOpretteBruger(id:any) {
-    //this.router.navigate(['../admin/brugerredigerol/',id]);
-  };
+  
 }

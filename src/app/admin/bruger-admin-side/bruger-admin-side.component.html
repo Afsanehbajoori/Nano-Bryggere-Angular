@@ -1,11 +1,23 @@
 <div class="main" id="imgeUp">
   <mat-card >
     <mat-toolbar class="login-header" style="background: linear-gradient(#6c6c6d, #cfd4d6); height: 100px;"  >
-      <form class="example-form" style="justify-content: center; width: 100%;">
-        <mat-form-field  class="txtHeader">
-            <input matInput type="search" placeholder="Find bruger med brugernavn" [(ngModel)]="searchkey" (ngModelChange)="onFindBrugere()" [ngModelOptions]="{standalone: true}" >
-        </mat-form-field>
-    </form>
+      <mat-tab-group>
+        <mat-tab label="Find bruger med brugernavn">
+          <form class="example-form" style="justify-content: center; width: 100%;">
+            <mat-form-field  class="txtHeader">
+                <input matInput type="search"  [(ngModel)]="searchkey" (ngModelChange)="onFindBrugere()" [ngModelOptions]="{standalone: true}" >
+            </mat-form-field>
+        </form>
+        </mat-tab>
+        <mat-tab label="Find bruger med brugerId" >
+          <form class="example-form" style="justify-content: center; width: 100%;">
+            <mat-form-field  class="txtHeader">
+                <input matInput type="search"  [(ngModel)]="searchkey" (ngModelChange)="onFindBrugere()" [ngModelOptions]="{standalone: true}" >
+            </mat-form-field>
+        </form>
+        </mat-tab>
+      </mat-tab-group>
+
    </mat-toolbar>
   </mat-card>
     <mat-card>

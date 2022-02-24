@@ -74,11 +74,11 @@ export class AdminForsideComponent implements OnInit {
       this.showBrugerEmailComponent=!this.showBrugerEmailComponent;
       break;
     }
-    case 'Øl':{
+    case 'Med Ølnavn':{
       this.showOlComponent=!this.showOlComponent;
       break;
     }
-    case 'Events':{
+    case 'Eventstitel':{
       this.showEventsComponent=!this.showEventsComponent;
       break;
     }
@@ -90,11 +90,11 @@ export class AdminForsideComponent implements OnInit {
       this.showBryggeriComponent=!this.showBryggeriComponent;
       break;
     }
-    case 'Forum':{
+    case 'Med ForumTitel':{
       this.showForumComponent=!this.showForumComponent;
       break;
     }
-    case 'Rolle':{
+    case 'Med Rollenavn':{
       this.showRolleComponent=!this.showRolleComponent;
       break;
     }

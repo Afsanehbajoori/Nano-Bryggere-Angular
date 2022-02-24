@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RedigerBryggeriDialogBoxComponent } from 'src/app/main/rediger-bryggeri-dialog-box/rediger-bryggeri-dialog-box.component';
-import { RedigerProfilDialogBoxComponent } from 'src/app/main/rediger-profil-dialog-box/rediger-profil-dialog-box.component';
 import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
 import { Bryggeri } from 'src/app/Models/Bryggeri';
 import { RestApiService } from 'src/app/shared/rest-api.service';
+
+
 @Component({
   selector: 'app-bryggeri-admin-side',
   templateUrl: './bryggeri-admin-side.component.html',
@@ -81,12 +82,10 @@ export class BryggeriAdminSideComponent implements OnInit {
           this.restApi.updateData(id, this.endpointB, this.bryggeriList).subscribe((data) => {
           console.log(this.bryggeriList);
           this.onVisBryggeri(id);
+          this.loadBryggeri();
           })
         }
       });
-
-
-
     };
 
 }

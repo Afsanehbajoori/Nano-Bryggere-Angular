@@ -83,17 +83,22 @@ export class BrugerAdminSideComponent implements OnInit {
   onSletBruger(id: any) {
     let dialogRef = this.dialog.open(SletDialogBoxComponent);
     dialogRef.afterClosed().subscribe(result => {
-      this.restApi.getData(id , this.endpoints).subscribe((data) => {
+      /* this.restApi.getData(id , this.endpoints).subscribe((data) => {
         this.kontaktoplysningerId= data.kontaktoplysningerId;
         console.log("kontId:",this.kontaktoplysningerId);
         this.restApi.deleteData(this.kontaktoplysningerId, this.endpointk).subscribe(data => {
           this.loadBruger();
         })
-      })
-
+      })*/
+      if(result){
+        this.restApi.deleteData(id , this.endpoints).subscribe((data) => {
+          console.log('delete:' , id);
+          this.loadBruger();
+        })
+      }
 
     });
-  };
+  }
 
    onUpdateBruger(id:any) {
     const dialogConfig = new MatDialogConfig();
@@ -119,5 +124,5 @@ export class BrugerAdminSideComponent implements OnInit {
 
   };
 
-  
+
 }

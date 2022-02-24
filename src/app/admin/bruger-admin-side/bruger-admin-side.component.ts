@@ -53,7 +53,6 @@ export class BrugerAdminSideComponent implements OnInit {
   }
   onVisBruger(id:any){
       this.clickButton=false;
-
       return this.restApi.getData(id , this.endpoints).subscribe((data) => {
         //console.log("kontId:",data.kontaktoplysningerId);
         this.kontaktoplysningerId=data.kontaktoplysningerId;
@@ -115,7 +114,7 @@ export class BrugerAdminSideComponent implements OnInit {
         this.kontaktoplysningerList = result;
         this.restApi.updateData(this.kontaktoplysningerId, this.endpointk, this.kontaktoplysningerList).subscribe((data) => {
         console.log(this.kontaktoplysningerList);
-        this.loadBruger();
+        this.onVisBruger(id);
         })
       }
     });

@@ -43,7 +43,7 @@ export class AdminForsideComponent implements OnInit {
   showForumComponent:boolean=false;
   showBrugernavnComponent:boolean=false;
   showBrugerEmailComponent:boolean=false;
- 
+
 
   constructor(  public dialog: MatDialog,
     public restApi: RestApiService,
@@ -86,7 +86,7 @@ export class AdminForsideComponent implements OnInit {
       this.showCetifikantComponent=!this.showCetifikantComponent;
       break;
     }
-    case 'Bryggeri':{
+    case 'Med Bryggerinavn':{
       this.showBryggeriComponent=!this.showBryggeriComponent;
       break;
     }

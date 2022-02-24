@@ -70,5 +70,11 @@
   font-style: oblique;
   font-weight: bold;
   width: 20%;
+  height: auto;
+
 }
+.mat-tab-group {
+  margin-bottom: 48px;
+}
+
 

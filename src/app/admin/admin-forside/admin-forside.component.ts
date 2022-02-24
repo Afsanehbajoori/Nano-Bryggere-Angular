@@ -43,7 +43,7 @@ export class AdminForsideComponent implements OnInit {
   showForumComponent:boolean=false;
   showBrugernavnComponent:boolean=false;
   showBrugerEmailComponent:boolean=false;
- 
+
 
   constructor(  public dialog: MatDialog,
     public restApi: RestApiService,
@@ -74,11 +74,11 @@ export class AdminForsideComponent implements OnInit {
       this.showBrugerEmailComponent=!this.showBrugerEmailComponent;
       break;
     }
-    case 'Øl':{
+    case 'Med Ølnavn':{
       this.showOlComponent=!this.showOlComponent;
       break;
     }
-    case 'Events':{
+    case 'Eventstitel':{
       this.showEventsComponent=!this.showEventsComponent;
       break;
     }
@@ -86,15 +86,15 @@ export class AdminForsideComponent implements OnInit {
       this.showCetifikantComponent=!this.showCetifikantComponent;
       break;
     }
-    case 'Bryggeri':{
+    case 'Med Bryggerinavn':{
       this.showBryggeriComponent=!this.showBryggeriComponent;
       break;
     }
-    case 'Forum':{
+    case 'Med ForumTitel':{
       this.showForumComponent=!this.showForumComponent;
       break;
     }
-    case 'Rolle':{
+    case 'Med Rollenavn':{
       this.showRolleComponent=!this.showRolleComponent;
       break;
     }

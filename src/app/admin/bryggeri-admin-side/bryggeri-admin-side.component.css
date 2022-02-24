@@ -34,6 +34,7 @@ margin: auto;
 width: 10%;
 padding: 10px;
 text-align: center;
+flex: 1 1 auto;
 }
 
 .example-headers-align .mat-expansion-panel-header-title,
@@ -45,4 +46,27 @@ font-style: oblique;
 .example-headers-align .mat-expansion-panel-header-description {
 justify-content: space-between;
 align-items: center;
+}
+.txt{
+  margin: 10px;
+  font-weight: bolder;
+  font-size: 20px;
+  font-family: 'Times New Roman', Times, serif;
+  font-style: italic;
+  text-align: center;
+
+}
+.txtStyle{
+  font-style: italic;
+  font-weight: bold;
+  display: flex;
+ justify-content: center;
+ text-align: center;
+}
+
+.txtHeader{
+  font-size: 15px;
+  font-style: oblique;
+  font-weight: bold;
+  width: 20%;
 }

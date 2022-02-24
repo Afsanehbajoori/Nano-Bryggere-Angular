@@ -21,6 +21,7 @@ import { MatInputModule } from '@angular/material/input';
 import { BryggeriAdminSideComponent } from './bryggeri-admin-side/bryggeri-admin-side.component';
 import { RolleAdminSideComponent } from './rolle-admin-side/rolle-admin-side.component';
 import { ForumAdminSideComponent } from './forum-admin-side/forum-admin-side.component';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { ForumAdminSideComponent } from './forum-admin-side/forum-admin-side.com
     MatSidenavModule,
     MatInputModule,
     MatTreeModule,
-    MatIconModule
+    MatIconModule,
+    MatTabsModule
   ],
   exports:[
     EventAdminSideComponent,

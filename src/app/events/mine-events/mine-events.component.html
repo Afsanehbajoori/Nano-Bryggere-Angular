@@ -1,7 +1,5 @@
 <div class="main" id="imgeUp">
     <mat-toolbar class="login-header" style="background: linear-gradient(#238ff5, #23baf5);">
-        <button mat-raised-button
-            style="background-color: rgb(30, 122, 228); width: 120px; height: 40px; border-width: 0; margin-right: 20px;" (click)="onOpretEvents()">Opret event</button>
             <form class="example-form" style="justify-content: center; width: 100%;">
                 <mat-form-field style="width: 10%;">
                 <input matInput type="search" placeholder="Find event" [(ngModel)]="searchkey" (ngModelChange)="onFindEvent()" [ngModelOptions]="{standalone: true}">
@@ -16,9 +14,6 @@
                         Titel: {{event.titel}}
                     </mat-panel-title>
                     <mat-action-row class="centers" style="justify-content: center;">
-                        <button mat-button class="btnMainStyle" (click)="onSletEvent(event.id)">Slet Event</button>
-                        <button mat-button class="btnMainStyle" (click)="onOpdaterEvent(event.id)">Rediger Event</button>
-                        <button mat-button class="btnMainStyle" *ngIf="!deltagelse" (click)="onJoinEvent(event.id)">Join Event</button>
                         <button mat-button class="btnMainStyle" *ngIf="deltagelse" (click)="onAfmeldEvent(event.id)">Afmeld Deltagelse</button>
                     </mat-action-row>
                 </mat-expansion-panel-header>

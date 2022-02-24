@@ -32,6 +32,7 @@ export class KatalogComponent implements OnInit {
   ngOnInit(): void {
     this.loadOl()
   }
+  
   loadOl() {
     if (this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}')) {
       this.restApi.getDatas(this.endpoints).subscribe((data) => {

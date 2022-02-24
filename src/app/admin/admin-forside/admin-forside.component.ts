@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {MatTreeNestedDataSource} from '@angular/material/tree';
 import {NestedTreeControl} from '@angular/cdk/tree';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
+import { RestApiService } from 'src/app/shared/rest-api.service';
+import { Bruger } from 'src/app/Models/Bruger';
 
 interface Search {
   name: string;
@@ -10,7 +14,13 @@ interface Search {
 const TREE_DATA: Search[] = [
   {
     name: 'Søge',
-    children: [{name: 'Bruger'}, {name: 'Rolle'}, {name: 'Øl'} , {name: 'Events'} , {name: 'Forum '} , {name: 'Certifikant '}],
+    children: [{name: 'Bruger', children:[{name: 'Med BrugerId'} , {name: 'Med Brugernavn'}, {name: 'Med Email'}]},
+    {name: 'Rolle', children:[{name: 'Med RolleId'} , {name: 'Med Rollenavn'}]},
+    {name: 'Bryggeri',children:[{name: 'Med BryggeriId'} , {name: 'Med Bryggerinavn'}]},
+    {name: 'Øl',children:[{name: 'Med ØlId'} , {name: 'Med Ølnavn'} , {name: 'Med Øltype'}]} ,
+    {name: 'Events', children:[{name: 'Med EventsId'} , {name: 'Med Eventstitel'}]} ,
+    {name: 'Forum', children:[{name: 'Med ForumId'} , {name: 'Med ForumTitel'}]} ,
+    {name: 'Certifikant'}],
   }
 
 ];
@@ -24,23 +34,44 @@ const TREE_DATA: Search[] = [
 export class AdminForsideComponent implements OnInit {
   treeControl = new NestedTreeControl<Search>(node => node.children);
   dataSource = new MatTreeNestedDataSource<Search>();
-  showBrugerComponent:boolean=false;
+  showBrugerIdComponent:boolean=false;
   showCetifikantComponent: boolean=false;
   showOlComponent:boolean=false;
   showEventsComponent:boolean=false;
+  showBryggeriComponent:boolean=false;
+  showRolleComponent:boolean=false;
+  showForumComponent:boolean=false;
+  showBrugernavnComponent:boolean=false;
+  showBrugerEmailComponent:boolean=false;
+ 
 
-  constructor() {  this.dataSource.data = TREE_DATA;}
+  constructor(  public dialog: MatDialog,
+    public restApi: RestApiService,
+    public router: Router,
+    public actRoute: ActivatedRoute) {  this.dataSource.data = TREE_DATA;}
+
+
   hasChild = (_: number, node: Search) => !!node.children && node.children.length > 0;
+
   ngOnInit(): void {
 
   }
+
 
   showComponent(nodeName : string){
   console.log(nodeName);
   switch (nodeName)
   {
-    case 'Bruger':{
-      this.showBrugerComponent=!this.showBrugerComponent;
+    case 'Med BrugerId':{
+      this.showBrugerIdComponent=!this.showBrugerIdComponent;
+      break;
+    }
+    case 'Med Brugernavn':{
+      this.showBrugernavnComponent=!this.showBrugernavnComponent;
+      break;
+    }
+    case 'Med Email':{
+      this.showBrugerEmailComponent=!this.showBrugerEmailComponent;
       break;
     }
     case 'Øl':{
@@ -55,7 +86,21 @@ export class AdminForsideComponent implements OnInit {
       this.showCetifikantComponent=!this.showCetifikantComponent;
       break;
     }
+    case 'Bryggeri':{
+      this.showBryggeriComponent=!this.showBryggeriComponent;
+      break;
+    }
+    case 'Forum':{
+      this.showForumComponent=!this.showForumComponent;
+      break;
+    }
+    case 'Rolle':{
+      this.showRolleComponent=!this.showRolleComponent;
+      break;
+    }
   }
+
+
 
 
   }

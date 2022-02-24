@@ -18,6 +18,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS} from '@angular/material/snack-bar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatInputModule } from '@angular/material/input';
+import { BryggeriAdminSideComponent } from './bryggeri-admin-side/bryggeri-admin-side.component';
+import { RolleAdminSideComponent } from './rolle-admin-side/rolle-admin-side.component';
+import { ForumAdminSideComponent } from './forum-admin-side/forum-admin-side.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,10 @@ import { MatInputModule } from '@angular/material/input';
     OlAdminSideComponent,
     BrugerAdminSideComponent,
     AdminForsideComponent,
-    BrugerCertifikatComponent
+    BrugerCertifikatComponent,
+    BryggeriAdminSideComponent,
+    RolleAdminSideComponent,
+    ForumAdminSideComponent
   ],
   imports: [
     CommonModule,

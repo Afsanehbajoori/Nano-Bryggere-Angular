@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { NotFoundComponent } from '../main/not-found/not-found.component';
 import { AdminForsideComponent } from './admin-forside/admin-forside.component';
 import { BrugerAdminSideComponent } from './bruger-admin-side/bruger-admin-side.component';
 import { BrugerCertifikatComponent } from './bruger-certifikat/bruger-certifikat.component';
@@ -12,7 +13,9 @@ const routes: Routes = [
   {path:'brugeradmin', component:BrugerAdminSideComponent},
   {path:'eventadmin',component:EventAdminSideComponent},
   {path:'oladmin',component:OlAdminSideComponent},
-  {path:'certifikat', component:BrugerCertifikatComponent}
+  {path:'certifikat', component:BrugerCertifikatComponent},
+  {path:'**', component: NotFoundComponent},
+
 ];
 
 @NgModule({

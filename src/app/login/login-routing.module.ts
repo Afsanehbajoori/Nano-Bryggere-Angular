@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { RegistrerComponent } from './registrer/registrer.component';
 import { GlemtPasswordComponent } from './glemt-password/glemt-password.component';
 import { RedigerSletBrugerComponent } from './rediger-slet-bruger/rediger-slet-bruger.component';
+import { NotFoundComponent } from '../main/not-found/not-found.component';
 
 
 const routes: Routes = [
@@ -13,7 +14,8 @@ const routes: Routes = [
       {path:'registrer',component:RegistrerComponent},
       {path:'glemtpassword',component:GlemtPasswordComponent},
       {path:'editpassword',component:EditPasswordComponent},
-      {path:'redigersletbruger',component:RedigerSletBrugerComponent}
+      {path:'redigersletbruger',component:RedigerSletBrugerComponent},
+      {path:'**', component: NotFoundComponent},
 ];
 
 @NgModule({

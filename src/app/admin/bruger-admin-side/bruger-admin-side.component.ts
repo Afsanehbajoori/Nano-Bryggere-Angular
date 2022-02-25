@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
 import { Bruger } from 'src/app/Models/Bruger';
 import { Bryggeri } from 'src/app/Models/Bryggeri';
-import { Kontaktoplysninger } from 'src/app/Models/Kontaktoplysninger';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 import { Kontaktoplysninger } from 'src/app/Models/Kontaktoplysninger';
 import { RedigerProfilDialogBoxComponent } from 'src/app/main/rediger-profil-dialog-box/rediger-profil-dialog-box.component';

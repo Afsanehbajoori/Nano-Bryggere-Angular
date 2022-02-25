@@ -35,7 +35,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     BrugerCertifikatComponent,
     AdminTagsComponent,
     AdminOpretTagComponent,
-    AdminRedigerTagComponent
+    AdminRedigerTagComponent,
     BryggeriAdminSideComponent,
     RolleAdminSideComponent,
     ForumAdminSideComponent

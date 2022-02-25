@@ -7,6 +7,9 @@ import { Bryggeri } from 'src/app/Models/Bryggeri';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 import { Kontaktoplysninger } from 'src/app/Models/Kontaktoplysninger';
 import { RedigerProfilDialogBoxComponent } from 'src/app/main/rediger-profil-dialog-box/rediger-profil-dialog-box.component';
+import { timeStamp } from 'console';
+import { MainRoutingModule } from './../../main/main-routing.module';
+import { ThrowStmt } from '@angular/compiler';
 
 
 @Component({
@@ -21,7 +24,9 @@ export class BrugerAdminSideComponent implements OnInit {
   user = new Bruger;
   endpoints='/Brugere'
   endpointk = '/Kontaktoplysninger';
-  searchkey: string;
+  searchkeyBrugernavn: string;
+  searchkeyBrugerId:string;
+  searchkeyEmail:string;
   kontaktoplysninger:any;
   id = this.actRoute.snapshot.params['id'];
   kontaktoplysningerId:number;
@@ -65,18 +70,48 @@ export class BrugerAdminSideComponent implements OnInit {
   }
 
 
- onFindBrugere(){
-    if(this.searchkey == ""){
+  onFindBrugerenavn(){
+    if(this.searchkeyBrugernavn == ""){
       this.ngOnInit();
     }
     else{
       this.users = this.users.filter(res =>{
-        return res.brugernavn.toLowerCase().match(this.searchkey.toLowerCase());
+        return res.brugernavn.toLowerCase().match(this.searchkeyBrugernavn.toLowerCase());
 
       })
 
     }
 
+  }
+
+  onFindBrugereId(){
+    if(this.searchkeyBrugerId == ''){
+      this.ngOnInit();
+    }
+    else{
+        this.users= this.users.filter(res => {
+       return res.id.toString() == this.searchkeyBrugerId;
+        //console.log("id:",this.searchkeyBrugerId);
+
+         })
+
+        }
+
+  }
+
+  onFindEmail(){
+    if(this.searchkeyEmail == ""){
+      this.ngOnInit();
+    }
+    else{
+      this.restApi.getDataByEmail(this.searchkeyEmail , this.endpoints).subscribe((data) => {
+
+          console.log(data);
+        return  this.users=data;
+      })
+
+
+     }
   }
 
   onSletBruger(id: any) {

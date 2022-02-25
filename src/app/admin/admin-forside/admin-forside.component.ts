@@ -63,7 +63,7 @@ export class AdminForsideComponent implements OnInit {
   switch (nodeName)
   {
     case 'Med BrugerId':{
-      this.showBrugerIdComponent=!this.showBrugerIdComponent;
+      this.showBrugernavnComponent=!this.showBrugernavnComponent;
       break;
     }
     case 'Med Brugernavn':{
@@ -71,7 +71,7 @@ export class AdminForsideComponent implements OnInit {
       break;
     }
     case 'Med Email':{
-      this.showBrugerEmailComponent=!this.showBrugerEmailComponent;
+      this.showBrugernavnComponent=!this.showBrugernavnComponent;
       break;
     }
     case 'Med Ølnavn':{

@@ -23,11 +23,15 @@
           </mat-tree>
       </div>
   </mat-drawer>
-  <mat-drawer-content *ngIf="showBrugerComponent">
+
+  <mat-drawer-content *ngIf="showBrugernavnComponent">
     <app-bruger-admin-side></app-bruger-admin-side>
   </mat-drawer-content>
-  <mat-drawer-content *ngIf="showCetifikantComponent" >
-    <app-bruger-certifikat></app-bruger-certifikat>
+  <mat-drawer-content *ngIf="showRolleComponent">
+    <app-rolle-admin-side></app-rolle-admin-side>
+  </mat-drawer-content>
+  <mat-drawer-content *ngIf="showBryggeriComponent">
+    <app-bryggeri-admin-side></app-bryggeri-admin-side>
   </mat-drawer-content>
   <mat-drawer-content *ngIf="showOlComponent">
     <app-ol-admin-side></app-ol-admin-side>
@@ -37,5 +41,12 @@
   </mat-drawer-content>
   <mat-drawer-content *ngIf="showTagsComponent">
     <app-admin-tags></app-admin-tags>
+  </mat-drawer-content>
+  </mat-drawer-container>
+  <mat-drawer-content *ngIf="showForumComponent">
+    <app-forum-admin-side></app-forum-admin-side>
+  </mat-drawer-content>
+  <mat-drawer-content *ngIf="showCetifikantComponent" >
+    <app-bruger-certifikat></app-bruger-certifikat>
   </mat-drawer-content>
   </mat-drawer-container>

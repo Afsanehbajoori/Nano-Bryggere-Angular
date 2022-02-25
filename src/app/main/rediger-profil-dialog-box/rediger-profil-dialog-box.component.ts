@@ -39,9 +39,8 @@ export class RedigerProfilDialogBoxComponent implements OnInit {
           'PostCtl': new FormControl(this.kontaktoplysningerList.postnr),
           'ByCtl': new FormControl(this.kontaktoplysningerList.by)
         });
-      })
-  }
-
+      });     
+   }
   /*  onClose(){
      this.dialogRefRedigerProfil.close();
    } */

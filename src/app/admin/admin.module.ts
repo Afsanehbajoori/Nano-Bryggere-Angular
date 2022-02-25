@@ -21,6 +21,10 @@ import { MatInputModule } from '@angular/material/input';
 import { AdminTagsComponent } from './admin-tags/admin-tags.component';
 import { AdminOpretTagComponent } from './admin-opret-tag/admin-opret-tag.component';
 import { AdminRedigerTagComponent } from './admin-rediger-tag/admin-rediger-tag.component';
+import { BryggeriAdminSideComponent } from './bryggeri-admin-side/bryggeri-admin-side.component';
+import { RolleAdminSideComponent } from './rolle-admin-side/rolle-admin-side.component';
+import { ForumAdminSideComponent } from './forum-admin-side/forum-admin-side.component';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -32,6 +36,9 @@ import { AdminRedigerTagComponent } from './admin-rediger-tag/admin-rediger-tag.
     AdminTagsComponent,
     AdminOpretTagComponent,
     AdminRedigerTagComponent
+    BryggeriAdminSideComponent,
+    RolleAdminSideComponent,
+    ForumAdminSideComponent
   ],
   imports: [
     CommonModule,
@@ -48,7 +55,8 @@ import { AdminRedigerTagComponent } from './admin-rediger-tag/admin-rediger-tag.
     MatSidenavModule,
     MatInputModule,
     MatTreeModule,
-    MatIconModule
+    MatIconModule,
+    MatTabsModule
   ],
   exports:[
     EventAdminSideComponent,

@@ -18,6 +18,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS} from '@angular/material/snack-bar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatInputModule } from '@angular/material/input';
+import { AdminTagsComponent } from './admin-tags/admin-tags.component';
+import { AdminOpretTagComponent } from './admin-opret-tag/admin-opret-tag.component';
+import { AdminRedigerTagComponent } from './admin-rediger-tag/admin-rediger-tag.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,10 @@ import { MatInputModule } from '@angular/material/input';
     OlAdminSideComponent,
     BrugerAdminSideComponent,
     AdminForsideComponent,
-    BrugerCertifikatComponent
+    BrugerCertifikatComponent,
+    AdminTagsComponent,
+    AdminOpretTagComponent,
+    AdminRedigerTagComponent
   ],
   imports: [
     CommonModule,

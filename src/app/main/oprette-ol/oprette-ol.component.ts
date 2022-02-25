@@ -3,11 +3,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 
-interface Bryg{
-  value: string;
-  view: string;
-}
-
 @Component({
   selector: 'app-oprette-ol',
   templateUrl: './oprette-ol.component.html',

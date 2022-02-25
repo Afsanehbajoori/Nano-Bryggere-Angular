@@ -1,4 +1,4 @@
-<div class="main" id="imgeUp">
+<div>
     <mat-toolbar class="login-header" style="background: linear-gradient(#238ff5, #23baf5);">
         <form class="example-form" style="justify-content: center; width: 100%;">
             <mat-form-field style="width: 10%;">
@@ -12,8 +12,7 @@
                 <mat-expansion-panel-header
                     style="background: linear-gradient(rgb(30, 122, 228), rgb(75, 127, 185)); justify-content: center; width: 100%;">
                     <mat-panel-title class="centers" style="justify-content: center;">
-                        Brugernavn
-                        {{user.navn}}
+                        {{user.fnavn}}
                     </mat-panel-title>
                     <mat-action-row class="centers" style="justify-content: center;">
                         <button mat-button class="btnMainStyle" (click)="onSletBruger(user.id)">Slet Bruger</button>
@@ -21,12 +20,16 @@
                     </mat-action-row>
                 </mat-expansion-panel-header>
                 <mat-card class="containStyle">
-                    <p>beskrivelse:</p>
-                    <p>{{user.beskrivelse}}</p>
+                    <p>Efternavn:</p>
+                    <p>{{user.enavn}}</p>
                 </mat-card>
                 <mat-card class="containStyle">
-                    <p>Logo:</p>
-                    <p>{{user.logo}}</p>
+                    <p>email:</p>
+                    <p>{{user.email}}</p>
+                </mat-card>
+                <mat-card class="containStyle">
+                    <p>telefonnr:</p>
+                    <p>{{user.telefonnr}}</p>
                 </mat-card>
             </mat-expansion-panel>
         </mat-accordion>

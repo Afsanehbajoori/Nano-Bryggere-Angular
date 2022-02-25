@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
 import { Bryggeri } from 'src/app/Models/Bryggeri';
+import { Kontaktoplysninger } from 'src/app/Models/Kontaktoplysninger';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 
 @Component({
@@ -11,9 +12,9 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./bruger-admin-side.component.css']
 })
 export class BrugerAdminSideComponent implements OnInit {
-  users: Bryggeri[];
-  user = new Bryggeri;
-  endpoints = '/Brugere';
+  users: Kontaktoplysninger[];
+  user = new Kontaktoplysninger;
+  endpoints = '/Kontaktoplysninger';
   searchkey: string;
 
   constructor(
@@ -26,11 +27,13 @@ export class BrugerAdminSideComponent implements OnInit {
   ngOnInit(): void {
     this.loadBruger();
   }
+
   loadBruger(){
     return this.restApi.getDatas(this.endpoints).subscribe((user) => {
       this.users = user;
     })
   }
+  
   onVisBruger(id:any) {
     this.router.navigate(['../admin/brugerredigerol/',id]);
   };
@@ -41,7 +44,7 @@ export class BrugerAdminSideComponent implements OnInit {
     }
     else{
       this.users = this.users.filter(res =>{
-        return res.navn.toLowerCase().match(this.searchkey.toLowerCase());
+        return res.fnavn.toLowerCase().match(this.searchkey.toLowerCase());
       })
     }
   }

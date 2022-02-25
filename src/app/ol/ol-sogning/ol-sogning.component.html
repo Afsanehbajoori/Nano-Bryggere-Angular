@@ -2,7 +2,8 @@
     <mat-toolbar class="login-header" style="background: linear-gradient(#34b8cf, #3f68ee);">
         <form class="example-form" style="justify-content: center;">
             <mat-form-field >
-                <input matInput type="search" placeholder="Find øl" [(ngModel)]="searchkey" (ngModelChange)="onFindOl()" [ngModelOptions]="{standalone: true}">
+                <!-- <input matInput type="search" placeholder="Find øl" [(ngModel)]="searchkey" (ngModelChange)="onFindOl()" [ngModelOptions]="{standalone: true}"> -->
+                <input matInput type="text" placeholder="Find øl" [(ngModel)]="search">
             </mat-form-field>
             <mat-form-field style="padding: 50px; font-size:large;">
                 <mat-select [(value)]="selected">
@@ -22,7 +23,6 @@
                 <mat-expansion-panel-header
                     style="background: linear-gradient(rgb(30, 122, 228), rgb(75, 127, 185)); justify-content: center; width: 100%;">
                     <mat-panel-title class="centers" style="justify-content: center;">
-                        Øl Navn
                         {{beer.navn}}
                     </mat-panel-title>
                     <mat-action-row class="centers" style="justify-content: center;">

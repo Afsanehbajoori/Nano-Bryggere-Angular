@@ -47,6 +47,7 @@ export class BrugerAdminSideComponent implements OnInit {
     this.loadBruger();
 
   }
+
   loadBruger(){
 
     return this.restApi.getDatas(this.endpoints).subscribe((user) => {
@@ -70,13 +71,18 @@ export class BrugerAdminSideComponent implements OnInit {
   }
 
 
+
   onFindBrugerenavn(){
     if(this.searchkeyBrugernavn == ""){
+
       this.ngOnInit();
     }
     else{
       this.users = this.users.filter(res =>{
+
         return res.brugernavn.toLowerCase().match(this.searchkeyBrugernavn.toLowerCase());
+
+
 
       })
 

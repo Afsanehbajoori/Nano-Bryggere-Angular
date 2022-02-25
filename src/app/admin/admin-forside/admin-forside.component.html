@@ -39,6 +39,9 @@
   <mat-drawer-content *ngIf="showEventsComponent">
     <app-event-admin-side></app-event-admin-side>
   </mat-drawer-content>
+  <mat-drawer-content *ngIf="showTagsComponent">
+    <app-admin-tags></app-admin-tags>
+  </mat-drawer-content>
   <mat-drawer-content *ngIf="showForumComponent">
     <app-forum-admin-side></app-forum-admin-side>
   </mat-drawer-content>
@@ -46,9 +49,3 @@
     <app-bruger-certifikat></app-bruger-certifikat>
   </mat-drawer-content>
   </mat-drawer-container>
-
-
-
-
-
-

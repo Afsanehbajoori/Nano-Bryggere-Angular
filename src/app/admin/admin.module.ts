@@ -18,6 +18,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS} from '@angular/material/snack-bar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatInputModule } from '@angular/material/input';
+import { AdminTagsComponent } from './admin-tags/admin-tags.component';
+import { AdminOpretTagComponent } from './admin-opret-tag/admin-opret-tag.component';
+import { AdminRedigerTagComponent } from './admin-rediger-tag/admin-rediger-tag.component';
 import { BryggeriAdminSideComponent } from './bryggeri-admin-side/bryggeri-admin-side.component';
 import { RolleAdminSideComponent } from './rolle-admin-side/rolle-admin-side.component';
 import { ForumAdminSideComponent } from './forum-admin-side/forum-admin-side.component';
@@ -30,6 +33,9 @@ import {MatTabsModule} from '@angular/material/tabs';
     BrugerAdminSideComponent,
     AdminForsideComponent,
     BrugerCertifikatComponent,
+    AdminTagsComponent,
+    AdminOpretTagComponent,
+    AdminRedigerTagComponent,
     BryggeriAdminSideComponent,
     RolleAdminSideComponent,
     ForumAdminSideComponent

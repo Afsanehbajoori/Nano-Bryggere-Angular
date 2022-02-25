@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatExpansionPanel } from '@angular/material/expansion';
 import { Router } from '@angular/router';
 import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
 import { Events } from 'src/app/Models/Events';
@@ -12,9 +11,10 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 })
 export class EventkalenderSideComponent implements OnInit {
 
-  public events: Events[];
+  events: Events[];
   endpoints = '/Events';
   searchkey: string;
+  deltagelse: boolean;
   
   constructor(
     public dialog: MatDialog,
@@ -60,6 +60,18 @@ export class EventkalenderSideComponent implements OnInit {
           this.loadEvent();
         })
       }
+    });
+  }
+  onJoinEvent(id:any){
+    this.restApi.updateData(id, this.endpoints, this.events).subscribe((data) => {
+      this.events = this.events.filter(res =>{
+        res.titel.toLowerCase().match(this.searchkey.toLowerCase());
+        this.deltagelse = false;
+      })
+    });
+  }
+  onAfmeldEvent(id:any){
+    this.restApi.updateData(id, this.endpoints, this.events).subscribe((data) => {
     });
   }
 }

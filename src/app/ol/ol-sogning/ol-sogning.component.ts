@@ -18,6 +18,7 @@ export class OlSogningComponent implements OnInit {
   brugers : Bruger[];
   endpoints = '/Øller';
   searchkey: string;
+  search: any;
   data = sessionStorage.getItem('id');
 
   constructor(
@@ -47,6 +48,6 @@ export class OlSogningComponent implements OnInit {
     }
   }
   onVisOlInfo(id:any){
-    this.router.navigate(['../main/redigerol/',id]);
+    this.router.navigate(['../ol/olside/',id]);
   }
 }

@@ -1,5 +1,5 @@
 import { Bruger } from './Bruger';
-import { Kontaktoplysninger } from "./Kontaktoplysninger";
+// import { Kontaktoplysninger } from "./Kontaktoplysninger";
 import { Tags } from "./Tags";
 
 export class Events

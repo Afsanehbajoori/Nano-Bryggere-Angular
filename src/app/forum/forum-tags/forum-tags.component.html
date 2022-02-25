@@ -1,1 +1,22 @@
-<p>forum-tags works!</p>
+<div class="main" id="imgeUp">
+    <mat-toolbar class="login-header" style="background: linear-gradient(#238ff5, #23baf5);">
+        <form class="example-form" style="justify-content: center; width: 100%;">
+            <mat-form-field style="width: 10%;">
+                <input matInput type="search" placeholder="Find tags" [(ngModel)]="searchkey" (ngModelChange)="onFindOl()" [ngModelOptions]="{standalone: true}">
+            </mat-form-field>
+        </form>
+    </mat-toolbar>
+    <table style="width: 100%; height: 100%; display: flex; justify-content: center;">
+        <!-- <mat-card></mat-card> -->
+        <mat-card *ngFor="let tag of tagsliste" style="height: 3%; width: 15%; justify-content: center; margin-left: 20px; margin-top: 20px;">
+            <mat-accordion class="example-headers-align" multi style="width: 100%; justify-content: center;">
+                <mat-action-row class="centers" style="justify-content: center;">
+                    <button mat-button class="btnMainStyle" (click)="onTilfojTag(tag.id)">Tilføj Tag</button>
+                </mat-action-row>
+                <mat-panel-title class="centers" style="justify-content: center;">
+                    <p>{{tag.navn}}</p>
+                </mat-panel-title>
+            </mat-accordion>
+        </mat-card>
+    </table>
+</div>

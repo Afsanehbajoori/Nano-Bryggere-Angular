@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
 import { Bruger } from 'src/app/Models/Bruger';
 import { Bryggeri } from 'src/app/Models/Bryggeri';
+import { Kontaktoplysninger } from 'src/app/Models/Kontaktoplysninger';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 import { Kontaktoplysninger } from 'src/app/Models/Kontaktoplysninger';
 import { RedigerProfilDialogBoxComponent } from 'src/app/main/rediger-profil-dialog-box/rediger-profil-dialog-box.component';
@@ -42,6 +43,7 @@ export class BrugerAdminSideComponent implements OnInit {
     this.loadBruger();
 
   }
+
   loadBruger(){
 
     return this.restApi.getDatas(this.endpoints).subscribe((user) => {
@@ -64,7 +66,6 @@ export class BrugerAdminSideComponent implements OnInit {
 
   }
 
-
  onFindBrugere(){
     if(this.searchkey == ""){
       this.ngOnInit();
@@ -72,7 +73,6 @@ export class BrugerAdminSideComponent implements OnInit {
     else{
       this.users = this.users.filter(res =>{
         return res.brugernavn.toLowerCase().match(this.searchkey.toLowerCase());
-
       })
 
     }

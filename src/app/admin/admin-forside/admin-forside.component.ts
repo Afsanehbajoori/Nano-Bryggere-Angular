@@ -20,6 +20,7 @@ const TREE_DATA: Search[] = [
     {name: 'Øl',children:[{name: 'Med ØlId'} , {name: 'Med Ølnavn'} , {name: 'Med Øltype'}]} ,
     {name: 'Events', children:[{name: 'Med EventsId'} , {name: 'Med Eventstitel'}]} ,
     {name: 'Forum', children:[{name: 'Med ForumId'} , {name: 'Med ForumTitel'}]} ,
+    {name: 'Tags', children[{name: 'Med TagsId'} , {name: 'Med TagsTitel'}]} ,
     {name: 'Certifikant'}],
   }
 
@@ -38,18 +39,17 @@ export class AdminForsideComponent implements OnInit {
   showCetifikantComponent: boolean=false;
   showOlComponent:boolean=false;
   showEventsComponent:boolean=false;
+  showTagsComponent:boolean=false;
   showBryggeriComponent:boolean=false;
   showRolleComponent:boolean=false;
   showForumComponent:boolean=false;
   showBrugernavnComponent:boolean=false;
   showBrugerEmailComponent:boolean=false;
 
-
   constructor(  public dialog: MatDialog,
     public restApi: RestApiService,
     public router: Router,
     public actRoute: ActivatedRoute) {  this.dataSource.data = TREE_DATA;}
-
 
   hasChild = (_: number, node: Search) => !!node.children && node.children.length > 0;
 
@@ -80,6 +80,10 @@ export class AdminForsideComponent implements OnInit {
     }
     case 'Eventstitel':{
       this.showEventsComponent=!this.showEventsComponent;
+      break;
+    }
+    case 'Tags':{
+      this.showTagsComponent=!this.showTagsComponent;
       break;
     }
     case 'Certifikant':{

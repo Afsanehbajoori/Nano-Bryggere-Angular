@@ -8,7 +8,6 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 import { Kontaktoplysninger } from 'src/app/Models/Kontaktoplysninger';
 import { RedigerProfilDialogBoxComponent } from 'src/app/main/rediger-profil-dialog-box/rediger-profil-dialog-box.component';
 
-
 @Component({
   selector: 'app-bruger-admin-side',
   templateUrl: './bruger-admin-side.component.html',
@@ -28,9 +27,6 @@ export class BrugerAdminSideComponent implements OnInit {
   clickButton:boolean=true;
   kontaktoplysningerList: any;
 
-
-
-
   constructor(
     public dialog: MatDialog,
     public restApi: RestApiService,
@@ -40,17 +36,13 @@ export class BrugerAdminSideComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadBruger();
-
   }
 
   loadBruger(){
-
     return this.restApi.getDatas(this.endpoints).subscribe((user) => {
       this.users = user;
       console.log(this.users);
-
     })
-
   }
   onVisBruger(id:any){
       this.clickButton=false;
@@ -59,10 +51,8 @@ export class BrugerAdminSideComponent implements OnInit {
         this.kontaktoplysningerId=data.kontaktoplysningerId;
         this.restApi.getData(this.kontaktoplysningerId ,this.endpointk ).subscribe((data) => {
           this.kontaktoplysninger = data;
-
         })
       })
-
   }
 
  onFindBrugere(){
@@ -73,9 +63,7 @@ export class BrugerAdminSideComponent implements OnInit {
       this.users = this.users.filter(res =>{
         return res.brugernavn.toLowerCase().match(this.searchkey.toLowerCase());
       })
-
     }
-
   }
 
   onSletBruger(id: any) {
@@ -94,7 +82,6 @@ export class BrugerAdminSideComponent implements OnInit {
           this.loadBruger();
         })
       }
-
     });
   }
 
@@ -118,9 +105,5 @@ export class BrugerAdminSideComponent implements OnInit {
       }
     });
     })
-
-
   };
-
-
 }

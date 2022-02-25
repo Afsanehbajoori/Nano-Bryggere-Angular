@@ -1,33 +1,45 @@
 <mat-card class="main" id="imgeUp">
-    <mat-card-title class="txt" style="margin-top: 100px;">
-      Velkommen til Login side
-    </mat-card-title>
-    <mat-card-content class="container">
-      <form [formGroup]="OlForm" class="example-form">
-        
-          <mat-form-field class="example-full-width" appearance="fill">
-              <input matInput formControlName="navn" class="input-control">
-          </mat-form-field>
-          <mat-form-field class="example-full-width" appearance="fill">
-              <input matInput formControlName="type" class="input-control">
-          </mat-form-field>
-          <mat-form-field class="example-full-width" appearance="fill">
-            <input matInput formControlName="procent" class="input-control">
-        </mat-form-field>
-        <mat-form-field class="example-full-width" appearance="fill">
-            <input matInput formControlName="smag" class="input-control">
-        </mat-form-field>
-        <mat-form-field class="example-full-width" appearance="fill">
-            <input matInput formControlName="beskrivelse" class="input-control">
-        </mat-form-field>
-        <mat-form-field class="example-full-width" appearance="fill">
-            <input matInput formControlName="etiket" class="input-control">
-        </mat-form-field>
-        <mat-form-field class="example-full-width" appearance="fill">
-            <input matInput formControlName="årgang" class="input-control">
-        </mat-form-field>
-        <a routerLink="/ol/sogning" routerLinkActive="active"><span class="material-icons black-color">arrow_back</span></a>
-      </form>
-    </mat-card-content>
-  </mat-card>
-  
+    <table style="width: 100%; height: 100%; display: flex; justify-content: center;">
+        <a routerLink="/ol/sogning" routerLinkActive="active"><span
+                class="material-icons black-color">arrow_back</span></a>
+        <mat-card-content class="container" *ngIf="kontaktoplysninger"
+            style="width: 50%; height: 100%; justify-content: center;">
+            <mat-card-title class="txt" style="height: 8%; margin-top: 100px; background: linear-gradient(rgb(27, 109, 156), rgb(115, 167, 236));">
+                <h1 style="font-weight: bold;">{{ol.navn}}</h1>
+            </mat-card-title>
+            <div *ngIf="ol" fxlayout="row" fxLayoutAlign="center center" class="row-example"
+                style="width: 100%; height: 60%;">
+                <mat-grid-list cols="2" rowHeight="2:1" style="width: 100%; height: 20%;">
+                    <mat-grid-tile style="width: 50%; height: 100%;">
+                        <div>
+                            <h1 style="font-weight: bold;">ØL navn:</h1>
+                            <h1>{{ol.navn}}</h1>
+                            <h1 style="font-weight: bold;">Type:</h1>
+                            <h1>{{ol.type}}</h1>
+                            <h1 style="font-weight: bold;">Procent:</h1>
+                            <h1>{{ol.procent}}</h1>
+                            <h1 style="font-weight: bold;">Smag:</h1>
+                            <h1>{{ol.smag}}</h1>
+                            <h1 style="font-weight: bold;">Beskrivelse:</h1>
+                            <h1>{{ol.beskrivelse}}</h1>
+                        </div>
+                    </mat-grid-tile>
+                    <mat-grid-tile style="width: 50%; height: 100%;">
+                        <div>
+                        <h1 style="font-weight: bold;">Fornavn:</h1>
+                        <h1>{{kontaktoplysninger.fnavn}}</h1>
+                        <h1 style="font-weight: bold;">Efternavn:</h1>
+                        <h1>{{kontaktoplysninger.enavn}}</h1>
+                        <h1 style="font-weight: bold;">Addresse:</h1>
+                        <h1>{{kontaktoplysninger.addresselinje1}}</h1>
+                        <h1 style="font-weight: bold;">Email:</h1>
+                        <h1>{{kontaktoplysninger.email}}</h1>
+                        <h1 style="font-weight: bold;">Telefon Nr:</h1>
+                        <h1>{{kontaktoplysninger.telefonnr}}</h1>
+                    </div>
+                    </mat-grid-tile>
+                </mat-grid-list>
+            </div>
+        </mat-card-content>
+    </table>
+</mat-card>

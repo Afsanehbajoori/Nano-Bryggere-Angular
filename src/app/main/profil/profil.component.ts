@@ -35,7 +35,6 @@ export class ProfilComponent implements OnInit {
   bryggeriId: number;
   valgtefil: File;
   public show: number;
-  // url : string = "assets/images/Gromit Mug.jpg";
   url: string;
   @Input() newBryggeri = { logo: '', navn: '', beskrivelse: '', kontaktoplysningerId: 0 };
   opretteBryggeriForm: any = new FormGroup({});
@@ -52,7 +51,7 @@ export class ProfilComponent implements OnInit {
 
     this.loadKontaktoplysninger();
     this.loadBryggeri();
-
+    // this.bryggeriId
     this.opretteBryggeriForm = this._formBuilder.group({
       'logo': new FormControl(''),
       'navn': new FormControl('', Validators.required),
@@ -95,18 +94,18 @@ export class ProfilComponent implements OnInit {
   };
 
   loadBryggeri() {
-    this.restApi.getData(this.bryggeriId, this.endpointB).subscribe((data) => {
-      this.bryggeriList = data;
-      if (this.bryggeriList.kontaktoplysningerId == this.kontaktoplysningerId) {
-        this.show = 1;
-        console.log(this.show);
-      }
-      else {
-        this.show = 0;
-        console.log(this.show);
-      }
+    return this.restApi.getData(this.bryggeriId, this.endpointB).subscribe((data) => {
+      console.log(this.bryggeriList);
+        this.bryggeriList = data;
+        if (this.bryggeriList.kontaktoplysningerId == this.kontaktoplysningerId) {
+          this.showOB = false;
+          console.log(this.show);
+        }
+        else {
+          this.showOB = true;
+          console.log(this.show);
+        }
     })
-    return true;
   };
 
   sletProfil() {

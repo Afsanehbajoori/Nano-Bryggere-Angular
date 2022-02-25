@@ -2,8 +2,7 @@
     <mat-toolbar class="login-header" style="background: linear-gradient(#34b8cf, #3f68ee);">
         <form class="example-form" style="justify-content: center;">
             <mat-form-field >
-                <!-- <input matInput type="search" placeholder="Find øl" [(ngModel)]="searchkey" (ngModelChange)="onFindOl()" [ngModelOptions]="{standalone: true}"> -->
-                <input matInput type="text" placeholder="Find øl" [(ngModel)]="search">
+                <input matInput type="text" placeholder="Find øl" [(ngModel)]="search" (ngModelChange)="onFindOl()" [ngModelOptions]="{standalone: true}">
             </mat-form-field>
             <mat-form-field style="padding: 50px; font-size:large;">
                 <mat-select [(value)]="selected">

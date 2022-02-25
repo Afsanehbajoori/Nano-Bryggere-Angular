@@ -10,6 +10,7 @@ import { RedigerProfilDialogBoxComponent } from 'src/app/main/rediger-profil-dia
 import { timeStamp } from 'console';
 import { MainRoutingModule } from './../../main/main-routing.module';
 import { ThrowStmt } from '@angular/compiler';
+import { ForumAdminSideComponent } from './../forum-admin-side/forum-admin-side.component';
 
 
 @Component({
@@ -21,7 +22,7 @@ export class BrugerAdminSideComponent implements OnInit {
   dialogRefSlet: MatDialogRef<SletDialogBoxComponent>;
   dialogRefRedigerProfil: MatDialogRef<RedigerProfilDialogBoxComponent>;
   users: Bruger[];
-  user = new Bruger;
+  user = new Bruger();
   endpoints='/Brugere'
   endpointk = '/Kontaktoplysninger';
   searchkeyBrugernavn: string;
@@ -49,8 +50,8 @@ export class BrugerAdminSideComponent implements OnInit {
   }
   loadBruger(){
 
-    return this.restApi.getDatas(this.endpoints).subscribe((user) => {
-      this.users = user;
+    return this.restApi.getDatas(this.endpoints).subscribe((res) => {
+      this.users = res;
       console.log(this.users);
 
     })
@@ -75,25 +76,27 @@ export class BrugerAdminSideComponent implements OnInit {
       this.ngOnInit();
     }
     else{
-      this.users = this.users.filter(res =>{
-        return res.brugernavn.toLowerCase().match(this.searchkeyBrugernavn.toLowerCase());
+       this.users = this.users.filter(res =>{
+         return res.brugernavn.toLowerCase().match(this.searchkeyBrugernavn.toLowerCase());
 
-      })
+       })
 
     }
 
   }
 
   onFindBrugereId(){
-    if(this.searchkeyBrugerId == ''){
+    if(this.searchkeyBrugerId ==''){
       this.ngOnInit();
     }
-    else{
-        this.users= this.users.filter(res => {
-       return res.id.toString() == this.searchkeyBrugerId;
-        //console.log("id:",this.searchkeyBrugerId);
-
-         })
+     else{
+        /*  this.restApi.getData(this.searchkeyBrugerId , this.endpoints).subscribe((data) => {
+          this.users=data;
+    })*/
+    this.users=this.users.filter(res => {
+      return res.id === Number(this.searchkeyBrugerId)
+   // console.log('what:',res.id === Number(this.searchkeyBrugerId))
+    })
 
         }
 
@@ -106,7 +109,6 @@ export class BrugerAdminSideComponent implements OnInit {
     else{
       this.restApi.getDataByEmail(this.searchkeyEmail , this.endpoints).subscribe((data) => {
 
-          console.log(data);
         return  this.users=data;
       })
 

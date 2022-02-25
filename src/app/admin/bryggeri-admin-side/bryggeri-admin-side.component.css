@@ -64,9 +64,15 @@ align-items: center;
  text-align: center;
 }
 
+
 .txtHeader{
   font-size: 15px;
   font-style: oblique;
   font-weight: bold;
-  width: 20%;
+  width: 30%;
+
+
+}
+.mat-tab-group {
+  margin-bottom: 5px;
 }

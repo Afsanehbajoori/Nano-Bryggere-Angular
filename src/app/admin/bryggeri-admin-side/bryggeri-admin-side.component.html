@@ -1,11 +1,23 @@
 <div class="main" id="imgeUp">
   <mat-card >
     <mat-toolbar class="login-header" style="background: linear-gradient(#6c6c6d, #cfd4d6); height: 100px;"  >
+      <mat-tab-group>
+        <mat-tab label="Find bryggeri med bryggerinavn">
       <form class="example-form" style="justify-content: center; width: 100%;">
         <mat-form-field  class="txtHeader">
-            <input matInput type="search" placeholder="Find bryggeri med bryggerinavn" [(ngModel)]="searchkey" (ngModelChange)="onFindBryggeri()" [ngModelOptions]="{standalone: true}" >
+            <input matInput type="search"  [(ngModel)]="searchkeyBryggerinavn" (ngModelChange)="onFindBryggerinavn()" [ngModelOptions]="{standalone: true}" >
         </mat-form-field>
-    </form>
+      </form>
+        </mat-tab>
+        <mat-tab label="Find bryggeri med bryggeriId">
+          <form class="example-form" style="justify-content: center; width: 100%;">
+            <mat-form-field  class="txtHeader">
+                <input matInput type="search"  [(ngModel)]="searchkeyBryggeriId" (ngModelChange)="onFindBryggeriId()" [ngModelOptions]="{standalone: true}" >
+            </mat-form-field>
+          </form>
+            </mat-tab>
+
+  </mat-tab-group>
    </mat-toolbar>
   </mat-card>
   <mat-card>

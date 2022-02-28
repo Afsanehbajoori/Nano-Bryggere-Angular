@@ -15,7 +15,7 @@ const TREE_DATA: Search[] = [
   {
     name: 'Søge',
     children: [{name: 'Bruger', children:[{name: 'Med BrugerEfternavn'} , {name: 'Med Brugernavn'}, {name: 'Med Email'}]},
-    {name: 'Rolle', children:[{name: 'Med RolleId'} , {name: 'Med Rollenavn'}]},
+    {name: 'Rolle', children:[ {name: 'Med Rollenavn'}]},
     {name: 'Bryggeri',children:[{name: 'Med BryggeriSamarbejde'} , {name: 'Med Bryggerinavn'}]},
     {name: 'Øl',children:[{name: 'Med ØlId'} , {name: 'Med Ølnavn'} , {name: 'Med Øltype'}]} ,
     {name: 'Events', children:[{name: 'Med EventsId'} , {name: 'Med Eventstitel'}]} ,

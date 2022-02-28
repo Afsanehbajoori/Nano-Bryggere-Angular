@@ -31,11 +31,10 @@ export class ProfilComponent implements OnInit {
   showFillerP = false;
   showFillerB = false;
   showFillerOB = false;
-  showOB = false;
   kontaktoplysningerId: number;
   bryggeriId: number;
   valgtefil: File;
-  public show: number;
+  showOB:boolean ;
   // url : string = "assets/images/Gromit Mug.jpg";
   url: string;
   @Input() newBryggeri = { logo: '', navn: '', beskrivelse: '', kontaktoplysningerId:0 };
@@ -51,7 +50,7 @@ export class ProfilComponent implements OnInit {
   ngOnInit(): void {
     this.kontaktoplysningerId = JSON.parse(localStorage.getItem('kontaktoplysningerId') || '{}');
     this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}');
-    this.url=JSON.parse(localStorage.getItem('logo') || '{}');
+    this.url = JSON.parse(localStorage.getItem('logo') || '{}');
     this.loadKontaktoplysninger();
     this.loadBryggeri();
 
@@ -63,13 +62,39 @@ export class ProfilComponent implements OnInit {
     })
   }
 
+  loadKontaktoplysninger() {
+    return this.restApi.getData(this.kontaktoplysningerId, this.endpointK).subscribe((data) => {
+      this.kontaktoplysningerList = data;
+
+
+    })
+  };
+
+  loadBryggeri() {
+
+    this.restApi.getData(this.bryggeriId, this.endpointB).subscribe((data) => {
+    this.bryggeriList = data;
+    console.log("bryggerilist:",this.bryggeriList);
+    console.log("konId" , this.kontaktoplysningerId);
+    console.log("bryggeriList.kontaktoplysningerId:" , this.bryggeriList.kontaktoplysningerId);
+    if(this.bryggeriList.kontaktoplysningerId != this.kontaktoplysningerId){
+      console.log("true:", true)
+      this.showOB=true;
+    }
+    else{
+      console.log("false:", false)
+      this.showOB=false;
+    }
+  });
+}
+
   onSubmitCertifikats(event: any) {
     if (event.target.files) {
       var reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]);
       reader.onload = (e: any) => {
         this.bryggeriList.logo = e.target.result;
-       // console.log(this.bryggeriList.logo);
+ //      console.log(this.bryggeriList.logo);
         localStorage.setItem('logo', JSON.stringify(this.bryggeriList.logo));
 
       }
@@ -78,57 +103,24 @@ export class ProfilComponent implements OnInit {
 
   opretteBryggeri() {
     if (this.newBryggeri.navn != '') {
-      console.log("test:", this.kontaktoplysningerId);
-      this.newBryggeri.kontaktoplysningerId = this.kontaktoplysningerId;
-      console.log("kontaktoplysningerId:" ,  this.newBryggeri.kontaktoplysningerId);
-      this.newBryggeri.logo = JSON.parse(localStorage.getItem('logo') || '{}');
-      this.restApi.createData(this.newBryggeri, this.endpointB).subscribe((data) => {
-        localStorage.setItem('bryggeriId', JSON.stringify(data.id));
-        this.ngOnInit();
-        if (data) {
-          this.snackBar.open('Oprette ny bryggei succed')
-          this.onClose();
-        }
-      })
+    console.log("test:", this.kontaktoplysningerId);
+    this.newBryggeri.kontaktoplysningerId = this.kontaktoplysningerId;
+    console.log("kontaktoplysningerId:" ,  this.newBryggeri.kontaktoplysningerId);
+    this.newBryggeri.logo = JSON.parse(localStorage.getItem('logo') || '{}');
+    this.restApi.createData(this.newBryggeri, this.endpointB).subscribe((data) => {
+      localStorage.setItem('bryggeriId', JSON.stringify(data.id));
+      this.ngOnInit();
+      if (data) {
+        this.showOB=false;
+        this.snackBar.open('Oprette ny bryggei succed')
+        this.onClose();
+      }
+    })
     }
   }
 
-  loadKontaktoplysninger() {
-    return this.restApi.getData(this.kontaktoplysningerId, this.endpointK).subscribe((data) => {
-      this.kontaktoplysningerList = data;
-      console.log("kontId:",this.kontaktoplysningerList);
-    })
-  };
 
-  loadBryggeri() {
-    this.restApi.getData(this.bryggeriId, this.endpointB).subscribe((data) => {
-      this.bryggeriList = data;
-      console.log("bryggerilist:",this.bryggeriList);
-      if(this.bryggeriList.kontaktoplysningerId == this.kontaktoplysningerId)
-      {
-        console.log("hiT:",this.bryggeriList.kontaktoplysningerId)
-        console.log("true" , true)
-      }
-      console.log("hiF:",this.bryggeriList.kontaktoplysningerId)
-      console.log(false);
-    });
 
-  }
-
- /*  loadBryggeri() {
-    this.restApi.getData(this.bryggeriId, this.endpointB).subscribe((data) => {
-      this.bryggeriList = data;
-      if (this.bryggeriList.kontaktoplysningerId == this.kontaktoplysningerId) {
-        this.show = 1;
-        console.log(this.show);
-      }
-      else {
-        this.show = 0;
-        console.log(this.show);
-      }
-    })
-    return true;
-  }; */
 
   sletProfil() {
     this.dialogRefSlet = this.dialog.open(SletDialogBoxComponent, {
@@ -153,7 +145,6 @@ export class ProfilComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.width = "40%";
     this.dialogRefRedigerProfil = this.dialog.open(RedigerProfilDialogBoxComponent, dialogConfig);
-
     this.dialogRefRedigerProfil.afterClosed().subscribe(result => {
       if (result) {
         this.kontaktoplysningerList = result;
@@ -203,10 +194,10 @@ export class ProfilComponent implements OnInit {
     this.showFillerOB = false;
   }
 
-/*   onUploadCertifikat() {
+  onUploadCertifikat() {
     const fd = new FormData();
     this.restApi.updateData(this.bryggeriId, this.endpointB, this.bryggeriList).subscribe((data) => {
       console.log(this.bryggeriList);
     })
-  }; */
+  };
 }

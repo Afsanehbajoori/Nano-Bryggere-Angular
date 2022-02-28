@@ -20,7 +20,7 @@ export class BryggeriAdminSideComponent implements OnInit {
   endpoints = '/Brugere';
   endpointB='/Bryggerier';
   searchkeyBryggerinavn: string;
-  searchkeyBryggeriId:string;
+  searchkeyBryggeriSamarbejde:string;
   id = this.actRoute.snapshot.params['id'];
   clickButton:boolean=true;
   bryggeriList: any;
@@ -59,14 +59,14 @@ b: any ='';
     }
   }
 
-  onFindBryggeriId(){
-    if(this.searchkeyBryggeriId == ''){
+  onFindBryggeriSamarbejde(){
+    if(this.searchkeyBryggeriSamarbejde == ''){
       this.ngOnInit();
     }
     else{
       this.restApi.getDatas(this.endpointB).subscribe(res => {
       this. b = res.filter((a:any) => {
-        if(a.id === Number(this.searchkeyBryggeriId))
+        if(a.id === Number(this.searchkeyBryggeriSamarbejde))
         {
           console.log(this.b)
         }

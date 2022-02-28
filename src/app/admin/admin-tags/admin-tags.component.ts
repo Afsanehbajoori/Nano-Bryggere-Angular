@@ -4,19 +4,14 @@ import { Tags } from 'src/app/Models/Tags';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 
 @Component({
-  selector: 'app-forum-tags',
-  templateUrl: './forum-tags.component.html',
-  styleUrls: ['./forum-tags.component.css']
+  selector: 'app-admin-tags',
+  templateUrl: './admin-tags.component.html',
+  styleUrls: ['./admin-tags.component.css']
 })
-export class ForumTagsComponent implements OnInit {
-  tag: Tags;
-  tags: any;
+export class AdminTagsComponent implements OnInit {
   tagsliste: Tags[];
-  searchkey: string;
-  search: any;
   endpoints = '/Tags';
-  beerid = JSON.parse(localStorage.getItem('bryggeriId') || '{}')
-  olList : any = {};
+  searchkey: string;
   constructor(
     public restApi: RestApiService,
     private router: Router
@@ -25,13 +20,19 @@ export class ForumTagsComponent implements OnInit {
   ngOnInit(): void {
     this.loadTags()
   }
-
   loadTags() {
     return this.restApi.getDatas(this.endpoints).subscribe((tag) => {
       this.tagsliste = tag;
     });
   }
-
+  onOpretTags() {
+    this.router.navigate(['../admin/tagsadmin']);
+  }
+  onSletTags(id:any) {
+    return this.restApi.deleteData(id,this.endpoints).subscribe((tag) => {
+      this.tagsliste = tag;
+    });
+  }
   onFindOl(){
     if(this.searchkey == ""){
       this.ngOnInit();
@@ -41,11 +42,5 @@ export class ForumTagsComponent implements OnInit {
         return res.navn.toLowerCase().match(this.searchkey.toLowerCase());
       })
     }
-  }
-
-  onTilfojTag(id:any){
-    this.restApi.updateData(this.beerid, this.endpoints, this.olList).subscribe((data) => {
-      this.router.navigate(['../main/katalog'])
-    });
   }
 }

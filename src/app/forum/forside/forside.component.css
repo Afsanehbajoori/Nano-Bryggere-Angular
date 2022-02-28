@@ -29,6 +29,15 @@
     font-style: oblique;
   }
 
+  .messageStyle{
+    background-color: rgb(252, 252, 252);
+    margin-left: 150px;
+    width: 30%;
+    margin-top: 10px;
+    padding-left: 40px;
+    font-style: oblique;
+  }
+
 .centers{
   margin: auto;
   width: 50%;

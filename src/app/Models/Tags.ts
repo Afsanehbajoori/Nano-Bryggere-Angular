@@ -9,6 +9,4 @@ export class Tags
   public events: Events;
   public forum: FormBuilder;
   public øl : Øl;
-
-
 }

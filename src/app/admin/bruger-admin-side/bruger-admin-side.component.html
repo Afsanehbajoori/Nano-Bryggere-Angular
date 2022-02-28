@@ -1,3 +1,8 @@
+<div>
+    <mat-toolbar class="login-header" style="background: linear-gradient(#238ff5, #23baf5);">
+        <form class="example-form" style="justify-content: center; width: 100%;">
+            <mat-form-field style="width: 10%;">
+                <input matInput type="search" placeholder="Find Bruger" [(ngModel)]="searchkey" (ngModelChange)="onFindBrugere()" [ngModelOptions]="{standalone: true}">
 <div class="main" id="imgeUp">
   <mat-card >
     <mat-toolbar class="login-header" style="background: linear-gradient(#6c6c6d, #cfd4d6); height: 100px;"  >
@@ -34,6 +39,7 @@
                 <mat-expansion-panel-header
                     style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236)); justify-content: center; width: 100%;">
                     <mat-panel-title class="centers" style="justify-content: center;">
+                        {{user.brugernavn}}
                        <span style="font-weight: bold; margin-right: 20px;"> Brugernavn:</span>
                        <span>{{user.brugernavn}}</span>
                        <!-- <span>{{user.key}}</span> -->

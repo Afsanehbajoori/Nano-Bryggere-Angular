@@ -13,6 +13,7 @@ import { ThrowStmt } from '@angular/compiler';
 import { ForumAdminSideComponent } from './../forum-admin-side/forum-admin-side.component';
 
 
+
 @Component({
   selector: 'app-bruger-admin-side',
   templateUrl: './bruger-admin-side.component.html',
@@ -26,14 +27,14 @@ export class BrugerAdminSideComponent implements OnInit {
   endpoints='/Brugere'
   endpointk = '/Kontaktoplysninger';
   searchkeyBrugernavn: string;
-  searchkeyBrugerId:string;
+  searchkeyBrugerEnavn:string;
   searchkeyEmail:string;
   kontaktoplysninger:any;
   id = this.actRoute.snapshot.params['id'];
   kontaktoplysningerId:number;
   clickButton:boolean=true;
   kontaktoplysningerList: any;
-
+  kontakt:Kontaktoplysninger[];
 
 
 
@@ -46,21 +47,27 @@ export class BrugerAdminSideComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadBruger();
+    // this.loadKontaktoplysninger();
 
   }
+
   loadBruger(){
 
     return this.restApi.getDatas(this.endpoints).subscribe((res) => {
-      this.users = res;
-      console.log(this.users);
-
-    })
-
+        this.users = res;
+        console.log(this.users);
+      })
   }
+
+/*   loadKontaktoplysninger(){
+    return this.restApi.getDatas(this.endpointk).subscribe((res) => {
+      this.kontakt = res;
+      console.log(this.kontakt)
+    })
+  } */
   onVisBruger(id:any){
       this.clickButton=false;
       return this.restApi.getData(id , this.endpoints).subscribe((data) => {
-        //console.log("kontId:",data.kontaktoplysningerId);
         this.kontaktoplysningerId=data.kontaktoplysningerId;
         this.restApi.getData(this.kontaktoplysningerId ,this.endpointk ).subscribe((data) => {
           this.kontaktoplysninger = data;
@@ -71,36 +78,31 @@ export class BrugerAdminSideComponent implements OnInit {
   }
 
 
+
   onFindBrugerenavn(){
     if(this.searchkeyBrugernavn == ""){
       this.ngOnInit();
     }
     else{
-       this.users = this.users.filter(res =>{
-         return res.brugernavn.toLowerCase().match(this.searchkeyBrugernavn.toLowerCase());
+      this.users = this.users.filter(res =>{
+      return  res.brugernavn.toLowerCase().match(this.searchkeyBrugernavn.toLowerCase());
 
-       })
-
+      })
     }
-
   }
 
-  onFindBrugereId(){
-    if(this.searchkeyBrugerId ==''){
+
+  onFindBrugereEnavn(){
+    if(this.searchkeyBrugerEnavn ==''){
       this.ngOnInit();
     }
      else{
-        /*  this.restApi.getData(this.searchkeyBrugerId , this.endpoints).subscribe((data) => {
-          this.users=data;
-    })*/
-    this.users=this.users.filter(res => {
-      return res.id === Number(this.searchkeyBrugerId)
-   // console.log('what:',res.id === Number(this.searchkeyBrugerId))
-    })
-
+      this.restApi.getDataByEnavn(this.searchkeyBrugerEnavn , this.endpoints).subscribe((data) => {
+        return this.users=data;
+      })
         }
-
   }
+
 
   onFindEmail(){
     if(this.searchkeyEmail == ""){
@@ -108,7 +110,6 @@ export class BrugerAdminSideComponent implements OnInit {
     }
     else{
       this.restApi.getDataByEmail(this.searchkeyEmail , this.endpoints).subscribe((data) => {
-
         return  this.users=data;
       })
 

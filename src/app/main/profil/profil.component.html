@@ -6,7 +6,11 @@
       <img [src]="this.url" alt="" style="width: 20%; height: 20%;">
       <button class="btnStyle" (click)="showFillerP = !showFillerP">Vis Kontakt Oplysninger</button>
       <button class="btnStyle" (click)="showFillerB = !showFillerB">Vis Bryggeri Oplysninger</button>
-      <button class="btnStyle" (click)="showFillerOB = !showFillerOB" *ngIf="bryggeriId">Oprette ny Bryggeri</button>
+      <div [ngSwitch]="show">
+        <button class="btnStyle" *ngSwitchCase="0" (click)="showFillerOB = !showFillerOB">Oprette ny Bryggeri</button>
+        <div *ngSwitchCase="1"></div>
+      </div>
+      <input type="file" class="btnMainStyle" (change)="onSubmitCertifikats($event)">
       <!-- <button class="btnStyle" (click)="onUploadCertifikat()">Opdater Billed</button> -->
     </div>
   </mat-drawer>

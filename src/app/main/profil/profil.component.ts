@@ -9,7 +9,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm, FormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormBuilder } from '@angular/forms';
-// import { HttpEventType } from '@angular/common/http';
+import { Kontaktoplysninger } from 'src/app/Models/Kontaktoplysninger';
+
 
 @Component({
   selector: 'app-profil',
@@ -36,7 +37,7 @@ export class ProfilComponent implements OnInit {
   valgtefil: File;
   public show: number;
   url: string;
-  @Input() newBryggeri = { logo: '', navn: '', beskrivelse: '', kontaktoplysningerId: 0 };
+  @Input() newBryggeri = { logo: '', navn: '', beskrivelse: '', kontaktoplysningerId:0 };
   opretteBryggeriForm: any = new FormGroup({});
 
   constructor(public dialog: MatDialog,
@@ -48,6 +49,11 @@ export class ProfilComponent implements OnInit {
 
   ngOnInit(): void {
     this.kontaktoplysningerId = JSON.parse(localStorage.getItem('kontaktoplysningerId') || '{}');
+
+    this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}');
+    this.url=JSON.parse(localStorage.getItem('logo') || '{}');
+
+
     this.loadKontaktoplysninger();
     if(this.bryggeriId != null){
       this.loadBryggeri();
@@ -71,15 +77,18 @@ export class ProfilComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]);
       reader.onload = (e: any) => {
         this.bryggeriList.logo = e.target.result;
-        console.log(this.bryggeriList.logo);
+       // console.log(this.bryggeriList.logo);
         localStorage.setItem('logo', JSON.stringify(this.bryggeriList.logo));
+
       }
     }
   };
 
   opretteBryggeri() {
     if (this.newBryggeri.navn != '') {
+      console.log("test:", this.kontaktoplysningerId);
       this.newBryggeri.kontaktoplysningerId = this.kontaktoplysningerId;
+      console.log("kontaktoplysningerId:" ,  this.newBryggeri.kontaktoplysningerId);
       this.newBryggeri.logo = JSON.parse(localStorage.getItem('logo') || '{}');
       this.restApi.createData(this.newBryggeri, this.endpointB).subscribe((data) => {
         localStorage.setItem('bryggeriId', JSON.stringify(data.id));
@@ -95,23 +104,42 @@ export class ProfilComponent implements OnInit {
   loadKontaktoplysninger() {
     return this.restApi.getData(this.kontaktoplysningerId, this.endpointK).subscribe((data) => {
       this.kontaktoplysningerList = data;
+      console.log("kontId:",this.kontaktoplysningerList);
     })
   };
 
   loadBryggeri() {
-    return this.restApi.getData(this.bryggeriId, this.endpointB).subscribe((data) => {
-      console.log(this.bryggeriList);
-        this.bryggeriList = data;
-        if (this.bryggeriList.kontaktoplysningerId == this.kontaktoplysningerId) {
-          this.showOB = false;
-          console.log(this.show);
-        }
-        else {
-          this.showOB = true;
-          console.log(this.show);
-        }
+
+    this.restApi.getData(this.bryggeriId, this.endpointB).subscribe((data) => {
+      this.bryggeriList = data;
+      console.log("bryggerilist:",this.bryggeriList);
+      if(this.bryggeriList.kontaktoplysningerId == this.kontaktoplysningerId)
+      {
+        console.log("hiT:",this.bryggeriList.kontaktoplysningerId)
+        console.log("true" , true)
+      }
+      console.log("hiF:",this.bryggeriList.kontaktoplysningerId)
+      console.log(false);
+    });
+
+  }
+
+ /*  loadBryggeri() {
+    this.restApi.getData(this.bryggeriId, this.endpointB).subscribe((data) => {
+      this.bryggeriList = data;
+      if (this.bryggeriList.kontaktoplysningerId == this.kontaktoplysningerId) {
+        this.show = 1;
+        console.log(this.show);
+      }
+      else {
+        this.show = 0;
+        console.log(this.show);
+      }
     })
-  };
+    return true;
+  }; */
+
+
 
   sletProfil() {
     this.dialogRefSlet = this.dialog.open(SletDialogBoxComponent, {
@@ -186,10 +214,13 @@ export class ProfilComponent implements OnInit {
     this.showFillerOB = false;
   }
 
-  onUploadCertifikat() {
+/*   onUploadCertifikat() {
     const fd = new FormData();
     this.restApi.updateData(this.bryggeriId, this.endpointB, this.bryggeriList).subscribe((data) => {
       console.log(this.bryggeriList);
     })
-  };
+
+  }; */
 }
+
+

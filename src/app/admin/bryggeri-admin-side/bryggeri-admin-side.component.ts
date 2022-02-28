@@ -39,6 +39,7 @@ b: any ='';
   loadBryggeri(){
     return this.restApi.getDatas(this.endpointB).subscribe((brygge) => {
       this.bryggeri = brygge;
+      console.log(this.bryggeri);
     })
   }
   onVisBryggeri(id:any) {

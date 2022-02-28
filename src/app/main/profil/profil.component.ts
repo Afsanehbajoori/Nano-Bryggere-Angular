@@ -48,9 +48,14 @@ export class ProfilComponent implements OnInit {
 
   ngOnInit(): void {
     this.kontaktoplysningerId = JSON.parse(localStorage.getItem('kontaktoplysningerId') || '{}');
-
     this.loadKontaktoplysninger();
-    this.loadBryggeri();
+    if(this.bryggeriId != null){
+      this.loadBryggeri();
+    }
+    if(this.bryggeriId == null)
+    {
+      this.showFillerOB = true;
+    }
     // this.bryggeriId
     this.opretteBryggeriForm = this._formBuilder.group({
       'logo': new FormControl(''),

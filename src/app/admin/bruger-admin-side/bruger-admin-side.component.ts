@@ -13,7 +13,6 @@ import { ThrowStmt } from '@angular/compiler';
 import { ForumAdminSideComponent } from './../forum-admin-side/forum-admin-side.component';
 
 
-
 @Component({
   selector: 'app-bruger-admin-side',
   templateUrl: './bruger-admin-side.component.html',
@@ -71,10 +70,8 @@ export class BrugerAdminSideComponent implements OnInit {
         this.kontaktoplysningerId=data.kontaktoplysningerId;
         this.restApi.getData(this.kontaktoplysningerId ,this.endpointk ).subscribe((data) => {
           this.kontaktoplysninger = data;
-
         })
       })
-
   }
 
 
@@ -133,7 +130,6 @@ export class BrugerAdminSideComponent implements OnInit {
           this.loadBruger();
         })
       }
-
     });
   }
 
@@ -157,9 +153,5 @@ export class BrugerAdminSideComponent implements OnInit {
       }
     });
     })
-
-
   };
-
-
 }

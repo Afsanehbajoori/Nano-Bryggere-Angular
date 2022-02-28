@@ -36,7 +36,6 @@ export class ProfilComponent implements OnInit {
   bryggeriId: number;
   valgtefil: File;
   public show: number;
-  // url : string = "assets/images/Gromit Mug.jpg";
   url: string;
   @Input() newBryggeri = { logo: '', navn: '', beskrivelse: '', kontaktoplysningerId:0 };
   opretteBryggeriForm: any = new FormGroup({});
@@ -50,11 +49,20 @@ export class ProfilComponent implements OnInit {
 
   ngOnInit(): void {
     this.kontaktoplysningerId = JSON.parse(localStorage.getItem('kontaktoplysningerId') || '{}');
+
     this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}');
     this.url=JSON.parse(localStorage.getItem('logo') || '{}');
-    this.loadKontaktoplysninger();
-    this.loadBryggeri();
 
+
+    this.loadKontaktoplysninger();
+    if(this.bryggeriId != null){
+      this.loadBryggeri();
+    }
+    if(this.bryggeriId == null)
+    {
+      this.showFillerOB = true;
+    }
+    // this.bryggeriId
     this.opretteBryggeriForm = this._formBuilder.group({
       'logo': new FormControl(''),
       'navn': new FormControl('', Validators.required),
@@ -101,6 +109,7 @@ export class ProfilComponent implements OnInit {
   };
 
   loadBryggeri() {
+
     this.restApi.getData(this.bryggeriId, this.endpointB).subscribe((data) => {
       this.bryggeriList = data;
       console.log("bryggerilist:",this.bryggeriList);
@@ -129,6 +138,8 @@ export class ProfilComponent implements OnInit {
     })
     return true;
   }; */
+
+
 
   sletProfil() {
     this.dialogRefSlet = this.dialog.open(SletDialogBoxComponent, {
@@ -208,5 +219,8 @@ export class ProfilComponent implements OnInit {
     this.restApi.updateData(this.bryggeriId, this.endpointB, this.bryggeriList).subscribe((data) => {
       console.log(this.bryggeriList);
     })
+
   }; */
 }
+
+

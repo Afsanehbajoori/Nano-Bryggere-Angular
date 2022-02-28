@@ -20,12 +20,10 @@ const TREE_DATA: Search[] = [
     {name: 'Øl',children:[{name: 'Med ØlId'} , {name: 'Med Ølnavn'} , {name: 'Med Øltype'}]} ,
     {name: 'Events', children:[{name: 'Med EventsId'} , {name: 'Med Eventstitel'}]} ,
     {name: 'Forum', children:[{name: 'Med ForumId'} , {name: 'Med ForumTitel'}]} ,
-    {name: 'Tags', children:[{name: 'Med TagsId'} , {name: 'Med TagsTitel'}]} ,
+    {name: 'Tags'} ,
     {name: 'Certifikant'}],
   }
-
 ];
-
 
 @Component({
   selector: 'app-admin-forside',
@@ -56,7 +54,6 @@ export class AdminForsideComponent implements OnInit {
   ngOnInit(): void {
 
   }
-
 
   showComponent(nodeName : string){
   console.log(nodeName);
@@ -107,10 +104,5 @@ export class AdminForsideComponent implements OnInit {
       break;
     }
   }
-
-
-
-
   }
-
 }

@@ -19,11 +19,12 @@ export class BryggeriAdminSideComponent implements OnInit {
   brygge = new Bryggeri;
   endpoints = '/Brugere';
   endpointB='/Bryggerier';
-  searchkey: string;
+  searchkeyBryggerinavn: string;
+  searchkeyBryggeriSamarbejde:string;
   id = this.actRoute.snapshot.params['id'];
   clickButton:boolean=true;
   bryggeriList: any;
-
+b: any ='';
 
   constructor(
     public dialog: MatDialog,
@@ -47,15 +48,37 @@ export class BryggeriAdminSideComponent implements OnInit {
     })
   };
 
-  onFindBryggeri(){
-    if(this.searchkey == ""){
+  onFindBryggerinavn(){
+    if(this.searchkeyBryggerinavn == ""){
       this.ngOnInit();
     }
     else{
       this.bryggeri = this.bryggeri.filter(res =>{
-        return res.navn.toLowerCase().match(this.searchkey.toLowerCase());
+        return res.navn.toLowerCase().match(this.searchkeyBryggerinavn.toLowerCase());
       })
     }
+  }
+
+  onFindBryggeriSamarbejde(){
+    if(this.searchkeyBryggeriSamarbejde == ''){
+      this.ngOnInit();
+    }
+    else{
+      this.restApi.getDatas(this.endpointB).subscribe(res => {
+      this. b = res.filter((a:any) => {
+        if(a.id === Number(this.searchkeyBryggeriSamarbejde))
+        {
+          console.log(this.b)
+        }
+        })
+      })
+
+        //console.log("id:",this.bryggeri);
+
+
+
+        }
+
   }
 
   onSletBryggeri(id: any) {

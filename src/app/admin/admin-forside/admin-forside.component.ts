@@ -14,9 +14,9 @@ interface Search {
 const TREE_DATA: Search[] = [
   {
     name: 'Søge',
-    children: [{name: 'Bruger', children:[{name: 'Med BrugerId'} , {name: 'Med Brugernavn'}, {name: 'Med Email'}]},
+    children: [{name: 'Bruger', children:[{name: 'Med BrugerEfternavn'} , {name: 'Med Brugernavn'}, {name: 'Med Email'}]},
     {name: 'Rolle', children:[{name: 'Med RolleId'} , {name: 'Med Rollenavn'}]},
-    {name: 'Bryggeri',children:[{name: 'Med BryggeriId'} , {name: 'Med Bryggerinavn'}]},
+    {name: 'Bryggeri',children:[{name: 'Med BryggeriSamarbejde'} , {name: 'Med Bryggerinavn'}]},
     {name: 'Øl',children:[{name: 'Med ØlId'} , {name: 'Med Ølnavn'} , {name: 'Med Øltype'}]} ,
     {name: 'Events', children:[{name: 'Med EventsId'} , {name: 'Med Eventstitel'}]} ,
     {name: 'Forum', children:[{name: 'Med ForumId'} , {name: 'Med ForumTitel'}]} ,
@@ -62,11 +62,11 @@ export class AdminForsideComponent implements OnInit {
   console.log(nodeName);
   switch (nodeName)
   {
-    case 'Med BrugerId':{
+    case 'Med Brugernavn':{
       this.showBrugernavnComponent=!this.showBrugernavnComponent;
       break;
     }
-    case 'Med Brugernavn':{
+    case 'Med BrugerEfternavn':{
       this.showBrugernavnComponent=!this.showBrugernavnComponent;
       break;
     }
@@ -91,6 +91,10 @@ export class AdminForsideComponent implements OnInit {
       break;
     }
     case 'Med Bryggerinavn':{
+      this.showBryggeriComponent=!this.showBryggeriComponent;
+      break;
+    }
+    case 'Med BryggeriSamarbejde':{
       this.showBryggeriComponent=!this.showBryggeriComponent;
       break;
     }

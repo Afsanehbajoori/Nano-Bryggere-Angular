@@ -10,6 +10,8 @@ import { RedigerProfilDialogBoxComponent } from 'src/app/main/rediger-profil-dia
 import { timeStamp } from 'console';
 import { MainRoutingModule } from './../../main/main-routing.module';
 import { ThrowStmt } from '@angular/compiler';
+import { ForumAdminSideComponent } from './../forum-admin-side/forum-admin-side.component';
+
 
 
 @Component({
@@ -21,18 +23,18 @@ export class BrugerAdminSideComponent implements OnInit {
   dialogRefSlet: MatDialogRef<SletDialogBoxComponent>;
   dialogRefRedigerProfil: MatDialogRef<RedigerProfilDialogBoxComponent>;
   users: Bruger[];
-  user = new Bruger;
+  user = new Bruger();
   endpoints='/Brugere'
   endpointk = '/Kontaktoplysninger';
   searchkeyBrugernavn: string;
-  searchkeyBrugerId:string;
+  searchkeyBrugerEnavn:string;
   searchkeyEmail:string;
   kontaktoplysninger:any;
   id = this.actRoute.snapshot.params['id'];
   kontaktoplysningerId:number;
   clickButton:boolean=true;
   kontaktoplysningerList: any;
-
+  kontakt:Kontaktoplysninger[];
 
 
 
@@ -45,22 +47,27 @@ export class BrugerAdminSideComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadBruger();
+    // this.loadKontaktoplysninger();
 
   }
 
   loadBruger(){
 
-    return this.restApi.getDatas(this.endpoints).subscribe((user) => {
-      this.users = user;
-      console.log(this.users);
-
-    })
-
+    return this.restApi.getDatas(this.endpoints).subscribe((res) => {
+        this.users = res;
+        console.log(this.users);
+      })
   }
+
+/*   loadKontaktoplysninger(){
+    return this.restApi.getDatas(this.endpointk).subscribe((res) => {
+      this.kontakt = res;
+      console.log(this.kontakt)
+    })
+  } */
   onVisBruger(id:any){
       this.clickButton=false;
       return this.restApi.getData(id , this.endpoints).subscribe((data) => {
-        //console.log("kontId:",data.kontaktoplysningerId);
         this.kontaktoplysningerId=data.kontaktoplysningerId;
         this.restApi.getData(this.kontaktoplysningerId ,this.endpointk ).subscribe((data) => {
           this.kontaktoplysninger = data;
@@ -74,36 +81,28 @@ export class BrugerAdminSideComponent implements OnInit {
 
   onFindBrugerenavn(){
     if(this.searchkeyBrugernavn == ""){
-
       this.ngOnInit();
     }
     else{
       this.users = this.users.filter(res =>{
-
-        return res.brugernavn.toLowerCase().match(this.searchkeyBrugernavn.toLowerCase());
-
-
+      return  res.brugernavn.toLowerCase().match(this.searchkeyBrugernavn.toLowerCase());
 
       })
-
     }
-
   }
 
-  onFindBrugereId(){
-    if(this.searchkeyBrugerId == ''){
+
+  onFindBrugereEnavn(){
+    if(this.searchkeyBrugerEnavn ==''){
       this.ngOnInit();
     }
-    else{
-        this.users= this.users.filter(res => {
-       return res.id.toString() == this.searchkeyBrugerId;
-        //console.log("id:",this.searchkeyBrugerId);
-
-         })
-
+     else{
+      this.restApi.getDataByEnavn(this.searchkeyBrugerEnavn , this.endpoints).subscribe((data) => {
+        return this.users=data;
+      })
         }
-
   }
+
 
   onFindEmail(){
     if(this.searchkeyEmail == ""){
@@ -111,8 +110,6 @@ export class BrugerAdminSideComponent implements OnInit {
     }
     else{
       this.restApi.getDataByEmail(this.searchkeyEmail , this.endpoints).subscribe((data) => {
-
-          console.log(data);
         return  this.users=data;
       })
 

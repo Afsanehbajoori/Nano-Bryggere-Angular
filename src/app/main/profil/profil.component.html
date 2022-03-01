@@ -97,8 +97,7 @@
             </mat-card>
             <mat-action-row>
               <button mat-button color="primary" (click)="sletBryggeri()" class="btnMainStyle">Slet Bryggeri</button>
-              <button mat-button color="primary" (click)="redigerBryggeri()" class="btnMainStyle">Rediger
-                Bryggeri</button>
+              <button mat-button color="primary" (click)="redigerBryggeri()" class="btnMainStyle">Rediger Bryggeri</button>
             </mat-action-row>
           </mat-expansion-panel>
         </mat-accordion>
@@ -121,7 +120,7 @@
               <mat-form-field appearance="fill" class="example-full-width">
                 <mat-label>Logo</mat-label>
                 <input matInput placeholder="billede" formControlName="logo" [(ngModel)]="newBryggeri.logo">
-                <input type="file" class="btnMainStyle" (change)="onSubmitCertifikats($event)" >
+                <input type="file" class="btnMainStyle" (change)="onSubmitCertifikats($event)">
               </mat-form-field>
               <mat-form-field appearance="fill" class="example-full-width">
                 <mat-label>Navn</mat-label>

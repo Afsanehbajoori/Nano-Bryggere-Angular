@@ -34,8 +34,12 @@ export class ProfilComponent implements OnInit {
   kontaktoplysningerId: number;
   bryggeriId: number;
   valgtefil: File;
+<<<<<<< HEAD
   showOB:boolean ;
   // url : string = "assets/images/Gromit Mug.jpg";
+=======
+  public show: number;
+>>>>>>> ea0dfb6453d974199065adaad280137818cbdb63
   url: string;
   @Input() newBryggeri = { logo: '', navn: '', beskrivelse: '', kontaktoplysningerId:0 };
   opretteBryggeriForm: any = new FormGroup({});
@@ -49,11 +53,26 @@ export class ProfilComponent implements OnInit {
 
   ngOnInit(): void {
     this.kontaktoplysningerId = JSON.parse(localStorage.getItem('kontaktoplysningerId') || '{}');
+
     this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}');
+<<<<<<< HEAD
     this.url = JSON.parse(localStorage.getItem('logo') || '{}');
     this.loadKontaktoplysninger();
     this.loadBryggeri();
+=======
+    this.url=JSON.parse(localStorage.getItem('logo') || '{}');
+>>>>>>> ea0dfb6453d974199065adaad280137818cbdb63
 
+
+    this.loadKontaktoplysninger();
+    if(this.bryggeriId != null){
+      this.loadBryggeri();
+    }
+    if(this.bryggeriId == null)
+    {
+      this.showFillerOB = true;
+    }
+    // this.bryggeriId
     this.opretteBryggeriForm = this._formBuilder.group({
       'logo': new FormControl(''),
       'navn': new FormControl('', Validators.required),
@@ -118,6 +137,24 @@ export class ProfilComponent implements OnInit {
     })
     }
   }
+
+
+<<<<<<< HEAD
+=======
+  loadBryggeri() {
+
+    this.restApi.getData(this.bryggeriId, this.endpointB).subscribe((data) => {
+      this.bryggeriList = data;
+      console.log("bryggerilist:",this.bryggeriList);
+      if(this.bryggeriList.kontaktoplysningerId == this.kontaktoplysningerId)
+      {
+        console.log("hiT:",this.bryggeriList.kontaktoplysningerId)
+        console.log("true" , true)
+      }
+      console.log("hiF:",this.bryggeriList.kontaktoplysningerId)
+      console.log(false);
+    });
+>>>>>>> ea0dfb6453d974199065adaad280137818cbdb63
 
 
 
@@ -199,5 +236,12 @@ export class ProfilComponent implements OnInit {
     this.restApi.updateData(this.bryggeriId, this.endpointB, this.bryggeriList).subscribe((data) => {
       console.log(this.bryggeriList);
     })
+<<<<<<< HEAD
   };
+=======
+
+  }; */
+>>>>>>> ea0dfb6453d974199065adaad280137818cbdb63
 }
+
+

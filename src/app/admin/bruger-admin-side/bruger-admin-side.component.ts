@@ -9,7 +9,6 @@ import { RedigerProfilDialogBoxComponent } from 'src/app/main/rediger-profil-dia
 
 
 
-
 @Component({
   selector: 'app-bruger-admin-side',
   templateUrl: './bruger-admin-side.component.html',
@@ -62,10 +61,8 @@ export class BrugerAdminSideComponent implements OnInit {
         this.kontaktoplysningerId=data.kontaktoplysningerId;
         this.restApi.getData(this.kontaktoplysningerId ,this.endpointk ).subscribe((data) => {
           this.kontaktoplysninger = data;
-
         })
       })
-
   }
 
 
@@ -126,7 +123,6 @@ export class BrugerAdminSideComponent implements OnInit {
           this.loadBruger();
         })
       }
-
     });
   }
 
@@ -150,9 +146,5 @@ export class BrugerAdminSideComponent implements OnInit {
       }
     });
     })
-
-
   };
-
-
 }

@@ -57,10 +57,6 @@ export class ForsideComponent implements OnInit {
       })
     }
   }
-
-  onAnnullerPost(){
-
-  }
   
   onGodkendPost(){
     this.restApi.createData(this.postOprettelse, this.endpointp).subscribe((data) => {

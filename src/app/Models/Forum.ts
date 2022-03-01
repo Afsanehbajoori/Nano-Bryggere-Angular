@@ -10,4 +10,5 @@ export class Forum
   public oprettet : Date;
   public tags: Tags;
   public post:Post;
+  public forumBilled: File;
 }

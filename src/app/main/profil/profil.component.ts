@@ -79,7 +79,6 @@ export class ProfilComponent implements OnInit {
         this.bryggeriList.logo = e.target.result;
        // console.log(this.bryggeriList.logo);
         localStorage.setItem('logo', JSON.stringify(this.bryggeriList.logo));
-
       }
     }
   };

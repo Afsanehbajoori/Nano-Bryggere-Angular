@@ -16,7 +16,6 @@
   font-family: 'Times New Roman', Times, serif;
   font-style: italic;
   text-align: center;
-
 }
 
 .example-tree-invisible {
@@ -33,7 +32,6 @@
   padding-left: 40px;
 }
 
-
 .example-tree div[role=group] > .mat-tree-node {
   padding-left: 40px;
 }
@@ -45,7 +43,7 @@
   text-align: center;
   font-weight: bolder;
   border: none;
-  background-color: white;
+  background-color: transparent;
   display: flex;
   justify-content: center;
   cursor: pointer;
@@ -55,6 +53,5 @@
 .example-container {
   width: 100%;
   height: 100%;
-
 }
 

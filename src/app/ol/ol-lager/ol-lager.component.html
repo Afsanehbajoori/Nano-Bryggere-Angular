@@ -1,0 +1,36 @@
+<mat-card class="main" id="imgeUp">
+    <mat-card-content class="container">
+
+        <form [formGroup]="LagerForm" class="example-form" *ngIf="olList">
+            <h1>Antal flasker:</h1>
+            <mat-form-field class="example-full-width" appearance="fill" style="justify-content: center; width: 20%;">
+                <input matInput type="number" min="0" max="120" [(ngModel)]="olList.flaskeAntal" formControlName="flaskeAntal"
+                    placeholder="{{olList.flaskeAntal}}" class="input-control" style="justify-content: center;">
+                <mat-error>
+                    udfyld feltet
+                </mat-error>
+            </mat-form-field>
+            <h1>Antal tønder:</h1>
+            <mat-form-field class="example-full-width" appearance="fill" style="justify-content: center; width: 20%;">
+                <input matInput type="number" min="0" max="120" [(ngModel)]="olList.tondeAntal" formControlName="tondeAntal"
+                    placeholder="{{olList.tondeAntal}}" class="input-control">
+                <mat-error>
+                    udfyld feltet
+                </mat-error>
+            </mat-form-field>
+            <h1>Antal reserveret Flasker:</h1>
+            <mat-form-field class="example-full-width" appearance="fill" style="justify-content: center; width: 20%;">
+                <input matInput type="number" min="0" max="120" [(ngModel)]="olList.flaskeResAntal" formControlName="flaskeResAntal"
+                    placeholder="{{olList.flaskeResAntal}}" class="input-control">
+                <mat-error>
+                    udfyld feltet
+                </mat-error>
+            </mat-form-field>
+            <button mat-raised-button type="submit" (click)="onAnnullerLager()" class="login-btn"
+                style="background: linear-gradient(#b60d0d, #ff6e6e);">Annuller</button>
+
+            <button mat-raised-button type="submit" (click)="onSubmitLager(olList.id)" class="login-btn"
+                style="background: linear-gradient(#33ff00, #41fd70);">Godkend Ændringer</button>
+        </form>
+    </mat-card-content>
+</mat-card>

@@ -9,15 +9,8 @@
     </mat-toolbar>
     <table style="width: 100%; height: 100%; display: flex; justify-content: center;">
         <!-- <mat-card></mat-card> -->
-        <mat-card *ngFor="let tag of tagsliste" style="height: 3%; width: 15%; justify-content: center; margin-left: 20px; margin-top: 20px;">
-            <mat-accordion class="example-headers-align" multi style="width: 100%; justify-content: center;">
-                <mat-action-row class="centers" style="justify-content: center;">
-                    <button mat-button class="btnMainStyle" (click)="onTilfojTag(tag.id)">Tilføj Tag</button>
-                </mat-action-row>
-                <mat-panel-title class="centers" style="justify-content: center;">
+        <mat-card *ngFor="let tag of tagsliste" style="height: 3%; width: 15%; margin-left: 20px; margin-top: 20px;">
                     <p>{{tag.navn}}</p>
-                </mat-panel-title>
-            </mat-accordion>
         </mat-card>
     </table>
 </div>

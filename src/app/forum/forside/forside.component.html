@@ -20,36 +20,26 @@
                     </mat-panel-title>
                     <!-- if statement så knapperne kun vises hvis det er brugerens forum -->
                     <mat-action-row class="centers" style="justify-content: center;">
-                        <button mat-button class="btnMainStyle" (click)="onSletForum(forum.id)">Slet Forum</button>
-                        <button mat-button class="btnMainStyle" (click)="onOpdaterForum(forum.id)">Rediger Forum</button>
+                        <button mat-button class="btnMainStyle" *ngIf="forum.id" (click)="onSletForum(forum.id)">Slet Forum</button>
+                        <button mat-button class="btnMainStyle" *ngIf="forum.id" (click)="onOpdaterForum(forum.id)">Rediger Forum</button>
                     </mat-action-row>
                 </mat-expansion-panel-header>
                 <mat-card class="containStyle">
                     <p>Beskrivelse:</p>
                     <p>{{forum.beskrivelse}}</p>
                 </mat-card>
-                <button mat-button class="btnMainStyle" (click)="showforum = !showforum">Indsend Kommentar</button>
-                <mat-card *ngIf="showforum" class="messageStyle">
-                    <form [formGroup]="OpretForm" class="example-form" style="justify-content: center;">
-                        <mat-form-field class="example-full-width" appearance="fill">
-                            <input matInput type="text" [(ngModel)]="postOprettelse.title" formControlName="title"
-                                placeholder="Titel" class="input-control">
-                            <mat-error>
-                                Dette felt skal udfyldes
-                            </mat-error>
-                        </mat-form-field>
-                        <mat-form-field class="example-full-width" appearance="fill">
+                <mat-card class="messageStyle">
+                    <form [formGroup]="OpretForm" class="example-form">
+                        <mat-form-field class="example-full-width" appearance="fill" style="justify-content: center; width: 100%;">
                             <input matInput type="text" [(ngModel)]="postOprettelse.indhold" formControlName="indhold"
-                                placeholder="Indhold" class="input-control">
+                                placeholder="Indhold" class="input-control" style="width:100%">
                             <mat-error>
                                 Dette felt skal udfyldes
                             </mat-error>
                         </mat-form-field>
                         <mat-action-row class="centers" style="justify-content: center;">
-                            <button mat-button class="btnMainStyle" (click)="showforum = !showforum"
-                                style="background: linear-gradient(#f5232e, #f52323);">Annuller</button>
                             <button mat-button class="btnMainStyle" (click)="onGodkendPost()"
-                                style="background: linear-gradient(#23f582, #23f523);">Godkend</button>
+                                style="background: linear-gradient(#23f582, #23f523);">Indsend Kommentar</button>
                         </mat-action-row>
                     </form>
                 </mat-card>

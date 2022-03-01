@@ -15,7 +15,7 @@ export class CertifikatComponent implements OnInit {
   valgtefil: File;
   bruger : Bruger;
   file : any;
-  url : string = "assets/images/Gromit Mug.jpg";
+  url : string = "assets/images/Profil billede.png";
   constructor(
     public dialog: MatDialog,
     public restApi: RestApiService,

@@ -9,5 +9,5 @@ export class Kontaktoplysninger {
   public by: string;
   public email: string;
   public telefonnr: string;
-
+  public kontaktImg: File;
 }

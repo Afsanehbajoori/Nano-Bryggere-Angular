@@ -16,11 +16,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { OlLagerComponent } from './ol-lager/ol-lager.component';
 
 @NgModule({
   declarations: [
     OlSideComponent,
-    OlSogningComponent
+    OlSogningComponent,
+    OlLagerComponent
   ],
   imports: [
     CommonModule,

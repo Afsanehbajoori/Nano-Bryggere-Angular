@@ -77,7 +77,7 @@ export class ProfilComponent implements OnInit {
   logud(){
     localStorage.clear();
     this.router.navigate(["../login/login"]);
-  }
+  } 
 
   loadKontaktoplysninger() {
     return this.restApi.getData(this.brugerId, this.endpointS).subscribe((data) => {
@@ -99,7 +99,7 @@ export class ProfilComponent implements OnInit {
 
   };
 
-  //
+
 
   loadBryggeri() {
     this.restApi.getDatas(this.endpointB).subscribe((data) => {

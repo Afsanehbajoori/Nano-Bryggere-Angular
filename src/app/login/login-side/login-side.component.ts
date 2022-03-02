@@ -51,12 +51,15 @@ export class LoginSideComponent implements OnInit {
     return a.brugernavn.toLowerCase() === this.loginDetails.brugernavn.toLowerCase() && a.pw === this.loginDetails.pw
   });
   if(user){
-     console.log("kontaktoplysningerId:",user.kontaktoplysningerId);
-     console.log("userInfo:",user.rolleId);
+     /* console.log("kontaktoplysningerId:",user.kontaktoplysningerId);
+     console.log("brugerId:",user.id)
+     console.log("rolleId:",user.rolleId); */
      localStorage.setItem('kontaktoplysningerId' ,JSON.stringify(user.kontaktoplysningerId) );
+     localStorage.setItem('brugerId' ,JSON.stringify(user.id) );
+     localStorage.setItem('rolleId' ,JSON.stringify(user.rolleId) );
      this.loginDetails.brugerId = user.id;
      this.restApi.createData(this.loginDetails , this.endpoints).subscribe((res) => {
-      console.log("brugerId:" ,res.brugerId);
+      // console.log("brugerId:" ,res.brugerId);
 
     })
     this.router.navigate(['../main/profil'] );

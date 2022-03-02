@@ -9,6 +9,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm, FormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormBuilder } from '@angular/forms';
+import { Kontaktoplysninger } from './../../Models/Kontaktoplysninger';
 
 
 @Component({
@@ -23,15 +24,21 @@ export class ProfilComponent implements OnInit {
   dialogRefSlet: MatDialogRef<SletDialogBoxComponent>;
   dialogRefRedigerProfil: MatDialogRef<RedigerProfilDialogBoxComponent>;
   dialogRefRedigerBryggeri: MatDialogRef<RedigerBryggeriDialogBoxComponent>;
-  kontaktoplysningerList: any;
+  kontaktoplysningerList: any ;
+  BrugerList:any;
   bryggeriList: any;
+  RolleList:any;
   endpointK = '/Kontaktoplysninger';
   endpointB = '/Bryggerier';
+  endpointS= '/Brugere';
+  endpointR= '/Roller';
   showFillerP = false;
   showFillerB = false;
   showFillerOB = false;
   kontaktoplysningerId: number;
   bryggeriId: number;
+  brugerId:number;
+  rolleId:number;
   valgtefil: File;
   showOB:boolean ;
   logo:any
@@ -49,6 +56,10 @@ export class ProfilComponent implements OnInit {
 
   ngOnInit(): void {
     this.kontaktoplysningerId = JSON.parse(localStorage.getItem('kontaktoplysningerId') || '{}');
+    this.brugerId = JSON.parse(localStorage.getItem('brugerId') || '{}');
+    this.rolleId = JSON.parse(localStorage.getItem('rolleId') || '{}');
+    console.log("brugerId:",this.brugerId)
+    console.log("brugerId:",this.kontaktoplysningerId)
     this.loadKontaktoplysninger();
     this.loadBryggeri();
 
@@ -68,14 +79,25 @@ export class ProfilComponent implements OnInit {
   }
 
   loadKontaktoplysninger() {
-    return this.restApi.getData(this.kontaktoplysningerId, this.endpointK).subscribe((data) => {
-      this.kontaktoplysningerList = data;
-      console.log("konId" , this.kontaktoplysningerId);
-      console.log(" this.kontaktoplysningerList:", this.kontaktoplysningerList);
+    return this.restApi.getData(this.brugerId, this.endpointS).subscribe((data) => {
+      this.BrugerList = data;
+      console.log("brugernavn:", this.BrugerList.rolleId);
+      this.restApi.getData( this.kontaktoplysningerId, this.endpointK).subscribe((data) => {
+        this.kontaktoplysningerList = data;
+        console.log("konId" , this.kontaktoplysningerId);
+        console.log(" this.kontaktoplysningerList:", this.kontaktoplysningerList.enavn);
+        this.restApi.getData(this.rolleId , this.endpointR).subscribe((data) => {
+          this.RolleList=data;
+          console.log('RolleList' , this.RolleList)
+        })
 
+      })
 
     })
+
   };
+
+  //
 
   loadBryggeri() {
     this.restApi.getDatas(this.endpointB).subscribe((data) => {

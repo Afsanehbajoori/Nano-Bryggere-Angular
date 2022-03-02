@@ -13,6 +13,7 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 })
 export class RolleAdminSideComponent implements OnInit {
   searchkeyRollenavn:string;
+  searchkeyBrugernavn:string;
   clickButton:boolean=true;
   endpointR='/Roller';
   endpoints='/Brugere';
@@ -20,6 +21,7 @@ export class RolleAdminSideComponent implements OnInit {
   users: Bruger[];
   rolleId:number;
   Rolle:any;
+  level:number;
 
 
 
@@ -50,10 +52,35 @@ export class RolleAdminSideComponent implements OnInit {
     })
 
   }
-
+  onFindBrugernavn(){
+    if(this.searchkeyBrugernavn == ""){
+      this.ngOnInit();
+    }
+   else{
+    this.users = this.users.filter(res =>{
+      return  res.brugernavn.toLowerCase().match(this.searchkeyBrugernavn.toLowerCase());
+      })
+    }
+  }
 
   onFindRollenavn(){
+    if(this.searchkeyRollenavn == ""){
+      this.ngOnInit();
+    }
+   else{
+      if(this.searchkeyRollenavn.toLowerCase() == 'anonymbruger')
+      this.level=0 ;
+      if(this.searchkeyRollenavn.toLowerCase() == 'bruger')
+      this.level=100;
+      if(this.searchkeyRollenavn.toLowerCase() == 'moderator')
+      this.level=200;
+      if(this.searchkeyRollenavn.toLowerCase() == 'administrator')
+      this.level=300 ;
+      this.restApi.getDataByLevel(this.level , this.endpoints).subscribe((data) => {
+        return  this.users=data;
+     })
 
+    }
   }
 
 

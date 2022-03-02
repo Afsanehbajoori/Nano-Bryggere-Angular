@@ -4,17 +4,14 @@
       <h1 id="headerStyle">Profil Side</h1>
       <img [src]="this.url" alt="" style="width: 20%; height: 20%;">
       <button class="btnStyle" (click)="showFillerP = !showFillerP">Vis Kontakt Oplysninger</button>
-      <button class="btnStyle" (click)="showFillerB = !showFillerB">Vis Bryggeri Oplysninger</button>
-      <button class="btnStyle" (click)="showFillerOB = !showFillerOB">Oprette ny Bryggeri</button>
-<!--       <div [ngSwitch]="show">
-        <button class="btnStyle" *ngSwitchCase="0" (click)="showFillerOB = !showFillerOB">Oprette ny Bryggeri</button>
-        <div *ngSwitchCase="1"></div>
-      </div>
-      <input type="file" class="btnMainStyle" (change)="onSubmitCertifikats($event)"> -->
+      <button class="btnStyle" (click)="showFillerB = !showFillerB" [disabled]="this.showOB" >Vis Bryggeri Oplysninger</button>
+      <button class="btnStyle"  (click)="showFillerOB=!showFillerOB" [disabled]="!this.showOB" >Oprette ny Bryggeri</button>
+      <button class="btnStyle"  (click)="logud()" >LogUd</button>
+      <!-- <input type="file" class="btnMainStyle" (change)="onSubmitCertifikats($event)"> -->
       <!-- <button class="btnStyle" (click)="onUploadCertifikat()">Opdater Billed</button> -->
     </div>
   </mat-drawer>
-  <mat-drawer-content class="main" id="imgeUp" *ngIf="kontaktoplysningerList">
+  <mat-drawer-content class="main" id="imgeUp" *ngIf="kontaktoplysningerList" >
     <mat-card *ngIf="showFillerP">
       <mat-card-content>
         <mat-accordion class="example-headers-align" multi>
@@ -59,6 +56,14 @@
             <mat-card class="containStyle">
               <span>By:</span>
               <span class="txtStyle">{{kontaktoplysningerList.by}}</span>
+            </mat-card>
+            <mat-card class="containStyle">
+              <span>Brugernavn:</span>
+              <span class="txtStyle">{{this.BrugerList.brugernavn}}</span>
+            </mat-card>
+            <mat-card class="containStyle">
+              <span>Rollenavn:</span>
+              <span class="txtStyle">{{this.RolleList.rolleNavn}}</span>
             </mat-card>
             <mat-action-row>
               <button mat-button color="primary" (click)="sletProfil()" class="btnMainStyle">Slet Profil</button>

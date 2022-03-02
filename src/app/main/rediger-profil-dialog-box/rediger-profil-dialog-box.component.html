@@ -1,7 +1,7 @@
 
 <h1 mat-dialog-title>Rediger Kontaktoplysninger</h1>
 <div mat-dialog-content>
-  <form class="example-form" [formGroup]="RedigerKontaktOplysninger"  *ngIf="kontaktoplysningerList">
+  <form class="example-form" [formGroup]="RedigerKontaktOplysninger" *ngIf="kontaktoplysningerList">
      <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Fornavn:</mat-label>
       <input matInput formControlName="FnavnCtl" placeholder="{{kontaktoplysningerList.fnavn}}" [(ngModel)]="kontaktoplysningerList.fnavn">
@@ -42,6 +42,10 @@
         <mat-label>By:</mat-label>
         <input matInput formControlName="ByCtl" placeholder="{{kontaktoplysningerList.by}}" [(ngModel)]="kontaktoplysningerList.by">
       </mat-form-field>
+<!--       <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Brugernavn:</mat-label>
+        <input matInput formControlName="BrugernavnCtl" placeholder="{{this.BrugerList.brugernavn}}" [(ngModel)]="this.BrugerList.brugernavn">
+      </mat-form-field> -->
 <div mat-dialog-actions class="btn-container">
  <button mat-button (click)="dialogRefRedigerProfil.close(false)" >Annulere</button>
   <button mat-button cdkFocusInitial  [mat-dialog-close]="kontaktoplysningerList">Gem Ændringer</button>

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Bruger } from 'src/app/Models/Bruger';
+import { Bryggeri } from 'src/app/Models/Bryggeri';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 
 @Component({
@@ -13,7 +14,7 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 export class CertifikatComponent implements OnInit {
   endpoints = '/Brugere';
   valgtefil: File;
-  bruger : Bruger;
+  bryg : Bryggeri;
   file : any;
   url : string = "assets/images/Profil billede.png";
   constructor(
@@ -39,7 +40,7 @@ export class CertifikatComponent implements OnInit {
   onUploadCertifikat() {
     const fd = new FormData();
     fd.append('image', this.valgtefil, this.valgtefil.name)
-    this.restApi.createData(this.bruger, this.endpoints)
+    this.restApi.createData(this.bryg, this.endpoints)
     .subscribe(res => {
       console.log(res);
       if(res.type == HttpEventType.UploadProgress){

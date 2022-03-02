@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { OlRoutingModule } from './ol-routing.module';
 import { OlSogningComponent } from './ol-sogning/ol-sogning.component';
 import { OlSideComponent } from './ol-side/ol-side.component';
+import { OlLagerComponent } from './ol-lager/ol-lager.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -16,13 +17,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { OlLagerComponent } from './ol-lager/ol-lager.component';
 
 @NgModule({
   declarations: [
     OlSideComponent,
     OlSogningComponent,
-    OlLagerComponent
+    OlLagerComponent,
   ],
   imports: [
     CommonModule,

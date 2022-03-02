@@ -1,36 +1,39 @@
 <mat-card class="main" id="imgeUp">
-    <mat-card-content class="container">
+    <mat-card-content class="container" style="border-color: black; border-width: medium;">
 
-        <form [formGroup]="LagerForm" class="example-form" *ngIf="olList">
-            <h1>Antal flasker:</h1>
-            <mat-form-field class="example-full-width" appearance="fill" style="justify-content: center; width: 20%;">
-                <input matInput type="number" min="0" max="120" [(ngModel)]="olList.flaskeAntal" formControlName="flaskeAntal"
-                    placeholder="{{olList.flaskeAntal}}" class="input-control" style="justify-content: center;">
+        <form [formGroup]="LagerForm" class="example-form" style="justify-content: center;">
+            <h1>Lager Side</h1>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <input matInput type="number" [(ngModel)]="lagerInput.antal" min="0" max="120" formControlName="antal" placeholder="Antal" class="input-control">
                 <mat-error>
-                    udfyld feltet
+                    Dette felt skal udfyldes
                 </mat-error>
             </mat-form-field>
-            <h1>Antal tønder:</h1>
-            <mat-form-field class="example-full-width" appearance="fill" style="justify-content: center; width: 20%;">
-                <input matInput type="number" min="0" max="120" [(ngModel)]="olList.tondeAntal" formControlName="tondeAntal"
-                    placeholder="{{olList.tondeAntal}}" class="input-control">
-                <mat-error>
-                    udfyld feltet
-                </mat-error>
-            </mat-form-field>
-            <h1>Antal reserveret Flasker:</h1>
-            <mat-form-field class="example-full-width" appearance="fill" style="justify-content: center; width: 20%;">
-                <input matInput type="number" min="0" max="120" [(ngModel)]="olList.flaskeResAntal" formControlName="flaskeResAntal"
-                    placeholder="{{olList.flaskeResAntal}}" class="input-control">
-                <mat-error>
-                    udfyld feltet
-                </mat-error>
-            </mat-form-field>
-            <button mat-raised-button type="submit" (click)="onAnnullerLager()" class="login-btn"
-                style="background: linear-gradient(#b60d0d, #ff6e6e);">Annuller</button>
 
-            <button mat-raised-button type="submit" (click)="onSubmitLager(olList.id)" class="login-btn"
-                style="background: linear-gradient(#33ff00, #41fd70);">Godkend Ændringer</button>
+            <!-- <mat-form-field class="example-full-width" appearance="fill">
+                <input matInput type="number" [(ngModel)]="lagerInput.flaskeAntal" min="0" max="120" formControlName="flaskeAntal" placeholder="Flaske Antal" class="input-control">
+                <mat-error>
+                    Dette felt skal udfyldes
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill">
+                <input matInput type="number" [(ngModel)]="lagerInput.tondeAntal" min="0" max="120" formControlName="tondeAntal" placeholder="Tønde antal" class="input-control">
+                <mat-error>
+                    Dette felt skal udfyldes
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill">
+                <input matInput type="number" [(ngModel)]="lagerInput.flaskeResAntal" min="0" max="120" formControlName="flaskeResAntal" placeholder="Reservation´s Antal" class="input-control">
+                <mat-error>
+                    Dette felt skal udfyldes
+                </mat-error>
+            </mat-form-field> -->
+            
+            <button mat-raised-button type="submit" (click)="onAnnullerOl()" class="radius-btn" style="background: linear-gradient(#f53f3f, #ff6e6e);">Annuller</button>
+            
+            <button mat-raised-button type="submit" (click)="onSubmitOl()" class="radius-btn" style="background: linear-gradient(#6cf04b, #41fd70);">Bekræft lager</button>
         </form>
     </mat-card-content>
 </mat-card>

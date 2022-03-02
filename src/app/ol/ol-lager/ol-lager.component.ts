@@ -1,8 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Øl } from 'src/app/Models/Øl';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 
 @Component({
@@ -11,49 +9,30 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./ol-lager.component.css']
 })
 export class OlLagerComponent implements OnInit {
-  beerliste: Øl[];
-  beerid = this.actRoute.snapshot.params['id'];
-  endpoints = '/Øller';
-  bryggeriId: number;
+  // @Input() lagerInput = { antal: 0, flaskeAntal: 0, tondeAntal: 0 };
+  @Input() lagerInput = { antal: 0 };
   LagerForm: FormGroup;
-  olList : any = {};
-
+  endpoints = '/Øller';
+  selected = '';
   constructor(
-    public dialog: MatDialog,
     public restApi: RestApiService,
-    public router: Router,
+    private router: Router,
     public actRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
     this.LagerForm = new FormGroup({
-      antal: new FormControl(''),
-      // flaskeAntal: new FormControl(''),
-      // tondeAntal: new FormControl(''),
-      // flaskeResAntal: new FormControl(''),
+      antal: new FormControl('', Validators.required)
     });
-    this.loadLager();
   }
 
-  loadLager() {
-    if (this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}')) {
-      this.restApi.getDatas(this.endpoints).subscribe((data) => {
-        this.beerliste = data.filter((res: any) => {
-          return res.bryggeriId === this.bryggeriId});
-      })
-    }
-  }
-  loadOl(){
-    return this.restApi.getData(this.beerid, this.endpoints).subscribe((beer: {}) => {
-      this.olList = beer;
+  onAnnullerOl() {
+    return this.router.navigate(['../main/katalog']);
+  };
+
+  onSubmitOl() {
+    this.restApi.createData(this.lagerInput, this.endpoints).subscribe((data) => {
+      this.router.navigate(['../main/katalog']);
     });
   }
-  onSubmitLager(id: any) {
-    this.restApi.updateData(this.beerid, this.endpoints, this.olList).subscribe((data) => {
-      this.router.navigate(['../main/katalog'])
-    });
-  };
-  onAnnullerLager() {
-    return this.router.navigate(['../main/katalog'])
-  };
 }

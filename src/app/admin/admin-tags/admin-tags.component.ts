@@ -28,6 +28,9 @@ export class AdminTagsComponent implements OnInit {
   onOpretTags() {
     this.router.navigate(['../admin/tagsadmin']);
   }
+  onRedigerTags(id:any) {
+    this.router.navigate(['../admin/tagsadmin']);
+  }
   onSletTags(id:any) {
     return this.restApi.deleteData(id,this.endpoints).subscribe((tag) => {
       this.tagsliste = tag;

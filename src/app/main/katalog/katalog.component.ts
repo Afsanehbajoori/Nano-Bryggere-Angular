@@ -35,6 +35,7 @@ export class KatalogComponent implements OnInit {
   
   loadOl() {
     if (this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}')) {
+      console.log(this.bryggeriId);
       this.restApi.getDatas(this.endpoints).subscribe((data) => {
         this.beerliste = data.filter((res: any) => {
           return res.bryggeriId === this.bryggeriId});
@@ -44,6 +45,10 @@ export class KatalogComponent implements OnInit {
 
   onRedigerOl(id: any) {
     this.router.navigate(['../main/redigerol/', id]);
+  };
+  
+  onLager(id: any) {
+    this.router.navigate(['../ol/ollager/', id]);
   };
 
   onOpretOl() {

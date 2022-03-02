@@ -2,11 +2,11 @@
   <mat-drawer #drawer mode="side" opened class="main" id="imgeUp">
     <div class="sidebar">
       <h1 class="txt " >Velkommen til Admin side</h1>
-        <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree" class="txt"   >
+        <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree" class="txt" style="background-color: transparent;">
           <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle><button class="btnNode" (click)="showComponent(node.name)"> {{node.name}}</button>
           </mat-tree-node>
           <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
-            <div class="mat-tree-node btnNode" >
+            <div class="mat-tree-node btnNode">
               <button mat-icon-button matTreeNodeToggle
                       [attr.aria-label]="'Toggle ' + node.name">
                 <mat-icon class="mat-icon-rtl-mirror">

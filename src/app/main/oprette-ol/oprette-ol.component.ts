@@ -10,6 +10,7 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 })
 export class OpretteOlComponent implements OnInit {
   @Input() olOprettelse = { navn: '', type: '', smag: '', procent: null, land: '', bryggeriId: null, etiket: '', beskrivelse:'', antal: '' };
+  // @Input() olOprettelse = { navn: '', type: '', smag: '', procent: null, land: '', bryggeriId: null, argang: 0, etiket: '', beskrivelse:'', antal: '' };
   OpretForm : FormGroup;
   endpoints = '/Øller';
   selected = '';

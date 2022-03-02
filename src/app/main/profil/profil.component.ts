@@ -73,6 +73,7 @@ export class ProfilComponent implements OnInit {
     })
   }
 
+
   logud(){
     localStorage.clear();
     this.router.navigate(["../login/login"]);
@@ -90,6 +91,7 @@ export class ProfilComponent implements OnInit {
           this.RolleList=data;
           console.log('RolleList' , this.RolleList)
         })
+
 
       })
 

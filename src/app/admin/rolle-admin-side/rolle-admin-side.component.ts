@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
 import { Bruger } from 'src/app/Models/Bruger';
 import { RestApiService } from 'src/app/shared/rest-api.service';
+import { LoginSideComponent } from './../../login/login-side/login-side.component';
 
 
 @Component({
@@ -100,11 +101,49 @@ export class RolleAdminSideComponent implements OnInit {
 
 
 onNedgradereRollenavn(id:any){
-
+  var user =this.users.find((x:any) => x.id === id)
+  console.log('info:', user?.rolleId);
+  var rolleId= user?.rolleId;
+  this.restApi.getData(rolleId , this.endpointR).subscribe(data => {
+    var upgradeLevel = data;
+    console.log('upgradeLevel' ,upgradeLevel.level)
+    if(upgradeLevel.level == 300)
+      upgradeLevel.level = 200;
+    else if(upgradeLevel.level == 200)
+      upgradeLevel.level = 100;
+    else if(upgradeLevel.level == 100)
+      upgradeLevel.level = 0;
+    else if(upgradeLevel.level == 0)
+      upgradeLevel.level = 0;
+    {this.restApi.updateData(rolleId, this.endpointR,upgradeLevel).subscribe(data => {
+        console.log('ny:',upgradeLevel.level)
+      })
+    }
+  })
 
 }
 
 onUpgradereRollenavn(id:any){
+
+  var user =this.users.find((x:any) => x.id === id)
+  console.log('info:', user?.rolleId);
+  var rolleId= user?.rolleId;
+  this.restApi.getData(rolleId , this.endpointR).subscribe(data => {
+    var upgradeLevel = data;
+    console.log('upgradeLevel' ,upgradeLevel.level)
+    if(upgradeLevel.level == 0)
+      upgradeLevel.level = 100;
+    else if(upgradeLevel.level == 100)
+      upgradeLevel.level = 200;
+    else if(upgradeLevel.level == 200)
+      upgradeLevel.level = 300;
+    else if(upgradeLevel.level == 300)
+      upgradeLevel.level = 300;
+    {this.restApi.updateData(rolleId, this.endpointR,upgradeLevel).subscribe(data => {
+        console.log('ny:',upgradeLevel.level)
+      })
+    }
+  })
 
 }
 

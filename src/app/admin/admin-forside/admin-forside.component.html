@@ -39,8 +39,14 @@
   <mat-drawer-content *ngIf="showEventsComponent">
     <app-event-admin-side></app-event-admin-side>
   </mat-drawer-content>
-  <mat-drawer-content *ngIf="showTagsComponent">
+  <mat-drawer-content *ngIf="showAdminTagsComponent">
     <app-admin-tags></app-admin-tags>
+  </mat-drawer-content>
+  <mat-drawer-content *ngIf="showAdminOpretTagsComponent">
+    <app-admin-opret-tag></app-admin-opret-tag>
+  </mat-drawer-content>
+  <mat-drawer-content *ngIf="showAdminRedigerTagsComponent">
+    <app-admin-rediger-tag></app-admin-rediger-tag>
   </mat-drawer-content>
   <mat-drawer-content *ngIf="showForumComponent">
     <app-forum-admin-side></app-forum-admin-side>

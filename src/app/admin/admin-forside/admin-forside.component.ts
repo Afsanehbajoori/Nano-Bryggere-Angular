@@ -20,7 +20,7 @@ const TREE_DATA: Search[] = [
     {name: 'Øl',children:[{name: 'Med ØlId'} , {name: 'Med Ølnavn'} , {name: 'Med Øltype'}]} ,
     {name: 'Events', children:[{name: 'Med EventsId'} , {name: 'Med Eventstitel'}]} ,
     {name: 'Forum', children:[{name: 'Med ForumId'} , {name: 'Med ForumTitel'}]} ,
-    {name: 'Tags'} ,
+    {name: 'Tags', children:[{name: 'admin-tags'} , {name: 'admin-opret-tag'} , {name: 'admin-rediger-tag'}]} ,
     {name: 'Certifikant'}],
   }
 ];
@@ -37,7 +37,9 @@ export class AdminForsideComponent implements OnInit {
   showCetifikantComponent: boolean=false;
   showOlComponent:boolean=false;
   showEventsComponent:boolean=false;
-  showTagsComponent:boolean=false;
+  showAdminTagsComponent:boolean=false;
+  showAdminRedigerTagsComponent:boolean=false;
+  showAdminOpretTagsComponent:boolean=false;
   showBryggeriComponent:boolean=false;
   showRolleComponent:boolean=false;
   showForumComponent:boolean=false;
@@ -79,8 +81,16 @@ export class AdminForsideComponent implements OnInit {
       this.showEventsComponent=!this.showEventsComponent;
       break;
     }
-    case 'Tags':{
-      this.showTagsComponent=!this.showTagsComponent;
+    case 'admin-tags':{
+      this.showAdminTagsComponent=!this.showAdminTagsComponent;
+      break;
+    }
+    case 'admin-opret-tag':{
+      this.showAdminOpretTagsComponent=!this.showAdminOpretTagsComponent;
+      break;
+    }
+    case 'admin-rediger-tag':{
+      this.showAdminRedigerTagsComponent=!this.showAdminRedigerTagsComponent;
       break;
     }
     case 'Certifikant':{

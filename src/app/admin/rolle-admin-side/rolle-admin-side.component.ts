@@ -107,18 +107,27 @@ onNedgradereRollenavn(id:any){
   this.restApi.getData(rolleId , this.endpointR).subscribe(data => {
     var upgradeLevel = data;
     console.log('upgradeLevel' ,upgradeLevel.level)
-    if(upgradeLevel.level == 300)
+    if(upgradeLevel.level == 300){
       upgradeLevel.level = 200;
-    else if(upgradeLevel.level == 200)
-      upgradeLevel.level = 100;
-    else if(upgradeLevel.level == 100)
-      upgradeLevel.level = 0;
-    else if(upgradeLevel.level == 0)
-      upgradeLevel.level = 0;
-    {this.restApi.updateData(rolleId, this.endpointR,upgradeLevel).subscribe(data => {
-        console.log('ny:',upgradeLevel.level)
-      })
+      upgradeLevel.rolleNavn = "Moderator";
     }
+    else if(upgradeLevel.level == 200){
+      upgradeLevel.level = 100;
+      upgradeLevel.rolleNavn = "Bruger";
+    }
+    else if(upgradeLevel.level == 100){
+      upgradeLevel.level = 0;
+      upgradeLevel.rolleNavn = "Anonymbruger";
+    }
+    else if(upgradeLevel.level == 0){
+      upgradeLevel.level = 0;
+      upgradeLevel.rolleNavn = "Anonymbruger";
+    }
+    this.restApi.updateData(rolleId, this.endpointR,upgradeLevel).subscribe(data => {
+        console.log('ny:',upgradeLevel.level);
+        this.ngOnInit();
+      })
+
   })
 
 }
@@ -131,18 +140,27 @@ onUpgradereRollenavn(id:any){
   this.restApi.getData(rolleId , this.endpointR).subscribe(data => {
     var upgradeLevel = data;
     console.log('upgradeLevel' ,upgradeLevel.level)
-    if(upgradeLevel.level == 0)
+    if(upgradeLevel.level == 0){
       upgradeLevel.level = 100;
-    else if(upgradeLevel.level == 100)
-      upgradeLevel.level = 200;
-    else if(upgradeLevel.level == 200)
-      upgradeLevel.level = 300;
-    else if(upgradeLevel.level == 300)
-      upgradeLevel.level = 300;
-    {this.restApi.updateData(rolleId, this.endpointR,upgradeLevel).subscribe(data => {
-        console.log('ny:',upgradeLevel.level)
-      })
+      upgradeLevel.rolleNavn = "Bruger";
     }
+    else if(upgradeLevel.level == 100){
+      upgradeLevel.level = 200;
+      upgradeLevel.rolleNavn = "Moderator";
+    }
+    else if(upgradeLevel.level == 200){
+      upgradeLevel.level = 300;
+      upgradeLevel.rolleNavn = "Administrator";
+    }
+    else if(upgradeLevel.level == 300){
+      upgradeLevel.level = 300;
+      upgradeLevel.rolleNavn = "Administrator";
+    }
+    this.restApi.updateData(rolleId, this.endpointR,upgradeLevel).subscribe(data => {
+        console.log('ny:',upgradeLevel.level);
+        this.ngOnInit();
+      })
+
   })
 
 }

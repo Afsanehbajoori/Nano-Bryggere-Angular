@@ -6,9 +6,8 @@
       <button class="btnStyle" (click)="showFillerP = !showFillerP">Vis Kontakt Oplysninger</button>
       <button class="btnStyle" (click)="showFillerB = !showFillerB" [disabled]="this.showOB" >Vis Bryggeri Oplysninger</button>
       <button class="btnStyle"  (click)="showFillerOB=!showFillerOB" [disabled]="!this.showOB" >Oprette ny Bryggeri</button>
-      <button class="btnStyle"  (click)="logud()" >LogUd</button>
-      <!-- <input type="file" class="btnMainStyle" (change)="onSubmitCertifikats($event)"> -->
-      <!-- <button class="btnStyle" (click)="onUploadCertifikat()">Opdater Billed</button> -->
+      <!-- <button class="btnStyle"  (click)="logud()" >LogUd</button> -->
+
     </div>
   </mat-drawer>
   <mat-drawer-content class="main" id="imgeUp" *ngIf="kontaktoplysningerList" >

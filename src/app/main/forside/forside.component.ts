@@ -12,7 +12,7 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 })
 
 export class ForsideComponent implements OnInit {
-  eventid = 20;
+  //eventid = 20;
   public events: Events[];
   public event = new Events;
   endpoints = '/Events';
@@ -29,8 +29,9 @@ export class ForsideComponent implements OnInit {
   }
 
   loadEvent() {
-    return this.restApi.getData(this.eventid,this.endpoints).subscribe((data) => {
+    return this.restApi.getDatas(this.endpoints).subscribe((data) => {
       this.events = data;
+      console.log(this.events)
     });
   }
 

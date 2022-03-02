@@ -7,7 +7,7 @@ export class Archive{
   public brugerId:number;
   public bruger:Bruger;
   public kontaktolysningerId:number;
-  public kontaktolysninger:Kontaktoplysninger;
+  public kontaktoplysninger:Kontaktoplysninger;
   public oprettet :Date;
 
 }

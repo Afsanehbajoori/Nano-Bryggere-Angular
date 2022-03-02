@@ -8,4 +8,5 @@ export class Samarbejde{
   public øl: Øl;
   public titel:string;
   public bryggeri : Bryggeri;
+  public olBilled : File;
 }

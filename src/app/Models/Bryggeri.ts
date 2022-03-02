@@ -9,6 +9,7 @@ export class Bryggeri{
   public kontaktoplysninger : Kontaktoplysninger;
   public beskrivelse: string;
   public logo: string;
+  public billed: File;
   public samarbejde: Samarbejde;
 
 }

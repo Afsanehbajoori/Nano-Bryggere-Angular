@@ -19,6 +19,7 @@
                     <mat-action-row class="centers" style="justify-content: center;">
                         <button mat-button class="btnMainStyle" (click)="onSletOl(beer.id)">Slet Øl</button>
                         <button mat-button class="btnMainStyle" (click)="onRedigerOl(beer.id)">Rediger Øl</button>
+                        <button mat-button class="btnMainStyle" (click)="onLager(beer.id)">Ændre Lager</button>
                     </mat-action-row>
                 </mat-expansion-panel-header>
                 <mat-card class="containStyle">
@@ -42,9 +43,17 @@
                     <p>{{beer.etiket}}</p>
                 </mat-card>
                 <mat-card class="containStyle">
-                    <p>Antal:</p>
+                    <p>Antal flasker:</p>
                     <p>{{beer.antal}}</p>
                 </mat-card>
+                <!-- <mat-card class="containStyle">
+                    <p>Flaske antal:</p>
+                    <p>{{beer.flaskeAntal}}</p>
+                </mat-card>
+                <mat-card class="containStyle">
+                    <p>Tønde antal:</p>
+                    <p>{{beer.tondeAntal}}</p>
+                </mat-card> -->
             </mat-expansion-panel>
         </mat-accordion>
     </table>

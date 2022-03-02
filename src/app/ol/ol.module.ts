@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { OlRoutingModule } from './ol-routing.module';
 import { OlSogningComponent } from './ol-sogning/ol-sogning.component';
 import { OlSideComponent } from './ol-side/ol-side.component';
+import { OlLagerComponent } from './ol-lager/ol-lager.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -20,7 +21,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
 @NgModule({
   declarations: [
     OlSideComponent,
-    OlSogningComponent
+    OlSogningComponent,
+    OlLagerComponent,
   ],
   imports: [
     CommonModule,

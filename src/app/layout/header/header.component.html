@@ -13,7 +13,7 @@
       </mat-menu>
 
       <mat-menu #login="matMenu">
-        <button mat-menu-item >
+        <button mat-menu-item>
           <span><a href="/login/login" style="text-decoration:none">Login</a></span>
         </button>
         <button mat-menu-item >
@@ -28,7 +28,7 @@
       </mat-menu>
 
       <mat-menu #main="matMenu">
-        <button mat-menu-item>
+        <button mat-menu-item (click)="onClickMenu()"> Forside
           <span><a href="/main/main" style="text-decoration:none">Forside</a></span>
         </button>
         <button mat-menu-item >

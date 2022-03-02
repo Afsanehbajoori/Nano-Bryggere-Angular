@@ -73,10 +73,11 @@ export class ProfilComponent implements OnInit {
     })
   }
 
- /*  logud(){
+
+  logud(){
     localStorage.clear();
     this.router.navigate(["../login/login"]);
-  } */
+  } 
 
   loadKontaktoplysninger() {
     return this.restApi.getData(this.brugerId, this.endpointS).subscribe((data) => {
@@ -90,6 +91,7 @@ export class ProfilComponent implements OnInit {
           this.RolleList=data;
           console.log('RolleList' , this.RolleList)
         })
+
 
       })
 

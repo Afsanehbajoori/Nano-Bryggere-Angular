@@ -1,18 +1,8 @@
 <div class="main" id="imgeUp">
     <mat-toolbar class="login-header" style="background: linear-gradient(#34b8cf, #3f68ee);">
-        <form class="example-form" style="justify-content: center;">
-            <mat-form-field >
+        <form class="example-form">
+            <mat-form-field style="justify-content: center;">
                 <input matInput type="text" placeholder="Find øl" [(ngModel)]="search" (ngModelChange)="onFindOl()" [ngModelOptions]="{standalone: true}">
-            </mat-form-field>
-            <mat-form-field style="padding: 50px; font-size:large;">
-                <mat-select [(value)]="selected">
-                    <mat-option>Ingen</mat-option>
-                    <mat-option value="option1">Navn</mat-option>
-                    <mat-option value="option2">Type</mat-option>
-                    <mat-option value="option3">Procent</mat-option>
-                    <mat-option value="option3">Smag</mat-option>
-                    <mat-option value="option3">Årgang</mat-option>
-                </mat-select>
             </mat-form-field>
         </form>
         <h1 style="justify-content: center;">Find Øl</h1>
@@ -50,9 +40,13 @@
                     <p>{{beer.etiket}}</p>
                 </mat-card>
                 <mat-card class="containStyle">
-                    <p>Antal:</p>
+                    <p>Antal øl:</p>
                     <p>{{beer.antal}}</p>
                 </mat-card>
+                <!-- <mat-card class="containStyle">
+                    <p>Antal:</p>
+                    <p>{{beer.flaskeAntal}}</p>
+                </mat-card> -->
             </mat-expansion-panel>
         </mat-accordion>
     </table>

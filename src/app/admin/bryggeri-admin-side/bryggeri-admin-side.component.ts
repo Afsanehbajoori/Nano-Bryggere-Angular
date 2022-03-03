@@ -24,7 +24,7 @@ export class BryggeriAdminSideComponent implements OnInit {
   id = this.actRoute.snapshot.params['id'];
   clickButton:boolean=true;
   bryggeriList: any;
-b: any ='';
+  b: any ='';
 
   constructor(
     public dialog: MatDialog,
@@ -36,6 +36,7 @@ b: any ='';
   ngOnInit(): void {
     this.loadBryggeri();
   }
+  
   loadBryggeri(){
     return this.restApi.getDatas(this.endpointB).subscribe((brygge) => {
       this.bryggeri = brygge;
@@ -60,8 +61,10 @@ b: any ='';
     }
   }
 
+
+//vi skal kigge på det efter oprette samarbejde component
   onFindBryggeriSamarbejde(){
-    if(this.searchkeyBryggeriSamarbejde == ''){
+ /*    if(this.searchkeyBryggeriSamarbejde == ''){
       this.ngOnInit();
     }
     else{
@@ -73,12 +76,7 @@ b: any ='';
         }
         })
       })
-
-        //console.log("id:",this.bryggeri);
-
-
-
-        }
+        } */
 
   }
 

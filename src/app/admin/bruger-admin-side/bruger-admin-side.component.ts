@@ -3,14 +3,10 @@ import { MatDialog , MatDialogConfig ,MatDialogRef } from '@angular/material/dia
 import { ActivatedRoute, Router } from '@angular/router';
 import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
 import { Bruger } from 'src/app/Models/Bruger';
-import { Bryggeri } from 'src/app/Models/Bryggeri';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 import { Kontaktoplysninger } from 'src/app/Models/Kontaktoplysninger';
 import { RedigerProfilDialogBoxComponent } from 'src/app/main/rediger-profil-dialog-box/rediger-profil-dialog-box.component';
-import { timeStamp } from 'console';
-import { MainRoutingModule } from './../../main/main-routing.module';
-import { ThrowStmt } from '@angular/compiler';
-import { ForumAdminSideComponent } from './../forum-admin-side/forum-admin-side.component';
+
 
 
 @Component({
@@ -23,7 +19,7 @@ export class BrugerAdminSideComponent implements OnInit {
   dialogRefRedigerProfil: MatDialogRef<RedigerProfilDialogBoxComponent>;
   users: Bruger[];
   user = new Bruger();
-  endpoints='/Brugere'
+  endpoints='/Brugere';
   endpointk = '/Kontaktoplysninger';
   searchkeyBrugernavn: string;
   searchkeyBrugerEnavn:string;
@@ -46,7 +42,7 @@ export class BrugerAdminSideComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadBruger();
-    // this.loadKontaktoplysninger();
+
 
   }
 
@@ -58,12 +54,7 @@ export class BrugerAdminSideComponent implements OnInit {
       })
   }
 
-/*   loadKontaktoplysninger(){
-    return this.restApi.getDatas(this.endpointk).subscribe((res) => {
-      this.kontakt = res;
-      console.log(this.kontakt)
-    })
-  } */
+
   onVisBruger(id:any){
       this.clickButton=false;
       return this.restApi.getData(id , this.endpoints).subscribe((data) => {
@@ -107,13 +98,15 @@ export class BrugerAdminSideComponent implements OnInit {
     }
     else{
       this.restApi.getDataByEmail(this.searchkeyEmail , this.endpoints).subscribe((data) => {
-        return  this.users=data;
+        return this.users=data;
       })
 
 
      }
   }
 
+  
+//husk at kigge på slet function
   onSletBruger(id: any) {
     let dialogRef = this.dialog.open(SletDialogBoxComponent);
     dialogRef.afterClosed().subscribe(result => {

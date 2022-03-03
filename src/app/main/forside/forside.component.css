@@ -1,61 +1,88 @@
-.frontCard{
-    height: 200px;
-    width: 200px;
-    background-color: rgb(214, 225, 231);
-}
 #imgeUp{
   background-image: url('/assets/images/Background-website-01.jpg');
   background-position:center center;
   background-repeat: no-repeat;
   background-size: cover;
   width: auto;
-
   }
 
 h1{
   font-weight: bolder;
-  font-size: 30px;
   font-family: 'Times New Roman', Times, serif;
   font-style: italic;
   text-align: center;
   margin-top: 20px;
 
 }
-img{
+div img{
   display: block;
   margin-left: auto;
   margin-right: auto;
   width: 10%;
   margin-bottom: 20px;
 }
+
 mat-grid-tile {
-  background: rgb(243, 245, 247);
+  background: rgb(248, 250, 252);
+  width: 100%;
+
 }
 
+
 mat-grid-tile mat-card{
-height: 250px;
-width: 250px;
-margin-left: 30px;
-margin-right: 20px;
-margin-top: 50px;
+  height: 250px;
+  width: 350px;
+  margin-left: 30px;
+  margin-right: 20px;
+  margin-top: 10px;
 }
 
 mat-card-title{
-  font-weight: bolder;
+  font-weight:bolder;
   font-size: 30px;
   font-family: 'Times New Roman', Times, serif;
   font-style: italic;
-
-
 }
+
 #beerImage{
   background-image: url('/assets/images/beerlist.jpg');
   height: 250px;
   width: 250px;
-
 }
 #bryggeriImage{
   background-image: url('/assets/images/bryggerilist.jpg');
   height: 250px;
   width: 250px;
 }
+
+.cdk-virtual-scroll-data-source-example .example-viewport {
+  height:250px;
+  width: 1250px;
+  border: 1px solid rgb(216, 210, 210);
+
+}
+
+.cdk-virtual-scroll-data-source-example .example-viewport .cdk-virtual-scroll-content-wrapper {
+  display: flex;
+  flex-direction: row;
+
+}
+
+.cdk-virtual-scroll-data-source-example .example-item {
+  width: 250px;
+  height: auto;
+  margin-left: 20px;
+  border: 1px solid rgb(223, 217, 217);
+  /* writing-mode: vertical-lr; */
+}
+.txtStyle{
+  font-style: italic;
+  font-weight: bold;
+  display: flex;
+ justify-content: center;
+ text-align: center;
+}
+mat-grid-tile
+ span{
+  margin-left: 10px;
+ }

@@ -34,6 +34,9 @@ import { CertifikatDialogBoxComponent } from './certifikat-dialog-box/certifikat
 import { SamarbejdeSideComponent } from './samarbejde-side/samarbejde-side.component';
 import { SamarbejdeOprettelseComponent } from './samarbejde-oprettelse/samarbejde-oprettelse.component';
 import { SamarbejdeRedigerComponent } from './samarbejde-rediger/samarbejde-rediger.component';
+import {ScrollingModule} from '@angular/cdk/scrolling';
+import { VisDetajlerComponent } from './vis-detajler/vis-detajler.component';
+import { VisOlDetajlerComponent } from './vis-ol-detajler/vis-ol-detajler.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +56,9 @@ import { SamarbejdeRedigerComponent } from './samarbejde-rediger/samarbejde-redi
     CertifikatDialogBoxComponent,
     SamarbejdeSideComponent,
     SamarbejdeOprettelseComponent,
-    SamarbejdeRedigerComponent
+    SamarbejdeRedigerComponent,
+    VisDetajlerComponent,
+    VisOlDetajlerComponent
   ],
   entryComponents:[SletDialogBoxComponent , RedigerProfilDialogBoxComponent , RedigerBryggeriDialogBoxComponent],
   imports: [
@@ -75,7 +80,8 @@ import { SamarbejdeRedigerComponent } from './samarbejde-rediger/samarbejde-redi
     MatExpansionModule,
     MatDialogModule,
     MatSelectModule,
-    MatOptionModule
+    MatOptionModule,
+    ScrollingModule
   ],
   providers:[
     {provide:MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue : {duration:2500}}

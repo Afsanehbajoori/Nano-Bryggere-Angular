@@ -1,60 +1,41 @@
-  <div id="imgeUp" >
-   <h1 >Velkommen Til Nano-Bryggere App</h1>
+  <div id="imgeUp"  >
+   <h1 style="font-style: italic;font-weight: bolder;margin-top: 20px;font-family: 'Times New Roman', Times, serif;">Velkommen Til Nano-Bryggere App</h1>
    <img src="/assets/images/logoNano.png"  >
   </div>
-  <!-- <mat-progress-bar mode="indeterminate"></mat-progress-bar> -->
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
 
-<mat-grid-list cols="1" rowHeight="300px">
-  <mat-grid-tile>
-    <mat-card id="beerImage">
+<mat-grid-list cols="1" rowHeight="300px" >
+
+  <mat-grid-tile class="cdk-virtual-scroll-data-source-example">
+    <span id="beerImage">
       <mat-card-title>Øl List</mat-card-title>
-    </mat-card>
-    <mat-card>
-
-
-    </mat-card>
-   <!--  <mat-card>
-
-    </mat-card>
-    <mat-card>
-
-    </mat-card>
-    <mat-card>
-
-    </mat-card>
-    <mat-card>
-
-    </mat-card> -->
+    </span>
+      <cdk-virtual-scroll-viewport orientation="horizontal" itemSize="50" class="example-viewport">
+        <div *cdkVirtualFor="let ol of olList" class="example-item" (click)="visOlDetajler(ol.id)" >
+          <img [src]="this.ol.etiket" alt="" style="width: 40%; height: 40%;">
+           <p>navn:</p>
+            <p class="txtStyle">{{ol.navn}}</p>
+          </div>
+      </cdk-virtual-scroll-viewport>
   </mat-grid-tile>
-  <mat-grid-tile>
-    <mat-card id="bryggeriImage">
+
+  <mat-grid-tile class="cdk-virtual-scroll-data-source-example">
+    <span id="bryggeriImage">
       <mat-card-title>Bryggeri List</mat-card-title>
-    </mat-card>
-    <mat-card>
-
-    </mat-card>
-    <mat-card>
-
-    </mat-card>
-    <mat-card>
-
-    </mat-card>
-    <mat-card>
-
-    </mat-card>
-    <mat-card>
-
-    </mat-card>
+    </span>
+    <cdk-virtual-scroll-viewport orientation="horizontal" itemSize="50" class="example-viewport " >
+      <div *cdkVirtualFor="let brygge of bryggeri" class="example-item" (click)="visDetajler(brygge.id)" >
+        <img [src]="this.brygge.logo" alt="" style="width: 40%; height: 40%;">
+         <p>Bryggerinavn:</p>
+          <p class="txtStyle">{{brygge.navn}}</p>
+        </div>
+    </cdk-virtual-scroll-viewport>
   </mat-grid-tile>
   <mat-grid-tile>
   <mat-card>
     <mat-card-title>Det sker der</mat-card-title>
     </mat-card>
     <mat-card>
-
-    </mat-card>
-    <mat-card>
-
     </mat-card>
   </mat-grid-tile>
   <mat-grid-tile>4</mat-grid-tile>

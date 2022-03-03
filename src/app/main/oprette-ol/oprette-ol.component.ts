@@ -42,6 +42,8 @@ export class OpretteOlComponent implements OnInit {
   };
 
   onSubmitOl() {
+    this.olOprettelse.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}');
+    console.log(this.olOprettelse);
     this.restApi.createData(this.olOprettelse, this.endpoints).subscribe((data) => {
       this.router.navigate(['../main/katalog']);
     });

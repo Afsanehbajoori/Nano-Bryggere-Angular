@@ -45,7 +45,7 @@ export class LoginSideComponent implements OnInit {
 
 
   onSubmitLogin () {
-
+    localStorage.clear();
   this.restApi.getDatas(this.endpointB).subscribe((res) => {
   const user = res.find((a:any) => {
     return a.brugernavn.toLowerCase() === this.loginDetails.brugernavn.toLowerCase() && a.pw === this.loginDetails.pw
@@ -53,6 +53,8 @@ export class LoginSideComponent implements OnInit {
   if(user){
      console.log("kontaktoplysningerId:",user.kontaktoplysningerId);
      console.log("userInfo:",user.rolleId);
+     console.log("BrugerId",user.id)
+     localStorage.setItem('brugerId', JSON.stringify(user.id));
      localStorage.setItem('kontaktoplysningerId' ,JSON.stringify(user.kontaktoplysningerId) );
      this.loginDetails.brugerId = user.id;
      this.restApi.createData(this.loginDetails , this.endpoints).subscribe((res) => {

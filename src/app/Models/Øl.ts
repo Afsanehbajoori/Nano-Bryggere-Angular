@@ -2,7 +2,6 @@ import { Bryggeri } from "./Bryggeri";
 import { Tags } from "./Tags";
 
 export class Øl {
-
   public id: number;
   public land: string;
   public bryggeriId:number;
@@ -20,5 +19,4 @@ export class Øl {
   // public tondeAntal:number;
   // public flaskeResAntal: number;
   public tags: Tags;
-  public olImg: File;
 }

@@ -2,8 +2,7 @@ import { Bruger } from "./Bruger";
 import { Forum } from "./Forum";
 
 
-export class Post
-{
+export class Post{
   public id:number;
   public brugerId:number;
   public bruger: Bruger;

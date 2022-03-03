@@ -17,6 +17,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatButtonModule,
     MatDialogModule,
     MatSelectModule,
-    MatGridListModule
+    MatGridListModule,
+    MatIconModule
     ]
 })
 export class OlModule { }

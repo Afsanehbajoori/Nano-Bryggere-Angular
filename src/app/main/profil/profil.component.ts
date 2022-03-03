@@ -51,6 +51,7 @@ export class ProfilComponent implements OnInit {
     this.kontaktoplysningerId = JSON.parse(localStorage.getItem('kontaktoplysningerId') || '{}');
 
     this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}');
+    console.log(this.bryggeriId);
     this.url=JSON.parse(localStorage.getItem('logo') || '{}');
 
 
@@ -122,23 +123,6 @@ export class ProfilComponent implements OnInit {
     });
 
   }
-
- /*  loadBryggeri() {
-    this.restApi.getData(this.bryggeriId, this.endpointB).subscribe((data) => {
-      this.bryggeriList = data;
-      if (this.bryggeriList.kontaktoplysningerId == this.kontaktoplysningerId) {
-        this.show = 1;
-        console.log(this.show);
-      }
-      else {
-        this.show = 0;
-        console.log(this.show);
-      }
-    })
-    return true;
-  }; */
-
-
 
   sletProfil() {
     this.dialogRefSlet = this.dialog.open(SletDialogBoxComponent, {

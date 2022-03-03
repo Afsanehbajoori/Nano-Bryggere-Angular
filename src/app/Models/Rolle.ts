@@ -6,12 +6,9 @@ export enum RolleNavn
   Administrator = 300
 }
 
-
-
 export class Rolle
 {
   public id : number;
   public level:number;
   public rolleNavn : RolleNavn;
-
 }

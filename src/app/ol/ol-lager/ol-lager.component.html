@@ -4,7 +4,7 @@
         <form [formGroup]="LagerForm" class="example-form" style="justify-content: center;">
             <h1>Lager Side</h1>
             <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="number" [(ngModel)]="lagerInput.antal" min="0" max="120" formControlName="antal" placeholder="Antal" class="input-control">
+                <input matInput type="number" [(ngModel)]="lagerInput.antal" min="0" max="120" formControlName="antal" placeholder="{{beer.antal}}" class="input-control">
                 <mat-error>
                     Dette felt skal udfyldes
                 </mat-error>

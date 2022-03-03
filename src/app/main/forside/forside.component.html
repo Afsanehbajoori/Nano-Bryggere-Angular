@@ -31,12 +31,18 @@
         </div>
     </cdk-virtual-scroll-viewport>
   </mat-grid-tile>
-  <mat-grid-tile>
-  <mat-card>
-    <mat-card-title>Det sker der</mat-card-title>
-    </mat-card>
-    <mat-card>
-    </mat-card>
+
+  <mat-grid-tile class="cdk-virtual-scroll-data-source-example">
+    <span id="eventsImage">
+      <mat-card-title>Det Sker Der</mat-card-title>
+    </span>
+    <cdk-virtual-scroll-viewport orientation="horizontal" itemSize="20" class="example-viewport " >
+      <div *cdkVirtualFor="let event of events" class="example-item" (click)="visDetajler(event.id)" >
+        <!-- <img [src]="this.event.logo" alt="" style="width: 40%; height: 40%;"> -->
+         <p>Titel:</p>
+          <p class="txtStyle">{{event.titel}}</p>
+        </div>
+    </cdk-virtual-scroll-viewport>
   </mat-grid-tile>
   <mat-grid-tile>4</mat-grid-tile>
 </mat-grid-list>

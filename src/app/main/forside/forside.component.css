@@ -55,6 +55,12 @@ mat-card-title{
   width: 250px;
 }
 
+#eventsImage{
+  background-image: url('/assets/images/events.jpg');
+  height: 250px;
+  width: 250px;
+}
+
 .cdk-virtual-scroll-data-source-example .example-viewport {
   height:250px;
   width: 1250px;

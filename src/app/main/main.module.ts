@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { MainRoutingModule } from './main-routing.module';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { EventSideComponent } from './event-side/event-side.component';
@@ -16,7 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SletDialogBoxComponent } from './slet-dialog-box/slet-dialog-box.component';
 import { RedigerProfilDialogBoxComponent } from './rediger-profil-dialog-box/rediger-profil-dialog-box.component';
 import { RedigerBryggeriDialogBoxComponent } from './rediger-bryggeri-dialog-box/rediger-bryggeri-dialog-box.component';
-
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -71,9 +70,8 @@ import { SamarbejdeRedigerComponent } from './samarbejde-rediger/samarbejde-redi
     MatFormFieldModule,
     MatIconModule,
     MatSidenavModule,
-
+    MatProgressBarModule,
     MatSnackBarModule,
-
     MatExpansionModule,
     MatDialogModule,
     MatSelectModule,

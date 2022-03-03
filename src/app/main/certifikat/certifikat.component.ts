@@ -2,8 +2,6 @@ import { HttpClient, HttpEventType } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { Bruger } from 'src/app/Models/Bruger';
-import { Bryggeri } from 'src/app/Models/Bryggeri';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 
 @Component({
@@ -14,7 +12,8 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 export class CertifikatComponent implements OnInit {
   endpoints = '/Brugere';
   valgtefil: File;
-  bryg : Bryggeri;
+  bruger : any;
+  brugerId: number;
   file : any;
   url : string = "assets/images/Profil billede.png";
   constructor(
@@ -25,7 +24,14 @@ export class CertifikatComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.brugerId = JSON.parse(localStorage.getItem('kontaktoplysningerId') || '{}');
+    this.loadBruger();
+  }
 
+  loadBruger(){
+    return this.restApi.getData(this.brugerId, this.endpoints).subscribe((brugerinfo: {}) => {
+      this.bruger = brugerinfo;
+    });
   }
 
   onSubmitCertifikats(event: any) {
@@ -34,20 +40,14 @@ export class CertifikatComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]);
       reader.onload=(e: any)=>{
         this.url =e.target.result;
+        this.bruger.certifikat = e.target.result;
       }
     }
   };
   onUploadCertifikat() {
-    const fd = new FormData();
-    fd.append('image', this.valgtefil, this.valgtefil.name)
-    this.restApi.createData(this.bryg, this.endpoints)
-    .subscribe(res => {
-      console.log(res);
-      if(res.type == HttpEventType.UploadProgress){
-        console.log('Upload Progress: ' + Math.round(res.loaded / res.total * 100) + '%');
-      } else if(res.type === HttpEventType.Response){
-        console.log(res);
-      }
+    console.log(this.bruger);
+    this.restApi.updateData(this.brugerId, this.endpoints, this.bruger).subscribe((data) => {
+      this.router.navigate(['../main/main'])
     });
-  };
+  }
 }

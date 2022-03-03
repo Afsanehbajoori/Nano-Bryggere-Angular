@@ -14,6 +14,8 @@ export class OlLagerComponent implements OnInit {
   LagerForm: FormGroup;
   endpoints = '/Øller';
   selected = '';
+  beer: any;
+  beerid = this.actRoute.snapshot.params['id'];
   constructor(
     public restApi: RestApiService,
     private router: Router,
@@ -24,14 +26,19 @@ export class OlLagerComponent implements OnInit {
     this.LagerForm = new FormGroup({
       antal: new FormControl('', Validators.required)
     });
+    this.onload();
   }
-
+  onload(){  
+    return this.restApi.getData(this.beerid, this.endpoints).subscribe((beerInfo: {}) => {
+      this.beer = beerInfo;
+    });
+  }
   onAnnullerOl() {
     return this.router.navigate(['../main/katalog']);
   };
 
   onSubmitOl() {
-    this.restApi.createData(this.lagerInput, this.endpoints).subscribe((data) => {
+    this.restApi.updateData(this.beerid, this.endpoints, this.lagerInput).subscribe((data) => {
       this.router.navigate(['../main/katalog']);
     });
   }

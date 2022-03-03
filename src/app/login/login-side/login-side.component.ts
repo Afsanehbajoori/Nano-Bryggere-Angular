@@ -45,7 +45,7 @@ export class LoginSideComponent implements OnInit {
 
 
   onSubmitLogin () {
-
+    localStorage.clear();
   this.restApi.getDatas(this.endpointB).subscribe((res) => {
   const user = res.find((a:any) => {
     return a.brugernavn.toLowerCase() === this.loginDetails.brugernavn.toLowerCase() && a.pw === this.loginDetails.pw

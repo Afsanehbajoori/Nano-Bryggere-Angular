@@ -9,6 +9,9 @@ import { RedigerOlComponent } from './rediger-ol/rediger-ol.component';
 import { OpretteOlComponent } from './oprette-ol/oprette-ol.component';
 import { ProfilComponent } from './profil/profil.component';
 import { KatalogComponent } from './katalog/katalog.component';
+import { SamarbejdeSideComponent } from './samarbejde-side/samarbejde-side.component';
+import { SamarbejdeOprettelseComponent } from './samarbejde-oprettelse/samarbejde-oprettelse.component';
+import { SamarbejdeRedigerComponent } from './samarbejde-rediger/samarbejde-rediger.component';
 
 const routes: Routes = [
   {path:'', component:ForsideComponent},
@@ -20,6 +23,9 @@ const routes: Routes = [
   {path:'redigerol/:id', component:RedigerOlComponent},
   {path:'opretteol', component:OpretteOlComponent},
   {path:'katalog', component:KatalogComponent},
+  {path:'samarbejdeside', component:SamarbejdeSideComponent},
+  {path:'samarbejderediger', component:SamarbejdeRedigerComponent},
+  {path:'samarbejdeopret', component:SamarbejdeOprettelseComponent},
   {path:'**', component: NotFoundComponent},
 ];
 

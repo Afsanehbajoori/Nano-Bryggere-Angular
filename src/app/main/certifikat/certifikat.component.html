@@ -7,11 +7,10 @@
                 </mat-panel-title>
                 <div style="height: 80%;">
                     <!-- <img src="" alt="" style="width: 100%; height: 80%;"> -->
+                    <h2>Bryggeri Billed</h2>
                     <img [src]="url" style="width: 80%; height: 80%;">
                     <input type="file" class="btnMainStyle" (change)="onSubmitCertifikats($event)">
                 </div>
-                <h1>Angiv navn</h1>
-                <input matInput type="number" [(ngModel)]="bryg.navn" min="0" max="120" formControlName="antal" placeholder="Antal" class="input-control"> 
                 <mat-action-row class="centers" style="justify-content: center;">
                     <button mat-button style="background-color: rgb(47, 255, 109);" class="btnMainStyle" (click)="onUploadCertifikat()">Godkend Certifikat</button>
                 </mat-action-row>

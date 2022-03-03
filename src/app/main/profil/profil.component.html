@@ -91,7 +91,6 @@
             </mat-card> -->
             <mat-card class="containStyle">
               <span>Logo:</span>
-
               <span class="txtStyle"><img [src]="this.bryggeriList.logo" alt="" style="width: 20%; height: 20%;"></span>
             </mat-card>
             <mat-card class="containStyle">
@@ -138,8 +137,7 @@
               </mat-form-field>
               <mat-form-field appearance="fill" class="example-full-width">
                 <mat-label>Beskrivelse</mat-label>
-                <input matInput placeholder="billede" formControlName="beskrivelse"
-                  [(ngModel)]="newBryggeri.beskrivelse">
+                <input matInput placeholder="billede" formControlName="beskrivelse" [(ngModel)]="newBryggeri.beskrivelse">
               </mat-form-field>
             </form>
             <mat-action-row>

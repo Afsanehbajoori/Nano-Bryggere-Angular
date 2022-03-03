@@ -1,5 +1,6 @@
-export class Kontaktoplysninger {
+import { Bryggeri } from "./Bryggeri";
 
+export class Kontaktoplysninger {
   public id: number;
   public enavn : string;
   public fnavn: string;
@@ -9,5 +10,5 @@ export class Kontaktoplysninger {
   public by: string;
   public email: string;
   public telefonnr: string;
-  public kontaktImg: File;
+  public bryggeri : Bryggeri;
 }

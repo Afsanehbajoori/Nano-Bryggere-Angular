@@ -3,7 +3,6 @@ import { Kontaktoplysninger } from "./Kontaktoplysninger";
 import { Rolle } from "./Rolle";
 
 export class Bruger {
-
   public id: number;
   public brugernavn: string;
   public pw : string;
@@ -12,7 +11,5 @@ export class Bruger {
   public kontaktoplysningerId: number;
   public kontaktoplysninger: Kontaktoplysninger;
   public events: Events;
-
-
-
+  // public certifikat: string;
 }

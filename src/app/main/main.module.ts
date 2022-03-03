@@ -32,6 +32,9 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS} from '@angular/material/snack-bar';
 import { CertifikatDialogBoxComponent } from './certifikat-dialog-box/certifikat-dialog-box.component';
+import { SamarbejdeSideComponent } from './samarbejde-side/samarbejde-side.component';
+import { SamarbejdeOprettelseComponent } from './samarbejde-oprettelse/samarbejde-oprettelse.component';
+import { SamarbejdeRedigerComponent } from './samarbejde-rediger/samarbejde-rediger.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +51,10 @@ import { CertifikatDialogBoxComponent } from './certifikat-dialog-box/certifikat
     SletDialogBoxComponent,
     RedigerProfilDialogBoxComponent,
     RedigerBryggeriDialogBoxComponent,
-    CertifikatDialogBoxComponent
+    CertifikatDialogBoxComponent,
+    SamarbejdeSideComponent,
+    SamarbejdeOprettelseComponent,
+    SamarbejdeRedigerComponent
   ],
   entryComponents:[SletDialogBoxComponent , RedigerProfilDialogBoxComponent , RedigerBryggeriDialogBoxComponent],
   imports: [

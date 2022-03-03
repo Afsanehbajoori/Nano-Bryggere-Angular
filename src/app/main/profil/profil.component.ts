@@ -64,7 +64,6 @@ export class ProfilComponent implements OnInit {
     this.loadBryggeri();
 
 
-
     this.opretteBryggeriForm = this._formBuilder.group({
       'logo': new FormControl(''),
       'navn': new FormControl('', Validators.required),
@@ -121,7 +120,6 @@ export class ProfilComponent implements OnInit {
     })
   }
 
-
   onSubmitCertifikats(event: any) {
     if (event.target.files) {
       var reader = new FileReader();
@@ -152,7 +150,6 @@ export class ProfilComponent implements OnInit {
     })
     }
   }
-
 
   sletProfil() {
     this.dialogRefSlet = this.dialog.open(SletDialogBoxComponent, {

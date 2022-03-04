@@ -5,7 +5,8 @@ export class Samarbejde{
   public id: number;
   public ølId:number;
   public øl: Øl;
-  public titel:string;
+  public bryggeriId: number;
   public bryggeri : Bryggeri;
-  // public olBilled : string;
+  public titel:string;
+  public olBilled : string;
 }

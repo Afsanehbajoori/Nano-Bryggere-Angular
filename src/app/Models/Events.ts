@@ -9,7 +9,7 @@ export class Events{
   public startDato: Date;
   public slutDato: Date;
   public lokation:string;
-  // public eventBilled:string;
+  public eventBilled:string;
   public tags:Tags;
   public deltagere : Bruger;
 }

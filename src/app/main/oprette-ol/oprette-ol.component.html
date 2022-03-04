@@ -59,6 +59,7 @@
 
             <mat-form-field class="example-full-width" appearance="fill">             
                 <input matInput type="text" [(ngModel)]="olOprettelse.etiket" formControlName="etiket" placeholder="Etiket" class="input-control">
+                <input type="file" class="btnMainStyle" (change)="onSubmitCertifikats($event)">
                 <mat-error>
                     Dette felt skal udfyldes
                 </mat-error>
@@ -72,7 +73,7 @@
             </mat-form-field>
 
             <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="text" [(ngModel)]="olOprettelse.antal" formControlName="antal" placeholder="Antal" class="input-control">
+                <input matInput type="number" [(ngModel)]="olOprettelse.antal" min="0" formControlName="antal" placeholder="Antal" class="input-control">
                 <mat-error>
                     Dette felt skal udfyldes
                 </mat-error>

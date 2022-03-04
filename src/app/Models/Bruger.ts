@@ -1,3 +1,4 @@
+import { Byte } from "@angular/compiler/src/util";
 import { Events } from "./Events";
 import { Kontaktoplysninger } from "./Kontaktoplysninger";
 import { Rolle } from "./Rolle";
@@ -11,5 +12,6 @@ export class Bruger {
   public kontaktoplysningerId: number;
   public kontaktoplysninger: Kontaktoplysninger;
   public events: Events;
-  // public certifikat: string;
+  public certifikat: Byte;
+  public certifikatImg: string;
 }

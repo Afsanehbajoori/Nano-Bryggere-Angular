@@ -6,6 +6,7 @@ import { Bryggeri } from 'src/app/Models/Bryggeri';
 import { Events } from 'src/app/Models/Events';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 import { VisDetajlerComponent } from '../vis-detajler/vis-detajler.component';
+import { VisEventsDetajlerComponent } from '../vis-events-detajler/vis-events-detajler.component';
 import { VisOlDetajlerComponent } from '../vis-ol-detajler/vis-ol-detajler.component';
 
 
@@ -18,15 +19,14 @@ import { VisOlDetajlerComponent } from '../vis-ol-detajler/vis-ol-detajler.compo
 })
 
 export class ForsideComponent implements OnInit {
-  //eventid = 20;
   events: Events[];
   event = new Events;
-  endpointE = '/Events';
   eventList : any = {};
+  olList: any ={};
   bryggeri: Bryggeri[];
   endpointB='/Bryggerier';
   endpointO = '/Øller';
-  olList:any;
+  endpointE = '/Events';
 
 
   constructor(
@@ -63,15 +63,32 @@ export class ForsideComponent implements OnInit {
 
   visOlDetajler(id:any){
     console.log('click', id);
-    this.dialog.open(VisOlDetajlerComponent);
+    this.dialog.open(VisOlDetajlerComponent , {
+      width:'400px',
+      height:'auto'
+
+    });
     localStorage.setItem('olId' , id);
   }
 
   visDetajler(id:any){
     console.log('click', id);
-    this.dialog.open(VisDetajlerComponent);
-    localStorage.setItem('bryggeriId' , id);
+    this.dialog.open(VisDetajlerComponent , {
+      width:'400px',
+      height:'auto'
 
+    });
+    localStorage.setItem('bryggeriId' , id);
+  }
+
+  visEventsDetajler(id:any){
+    console.log('click', id);
+    this.dialog.open(VisEventsDetajlerComponent , {
+      width:'400px',
+      height:'auto'
+
+    });
+    localStorage.setItem('eventsId' , id);
   }
 
 

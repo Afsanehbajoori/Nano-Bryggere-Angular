@@ -37,6 +37,7 @@ import { SamarbejdeRedigerComponent } from './samarbejde-rediger/samarbejde-redi
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import { VisDetajlerComponent } from './vis-detajler/vis-detajler.component';
 import { VisOlDetajlerComponent } from './vis-ol-detajler/vis-ol-detajler.component';
+import { VisEventsDetajlerComponent } from './vis-events-detajler/vis-events-detajler.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { VisOlDetajlerComponent } from './vis-ol-detajler/vis-ol-detajler.compon
     SamarbejdeOprettelseComponent,
     SamarbejdeRedigerComponent,
     VisDetajlerComponent,
-    VisOlDetajlerComponent
+    VisOlDetajlerComponent,
+    VisEventsDetajlerComponent
   ],
   entryComponents:[SletDialogBoxComponent , RedigerProfilDialogBoxComponent , RedigerBryggeriDialogBoxComponent],
   imports: [

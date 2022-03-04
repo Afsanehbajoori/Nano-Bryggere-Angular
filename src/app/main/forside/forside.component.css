@@ -29,7 +29,7 @@ mat-grid-tile {
 }
 
 
-mat-grid-tile mat-card{
+mat-grid-tile mat-card {
   height: 250px;
   width: 350px;
   margin-left: 30px;
@@ -37,28 +37,37 @@ mat-grid-tile mat-card{
   margin-top: 10px;
 }
 
-mat-card-title{
+mat-card-title {
   font-weight:bolder;
   font-size: 30px;
   font-family: 'Times New Roman', Times, serif;
   font-style: italic;
+  color: aliceblue;
 }
 
 #beerImage{
   background-image: url('/assets/images/beerlist.jpg');
   height: 250px;
   width: 250px;
+  background-position:center center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 #bryggeriImage{
   background-image: url('/assets/images/bryggerilist.jpg');
   height: 250px;
   width: 250px;
+
 }
 
 #eventsImage{
   background-image: url('/assets/images/events.jpg');
   height: 250px;
   width: 250px;
+  background-position:center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
 }
 
 .cdk-virtual-scroll-data-source-example .example-viewport {

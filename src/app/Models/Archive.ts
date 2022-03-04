@@ -8,5 +8,4 @@ export class Archive{
   public kontaktolysningerId:number;
   public kontaktoplysninger:Kontaktoplysninger;
   public oprettet :Date;
-
 }

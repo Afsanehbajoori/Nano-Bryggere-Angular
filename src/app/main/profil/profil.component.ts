@@ -9,8 +9,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm, FormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormBuilder } from '@angular/forms';
-import { Kontaktoplysninger } from './../../Models/Kontaktoplysninger';
-
 
 @Component({
   selector: 'app-profil',
@@ -42,7 +40,6 @@ export class ProfilComponent implements OnInit {
   valgtefil: File;
   showOB:boolean ;
   logo:any
-  // url : string = "assets/images/Gromit Mug.jpg";
   url: string;
   @Input() newBryggeri = { logo: '', navn: '', beskrivelse: '', kontaktoplysningerId:0 };
   opretteBryggeriForm: any = new FormGroup({});
@@ -63,7 +60,6 @@ export class ProfilComponent implements OnInit {
     this.loadKontaktoplysninger();
     this.loadBryggeri();
 
-
     this.opretteBryggeriForm = this._formBuilder.group({
       'logo': new FormControl(''),
       'navn': new FormControl('', Validators.required),
@@ -71,7 +67,6 @@ export class ProfilComponent implements OnInit {
       'kontaktoplysningerId': new FormControl('')
     })
   }
-
 
   logud(){
     localStorage.clear();
@@ -90,15 +85,9 @@ export class ProfilComponent implements OnInit {
           this.RolleList=data;
           console.log('RolleList' , this.RolleList)
         })
-
-
       })
-
     })
-
   };
-
-
 
   loadBryggeri() {
     this.restApi.getDatas(this.endpointB).subscribe((data) => {
@@ -115,8 +104,6 @@ export class ProfilComponent implements OnInit {
        this.showOB=true;
        console.log(this.showOB);
     }
-
-
     })
   }
 
@@ -128,7 +115,6 @@ export class ProfilComponent implements OnInit {
         this.logo = e.target.result;
         console.log(this.logo);
         localStorage.setItem('logo', JSON.stringify(this.logo));
-
       }
     }
   };
@@ -231,5 +217,3 @@ export class ProfilComponent implements OnInit {
     })
   };
 }
-
-

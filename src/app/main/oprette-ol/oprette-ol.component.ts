@@ -40,7 +40,23 @@ export class OpretteOlComponent implements OnInit {
   onAnnullerOl() {
         return this.router.navigate(['../main/katalog']);
   };
-
+  onSubmitCertifikats(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader();
+      reader.onload = (e:any) => this.olOprettelse.etiket = e.target.result;
+      reader.readAsDataURL(event.target.files[0])
+      // var reader = new FileReader();
+      // reader.readAsDataURL(event.target.files[0]);
+      // reader.onload = (e: any) => {
+      //   this.olOprettelse.etiket = e.target.result;
+      //   console.log(this.olOprettelse.etiket);
+      //   localStorage.setItem('logo', JSON.stringify(this.olOprettelse.etiket));
+      // }
+    }
+    else{
+      this.olOprettelse.etiket = '';
+    }
+  };
   onSubmitOl() {
     this.olOprettelse.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}');
     console.log(this.olOprettelse);

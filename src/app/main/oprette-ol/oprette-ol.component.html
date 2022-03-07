@@ -31,13 +31,6 @@
                     Dette felt skal udfyldes
                 </mat-error>
             </mat-form-field>
-            
-            <!-- <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="date" [(ngModel)]="olOprettelse.argang" formControlName="argang" placeholder="Årgang" class="input-control">
-                <mat-error>
-                    Dette felt skal udfyldes
-                </mat-error>
-            </mat-form-field> -->
 
             <mat-form-field class="example-full-width" appearance="fill">             
                 <input matInput type="text" [(ngModel)]="olOprettelse.land" formControlName="land" placeholder="Land" class="input-control">
@@ -74,6 +67,13 @@
 
             <mat-form-field class="example-full-width" appearance="fill">
                 <input matInput type="number" [(ngModel)]="olOprettelse.antal" min="0" formControlName="antal" placeholder="Antal" class="input-control">
+                <mat-error>
+                    Dette felt skal udfyldes
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill">
+                <input matInput type="date" [(ngModel)]="olOprettelse.argang" formControlName="argang" placeholder="Årgang" class="input-control">
                 <mat-error>
                     Dette felt skal udfyldes
                 </mat-error>

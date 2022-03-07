@@ -35,7 +35,7 @@ export class ForsideComponent implements OnInit {
       indhold: new FormControl('', Validators.required),
     });
     this.loadForum()
-    // this.loadPost()
+    this.loadPost()
   }
   loadForum(){
     return this.restApi.getDatas(this.endpointf).subscribe((forum) => {
@@ -45,6 +45,7 @@ export class ForsideComponent implements OnInit {
   loadPost(){
     return this.restApi.getDatas(this.endpointp).subscribe((post) => {
       this.posts = post;
+      console.log(this.posts);
     })
   }
   onFindForum(){

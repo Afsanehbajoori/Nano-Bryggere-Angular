@@ -9,7 +9,7 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./oprette-ol.component.css']
 })
 export class OpretteOlComponent implements OnInit {
-  @Input() olOprettelse = { navn: '', type: '', smag: '', procent: null, land: '', bryggeriId: null, etiket: '', beskrivelse:'', antal: '' };
+  @Input() olOprettelse = { navn: '', type: '', smag: '', procent: null, land: '', bryggeriId: null, etiket: '', beskrivelse:'', antal: '', argang: '' };
   // @Input() olOprettelse = { navn: '', type: '', smag: '', procent: null, land: '', bryggeriId: null, argang: 0, etiket: '', beskrivelse:'', antal: '' };
   OpretForm : FormGroup;
   endpoints = '/Øller';
@@ -27,7 +27,7 @@ export class OpretteOlComponent implements OnInit {
       smag: new FormControl('', Validators.required),
       procent: new FormControl('', Validators.required),
       bryggerid: new FormControl('', Validators.required),
-      // argang: new FormControl('', Validators.required),
+      argang: new FormControl('', Validators.required),
       land: new FormControl('', Validators.required),
       process: new FormControl('', Validators.required),
       etiket: new FormControl('', Validators.required),

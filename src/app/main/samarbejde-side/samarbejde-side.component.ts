@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Bryggeri } from 'src/app/Models/Bryggeri';
+import { Samarbejde } from 'src/app/Models/Samarbejde';
 import { Øl } from 'src/app/Models/Øl';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 import { SletDialogBoxComponent } from '../slet-dialog-box/slet-dialog-box.component';
@@ -16,7 +17,7 @@ export class SamarbejdeSideComponent implements OnInit {
   beerliste: Øl[];
   beer: Øl;
   bryg = new Bryggeri;
-  samarbejde: SamarbejdeSideComponent;
+  samarbejde: Samarbejde[];
   endpoints = '/Øller';
   data = sessionStorage.getItem('id');
   searchkey: string;

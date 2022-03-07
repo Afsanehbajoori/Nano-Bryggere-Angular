@@ -1,6 +1,7 @@
 <div class="main" id="imgeUp">
     <mat-toolbar class="login-header" style="background: linear-gradient(#238ff5, #23baf5); width: 100%;">
-        <button mat-raised-button style="background-color: rgb(30, 122, 228); width: 120px; height: 40px; border-width: 0; margin-right: 20px;"
+        <button mat-raised-button
+            style="background-color: rgb(30, 122, 228); width: 120px; height: 40px; border-width: 0; margin-right: 20px;"
             (click)="onOpretForum()">Opret Forum</button>
         <form class="example-form" style="justify-content: center;">
             <mat-form-field>
@@ -8,11 +9,11 @@
                     (ngModelChange)="onFindForum()" [ngModelOptions]="{standalone: true}">
             </mat-form-field>
         </form>
-            <h1>Forum</h1>
+        <h1>Forum</h1>
     </mat-toolbar>
     <table style="width: 100%; height: 100%; display: flex;">
         <mat-accordion class="example-headers-align" multi style="width: 100%;">
-            <mat-expansion-panel *ngFor="let forum of forums">
+            <mat-expansion-panel *ngFor="let forum of forums" style="background-color: transparent;">
                 <mat-expansion-panel-header
                     style="background: linear-gradient(rgb(30, 122, 228), rgb(75, 127, 185)); justify-content: center; width: 100%;">
                     <mat-panel-title class="centers" style="justify-content: center;">
@@ -20,8 +21,10 @@
                     </mat-panel-title>
                     <!-- if statement så knapperne kun vises hvis det er brugerens forum -->
                     <mat-action-row class="centers" style="justify-content: center;">
-                        <button mat-button class="btnMainStyle" *ngIf="forum.id" (click)="onSletForum(forum.id)">Slet Forum</button>
-                        <button mat-button class="btnMainStyle" *ngIf="forum.id" (click)="onOpdaterForum(forum.id)">Rediger Forum</button>
+                        <button mat-button class="btnMainStyle" *ngIf="forum.id" (click)="onSletForum(forum.id)">Slet
+                            Forum</button>
+                        <button mat-button class="btnMainStyle" *ngIf="forum.id"
+                            (click)="onOpdaterForum(forum.id)">Rediger Forum</button>
                     </mat-action-row>
                 </mat-expansion-panel-header>
                 <mat-card class="containStyle">
@@ -30,7 +33,16 @@
                 </mat-card>
                 <mat-card class="messageStyle">
                     <form [formGroup]="OpretForm" class="example-form">
-                        <mat-form-field class="example-full-width" appearance="fill" style="justify-content: center; width: 100%;">
+                        <mat-form-field class="example-full-width" appearance="fill"
+                            style="justify-content: center; width: 100%;">
+                            <input matInput type="text" [(ngModel)]="postOprettelse.title" formControlName="title"
+                                placeholder="Title" class="input-control" style="width:100%">
+                            <mat-error>
+                                Dette felt skal udfyldes
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width" appearance="fill"
+                            style="justify-content: center; width: 100%;">
                             <input matInput type="text" [(ngModel)]="postOprettelse.indhold" formControlName="indhold"
                                 placeholder="Indhold" class="input-control" style="width:100%">
                             <mat-error>
@@ -43,16 +55,20 @@
                         </mat-action-row>
                     </form>
                 </mat-card>
-                <mat-card *ngFor="let post of posts">
-                    <mat-panel-title class="centers" style="justify-content: center;">
-                        {{post.titel}}
-                    </mat-panel-title>
+                <mat-card *ngFor="let post of posts" class="containPostStyle">
                     <mat-card class="containStyle">
+                        <mat-panel-title class="centers" style="justify-content: center;">
+                            {{post.titel}}
+                        </mat-panel-title>
+                    </mat-card>
+                    <mat-card class="center containStyle" style="justify-content: center;">
                         <p>{{post.indhold}}</p>
                     </mat-card>
                     <mat-action-row class="centers" style="justify-content: center;">
-                        <button mat-button class="btnMainStyle" (click)="onSletPost(forum.id)">Slet Post</button>
-                        <button mat-button class="btnMainStyle" (click)="onOpdaterPost(forum.id)">Rediger Post</button>
+                        <button mat-button class="btnMainStyle" *ngIf="post.brugerId" (click)="onSletPost(post.id)">Slet
+                            Post</button>
+                        <button mat-button class="btnMainStyle" *ngIf="post.brugerId"
+                            (click)="onOpdaterPost(post.id)">Rediger Post</button>
                     </mat-action-row>
                 </mat-card>
             </mat-expansion-panel>

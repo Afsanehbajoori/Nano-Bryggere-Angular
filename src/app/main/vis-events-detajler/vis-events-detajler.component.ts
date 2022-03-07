@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RestApiService } from 'src/app/shared/rest-api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-vis-events-detajler',
@@ -11,19 +12,23 @@ export class VisEventsDetajlerComponent implements OnInit {
   eventsId:number;
   eventInfo:any;
 
-  constructor(public restApi: RestApiService) { }
+  constructor(public restApi: RestApiService , private route : Router) { }
 
   ngOnInit(): void {
-    this.eventsId= JSON.parse(localStorage.getItem('olId') || '{}');
-    console.log('bry' , this.eventsId);
+    this.eventsId= JSON.parse(localStorage.getItem('eventsId') || '{}');
+    console.log('event' , this.eventsId);
     this.loadOl();
   }
-  
+
   loadOl(){
     this.restApi.getData(this.eventsId , this.endpointE).subscribe(data => {
       this.eventInfo = data;
-      console.log('detajler:' , this.eventInfo.titel)
+      console.log('detajler:' , this.eventInfo)
     })
+  }
+
+  onJoinEvents(id:any){
+      this.route.navigate(['../login/login']);
   }
 
 }

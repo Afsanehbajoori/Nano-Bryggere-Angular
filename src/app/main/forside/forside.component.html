@@ -38,13 +38,15 @@
     </span>
     <cdk-virtual-scroll-viewport orientation="horizontal" itemSize="20" class="example-viewport " >
       <div *cdkVirtualFor="let event of events" class="example-item" (click)="visEventsDetajler(event.id)" >
-        <!-- <img [src]="this.event.logo" alt="" style="width: 40%; height: 40%;"> -->
+        <img [src]="this.event.eventBilled" alt="" style="width: 40%; height: 40%;">
          <p>Titel:</p>
           <p class="txtStyle">{{event.titel}}</p>
         </div>
     </cdk-virtual-scroll-viewport>
   </mat-grid-tile>
-  <mat-grid-tile>4</mat-grid-tile>
+  <mat-grid-tile>
+    <!-- kan tilføje mere her -->
+  </mat-grid-tile>
 </mat-grid-list>
 
 

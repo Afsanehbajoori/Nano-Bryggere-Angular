@@ -1,5 +1,5 @@
 <mat-card *ngIf="olInfo">
-  <img mat-dialog-title [src]="olInfo.logo" alt="" style="width: 100%; height: auto;">
+  <img mat-dialog-title [src]="olInfo.etiket" alt="" style="width: 100%; height: auto;">
     <mat-dialog-content mat-dialog-content class="mat-typography">
       <p>Øl Navn:</p>
       <p class="txtStyle">{{olInfo.navn}}</p>
@@ -14,7 +14,8 @@
       <p>Øl Bryggeprocess:</p>
       <p class="txtStyle">{{olInfo.bryggeprocess}}</p>
       <p>Øl Årgang:</p>
-      <p class="txtStyle">{{olInfo.argang}}</p>
+      <p class="txtStyle" >{{this.argang}}</p>
+      <!-- <p class="txtStyle" >&#229;rgang</p> -->
       <p>Øl Antal:</p>
       <p class="txtStyle">{{olInfo.antal}}</p>
       <p>Øl Beskrivelse:</p>

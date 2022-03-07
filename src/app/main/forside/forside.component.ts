@@ -8,6 +8,7 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 import { VisDetajlerComponent } from '../vis-detajler/vis-detajler.component';
 import { VisEventsDetajlerComponent } from '../vis-events-detajler/vis-events-detajler.component';
 import { VisOlDetajlerComponent } from '../vis-ol-detajler/vis-ol-detajler.component';
+import { Øl } from 'src/app/Models/Øl';
 
 
 @Component({
@@ -20,10 +21,10 @@ import { VisOlDetajlerComponent } from '../vis-ol-detajler/vis-ol-detajler.compo
 
 export class ForsideComponent implements OnInit {
   events: Events[];
+  bryggeri: Bryggeri[];
+  olList: Øl [];
   event = new Events;
   eventList : any = {};
-  olList: any ={};
-  bryggeri: Bryggeri[];
   endpointB='/Bryggerier';
   endpointO = '/Øller';
   endpointE = '/Events';
@@ -44,35 +45,35 @@ export class ForsideComponent implements OnInit {
   loadEvent() {
     return this.restApi.getDatas(this.endpointE).subscribe((data) => {
       this.events = data;
-      console.log(this.events)
+      //console.log(this.events)
     });
   }
 
   loadBryggeri(){
     return this.restApi.getDatas(this.endpointB).subscribe((data) => {
       this.bryggeri = data;
-      console.log('bryggeriList:',this.bryggeri);
+      //console.log('bryggeriList:',this.bryggeri);
     })
   }
   loadOl(){
     return this.restApi.getDatas(this.endpointO).subscribe((data) => {
       this.olList = data;
-      console.log('olList:',this.olList);
+      //console.log('olList:',this.olList);
     })
   }
 
   visOlDetajler(id:any){
-    console.log('click', id);
+    //console.log('click', id);
     this.dialog.open(VisOlDetajlerComponent , {
       width:'400px',
-      height:'auto'
+      height:'300'
 
     });
     localStorage.setItem('olId' , id);
   }
 
   visDetajler(id:any){
-    console.log('click', id);
+    //console.log('click', id);
     this.dialog.open(VisDetajlerComponent , {
       width:'400px',
       height:'auto'
@@ -89,6 +90,7 @@ export class ForsideComponent implements OnInit {
 
     });
     localStorage.setItem('eventsId' , id);
+    console.log('eventsId' , id)
   }
 
 

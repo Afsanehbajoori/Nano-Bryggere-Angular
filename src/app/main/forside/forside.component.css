@@ -97,7 +97,6 @@ mat-card-title {
  justify-content: center;
  text-align: center;
 }
-mat-grid-tile
- span{
-  margin-left: 10px;
+mat-grid-tile span{
+  margin-left: 30px;
  }

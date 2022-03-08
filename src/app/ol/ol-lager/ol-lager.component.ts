@@ -10,12 +10,13 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 })
 export class OlLagerComponent implements OnInit {
   // @Input() lagerInput = { antal: 0, flaskeAntal: 0, tondeAntal: 0 };
-  @Input() lagerInput = { antal: 0 };
+
   LagerForm: FormGroup;
   endpoints = '/Øller';
   selected = '';
   beer: any;
   beerid = this.actRoute.snapshot.params['id'];
+  olList : any = {};
   constructor(
     public restApi: RestApiService,
     private router: Router,
@@ -24,13 +25,16 @@ export class OlLagerComponent implements OnInit {
 
   ngOnInit(): void {
     this.LagerForm = new FormGroup({
-      antal: new FormControl('', Validators.required)
+      antal: new FormControl('', Validators.required),
+      flaskeAntal: new FormControl('', Validators.required),
+      tondeAntal: new FormControl('', Validators.required),
+      flaskeResAntal: new FormControl('', Validators.required)
     });
     this.onload();
   }
   onload(){  
     return this.restApi.getData(this.beerid, this.endpoints).subscribe((beerInfo: {}) => {
-      this.beer = beerInfo;
+      this.olList = beerInfo;
     });
   }
   onAnnullerOl() {
@@ -38,7 +42,7 @@ export class OlLagerComponent implements OnInit {
   };
 
   onSubmitOl() {
-    this.restApi.updateData(this.beerid, this.endpoints, this.lagerInput).subscribe((data) => {
+    this.restApi.updateData(this.beerid, this.endpoints, this.olList).subscribe((data) => {
       this.router.navigate(['../main/katalog']);
     });
   }

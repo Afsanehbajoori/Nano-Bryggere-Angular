@@ -18,9 +18,11 @@ export class SamarbejdeSideComponent implements OnInit {
   beer: Øl;
   bryg = new Bryggeri;
   samarbejde: Samarbejde[];
-  endpoints = '/Øller';
+  endpointo = '/Øller';
+  endpoints = '/Samarbejder';
   data = sessionStorage.getItem('id');
   searchkey: string;
+  ølId: number;
   bryggeriId: number;
   bryggeriList: any;
   constructor(
@@ -35,20 +37,28 @@ export class SamarbejdeSideComponent implements OnInit {
   }
   loadOl() {
     if (this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}')) {
-      console.log(this.bryggeriId);
-      this.restApi.getDatas(this.endpoints).subscribe((data) => {
+      this.restApi.getDatas(this.endpointo).subscribe((data) => {
         this.beerliste = data.filter((res: any) => {
           return res.bryggeriId === this.bryggeriId});
       })
     }
   }
 
+  loadSamarbejde() {
+    if (this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}')) {
+      this.restApi.getDatas(this.endpoints).subscribe((data) => {
+        this.samarbejde = data.filter((res: any) => {
+          return res.ølId === this.ølId});
+      })
+    }
+  }
+
   onRedigerOl(id: any) {
-    this.router.navigate(['../main/RedigerSamarbejdeOl/', id]);
+    this.router.navigate(['../main/samarbejderediger/', id]);
   };
 
   onOpretOl() {
-    this.router.navigate(['../main/opretteSamarbejdeOl']);
+    this.router.navigate(['../main/samarbejdeopret']);
   };
 
   onSletOl(id: any) {

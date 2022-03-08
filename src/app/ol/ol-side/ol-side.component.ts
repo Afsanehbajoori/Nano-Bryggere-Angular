@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Bryggeri } from 'src/app/Models/Bryggeri';
 import { Kontaktoplysninger } from 'src/app/Models/Kontaktoplysninger';
 import { Øl } from 'src/app/Models/Øl';
 import { RestApiService } from 'src/app/shared/rest-api.service';
@@ -12,13 +13,13 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./ol-side.component.css']
 })
 export class OlSideComponent implements OnInit {
-  OlForm: FormGroup;
-  kontaktoplysninger:any;
-  ol:any;
-  users: Kontaktoplysninger[];
-  oller: Øl[];
+  oplysninger: Kontaktoplysninger;
+  ol: Øl;
+  bryggeri: Bryggeri;
   endpointk = '/Kontaktoplysninger';
   endpointo = '/Øller';
+  endpointb = '/Bryggerier';
+  bryggerid: Number;
   olId: number;
   kontaktoplysningerId: number;
   constructor(
@@ -29,22 +30,33 @@ export class OlSideComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.kontaktoplysningerId = JSON.parse(localStorage.getItem('kontaktoplysningerId') || '{}');
     this.olId = JSON.parse(localStorage.getItem('OlId') || '{}');
+    this.bryggerid = JSON.parse(localStorage.getItem('BId') || '{}');
+    this.loadBryg(); 
+    this.kontaktoplysningerId = JSON.parse(localStorage.getItem('KontaktId') || '{}');
     this.loadKontaktOplysninger();
     this.loadOl();
   }
 
-  loadKontaktOplysninger(){
-    return this.restApi.getData(this.kontaktoplysningerId, this.endpointk).subscribe((user) => {
-      this.kontaktoplysninger = user;
+  loadBryg(){
+    return this.restApi.getData(this.bryggerid, this.endpointb).subscribe((bryg) => {
+      this.bryggeri = bryg;
+      localStorage.setItem('KontaktId' ,JSON.stringify(this.bryggeri.kontaktoplysningerId));
     })
   }
+
+  loadKontaktOplysninger(){
+    return this.restApi.getData(this.kontaktoplysningerId, this.endpointk).subscribe((user) => {
+      this.oplysninger = user;
+    })
+  }
+
   loadOl(){
     return this.restApi.getData(this.olId, this.endpointo).subscribe((ol) => {
       this.ol = ol;
     })
   }
+  
   onTilbage() {
     this.router.navigate(['../ol/sogning']);
   };

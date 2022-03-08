@@ -70,3 +70,10 @@ height: 60%;
 .example-spacer {
   flex: 1 1 auto;
 }
+
+.centers{
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+  text-align: center;
+}

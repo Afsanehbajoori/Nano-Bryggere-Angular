@@ -34,24 +34,9 @@
                 </mat-error>
             </mat-form-field>
 
-            <!-- <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="date" [(ngModel)]="olList.argang" formControlName="argang" placeholder="{{olList.argang}}" class="input-control">
-                <mat-error>
-                    Dette felt skal udfyldes
-                </mat-error>
-            </mat-form-field> -->
-
             <mat-form-field class="example-full-width" appearance="fill">
                 <input matInput type="text" [(ngModel)]="olList.land" formControlName="land"
                     placeholder="{{olList.land}}" class="input-control">
-                <mat-error>
-                    udfyld feltet
-                </mat-error>
-            </mat-form-field>
-
-            <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="number" [(ngModel)]="olList.bryggeriId" formControlName="bryggerid"
-                    placeholder="{{olList.bryggeriId}}" class="input-control">
                 <mat-error>
                     udfyld feltet
                 </mat-error>
@@ -89,6 +74,13 @@
                     placeholder="{{olList.antal}}" class="input-control">
                 <mat-error>
                     udfyld feltet
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill">
+                <input matInput type="date" [(ngModel)]="olList.argang" formControlName="argang" placeholder="{{olList.argang}}" class="input-control">
+                <mat-error>
+                    Dette felt skal udfyldes
                 </mat-error>
             </mat-form-field>
 

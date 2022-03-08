@@ -15,7 +15,7 @@ export class EventkalenderSideComponent implements OnInit {
   endpoints = '/Events';
   searchkey: string;
   deltagelse: boolean;
-  
+
   constructor(
     public dialog: MatDialog,
     public restApi: RestApiService,

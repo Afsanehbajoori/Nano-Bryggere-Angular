@@ -48,6 +48,7 @@ export class KatalogComponent implements OnInit {
   };
   
   onLager(id: any) {
+    localStorage.setItem('lagerId' ,JSON.stringify(id));
     this.router.navigate(['../ol/ollager/', id]);
   };
 

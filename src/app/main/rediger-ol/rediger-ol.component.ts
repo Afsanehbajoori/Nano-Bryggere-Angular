@@ -27,7 +27,7 @@ export class RedigerOlComponent implements OnInit {
       smag: new FormControl(''),
       procent: new FormControl(''),
       bryggerid: new FormControl(''),
-      // argang: new FormControl('', Validators.required),
+      argang: new FormControl('', Validators.required),
       land: new FormControl(''),
       process: new FormControl('', Validators.required),
       etiket: new FormControl(''),

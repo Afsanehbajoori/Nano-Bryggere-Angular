@@ -19,6 +19,7 @@ export class OlSogningComponent implements OnInit {
   bryggerier: Bryggeri[];
   selected = ''
   endpoints = '/Øller';
+  endpointB = '/Bryggerier';
   searchkey: string;
   search: any;
   data = sessionStorage.getItem('id');
@@ -39,6 +40,12 @@ export class OlSogningComponent implements OnInit {
     });
   }
 
+  loadBryg(){
+    return this.restApi.getDatas(this.endpointB).subscribe((bryg) => {
+      this.bryggerier = bryg;
+    });
+  }
+
   onFindOl(){
     if(this.searchkey == ""){
       this.ngOnInit();
@@ -49,8 +56,9 @@ export class OlSogningComponent implements OnInit {
       })
     }
   }
-  onVisOlInfo(id:any){
-    localStorage.setItem('OlId' ,JSON.stringify(id));
-    this.router.navigate(['../ol/olside/',id]);
+  onVisOlInfo(Oid:any, Bid:any){
+    localStorage.setItem('OlId' ,JSON.stringify(Oid));
+    localStorage.setItem('BId' ,JSON.stringify(Bid));
+    this.router.navigate(['../ol/olside/',Oid]);
   }
 }

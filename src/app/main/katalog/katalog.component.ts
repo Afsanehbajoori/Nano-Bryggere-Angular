@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Bruger } from 'src/app/Models/Bruger';
 import { Øl } from 'src/app/Models/Øl';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 import { SletDialogBoxComponent } from '../slet-dialog-box/slet-dialog-box.component';
@@ -15,12 +14,11 @@ export class KatalogComponent implements OnInit {
   beers: any;
   beerliste: Øl[];
   beer: Øl;
-  bruger = new Bruger;
   endpoints = '/Øller';
-  data = sessionStorage.getItem('id');
   searchkey: string;
   bryggeriId: number;
   bryggeriList: any;
+  argang: Date;
 
   constructor(
     public dialog: MatDialog,
@@ -32,13 +30,13 @@ export class KatalogComponent implements OnInit {
   ngOnInit(): void {
     this.loadOl()
   }
-  
+
   loadOl() {
     if (this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}')) {
-      console.log(this.bryggeriId);
       this.restApi.getDatas(this.endpoints).subscribe((data) => {
         this.beerliste = data.filter((res: any) => {
-          return res.bryggeriId === this.bryggeriId});
+          return res.bryggeriId === this.bryggeriId;
+        });
       })
     }
   }
@@ -46,9 +44,9 @@ export class KatalogComponent implements OnInit {
   onRedigerOl(id: any) {
     this.router.navigate(['../main/redigerol/', id]);
   };
-  
+
   onLager(id: any) {
-    localStorage.setItem('lagerId' ,JSON.stringify(id));
+    localStorage.setItem('lagerId', JSON.stringify(id));
     this.router.navigate(['../ol/ollager/', id]);
   };
 

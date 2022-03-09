@@ -26,7 +26,10 @@
     margin-right: 50px;
     margin-top: 10px;
     padding-left: 40px;
+    border-width: 2px;
     font-style: oblique;
+    border-style: solid;
+    border-color: darkgray;
   }
 
 .centers{

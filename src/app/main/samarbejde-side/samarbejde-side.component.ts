@@ -33,9 +33,10 @@ export class SamarbejdeSideComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.loadOl()
+    this.onLoadOl();
+    this.onLoadSamarbejde();
   }
-  loadOl() {
+  onLoadOl() {
     if (this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}')) {
       this.restApi.getDatas(this.endpointo).subscribe((data) => {
         this.beerliste = data.filter((res: any) => {
@@ -44,11 +45,12 @@ export class SamarbejdeSideComponent implements OnInit {
     }
   }
 
-  loadSamarbejde() {
+  onLoadSamarbejde() {
     if (this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}')) {
       this.restApi.getDatas(this.endpoints).subscribe((data) => {
         this.samarbejde = data.filter((res: any) => {
           return res.ølId === this.ølId});
+          console.log(data);
       })
     }
   }
@@ -67,7 +69,7 @@ export class SamarbejdeSideComponent implements OnInit {
       console.log(result);
       if (result == true) {
         this.restApi.deleteData(id, this.endpoints).subscribe(data => {
-          this.loadOl();
+          this.onLoadOl();
         })
       }
     });

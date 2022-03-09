@@ -35,8 +35,23 @@
             </mat-form-field>
 
             <mat-form-field class="example-full-width" appearance="fill">
+                <input matInput type="date" [(ngModel)]="olList.argang" formControlName="argang" placeholder="{{olList.argang}}" class="input-control">
+                <mat-error>
+                    Dette felt skal udfyldes
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill">
                 <input matInput type="text" [(ngModel)]="olList.land" formControlName="land"
                     placeholder="{{olList.land}}" class="input-control">
+                <mat-error>
+                    udfyld feltet
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill">
+                <input matInput type="number" [(ngModel)]="olList.bryggeriId" formControlName="bryggerid"
+                    placeholder="{{olList.bryggeriId}}" class="input-control">
                 <mat-error>
                     udfyld feltet
                 </mat-error>
@@ -77,18 +92,11 @@
                 </mat-error>
             </mat-form-field>
 
-            <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="date" [(ngModel)]="olList.argang" formControlName="argang" placeholder="{{olList.argang}}" class="input-control">
-                <mat-error>
-                    Dette felt skal udfyldes
-                </mat-error>
-            </mat-form-field>
-
             <button mat-raised-button type="submit" (click)="onAnnullerOl()" class="login-btn"
                 style="background: linear-gradient(#b60d0d, #ff6e6e);">Annuller</button>
 
             <button mat-raised-button type="submit" (click)="onSubmitOl()" class="login-btn"
-                style="background: linear-gradient(#33ff00, #41fd70);">Rediger Øl</button>
+                style="background: linear-gradient(#00ff37, #41fd70);">Rediger Øl</button>
         </form>
     </mat-card-content>
 </mat-card>

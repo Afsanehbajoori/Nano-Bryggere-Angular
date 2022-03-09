@@ -44,12 +44,12 @@ export class SamarbejdeRedigerComponent implements OnInit {
   }
 
   onAnnullerOl() {
-    return this.router.navigate(['../main/katalog'])
+    return this.router.navigate(['../main/samarbejdeside'])
   };
 
   onSubmitOl() {
     this.restApi.updateData(this.beerid, this.endpoints, this.olList).subscribe((data) => {
-      this.router.navigate(['../main/katalog'])
+      this.router.navigate(['../main/samarbejdeside'])
     });
   }
 }

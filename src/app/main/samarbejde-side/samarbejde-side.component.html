@@ -5,7 +5,7 @@
                 <input matInput type="search" placeholder="Find øl navn" [(ngModel)]="searchkey" (ngModelChange)="onFindOl()" [ngModelOptions]="{standalone: true}">
             </mat-form-field>
         </form>
-        <h1 style="justify-content: center; width: 100%;">Samarbejde Katalog</h1>
+        <h1 class="centers">Samarbejde Katalog</h1>
     </mat-toolbar>
     <table style="width: 100%; height: 100%; display: flex;">
         <mat-accordion class="example-headers-align" multi style="width: 100%;">
@@ -40,8 +40,20 @@
                     <img [src]="beer.etiket" alt="" style="width: 20%; height: 20%;">
                 </mat-card>
                 <mat-card class="containStyle">
-                    <p>Antal flasker:</p>
+                    <p>Antal øl:</p>
                     <p>{{beer.antal}}</p>
+                </mat-card>
+                <mat-card class="containStyle">
+                    <p>Antal flasker:</p>
+                    <p>{{beer.flaskeAntal}}</p>
+                </mat-card>
+                <mat-card class="containStyle">
+                    <p>Antal tønder:</p>
+                    <p>{{beer.tondeAntal}}</p>
+                </mat-card>
+                <mat-card class="containStyle">
+                    <p>Antal reserveret flasker:</p>
+                    <p>{{beer.flaskeResAntal}}</p>
                 </mat-card>
             </mat-expansion-panel>
         </mat-accordion>

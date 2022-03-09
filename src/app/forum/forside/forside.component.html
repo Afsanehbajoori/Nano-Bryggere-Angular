@@ -32,7 +32,7 @@
                     <p>{{forum.beskrivelse}}</p>
                 </mat-card>
                 <mat-card class="messageStyle">
-                    <form [formGroup]="OpretForm" class="example-form">
+                    <form [formGroup]="OpretForm" class="example-form" *ngFor="let post of posts">
                         <mat-form-field class="example-full-width" appearance="fill"
                             style="justify-content: center; width: 100%;">
                             <input matInput type="text" [(ngModel)]="postOprettelse.title" formControlName="title"
@@ -53,23 +53,24 @@
                             <button mat-button class="btnMainStyle" (click)="onGodkendPost()"
                                 style="background: linear-gradient(#23f582, #23f523);">Indsend Kommentar</button>
                         </mat-action-row>
-                    </form>
-                </mat-card>
-                <mat-card *ngFor="let post of posts" class="containPostStyle">
-                    <mat-card class="containStyle">
-                        <mat-panel-title class="centers" style="justify-content: center;">
-                            {{post.titel}}
-                        </mat-panel-title>
+                   
+                    <mat-card  class="containPostStyle">
+                        <mat-card class="containStyle">
+                            <mat-panel-title class="centers" style="justify-content: center;">
+                                {{post.titel}}
+                            </mat-panel-title>
+                        </mat-card>
+                        <mat-card class="center containStyle" style="justify-content: center;">
+                            <p>{{post.indhold}}</p>
+                        </mat-card>
+                        <mat-action-row class="centers" style="justify-content: center;">
+                            <button mat-button class="btnMainStyle" *ngIf="post.brugerId" (click)="onSletPost(post.id)">Slet
+                                Post</button>
+                            <button mat-button class="btnMainStyle" *ngIf="post.brugerId"
+                                (click)="onOpdaterPost(post.id)">Rediger Post</button>
+                        </mat-action-row>
                     </mat-card>
-                    <mat-card class="center containStyle" style="justify-content: center;">
-                        <p>{{post.indhold}}</p>
-                    </mat-card>
-                    <mat-action-row class="centers" style="justify-content: center;">
-                        <button mat-button class="btnMainStyle" *ngIf="post.brugerId" (click)="onSletPost(post.id)">Slet
-                            Post</button>
-                        <button mat-button class="btnMainStyle" *ngIf="post.brugerId"
-                            (click)="onOpdaterPost(post.id)">Rediger Post</button>
-                    </mat-action-row>
+                </form>
                 </mat-card>
             </mat-expansion-panel>
         </mat-accordion>

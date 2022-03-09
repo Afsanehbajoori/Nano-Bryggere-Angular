@@ -14,7 +14,7 @@ export class Øl {
   public beskrivelse:string;
   public bryggeprocess:string;
   public etiket:string;
-  public argang: Date;
+  public årgang: Date;
   public antal:number;
   public flaskeAntal:number;
   public tondeAntal:number;

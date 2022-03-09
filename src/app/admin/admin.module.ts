@@ -25,6 +25,8 @@ import { BryggeriAdminSideComponent } from './bryggeri-admin-side/bryggeri-admin
 import { RolleAdminSideComponent } from './rolle-admin-side/rolle-admin-side.component';
 import { ForumAdminSideComponent } from './forum-admin-side/forum-admin-side.component';
 import {MatTabsModule} from '@angular/material/tabs';
+import { OpretteEventsDialogBoxComponent } from './oprette-events-dialog-box/oprette-events-dialog-box.component';
+import { UpdateEventsDialogBoxComponent } from './update-events-dialog-box/update-events-dialog-box.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import {MatTabsModule} from '@angular/material/tabs';
     AdminRedigerTagComponent,
     BryggeriAdminSideComponent,
     RolleAdminSideComponent,
-    ForumAdminSideComponent
+    ForumAdminSideComponent,
+    OpretteEventsDialogBoxComponent,
+    UpdateEventsDialogBoxComponent
   ],
   imports: [
     CommonModule,

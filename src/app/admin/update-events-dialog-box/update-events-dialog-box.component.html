@@ -1,0 +1,44 @@
+<h1 mat-dialog-title>Rediger Events</h1>
+<div mat-dialog-content>
+  <form class="example-form" [formGroup]="RedigerEvents" *ngIf="eventsList">
+    <mat-form-field class="example-full-width" appearance="fill" >
+      <mat-label>Logo</mat-label>
+      <input matInput  formControlName="eventBilled"  >
+      <img [src]="eventsList.eventBilled" alt="" style="width: 20%; height: 20%;">
+      <input type="file" class="btnMainStyle" (change)="onSubmitCertifikats($event)" >
+    </mat-form-field>
+     <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Titel:</mat-label>
+      <input matInput formControlName="titel" placeholder="{{eventsList.titel}}" [(ngModel)]="eventsList.titel">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Beskrivelse:</mat-label>
+      <input matInput formControlName="beskrivelse" placeholder="{{eventsList.beskrivelse}}" [(ngModel)]="eventsList.beskrivelse">
+    </mat-form-field>
+
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>StartDato:</mat-label>
+        <input matInput formControlName="startDato" placeholder="{{eventsList.startDato}}" [(ngModel)]="eventsList.startDato">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>SlutDato:</mat-label>
+        <input matInput formControlName="slutDato" placeholder="{{eventsList.slutDato}}" [(ngModel)]="eventsList.slutDato">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Lokation:</mat-label>
+        <input matInput formControlName="lokation" placeholder="{{eventsList.lokation}}" [(ngModel)]="eventsList.lokation">
+      </mat-form-field>
+
+
+<div mat-dialog-actions class="btn-container">
+ <button mat-button (click)="dialogRefUpdateEvents.close(false)" >Annulere</button>
+  <button mat-button cdkFocusInitial  [mat-dialog-close]="eventsList">Gem Ændringer</button>
+</div>
+</form>
+</div>
+
+

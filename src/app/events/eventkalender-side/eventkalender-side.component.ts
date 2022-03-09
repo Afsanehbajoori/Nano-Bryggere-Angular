@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
+import { Deltagere } from 'src/app/Models/Deltagere';
 import { Events } from 'src/app/Models/Events';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 @Component({
@@ -13,9 +14,15 @@ export class EventkalenderSideComponent implements OnInit {
 
   events: Events[];
   endpoints = '/Events';
+  endpointD = '/Deltageres';
   searchkey: string;
-  deltagelse: boolean;
-  
+  deltagelse: boolean = true;
+  eventsId:number;
+  brugerId:number;
+  //deltage:Deltagere[];
+ @Input() deltage = { brugerId:0 , eventsId:0}
+
+
   constructor(
     public dialog: MatDialog,
     public restApi: RestApiService,
@@ -23,6 +30,7 @@ export class EventkalenderSideComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.brugerId = JSON.parse(localStorage.getItem('brugerId') || '{}');
     this.loadEvent();
   }
 
@@ -62,16 +70,37 @@ export class EventkalenderSideComponent implements OnInit {
       }
     });
   }
-  onJoinEvent(id:any){
+/*   onJoinEvent(id:any){
     this.restApi.updateData(id, this.endpoints, this.events).subscribe((data) => {
       this.events = this.events.filter(res =>{
         res.titel.toLowerCase().match(this.searchkey.toLowerCase());
         this.deltagelse = false;
       })
     });
-  }
-  onAfmeldEvent(id:any){
+  } */
+
+/*   onAfmeldEvent(id:any){
     this.restApi.updateData(id, this.endpoints, this.events).subscribe((data) => {
     });
+  } */
+
+
+  onJoinEvent(id:any){
+    this.deltage.brugerId=this.brugerId;
+    this.deltage.eventsId=id;
+    console.log('eventsId:' , this.deltage.eventsId);
+    console.log('brugerId:' , this.deltage.brugerId)
+    this.restApi.createData(this.deltage , this.endpointD ).subscribe(data => {
+      console.log(data);
+      this.deltagelse = false;
+    })
+
+
+  }
+
+  onAfmeldEvent(id:any){
+    this.deltage.brugerId=this.brugerId;
+    this.deltage.eventsId=id;
+    
   }
 }

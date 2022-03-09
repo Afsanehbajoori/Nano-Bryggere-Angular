@@ -1,4 +1,3 @@
-
 <h1 mat-dialog-title>Rediger Kontaktoplysninger</h1>
 <div mat-dialog-content>
   <form class="example-form" [formGroup]="RedigerKontaktOplysninger" *ngIf="kontaktoplysningerList">
@@ -49,10 +48,6 @@
 <div mat-dialog-actions class="btn-container">
  <button mat-button (click)="dialogRefRedigerProfil.close(false)" >Annulere</button>
   <button mat-button cdkFocusInitial  [mat-dialog-close]="kontaktoplysningerList">Gem Ændringer</button>
-
-  <!-- <button mat-button (click)="onClose()" mat-dialog-close="false">Annulere</button>
-  <button mat-button cdkFocusInitial  [mat-dialog-close]="kontaktoplysningerList" mat-dialog-close="true">Gem Ændringer</button> -->
-
 </div>
 </form>
 </div>

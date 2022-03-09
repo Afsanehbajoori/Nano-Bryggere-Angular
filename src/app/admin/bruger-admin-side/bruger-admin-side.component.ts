@@ -24,6 +24,7 @@ export class BrugerAdminSideComponent implements OnInit {
   searchkeyBrugernavn: string;
   searchkeyBrugerEnavn:string;
   searchkeyEmail:string;
+  searchkeyEventsTitel:string;
   kontaktoplysninger:any;
   id = this.actRoute.snapshot.params['id'];
   kontaktoplysningerId:number;
@@ -105,7 +106,20 @@ export class BrugerAdminSideComponent implements OnInit {
      }
   }
 
-  
+  onFindBrugerenavnByEventsTitel(){
+    if(this.searchkeyEventsTitel == ""){
+      this.ngOnInit();
+    }
+    else{
+      this.restApi.getBrugerByEventsTitel(this.searchkeyEventsTitel , this.endpoints).subscribe((data) => {
+        return this.users=data;
+      })
+
+
+     }
+  }
+
+
 //husk at kigge på slet function
   onSletBruger(id: any) {
     let dialogRef = this.dialog.open(SletDialogBoxComponent);
@@ -130,7 +144,7 @@ export class BrugerAdminSideComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = "40%";
+    dialogConfig.width = "30%";
     this.restApi.getData(id , this.endpoints).subscribe((data) => {
     this.kontaktoplysningerId= data.kontaktoplysningerId;
     console.log("kontId:",this.kontaktoplysningerId);

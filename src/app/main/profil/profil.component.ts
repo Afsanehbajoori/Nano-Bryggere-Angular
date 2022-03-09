@@ -39,7 +39,7 @@ export class ProfilComponent implements OnInit {
   rolleId:number;
   valgtefil: File;
   showOB:boolean ;
-  logo:any
+  logo:any;
   url: string;
   @Input() newBryggeri = { logo: '', navn: '', beskrivelse: '', kontaktoplysningerId:0 };
   opretteBryggeriForm: any = new FormGroup({});
@@ -68,10 +68,11 @@ export class ProfilComponent implements OnInit {
     })
   }
 
-  logud(){
+  //vi skal kigge på logud
+ /*  logud(){
     localStorage.clear();
     this.router.navigate(["../login/login"]);
-  } 
+  }  */
 
   loadKontaktoplysninger() {
     return this.restApi.getData(this.brugerId, this.endpointS).subscribe((data) => {

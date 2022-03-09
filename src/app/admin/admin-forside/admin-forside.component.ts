@@ -14,11 +14,11 @@ interface Search {
 const TREE_DATA: Search[] = [
   {
     name: 'Søge',
-    children: [{name: 'Bruger', children:[{name: 'Med BrugerEfternavn'} , {name: 'Med Brugernavn'}, {name: 'Med Email'}]},
+    children: [{name: 'Bruger', children:[{name: 'Med BrugerEfternavn'} , {name: 'Med Brugernavn'}, {name: 'Med Email'} , {name: 'Med events Titel'}]},
     {name: 'Rolle', children:[ {name: 'Med Rollenavn'} , {name: 'Rolle Med Brugernavn'}]},
     {name: 'Bryggeri',children:[{name: 'Med BryggeriSamarbejde'} , {name: 'Med Bryggerinavn'}]},
     {name: 'Øl',children:[{name: 'Med ØlId'} , {name: 'Med Ølnavn'} , {name: 'Med Øltype'}]} ,
-    {name: 'Events', children:[{name: 'Med EventsId'} , {name: 'Med Eventstitel'}]} ,
+    {name: 'Events', children:[ {name: 'Med Eventstitel'} , {name: 'Med Deltagelser'} ]} ,
     {name: 'Forum', children:[{name: 'Med ForumId'} , {name: 'Med ForumTitel'}]} ,
     {name: 'Tags', children:[{name: 'admin-tags'} , {name: 'admin-opret-tag'} , {name: 'admin-rediger-tag'}]} ,
     {name: 'Certifikant'}],
@@ -73,11 +73,19 @@ export class AdminForsideComponent implements OnInit {
       this.showBrugernavnComponent=!this.showBrugernavnComponent;
       break;
     }
+    case 'Med events Titel':{
+      this.showBrugernavnComponent=!this.showBrugernavnComponent;
+      break;
+    }
     case 'Med Ølnavn':{
       this.showOlComponent=!this.showOlComponent;
       break;
     }
-    case 'Eventstitel':{
+    case 'Med Eventstitel':{
+      this.showEventsComponent=!this.showEventsComponent;
+      break;
+    }
+    case 'Med Deltagelser':{
       this.showEventsComponent=!this.showEventsComponent;
       break;
     }

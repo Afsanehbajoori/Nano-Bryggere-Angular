@@ -1,5 +1,4 @@
-import { Bruger } from './Bruger';
-// import { Kontaktoplysninger } from "./Kontaktoplysninger";
+import { Deltagere } from "./Deltagere";
 import { Tags } from "./Tags";
 
 export class Events{
@@ -11,5 +10,7 @@ export class Events{
   public lokation:string;
   public eventBilled:string;
   public tags:Tags;
-  public deltagere : Bruger;
+  public deltagere: Deltagere;
+  //public deltagere : Bruger;
+
 }

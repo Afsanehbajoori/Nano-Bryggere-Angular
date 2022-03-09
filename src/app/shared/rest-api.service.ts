@@ -33,7 +33,7 @@ export class RestApiService {
     )
   }
 
-  getDataByEmail(email:any, endpoint:string): Observable<any>{
+ getDataByEmail(email:any, endpoint:string): Observable<any>{
     return this.http.get<any>(this.apiUrl + endpoint+ '/email/' + email)
     .pipe(
       retry(1),
@@ -51,6 +51,22 @@ export class RestApiService {
 
   getDataByLevel(level:number, endpoint:string): Observable<any>{
     return this.http.get<any>(this.apiUrl + endpoint+ '/level/' + level)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+
+  getEventDeltagelserByBrugernavn(brugernavn:string, endpoint:string): Observable<any>{
+    return this.http.get<any>(this.apiUrl + endpoint+ '/brugernavn/' + brugernavn)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+
+  getBrugerByEventsTitel(titel:string, endpoint:string): Observable<any>{
+    return this.http.get<any>(this.apiUrl + endpoint+ '/titel/' + titel)
     .pipe(
       retry(1),
       catchError(this.handleError)

@@ -16,11 +16,13 @@ export class EventkalenderSideComponent implements OnInit {
   endpoints = '/Events';
   endpointD = '/Deltageres';
   searchkey: string;
+
   deltagelse: boolean = true;
   eventsId:number;
   brugerId:number;
   //deltage:Deltagere[];
  @Input() deltage = { brugerId:0 , eventsId:0}
+
 
 
   constructor(

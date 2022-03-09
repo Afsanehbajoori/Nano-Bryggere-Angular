@@ -16,7 +16,7 @@
                         {{beer.navn}}
                     </mat-panel-title>
                     <mat-action-row class="centers" style="justify-content: center;">
-                        <button mat-button class="btnMainStyle" (click)="onVisOlInfo(beer.id)">Vis øl info</button>
+                        <button mat-button class="btnMainStyle" (click)="onVisOlInfo(beer.id, beer.bryggeriId)">Vis øl info</button>
                     </mat-action-row>
                 </mat-expansion-panel-header>
                 <mat-card class="containStyle">
@@ -37,16 +37,8 @@
                 </mat-card>
                 <mat-card class="containStyle">
                     <p>Etiket:</p>
-                    <p>{{beer.etiket}}</p>
+                    <img [src]="beer.etiket" alt="" style="width: 20%; height: 20%;">
                 </mat-card>
-                <mat-card class="containStyle">
-                    <p>Antal øl:</p>
-                    <p>{{beer.antal}}</p>
-                </mat-card>
-                <!-- <mat-card class="containStyle">
-                    <p>Antal:</p>
-                    <p>{{beer.flaskeAntal}}</p>
-                </mat-card> -->
             </mat-expansion-panel>
         </mat-accordion>
     </table>

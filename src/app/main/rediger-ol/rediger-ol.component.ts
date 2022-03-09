@@ -13,8 +13,8 @@ export class RedigerOlComponent implements OnInit {
   beerid = this.actRoute.snapshot.params['id'];
   RedigerForm: FormGroup;
   endpoints = '/Øller';
-  olList : any = {};
-  
+  olList : any;
+  argang: Date;
   constructor(
     public restApi: RestApiService, 
     private router: Router,
@@ -27,7 +27,7 @@ export class RedigerOlComponent implements OnInit {
       smag: new FormControl(''),
       procent: new FormControl(''),
       bryggerid: new FormControl(''),
-      // argang: new FormControl('', Validators.required),
+      argang: new FormControl('', Validators.required),
       land: new FormControl(''),
       process: new FormControl('', Validators.required),
       etiket: new FormControl(''),
@@ -41,6 +41,7 @@ export class RedigerOlComponent implements OnInit {
   loadOl(){
     return this.restApi.getData(this.beerid, this.endpoints).subscribe((beer: {}) => {
       this.olList = beer;
+      this.argang = this.olList.årgang;
     });
   }
 
@@ -49,8 +50,21 @@ export class RedigerOlComponent implements OnInit {
   };
 
   onSubmitOl() {
+    this.olList.årgang = this.argang;
+    console.log(this.olList.årgang);
     this.restApi.updateData(this.beerid, this.endpoints, this.olList).subscribe((data) => {
       this.router.navigate(['../main/katalog'])
     });
   }
+
+  onSubmitCertifikats(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader();
+      reader.onload = (e:any) => this.olList.etiket = e.target.result;
+      reader.readAsDataURL(event.target.files[0])
+    }
+    else{
+      this.olList.etiket = '';
+    }
+  };
 }

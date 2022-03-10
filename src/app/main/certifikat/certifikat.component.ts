@@ -40,7 +40,8 @@ export class CertifikatComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]);
       reader.onload=(e: any)=>{
         this.url =e.target.result;
-        this.bruger.certifikat = e.target.result;
+        this.bruger.certifikatImg = e.target.result;
+        this.bruger.certifikat = 0;
       }
     }
   };

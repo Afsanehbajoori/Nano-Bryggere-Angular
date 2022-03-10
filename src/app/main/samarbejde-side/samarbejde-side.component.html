@@ -2,7 +2,7 @@
     <mat-toolbar class="login-header" style="background: linear-gradient(#238ff5, #23baf5); justify-content: center;">
         <form class="example-form" style="justify-content: center; width: 100%;">
             <mat-form-field style="width: 20%; text-align: center;">
-                <input matInput type="search" placeholder="Find øl navn" [(ngModel)]="searchkey" (ngModelChange)="onFindOl()" [ngModelOptions]="{standalone: true}">
+                <input matInput type="search" placeholder="Find Samarbejde" [(ngModel)]="searchkey" (ngModelChange)="onFindOl()" [ngModelOptions]="{standalone: true}">
             </mat-form-field>
         </form>
         <h1 class="centers">Samarbejde Katalog</h1>
@@ -12,7 +12,7 @@
             <mat-expansion-panel *ngFor="let beer of beerliste" style="margin-top: 10px;">
                 <mat-expansion-panel-header style="background: linear-gradient(rgb(30, 122, 228), rgb(75, 127, 185)); justify-content: center; width: 100%;">
                     <mat-panel-title class="centers" style="justify-content: center;">
-                        {{beer.navn}}
+                        Øl Navn: {{beer.navn}}
                     </mat-panel-title>
                     <mat-action-row class="centers" style="justify-content: center;">
                         <button mat-button class="btnMainStyle" (click)="onSletOl(beer.id)">Slet Øl</button>
@@ -20,41 +20,61 @@
                     </mat-action-row>
                 </mat-expansion-panel-header>
                 <mat-card class="containStyle">
-                    <p>Type:</p>
+                    <span>Type:</span>
                     <p>{{beer.type}}</p>
                 </mat-card>
                 <mat-card class="containStyle">
-                    <p>Procent:</p>
-                    <p>{{beer.procent}}</p>
-                </mat-card>
-                <mat-card class="containStyle">
-                    <p>Smag:</p>
+                    <span>Smag:</span>
                     <p>{{beer.smag}}</p>
                 </mat-card>
                 <mat-card class="containStyle">
-                    <p>Beskrivelse:</p>
-                    <p>{{beer.beskrivelse}}</p>
+                    <span>Land:</span>
+                    <p>{{beer.land}}</p>
                 </mat-card>
                 <mat-card class="containStyle">
-                    <p>Etiket:</p>
+                    <span>Øl Billed:</span>
                     <img [src]="beer.etiket" alt="" style="width: 20%; height: 20%;">
                 </mat-card>
                 <mat-card class="containStyle">
-                    <p>Antal øl:</p>
-                    <p>{{beer.antal}}</p>
+                    <span>Beskrivelse:</span>
+                    <p>{{beer.beskrivelse}}</p>
                 </mat-card>
                 <mat-card class="containStyle">
-                    <p>Antal flasker:</p>
+                    <span>Procent:</span>
+                    <p>{{beer.procent}}</p>
+                </mat-card>
+                <!-- <mat-card class="containStyle">
+                    <span>Procent:</span>
+                    <p>{{beer.Årgang}}</p>
+                </mat-card> -->
+                <mat-card class="containStyle">
+                    <span>Flaske antal:</span>
                     <p>{{beer.flaskeAntal}}</p>
                 </mat-card>
                 <mat-card class="containStyle">
-                    <p>Antal tønder:</p>
+                    <span>Tønde antal:</span>
                     <p>{{beer.tondeAntal}}</p>
                 </mat-card>
                 <mat-card class="containStyle">
-                    <p>Antal reserveret flasker:</p>
+                    <span>Flaske reserve antal:</span>
                     <p>{{beer.flaskeResAntal}}</p>
                 </mat-card>
+                <!-- <mat-card class="containStyle">
+                    <span>Øl Id:</span>
+                    <p>{{sam.olId}}</p>
+                </mat-card>
+                <mat-card class="containStyle">
+                    <span>Bryggeri Id 1:</span>
+                    <p>{{sam.bryggeriId1}}</p>
+                </mat-card>
+                <mat-card class="containStyle">
+                    <span>Bryggeri Id 2:</span>
+                    <p>{{sam.bryggeriId2}}</p>
+                </mat-card>
+                <mat-card class="containStyle">
+                    <span>Øl Billed:</span>
+                    <p>{{sam.olBilled}}</p>
+                </mat-card> -->
             </mat-expansion-panel>
         </mat-accordion>
     </table>

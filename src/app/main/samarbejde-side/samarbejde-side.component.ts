@@ -16,15 +16,15 @@ export class SamarbejdeSideComponent implements OnInit {
   beers: any;
   beerliste: Øl[];
   beer: Øl;
-  bryg = new Bryggeri;
+  bryg: Bryggeri;
+  samarbejdeId: number;
   samarbejde: Samarbejde[];
   endpointo = '/Øller';
+  endpointb = '/Bryggerier';
   endpoints = '/Samarbejder';
-  data = sessionStorage.getItem('id');
   searchkey: string;
   ølId: number;
   bryggeriId: number;
-  bryggeriList: any;
   constructor(
     public dialog: MatDialog,
     public restApi: RestApiService,
@@ -33,24 +33,31 @@ export class SamarbejdeSideComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.onLoadOl();
     this.onLoadSamarbejde();
+    this.onLoadOl();
   }
   onLoadOl() {
     if (this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}')) {
       this.restApi.getDatas(this.endpointo).subscribe((data) => {
         this.beerliste = data.filter((res: any) => {
-          return res.bryggeriId === this.bryggeriId});
+          return res.samarbejdeId === this.samarbejdeId});
       })
     }
   }
 
   onLoadSamarbejde() {
     if (this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}')) {
-      this.restApi.getDatas(this.endpoints).subscribe((data) => {
-        this.samarbejde = data.filter((res: any) => {
-          return res.ølId === this.ølId});
-          console.log(data);
+      this.restApi.getData(this.bryggeriId, this.endpointb).subscribe((data) =>{
+        this.bryg = data;
+        this.samarbejdeId = this.bryg.samarbejdeId;
+        console.log(this.samarbejdeId);
+        this.restApi.getDatas(this.endpoints).subscribe((data) => {
+          this.samarbejde = data.filter((res: any) => {
+            localStorage.setItem(res.ølId,"olId");
+            console.log(this.samarbejde);
+            return res.samarbejdeId === this.samarbejdeId});
+            console.log(this.samarbejde);
+        })
       })
     }
   }

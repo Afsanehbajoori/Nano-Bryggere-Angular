@@ -1,5 +1,4 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Bryggeri } from 'src/app/Models/Bryggeri';
@@ -22,6 +21,7 @@ export class OlSideComponent implements OnInit {
   bryggerid: Number;
   olId: number;
   kontaktoplysningerId: number;
+  id = this.actRoute.snapshot.params['id'];
   constructor(
     public dialog: MatDialog,
     public restApi: RestApiService, 
@@ -30,29 +30,23 @@ export class OlSideComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.kontaktoplysningerId = JSON.parse(localStorage.getItem('KId') || '{}');
+    console.log("Ol",this.kontaktoplysningerId); 
     this.olId = JSON.parse(localStorage.getItem('OlId') || '{}');
-    this.bryggerid = JSON.parse(localStorage.getItem('BId') || '{}');
-    this.loadBryg(); 
-    this.kontaktoplysningerId = JSON.parse(localStorage.getItem('KontaktId') || '{}');
-    this.loadKontaktOplysninger();
     this.loadOl();
-  }
-
-  loadBryg(){
-    return this.restApi.getData(this.bryggerid, this.endpointb).subscribe((bryg) => {
-      this.bryggeri = bryg;
-      localStorage.setItem('KontaktId' ,JSON.stringify(this.bryggeri.kontaktoplysningerId));
-    })
+    this.loadKontaktOplysninger();
   }
 
   loadKontaktOplysninger(){
+    console.log("Kontakt",this.kontaktoplysningerId);
     return this.restApi.getData(this.kontaktoplysningerId, this.endpointk).subscribe((user) => {
       this.oplysninger = user;
+      console.log(this.oplysninger);
     })
   }
 
   loadOl(){
-    return this.restApi.getData(this.olId, this.endpointo).subscribe((ol) => {
+    return this.restApi.getData(this.id, this.endpointo).subscribe((ol) => {
       this.ol = ol;
     })
   }

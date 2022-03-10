@@ -41,7 +41,7 @@ export class ProfilComponent implements OnInit {
   showOB:boolean ;
   logo:any
   url: string;
-  @Input() newBryggeri = { logo: '', navn: '', beskrivelse: '', kontaktoplysningerId:0 };
+  @Input() newBryggeri = { logo: '', navn: '', beskrivelse: '', kontaktoplysningerId: 0 };
   opretteBryggeriForm: any = new FormGroup({});
 
   constructor(public dialog: MatDialog,

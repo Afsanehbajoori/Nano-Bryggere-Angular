@@ -31,9 +31,11 @@
                        <span>{{brygge.navn}}</span>
                     </mat-panel-title>
                     <mat-action-row class="centers" style="justify-content: center;">
-                        <button mat-button class="btnMainStyle" (click)="onSletBryggeri(brygge.id)">Slet </button> |
-                        <button mat-button class="btnMainStyle" (click)="onUpdateBryggeri(brygge.id)">Update </button> |
-                        <button mat-button class="btnMainStyle" (click)="onVisBryggeri(brygge.id)" >vis </button>
+                      <button mat-button class="btnMainStyle" (click)="onVisBryggeri(brygge.id)" >vis </button>  |
+                      <button mat-button class="btnMainStyle" (click)="onUpdateBryggeri(brygge.id)">Update </button> |
+                        <button mat-button class="btnMainStyle" (click)="onSletBryggeri(brygge.id)">Slet </button> 
+
+
                     </mat-action-row>
                 </mat-expansion-panel-header>
                 <div  *ngIf="bryggeri">

@@ -10,8 +10,8 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
   styleUrls: ['./oprette-events-dialog-box.component.css']
 })
 export class OpretteEventsDialogBoxComponent implements OnInit {
-  @Input() eventOprettelse = {eventBilled:'', titel: '', beskrivelse: '',  lokation: '' };
-  // startDato:'',slutDato:'',
+  @Input() eventOprettelse = {eventBilled:'', titel: '', beskrivelse: '',  lokation: '' ,startDato:'',slutDato:'' };
+
 
   OpretForm: any = new FormGroup({});
   endpointE = '/Events';
@@ -29,8 +29,8 @@ export class OpretteEventsDialogBoxComponent implements OnInit {
       eventBilled: new FormControl(''),
       titel: new FormControl('', Validators.required),
       beskrivelse: new FormControl('', Validators.required),
-     // startDato: new FormControl('', Validators.required),
-     // slutDato: new FormControl('', Validators.required),
+      startDato: new FormControl('', Validators.required),
+      slutDato: new FormControl('', Validators.required),
       lokation: new FormControl('', Validators.required)
     });
   }

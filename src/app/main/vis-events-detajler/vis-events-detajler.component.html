@@ -1,6 +1,7 @@
 <mat-card *ngIf="eventInfo">
   <img mat-dialog-title [src]="eventInfo.logo" alt="" style="width: 100%; height: auto;">
     <mat-dialog-content mat-dialog-content class="mat-typography">
+      <img [src]="eventInfo.eventBilled" alt="" style="width: 40%; height: 40%;">
       <p>Titel:</p>
       <p class="txtStyle">{{eventInfo.titel}}</p>
       <p>Beskrivelse:</p>

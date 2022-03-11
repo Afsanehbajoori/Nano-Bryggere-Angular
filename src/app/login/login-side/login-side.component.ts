@@ -48,7 +48,12 @@ export class LoginSideComponent implements OnInit {
     localStorage.clear();
   this.restApi.getDatas(this.endpointB).subscribe((res) => {
   const user = res.find((a:any) => {
-    return a.brugernavn.toLowerCase() === this.loginDetails.brugernavn.toLowerCase() && a.pw === this.loginDetails.pw
+    console.log('infoLogin:' , a.kontaktoplysningerId);
+    //this.restApi.getData(a.kontaktoplysningerId , this.endpointK).subscribe(data => {
+      //console.log('infoLoginKontakt' , data);
+      return a.brugernavn.toLowerCase() === this.loginDetails.brugernavn.toLowerCase() && a.pw === this.loginDetails.pw
+   // })
+
   });
   if(user){
      /* console.log("kontaktoplysningerId:",user.kontaktoplysningerId);

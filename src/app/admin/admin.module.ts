@@ -27,6 +27,8 @@ import { ForumAdminSideComponent } from './forum-admin-side/forum-admin-side.com
 import {MatTabsModule} from '@angular/material/tabs';
 import { OpretteEventsDialogBoxComponent } from './oprette-events-dialog-box/oprette-events-dialog-box.component';
 import { UpdateEventsDialogBoxComponent } from './update-events-dialog-box/update-events-dialog-box.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,9 @@ import { UpdateEventsDialogBoxComponent } from './update-events-dialog-box/updat
     MatInputModule,
     MatTreeModule,
     MatIconModule,
-    MatTabsModule
+    MatTabsModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   exports:[
     EventAdminSideComponent,
@@ -68,6 +72,10 @@ import { UpdateEventsDialogBoxComponent } from './update-events-dialog-box/updat
     BrugerAdminSideComponent,
     BrugerCertifikatComponent,
     AdminForsideComponent
+  ],
+  providers: [
+    MatDatepickerModule,
+    MatNativeDateModule 
   ]
 })
 export class AdminModule { }

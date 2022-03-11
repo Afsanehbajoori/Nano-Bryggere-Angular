@@ -11,38 +11,41 @@
     </mat-toolbar>
     <table style="width: 100%; height: 100%; display: flex;">
         <mat-accordion class="example-headers-align" multi style="width: 100%;">
-            <mat-expansion-panel *ngFor="let event of events" style="margin-top: 10px;">
+            <mat-expansion-panel *ngFor="let event of events" style="margin-top: 10px;"  [disabled]="clickButton" (click)="clickButton=true">
+
                 <mat-expansion-panel-header style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236)); justify-content: center; width: 100%;">
                     <mat-panel-title class="centers" style="justify-content: center;">
                         Titel: {{event.titel}}
                     </mat-panel-title>
                     <mat-action-row class="centers" style="justify-content: center;">
-<!--                         <button mat-button class="btnMainStyle" (click)="onSletEvent(event.id)">Slet Event</button>
-                        <button mat-button class="btnMainStyle" (click)="onOpdaterEvent(event.id)">Rediger Event</button> -->
-                        <button mat-button class="btnMainStyle" [disabled]="deltagelse" (click)="onJoinEvent(event.id)">Join Event</button>
-                        <button mat-button class="btnMainStyle" [disabled]="!deltagelse" (click)="onAfmeldEvent(event.id)">Afmeld Deltagelse</button>
+                         <button mat-button class="btnMainStyle"  (click)="onViseEvent(event.id)">Vis Event</button>  |
+                        <button mat-button class="btnMainStyle"   (click)="onJoinEvent(event.id)" >Join Event</button>  |
+                        <button mat-button class="btnMainStyle"   (click)="onAfmeldEvent(event.id)">Afmeld Deltagelse</button>
                     </mat-action-row>
                 </mat-expansion-panel-header>
-                <mat-card class="containStyle">
-                  <span>EventBillede:</span>
-                  <span class="txtStyle"><img [src]="this.event.eventBilled" alt="" style="width: 20%; height: 20%;" ></span>
-                </mat-card>
-                <mat-card class="containStyle">
-                    <p>Beskrivelse:</p>
-                    <p>{{event.beskrivelse}}</p>
-                </mat-card>
-                <mat-card class="containStyle">
-                    <p>Start:</p>
-                    <p>{{event.startDato}}</p>
-                </mat-card>
-                <mat-card class="containStyle">
-                    <p>Slut:</p>
-                    <p>{{event.slutDato}}</p>
-                </mat-card>
-                <mat-card class="containStyle">
-                    <p>Lokation:</p>
-                    <p>{{event.lokation}}</p>
-                </mat-card>
+                <div *ngIf="eventList">
+                  <mat-card class="containStyle">
+                    <span>EventBillede:</span>
+                    <span class="txtStyle"><img [src]="eventList.eventBilled" alt="" style="width: 20%; height: 20%;" ></span>
+                  </mat-card>
+                  <mat-card class="containStyle">
+                      <p>Beskrivelse:</p>
+                      <p>{{eventList.beskrivelse}}</p>
+                  </mat-card>
+                  <mat-card class="containStyle">
+                      <p>Start:</p>
+                      <p>{{eventList.startDato}}</p>
+                  </mat-card>
+                  <mat-card class="containStyle">
+                      <p>Slut:</p>
+                      <p>{{eventList.slutDato}}</p>
+                  </mat-card>
+                  <mat-card class="containStyle">
+                      <p>Lokation:</p>
+                      <p>{{eventList.lokation}}</p>
+                  </mat-card>
+                </div>
+
             </mat-expansion-panel>
         </mat-accordion>
     </table>

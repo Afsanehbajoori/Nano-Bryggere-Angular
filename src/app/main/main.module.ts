@@ -15,6 +15,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SletDialogBoxComponent } from './slet-dialog-box/slet-dialog-box.component';
 import { RedigerProfilDialogBoxComponent } from './rediger-profil-dialog-box/rediger-profil-dialog-box.component';
 import { RedigerBryggeriDialogBoxComponent } from './rediger-bryggeri-dialog-box/rediger-bryggeri-dialog-box.component';
+import { CertifikatDialogBoxComponent } from './certifikat-dialog-box/certifikat-dialog-box.component';
+import { SamarbejdeSideComponent } from './samarbejde-side/samarbejde-side.component';
+import { SamarbejdeOprettelseComponent } from './samarbejde-oprettelse/samarbejde-oprettelse.component';
+import { SamarbejdeRedigerComponent } from './samarbejde-rediger/samarbejde-rediger.component';
+import { VisDetajlerComponent } from './vis-detajler/vis-detajler.component';
+import { VisOlDetajlerComponent } from './vis-ol-detajler/vis-ol-detajler.component';
+import { VisEventsDetajlerComponent } from './vis-events-detajler/vis-events-detajler.component';
+
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
@@ -29,15 +37,10 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
+
 import {MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS} from '@angular/material/snack-bar';
-import { CertifikatDialogBoxComponent } from './certifikat-dialog-box/certifikat-dialog-box.component';
-import { SamarbejdeSideComponent } from './samarbejde-side/samarbejde-side.component';
-import { SamarbejdeOprettelseComponent } from './samarbejde-oprettelse/samarbejde-oprettelse.component';
-import { SamarbejdeRedigerComponent } from './samarbejde-rediger/samarbejde-rediger.component';
 import {ScrollingModule} from '@angular/cdk/scrolling';
-import { VisDetajlerComponent } from './vis-detajler/vis-detajler.component';
-import { VisOlDetajlerComponent } from './vis-ol-detajler/vis-ol-detajler.component';
-import { VisEventsDetajlerComponent } from './vis-events-detajler/vis-events-detajler.component';
+
 
 @NgModule({
   declarations: [

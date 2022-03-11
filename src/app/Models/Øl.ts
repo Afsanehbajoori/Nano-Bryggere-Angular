@@ -1,5 +1,5 @@
-import { Byte } from "@angular/compiler/src/util";
 import { Bryggeri } from "./Bryggeri";
+import { Samarbejde } from "./Samarbejde";
 import { Tags } from "./Tags";
 
 export class Øl {
@@ -19,5 +19,7 @@ export class Øl {
   public flaskeAntal:number;
   public tondeAntal:number;
   public flaskeResAntal: number;
+  public samarbejdeId: number;
+  public samarbejde: Samarbejde;
   public tags: Tags;
 }

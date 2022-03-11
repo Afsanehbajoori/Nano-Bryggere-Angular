@@ -29,6 +29,15 @@
     font-style: oblique;
   }
 
+  .containPostStyle{
+    background-color: rgb(37, 126, 199);
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: 10px;
+    padding-left: 40px;
+    font-style: oblique;
+  }
+
   .messageStyle{
     background-color: rgb(252, 252, 252);
     margin-left: 150px;

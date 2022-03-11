@@ -24,7 +24,7 @@ const routes: Routes = [
   {path:'opretteol', component:OpretteOlComponent},
   {path:'katalog', component:KatalogComponent},
   {path:'samarbejdeside', component:SamarbejdeSideComponent},
-  {path:'samarbejderediger', component:SamarbejdeRedigerComponent},
+  {path:'samarbejderediger/:id', component:SamarbejdeRedigerComponent},
   {path:'samarbejdeopret', component:SamarbejdeOprettelseComponent},
   {path:'**', component: NotFoundComponent},
 ];

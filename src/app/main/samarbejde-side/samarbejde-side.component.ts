@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Bryggeri } from 'src/app/Models/Bryggeri';
+import { Samarbejde } from 'src/app/Models/Samarbejde';
 import { Øl } from 'src/app/Models/Øl';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 import { SletDialogBoxComponent } from '../slet-dialog-box/slet-dialog-box.component';
@@ -16,10 +17,12 @@ export class SamarbejdeSideComponent implements OnInit {
   beerliste: Øl[];
   beer: Øl;
   bryg = new Bryggeri;
-  samarbejde: SamarbejdeSideComponent;
-  endpoints = '/Øller';
+  samarbejde: Samarbejde[];
+  endpointo = '/Øller';
+  endpoints = '/Samarbejder';
   data = sessionStorage.getItem('id');
   searchkey: string;
+  ølId: number;
   bryggeriId: number;
   bryggeriList: any;
   constructor(
@@ -30,24 +33,34 @@ export class SamarbejdeSideComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.loadOl()
+    this.onLoadOl();
+    this.onLoadSamarbejde();
   }
-  loadOl() {
+  onLoadOl() {
     if (this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}')) {
-      console.log(this.bryggeriId);
-      this.restApi.getDatas(this.endpoints).subscribe((data) => {
+      this.restApi.getDatas(this.endpointo).subscribe((data) => {
         this.beerliste = data.filter((res: any) => {
           return res.bryggeriId === this.bryggeriId});
       })
     }
   }
 
+  onLoadSamarbejde() {
+    if (this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}')) {
+      this.restApi.getDatas(this.endpoints).subscribe((data) => {
+        this.samarbejde = data.filter((res: any) => {
+          return res.ølId === this.ølId});
+          console.log(data);
+      })
+    }
+  }
+
   onRedigerOl(id: any) {
-    this.router.navigate(['../main/RedigerSamarbejdeOl/', id]);
+    this.router.navigate(['../main/samarbejderediger/', id]);
   };
 
   onOpretOl() {
-    this.router.navigate(['../main/opretteSamarbejdeOl']);
+    this.router.navigate(['../main/samarbejdeopret']);
   };
 
   onSletOl(id: any) {
@@ -56,7 +69,7 @@ export class SamarbejdeSideComponent implements OnInit {
       console.log(result);
       if (result == true) {
         this.restApi.deleteData(id, this.endpoints).subscribe(data => {
-          this.loadOl();
+          this.onLoadOl();
         })
       }
     });

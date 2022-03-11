@@ -32,6 +32,7 @@ export class EventkalenderSideComponent implements OnInit {
  @Input() deltage = { brugerId:0 , eventsId:0}
 
 
+
   constructor(
     public dialog: MatDialog,
     public restApi: RestApiService,

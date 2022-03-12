@@ -16,4 +16,5 @@ export class Bruger {
   public deltagere: Deltagere;
   public certifikat: Byte;
   public certifikatImg: string;
+  public token: string;
 }

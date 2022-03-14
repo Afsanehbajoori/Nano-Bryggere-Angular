@@ -38,26 +38,36 @@ export class LoginSideComponent implements OnInit {
 
   onSubmitLogin() {
     localStorage.clear();
-    this.restApi.getDatas(this.endpointB).subscribe((res) => {
-      const user = res.find((a: any) => {
-        return a.brugernavn.toLowerCase() === this.loginDetails.brugernavn.toLowerCase() && a.pw === this.loginDetails.pw
-      });
-      if (user) {
-        /* console.log("kontaktoplysningerId:",user.kontaktoplysningerId);
-        console.log("brugerId:",user.id)
-        console.log("rolleId:",user.rolleId); */
-        localStorage.setItem('kontaktoplysningerId', JSON.stringify(user.kontaktoplysningerId));
-        localStorage.setItem('brugerId', JSON.stringify(user.id));
-        localStorage.setItem('rolleId', JSON.stringify(user.rolleId));
-        this.loginDetails.brugerId = user.id;
-        this.restApi.createData(this.loginDetails, this.endpoints).subscribe((res) => {
-          // console.log("brugerId:" ,res.brugerId);
+
+  this.restApi.getDatas(this.endpointB).subscribe((res) => {
+  const user = res.find((a:any) => {
+    console.log('infoLogin:' , a.kontaktoplysningerId);
+    //this.restApi.getData(a.kontaktoplysningerId , this.endpointK).subscribe(data => {
+      //console.log('infoLoginKontakt' , data);
+      return a.brugernavn.toLowerCase() === this.loginDetails.brugernavn.toLowerCase() && a.pw === this.loginDetails.pw
+   // })
+
+  });
+  if(user){
+     /* console.log("kontaktoplysningerId:",user.kontaktoplysningerId);
+     console.log("brugerId:",user.id)
+     console.log("rolleId:",user.rolleId); */
+     localStorage.setItem('kontaktoplysningerId' ,JSON.stringify(user.kontaktoplysningerId) );
+     localStorage.setItem('brugerId' ,JSON.stringify(user.id) );
+     localStorage.setItem('rolleId' ,JSON.stringify(user.rolleId) );
+     this.loginDetails.brugerId = user.id;
+     this.restApi.createData(this.loginDetails , this.endpoints).subscribe((res) => {
+      // console.log("brugerId:" ,res.brugerId);
+
+
+    
         })
         this.router.navigate(['../main/profil']);
       }
       else {
         alert('user ikke findes')
       }
+
     })
   };
 

@@ -24,19 +24,23 @@
             </mat-error>
         </mat-form-field>
 
-<!--           <mat-form-field class="example-full-width" appearance="fill">
-            <input matInput type="text" formControlName="startDato" placeholder="Start Dato" class="input-control">
-            <mat-error>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <input matInput  [matDatepicker]="picker1" [(ngModel)]="eventOprettelse.startDato" formControlName="startDato" placeholder="Start Dato" class="input-control">
+             <mat-error>
                 Dette felt skal udfyldes
             </mat-error>
+          <mat-datepicker-toggle matSuffix [for]="picker1" ></mat-datepicker-toggle>
+          <mat-datepicker #picker1 ></mat-datepicker>
           </mat-form-field>
 
-          <mat-form-field class="example-full-width" appearance="fill">
-              <input matInput type="text" formControlName="slutDato" placeholder="Slut Dato" class="input-control">
-              <mat-error>
+          <mat-form-field class="example-full-width"  appearance="fill">
+              <input matInput [matDatepicker]="picker2" [(ngModel)]="eventOprettelse.slutDato" formControlName="slutDato" placeholder="Slut Dato" class="input-control">
+             <mat-error>
                   Dette felt skal udfyldes
               </mat-error>
-          </mat-form-field> -->
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
 
           <mat-form-field class="example-full-width" appearance="fill">
               <input matInput type="text" [(ngModel)]="eventOprettelse.lokation" formControlName="lokation" placeholder="Lokation" class="input-control">

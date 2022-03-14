@@ -15,13 +15,15 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MineEventsComponent } from './mine-events/mine-events.component';
+import { MessageDialogBoxComponent } from './message-dialog-box/message-dialog-box.component';
 
 @NgModule({
   declarations: [
     EventkalenderSideComponent,
     OpretteComponent,
     RedigerEventsComponent,
-    MineEventsComponent
+    MineEventsComponent,
+    MessageDialogBoxComponent
   ],
   imports: [
     CommonModule,

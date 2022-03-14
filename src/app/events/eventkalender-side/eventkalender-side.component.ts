@@ -1,10 +1,14 @@
+import { NgStyle } from '@angular/common';
+import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
 import { Deltagere } from 'src/app/Models/Deltagere';
 import { Events } from 'src/app/Models/Events';
 import { RestApiService } from 'src/app/shared/rest-api.service';
+import { MessageDialogBoxComponent } from '../message-dialog-box/message-dialog-box.component';
+
 @Component({
   selector: 'app-eventkalender-side',
   templateUrl: './eventkalender-side.component.html',
@@ -13,14 +17,20 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 export class EventkalenderSideComponent implements OnInit {
 
   events: Events[];
-  endpoints = '/Events';
+  endpointE = '/Events';
   endpointD = '/Deltageres';
   searchkey: string;
 
   deltagelse: boolean = false;
+  buttonDisabled: boolean ;
+  buttonEnabled: boolean;
   eventsId:number;
   brugerId:number;
-  //deltage:Deltagere[];
+  listDeltagelser:any;
+  clickButton:boolean = true;
+  eventList:any;
+  id = this.actRoute.snapshot.params['id'];
+  arrayListDeltager = new Array();
  @Input() deltage = { brugerId:0 , eventsId:0}
 
 
@@ -28,18 +38,47 @@ export class EventkalenderSideComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     public restApi: RestApiService,
-    private router: Router
+    private router: Router,
+    public actRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
     this.brugerId = JSON.parse(localStorage.getItem('brugerId') || '{}');
+    console.log('brugerId:' ,this.brugerId )
     this.loadEvent();
+    this.loadDeltaglser();
   }
 
   loadEvent() {
-    return this.restApi.getDatas(this.endpoints).subscribe((data) => {
+    return this.restApi.getDatas(this.endpointE).subscribe((data) => {
       this.events = data;
-    });
+  });
+  }
+
+  loadDeltaglser(){
+    this.restApi.getDatas(this.endpointD).subscribe(data => {
+      this.listDeltagelser=data
+      if(this.brugerId){
+        this.listDeltagelser = this.listDeltagelser.filter((a:any) => a.brugerId === this.brugerId);
+        console.log('list:' , this.listDeltagelser);
+
+        for(var d =0; d < this.listDeltagelser.length ; d++)
+        {
+          console.log('listId:' , this.listDeltagelser[d].eventsId);
+          if(this.listDeltagelser[d].eventsId){
+            this.arrayListDeltager.push(this.listDeltagelser[d].eventsId);
+            console.log('arrayList:' , this.arrayListDeltager);
+          }
+        }
+      }
+   })
+  }
+
+ onViseEvent(id:any){
+    this.clickButton=false;
+    return this.restApi.getData(id , this.endpointE).subscribe(data => {
+      this.eventList=data;
+    })
   }
 
   onFindEvent(){
@@ -53,33 +92,6 @@ export class EventkalenderSideComponent implements OnInit {
     }
   }
 
-  onOpdaterEvent(id: any){
-    this.router.navigate(['../events/rediger/' + id]);
-  }
-
-  onOpretEvents() {
-    this.router.navigate(['../events/oprette']);
-  };
-
-  onSletEvent(id: any) {
-    let dialogRef = this.dialog.open(SletDialogBoxComponent);
-    dialogRef.afterClosed().subscribe(result => {
-      if(result == true)
-      {
-        this.restApi.deleteData(id, this.endpoints).subscribe(data => {
-          this.loadEvent();
-        })
-      }
-    });
-  }
-/*   onJoinEvent(id:any){
-    this.restApi.updateData(id, this.endpoints, this.events).subscribe((data) => {
-      this.events = this.events.filter(res =>{
-        res.titel.toLowerCase().match(this.searchkey.toLowerCase());
-        this.deltagelse = false;
-      })
-    });
-  } */
 
 /*   onAfmeldEvent(id:any){
     this.restApi.updateData(id, this.endpoints, this.events).subscribe((data) => {
@@ -88,21 +100,32 @@ export class EventkalenderSideComponent implements OnInit {
 
 
   onJoinEvent(id:any){
-    this.deltage.brugerId=this.brugerId;
-    this.deltage.eventsId=id;
-    console.log('eventsId:' , this.deltage.eventsId);
-    console.log('brugerId:' , this.deltage.brugerId)
-    this.restApi.createData(this.deltage , this.endpointD ).subscribe(data => {
-      console.log(data);
-      this.deltagelse = false;
-    })
-
+    if(this.arrayListDeltager.includes(id) )
+    {
+      this.dialog.open(MessageDialogBoxComponent);
+    }else{
+        this.deltage.brugerId=this.brugerId;
+        this.deltage.eventsId=id;
+        this.restApi.createData(this.deltage , this.endpointD ).subscribe(data => {
+          console.log(data);
+          this.ngOnInit();
+        })
+    }
 
   }
 
+//skaal kigges igen
   onAfmeldEvent(id:any){
-    this.deltage.brugerId=this.brugerId;
-    this.deltage.eventsId=id;
-    
+    if(this.arrayListDeltager.includes(id) )
+    {
+     console.log('true');
+     alert('du kan afmld nu');
+    }else{
+      //this.dialog.open(MessageDialogBoxComponent);
+
+    }
+
   }
+
+
 }

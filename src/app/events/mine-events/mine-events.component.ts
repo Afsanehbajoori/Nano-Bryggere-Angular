@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Events } from 'src/app/Models/Events';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 
@@ -12,28 +12,45 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 export class MineEventsComponent implements OnInit {
   events: Events[];
   eventId: number;
-  endpoints = '/Events';
+  endpointE = '/Events';
+  endpointD = '/Deltageres';
   searchkey: string;
   deltagelse: boolean;
+  listDeltagelser:any;
+  brugerId:number;
+  eventList:any;
+  id = this.actRoute.snapshot.params['id'];
+
   constructor(
     public dialog: MatDialog,
     public restApi: RestApiService,
-    private router: Router
+    private router: Router,
+    public actRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-
+    this.brugerId = JSON.parse(localStorage.getItem('brugerId') || '{}');
+    this.loadDeltaglser();
   }
 
-  loadEvent() {
-    if (this.eventId = JSON.parse(localStorage.getItem('bryggeriId') || '{}')) {
-      this.restApi.getDatas(this.endpoints).subscribe((data) => {
-        this.events = data.filter((res: any) => {
-          return res.bryggeriId === this.eventId});
-      })
-    }
+  loadDeltaglser(){
+    this.restApi.getDatas(this.endpointD).subscribe(data => {
+      this.listDeltagelser=data
+      if(this.brugerId){
+        this.listDeltagelser = this.listDeltagelser.filter((a:any) => a.brugerId === this.brugerId);
+      }
+    })
   }
 
+  //den virker ikke , kig igen
+  onViseEvent(id:any){
+    this.restApi.getData(id , this.endpointD).subscribe(data => {
+
+      this.eventList= data ;
+      console.log(data)
+    })
+
+}
   onFindEvent(){
     if(this.searchkey == ""){
       this.ngOnInit();
@@ -45,7 +62,7 @@ export class MineEventsComponent implements OnInit {
     }
   }
   onAfmeldEvent(id:any){
-    this.restApi.updateData(id, this.endpoints, this.events).subscribe((data) => {
+    this.restApi.updateData(id, this.endpointE, this.events).subscribe((data) => {
     });
   }
 }

@@ -17,7 +17,7 @@ export class EventkalenderSideComponent implements OnInit {
   endpointD = '/Deltageres';
   searchkey: string;
 
-  deltagelse: boolean = true;
+  deltagelse: boolean = false;
   eventsId:number;
   brugerId:number;
   //deltage:Deltagere[];

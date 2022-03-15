@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { EventkalenderSideComponent } from '../eventkalender-side/eventkalender-side.component';
+
 
 @Component({
   selector: 'app-message-dialog-box',
@@ -6,10 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./message-dialog-box.component.css']
 })
 export class MessageDialogBoxComponent implements OnInit {
+ Deltage:boolean;
 
-  constructor() { }
+  constructor(public eventKalenderComponent : EventkalenderSideComponent) { }
 
   ngOnInit(): void {
+
+   /*  this.Deltage= this.eventKalenderComponent.isDeltage;
+    console.log('messagebox text:',this.Deltage) */
   }
+
+
 
 }

@@ -1,7 +1,7 @@
 import { NgStyle } from '@angular/common';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
 import { Deltagere } from 'src/app/Models/Deltagere';
@@ -15,7 +15,7 @@ import { MessageDialogBoxComponent } from '../message-dialog-box/message-dialog-
   styleUrls: ['./eventkalender-side.component.css']
 })
 export class EventkalenderSideComponent implements OnInit {
-
+  dialogRefSlet: MatDialogRef<SletDialogBoxComponent>;
   events: Events[];
   endpointE = '/Events';
   endpointD = '/Deltageres';
@@ -29,7 +29,10 @@ export class EventkalenderSideComponent implements OnInit {
   eventList:any;
   id = this.actRoute.snapshot.params['id'];
   arrayListDeltager = new Array();
- @Input() deltage = { brugerId:0 , eventsId:0}
+  deltagId:number;
+  list:any;
+  isDeltage:boolean;
+ @Input() deltage = { brugerId:0 , eventsId:0 , isDeltage:false}
 
 
 
@@ -42,7 +45,6 @@ export class EventkalenderSideComponent implements OnInit {
 
   ngOnInit(): void {
     this.brugerId = JSON.parse(localStorage.getItem('brugerId') || '{}');
-    console.log('brugerId:' ,this.brugerId )
     this.loadEvent();
     this.loadDeltaglser();
   }
@@ -55,21 +57,21 @@ export class EventkalenderSideComponent implements OnInit {
 
   loadDeltaglser(){
     this.restApi.getDatas(this.endpointD).subscribe(data => {
-      this.listDeltagelser=data
+      this.listDeltagelser=data;
       if(this.brugerId){
         this.listDeltagelser = this.listDeltagelser.filter((a:any) => a.brugerId === this.brugerId);
         console.log('list:' , this.listDeltagelser);
-
         for(var d =0; d < this.listDeltagelser.length ; d++)
         {
           console.log('listId:' , this.listDeltagelser[d].eventsId);
           if(this.listDeltagelser[d].eventsId){
             this.arrayListDeltager.push(this.listDeltagelser[d].eventsId);
-            console.log('arrayList:' , this.arrayListDeltager);
+
           }
         }
       }
    })
+
   }
 
  onViseEvent(id:any){
@@ -91,12 +93,6 @@ export class EventkalenderSideComponent implements OnInit {
   }
 
 
-/*   onAfmeldEvent(id:any){
-    this.restApi.updateData(id, this.endpoints, this.events).subscribe((data) => {
-    });
-  } */
-
-
   onJoinEvent(id:any){
     if(this.arrayListDeltager.includes(id) )
     {
@@ -104,26 +100,36 @@ export class EventkalenderSideComponent implements OnInit {
     }else{
         this.deltage.brugerId=this.brugerId;
         this.deltage.eventsId=id;
+        this.deltage.isDeltage=true;
         this.restApi.createData(this.deltage , this.endpointD ).subscribe(data => {
-          console.log(data);
-          this.ngOnInit();
+          this.loadDeltaglser();
         })
     }
-
   }
 
-//skaal kigges igen
-  onAfmeldEvent(id:any){
-    if(this.arrayListDeltager.includes(id) )
+
+  /* onAfmeldEvent(id:any){
+    if(!this.arrayListDeltager.includes(id)){
+      this.dialog.open(MessageDialogBoxComponent);
+    }
+    else
     {
-     console.log('true');
-     alert('du kan afmld nu');
-    }else{
-      //this.dialog.open(MessageDialogBoxComponent);
+      const deltagId=this.listDeltagelser.find((a:any) => a.brugerId === this.brugerId && a.eventsId == id);
+      this.dialogRefSlet = this.dialog.open(SletDialogBoxComponent, {
+        width: '300px',
+        disableClose: true
+      });
+      this.dialogRefSlet.afterClosed().subscribe(result => {
+        if (result) {
+          this.restApi.deleteData(deltagId.id , this.endpointD).subscribe(data => {
+              console.log('arrayList2:' , this.arrayListDeltager);
+            })
+      }
+    })
 
     }
 
-  }
+  } */
 
 
 }

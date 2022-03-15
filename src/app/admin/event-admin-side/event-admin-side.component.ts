@@ -130,6 +130,7 @@ export class EventAdminSideComponent implements OnInit {
   }
 
   onAfmeldDeltagelse(id:any){
+    
 
   }
 

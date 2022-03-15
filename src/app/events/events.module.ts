@@ -41,6 +41,7 @@ import { MessageDialogBoxComponent } from './message-dialog-box/message-dialog-b
   exports : [
     EventkalenderSideComponent,
     OpretteComponent
-  ]
+  ],
+  providers:[EventkalenderSideComponent]
 })
 export class EventsModule { }

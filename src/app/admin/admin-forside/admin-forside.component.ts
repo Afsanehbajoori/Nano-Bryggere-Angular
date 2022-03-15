@@ -18,6 +18,7 @@ const TREE_DATA: Search[] = [
     {name: 'Bryggeri',children:[{name: 'Med BryggeriSamarbejde'} , {name: 'Med Bryggerinavn'}]},
     {name: 'Øl',children:[{name: 'Med ØlId'} , {name: 'Med Ølnavn'} , {name: 'Med Øltype'}]} ,
     {name: 'Events', children:[ {name: 'Med Eventstitel'} , {name: 'Med Deltagelser'} ]} ,
+    {name: 'Deltager', children:[ {name: 'Med DeltagerId'} ]} ,
     {name: 'Forum', children:[{name: 'Med ForumId'} , {name: 'Med ForumTitel'}]} ,
     {name: 'Tags', children:[{name: 'admin-tags'} , {name: 'admin-opret-tag'} , {name: 'admin-rediger-tag'}]} ,
     {name: 'Certifikant'}],
@@ -44,6 +45,7 @@ export class AdminForsideComponent implements OnInit {
   showForumComponent:boolean=false;
   showBrugernavnComponent:boolean=false;
   showBrugerEmailComponent:boolean=false;
+  showDeltagerComponent:boolean=false;
 
   constructor(  public dialog: MatDialog,
     public restApi: RestApiService,
@@ -86,6 +88,10 @@ export class AdminForsideComponent implements OnInit {
     }
     case 'Med Deltagelser':{
       this.showEventsComponent=!this.showEventsComponent;
+      break;
+    }
+    case 'Med DeltagerId':{
+      this.showDeltagerComponent=!this.showDeltagerComponent;
       break;
     }
     case 'admin-tags':{

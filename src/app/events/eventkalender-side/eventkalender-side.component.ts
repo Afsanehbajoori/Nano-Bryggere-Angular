@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
 import { Events } from 'src/app/Models/Events';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 import { MessageDialogBoxComponent } from '../message-dialog-box/message-dialog-box.component';

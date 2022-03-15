@@ -26,7 +26,7 @@ export class EventAdminSideComponent implements OnInit {
   endpointE = '/Events';
   endpointD='/Deltageres';
   id = this.actRoute.snapshot.params['id'];
-
+  listDeltagelser:any;
 
 
   constructor(
@@ -37,12 +37,19 @@ export class EventAdminSideComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadEvents();
+    this.loadDeltaglser()
   }
 
   loadEvents(){
     return this.restApi.getDatas(this.endpointE).subscribe(event => {
       this.events=event;
-      //console.log(this.events);
+    })
+  }
+  loadDeltaglser(){
+    this.restApi.getDatas(this.endpointD).subscribe(data => {
+      this.listDeltagelser=data
+      console.log('del:', this.listDeltagelser)
+
     })
   }
 
@@ -50,7 +57,7 @@ export class EventAdminSideComponent implements OnInit {
     this.clickButton=false;
     return this.restApi.getData(id , this.endpointE).subscribe(data => {
       this.eventList=data;
-      //console.log(this.eventList);
+      console.log('eventList:',this.eventList);
     })
   }
 
@@ -77,17 +84,25 @@ export class EventAdminSideComponent implements OnInit {
         }
   }
 
-  //skal kigge på det efter styre på deltager
+
+
   onSletEvent(id:any){
-/*     let dialogRef = this.dialog.open(SletDialogBoxComponent);
-    dialogRef.afterClosed().subscribe(result => {
-      if(result){
-        this.restApi.deleteData(id , this.endpointE).subscribe((data) => {
-          console.log('delete:' , id);
-          this.loadEvents();
-        })
-      }
-    }); */
+    if(this.listDeltagelser.length !==0){
+      alert('der er nogle er deltger i dette events . Først skal afmeld under deltager')
+    }
+    else{
+      let dialogRef = this.dialog.open(SletDialogBoxComponent);
+      dialogRef.afterClosed().subscribe(result => {
+        if(result){
+          this.restApi.deleteData(id , this.endpointE).subscribe((data) => {
+            console.log('delete:' , id);
+            this.loadEvents();
+          })
+        }
+      });
+    }
+
+
   }
 
   onUpdateEvent(id:any){
@@ -121,9 +136,10 @@ export class EventAdminSideComponent implements OnInit {
     })
   }
 
-  onAfmeldDeltagelse(id:any){
-    
+  /* onJoinEvent(id:any){
+    console.log('eventsId ', id)
 
-  }
+  } */
+
 
 }

@@ -1,5 +1,4 @@
 import { Bryggeri } from "./Bryggeri";
-import { BryggeriSamarbejde } from "./BryggeriSamarbejde";
 import { Øl } from "./Øl";
 
 export class Samarbejde{

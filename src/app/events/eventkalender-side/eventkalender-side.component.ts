@@ -1,10 +1,6 @@
-import { NgStyle } from '@angular/common';
-import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
-import { Deltagere } from 'src/app/Models/Deltagere';
 import { Events } from 'src/app/Models/Events';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 import { MessageDialogBoxComponent } from '../message-dialog-box/message-dialog-box.component';

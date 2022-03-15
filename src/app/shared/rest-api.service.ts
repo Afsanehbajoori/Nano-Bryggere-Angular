@@ -15,6 +15,7 @@ export class RestApiService {
       'Content-Type': 'application/json'
     })
   }
+
   //Dynamisk api forbindelse. metoden bliver kaldt indefra den valgte ts.
   //Inde i constructoren bliver endpointet kaldt via den valgte url navn.
   //Det samme gælder id (som udvælger denne specifikke data via dens id) og data til at sige hvilken tabel, der er snakke om.
@@ -25,6 +26,7 @@ export class RestApiService {
       catchError(this.handleError)
     )
   }
+  
   getData(id: any, endpoint: string): Observable<any> {
     return this.http.get<any>(this.apiUrl + endpoint +'/'+ id)
     .pipe(

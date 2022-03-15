@@ -59,7 +59,6 @@ export class EventAdminSideComponent implements OnInit {
       this.eventList=data;
       console.log('eventList:',this.eventList);
     })
-
   }
 
   onFindEventtitel(){
@@ -69,10 +68,8 @@ export class EventAdminSideComponent implements OnInit {
     else{
       this.events = this.events.filter(res =>{
       return  res.titel.toLowerCase().match(this.searchkeyEventtitel.toLowerCase());
-
       })
     }
-
   }
 
   onFindDeltagelser(){
@@ -125,7 +122,6 @@ export class EventAdminSideComponent implements OnInit {
       }
       this.ngOnInit();
     })
-
   }
 
   onOpretteEvent(){
@@ -138,14 +134,12 @@ export class EventAdminSideComponent implements OnInit {
     this.dialogRefOpretteEvents.afterClosed().subscribe(result => {
       this.ngOnInit();
     })
-
   }
 
   /* onJoinEvent(id:any){
     console.log('eventsId ', id)
 
   } */
-
 
 
 }

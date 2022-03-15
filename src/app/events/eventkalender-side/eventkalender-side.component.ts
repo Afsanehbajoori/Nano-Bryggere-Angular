@@ -17,6 +17,8 @@ export class EventkalenderSideComponent implements OnInit {
   endpointE = '/Events';
   endpointD = '/Deltageres';
   searchkey: string;
+
+  deltagelse: boolean = false;
   buttonDisabled: boolean ;
   buttonEnabled: boolean;
   eventsId:number;

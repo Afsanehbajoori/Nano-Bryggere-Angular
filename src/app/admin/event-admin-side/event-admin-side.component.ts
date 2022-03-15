@@ -43,7 +43,6 @@ export class EventAdminSideComponent implements OnInit {
     return this.restApi.getDatas(this.endpointE).subscribe(event => {
       this.events=event;
       //console.log(this.events);
-
     })
   }
 
@@ -53,7 +52,6 @@ export class EventAdminSideComponent implements OnInit {
       this.eventList=data;
       //console.log(this.eventList);
     })
-
   }
 
   onFindEventtitel(){
@@ -63,10 +61,8 @@ export class EventAdminSideComponent implements OnInit {
     else{
       this.events = this.events.filter(res =>{
       return  res.titel.toLowerCase().match(this.searchkeyEventtitel.toLowerCase());
-
       })
     }
-
   }
 
   onFindDeltagelser(){
@@ -81,7 +77,6 @@ export class EventAdminSideComponent implements OnInit {
         }
   }
 
-
   //skal kigge på det efter styre på deltager
   onSletEvent(id:any){
 /*     let dialogRef = this.dialog.open(SletDialogBoxComponent);
@@ -93,7 +88,6 @@ export class EventAdminSideComponent implements OnInit {
         })
       }
     }); */
-
   }
 
   onUpdateEvent(id:any){
@@ -113,7 +107,6 @@ export class EventAdminSideComponent implements OnInit {
       }
       this.ngOnInit();
     })
-
   }
 
   onOpretteEvent(){
@@ -126,13 +119,11 @@ export class EventAdminSideComponent implements OnInit {
     this.dialogRefOpretteEvents.afterClosed().subscribe(result => {
       this.ngOnInit();
     })
-
   }
 
   onAfmeldDeltagelse(id:any){
     
 
   }
-
 
 }

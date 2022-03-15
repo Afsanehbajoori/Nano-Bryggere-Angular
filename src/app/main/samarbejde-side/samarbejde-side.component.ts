@@ -1,62 +1,75 @@
+import { NestedTreeControl } from '@angular/cdk/tree';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatTreeNestedDataSource } from '@angular/material/tree';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Bryggeri } from 'src/app/Models/Bryggeri';
 import { Samarbejde } from 'src/app/Models/Samarbejde';
-import { Øl } from 'src/app/Models/Øl';
 import { RestApiService } from 'src/app/shared/rest-api.service';
-import { SletDialogBoxComponent } from '../slet-dialog-box/slet-dialog-box.component';
+
+interface Search {
+  name: string;
+  children?: Search[];
+}
+
+const TREE_DATA: Search[] = [
+  {
+    name: 'Vis',
+    children: [{ name: 'Bruger'}],
+  }
+];
 
 @Component({
   selector: 'app-samarbejde-side',
   templateUrl: './samarbejde-side.component.html',
   styleUrls: ['./samarbejde-side.component.css']
 })
+
 export class SamarbejdeSideComponent implements OnInit {
-  beers: any;
-  beerliste: Øl[];
-  beer: Øl;
-  bryg: Bryggeri;
+  showSamarbejdeComponent:boolean=false;
+  dataSource = new MatTreeNestedDataSource<Search>();
+  treeControl = new NestedTreeControl<Search>(node => node.children);
+  
+  samarbejde: Samarbejde
+  samarbejder: Samarbejde[];
   samarbejdeId: number;
-  samarbejde: Samarbejde[];
   endpointo = '/Øller';
   endpointb = '/Bryggerier';
   endpoints = '/Samarbejder';
   searchkey: string;
   ølId: number;
+  bryg: Bryggeri;
   bryggeriId: number;
   constructor(
     public dialog: MatDialog,
     public restApi: RestApiService,
     public router: Router,
     public actRoute: ActivatedRoute
-  ) { }
-
+  ) {  this.dataSource.data = TREE_DATA; }
+  hasChild = (_: number, node: Search) => !!node.children && node.children.length > 0;
   ngOnInit(): void {
     this.onLoadSamarbejde();
-    this.onLoadOl();
+    // this.onLoadOl();
   }
-  onLoadOl() {
-    if (this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}')) {
-      this.restApi.getDatas(this.endpointo).subscribe((data) => {
-        this.beerliste = data.filter((res: any) => {
-          return res.samarbejdeId === this.samarbejdeId});
-      })
+  showComponent(nodeName: string, id: any) {
+    console.log(this.samarbejder);
+    switch (nodeName) {
+      case 'Vis': {
+        localStorage.setItem('sOlId', JSON.stringify(id));
+        this.showSamarbejdeComponent = !this.showSamarbejdeComponent;
+        break;
+      }
     }
   }
 
   onLoadSamarbejde() {
     if (this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}')) {
-      this.restApi.getData(this.bryggeriId, this.endpointb).subscribe((data) =>{
-        this.bryg = data;
-        this.samarbejdeId = this.bryg.samarbejdeId;
-        console.log(this.samarbejdeId);
-        this.restApi.getDatas(this.endpoints).subscribe((data) => {
-          this.samarbejde = data.filter((res: any) => {
-            localStorage.setItem(res.ølId,"olId");
-            console.log(this.samarbejde);
-            return res.samarbejdeId === this.samarbejdeId});
-            console.log(this.samarbejde);
+      this.restApi.getDatas(this.endpoints).subscribe((data) => {
+        this.samarbejder = data.filter((res: any) => {
+          return res.bryggeriId1 === this.bryggeriId || res.bryggeriId2 === this.bryggeriId;
+        });
+        this.samarbejder.forEach(function (value){
+          console.log("Value",value.olId);
         })
       })
     }
@@ -65,31 +78,4 @@ export class SamarbejdeSideComponent implements OnInit {
   onRedigerOl(id: any) {
     this.router.navigate(['../main/samarbejderediger/', id]);
   };
-
-  onOpretOl() {
-    this.router.navigate(['../main/samarbejdeopret']);
-  };
-
-  onSletOl(id: any) {
-    let dialogRef = this.dialog.open(SletDialogBoxComponent);
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-      if (result == true) {
-        this.restApi.deleteData(id, this.endpoints).subscribe(data => {
-          this.onLoadOl();
-        })
-      }
-    });
-  };
-
-  onFindOl() {
-    if (this.searchkey == "") {
-      this.ngOnInit();
-    }
-    else {
-      this.beerliste = this.beerliste.filter(res => {
-        return res.navn.toLowerCase().match(this.searchkey.toLowerCase());
-      })
-    }
-  }
 }

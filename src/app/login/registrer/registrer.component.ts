@@ -3,9 +3,7 @@ import { Component, OnInit, Input , Injectable  } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 import { Kontaktoplysninger } from 'src/app/Models/Kontaktoplysninger';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-
 
 @Injectable()
 @Component({
@@ -14,21 +12,21 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './registrer.component.html',
   styleUrls: ['./registrer.component.css']
 })
+
 export class RegistrerComponent implements OnInit {
 
-@Input() newUser = { pw:'', brugernavn:'', rolleNavn:''  ,rolleId:null, level:'',kontaktoplysningerId: null ,
+@Input() newUser = { pw:'', brugernavn:'', rolleNavn:'', rolleId:null, level:'', kontaktoplysningerId: null,
  fnavn: '', enavn: '', addresselinje1: '', addresselinje2: '', postnr: '',
   by: '', email:'', telefonnr: '' };
 
-
-  BrugerFormGroup:any = new FormGroup({}) ;
+  BrugerFormGroup:any = new FormGroup({});
   endpointK = '/Kontaktoplysninger';
   endpointB= '/Brugere';
   endpointR= '/Roller';
-  constructor(private _formBuilder: FormBuilder , public restApi: RestApiService ,public router: Router) { }
+
+  constructor(private _formBuilder: FormBuilder, public restApi: RestApiService, public router: Router) { }
 
   ngOnInit(): void {
-
     this.BrugerFormGroup = this._formBuilder.group({
       'kontaktoplysningerId':new FormControl(''),
       'fnavn' : new FormControl('' , Validators.required),
@@ -45,15 +43,10 @@ export class RegistrerComponent implements OnInit {
       'rolleNavn':new FormControl(''),
       'level':new FormControl('')
     });
-
-
-
   }
 
-
-
   createUser(){
-   this.restApi.createData(this.newUser , this.endpointK).subscribe((dataK) => {
+   this.restApi.createData(this.newUser, this.endpointK).subscribe((dataK) => {
      console.log(dataK.id);
       this.newUser.kontaktoplysningerId= dataK.id;
       if(this.newUser.rolleNavn == 'AnonymBruger')
@@ -73,14 +66,10 @@ export class RegistrerComponent implements OnInit {
         console.log("brugerId : " ,brugerId);
         this.router.navigate(["../login/login"]);
        }) ;
-
      })
-
     } , err => {
        {alert('udfyldt alle felter')
-
       }
     })
   }
-
 }

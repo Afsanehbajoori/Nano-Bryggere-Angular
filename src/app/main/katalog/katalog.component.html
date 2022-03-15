@@ -14,7 +14,7 @@
             <mat-expansion-panel *ngFor="let beer of beerliste" style="margin-top: 10px; background-color: transparent;" expanded="true">
                 <mat-expansion-panel-header style="background: linear-gradient(rgb(30, 122, 228), rgb(75, 127, 185)); justify-content: center; width: 100%;">
                     <mat-panel-title class="centers" style="justify-content: center;">
-                        {{beer.navn}}
+                        Titel: {{beer.navn}}
                     </mat-panel-title>
                     <mat-action-row class="centers" style="justify-content: center;">
                         <button mat-button class="btnMainStyle" (click)="onSletOl(beer.id)">Slet Øl</button>
@@ -47,8 +47,20 @@
                     <p>{{this.argang}}</p>
                 </mat-card>
                 <mat-card class="containStyle">
-                    <p>Antal flasker:</p>
+                    <p>Antal:</p>
                     <p>{{beer.antal}}</p>
+                </mat-card>
+                <mat-card class="containStyle">
+                    <p>Antal flasker:</p>
+                    <p>{{beer.flaskeAntal}}</p>
+                </mat-card>
+                <mat-card class="containStyle">
+                    <p>Antal tønder:</p>
+                    <p>{{beer.tondeAntal}}</p>
+                </mat-card>
+                <mat-card class="containStyle">
+                    <p>Antal reserve flasker:</p>
+                    <p>{{beer.flaskeResAntal}}</p>
                 </mat-card>
             </mat-expansion-panel>
         </mat-accordion>

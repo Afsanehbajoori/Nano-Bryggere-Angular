@@ -1,10 +1,8 @@
-import { Component, Input, OnInit, Output,EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Bruger } from 'src/app/Models/Bruger';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RestApiService } from 'src/app/shared/rest-api.service';
-
-
 
 @Component({
   selector: 'app-login-side',
@@ -13,39 +11,34 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 })
 
 export class LoginSideComponent implements OnInit {
-  login : any = {};
+  login: any = {};
   logins: Bruger[];
   endpoints = '/Logins';
   endpointK = '/Kontaktoplysninger';
-  endpointB= '/Brugere';
+  endpointB = '/Brugere';
 
+  loginForm: any = new FormGroup({});
 
-  loginForm :any = new FormGroup({}) ;
-
-
-  @Input() loginDetails = {brugernavn: '' , pw:'' , brugerId:null  };
-
+  @Input() loginDetails = { brugernavn: '', pw: '', brugerId: null };
 
   constructor(
     public router: Router,
     public restApi: RestApiService,
     public actRoute: ActivatedRoute
-     ) { }
+  ) { }
 
   ngOnInit(): void {
-
     this.loginForm = new FormGroup({
-      brugerId:new FormControl(''),
+      brugerId: new FormControl(''),
       brugernavn: new FormControl('', Validators.required),
       pw: new FormControl('', [Validators.required, Validators.minLength(3)])
-
     }
     );
   }
 
-
-  onSubmitLogin () {
+  onSubmitLogin() {
     localStorage.clear();
+
   this.restApi.getDatas(this.endpointB).subscribe((res) => {
   const user = res.find((a:any) => {
     console.log('infoLogin:' , a.kontaktoplysningerId);
@@ -66,23 +59,23 @@ export class LoginSideComponent implements OnInit {
      this.restApi.createData(this.loginDetails , this.endpoints).subscribe((res) => {
       // console.log("brugerId:" ,res.brugerId);
 
+
+    
+        })
+        this.router.navigate(['../main/profil']);
+      }
+      else {
+        alert('user ikke findes')
+      }
+
     })
-    this.router.navigate(['../main/profil'] );
-
-  }
-  else{
-    alert('user ikke findes')
-  }
-})
-
   };
 
-  onSubmitRegistre () {
-
+  onSubmitRegistre() {
     this.router.navigate(['../login/registrer']);
   };
 
-  loadLogin(){
+  loadLogin() {
     return this.restApi.getData(this.login.id, this.endpoints).subscribe((logins) => {
       this.login = logins;
     })

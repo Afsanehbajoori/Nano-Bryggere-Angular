@@ -29,6 +29,7 @@ import { OpretteEventsDialogBoxComponent } from './oprette-events-dialog-box/opr
 import { UpdateEventsDialogBoxComponent } from './update-events-dialog-box/update-events-dialog-box.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { DeltagerAdminSideComponent } from './deltager-admin-side/deltager-admin-side.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     RolleAdminSideComponent,
     ForumAdminSideComponent,
     OpretteEventsDialogBoxComponent,
-    UpdateEventsDialogBoxComponent
+    UpdateEventsDialogBoxComponent,
+    DeltagerAdminSideComponent
   ],
   imports: [
     CommonModule,

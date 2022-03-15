@@ -1,7 +1,7 @@
 <div class="main" id="imgeUp">
   <mat-card >
     <mat-toolbar class="login-header" style="background: linear-gradient(#6c6c6d, #cfd4d6); height: 100px;"  >
-      <mat-tab-group>
+<!--       <mat-tab-group>
         <mat-tab label="Find Events med events titel">
       <form class="example-form" style="justify-content: center; width: 100%;">
         <mat-form-field  class="txtHeader">
@@ -19,59 +19,43 @@
             <mat-tab label="Oprette Events">
                <button mat-button class="btnOprette" (click)="onOpretteEvent()">Klick her til at oprette events</button>
             </mat-tab>
-  </mat-tab-group>
+  </mat-tab-group> -->
   </mat-toolbar>
   </mat-card>
   <mat-card>
     <table style="width: 100%; height: 100%; display: flex;" >
         <mat-accordion class="example-headers-align" multi style="width: 100%;">
-             <mat-expansion-panel *ngFor="let event of events" style="margin-top: 10px;"  [disabled]="clickButton" (click)="clickButton=true" >
+             <mat-expansion-panel *ngFor="let deltage of deltagere" style="margin-top: 10px;"  [disabled]="clickButton" (click)="clickButton=true" >
                 <mat-expansion-panel-header
                     style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236)); justify-content: center; width: 100%;">
                     <mat-panel-title class="centers" style="justify-content: center;">
-                       <span style="font-weight: bold; margin-right: 20px;">Events Titel:</span>
-                       <span>{{event.titel}}</span>
+                       <span style="font-weight: bold; margin-right: 20px;">Deltager Id:</span>
+                       <span>{{deltage.id}}</span>
                     </mat-panel-title>
                     <mat-action-row class="centers" style="justify-content: center;">
-                        <button mat-button class="btnMainStyle" (click)="onVisEvent(event.id)">Vis </button> |
-                        <button mat-button class="btnMainStyle" (click)="onUpdateEvent(event.id)" >Update </button> |
-                        <!-- <button mat-button class="btnMainStyle" (click)="onJoinEvent(event.id)" >Join Event </button> | -->
-                        <button mat-button class="btnMainStyle" (click)="onSletEvent(event.id)">Slet </button>
+                        <button mat-button class="btnMainStyle" (click)="onVisDeltager(deltage.id)">Vis </button> |
+                        <button mat-button class="btnMainStyle" (click)="onAfmeldDeltager(deltage.id)">Afmeld Deltagelse </button>
                     </mat-action-row>
                 </mat-expansion-panel-header>
-                <div  *ngIf="eventList">
+                <div *ngIf="deltagerList" >
                   <mat-card class="containStyle">
-                    <span>EventBillede:</span>
-                    <span class="txtStyle"><img [src]="eventList.eventBilled" alt="" style="width: 30%; height: 30%;"></span>
-                  </mat-card>
-                  <mat-card class="containStyle">
-                  <span>Titel:</span>
-                  <span class="txtStyle">{{eventList.titel}}</span>
+                  <span>BrugerId:</span>
+                  <span class="txtStyle">{{deltagerList.brugerId}}</span>
                 </mat-card>
                 <mat-card class="containStyle">
-                  <span>Beskrivelse:</span>
-                  <span class="txtStyle">{{eventList.beskrivelse}}</span>
+                  <span>EventsId:</span>
+                  <span class="txtStyle">{{deltagerList.eventsId}}</span>
                 </mat-card>
                 <mat-card class="containStyle">
-                  <span>Lokation:</span>
-                  <span class="txtStyle">{{eventList.lokation}}</span>
+                  <span>Is Deltage:</span>
+                  <span class="txtStyle">{{deltagerList.isDeltage}}</span>
                 </mat-card>
-                <mat-card class="containStyle">
-                  <span>StartDato:</span>
-                  <span class="txtStyle">{{eventList.startDato}}</span>
-                </mat-card>
-                <mat-card class="containStyle">
-                  <span>SlutDato:</span>
-                  <span class="txtStyle">{{eventList.slutDato}}</span>
-                </mat-card>
-
-              </div>
-
-
+                </div>
             </mat-expansion-panel>
         </mat-accordion>
     </table>
   </mat-card>
 </div>
+
 
 

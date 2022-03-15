@@ -20,12 +20,16 @@
 
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>StartDato:</mat-label>
-        <input matInput formControlName="startDato" placeholder="{{eventsList.startDato}}" [(ngModel)]="eventsList.startDato">
+        <input matInput [matDatepicker]="picker1" formControlName="startDato" placeholder="{{eventsList.startDato}}" [(ngModel)]="eventsList.startDato">
+        <mat-datepicker-toggle matSuffix [for]="picker1" ></mat-datepicker-toggle>
+          <mat-datepicker #picker1 ></mat-datepicker>
       </mat-form-field>
 
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>SlutDato:</mat-label>
-        <input matInput formControlName="slutDato" placeholder="{{eventsList.slutDato}}" [(ngModel)]="eventsList.slutDato">
+        <input matInput [matDatepicker]="picker2" formControlName="slutDato" placeholder="{{eventsList.slutDato}}" [(ngModel)]="eventsList.slutDato">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
       </mat-form-field>
 
       <mat-form-field class="example-full-width" appearance="fill">

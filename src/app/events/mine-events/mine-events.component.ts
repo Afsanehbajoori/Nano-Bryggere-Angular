@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
 import { Events } from 'src/app/Models/Events';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 
@@ -10,6 +11,7 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./mine-events.component.css']
 })
 export class MineEventsComponent implements OnInit {
+  dialogRefSlet: MatDialogRef<SletDialogBoxComponent>;
   events: Events[];
   eventId: number;
   endpointE = '/Events';
@@ -20,6 +22,7 @@ export class MineEventsComponent implements OnInit {
   brugerId:number;
   eventList:any;
   id = this.actRoute.snapshot.params['id'];
+  clickButton:boolean = true;
 
   constructor(
     public dialog: MatDialog,
@@ -38,31 +41,47 @@ export class MineEventsComponent implements OnInit {
       this.listDeltagelser=data
       if(this.brugerId){
         this.listDeltagelser = this.listDeltagelser.filter((a:any) => a.brugerId === this.brugerId);
-      }
+              }
     })
   }
 
-  //den virker ikke , kig igen
-  onViseEvent(id:any){
-    this.restApi.getData(id , this.endpointD).subscribe(data => {
 
+  onViseEvent(id:any){
+    this.clickButton=false;
+    //console.log('id:', id);
+    this.restApi.getData(id , this.endpointD).subscribe(data => {
       this.eventList= data ;
-      console.log(data)
+      this.restApi.getData(this.eventList.eventsId , this.endpointE).subscribe(data => {
+        this.eventList= data ;
+      })
+
     })
 
-}
+  }
   onFindEvent(){
     if(this.searchkey == ""){
       this.ngOnInit();
     }
     else{
-      this.events = this.events.filter(res =>{
-        return res.titel.toLowerCase().match(this.searchkey.toLowerCase());
-      })
+     this.restApi.getDeltagerByEventsTitel(this.searchkey , this.endpointE).subscribe(data => {
+       this.listDeltagelser=data;
+       console.log('hi:', this.listDeltagelser)
+     })
     }
   }
+
   onAfmeldEvent(id:any){
-    this.restApi.updateData(id, this.endpointE, this.events).subscribe((data) => {
+    this.dialogRefSlet = this.dialog.open(SletDialogBoxComponent, {
+      width: '300px',
+      disableClose: true
     });
+    this.dialogRefSlet.afterClosed().subscribe(result => {
+      if (result) {
+    this.restApi.deleteData(id , this.endpointD).subscribe(data => {
+      this.ngOnInit();
+      })
+    }
+  });
   }
+
 }

@@ -4,7 +4,6 @@ import {NestedTreeControl} from '@angular/cdk/tree';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RestApiService } from 'src/app/shared/rest-api.service';
-import { Bruger } from 'src/app/Models/Bruger';
 
 interface Search {
   name: string;

@@ -1,25 +1,15 @@
 <div class="main" id="imgeUp">
   <mat-card >
     <mat-toolbar class="login-header" style="background: linear-gradient(#6c6c6d, #cfd4d6); height: 100px;"  >
-<!--       <mat-tab-group>
-        <mat-tab label="Find Events med events titel">
+      <mat-tab-group>
+        <mat-tab label="Find Deltager med brugernavn">
       <form class="example-form" style="justify-content: center; width: 100%;">
         <mat-form-field  class="txtHeader">
-            <input matInput type="search"  [(ngModel)]="searchkeyEventtitel" (ngModelChange)="onFindEventtitel()" [ngModelOptions]="{standalone: true}" >
+            <input matInput type="search"  [(ngModel)]="searchkeyDeltager" (ngModelChange)="onFindDeltager()" [ngModelOptions]="{standalone: true}" >
         </mat-form-field>
       </form>
         </mat-tab>
-        <mat-tab label="Find events med deltagelser brugernavn">
-          <form class="example-form" style="justify-content: center; width: 100%;">
-            <mat-form-field  class="txtHeader">
-                <input matInput type="search"  [(ngModel)]="searchkeyDeltagelser" (ngModelChange)="onFindDeltagelser()" [ngModelOptions]="{standalone: true}" >
-            </mat-form-field>
-          </form>
-            </mat-tab>
-            <mat-tab label="Oprette Events">
-               <button mat-button class="btnOprette" (click)="onOpretteEvent()">Klick her til at oprette events</button>
-            </mat-tab>
-  </mat-tab-group> -->
+  </mat-tab-group>
   </mat-toolbar>
   </mat-card>
   <mat-card>
@@ -37,18 +27,18 @@
                         <button mat-button class="btnMainStyle" (click)="onAfmeldDeltager(deltage.id)">Afmeld Deltagelse </button>
                     </mat-action-row>
                 </mat-expansion-panel-header>
-                <div *ngIf="deltagerList" >
-                  <mat-card class="containStyle">
-                  <span>BrugerId:</span>
-                  <span class="txtStyle">{{deltagerList.brugerId}}</span>
+                <div >
+                  <mat-card class="containStyle" *ngIf="deltagerListB">
+                  <span>Brugernavn:</span>
+                  <span class="txtStyle">{{deltagerListB.brugernavn}}</span>
                 </mat-card>
-                <mat-card class="containStyle">
-                  <span>EventsId:</span>
-                  <span class="txtStyle">{{deltagerList.eventsId}}</span>
+                <mat-card class="containStyle" *ngIf="deltagerListE">
+                  <span>EventsTitel:</span>
+                  <span class="txtStyle">{{deltagerListE.titel}}</span>
                 </mat-card>
-                <mat-card class="containStyle">
+                <mat-card class="containStyle" *ngIf="deltagerListD">
                   <span>Is Deltage:</span>
-                  <span class="txtStyle">{{deltagerList.isDeltage}}</span>
+                  <span class="txtStyle">{{deltagerListD.isDeltage}}</span>
                 </mat-card>
                 </div>
             </mat-expansion-panel>

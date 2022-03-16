@@ -18,7 +18,7 @@ const TREE_DATA: Search[] = [
     {name: 'Bryggeri',children:[{name: 'Med BryggeriSamarbejde'} , {name: 'Med Bryggerinavn'}]},
     {name: 'Øl',children:[{name: 'Med ØlId'} , {name: 'Med Ølnavn'} , {name: 'Med Øltype'}]} ,
     {name: 'Events', children:[ {name: 'Med Eventstitel'} , {name: 'Med Deltagelser'} ]} ,
-    {name: 'Deltager', children:[ {name: 'Med DeltagerId'} ]} ,
+    {name: 'Deltager', children:[ {name: 'Med EventTitel'} ]} ,
     {name: 'Forum', children:[{name: 'Med ForumId'} , {name: 'Med ForumTitel'}]} ,
     {name: 'Tags', children:[{name: 'admin-tags'} , {name: 'admin-opret-tag'} , {name: 'admin-rediger-tag'}]} ,
     {name: 'Certifikant'}],
@@ -90,7 +90,7 @@ export class AdminForsideComponent implements OnInit {
       this.showEventsComponent=!this.showEventsComponent;
       break;
     }
-    case 'Med DeltagerId':{
+    case 'Med EventTitel':{
       this.showDeltagerComponent=!this.showDeltagerComponent;
       break;
     }

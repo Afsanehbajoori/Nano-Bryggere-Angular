@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
-import { Events } from 'src/app/Models/Events';
 import { RestApiService } from 'src/app/shared/rest-api.service';
+
 
 
 @Component({
@@ -14,9 +13,14 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 
 export class DeltagerAdminSideComponent implements OnInit {
   clickButton:boolean=true;
-  deltagerList:any;
+  deltagerListD:any;
+  deltagerListB:any;
   deltagere:any;
+  deltagerListE:any;
   endpointD='/Deltageres';
+  endpointE = '/Events';
+  endpointB='/Brugere';
+  searchkeyDeltager:string;
 
 
   constructor(public dialog: MatDialog,
@@ -27,23 +31,35 @@ export class DeltagerAdminSideComponent implements OnInit {
   ngOnInit(): void {
     this.loadDeltagelse();
   }
-
   loadDeltagelse(){
     this.restApi.getDatas(this.endpointD).subscribe(data =>
-      this.deltagere=data)
-  }
+      this.deltagere=data
+      )}
 
   onVisDeltager(id:any){
     this.clickButton=false;
-    return this.restApi.getData(id , this.endpointD).subscribe(data => {
-      this.deltagerList=data;
+    return this.restApi.getData(id , this.endpointD).subscribe(deltag => {
+      this.deltagerListD=deltag;
+      this.restApi.getData(deltag.brugerId , this.endpointB).subscribe(bruger => {
+        this.deltagerListB=bruger;
+      })
+      this.restApi.getData(deltag.eventsId , this.endpointE).subscribe(data => {
+        this.deltagerListE=data;
+      })
     })
-
   }
 
-  onJoinDeltager(any:any){
-
+  onFindDeltager(){
+    if(this.searchkeyDeltager == ""){
+      this.ngOnInit();
+    }
+    else{
+      this.restApi.getDeltagerByEventsTitel(this.searchkeyDeltager.toLowerCase() , this.endpointE).subscribe(res => {
+        return this.deltagere=res
+      })
+    }
   }
+
 
   onAfmeldDeltager(id:any){
     this.restApi.deleteData(id , this.endpointD).subscribe(data =>

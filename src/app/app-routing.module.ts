@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {path:'' , component: LoginSideComponent},
-  {path:'login' , loadChildren:() => import('./login/login.module').then(mod => mod.LoginModule)},
+  {path:'login' , loadChildren :() =>import('./login/login.module').then(mod => mod.LoginModule)},
   {path:'main' , loadChildren :() => import('./main/main.module').then(mod => mod.MainModule)},
   {path:'admin' , loadChildren : () => import('./admin/admin.module').then(mod => mod.AdminModule)},
   {path:'events' , loadChildren : () => import('./events/events.module').then(mod => mod.EventsModule)},

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
-import { from, Observable, throwError } from 'rxjs';
+import { from, Observable, of, throwError } from 'rxjs';
 import { retry, catchError} from 'rxjs/operators'
 
 @Injectable({
@@ -13,7 +13,8 @@ export class RestApiService {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
-    })
+    }),
+    'withCredentials': true
   }
   //Dynamisk api forbindelse. metoden bliver kaldt indefra den valgte ts.
   //Inde i constructoren bliver endpointet kaldt via den valgte url navn.

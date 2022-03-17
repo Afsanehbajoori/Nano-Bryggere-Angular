@@ -9,13 +9,13 @@
             <input matInput formControlName="brugernavn" [(ngModel)]="loginDetails.brugernavn" placeholder="brugernavn" class="input-control">
             <!-- <mat-error *ngIf="email.errors?.['required']"> -->
             <mat-error>
-                Vær Venlig at udfyld feltet med din brugernavn
+                Vær Venlig at udfyld feltet med dit brugernavn
             </mat-error>
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="fill">
             <input matInput formControlName="pw" [(ngModel)]="loginDetails.pw" placeholder="Password" class="input-control" type="password">
             <mat-error>
-              Vær Venlig at udfyld feltet med din password
+              Vær Venlig at udfylde feltet med dit password
           </mat-error>
         </mat-form-field>
        <button mat-raised-button type="submit" (click)="onSubmitLogin()" class="login-btn">Login</button>

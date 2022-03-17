@@ -85,18 +85,23 @@ export class RolleAdminSideComponent implements OnInit {
   }
 
 
-  //husk at kigge på slet function
+  
   onSletBruger(id:any){
-    let dialogRef = this.dialog.open(SletDialogBoxComponent);
-    dialogRef.afterClosed().subscribe(result => {
-      if(result){
-        this.restApi.deleteData(id , this.endpointR).subscribe((data) => {
-          console.log('delete:' , id);
-          this.loadBruger();
-        })
-      }
+    if(this.users.length !==0){
+        alert('Du skal først slette alle brger!')
+    }else{
+      let dialogRef = this.dialog.open(SletDialogBoxComponent);
+      dialogRef.afterClosed().subscribe(result => {
+        if(result){
+          this.restApi.deleteData(id , this.endpointR).subscribe((data) => {
+            console.log('delete:' , id);
+            this.loadBruger();
+          })
+        }
 
-    });
+      });
+    }
+
   }
 
 

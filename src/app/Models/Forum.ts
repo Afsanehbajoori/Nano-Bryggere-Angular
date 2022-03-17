@@ -9,4 +9,5 @@ export class Forum{
   public tags: Tags;
   public post:Post;
   public forumBilled: string;
+  
 }

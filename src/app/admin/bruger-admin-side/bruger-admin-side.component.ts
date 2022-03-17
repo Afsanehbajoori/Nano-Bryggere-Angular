@@ -19,7 +19,7 @@ export class BrugerAdminSideComponent implements OnInit {
   dialogRefRedigerProfil: MatDialogRef<RedigerProfilDialogBoxComponent>;
   users: Bruger[];
   user = new Bruger();
-  endpoints='/Brugere';
+  endpointB='/Brugere';
   endpointk = '/Kontaktoplysninger';
   searchkeyBrugernavn: string;
   searchkeyBrugerEnavn:string;
@@ -48,8 +48,7 @@ export class BrugerAdminSideComponent implements OnInit {
   }
 
   loadBruger(){
-
-    return this.restApi.getDatas(this.endpoints).subscribe((res) => {
+    return this.restApi.getDatas(this.endpointB).subscribe((res) => {
         this.users = res;
         console.log(this.users);
       })
@@ -58,7 +57,7 @@ export class BrugerAdminSideComponent implements OnInit {
 
   onVisBruger(id:any){
       this.clickButton=false;
-      return this.restApi.getData(id , this.endpoints).subscribe((data) => {
+      return this.restApi.getData(id , this.endpointB).subscribe((data) => {
         this.kontaktoplysningerId=data.kontaktoplysningerId;
         this.restApi.getData(this.kontaktoplysningerId ,this.endpointk ).subscribe((data) => {
           this.kontaktoplysninger = data;
@@ -86,7 +85,7 @@ export class BrugerAdminSideComponent implements OnInit {
       this.ngOnInit();
     }
      else{
-      this.restApi.getDataByEnavn(this.searchkeyBrugerEnavn , this.endpoints).subscribe((data) => {
+      this.restApi.getDataByEnavn(this.searchkeyBrugerEnavn , this.endpointB).subscribe((data) => {
         return this.users=data;
       })
         }
@@ -98,7 +97,7 @@ export class BrugerAdminSideComponent implements OnInit {
       this.ngOnInit();
     }
     else{
-      this.restApi.getDataByEmail(this.searchkeyEmail , this.endpoints).subscribe((data) => {
+      this.restApi.getDataByEmail(this.searchkeyEmail , this.endpointB).subscribe((data) => {
         return this.users=data;
       })
 
@@ -111,16 +110,14 @@ export class BrugerAdminSideComponent implements OnInit {
       this.ngOnInit();
     }
     else{
-      this.restApi.getBrugerByEventsTitel(this.searchkeyEventsTitel , this.endpoints).subscribe((data) => {
+      this.restApi.getBrugerByEventsTitel(this.searchkeyEventsTitel , this.endpointB).subscribe((data) => {
         return this.users=data;
       })
-
-
      }
   }
 
 
-//husk at kigge på slet function
+//husk at kigge på slet bruger , kan ikke sltettes før slet deltager og login
   onSletBruger(id: any) {
     let dialogRef = this.dialog.open(SletDialogBoxComponent);
     dialogRef.afterClosed().subscribe(result => {
@@ -132,7 +129,7 @@ export class BrugerAdminSideComponent implements OnInit {
         })
       })*/
       if(result){
-        this.restApi.deleteData(id , this.endpoints).subscribe((data) => {
+        this.restApi.deleteData(id , this.endpointB).subscribe((data) => {
           console.log('delete:' , id);
           this.loadBruger();
         })
@@ -145,7 +142,7 @@ export class BrugerAdminSideComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = "30%";
-    this.restApi.getData(id , this.endpoints).subscribe((data) => {
+    this.restApi.getData(id , this.endpointB).subscribe((data) => {
     this.kontaktoplysningerId= data.kontaktoplysningerId;
     console.log("kontId:",this.kontaktoplysningerId);
     localStorage.setItem('kontaktoplysningerId' , this.kontaktoplysningerId.toString());

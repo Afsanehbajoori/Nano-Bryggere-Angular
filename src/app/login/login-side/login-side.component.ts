@@ -6,6 +6,7 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 import { LoginService } from 'src/app/shared/login.service'
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
+import { mergeMap } from 'rxjs/operators';
 @Component({
   selector: 'app-login-side',
   templateUrl: './login-side.component.html',
@@ -41,7 +42,7 @@ export class LoginSideComponent implements OnInit {
     }
     );
   }
-    onSubmitLogin(){
+  onSubmitLogin(){
       localStorage.clear()
       this.loginService.login(this.loginForm.get('brugernavn')?.value, this.loginForm.get('pw')?.value)
       .subscribe((response) => {
@@ -54,6 +55,10 @@ export class LoginSideComponent implements OnInit {
          
       })
 
+      // this.loginService.loadLogin().subscribe((res)=>{
+      //   this.login = res;
+      //   this.logins.push(res)
+      // })
 
      if (this.login) {
        this.router.navigate(['../main/profil'])
@@ -67,16 +72,7 @@ export class LoginSideComponent implements OnInit {
     this.router.navigate(['../login/registrer']);
   };
 
-  loadLogin(){
-   // let id = this.tokenPayload.id
-    console.log('localstorage from loadLogin ', localStorage.getItem('brugerId'))
-    return this.restApi.getData(localStorage.getItem('brugerId'), this.endpointB).subscribe(data => {
-      
-      localStorage.setItem('kontaktoplysningerId', data.kontaktoplysningerId)
-      this.login = data;
-      this.logins.push(data)
-    })
-  }
+ 
   GetTokenDecoded() {
     console.log("decoded token",this.jwtHelper.decodeToken(this.expToken))
     this.tokenPayload = this.jwtHelper.decodeToken(this.expToken);

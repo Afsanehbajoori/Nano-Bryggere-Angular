@@ -1,5 +1,6 @@
 import { RedigerBryggeriDialogBoxComponent } from './../rediger-bryggeri-dialog-box/rediger-bryggeri-dialog-box.component';
 import { RedigerProfilDialogBoxComponent } from './../rediger-profil-dialog-box/rediger-profil-dialog-box.component';
+
 import { Component, OnInit, Inject, ViewChild, Input, EventEmitter } from '@angular/core';
 import { MatAccordion } from '@angular/material/expansion';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material/dialog';
@@ -9,6 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm, FormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormBuilder } from '@angular/forms';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-profil',
@@ -22,7 +24,7 @@ export class ProfilComponent implements OnInit {
   dialogRefSlet: MatDialogRef<SletDialogBoxComponent>;
   dialogRefRedigerProfil: MatDialogRef<RedigerProfilDialogBoxComponent>;
   dialogRefRedigerBryggeri: MatDialogRef<RedigerBryggeriDialogBoxComponent>;
-  kontaktoplysningerList: any ;
+  kontaktoplysningerList: any;
   BrugerList:any;
   bryggeriList: any;
   RolleList:any;
@@ -33,10 +35,10 @@ export class ProfilComponent implements OnInit {
   showFillerP = false;
   showFillerB = false;
   showFillerOB = false;
-  kontaktoplysningerId: number;
+  kontaktoplysningerId: any;
   bryggeriId: number;
-  brugerId:number;
-  rolleId:number;
+  brugerId:any;
+  rolleId:any;
   valgtefil: File;
   showOB:boolean ;
   logo:any;
@@ -44,7 +46,8 @@ export class ProfilComponent implements OnInit {
   @Input() newBryggeri = { logo: '', navn: '', beskrivelse: '', kontaktoplysningerId: 0 };
   opretteBryggeriForm: any = new FormGroup({});
 
-  constructor(public dialog: MatDialog,
+  constructor(
+    public dialog: MatDialog,
     public restApi: RestApiService,
     private router: Router,
     private snackBar: MatSnackBar,
@@ -52,13 +55,14 @@ export class ProfilComponent implements OnInit {
     public actRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.kontaktoplysningerId = JSON.parse(localStorage.getItem('kontaktoplysningerId') || '{}');
-    this.brugerId = JSON.parse(localStorage.getItem('brugerId') || '{}');
-    this.rolleId = JSON.parse(localStorage.getItem('rolleId') || '{}');
+    this.brugerId = localStorage.getItem('brugerId');
+    this.loadBruger()
+    // this.kontaktoplysningerId = localStorage.getItem('kontaktoplysningerId');
+    this.rolleId =localStorage.getItem('rolle');
     console.log("brugerId:",this.brugerId)
-    console.log("brugerId:",this.kontaktoplysningerId)
     this.loadKontaktoplysninger();
-    this.loadBryggeri();
+    console.log("kontaktId:",this.kontaktoplysningerId)
+    // this.loadBryggeri();
 
     this.opretteBryggeriForm = this._formBuilder.group({
       'logo': new FormControl(''),
@@ -77,36 +81,39 @@ export class ProfilComponent implements OnInit {
   loadKontaktoplysninger() {
     return this.restApi.getData(this.brugerId, this.endpointS).subscribe((data) => {
       this.BrugerList = data;
-      console.log("brugernavn:", this.BrugerList.rolleId);
-      this.restApi.getData( this.kontaktoplysningerId, this.endpointK).subscribe((data) => {
+      console.log("rolle:", this.BrugerList.rolleId);
+      this.restApi.getData( this.BrugerList.kontaktoplysningerId, this.endpointK).subscribe((data) => {
         this.kontaktoplysningerList = data;
-        console.log("konId" , this.kontaktoplysningerId);
+        localStorage.setItem('kontaktoplysningerId', JSON.stringify(data.id))
         console.log(" this.kontaktoplysningerList:", this.kontaktoplysningerList.enavn);
-        this.restApi.getData(this.rolleId , this.endpointR).subscribe((data) => {
+        this.restApi.getData(this.BrugerList.rolleId , this.endpointR).subscribe((data) => {
           this.RolleList=data;
           console.log('RolleList' , this.RolleList)
+          console.log('brugerlist', this.BrugerList)
+          console.log('this.kontaktoplysningerList.kontaktoplysningerId',this.BrugerList.kontaktoplysningerId)
+          this.restApi.getDatas(this.endpointB).subscribe((data) => {
+          this.bryggeriList = data.find((x:any) => x.kontaktoplysningerId === this.BrugerList.kontaktoplysningerId);
+          console.log('this.bryggeri:',this.bryggeriList);
+          //console.log('id:',this.bryggeriList.id);
+          if(this.bryggeriList !== undefined){
+            localStorage.setItem('bryggeriId' , JSON.stringify(this.bryggeriList.id));
+            this.url=this.bryggeriList.logo;
+            this.showOB=false;
+            console.log(this.showOB);
+          }
+          else{
+             this.showOB=true;
+             console.log(this.showOB);
+          }
+          })
         })
       })
     })
   };
 
-  loadBryggeri() {
-    this.restApi.getDatas(this.endpointB).subscribe((data) => {
-    this.bryggeriList = data.find((x:any) => x.kontaktoplysningerId === this.kontaktoplysningerId);
-    console.log('this.bryggeri:',this.bryggeriList);
-    //console.log('id:',this.bryggeriList.id);
-    if(this.bryggeriList !== undefined){
-      localStorage.setItem('bryggeriId' , JSON.stringify(this.bryggeriList.id));
-      this.url=this.bryggeriList.logo;
-      this.showOB=false;
-      console.log(this.showOB);
-    }
-    else{
-       this.showOB=true;
-       console.log(this.showOB);
-    }
-    })
-  }
+  // loadBryggeri() {
+   
+  // }
 
   onSubmitCertifikats(event: any) {
     if (event.target.files) {
@@ -217,4 +224,12 @@ export class ProfilComponent implements OnInit {
       console.log(this.bryggeriList);
     })
   };
+  loadBruger(){
+    console.log('localstorage from loadLogin ', localStorage.getItem('brugerId'))
+    return this.restApi.getData(localStorage.getItem('brugerId'), this.endpointS).subscribe(data => {
+      localStorage.setItem('kontaktoplysningerId', JSON.stringify(data.kontaktoplysningerId))
+      console.log('kontaktId fra loadBrugere', JSON.parse(data.kontaktoplysningerId))
+      this.kontaktoplysningerId = data.kontaktoplysningerId
+    })
+  }
 }

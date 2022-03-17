@@ -10,6 +10,7 @@ import { RestApiService } from './rest-api.service';
 export class LoginService {
   private _isLoggedIn$ = new BehaviorSubject<boolean>(false)
   isLoggedIn$ = this._isLoggedIn$.asObservable()
+  endpointB = '/Brugere';
 
   constructor(private apiservice: RestApiService) {
     const token = localStorage.getItem('bearer')
@@ -24,4 +25,5 @@ export class LoginService {
       })
     )
   }
+
 }

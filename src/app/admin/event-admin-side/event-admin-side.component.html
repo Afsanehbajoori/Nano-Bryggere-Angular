@@ -12,12 +12,12 @@
         <mat-tab label="Find events med deltagelser brugernavn">
           <form class="example-form" style="justify-content: center; width: 100%;">
             <mat-form-field  class="txtHeader">
-                <input matInput type="search"  [(ngModel)]="searchkeyDeltagelser" (ngModelChange)="onFindDeltagelser()" [ngModelOptions]="{standalone: true}" >
+                <input matInput type="search"  [(ngModel)]="searchkeyDeltagelser" (ngModelChange)="onFindParticipants()" [ngModelOptions]="{standalone: true}" >
             </mat-form-field>
           </form>
             </mat-tab>
             <mat-tab label="Oprette Events">
-               <button mat-button class="btnOprette" (click)="onOpretteEvent()">Klick her til at oprette events</button>
+               <button mat-button class="btnOprette" (click)="onCreateEvent()">Klick her til at oprette events</button>
             </mat-tab>
   </mat-tab-group>
   </mat-toolbar>
@@ -33,10 +33,10 @@
                        <span>{{event.titel}}</span>
                     </mat-panel-title>
                     <mat-action-row class="centers" style="justify-content: center;">
-                        <button mat-button class="btnMainStyle" (click)="onVisEvent(event.id)">Vis </button> |
+                        <button mat-button class="btnMainStyle" (click)="onShowEvent(event.id)">Vis </button> |
                         <button mat-button class="btnMainStyle" (click)="onUpdateEvent(event.id)" >Update </button> |
                         <!-- <button mat-button class="btnMainStyle" (click)="onJoinEvent(event.id)" >Join Event </button> | -->
-                        <button mat-button class="btnMainStyle" (click)="onSletEvent(event.id)">Slet </button>
+                        <button mat-button class="btnMainStyle" (click)="onDeleteEvent(event.id)">Slet </button>
                     </mat-action-row>
                 </mat-expansion-panel-header>
                 <div  *ngIf="eventList">

@@ -22,18 +22,18 @@ export class BrugerCertifikatComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.loadBruger()
+    this.onloadUser()
   }
-  loadBruger(){
-    return this.restApi.getDatas(this.endpoints).subscribe((user) => {
+  onloadUser(){
+    return this.restApi.getDatas(this.endpointI).subscribe((user) => {
       this.oplysninger = user;
     })
   }
-  onGivBrugerCertifikat(id:any) {
+  onGivUserCertificate(id:any) {
     let dialogRef = this.dialog.open(CertifikatDialogBoxComponent)
     dialogRef.afterClosed().subscribe(result => {
-      this.restApi.updateData(id, this.endpoints, this.oplysninger).subscribe(data => {
-        this.loadBruger();
+      this.restApi.updateData(id, this.endpointI, this.oplysninger).subscribe(data => {
+        this.onloadUser();
       })
     });
   };

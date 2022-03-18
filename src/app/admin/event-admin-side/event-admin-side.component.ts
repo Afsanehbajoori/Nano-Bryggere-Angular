@@ -28,7 +28,6 @@ export class EventAdminSideComponent implements OnInit {
   id = this.actRoute.snapshot.params['id'];
   listDeltagelser:any;
 
-
   constructor(
     public dialog: MatDialog,
     public restApi: RestApiService,
@@ -36,24 +35,23 @@ export class EventAdminSideComponent implements OnInit {
     public actRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.loadEvents();
-    this.loadDeltaglser()
+    this.onloadEvents();
+    this.onloadParticipation()
   }
 
-  loadEvents(){
+  onloadEvents(){
     return this.restApi.getDatas(this.endpointE).subscribe(event => {
       this.events=event;
     })
   }
-  loadDeltaglser(){
+  onloadParticipation(){
     this.restApi.getDatas(this.endpointD).subscribe(data => {
       this.listDeltagelser=data
       console.log('del:', this.listDeltagelser)
-
     })
   }
 
-  onVisEvent(id:any){
+  onShowEvent(id:any){
     this.clickButton=false;
     return this.restApi.getData(id , this.endpointE).subscribe(data => {
       this.eventList=data;
@@ -72,7 +70,7 @@ export class EventAdminSideComponent implements OnInit {
     }
   }
 
-  onFindDeltagelser(){
+  onFindParticipants(){
     if(this.searchkeyDeltagelser == ""){
       this.ngOnInit();
     }
@@ -84,9 +82,7 @@ export class EventAdminSideComponent implements OnInit {
         }
   }
 
-
-
-  onSletEvent(id:any){
+  onDeleteEvent(id:any){
     if(this.listDeltagelser.length !==0){
       alert('der er nogle er deltger i dette events . Først skal afmeld under deltager')
     }
@@ -96,13 +92,11 @@ export class EventAdminSideComponent implements OnInit {
         if(result){
           this.restApi.deleteData(id , this.endpointE).subscribe((data) => {
             console.log('delete:' , id);
-            this.loadEvents();
+            this.onloadEvents();
           })
         }
       });
     }
-
-
   }
 
   onUpdateEvent(id:any){
@@ -124,7 +118,7 @@ export class EventAdminSideComponent implements OnInit {
     })
   }
 
-  onOpretteEvent(){
+  onCreateEvent(){
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
@@ -140,6 +134,5 @@ export class EventAdminSideComponent implements OnInit {
     console.log('eventsId ', id)
 
   } */
-
 
 }

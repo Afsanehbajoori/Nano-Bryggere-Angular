@@ -3,8 +3,6 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 
-
-
 @Component({
   selector: 'app-deltager-admin-side',
   templateUrl: './deltager-admin-side.component.html',
@@ -13,15 +11,14 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 
 export class DeltagerAdminSideComponent implements OnInit {
   clickButton:boolean=true;
-  deltagerListD:any;
-  deltagerListB:any;
-  deltagere:any;
-  deltagerListE:any;
-  endpointD='/Deltageres';
+  participantsListD:any;
+  participantsListB:any;
+  participants:any;
+  participantsListE:any;
+  endpointP='/Deltageres';
   endpointE = '/Events';
-  endpointB='/Brugere';
+  endpointU='/Brugere';
   searchkeyDeltager:string;
-
 
   constructor(public dialog: MatDialog,
     public restApi: RestApiService,
@@ -29,42 +26,40 @@ export class DeltagerAdminSideComponent implements OnInit {
     public actRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.loadDeltagelse();
+    this.onloadParticipants();
   }
-  loadDeltagelse(){
-    this.restApi.getDatas(this.endpointD).subscribe(data =>
-      this.deltagere=data
+  onloadParticipants(){
+    this.restApi.getDatas(this.endpointP).subscribe(data =>
+      this.participants=data
       )}
 
-  onVisDeltager(id:any){
+  onShowParticipants(id:any){
     this.clickButton=false;
-    return this.restApi.getData(id , this.endpointD).subscribe(deltag => {
-      this.deltagerListD=deltag;
-      this.restApi.getData(deltag.brugerId , this.endpointB).subscribe(bruger => {
-        this.deltagerListB=bruger;
+    return this.restApi.getData(id , this.endpointP).subscribe(deltag => {
+      this.participantsListD=deltag;
+      this.restApi.getData(deltag.brugerId , this.endpointU).subscribe(bruger => {
+        this.participantsListB=bruger;
       })
       this.restApi.getData(deltag.eventsId , this.endpointE).subscribe(data => {
-        this.deltagerListE=data;
+        this.participantsListE=data;
       })
     })
   }
 
-  onFindDeltager(){
+  onFindParticipants(){
     if(this.searchkeyDeltager == ""){
       this.ngOnInit();
     }
     else{
       this.restApi.getDeltagerByEventsTitel(this.searchkeyDeltager.toLowerCase() , this.endpointE).subscribe(res => {
-        return this.deltagere=res
+        return this.participants=res
       })
     }
   }
 
-
-  onAfmeldDeltager(id:any){
-    this.restApi.deleteData(id , this.endpointD).subscribe(data =>
+  onAfmeldLoadParticipation(id:any){
+    this.restApi.deleteData(id , this.endpointP).subscribe(data =>
       this.ngOnInit())
-
   }
 
 }

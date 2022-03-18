@@ -4,8 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
 import { Bruger } from 'src/app/Models/Bruger';
 import { RestApiService } from 'src/app/shared/rest-api.service';
-import { LoginSideComponent } from './../../login/login-side/login-side.component';
-
 
 @Component({
   selector: 'app-rolle-admin-side',
@@ -13,18 +11,16 @@ import { LoginSideComponent } from './../../login/login-side/login-side.componen
   styleUrls: ['./rolle-admin-side.component.css']
 })
 export class RolleAdminSideComponent implements OnInit {
-  searchkeyRollenavn:string;
-  searchkeyBrugernavn:string;
+  searchkeyRolename:string;
+  searchkeyUsername:string;
   clickButton:boolean=true;
   endpointR='/Roller';
-  endpoints='/Brugere';
+  endpointU='/Brugere';
   id = this.actRoute.snapshot.params['id'];
   users: Bruger[];
-  rolleId:number;
-  Rolle:any;
+  roleId:number;
+  Role:any;
   level:number;
-
-
 
   constructor( public dialog: MatDialog,
     public restApi: RestApiService,
@@ -32,61 +28,58 @@ export class RolleAdminSideComponent implements OnInit {
     public actRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.loadBruger();
+    this.onloadUser();
   }
 
-  loadBruger(){
-    return this.restApi.getDatas(this.endpoints).subscribe((res) => {
+  onloadUser(){
+    return this.restApi.getDatas(this.endpointU).subscribe((res) => {
         this.users = res;
         console.log(this.users);
       })
   }
 
-  onVisBruger(id:any){
+  onShowUser(id:any){
     this.clickButton=false;
-    return this.restApi.getData(id , this.endpoints).subscribe((data) => {
-      this.rolleId=data.rolleId;
-      this.restApi.getData(this.rolleId ,this.endpointR ).subscribe((data) => {
-        this.Rolle = data;
+    return this.restApi.getData(id , this.endpointU).subscribe((data) => {
+      this.roleId=data.rolleId;
+      this.restApi.getData(this.roleId ,this.endpointR ).subscribe((data) => {
+        this.Role = data;
 
       })
     })
-
   }
-  onFindBrugernavn(){
-    if(this.searchkeyBrugernavn == ""){
+
+  onFindUsername(){
+    if(this.searchkeyUsername == ""){
       this.ngOnInit();
     }
    else{
     this.users = this.users.filter(res =>{
-      return  res.brugernavn.toLowerCase().match(this.searchkeyBrugernavn.toLowerCase());
+      return  res.brugernavn.toLowerCase().match(this.searchkeyUsername.toLowerCase());
       })
     }
   }
 
-  onFindRollenavn(){
-    if(this.searchkeyRollenavn == ""){
+  onFindRolename(){
+    if(this.searchkeyRolename == ""){
       this.ngOnInit();
     }
    else{
-      if(this.searchkeyRollenavn.toLowerCase() == 'anonymbruger')
+      if(this.searchkeyRolename.toLowerCase() == 'anonymbruger')
       this.level=0 ;
-      if(this.searchkeyRollenavn.toLowerCase() == 'bruger')
+      if(this.searchkeyRolename.toLowerCase() == 'bruger')
       this.level=100;
-      if(this.searchkeyRollenavn.toLowerCase() == 'moderator')
+      if(this.searchkeyRolename.toLowerCase() == 'moderator')
       this.level=200;
-      if(this.searchkeyRollenavn.toLowerCase() == 'administrator')
+      if(this.searchkeyRolename.toLowerCase() == 'administrator')
       this.level=300 ;
-      this.restApi.getDataByLevel(this.level , this.endpoints).subscribe((data) => {
+      this.restApi.getDataByLevel(this.level , this.endpointU).subscribe((data) => {
         return  this.users=data;
      })
-
     }
   }
-
-
-  
-  onSletBruger(id:any){
+ 
+  onDeleteUser(id:any){
     if(this.users.length !==0){
         alert('Du skal først slette alle brger!')
     }else{
@@ -95,17 +88,14 @@ export class RolleAdminSideComponent implements OnInit {
         if(result){
           this.restApi.deleteData(id , this.endpointR).subscribe((data) => {
             console.log('delete:' , id);
-            this.loadBruger();
+            this.onloadUser();
           })
         }
-
       });
     }
-
   }
 
-
-onNedgradereRollenavn(id:any){
+onDowngradeRolename(id:any){
   var user =this.users.find((x:any) => x.id === id)
   console.log('info:', user?.rolleId);
   var rolleId= user?.rolleId;
@@ -132,13 +122,10 @@ onNedgradereRollenavn(id:any){
         console.log('ny:',upgradeLevel.level);
         this.ngOnInit();
       })
-
   })
-
 }
 
-onUpgradereRollenavn(id:any){
-
+onUpgradeRolename(id:any){
   var user =this.users.find((x:any) => x.id === id)
   console.log('info:', user?.rolleId);
   var rolleId= user?.rolleId;
@@ -165,11 +152,6 @@ onUpgradereRollenavn(id:any){
         console.log('ny:',upgradeLevel.level);
         this.ngOnInit();
       })
-
   })
-
 }
-
-
-
 }

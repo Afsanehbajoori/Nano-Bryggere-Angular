@@ -34,23 +34,23 @@ export class BryggeriAdminSideComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.loadBryggeri();
+    this.onloadBryggeri();
   }
   
-  loadBryggeri(){
+  onloadBryggeri(){
     return this.restApi.getDatas(this.endpointB).subscribe((brygge) => {
       this.bryggeri = brygge;
       console.log(this.bryggeri);
     })
   }
-  onVisBryggeri(id:any) {
+  onShowBryggeri(id:any) {
     this.clickButton=false;
     return this.restApi.getData(id , this.endpointB).subscribe((data) => {
 
     })
   };
 
-  onFindBryggerinavn(){
+  onFindBryggeriname(){
     if(this.searchkeyBryggerinavn == ""){
       this.ngOnInit();
     }
@@ -63,7 +63,7 @@ export class BryggeriAdminSideComponent implements OnInit {
 
 
 //vi skal kigge på det efter oprette samarbejde component
-  onFindBryggeriSamarbejde(){
+  onFindBryggeriCooperation(){
  /*    if(this.searchkeyBryggeriSamarbejde == ''){
       this.ngOnInit();
     }
@@ -80,11 +80,11 @@ export class BryggeriAdminSideComponent implements OnInit {
 
   }
 
-  onSletBryggeri(id: any) {
+  onDeleteBryggeri(id: any) {
     let dialogRef = this.dialog.open(SletDialogBoxComponent);
     dialogRef.afterClosed().subscribe(result => {
       this.restApi.deleteData(id, this.endpointB).subscribe(data => {
-        this.loadBryggeri();
+        this.onloadBryggeri();
       })
     });
   };
@@ -103,8 +103,8 @@ export class BryggeriAdminSideComponent implements OnInit {
           this.bryggeriList = result;
           this.restApi.updateData(id, this.endpointB, this.bryggeriList).subscribe((data) => {
           console.log(this.bryggeriList);
-          this.onVisBryggeri(id);
-          this.loadBryggeri();
+          this.onShowBryggeri(id);
+          this.onloadBryggeri();
           })
         }
       });

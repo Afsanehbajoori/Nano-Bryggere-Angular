@@ -11,15 +11,15 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./mine-events.component.css']
 })
 export class MineEventsComponent implements OnInit {
-  dialogRefSlet: MatDialogRef<SletDialogBoxComponent>;
+  dialogRefDelete: MatDialogRef<SletDialogBoxComponent>;
   events: Events[];
   eventId: number;
   endpointE = '/Events';
-  endpointD = '/Deltageres';
+  endpointP = '/Deltageres';
   searchkey: string;
-  deltagelse: boolean;
-  listDeltagelser:any;
-  brugerId:number;
+  participatione: boolean;
+  listParticipation:any;
+  userId:number;
   eventList:any;
   id = this.actRoute.snapshot.params['id'];
   clickButton:boolean = true;
@@ -27,61 +27,58 @@ export class MineEventsComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     public restApi: RestApiService,
-    private router: Router,
     public actRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    this.brugerId = JSON.parse(localStorage.getItem('brugerId') || '{}');
-    this.loadDeltaglser();
+    this.userId = JSON.parse(localStorage.getItem('brugerId') || '{}');
+    this.onloadParticipation();
   }
 
-  loadDeltaglser(){
-    this.restApi.getDatas(this.endpointD).subscribe(data => {
-      this.listDeltagelser=data
-      if(this.brugerId){
-        this.listDeltagelser = this.listDeltagelser.filter((a:any) => a.brugerId === this.brugerId);
+  onloadParticipation(){
+    this.restApi.getDatas(this.endpointP).subscribe(data => {
+      this.listParticipation=data
+      if(this.userId){
+        this.listParticipation = this.listParticipation.filter((a:any) => a.userId === this.userId);
               }
     })
   }
 
-
-  onViseEvent(id:any){
+  onShowEvent(id:any){
     this.clickButton=false;
     //console.log('id:', id);
-    this.restApi.getData(id , this.endpointD).subscribe(data => {
+    this.restApi.getData(id , this.endpointP).subscribe(data => {
       this.eventList= data ;
       this.restApi.getData(this.eventList.eventsId , this.endpointE).subscribe(data => {
         this.eventList= data ;
       })
 
     })
-
   }
+
   onFindEvent(){
     if(this.searchkey == ""){
       this.ngOnInit();
     }
     else{
      this.restApi.getDeltagerByEventsTitel(this.searchkey , this.endpointE).subscribe(data => {
-       this.listDeltagelser=data;
-       console.log('hi:', this.listDeltagelser)
+       this.listParticipation=data;
+       console.log('hi:', this.listParticipation)
      })
     }
   }
 
   onAfmeldEvent(id:any){
-    this.dialogRefSlet = this.dialog.open(SletDialogBoxComponent, {
+    this.dialogRefDelete = this.dialog.open(SletDialogBoxComponent, {
       width: '300px',
       disableClose: true
     });
-    this.dialogRefSlet.afterClosed().subscribe(result => {
+    this.dialogRefDelete.afterClosed().subscribe(result => {
       if (result) {
-    this.restApi.deleteData(id , this.endpointD).subscribe(data => {
+    this.restApi.deleteData(id , this.endpointP).subscribe(data => {
       this.ngOnInit();
       })
     }
   });
   }
-
 }

@@ -18,7 +18,7 @@ export class DeltagerAdminSideComponent implements OnInit {
   endpointP='/Deltageres';
   endpointE = '/Events';
   endpointU='/Brugere';
-  searchkeyDeltager:string;
+  searchkeyParticipants:string;
 
   constructor(public dialog: MatDialog,
     public restApi: RestApiService,
@@ -35,23 +35,23 @@ export class DeltagerAdminSideComponent implements OnInit {
 
   onShowParticipants(id:any){
     this.clickButton=false;
-    return this.restApi.getData(id , this.endpointP).subscribe(deltag => {
-      this.participantsListD=deltag;
-      this.restApi.getData(deltag.brugerId , this.endpointU).subscribe(bruger => {
+    return this.restApi.getData(id , this.endpointP).subscribe(participant => {
+      this.participantsListD=participant;
+      this.restApi.getData(participant.brugerId , this.endpointU).subscribe(bruger => {
         this.participantsListB=bruger;
       })
-      this.restApi.getData(deltag.eventsId , this.endpointE).subscribe(data => {
+      this.restApi.getData(participant.eventsId , this.endpointE).subscribe(data => {
         this.participantsListE=data;
       })
     })
   }
 
   onFindParticipants(){
-    if(this.searchkeyDeltager == ""){
+    if(this.searchkeyParticipants == ""){
       this.ngOnInit();
     }
     else{
-      this.restApi.getDeltagerByEventsTitel(this.searchkeyDeltager.toLowerCase() , this.endpointE).subscribe(res => {
+      this.restApi.getDeltagerByEventsTitel(this.searchkeyParticipants.toLowerCase() , this.endpointE).subscribe(res => {
         return this.participants=res
       })
     }

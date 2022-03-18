@@ -11,7 +11,7 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./update-events-dialog-box.component.css']
 })
 export class UpdateEventsDialogBoxComponent implements OnInit {
-  RedigerEvents: FormGroup = new FormGroup({});
+  updateEvents: FormGroup = new FormGroup({});
   eventsList:any;
   endpointE= '/Events';
   eventsId : number;
@@ -31,7 +31,7 @@ export class UpdateEventsDialogBoxComponent implements OnInit {
     .then(data => {
       this.eventsList= data ;
 
-      this.RedigerEvents = this.formBuilder.group({
+      this.updateEvents = this.formBuilder.group({
         eventBilled : new FormControl(this.eventsList.eventBilled),
         titel : new FormControl(this.eventsList.titel),
         beskrivelse: new FormControl(this.eventsList.beskrivelse),
@@ -41,7 +41,8 @@ export class UpdateEventsDialogBoxComponent implements OnInit {
       })
     })
   }
-  onSubmitCertifikats(event: any) {
+  
+  onSubmitCertificate(event: any) {
     if(event.target.files){
       var reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]);
@@ -52,5 +53,4 @@ export class UpdateEventsDialogBoxComponent implements OnInit {
       }
     }
   };
-
 }

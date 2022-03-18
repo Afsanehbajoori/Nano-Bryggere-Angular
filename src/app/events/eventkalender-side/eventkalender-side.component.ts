@@ -12,68 +12,62 @@ import { MessageDialogBoxComponent } from '../message-dialog-box/message-dialog-
   styleUrls: ['./eventkalender-side.component.css']
 })
 export class EventkalenderSideComponent implements OnInit {
-  dialogRefSlet: MatDialogRef<SletDialogBoxComponent>;
+  dialogRefDelete: MatDialogRef<SletDialogBoxComponent>;
   events: Events[];
   endpointE = '/Events';
-  endpointD = '/Deltageres';
+  endpointP = '/Deltageres';
   searchkey: string;
-
-  deltagelse: boolean = false;
+  participation: boolean = false;
   buttonDisabled: boolean ;
   buttonEnabled: boolean;
   eventsId:number;
-  brugerId:number;
-  listDeltagelser:any;
+  userId:number;
+  listparticipation:any;
   clickButton:boolean = true;
   eventList:any;
   id = this.actRoute.snapshot.params['id'];
-  arrayListDeltager = new Array();
-  deltagId:number;
+  arrayListparticipation = new Array();
+  participantId:number;
   list:any;
-  isDeltage:boolean;
- @Input() deltage = { brugerId:0 , eventsId:0 , isDeltage:false}
-
-
+  isparticipant:boolean;
+ @Input() participant = { brugerId:0 , eventsId:0 , isDeltage:false}
 
   constructor(
     public dialog: MatDialog,
     public restApi: RestApiService,
-    private router: Router,
     public actRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    this.brugerId = JSON.parse(localStorage.getItem('brugerId') || '{}');
-    this.loadEvent();
-    this.loadDeltaglser();
+    this.userId = JSON.parse(localStorage.getItem('brugerId') || '{}');
+    this.onloadEvent();
+    this.onloadParticipation();
   }
 
-  loadEvent() {
+  onloadEvent() {
     return this.restApi.getDatas(this.endpointE).subscribe((data) => {
       this.events = data;
   });
   }
 
-  loadDeltaglser(){
-    this.restApi.getDatas(this.endpointD).subscribe(data => {
-      this.listDeltagelser=data;
-      if(this.brugerId){
-        this.listDeltagelser = this.listDeltagelser.filter((a:any) => a.brugerId === this.brugerId);
-        console.log('list:' , this.listDeltagelser);
-        for(var d =0; d < this.listDeltagelser.length ; d++)
+  onloadParticipation(){
+    this.restApi.getDatas(this.endpointP).subscribe(data => {
+      this.listparticipation=data;
+      if(this.userId){
+        this.listparticipation = this.listparticipation.filter((a:any) => a.userId === this.userId);
+        console.log('list:' , this.listparticipation);
+        for(var d =0; d < this.listparticipation.length ; d++)
         {
-          console.log('listId:' , this.listDeltagelser[d].eventsId);
-          if(this.listDeltagelser[d].eventsId){
-            this.arrayListDeltager.push(this.listDeltagelser[d].eventsId);
-
+          console.log('listId:' , this.listparticipation[d].eventsId);
+          if(this.listparticipation[d].eventsId){
+            this.arrayListparticipation.push(this.listparticipation[d].eventsId);
           }
         }
       }
    })
-
   }
 
- onViseEvent(id:any){
+ onShowEvent(id:any){
     this.clickButton=false;
     return this.restApi.getData(id , this.endpointE).subscribe(data => {
       this.eventList=data;
@@ -91,21 +85,19 @@ export class EventkalenderSideComponent implements OnInit {
     }
   }
 
-
   onJoinEvent(id:any){
-    if(this.arrayListDeltager.includes(id) )
+    if(this.arrayListparticipation.includes(id) )
     {
       this.dialog.open(MessageDialogBoxComponent);
     }else{
-        this.deltage.brugerId=this.brugerId;
-        this.deltage.eventsId=id;
-        this.deltage.isDeltage=true;
-        this.restApi.createData(this.deltage , this.endpointD ).subscribe(data => {
-          this.loadDeltaglser();
+        this.participant.brugerId=this.userId;
+        this.participant.eventsId=id;
+        this.participant.isDeltage=true;
+        this.restApi.createData(this.participant , this.endpointP ).subscribe(data => {
+          this.onloadParticipation();
         })
     }
   }
-
 
   /* onAfmeldEvent(id:any){
     if(!this.arrayListDeltager.includes(id)){
@@ -125,10 +117,6 @@ export class EventkalenderSideComponent implements OnInit {
             })
       }
     })
-
     }
-
   } */
-
-
 }

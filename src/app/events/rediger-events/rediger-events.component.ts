@@ -10,8 +10,8 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 })
 export class RedigerEventsComponent implements OnInit {
   eventid = this.actRoute.snapshot.params['id'];
-  RedigerForm: FormGroup;
-  endpoints = '/Events';
+  updateForm: FormGroup;
+  endpointE = '/Events';
   eventList : any = {};
   constructor(
     public restApi: RestApiService,
@@ -19,28 +19,28 @@ export class RedigerEventsComponent implements OnInit {
     public actRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.RedigerForm = new FormGroup({
+    this.updateForm = new FormGroup({
       titel: new FormControl('', Validators.required),
       beskrivelse: new FormControl('', Validators.required),
       // startDato: new FormControl('', Validators.required),
       // slutDato: new FormControl('', Validators.required),
       lokation: new FormControl('', Validators.required)
     });
-    this.loadEvent(); 
+    this.onloadEvent(); 
   }
 
-  loadEvent(){
-    return this.restApi.getData(this.eventid, this.endpoints).subscribe((beer: {}) => {
+  onloadEvent(){
+    return this.restApi.getData(this.eventid, this.endpointE).subscribe((beer: {}) => {
       this.eventList = beer;
     });
   }
 
-  onAnnullerEvent() {
+  onCancelEvent() {
     return this.router.navigate(['../events/events'])
   };
 
   onSubmitEvent() {
-    this.restApi.updateData(this.eventid, this.endpoints, this.eventList).subscribe((data) => {
+    this.restApi.updateData(this.eventid, this.endpointE, this.eventList).subscribe((data) => {
       this.router.navigate(['../events/events'])
     })
   }

@@ -1,5 +1,3 @@
-import { DatePipe, formatDate } from '@angular/common';
-import { ThisReceiver } from '@angular/compiler';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
@@ -8,69 +6,67 @@ import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog
 import { Forum } from 'src/app/Models/Forum';
 import { Post } from 'src/app/Models/Post';
 import { RestApiService } from 'src/app/shared/rest-api.service';
-import { logging } from 'protractor';
 import { UpdatePostDialogBoxComponent } from '../update-post-dialog-box/update-post-dialog-box.component';
-
 
 @Component({
   selector: 'app-forside',
   templateUrl: './forside.component.html',
   styleUrls: ['./forside.component.css']
 })
+
 export class ForsideComponent implements OnInit {
-  @Input() postOprettelse = {titel: '', indhold: '' , brugerId:0 ,forumId:0  };
+  @Input() postCreation = {titel: '', indhold: '' , brugerId:0 ,forumId:0  };
   dialogRefUpdatePost : MatDialogRef<UpdatePostDialogBoxComponent>;
   // , oprettet:''
  // todayISOString : string = new Date().toISOString();
-  OpretForm : any = new FormGroup({});
+  creationForm : any = new FormGroup({});
   forums: Forum[];
   forum = new Forum;
   posts: Post[];
-  listBruger:any;
-  endpointf = '/Forumer';
-  endpointp = '/Posts';
-  endpointb = '/Brugere';
+  listUser:any;
+  endpointF = '/Forumer';
+  endpointP = '/Posts';
+  endpointU = '/Brugere';
   searchkey: string;
-  showforum = false;
-  brugerId:number;
+  showForum = false;
+  userId:number;
   postInfo:any;
   listPosts:any;
   updatePost:any;
   id = this.actRoute.snapshot.params['id'];
   clickButton:boolean=true;
-  listArrayBrugerId = new Array();
+  listArrayUserId = new Array();
 
   constructor(
     public dialog: MatDialog,
     public restApi: RestApiService,
     public router: Router,
     public actRoute: ActivatedRoute
-  ) {
-
-   }
+  ) { }
 
   ngOnInit(): void {
-
-    this.brugerId = JSON.parse(localStorage.getItem('brugerId') || '{}');
-    this.OpretForm = new FormGroup({
+    this.userId = JSON.parse(localStorage.getItem('brugerId') || '{}');
+    this.creationForm = new FormGroup({
       titel: new FormControl('', Validators.required),
       indhold: new FormControl('', Validators.required),
       brugerId:new FormControl('' , Validators.required),
       forumId:new FormControl('' , Validators.required)
       //oprettet:new FormControl('', Validators.required)
     });
-    this.loadForum();
-    this.loadPost();
+    this.onloadForum();
+    this.onloadPost();
     //this.loadBruger();
   }
-  loadForum(){
-    return this.restApi.getDatas(this.endpointf).subscribe((forum) => {
+
+  onloadForum(){
+    return this.restApi.getDatas(this.endpointF).subscribe((forum) => {
       this.forums = forum;
       console.log('forum:', this.forums)
     })
   }
-  loadPost(){
-    return this.restApi.getDatas(this.endpointp).subscribe((post) => {
+
+  onloadPost(){
+    return this.restApi.getDatas(this.endpointP).subscribe((post) => {
       this.posts = post;
       console.log('posts:',this.posts);
     })
@@ -87,9 +83,9 @@ export class ForsideComponent implements OnInit {
      } )
   } */
 
-  onGodkendPost(id:any){
-    this.postOprettelse.brugerId= this.brugerId;
-    this.postOprettelse.forumId=id;
+  onApprovePost(id:any){
+    this.postCreation.brugerId= this.userId;
+    this.postCreation.forumId=id;
     // this.postOprettelse.oprettet=formatDate(new Date(), 'yyyy-MM-ddThh:mm:ssssZ' , 'en-US').toString();
 
     //this.postOprettelse.oprettet=this.todayISOString;
@@ -98,18 +94,17 @@ export class ForsideComponent implements OnInit {
     {
       alert('du har valgt bruger som ikke eksister!')
     }else{ */
-     this.restApi.createData(this.postOprettelse, this.endpointp).subscribe((data) => {
-     this.postOprettelse.indhold='';
-     this.postOprettelse.titel='';
+     this.restApi.createData(this.postCreation, this.endpointP).subscribe((data) => {
+     this.postCreation.indhold='';
+     this.postCreation.titel='';
 
         // localStorage.setItem('brugerId2' ,JSON.stringify(data.brugerId2) );
        // this.router.navigate(['../main/katalog']);
       });
     //}
-
   }
 
-  onVisPost(id:any){
+  onShowPost(id:any){
     this.clickButton=false;
     // this.brugerId2=JSON.parse(localStorage.getItem('brugerId2') || '{}');
     // this.listPosts= this.posts.filter((res:any) => res.forumId === id && (res.brugerId2 === this.brugerId2 || res.brugerId1 === this.brugerId1 ))
@@ -117,9 +112,8 @@ export class ForsideComponent implements OnInit {
     //  console.log('this.postOprettelse.brugerId1:', this.brugerId)
     // console.log('this.postOprettelse.brugerId2:', res.brugerId1)
     // console.log('this.listPosts:', this.listPosts)
-
-
   }
+
   onFindForum(){
     if(this.searchkey == ""){
       this.ngOnInit();
@@ -132,8 +126,8 @@ export class ForsideComponent implements OnInit {
   }
 
   onUpdatePost(id:any){
-    this.restApi.getData(id , this.endpointp).subscribe(data => {
-    if(this.brugerId === data.brugerId){
+    this.restApi.getData(id , this.endpointP).subscribe(data => {
+    if(this.userId === data.brugerId){
       localStorage.setItem('postId' ,JSON.stringify(id));
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
@@ -144,7 +138,7 @@ export class ForsideComponent implements OnInit {
       this.dialogRefUpdatePost.afterClosed().subscribe(result => {
         if(result){
           this.updatePost = result;
-          this.restApi.updateData(id, this.endpointp, this.updatePost).subscribe((data) => {
+          this.restApi.updateData(id, this.endpointP, this.updatePost).subscribe((data) => {
             //console.log(this.eventList);
             this.ngOnInit();
           })
@@ -157,7 +151,7 @@ export class ForsideComponent implements OnInit {
   })
   }
 
-  onOpretForum() {
+  onCreateForum() {
     this.router.navigate(['../forum/oprette']);
   };
 
@@ -174,12 +168,12 @@ export class ForsideComponent implements OnInit {
     });
   }; */
 
-  onSletPost(id: any) {
-    this.restApi.getData(id , this.endpointp).subscribe(data => {
-      if(this.brugerId === data.brugerId){
+  onDeletePost(id: any) {
+    this.restApi.getData(id , this.endpointP).subscribe(data => {
+      if(this.userId === data.brugerId){
     let dialogRef = this.dialog.open(SletDialogBoxComponent);
     dialogRef.afterClosed().subscribe(result => {
-      this.restApi.deleteData(id, this.endpointp).subscribe(data => {
+      this.restApi.deleteData(id, this.endpointP).subscribe(data => {
         this.ngOnInit();
       })
     });

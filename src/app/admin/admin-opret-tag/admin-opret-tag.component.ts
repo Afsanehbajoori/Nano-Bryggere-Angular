@@ -10,7 +10,7 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 })
 export class AdminOpretTagComponent implements OnInit {
   @Input() tagCreation = { name: ''};
-  CreateForm : FormGroup;
+  createForm : FormGroup;
   endpointT = '/Tags';
   constructor(
     public restApi: RestApiService,
@@ -18,7 +18,7 @@ export class AdminOpretTagComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.CreateForm = new FormGroup({
+    this.createForm = new FormGroup({
       navn: new FormControl('', Validators.required)
     })
   }

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog , MatDialogConfig ,MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
+import { SletDialogBoxComponent } from 'src/app/main/delete-dialog-box/slet-dialog-box.component';
 import { Bruger } from 'src/app/Models/Bruger';
 import { RestApiService } from 'src/app/shared/rest-api.service';
-import { LoginSideComponent } from './../../login/login-side/login-side.component';
+import { LoginSideComponent } from '../../login/login-site/login-side.component';
 
 
 @Component({

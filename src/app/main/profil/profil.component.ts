@@ -1,9 +1,9 @@
-import { RedigerBryggeriDialogBoxComponent } from './../rediger-bryggeri-dialog-box/rediger-bryggeri-dialog-box.component';
-import { RedigerProfilDialogBoxComponent } from './../rediger-profil-dialog-box/rediger-profil-dialog-box.component';
+import { RedigerBryggeriDialogBoxComponent } from '../update-bryggeri-dialog-box/rediger-bryggeri-dialog-box.component';
+import { RedigerProfilDialogBoxComponent } from '../update-profil-dialog-box/rediger-profil-dialog-box.component';
 import { Component, OnInit, Inject, ViewChild, Input, EventEmitter } from '@angular/core';
 import { MatAccordion } from '@angular/material/expansion';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material/dialog';
-import { SletDialogBoxComponent } from '../slet-dialog-box/slet-dialog-box.component';
+import { SletDialogBoxComponent } from '../delete-dialog-box/slet-dialog-box.component';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm, FormsModule, FormGroup, FormControl, Validators } from '@angular/forms';

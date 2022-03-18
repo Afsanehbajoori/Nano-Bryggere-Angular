@@ -4,12 +4,12 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { ActivatedRoute } from '@angular/router';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 
-
 @Component({
   selector: 'app-update-events-dialog-box',
   templateUrl: './update-events-dialog-box.component.html',
   styleUrls: ['./update-events-dialog-box.component.css']
 })
+
 export class UpdateEventsDialogBoxComponent implements OnInit {
   RedigerEvents: FormGroup = new FormGroup({});
   eventsList:any;
@@ -41,7 +41,8 @@ export class UpdateEventsDialogBoxComponent implements OnInit {
       })
     })
   }
-  onSubmitCertifikats(event: any) {
+
+  onSubmitCertificate(event: any) {
     if(event.target.files){
       var reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]);
@@ -52,5 +53,4 @@ export class UpdateEventsDialogBoxComponent implements OnInit {
       }
     }
   };
-
 }

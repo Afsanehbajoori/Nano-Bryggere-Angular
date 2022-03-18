@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { RedigerBryggeriDialogBoxComponent } from 'src/app/main/rediger-bryggeri-dialog-box/rediger-bryggeri-dialog-box.component';
-import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
+import { RedigerBryggeriDialogBoxComponent } from 'src/app/main/update-bryggeri-dialog-box/rediger-bryggeri-dialog-box.component';
+import { SletDialogBoxComponent } from 'src/app/main/delete-dialog-box/slet-dialog-box.component';
 import { Bryggeri } from 'src/app/Models/Bryggeri';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 
@@ -13,13 +13,13 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./bryggeri-admin-side.component.css']
 })
 export class BryggeriAdminSideComponent implements OnInit {
-  dialogRefSlet: MatDialogRef<SletDialogBoxComponent>;
-  dialogRefRedigerBryggeri: MatDialogRef<RedigerBryggeriDialogBoxComponent>;
+  dialogRefDelete: MatDialogRef<SletDialogBoxComponent>;
+  dialogRefUpdateBryggeri: MatDialogRef<RedigerBryggeriDialogBoxComponent>;
   bryggeri: Bryggeri[];
   brygge = new Bryggeri;
-  endpoints = '/Brugere';
+  endpointU = '/Brugere';
   endpointB='/Bryggerier';
-  searchkeyBryggerinavn: string;
+  searchkeyBryggeriname: string;
   searchkeyBryggeriSamarbejde:string;
   id = this.actRoute.snapshot.params['id'];
   clickButton:boolean=true;
@@ -34,29 +34,29 @@ export class BryggeriAdminSideComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.loadBryggeri();
+    this.onloadBryggeri();
   }
   
-  loadBryggeri(){
+  onloadBryggeri(){
     return this.restApi.getDatas(this.endpointB).subscribe((brygge) => {
       this.bryggeri = brygge;
       console.log(this.bryggeri);
     })
   }
-  onVisBryggeri(id:any) {
+  onShowBryggeri(id:any) {
     this.clickButton=false;
     return this.restApi.getData(id , this.endpointB).subscribe((data) => {
 
     })
   };
 
-  onFindBryggerinavn(){
-    if(this.searchkeyBryggerinavn == ""){
+  onFindBryggeriByName(){
+    if(this.searchkeyBryggeriname == ""){
       this.ngOnInit();
     }
     else{
       this.bryggeri = this.bryggeri.filter(res =>{
-        return res.navn.toLowerCase().match(this.searchkeyBryggerinavn.toLowerCase());
+        return res.navn.toLowerCase().match(this.searchkeyBryggeriname.toLowerCase());
       })
     }
   }
@@ -80,11 +80,11 @@ export class BryggeriAdminSideComponent implements OnInit {
 
   }
 
-  onSletBryggeri(id: any) {
+  onDeleteBryggeri(id: any) {
     let dialogRef = this.dialog.open(SletDialogBoxComponent);
     dialogRef.afterClosed().subscribe(result => {
       this.restApi.deleteData(id, this.endpointB).subscribe(data => {
-        this.loadBryggeri();
+        this.onloadBryggeri();
       })
     });
   };
@@ -97,14 +97,14 @@ export class BryggeriAdminSideComponent implements OnInit {
       dialogConfig.autoFocus = true;
       dialogConfig.width = "40%";
       localStorage.setItem('bryggeriId' , id.toString());
-      this.dialogRefRedigerBryggeri = this.dialog.open(RedigerBryggeriDialogBoxComponent, dialogConfig);
-      this.dialogRefRedigerBryggeri.afterClosed().subscribe(result => {
+      this.dialogRefUpdateBryggeri = this.dialog.open(RedigerBryggeriDialogBoxComponent, dialogConfig);
+      this.dialogRefUpdateBryggeri.afterClosed().subscribe(result => {
         if (result) {
           this.bryggeriList = result;
           this.restApi.updateData(id, this.endpointB, this.bryggeriList).subscribe((data) => {
           console.log(this.bryggeriList);
-          this.onVisBryggeri(id);
-          this.loadBryggeri();
+          this.onShowBryggeri(id);
+          this.onloadBryggeri();
           })
         }
       });

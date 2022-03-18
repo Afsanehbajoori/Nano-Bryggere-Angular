@@ -1,0 +1,24 @@
+<mat-card class="main">
+    <mat-card-title class="txt" style="margin-top: 10px;">
+        <h1 style="width: 100%;">Opret Events</h1>
+    </mat-card-title>
+    <mat-card-content class="container">
+        <form [formGroup]="CreateForm" class="example-form">
+          <mat-form-field class="example-full-width" appearance="fill">
+              <input matInput type="text" [(ngModel)]="tagCreation.name" class="input-control" formControlName="name" placeholder="Navn">
+              <!-- <mat-error *ngIf="navn.errors?.['required']"> -->
+              <mat-error>
+                  feltet skal udfyldes
+              </mat-error>
+          </mat-form-field>
+  
+             <div mat-dialog-actions class="btn-container">
+              <button mat-button (click)="dialogRefCreateTags.close(false)" >Annulere</button>
+               <button mat-button cdkFocusInitial  (click)="onSubmitTag(); $event.stopPropagation()">Opret</button>
+             </div>
+  
+        </form>
+    </mat-card-content>
+  </mat-card>
+  
+  

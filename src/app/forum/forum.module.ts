@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ForumRoutingModule } from './forum-routing.module';
-import { ForsideComponent } from './forside/forside.component';
+import { ForsideComponent } from './front-page/forside.component';
 import { RedigerSletComponent } from './rediger-slet/rediger-slet.component';
 import { OpretteComponent } from './oprette/oprette.component';
 import { ForumPostComponent } from './forum-post/forum-post.component';

@@ -1,17 +1,17 @@
-import { EventSideComponent } from './event-side/event-side.component';
+import { EventSideComponent } from './event-page/event-side.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ForsideComponent } from './forside/forside.component';
-import { CertifikatComponent } from './certifikat/certifikat.component';
+import { ForsideComponent } from './front-page/forside.component';
+import { CertifikatComponent } from './certificate/certifikat.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { SletProfilComponent } from './slet-profil/slet-profil.component';
-import { RedigerOlComponent } from './rediger-ol/rediger-ol.component';
-import { OpretteOlComponent } from './oprette-ol/oprette-ol.component';
+import { SletProfilComponent } from './delete-profil/slet-profil.component';
+import { RedigerOlComponent } from './update-beer/rediger-ol.component';
+import { OpretteOlComponent } from './creation-beer/oprette-ol.component';
 import { ProfilComponent } from './profil/profil.component';
 import { KatalogComponent } from './katalog/katalog.component';
-import { SamarbejdeSideComponent } from './samarbejde-side/samarbejde-side.component';
-import { SamarbejdeOprettelseComponent } from './samarbejde-oprettelse/samarbejde-oprettelse.component';
-import { SamarbejdeRedigerComponent } from './samarbejde-rediger/samarbejde-rediger.component';
+import { SamarbejdeSideComponent } from './cooperation-page/samarbejde-side.component';
+import { SamarbejdeOprettelseComponent } from './cooperation-creation/samarbejde-oprettelse.component';
+import { SamarbejdeRedigerComponent } from './cooperation-update/samarbejde-rediger.component';
 
 const routes: Routes = [
   {path:'', component:ForsideComponent},

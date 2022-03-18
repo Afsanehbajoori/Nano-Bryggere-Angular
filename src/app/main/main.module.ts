@@ -2,26 +2,26 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MainRoutingModule } from './main-routing.module';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { EventSideComponent } from './event-side/event-side.component';
-import { ForsideComponent } from './forside/forside.component';
-import { CertifikatComponent } from './certifikat/certifikat.component';
-import { OlBrugerSideComponent } from './ol-bruger-side/ol-bruger-side.component';
-import { OpretteOlComponent } from './oprette-ol/oprette-ol.component';
-import { RedigerOlComponent } from './rediger-ol/rediger-ol.component';
-import { SletProfilComponent } from './slet-profil/slet-profil.component';
+import { EventSideComponent } from './event-page/event-side.component';
+import { ForsideComponent } from './front-page/forside.component';
+import { CertifikatComponent } from './certificate/certifikat.component';
+import { OlBrugerSideComponent } from './beer-user-page/ol-bruger-side.component';
+import { OpretteOlComponent } from './creation-beer/oprette-ol.component';
+import { RedigerOlComponent } from './update-beer/rediger-ol.component';
+import { SletProfilComponent } from './delete-profil/slet-profil.component';
 import { ProfilComponent } from './profil/profil.component';
 import { KatalogComponent } from './katalog/katalog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SletDialogBoxComponent } from './slet-dialog-box/slet-dialog-box.component';
-import { RedigerProfilDialogBoxComponent } from './rediger-profil-dialog-box/rediger-profil-dialog-box.component';
-import { RedigerBryggeriDialogBoxComponent } from './rediger-bryggeri-dialog-box/rediger-bryggeri-dialog-box.component';
-import { CertifikatDialogBoxComponent } from './certifikat-dialog-box/certifikat-dialog-box.component';
-import { SamarbejdeSideComponent } from './samarbejde-side/samarbejde-side.component';
-import { SamarbejdeOprettelseComponent } from './samarbejde-oprettelse/samarbejde-oprettelse.component';
-import { SamarbejdeRedigerComponent } from './samarbejde-rediger/samarbejde-rediger.component';
-import { VisDetajlerComponent } from './vis-detajler/vis-detajler.component';
-import { VisOlDetajlerComponent } from './vis-ol-detajler/vis-ol-detajler.component';
-import { VisEventsDetajlerComponent } from './vis-events-detajler/vis-events-detajler.component';
+import { SletDialogBoxComponent } from './delete-dialog-box/slet-dialog-box.component';
+import { RedigerProfilDialogBoxComponent } from './update-profil-dialog-box/rediger-profil-dialog-box.component';
+import { RedigerBryggeriDialogBoxComponent } from './update-bryggeri-dialog-box/rediger-bryggeri-dialog-box.component';
+import { CertifikatDialogBoxComponent } from './certificate-dialog-box/certifikat-dialog-box.component';
+import { SamarbejdeSideComponent } from './cooperation-page/samarbejde-side.component';
+import { SamarbejdeOprettelseComponent } from './cooperation-creation/samarbejde-oprettelse.component';
+import { SamarbejdeRedigerComponent } from './cooperation-update/samarbejde-rediger.component';
+import { VisDetajlerComponent } from './show-details/vis-detajler.component';
+import { VisOlDetajlerComponent } from './show-beer-detail/vis-ol-detajler.component';
+import { VisEventsDetajlerComponent } from './show-events-details/vis-events-detajler.component';
 
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -41,7 +41,8 @@ import { MatTreeModule } from '@angular/material/tree';
 
 import {MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS} from '@angular/material/snack-bar';
 import {ScrollingModule} from '@angular/cdk/scrolling';
-import { SamarbejdeVisningComponent } from './samarbejde-visning/samarbejde-visning.component';
+import { SamarbejdeVisningComponent } from './cooperation-show/samarbejde-visning.component';
+import { RedigerSamarbejdeDialogBoxComponent } from './update-cooperation-dialog-box/rediger-samarbejde-dialog-box.component';
 
 
 @NgModule({
@@ -66,7 +67,8 @@ import { SamarbejdeVisningComponent } from './samarbejde-visning/samarbejde-visn
     VisDetajlerComponent,
     VisOlDetajlerComponent,
     VisEventsDetajlerComponent,
-    SamarbejdeVisningComponent
+    SamarbejdeVisningComponent,
+    RedigerSamarbejdeDialogBoxComponent
   ],
   entryComponents:[SletDialogBoxComponent , RedigerProfilDialogBoxComponent , RedigerBryggeriDialogBoxComponent],
   imports: [

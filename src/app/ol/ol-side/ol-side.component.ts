@@ -13,7 +13,7 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 })
 export class OlSideComponent implements OnInit {
   oplysninger: Kontaktoplysninger;
-  ol: Øl;
+  beer: Øl;
   bryggeri: Bryggeri;
   endpointk = '/Kontaktoplysninger';
   endpointo = '/Øller';
@@ -46,8 +46,8 @@ export class OlSideComponent implements OnInit {
   }
 
   loadOl(){
-    return this.restApi.getData(this.id, this.endpointo).subscribe((ol) => {
-      this.ol = ol;
+    return this.restApi.getData(this.id, this.endpointo).subscribe((data) => {
+      this.beer = data;
     })
   }
   

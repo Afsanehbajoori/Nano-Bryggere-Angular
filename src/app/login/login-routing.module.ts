@@ -1,10 +1,10 @@
 import { EditPasswordComponent } from './edit-password/edit-password.component';
-import { LoginSideComponent } from './login-side/login-side.component';
+import { LoginSideComponent } from './login-site/login-side.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RegistrerComponent } from './registrer/registrer.component';
-import { GlemtPasswordComponent } from './glemt-password/glemt-password.component';
-import { RedigerSletBrugerComponent } from './rediger-slet-bruger/rediger-slet-bruger.component';
+import { GlemtPasswordComponent } from './forgot-password/glemt-password.component';
+import { RedigerSletBrugerComponent } from './update-delete-bruger/rediger-slet-bruger.component';
 import { NotFoundComponent } from '../main/not-found/not-found.component';
 
 

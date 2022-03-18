@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { LoginRoutingModule } from './login-routing.module';
-import { LoginSideComponent } from './login-side/login-side.component';
+import { LoginSideComponent } from './login-site/login-side.component';
 import { RegistrerComponent } from './registrer/registrer.component';
-import { GlemtPasswordComponent } from './glemt-password/glemt-password.component';
+import { GlemtPasswordComponent } from './forgot-password/glemt-password.component';
 import { EditPasswordComponent } from './edit-password/edit-password.component';
-import { RedigerSletBrugerComponent } from './rediger-slet-bruger/rediger-slet-bruger.component';
+import { RedigerSletBrugerComponent } from './update-delete-bruger/rediger-slet-bruger.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon'

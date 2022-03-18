@@ -1,0 +1,55 @@
+<h1 mat-dialog-title>Rediger Samarbejde</h1>
+<div mat-dialog-content>
+    <form class="example-form" [formGroup]="RedigerBeer" *ngIf="beerListe">
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Navn:</mat-label>
+            <input matInput formControlName="Navn" placeholder="{{beerListe.navn}}" [(ngModel)]="beerListe.navn">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Type:</mat-label>
+            <input matInput formControlName="Type" placeholder="{{beerListe.type}}" [(ngModel)]="beerListe.type">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Smag:</mat-label>
+            <input matInput formControlName="Smag" placeholder="{{beerListe.smag}}" [(ngModel)]="beerListe.smag">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Procent:</mat-label>
+            <input matInput formControlName="Procent" placeholder="{{beerListe.procent}}"
+                [(ngModel)]="beerListe.procent">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Argang:</mat-label>
+            <input matInput type="date" formControlName="Argang" placeholder="{{beerListe.argang}}" [(ngModel)]="beerListe.argang">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Land:</mat-label>
+            <input matInput formControlName="Land" placeholder="{{beerListe.land}}" [(ngModel)]="beerListe.land">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Process:</mat-label>
+            <input matInput formControlName="Process" placeholder="{{beerListe.process}}"
+                [(ngModel)]="beerListe.process">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Etiket:</mat-label>
+            <input matInput formControlName="Etiket" placeholder="{{beerListe.etiket}}" [(ngModel)]="beerListe.etiket">
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>beskrivelse:</mat-label>
+            <input matInput formControlName="beskrivelse" placeholder="{{this.beerListe.beskrivelse}}"
+                [(ngModel)]="this.beerListe.beskrivelse">
+        </mat-form-field>
+        <div mat-dialog-actions class="btn-container">
+            <button mat-button (click)="dialogRefRedigerSamarbejde.close(false)">Annulere</button>
+            <button mat-button cdkFocusInitial [mat-dialog-close]="beerListe">Gem Ændringer</button>
+        </div>
+    </form>
+</div>

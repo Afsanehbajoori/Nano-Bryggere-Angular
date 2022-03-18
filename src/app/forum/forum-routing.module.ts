@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ForsideComponent } from './forside/forside.component';
+import { ForsideComponent } from './front-page/forside.component';
 import { ForumPostComponent } from './forum-post/forum-post.component';
 import { ForumTagsComponent } from './forum-tags/forum-tags.component';
 import { OpretteComponent } from './oprette/oprette.component';

@@ -1,4 +1,4 @@
-import { LoginSideComponent } from './login/login-side/login-side.component';
+import { LoginSideComponent } from './login/login-site/login-side.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 

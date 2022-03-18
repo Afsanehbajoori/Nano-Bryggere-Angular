@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Øl } from 'src/app/Models/Øl';
 import { RestApiService } from 'src/app/shared/rest-api.service';
-import { SletDialogBoxComponent } from '../slet-dialog-box/slet-dialog-box.component';
+import { SletDialogBoxComponent } from '../delete-dialog-box/slet-dialog-box.component';
 
 @Component({
   selector: 'app-katalog',

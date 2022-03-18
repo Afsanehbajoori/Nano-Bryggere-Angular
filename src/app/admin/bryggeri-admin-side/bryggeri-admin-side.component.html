@@ -5,7 +5,7 @@
         <mat-tab label="Find bryggeri med bryggerinavn">
       <form class="example-form" style="justify-content: center; width: 100%;">
         <mat-form-field  class="txtHeader">
-            <input matInput type="search"  [(ngModel)]="searchkeyBryggerinavn" (ngModelChange)="onFindBryggerinavn()" [ngModelOptions]="{standalone: true}" >
+            <input matInput type="search"  [(ngModel)]="searchkeyBryggeriname" (ngModelChange)="onFindBryggeriByName()" [ngModelOptions]="{standalone: true}" >
         </mat-form-field>
       </form>
         </mat-tab>
@@ -31,9 +31,9 @@
                        <span>{{brygge.navn}}</span>
                     </mat-panel-title>
                     <mat-action-row class="centers" style="justify-content: center;">
-                      <button mat-button class="btnMainStyle" (click)="onVisBryggeri(brygge.id)" >vis </button>  |
+                      <button mat-button class="btnMainStyle" (click)="onShowBryggeri(brygge.id)" >vis </button>  |
                       <button mat-button class="btnMainStyle" (click)="onUpdateBryggeri(brygge.id)">Update </button> |
-                        <button mat-button class="btnMainStyle" (click)="onSletBryggeri(brygge.id)">Slet </button> 
+                        <button mat-button class="btnMainStyle" (click)="onDeleteBryggeri(brygge.id)">Slet </button> 
 
 
                     </mat-action-row>

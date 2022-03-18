@@ -3,19 +3,19 @@
         <form class="example-form" style="justify-content: center; width: 40%;">
             <mat-form-field style="width: 30%;">
                 <input matInput type="search" placeholder="Find tags" [(ngModel)]="searchkey"
-                    (ngModelChange)="onFindOl()" [ngModelOptions]="{standalone: true}">
+                    (ngModelChange)="onFindTags()" [ngModelOptions]="{standalone: true}">
             </mat-form-field>
         </form>
         <button mat-raised-button style="background-color: rgb(30, 122, 228); width: 120px; height: 40px; border-width: 0; margin-right: 20px;"
-        (click)="onOpretTags()">Opret Tags</button>
+        (click)="onCreateTags()">Opret Tags</button>
         <h1 style="justify-content: center; width: 40%;">Tags</h1>
     </mat-toolbar>
     <table style="width: 100%; height: 100%; justify-content: center;">
         <tbody style="justify-content: center; height: 100%; width: 100%; justify-content: center;">
-            <tr *ngFor="let tag of tagsliste">
+            <tr *ngFor="let tag of tagslists">
                 <mat-card style="width: 20%;"><td style="width: 56%;">{{tag.navn}}</td>
-                    <td style="justify-content: right;"><button mat-button class="btnMainStyle" (click)="onRedigerTags(tag.id)"><mat-icon>edit</mat-icon></button>
-                <button mat-button class="btnMainStyle" (click)="onSletTags(tag.id)"><mat-icon>delete_forever</mat-icon></button></td>
+                    <td style="justify-content: right;"><button mat-button class="btnMainStyle" (click)="onUpdateTags(tag.id)"><mat-icon>edit</mat-icon></button>
+                <button mat-button class="btnMainStyle" (click)="onDeleteTags(tag.id)"><mat-icon>delete_forever</mat-icon></button></td>
             </mat-card>
             </tr>
         </tbody>

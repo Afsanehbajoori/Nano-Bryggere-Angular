@@ -1,0 +1,46 @@
+<h1 mat-dialog-title>Rediger Events</h1>
+<div mat-dialog-content>
+    <form class="example-form" [formGroup]="updateTags" *ngIf="tagsList">
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Logo</mat-label>
+            <input matInput formControlName="eventBilled">
+            <img [src]="tagsList.eventBilled" alt="" style="width: 20%; height: 20%;">
+            <input type="file" class="btnMainStyle" (change)="onSubmitCertificate($event)">
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Titel:</mat-label>
+            <input matInput formControlName="titel" placeholder="{{tagsList.titel}}" [(ngModel)]="tagsList.titel">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Beskrivelse:</mat-label>
+            <input matInput formControlName="beskrivelse" placeholder="{{tagsList.beskrivelse}}"
+                [(ngModel)]="tagsList.beskrivelse">
+        </mat-form-field>
+
+
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>StartDato:</mat-label>
+            <input matInput formControlName="startDato" placeholder="{{tagsList.startDato}}"
+                [(ngModel)]="tagsList.startDato">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>SlutDato:</mat-label>
+            <input matInput formControlName="slutDato" placeholder="{{tagsList.slutDato}}"
+                [(ngModel)]="tagsList.slutDato">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Lokation:</mat-label>
+            <input matInput formControlName="lokation" placeholder="{{tagsList.lokation}}"
+                [(ngModel)]="tagsList.lokation">
+        </mat-form-field>
+
+
+        <div mat-dialog-actions class="btn-container">
+            <button mat-button (click)="dialogRefUpdateTags.close(false)">Annulere</button>
+            <button mat-button cdkFocusInitial [mat-dialog-close]="tagsList">Gem Ændringer</button>
+        </div>
+    </form>
+</div>

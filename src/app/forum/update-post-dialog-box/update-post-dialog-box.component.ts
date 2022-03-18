@@ -29,6 +29,7 @@ export class UpdatePostDialogBoxComponent implements OnInit {
       this.updateForm = this.formBuilder.group({
         titel : new FormControl(this.updatePost.titel),
         indhold : new FormControl(this.updatePost.indhold)
+
       })
     })
   }

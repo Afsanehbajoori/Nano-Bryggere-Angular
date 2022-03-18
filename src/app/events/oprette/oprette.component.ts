@@ -9,8 +9,8 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./oprette.component.css']
 })
 export class OpretteComponent implements OnInit {
-  @Input() eventOprettelse = { titel: '', beskrivelse: '', lokation: '' };
-  OpretForm: FormGroup;
+  @Input() eventCreation = { titel: '', beskrivelse: '', lokation: '' };
+  createForm: FormGroup;
   endpoints = '/Events';
 
   constructor(
@@ -20,7 +20,7 @@ export class OpretteComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.OpretForm = new FormGroup({
+    this.createForm = new FormGroup({
       titel: new FormControl('', Validators.required),
       beskrivelse: new FormControl('', Validators.required),
       // startDato: new FormControl('', Validators.required),
@@ -28,13 +28,13 @@ export class OpretteComponent implements OnInit {
       lokation: new FormControl('', Validators.required)
     });
   }
-  onAnnullerEvent() {
+  onCancelEvent() {
     return this.router.navigate(['../events/events'])
   };
 
   onSubmitEvent() {
-    console.log(this.eventOprettelse);
-    this.restApi.createData(this.eventOprettelse, this.endpoints).subscribe((data) => {
+    console.log(this.eventCreation);
+    this.restApi.createData(this.eventCreation, this.endpoints).subscribe((data) => {
       this.router.navigate(['../events/events'])
     })
   }

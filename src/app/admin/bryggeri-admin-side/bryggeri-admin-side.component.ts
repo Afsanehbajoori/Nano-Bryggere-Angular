@@ -13,14 +13,14 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./bryggeri-admin-side.component.css']
 })
 export class BryggeriAdminSideComponent implements OnInit {
-  dialogRefSlet: MatDialogRef<SletDialogBoxComponent>;
-  dialogRefRedigerBryggeri: MatDialogRef<RedigerBryggeriDialogBoxComponent>;
+  dialogRefDelete: MatDialogRef<SletDialogBoxComponent>;
+  dialogRefUpdateBryggeri: MatDialogRef<RedigerBryggeriDialogBoxComponent>;
   bryggeri: Bryggeri[];
   brygge = new Bryggeri;
-  endpoints = '/Brugere';
+  endpointU = '/Brugere';
   endpointB='/Bryggerier';
-  searchkeyBryggerinavn: string;
-  searchkeyBryggeriSamarbejde:string;
+  searchkeyBryggeriname: string;
+  searchkeyBryggeriCooperation:string;
   id = this.actRoute.snapshot.params['id'];
   clickButton:boolean=true;
   bryggeriList: any;
@@ -43,6 +43,7 @@ export class BryggeriAdminSideComponent implements OnInit {
       console.log(this.bryggeri);
     })
   }
+
   onShowBryggeri(id:any) {
     this.clickButton=false;
     return this.restApi.getData(id , this.endpointB).subscribe((data) => {
@@ -51,16 +52,15 @@ export class BryggeriAdminSideComponent implements OnInit {
   };
 
   onFindBryggeriname(){
-    if(this.searchkeyBryggerinavn == ""){
+    if(this.searchkeyBryggeriname == ""){
       this.ngOnInit();
     }
     else{
       this.bryggeri = this.bryggeri.filter(res =>{
-        return res.navn.toLowerCase().match(this.searchkeyBryggerinavn.toLowerCase());
+        return res.navn.toLowerCase().match(this.searchkeyBryggeriname.toLowerCase());
       })
     }
   }
-
 
 //vi skal kigge på det efter oprette samarbejde component
   onFindBryggeriCooperation(){
@@ -77,7 +77,6 @@ export class BryggeriAdminSideComponent implements OnInit {
         })
       })
         } */
-
   }
 
   onDeleteBryggeri(id: any) {
@@ -89,16 +88,14 @@ export class BryggeriAdminSideComponent implements OnInit {
     });
   };
 
-
-
   onUpdateBryggeri(id:any) {
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
       dialogConfig.width = "40%";
       localStorage.setItem('bryggeriId' , id.toString());
-      this.dialogRefRedigerBryggeri = this.dialog.open(RedigerBryggeriDialogBoxComponent, dialogConfig);
-      this.dialogRefRedigerBryggeri.afterClosed().subscribe(result => {
+      this.dialogRefUpdateBryggeri = this.dialog.open(RedigerBryggeriDialogBoxComponent, dialogConfig);
+      this.dialogRefUpdateBryggeri.afterClosed().subscribe(result => {
         if (result) {
           this.bryggeriList = result;
           this.restApi.updateData(id, this.endpointB, this.bryggeriList).subscribe((data) => {
@@ -109,7 +106,4 @@ export class BryggeriAdminSideComponent implements OnInit {
         }
       });
     };
-
 }
-
-

@@ -14,20 +14,20 @@ export class ForumTagsComponent implements OnInit {
   tagsliste: Tags[];
   searchkey: string;
   search: any;
-  endpoints = '/Tags';
+  endpointT = '/Tags';
   beerid = JSON.parse(localStorage.getItem('bryggeriId') || '{}')
-  olList : any = {};
+  beerList : any = {};
   constructor(
     public restApi: RestApiService,
     private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.loadTags()
+    this.onloadTags()
   }
 
-  loadTags() {
-    return this.restApi.getDatas(this.endpoints).subscribe((tag) => {
+  onloadTags() {
+    return this.restApi.getDatas(this.endpointT).subscribe((tag) => {
       this.tagsliste = tag;
     });
   }
@@ -43,8 +43,8 @@ export class ForumTagsComponent implements OnInit {
     }
   }
 
-  onTilfojTag(id:any){
-    this.restApi.updateData(this.beerid, this.endpoints, this.olList).subscribe((data) => {
+  onAddTag(id:any){
+    this.restApi.updateData(this.beerid, this.endpointT, this.beerList).subscribe((data) => {
       this.router.navigate(['../main/katalog'])
     });
   }

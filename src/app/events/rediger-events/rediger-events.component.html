@@ -4,7 +4,7 @@
     </mat-card-title>
     <mat-card-content class="container">
 
-        <form [formGroup]="RedigerForm" class="example-form" *ngIf="eventList">
+        <form [formGroup]="updateForm" class="example-form" *ngIf="eventList">
             <mat-form-field class="example-full-width" appearance="fill">
                 <input matInput type="text" [(ngModel)]="eventList.titel" class="input-control" formControlName="titel" placeholder="Titel" >
                 <!-- <mat-error *ngIf="navn.errors?.['required']"> -->
@@ -41,7 +41,7 @@
                 </mat-error>
             </mat-form-field>
 
-            <button mat-raised-button type="submit" (click)="onAnnullerEvent()" class="login-btn" style="background: linear-gradient(#b60d0d, #ff6e6e);">Annuller</button>
+            <button mat-raised-button type="submit" (click)="onCancelEvent()" class="login-btn" style="background: linear-gradient(#b60d0d, #ff6e6e);">Annuller</button>
             
             <button mat-raised-button type="submit" (click)="onSubmitEvent()" class="login-btn" style="background: linear-gradient(#33ff00, #41fd70);">Rediger Event</button>
         </form>

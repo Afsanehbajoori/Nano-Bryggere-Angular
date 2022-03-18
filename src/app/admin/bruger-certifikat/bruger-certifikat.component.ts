@@ -11,9 +11,9 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./bruger-certifikat.component.css']
 })
 export class BrugerCertifikatComponent implements OnInit {
-  oplysninger: Kontaktoplysninger[];
-  oplysning = new Kontaktoplysninger;
-  endpoints = '/Kontaktoplysninger';
+  oplysninger: Kontaktoplysninger[]; //oplysninger
+  oplysning = new Kontaktoplysninger; //oplysning
+  endpointI = '/Kontaktoplysninger'; 
   constructor(
     public dialog: MatDialog,
     public restApi: RestApiService, 

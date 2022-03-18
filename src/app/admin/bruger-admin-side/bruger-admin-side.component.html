@@ -5,14 +5,14 @@
         <mat-tab label="Find bruger med Efternavn" >
           <form class="example-form" style="justify-content: center; width: 100%;">
             <mat-form-field  class="txtHeader">
-                <input matInput type="search"  [(ngModel)]="searchkeyBrugerEnavn" (ngModelChange)="onFindBrugereEnavn()" [ngModelOptions]="{standalone: true}" >
+                <input matInput type="search"  [(ngModel)]="searchkeyUserLastname" (ngModelChange)="onFindUserLastname()" [ngModelOptions]="{standalone: true}" >
             </mat-form-field>
         </form>
         </mat-tab>
         <mat-tab label="Find bruger med Brugernavn">
           <form class="example-form" style="justify-content: center; width: 100%;">
             <mat-form-field  class="txtHeader">
-                <input matInput type="search"  [(ngModel)]="searchkeyBrugernavn" (ngModelChange)="onFindBrugerenavn()" [ngModelOptions]="{standalone: true}" >
+                <input matInput type="search"  [(ngModel)]="searchkeyUsername" (ngModelChange)="onFindUsername()" [ngModelOptions]="{standalone: true}" >
             </mat-form-field>
         </form>
         </mat-tab>
@@ -26,7 +26,7 @@
         <mat-tab label="Find bruger med EventsTitel">
           <form class="example-form" style="justify-content: center; width: 100%;">
             <mat-form-field  class="txtHeader">
-                <input matInput type="search"  [(ngModel)]="searchkeyEventsTitel" (ngModelChange)="onFindBrugerenavnByEventsTitel()" [ngModelOptions]="{standalone: true}" >
+                <input matInput type="search"  [(ngModel)]="searchkeyEventsTitel" (ngModelChange)="onFindUsernameByEventsTitel()" [ngModelOptions]="{standalone: true}" >
             </mat-form-field>
         </form>
         </mat-tab>
@@ -46,44 +46,44 @@
                        <span>{{user.brugernavn}}</span>
                     </mat-panel-title>
                     <mat-action-row class="centers" style="justify-content: center;">
-                      <button mat-button class="btnMainStyle" (click)="onVisBruger(user.id)">Vis </button>  |
-                      <button mat-button class="btnMainStyle" (click)="onUpdateBruger(user.id)">Update </button> |
-                      <button mat-button class="btnMainStyle" (click)="onSletBruger(user.id)">Slet </button>
+                      <button mat-button class="btnMainStyle" (click)="onShowUser(user.id)">Vis </button>  |
+                      <button mat-button class="btnMainStyle" (click)="onUpdateUser(user.id)">Update </button> |
+                      <button mat-button class="btnMainStyle" (click)="onDeleteUser(user.id)">Slet </button>
 
                     </mat-action-row>
                   </mat-expansion-panel-header>
-                  <div *ngIf="kontaktoplysninger">
+                  <div *ngIf="userinfo">
                     <mat-card class="containStyle">
                       <span>Fornavn:</span>
-                      <span class="txtStyle">{{kontaktoplysninger.fnavn}}</span>
+                      <span class="txtStyle">{{userinfo.fnavn}}</span>
                     </mat-card>
                     <mat-card class="containStyle">
                       <span>Efternavn:</span>
-                      <span class="txtStyle">{{kontaktoplysninger.enavn}}</span>
+                      <span class="txtStyle">{{userinfo.enavn}}</span>
                     </mat-card>
                     <mat-card class="containStyle">
                       <span>Addresselinje1:</span>
-                      <span class="txtStyle">{{kontaktoplysninger.addresselinje1}}</span>
+                      <span class="txtStyle">{{userinfo.addresselinje1}}</span>
                     </mat-card>
                     <mat-card class="containStyle">
                       <span>Addresselinje2:</span>
-                      <span class="txtStyle">{{kontaktoplysninger.addresselinje2}}</span>
+                      <span class="txtStyle">{{userinfo.addresselinje2}}</span>
                     </mat-card>
                     <mat-card class="containStyle">
                       <span>Telefonnr:</span>
-                      <span class="txtStyle">{{kontaktoplysninger.telefonnr}}</span>
+                      <span class="txtStyle">{{userinfo.telefonnr}}</span>
                     </mat-card>
                     <mat-card class="containStyle">
                       <span>Email:</span>
-                      <span class="txtStyle">{{kontaktoplysninger.email}}</span>
+                      <span class="txtStyle">{{userinfo.email}}</span>
                     </mat-card>
                     <mat-card class="containStyle">
                       <span>Postnr:</span>
-                      <span class="txtStyle">{{kontaktoplysninger.postnr}}</span>
+                      <span class="txtStyle">{{userinfo.postnr}}</span>
                     </mat-card>
                     <mat-card class="containStyle">
                       <span>By:</span>
-                      <span class="txtStyle">{{kontaktoplysninger.by}}</span>
+                      <span class="txtStyle">{{userinfo.by}}</span>
                     </mat-card>
                   </div>
 

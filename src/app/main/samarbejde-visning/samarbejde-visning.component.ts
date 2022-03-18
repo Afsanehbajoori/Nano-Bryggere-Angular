@@ -12,8 +12,8 @@ import { SletDialogBoxComponent } from '../slet-dialog-box/slet-dialog-box.compo
 })
 export class SamarbejdeVisningComponent implements OnInit {
   beer: Øl;
-  ølId: number;
-  endpointo = '/Øller';
+  beerId: number;
+  endpointO = '/Øller';
   constructor(
     public dialog: MatDialog,
     public restApi: RestApiService,
@@ -22,21 +22,21 @@ export class SamarbejdeVisningComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.onVisSamarbejde();
+    this.onLoadCooperation();
   }
-  onVisSamarbejde() {
-    if (this.ølId = JSON.parse(localStorage.getItem('sOlId') || '{}')) {
-        this.restApi.getData(this.ølId, this.endpointo).subscribe(data => {
+  onLoadCooperation() {
+    if (this.beerId = JSON.parse(localStorage.getItem('sOlId') || '{}')) {
+        this.restApi.getData(this.beerId, this.endpointO).subscribe(data => {
         this.beer = data;
       })
     }
   }
 
-  onRedigerOl(id: any) {
+  onUpdateBeer(id: any) {
     this.router.navigate(['../main/samarbejderediger/', id]);
   };
 
-  onSletOl(id: any) {
+  onDeleteBeer(id: any) {
     let dialogRef = this.dialog.open(SletDialogBoxComponent);
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);

@@ -15,22 +15,22 @@ import { logging } from 'protractor';
 export class RedigerBryggeriDialogBoxComponent implements OnInit {
   bryggeriList : any;
   endpointB='/Bryggerier';
-  RedigerBryggeri:FormGroup = new FormGroup({});
-  bryggeriId : number ;
+  updateForm:FormGroup = new FormGroup({});
+  breweryId : number ;
 
-  constructor(public dialogRefRedigerProfil : MatDialogRef<RedigerBryggeriDialogBoxComponent>,
+  constructor(public dialogRefUpdateProfil : MatDialogRef<RedigerBryggeriDialogBoxComponent>,
     public restApi: RestApiService ,
     private router: Router ,
-    private formBuilder: FormBuilder,
-    private snackBar : MatSnackBar ) { }
+    private formBuilder: FormBuilder
+    ) { }
 
   ngOnInit(): void {
-    this.bryggeriId=JSON.parse(localStorage.getItem('bryggeriId') || '{}');
-    this.restApi.getData(this.bryggeriId , this.endpointB)
+    this.breweryId=JSON.parse(localStorage.getItem('bryggeriId') || '{}');
+    this.restApi.getData(this.breweryId , this.endpointB)
     .toPromise()
     .then(data => {
       this.bryggeriList = data;
-      this.RedigerBryggeri=this.formBuilder.group({
+      this.updateForm=this.formBuilder.group({
         'logoCtl' : new FormControl(this.bryggeriList.logo),
         'navnCtl' : new FormControl(this.bryggeriList.navn),
         'beskrivelseCtl' : new FormControl(this.bryggeriList.beskrivelse)

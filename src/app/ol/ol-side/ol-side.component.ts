@@ -12,15 +12,15 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./ol-side.component.css']
 })
 export class OlSideComponent implements OnInit {
-  oplysninger: Kontaktoplysninger;
-  ol: Øl;
-  bryggeri: Bryggeri;
-  endpointk = '/Kontaktoplysninger';
-  endpointo = '/Øller';
-  endpointb = '/Bryggerier';
-  bryggerid: Number;
+  userInfo: Kontaktoplysninger;
+  beer: Øl;
+  bewery: Bryggeri;
+  endpointK = '/Kontaktoplysninger';
+  endpointO = '/Øller';
+  endpointB = '/Bryggerier';
+  beweryId: Number;
   olId: number;
-  kontaktoplysningerId: number;
+  userInfoId: number;
   id = this.actRoute.snapshot.params['id'];
   constructor(
     public dialog: MatDialog,
@@ -30,28 +30,28 @@ export class OlSideComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.kontaktoplysningerId = JSON.parse(localStorage.getItem('KId') || '{}');
-    console.log("Ol",this.kontaktoplysningerId); 
+    this.userInfoId = JSON.parse(localStorage.getItem('KId') || '{}');
+    console.log("Ol",this.userInfoId); 
     this.olId = JSON.parse(localStorage.getItem('OlId') || '{}');
-    this.loadOl();
-    this.loadKontaktOplysninger();
+    this.onLoadBeer();
+    this.onLoadUserinfo();
   }
 
-  loadKontaktOplysninger(){
-    console.log("Kontakt",this.kontaktoplysningerId);
-    return this.restApi.getData(this.kontaktoplysningerId, this.endpointk).subscribe((user) => {
-      this.oplysninger = user;
-      console.log(this.oplysninger);
+  onLoadUserinfo(){
+    console.log("Kontakt",this.userInfoId);
+    return this.restApi.getData(this.userInfoId, this.endpointK).subscribe((user) => {
+      this.userInfo = user;
+      console.log(this.userInfo);
     })
   }
 
-  loadOl(){
-    return this.restApi.getData(this.id, this.endpointo).subscribe((ol) => {
-      this.ol = ol;
+  onLoadBeer(){
+    return this.restApi.getData(this.id, this.endpointO).subscribe((ol) => {
+      this.beer = ol;
     })
   }
   
-  onTilbage() {
+  onReturn() {
     this.router.navigate(['../ol/sogning']);
   };
 }

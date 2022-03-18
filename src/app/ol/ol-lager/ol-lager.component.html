@@ -1,11 +1,11 @@
 <mat-card class="main" id="imgeUp">
     <mat-card-content class="container" style="border-color: black; border-width: medium;">
 
-        <form [formGroup]="LagerForm" class="example-form" style="justify-content: center;" *ngIf="olList">
+        <form [formGroup]="LayerForm" class="example-form" style="justify-content: center;" *ngIf="beerList">
             <h1>Lager Side</h1>
             <mat-form-field class="example-full-width" appearance="fill">
                 <p>Antal</p>
-                <input matInput type="number" [(ngModel)]="olList.antal" min="0" max="100" formControlName="antal" placeholder="{{olList.antal}}" class="input-control">
+                <input matInput type="number" [(ngModel)]="beerList.antal" min="0" max="100" formControlName="antal" placeholder="{{beerList.antal}}" class="input-control">
                 <mat-error>
                     Dette felt skal udfyldes
                 </mat-error>
@@ -13,7 +13,7 @@
 
             <mat-form-field class="example-full-width" appearance="fill">
                 <p>Flaske Antal</p>
-                <input matInput type="number" [(ngModel)]="olList.flaskeAntal" min="0" max="100" formControlName="flaskeAntal" placeholder="{{olList.flaskeAntal}}" class="input-control">
+                <input matInput type="number" [(ngModel)]="beerList.flaskeAntal" min="0" max="100" formControlName="flaskeAntal" placeholder="{{beerList.flaskeAntal}}" class="input-control">
                 <mat-error>
                     Dette felt skal udfyldes
                 </mat-error>
@@ -21,7 +21,7 @@
 
             <mat-form-field class="example-full-width" appearance="fill">
                 <p>Tønde Antal</p>
-                <input matInput type="number" [(ngModel)]="olList.tondeAntal" min="0" max="20" formControlName="tondeAntal" placeholder="{{olList.tondeAntal}}" class="input-control">
+                <input matInput type="number" [(ngModel)]="beerList.tondeAntal" min="0" max="20" formControlName="tondeAntal" placeholder="{{beerList.tondeAntal}}" class="input-control">
                 <mat-error>
                     Dette felt skal udfyldes
                 </mat-error>
@@ -29,15 +29,15 @@
 
             <mat-form-field class="example-full-width" appearance="fill">
                 <p>Flaske Reserve Antal</p>
-                <input matInput type="number" [(ngModel)]="olList.flaskeResAntal" min="0" max="80" formControlName="flaskeResAntal" placeholder="{{olList.flaskeResAntal}}" class="input-control">
+                <input matInput type="number" [(ngModel)]="beerList.flaskeResAntal" min="0" max="80" formControlName="flaskeResAntal" placeholder="{{beerList.flaskeResAntal}}" class="input-control">
                 <mat-error>
                     Dette felt skal udfyldes
                 </mat-error>
             </mat-form-field>
             
-            <button mat-raised-button type="submit" (click)="onAnnullerOl()" class="radius-btn" style="background: linear-gradient(#f53f3f, #ff6e6e);">Annuller</button>
+            <button mat-raised-button type="submit" (click)="onCancel()" class="radius-btn" style="background: linear-gradient(#f53f3f, #ff6e6e);">Annuller</button>
             
-            <button mat-raised-button type="submit" (click)="onSubmitOl()" class="radius-btn" style="background: linear-gradient(#6cf04b, #41fd70);">Bekræft lager</button>
+            <button mat-raised-button type="submit" (click)="onSubmitBeer()" class="radius-btn" style="background: linear-gradient(#6cf04b, #41fd70);">Bekræft lager</button>
         </form>
     </mat-card-content>
 </mat-card>

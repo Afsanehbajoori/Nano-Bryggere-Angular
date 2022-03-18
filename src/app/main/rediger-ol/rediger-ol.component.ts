@@ -11,9 +11,9 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 export class RedigerOlComponent implements OnInit {
   selected = '';
   beerid = this.actRoute.snapshot.params['id'];
-  RedigerForm: FormGroup;
+  updateForm: FormGroup;
   endpoints = '/Øller';
-  olList : any;
+  beerList : any;
   argang: Date;
   constructor(
     public restApi: RestApiService, 
@@ -21,7 +21,7 @@ export class RedigerOlComponent implements OnInit {
     public actRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.RedigerForm = new FormGroup({
+    this.updateForm = new FormGroup({
       navn: new FormControl(''),
       type: new FormControl(''),
       smag: new FormControl(''),
@@ -40,8 +40,8 @@ export class RedigerOlComponent implements OnInit {
   
   loadOl(){
     return this.restApi.getData(this.beerid, this.endpoints).subscribe((beer: {}) => {
-      this.olList = beer;
-      this.argang = this.olList.årgang;
+      this.beerList = beer;
+      this.argang = this.beerList.årgang;
     });
   }
 
@@ -50,9 +50,9 @@ export class RedigerOlComponent implements OnInit {
   };
 
   onSubmitOl() {
-    this.olList.årgang = this.argang;
-    console.log(this.olList.årgang);
-    this.restApi.updateData(this.beerid, this.endpoints, this.olList).subscribe((data) => {
+    this.beerList.årgang = this.argang;
+    console.log(this.beerList.årgang);
+    this.restApi.updateData(this.beerid, this.endpoints, this.beerList).subscribe((data) => {
       this.router.navigate(['../main/katalog'])
     });
   }
@@ -60,11 +60,11 @@ export class RedigerOlComponent implements OnInit {
   onSubmitCertifikats(event: any) {
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
-      reader.onload = (e:any) => this.olList.etiket = e.target.result;
+      reader.onload = (e:any) => this.beerList.etiket = e.target.result;
       reader.readAsDataURL(event.target.files[0])
     }
     else{
-      this.olList.etiket = '';
+      this.beerList.etiket = '';
     }
   };
 }

@@ -17,10 +17,10 @@ export class VisEventsDetajlerComponent implements OnInit {
   ngOnInit(): void {
     this.eventsId= JSON.parse(localStorage.getItem('eventsId') || '{}');
     console.log('event' , this.eventsId);
-    this.loadOl();
+    this.onLoadBeer();
   }
 
-  loadOl(){
+  onLoadBeer(){
     this.restApi.getData(this.eventsId , this.endpointE).subscribe(data => {
       this.eventInfo = data;
       console.log('detajler:' , this.eventInfo)
@@ -30,5 +30,4 @@ export class VisEventsDetajlerComponent implements OnInit {
   onJoinEvents(id:any){
       this.route.navigate(['../login/login']);
   }
-
 }

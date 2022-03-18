@@ -1,9 +1,9 @@
 <mat-card class="main" id="imgeUp">
     <mat-card-content class="container">
 
-        <form [formGroup]="RedigerForm" class="example-form" *ngIf="olList">
+        <form [formGroup]="updateForm" class="example-form" *ngIf="beerList">
             <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="text" [(ngModel)]="olList.navn" formControlName="navn" placeholder="{{olList.navn}}" class="input-control">
+                <input matInput type="text" [(ngModel)]="beerList.navn" formControlName="navn" placeholder="{{beerList.navn}}" class="input-control">
                 <!-- <mat-error *ngIf="navn.errors?.['required']"> -->
                 <mat-error>
                     udfyld feltet
@@ -11,54 +11,54 @@
             </mat-form-field>
 
             <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="text" [(ngModel)]="olList.type" formControlName="type"
-                    placeholder="{{olList.type}}" class="input-control">
+                <input matInput type="text" [(ngModel)]="beerList.type" formControlName="type"
+                    placeholder="{{beerList.type}}" class="input-control">
                 <mat-error>
                     udfyld feltet
                 </mat-error>
             </mat-form-field>
 
             <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="text" [(ngModel)]="olList.smag" formControlName="smag"
-                    placeholder="{{olList.smag}}" class="input-control">
+                <input matInput type="text" [(ngModel)]="beerList.smag" formControlName="smag"
+                    placeholder="{{beerList.smag}}" class="input-control">
                 <mat-error>
                     udfyld feltet
                 </mat-error>
             </mat-form-field>
 
             <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="number" [(ngModel)]="olList.procent" formControlName="procent"
-                    placeholder="{{olList.procent}}" class="input-control">
+                <input matInput type="number" [(ngModel)]="beerList.procent" formControlName="procent"
+                    placeholder="{{beerList.procent}}" class="input-control">
                 <mat-error>
                     udfyld feltet
                 </mat-error>
             </mat-form-field>
 
             <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="date" [(ngModel)]="olList.argang" formControlName="argang" placeholder="{{olList.argang}}" class="input-control">
+                <input matInput type="date" [(ngModel)]="beerList.argang" formControlName="argang" placeholder="{{beerList.argang}}" class="input-control">
                 <mat-error>
                     Dette felt skal udfyldes
                 </mat-error>
             </mat-form-field>
 
             <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="text" [(ngModel)]="olList.land" formControlName="land"
-                    placeholder="{{olList.land}}" class="input-control">
+                <input matInput type="text" [(ngModel)]="beerList.land" formControlName="land"
+                    placeholder="{{beerList.land}}" class="input-control">
                 <mat-error>
                     udfyld feltet
                 </mat-error>
             </mat-form-field>
 
             <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="number" [(ngModel)]="olList.bryggeriId" formControlName="bryggerid"
-                    placeholder="{{olList.bryggeriId}}" class="input-control">
+                <input matInput type="number" [(ngModel)]="beerList.bryggeriId" formControlName="bryggerid"
+                    placeholder="{{beerList.bryggeriId}}" class="input-control">
                 <mat-error>
                     udfyld feltet
                 </mat-error>
             </mat-form-field>
 
             <!-- <mat-form-field class="example-full-width" appearance="fill">
-                    <mat-select [(value)]="selected" formControlName="bryggeprocess" placeholder="{{olList.bryggeprocess}}">
+                    <mat-select [(value)]="selected" formControlName="bryggeprocess" placeholder="{{beerList.bryggeprocess}}">
                         <mat-option>Ingen</mat-option>
                         <mat-option value="optionJa">Ja</mat-option>
                         <mat-option value="optionNej">Nej</mat-option>
@@ -69,33 +69,33 @@
             </mat-form-field> -->
 
             <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="text" [(ngModel)]="olList.etiket" formControlName="etiket"
-                    placeholder="{{olList.etiket}}" class="input-control">
+                <input matInput type="text" [(ngModel)]="beerList.etiket" formControlName="etiket"
+                    placeholder="{{beerList.etiket}}" class="input-control">
                 <mat-error>
                     udfyld feltet
                 </mat-error>
             </mat-form-field>
 
             <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="text" [(ngModel)]="olList.beskrivelse" formControlName="beskrivelse"
-                    placeholder="{{olList.beskrivelse}}" class="input-control">
+                <input matInput type="text" [(ngModel)]="beerList.beskrivelse" formControlName="beskrivelse"
+                    placeholder="{{beerList.beskrivelse}}" class="input-control">
                 <mat-error>
                     udfyld feltet
                 </mat-error>
             </mat-form-field>
           
             <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="text" [(ngModel)]="olList.antal" formControlName="antal"
-                    placeholder="{{olList.antal}}" class="input-control">
+                <input matInput type="text" [(ngModel)]="beerList.antal" formControlName="antal"
+                    placeholder="{{beerList.antal}}" class="input-control">
                 <mat-error>
                     udfyld feltet
                 </mat-error>
             </mat-form-field>
 
-            <button mat-raised-button type="submit" (click)="onAnnullerOl()" class="login-btn"
+            <button mat-raised-button type="submit" (click)="onCancel()" class="login-btn"
                 style="background: linear-gradient(#b60d0d, #ff6e6e);">Annuller</button>
 
-            <button mat-raised-button type="submit" (click)="onSubmitOl()" class="login-btn"
+            <button mat-raised-button type="submit" (click)="onSubmitBeer()" class="login-btn"
                 style="background: linear-gradient(#00ff37, #41fd70);">Rediger Øl</button>
         </form>
     </mat-card-content>

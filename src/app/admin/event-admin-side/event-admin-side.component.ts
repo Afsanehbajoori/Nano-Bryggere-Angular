@@ -14,20 +14,19 @@ import { UpdateEventsDialogBoxComponent } from '../update-events-dialog-box/upda
   styleUrls: ['./event-admin-side.component.css']
 })
 export class EventAdminSideComponent implements OnInit {
-  dialogRefSlet: MatDialogRef<SletDialogBoxComponent>;
-  dialogRefOpretteEvents : MatDialogRef<OpretteEventsDialogBoxComponent>;
+  dialogRefDelete: MatDialogRef<SletDialogBoxComponent>;
+  dialogRefCreateEvents : MatDialogRef<OpretteEventsDialogBoxComponent>;
   dialogRefUpdateEvents : MatDialogRef<UpdateEventsDialogBoxComponent>;
   searchkeyEventtitel:string;
-  searchkeyDeltagelser:string;
+  searchkeyParticipants:string;
   clickButton:boolean=true;
   eventList:any;
   events:Events[];
   //event = new Events();
   endpointE = '/Events';
-  endpointD='/Deltageres';
+  endpointP='/Deltageres';
   id = this.actRoute.snapshot.params['id'];
-  listDeltagelser:any;
-
+  listParticipants:any;
 
   constructor(
     public dialog: MatDialog,
@@ -36,24 +35,23 @@ export class EventAdminSideComponent implements OnInit {
     public actRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.loadEvents();
-    this.loadDeltaglser()
+    this.onloadEvents();
+    this.onloadParticipation()
   }
 
-  loadEvents(){
+  onloadEvents(){
     return this.restApi.getDatas(this.endpointE).subscribe(event => {
       this.events=event;
     })
   }
-  loadDeltaglser(){
-    this.restApi.getDatas(this.endpointD).subscribe(data => {
-      this.listDeltagelser=data
-      console.log('del:', this.listDeltagelser)
-
+  onloadParticipation(){
+    this.restApi.getDatas(this.endpointP).subscribe(data => {
+      this.listParticipants=data
+      console.log('del:', this.listParticipants)
     })
   }
 
-  onVisEvent(id:any){
+  onShowEvent(id:any){
     this.clickButton=false;
     return this.restApi.getData(id , this.endpointE).subscribe(data => {
       this.eventList=data;
@@ -72,22 +70,20 @@ export class EventAdminSideComponent implements OnInit {
     }
   }
 
-  onFindDeltagelser(){
-    if(this.searchkeyDeltagelser == ""){
+  onFindParticipants(){
+    if(this.searchkeyParticipants == ""){
       this.ngOnInit();
     }
     else{
-       this.restApi.getEventDeltagelserByBrugernavn(this.searchkeyDeltagelser.toLowerCase() , this.endpointE).subscribe((data) => {
+       this.restApi.getEventDeltagelserByBrugernavn(this.searchkeyParticipants.toLowerCase() , this.endpointE).subscribe((data) => {
          console.log('deltag:', data)
         return this.events=data;
       })
         }
   }
 
-
-
-  onSletEvent(id:any){
-    if(this.listDeltagelser.length !==0){
+  onDeleteEvent(id:any){
+    if(this.listParticipants.length !==0){
       alert('der er nogle er deltger i dette events . Først skal afmeld under deltager')
     }
     else{
@@ -96,13 +92,11 @@ export class EventAdminSideComponent implements OnInit {
         if(result){
           this.restApi.deleteData(id , this.endpointE).subscribe((data) => {
             console.log('delete:' , id);
-            this.loadEvents();
+            this.onloadEvents();
           })
         }
       });
     }
-
-
   }
 
   onUpdateEvent(id:any){
@@ -125,14 +119,14 @@ export class EventAdminSideComponent implements OnInit {
     })
   }
 
-  onOpretteEvent(){
+  onCreateEvent(){
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = "40%";
     dialogConfig.height= 'auto';
-    this.dialogRefOpretteEvents = this.dialog.open(OpretteEventsDialogBoxComponent , dialogConfig);
-    this.dialogRefOpretteEvents.afterClosed().subscribe(result => {
+    this.dialogRefCreateEvents = this.dialog.open(OpretteEventsDialogBoxComponent , dialogConfig);
+    this.dialogRefCreateEvents.afterClosed().subscribe(result => {
       this.ngOnInit();
     })
   }
@@ -141,6 +135,4 @@ export class EventAdminSideComponent implements OnInit {
     console.log('eventsId ', id)
 
   } */
-
-
 }

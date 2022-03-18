@@ -10,9 +10,9 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./update-post-dialog-box.component.css']
 })
 export class UpdatePostDialogBoxComponent implements OnInit {
-  RedigerPost: FormGroup = new FormGroup({});
+  updateForm: FormGroup = new FormGroup({});
   updatePost:any;
-  endpointp = '/Posts';
+  endpointP = '/Posts';
   postId:number;
 
   constructor( public dialogRefUpdatePost : MatDialogRef<UpdatePostDialogBoxComponent>,
@@ -22,17 +22,15 @@ export class UpdatePostDialogBoxComponent implements OnInit {
 
   ngOnInit(): void {
     this.postId=JSON.parse(localStorage.getItem('postId') || '{}');
-    this.restApi.getData(this.postId , this.endpointp)
+    this.restApi.getData(this.postId , this.endpointP)
     .toPromise()
     .then(data => {
       this.updatePost= data ;
-
-      this.RedigerPost = this.formBuilder.group({
+      this.updateForm = this.formBuilder.group({
         titel : new FormControl(this.updatePost.titel),
         indhold : new FormControl(this.updatePost.indhold)
 
       })
     })
   }
-
 }

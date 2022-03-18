@@ -11,9 +11,9 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./bruger-certifikat.component.css']
 })
 export class BrugerCertifikatComponent implements OnInit {
-  oplysninger: Kontaktoplysninger[];
-  oplysning = new Kontaktoplysninger;
-  endpoints = '/Kontaktoplysninger';
+  userinfos: Kontaktoplysninger[]; //oplysninger
+  userinfo = new Kontaktoplysninger; //oplysning
+  endpointI = '/Kontaktoplysninger'; 
   constructor(
     public dialog: MatDialog,
     public restApi: RestApiService, 
@@ -22,18 +22,18 @@ export class BrugerCertifikatComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.loadBruger()
+    this.onloadUser()
   }
-  loadBruger(){
-    return this.restApi.getDatas(this.endpoints).subscribe((user) => {
-      this.oplysninger = user;
+  onloadUser(){
+    return this.restApi.getDatas(this.endpointI).subscribe((user) => {
+      this.userinfos = user;
     })
   }
-  onGivBrugerCertifikat(id:any) {
+  onGivUserCertificate(id:any) {
     let dialogRef = this.dialog.open(CertifikatDialogBoxComponent)
     dialogRef.afterClosed().subscribe(result => {
-      this.restApi.updateData(id, this.endpoints, this.oplysninger).subscribe(data => {
-        this.loadBruger();
+      this.restApi.updateData(id, this.endpointI, this.userinfos).subscribe(data => {
+        this.onloadUser();
       })
     });
   };

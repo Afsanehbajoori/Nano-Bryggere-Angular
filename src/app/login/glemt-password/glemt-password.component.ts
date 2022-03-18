@@ -15,5 +15,4 @@ export class GlemtPasswordComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       });
     }
-
 }

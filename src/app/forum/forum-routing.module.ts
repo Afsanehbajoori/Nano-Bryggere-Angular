@@ -11,7 +11,7 @@ const routes: Routes = [
   {path:'forum',component:ForsideComponent},
   {path:'forumpost', component:ForumPostComponent},
   {path:'forumtags', component:ForumTagsComponent},
-  {path:'oprette',component:OpretteComponent},
+  {path:'forumcreation',component:OpretteComponent},
   // {path:'redigerslet/:id', component:RedigerSletComponent}
 ];
 

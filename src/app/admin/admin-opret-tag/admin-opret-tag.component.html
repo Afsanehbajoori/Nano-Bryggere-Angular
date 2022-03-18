@@ -1,9 +1,9 @@
 <mat-card class="main" id="imgeUp">
     <mat-card-content class="container">
 
-        <form [formGroup]="OpretForm" class="example-form">
+        <form [formGroup]="createForm" class="example-form">
             <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="text" [(ngModel)]="tagOprettelse.navn" formControlName="navn" placeholder="Navn" class="input-control">
+                <input matInput type="text" [(ngModel)]="tagCreation.name" formControlName="name" placeholder="Navn" class="input-control">
                 <!-- <mat-error *ngIf="navn.errors?.['required']"> -->
                 <mat-error>
                     feltet skal udfyldes 

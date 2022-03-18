@@ -3,19 +3,25 @@
         <h1 style="width: 100%;">Opret Forum</h1>
     </mat-card-title>
     <mat-card-content class="container">
-        <form [formGroup]="OpretForm" class="example-form">
+
+
+
+        <form [formGroup]="createForm" class="example-form">
             <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="text" [(ngModel)]="forumOprettelse.titel" class="input-control" formControlName="titel" placeholder="Titel" >
+                <input matInput type="text" [(ngModel)]="forumCreation.titel" class="input-control" formControlName="titel" placeholder="Titel" >
+                <!-- <mat-error *ngIf="navn.errors?.['required']"> -->
+
                 <mat-error>
                     feltet skal udfyldes
                 </mat-error>
             </mat-form-field>
             <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="text" [(ngModel)]="forumOprettelse.beskrivelse" formControlName="beskrivelse" placeholder="Beskrivelse" class="input-control">
+                <input matInput type="text" [(ngModel)]="forumCreation.beskrivelse" formControlName="beskrivelse" placeholder="Beskrivelse" class="input-control">
                 <mat-error>
                     Dette felt skal udfyldes
                 </mat-error>
             </mat-form-field>
+
             <mat-form-field class="example-full-width" appearance="fill">
               <input matInput [matDatepicker]="picker1"  [(ngModel)]="forumOprettelse.oprettet" formControlName="oprettet" placeholder="Date" class="input-control">
               <mat-datepicker-toggle matSuffix [for]="picker1" ></mat-datepicker-toggle>
@@ -24,8 +30,13 @@
                   Dette felt skal udfyldes
               </mat-error>
           </mat-form-field>
-            <button mat-raised-button type="submit" (click)="onAnnullerForum()" class="login-btn" style="background: linear-gradient(#e2dfdf, #ece9e9);">Annuller</button>
-            <button mat-raised-button type="submit" (click)="onSubmitForum()" class="login-btn" style="background: linear-gradient(#a3a5a3, #d3d4d3);">Opret Forum</button>
+
+
+
+            <button mat-raised-button type="submit" (click)="onCancelForum()" class="login-btn" style="background: linear-gradient(#b60d0d, #ff6e6e);">Annuller</button>
+            
+            <button mat-raised-button type="submit" (click)="onSubmitForum()" class="login-btn" style="background: linear-gradient(#33ff00, #41fd70);">Opret Forum</button>
+
         </form>
     </mat-card-content>
 </mat-card>

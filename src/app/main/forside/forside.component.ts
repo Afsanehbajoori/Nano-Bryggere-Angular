@@ -22,47 +22,45 @@ import { Øl } from 'src/app/Models/Øl';
 export class ForsideComponent implements OnInit {
   events: Events[];
   bryggeri: Bryggeri[];
-  olList: Øl [];
+  beerList: Øl [];
   event = new Events;
   eventList : any = {};
   endpointB='/Bryggerier';
   endpointO = '/Øller';
   endpointE = '/Events';
 
-
   constructor(
     public dialog: MatDialog,
     public restApi: RestApiService,
-    private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.loadEvent();
-    this.loadBryggeri();
-    this.loadOl();
+    this.onloadEvent();
+    this.onloadBryggeri();
+    this.onloadBeer();
   }
 
-  loadEvent() {
+  onloadEvent() {
     return this.restApi.getDatas(this.endpointE).subscribe((data) => {
       this.events = data;
       //console.log(this.events)
     });
   }
 
-  loadBryggeri(){
+  onloadBryggeri(){
     return this.restApi.getDatas(this.endpointB).subscribe((data) => {
       this.bryggeri = data;
       //console.log('bryggeriList:',this.bryggeri);
     })
   }
-  loadOl(){
+  onloadBeer(){
     return this.restApi.getDatas(this.endpointO).subscribe((data) => {
-      this.olList = data;
+      this.beerList = data;
       //console.log('olList:',this.olList);
     })
   }
 
-  visOlDetajler(id:any){
+  onShowBeerDetails(id:any){
     //console.log('click', id);
     this.dialog.open(VisOlDetajlerComponent , {
       width:'400px',
@@ -72,7 +70,7 @@ export class ForsideComponent implements OnInit {
     localStorage.setItem('olId' , id);
   }
 
-  visDetajler(id:any){
+  onShowDetails(id:any){
     //console.log('click', id);
     this.dialog.open(VisDetajlerComponent , {
       width:'400px',
@@ -82,7 +80,7 @@ export class ForsideComponent implements OnInit {
     localStorage.setItem('bryggeriId' , id);
   }
 
-  visEventsDetajler(id:any){
+  onShowEventsDetails(id:any){
     console.log('click', id);
     this.dialog.open(VisEventsDetajlerComponent , {
       width:'400px',
@@ -92,7 +90,4 @@ export class ForsideComponent implements OnInit {
     localStorage.setItem('eventsId' , id);
     console.log('eventsId' , id)
   }
-
-
-
 }

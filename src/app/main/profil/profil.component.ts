@@ -23,7 +23,7 @@ export class ProfilComponent implements OnInit {
   dialogRefRedigerProfil: MatDialogRef<RedigerProfilDialogBoxComponent>;
   dialogRefRedigerBryggeri: MatDialogRef<RedigerBryggeriDialogBoxComponent>;
   kontaktoplysningerList: any ;
-  BrugerList:any;
+  userList:any;
   bryggeriList: any;
   RolleList:any;
   endpointK = '/Kontaktoplysninger';

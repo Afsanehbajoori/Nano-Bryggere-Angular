@@ -9,8 +9,8 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./admin-tags.component.css']
 })
 export class AdminTagsComponent implements OnInit {
-  tagsliste: Tags[];
-  endpoints = '/Tags';
+  tagslist: Tags[];
+  endpointT = '/Tags';
   searchkey: string;
   constructor(
     public restApi: RestApiService,
@@ -18,30 +18,30 @@ export class AdminTagsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.loadTags()
+    this.onloadTags()
   }
-  loadTags() {
-    return this.restApi.getDatas(this.endpoints).subscribe((tag) => {
-      this.tagsliste = tag;
+  onloadTags() {
+    return this.restApi.getDatas(this.endpointT).subscribe((tag) => {
+      this.tagslist = tag;
     });
   }
-  onOpretTags() {
+  onCreateTags() {
     this.router.navigate(['../admin/tagsadmin']);
   }
-  onRedigerTags(id:any) {
+  onUpdateTags(id:any) {
     this.router.navigate(['../admin/tagsadmin']);
   }
-  onSletTags(id:any) {
-    return this.restApi.deleteData(id,this.endpoints).subscribe((tag) => {
-      this.tagsliste = tag;
+  onDeleteTags(id:any) {
+    return this.restApi.deleteData(id,this.endpointT).subscribe((tag) => {
+      this.tagslist = tag;
     });
   }
-  onFindOl(){
+  onFindBeer(){
     if(this.searchkey == ""){
       this.ngOnInit();
     }
     else{
-      this.tagsliste = this.tagsliste.filter(res =>{
+      this.tagslist = this.tagslist.filter(res =>{
         return res.navn.toLowerCase().match(this.searchkey.toLowerCase());
       })
     }

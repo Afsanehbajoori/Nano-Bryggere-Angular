@@ -19,7 +19,7 @@ export class RegistrerComponent implements OnInit {
  fnavn: '', enavn: '', addresselinje1: '', addresselinje2: '', postnr: '',
   by: '', email:'', telefonnr: '' };
 
-  BrugerFormGroup:any = new FormGroup({});
+  userFormGroup:any = new FormGroup({});
   endpointK = '/Kontaktoplysninger';
   endpointB= '/Brugere';
   endpointR= '/Roller';
@@ -27,7 +27,7 @@ export class RegistrerComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder, public restApi: RestApiService, public router: Router) { }
 
   ngOnInit(): void {
-    this.BrugerFormGroup = this._formBuilder.group({
+    this.userFormGroup = this._formBuilder.group({
       'kontaktoplysningerId':new FormControl(''),
       'fnavn' : new FormControl('' , Validators.required),
       'enavn': new FormControl('' , Validators.required),

@@ -11,12 +11,12 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 export class OlLagerComponent implements OnInit {
   // @Input() lagerInput = { antal: 0, flaskeAntal: 0, tondeAntal: 0 };
 
-  LagerForm: FormGroup;
-  endpoints = '/Øller';
+  LayerForm: FormGroup;
+  endpointO = '/Øller';
   selected = '';
   beer: any;
   beerid = this.actRoute.snapshot.params['id'];
-  olList : any = {};
+  beerList : any = {};
   constructor(
     public restApi: RestApiService,
     private router: Router,
@@ -24,25 +24,25 @@ export class OlLagerComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.LagerForm = new FormGroup({
+    this.LayerForm = new FormGroup({
       antal: new FormControl('', Validators.required),
       flaskeAntal: new FormControl('', Validators.required),
       tondeAntal: new FormControl('', Validators.required),
       flaskeResAntal: new FormControl('', Validators.required)
     });
-    this.onload();
+    this.onLoadBeer();
   }
-  onload(){  
-    return this.restApi.getData(this.beerid, this.endpoints).subscribe((beerInfo: {}) => {
-      this.olList = beerInfo;
+  onLoadBeer(){  
+    return this.restApi.getData(this.beerid, this.endpointO).subscribe((beerInfo: {}) => {
+      this.beerList = beerInfo;
     });
   }
-  onAnnullerOl() {
+  onCancel() {
     return this.router.navigate(['../main/katalog']);
   };
 
-  onSubmitOl() {
-    this.restApi.updateData(this.beerid, this.endpoints, this.olList).subscribe((data) => {
+  onSubmitBeer() {
+    this.restApi.updateData(this.beerid, this.endpointO, this.beerList).subscribe((data) => {
       this.router.navigate(['../main/katalog']);
     });
   }

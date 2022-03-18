@@ -26,20 +26,20 @@ const TREE_DATA: Search[] = [
 })
 
 export class SamarbejdeSideComponent implements OnInit {
-  showSamarbejdeComponent:boolean=false;
+  showCooperationComponent:boolean=false;
   dataSource = new MatTreeNestedDataSource<Search>();
   treeControl = new NestedTreeControl<Search>(node => node.children);
   
-  samarbejde: Samarbejde
-  samarbejder: Samarbejde[];
-  samarbejdeId: number;
-  endpointo = '/Øller';
-  endpointb = '/Bryggerier';
-  endpoints = '/Samarbejder';
+  cooperation: Samarbejde
+  cooperations: Samarbejde[];
+  cooperationId: number;
+  endpointO = '/Øller';
+  endpointB = '/Bryggerier';
+  endpointS = '/Samarbejder';
   searchkey: string;
-  ølId: number;
-  bryg: Bryggeri;
-  bryggeriId: number;
+  beerId: number;
+  brewery: Bryggeri;
+  breweryId: number;
   constructor(
     public dialog: MatDialog,
     public restApi: RestApiService,
@@ -48,34 +48,34 @@ export class SamarbejdeSideComponent implements OnInit {
   ) {  this.dataSource.data = TREE_DATA; }
   hasChild = (_: number, node: Search) => !!node.children && node.children.length > 0;
   ngOnInit(): void {
-    this.onLoadSamarbejde();
+    this.onLoadCooperation();
     // this.onLoadOl();
   }
-  showComponent(nodeName: string, id: any) {
-    console.log(this.samarbejder);
+  onshowComponent(nodeName: string, id: any) {
+    console.log(this.cooperations);
     switch (nodeName) {
       case 'Vis': {
         localStorage.setItem('sOlId', JSON.stringify(id));
-        this.showSamarbejdeComponent = !this.showSamarbejdeComponent;
+        this.showCooperationComponent = !this.showCooperationComponent;
         break;
       }
     }
   }
 
-  onLoadSamarbejde() {
-    if (this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}')) {
-      this.restApi.getDatas(this.endpoints).subscribe((data) => {
-        this.samarbejder = data.filter((res: any) => {
-          return res.bryggeriId1 === this.bryggeriId || res.bryggeriId2 === this.bryggeriId;
+  onLoadCooperation() {
+    if (this.breweryId = JSON.parse(localStorage.getItem('bryggeriId') || '{}')) {
+      this.restApi.getDatas(this.endpointS).subscribe((data) => {
+        this.cooperations = data.filter((res: any) => {
+          return res.bryggeriId1 === this.breweryId || res.bryggeriId2 === this.breweryId;
         });
-        this.samarbejder.forEach(function (value){
+        this.cooperations.forEach(function (value){
           console.log("Value",value.olId);
         })
       })
     }
   }
 
-  onRedigerOl(id: any) {
+  onUpdateBeer(id: any) {
     this.router.navigate(['../main/samarbejderediger/', id]);
   };
 }

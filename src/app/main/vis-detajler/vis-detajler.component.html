@@ -1,10 +1,10 @@
-<mat-card *ngIf="bryggeriInfo">
-<img mat-dialog-title [src]="bryggeriInfo.logo" alt="" style="width: 100%; height: auto;">
+<mat-card *ngIf="breweryInfo">
+<img mat-dialog-title [src]="breweryInfo.logo" alt="" style="width: 100%; height: auto;">
   <mat-dialog-content mat-dialog-content class="mat-typography">
     <p>Bryggerinavn:</p>
-    <p class="txtStyle">{{bryggeriInfo.navn}}</p>
+    <p class="txtStyle">{{breweryInfo.navn}}</p>
     <p>beskrivelse:</p>
-    <p class="txtStyle">{{bryggeriInfo.beskrivelse}}</p>
+    <p class="txtStyle">{{breweryInfo.beskrivelse}}</p>
   </mat-dialog-content>
   <div mat-dialog-actions>
     <button mat-button mat-dialog-close >Close</button>

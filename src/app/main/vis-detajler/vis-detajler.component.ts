@@ -10,24 +10,22 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./vis-detajler.component.css']
 })
 export class VisDetajlerComponent implements OnInit {
-  bryggeriId:number;
+  breweryId:number;
   endpointB='/Bryggerier';
-  bryggeriInfo: any;
+  breweryInfo: any;
   constructor(public restApi: RestApiService) { }
 
   ngOnInit(): void {
-    this.bryggeriId= JSON.parse(localStorage.getItem('bryggeriId') || '{}');
-    console.log('bry' , this.bryggeriId);
-    this.loadBryggeri();
+    this.breweryId= JSON.parse(localStorage.getItem('bryggeriId') || '{}');
+    console.log('bry' , this.breweryId);
+    this.onLoadBrewery();
 
   }
 
-
-  loadBryggeri(){
-    this.restApi.getData(this.bryggeriId , this.endpointB).subscribe(data => {
-      this.bryggeriInfo = data;
-      console.log('detajler:' , this.bryggeriInfo.navn)
+  onLoadBrewery(){
+    this.restApi.getData(this.breweryId , this.endpointB).subscribe(data => {
+      this.breweryInfo = data;
+      console.log('detajler:' , this.breweryInfo.navn)
     })
   }
-
 }

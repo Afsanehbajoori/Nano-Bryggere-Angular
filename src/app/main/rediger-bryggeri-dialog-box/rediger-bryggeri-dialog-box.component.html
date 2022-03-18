@@ -1,6 +1,6 @@
 <h1 mat-dialog-title>Rediger Bryggerioplysninger</h1>
 <div mat-dialog-content>
-  <form [formGroup]="RedigerBryggeri"  class="example-form" *ngIf="bryggeriList" >
+  <form [formGroup]="updateForm"  class="example-form" *ngIf="bryggeriList" >
 
       <mat-form-field class="example-full-width" appearance="fill" >
       <mat-label>Logo</mat-label>
@@ -20,7 +20,7 @@
     </mat-form-field>
 
 <div mat-dialog-actions class="btn-container">
-  <button mat-button (click)="dialogRefRedigerProfil.close(false)" mat-dialog-close mat-dialog-close="false" >Annulere</button>
+  <button mat-button (click)="dialogRefUpdateProfil.close(false)" mat-dialog-close mat-dialog-close="false" >Annulere</button>
   <button mat-button cdkFocusInitial mat-dialog-close [mat-dialog-close]="bryggeriList"  >Gem Ændringer</button>
 
  <!--  <button mat-button (click)="onClose()" mat-dialog-close mat-dialog-close="false" >Annulere</button>

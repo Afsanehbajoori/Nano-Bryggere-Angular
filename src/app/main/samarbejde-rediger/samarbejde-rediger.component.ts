@@ -11,9 +11,9 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 export class SamarbejdeRedigerComponent implements OnInit {
   selected = '';
   beerid = this.actRoute.snapshot.params['id'];
-  RedigerForm: FormGroup;
+  updateForm: FormGroup;
   endpoints = '/Øller';
-  olList : any = {};
+  beerList : any = {};
   constructor(
     public restApi: RestApiService, 
     private router: Router,
@@ -21,7 +21,7 @@ export class SamarbejdeRedigerComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.RedigerForm = new FormGroup({
+    this.updateForm = new FormGroup({
       navn: new FormControl(''),
       type: new FormControl(''),
       smag: new FormControl(''),
@@ -37,18 +37,18 @@ export class SamarbejdeRedigerComponent implements OnInit {
     });
   }
 
-  loadOl(){
+  onloadBeer(){
     return this.restApi.getData(this.beerid, this.endpoints).subscribe((beer: {}) => {
-      this.olList = beer;
+      this.beerList = beer;
     });
   }
 
-  onAnnullerOl() {
+  onCancel() {
     return this.router.navigate(['../main/samarbejdeside'])
   };
 
-  onSubmitOl() {
-    this.restApi.updateData(this.beerid, this.endpoints, this.olList).subscribe((data) => {
+  onSubmitBeer() {
+    this.restApi.updateData(this.beerid, this.endpoints, this.beerList).subscribe((data) => {
       this.router.navigate(['../main/samarbejdeside'])
     });
   }

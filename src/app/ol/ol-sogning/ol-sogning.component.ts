@@ -14,19 +14,19 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 export class OlSogningComponent implements OnInit {
   beer = new Øl;
   beers: Øl[];
-  kontakt = new Kontaktoplysninger;
-  bryger: Bryggeri
-  bryggerier: Bryggeri[];
+  userInfo = new Kontaktoplysninger;
+  brewery: Bryggeri
+  breweries: Bryggeri[];
   selected = ''
-  endpoints = '/Øller';
+  endpointO = '/Øller';
   endpointB = '/Bryggerier';
-  endpointk = '/Kontaktoplysninger';
+  endpointK = '/Kontaktoplysninger';
   searchkey: string;
   search: any;
   data = sessionStorage.getItem('id');
-  konktId: number;
+  userInfoId: number;
   olId: number;
-  bryggeriId: number;
+  breweryId: number;
   constructor(
     public dialog: MatDialog,
     public restApi: RestApiService,
@@ -35,19 +35,19 @@ export class OlSogningComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.loadOl();
+    this.onloadBeer();
   }
-  loadOl() {
-    if (this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}')) {
-        this.restApi.getDatas(this.endpoints).subscribe((beer) => {
+  onloadBeer() {
+    if (this.breweryId = JSON.parse(localStorage.getItem('bryggeriId') || '{}')) {
+        this.restApi.getDatas(this.endpointO).subscribe((beer) => {
         this.beers = beer.filter((res: any) => {
-          return res.bryggeriId != this.bryggeriId;
+          return res.bryggeriId != this.breweryId;
         });
       });
     }
   }
 
-  onFindOl() {
+  onFindBeer() {
     if (this.searchkey == "") {
       this.ngOnInit();
     }
@@ -58,20 +58,20 @@ export class OlSogningComponent implements OnInit {
     }
   }
 
-  onVisOlInfo(id: any) {
-    this.restApi.getData(id, this.endpoints).subscribe(beers => {
+  onShowBeer(id: any) {
+    this.restApi.getData(id, this.endpointO).subscribe(beers => {
       this.beer = beers;
       this.olId = this.beer.id;
       console.log(this.olId);
       localStorage.setItem('OlId', JSON.stringify(this.olId));
       this.restApi.getData(this.beer.bryggeriId, this.endpointB).subscribe(bryg => {
-        this.bryger = bryg;
-        console.log('bryggriInfo:', this.bryger.kontaktoplysningerId)
-        this.restApi.getData(bryg.kontaktoplysningerId, this.endpointk).subscribe(kontakt => {
-          this.kontakt = kontakt;
-          this.konktId = this.kontakt.id;
-          console.log("kontakt", this.konktId);
-          localStorage.setItem('KId', JSON.stringify(this.konktId));
+        this.brewery = bryg;
+        console.log('bryggriInfo:', this.brewery.kontaktoplysningerId)
+        this.restApi.getData(bryg.kontaktoplysningerId, this.endpointK).subscribe(userInfo => {
+          this.userInfo = userInfo;
+          this.userInfoId = this.userInfo.id;
+          console.log("kontakt", this.userInfo);
+          localStorage.setItem('KId', JSON.stringify(this.userInfoId));
         })
       })
       this.router.navigate(['../ol/olside/', this.olId]);

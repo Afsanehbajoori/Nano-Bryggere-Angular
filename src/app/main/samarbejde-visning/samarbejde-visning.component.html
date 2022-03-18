@@ -11,8 +11,8 @@
                         Øl Navn: {{beer.navn}}
                     </mat-panel-title>
                     <mat-action-row class="centers" style="justify-content: center;">
-                        <button mat-button class="btnMainStyle" (click)="onSletOl(beer.id)">Slet Øl</button>
-                        <button mat-button class="btnMainStyle" (click)="onRedigerOl(beer.id)">Rediger Øl</button>
+                        <button mat-button class="btnMainStyle" (click)="onDeleteBeer(beer.id)">Slet Øl</button>
+                        <button mat-button class="btnMainStyle" (click)="onUpdateBeer(beer.id)">Rediger Øl</button>
                     </mat-action-row>
                 </mat-expansion-panel-header>
                 <mat-card class="containStyle">

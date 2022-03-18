@@ -19,7 +19,7 @@ const TREE_DATA: Search[] = [
     {name: 'Øl',children:[{name: 'Med ØlId'} , {name: 'Med Ølnavn'} , {name: 'Med Øltype'}]} ,
     {name: 'Events', children:[ {name: 'Med Eventstitel'} , {name: 'Med Deltagelser'} ]} ,
     {name: 'Deltager', children:[ {name: 'Med EventTitel'} ]} ,
-    {name: 'Forum', children:[{name: 'Med ForumId'} , {name: 'Med ForumTitel'}]} ,
+    {name: 'Forum', children:[ {name: 'Med ForumTitel'}]} ,
     {name: 'Tags', children:[{name: 'admin-tags'} , {name: 'admin-opret-tag'} , {name: 'admin-rediger-tag'}]} ,
     {name: 'Certifikant'}],
   }

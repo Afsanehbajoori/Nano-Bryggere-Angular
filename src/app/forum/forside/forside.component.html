@@ -23,28 +23,26 @@
                         <button mat-button class="btnMainStyle"  (click)="onVisPost(forum.id)">Vis Messages</button>
                     </mat-action-row>
                 </mat-expansion-panel-header>
-                <mat-card class="containStyle">
+                <mat-card class="containStyle" >
                     <p>Forum Beskrivelse:</p>
-                    <p>{{forum.beskrivelse}}</p>
+                    <span>{{forum.beskrivelse}}</span>
+                    <span  style="float: right;">{{forum.oprettet}}</span>
                 </mat-card>
                 <div *ngFor="let post of listPosts"  >
                    <mat-card class="containStyle"  >
-
-                      <span style="color: darkblue;">Titel:</span>
+                    <div >
+                      <span style="color: darkblue;float: left;">Titel:</span>
                       <span >{{post.titel}}</span>
-                      <div class="center">
-                      <span style="color: darkblue;" >Indhold:</span>
+                      <span  style="color: darkblue; margin-left: 200px;" >Indhold:</span>
                       <span>{{post.indhold}}</span>
+                      <span style="float: right;">{{post.oprettet}}</span>
                      </div>
-
-                    <mat-action-row >
+                     <mat-action-row >
                       <button mat-button class="btnMainStyle"  (click)="onSletPost(post.id)">Slet Message</button> |
                       <button mat-button class="btnMainStyle"  (click)="onUpdatePost(post.id)">Update Message</button>
                   </mat-action-row>
                     <!-- <p >{{this.listBruger.brugernavn}}:</p> -->
-
                 </mat-card>
-
                 </div>
                 <mat-card class="messageStyle">
                     <form [formGroup]="OpretForm" class="example-form" >

@@ -20,8 +20,6 @@ import { UpdatePostDialogBoxComponent } from '../update-post-dialog-box/update-p
 export class ForsideComponent implements OnInit {
   @Input() postOprettelse = {titel: '', indhold: '' , brugerId:0 ,forumId:0  };
   dialogRefUpdatePost : MatDialogRef<UpdatePostDialogBoxComponent>;
-  // , oprettet:''
- // todayISOString : string = new Date().toISOString();
   OpretForm : any = new FormGroup({});
   forums: Forum[];
   forum = new Forum;
@@ -53,11 +51,11 @@ export class ForsideComponent implements OnInit {
 
     this.brugerId = JSON.parse(localStorage.getItem('brugerId') || '{}');
     this.OpretForm = new FormGroup({
-      titel: new FormControl('', Validators.required),
-      indhold: new FormControl('', Validators.required),
-      brugerId:new FormControl('' , Validators.required),
-      forumId:new FormControl('' , Validators.required)
-      //oprettet:new FormControl('', Validators.required)
+    titel: new FormControl('', Validators.required),
+    indhold: new FormControl('', Validators.required),
+    brugerId:new FormControl('' , Validators.required),
+    forumId:new FormControl('' , Validators.required)
+
     });
     this.loadForum();
     this.loadPost();
@@ -91,17 +89,14 @@ export class ForsideComponent implements OnInit {
     this.postOprettelse.brugerId= this.brugerId;
     this.postOprettelse.forumId=id;
     // this.postOprettelse.oprettet=formatDate(new Date(), 'yyyy-MM-ddThh:mm:ssssZ' , 'en-US').toString();
-
-    //this.postOprettelse.oprettet=this.todayISOString;
-    //console.log('date:', this.postOprettelse.oprettet )
 /*      if(!this.listArrayBrugerId.includes(Number(this.postOprettelse.brugerId2)))
     {
       alert('du har valgt bruger som ikke eksister!')
     }else{ */
      this.restApi.createData(this.postOprettelse, this.endpointp).subscribe((data) => {
-     this.postOprettelse.indhold='';
-     this.postOprettelse.titel='';
-
+       this.ngOnInit();
+       this.postOprettelse.titel='';
+       this.postOprettelse.indhold='';
         // localStorage.setItem('brugerId2' ,JSON.stringify(data.brugerId2) );
        // this.router.navigate(['../main/katalog']);
       });
@@ -133,7 +128,7 @@ export class ForsideComponent implements OnInit {
 
   onUpdatePost(id:any){
     this.restApi.getData(id , this.endpointp).subscribe(data => {
-    if(this.brugerId === data.brugerId){
+    if(this.brugerId === data.brugerId ){
       localStorage.setItem('postId' ,JSON.stringify(id));
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
@@ -161,18 +156,6 @@ export class ForsideComponent implements OnInit {
     this.router.navigate(['../forum/oprette']);
   };
 
-  /* onOpdaterForum(id: any){
-    this.router.navigate(['../forum/redigerslet/' + id]);
-  }
-
-  onSletForum(id: any) {
-    let dialogRef = this.dialog.open(SletDialogBoxComponent);
-    dialogRef.afterClosed().subscribe(result => {
-      this.restApi.deleteData(id, this.endpointf).subscribe(data => {
-        this.loadForum();
-      })
-    });
-  }; */
 
   onSletPost(id: any) {
     this.restApi.getData(id , this.endpointp).subscribe(data => {

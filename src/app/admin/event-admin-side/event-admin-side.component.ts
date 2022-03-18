@@ -116,8 +116,9 @@ export class EventAdminSideComponent implements OnInit {
     this.dialogRefUpdateEvents.afterClosed().subscribe(result => {
       if (result) {
         this.eventList = result;
+        console.log('date:', typeof(this.eventList.startDato) );
         this.restApi.updateData(id, this.endpointE, this.eventList).subscribe((data) => {
-          //console.log(this.eventList);
+
         })
       }
       this.ngOnInit();

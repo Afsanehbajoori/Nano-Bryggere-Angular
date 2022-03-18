@@ -1,5 +1,5 @@
 .main{
-    height: 100%;
+    max-height: auto;
     background-color: rgb(255, 255, 255);
   }
 
@@ -9,6 +9,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     width: auto;
+
   }
 
 .list {
@@ -70,9 +71,8 @@
   font-weight: bold;
   width: 50%;
 }
-.center {
-   display:block;
-    margin:0 auto;
-    width:25%;
-  
-}
+
+
+
+
+

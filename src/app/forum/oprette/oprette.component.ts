@@ -9,7 +9,8 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./oprette.component.css']
 })
 export class OpretteComponent implements OnInit {
-  @Input() forumOprettelse = { titel: '', beskrivelse: ''};
+  @Input() forumOprettelse = { titel: '', beskrivelse: '' , oprettet:'' };
+  date: Date = new Date();
   OpretForm: any = new FormGroup({});
   endpoints = '/Forumer';
 
@@ -19,7 +20,7 @@ export class OpretteComponent implements OnInit {
     this.OpretForm = new FormGroup({
       titel: new FormControl('', Validators.required),
       beskrivelse: new FormControl('', Validators.required),
-      // oprettelse: new FormControl('', Validators.required),
+      oprettet:new FormControl('', Validators.required)
     });
   }
 
@@ -28,7 +29,8 @@ export class OpretteComponent implements OnInit {
   };
 
   onSubmitForum() {
-    //console.log('forum',this.forumOprettelse);
+ /*      this.forumOprettelse.oprettet=this.date.getTimezoneOffset
+     console.log('forum',this.forumOprettelse.oprettet); */
     this.restApi.createData(this.forumOprettelse, this.endpoints).subscribe((data) => {
       this.router.navigate(['../forum/forum'])
       localStorage.setItem('forumId' ,JSON.stringify(data.id));

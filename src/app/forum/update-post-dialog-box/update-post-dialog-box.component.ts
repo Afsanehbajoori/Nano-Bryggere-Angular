@@ -30,6 +30,7 @@ export class UpdatePostDialogBoxComponent implements OnInit {
       this.RedigerPost = this.formBuilder.group({
         titel : new FormControl(this.updatePost.titel),
         indhold : new FormControl(this.updatePost.indhold)
+
       })
     })
   }

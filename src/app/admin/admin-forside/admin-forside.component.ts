@@ -33,19 +33,19 @@ const TREE_DATA: Search[] = [
 export class AdminForsideComponent implements OnInit {
   treeControl = new NestedTreeControl<Search>(node => node.children);
   dataSource = new MatTreeNestedDataSource<Search>();
-  showBrugerIdComponent:boolean=false;
-  showCetifikantComponent: boolean=false;
-  showOlComponent:boolean=false;
+  showUserIdComponent:boolean=false;
+  showCertificateComponent: boolean=false;
+  showBeerComponent:boolean=false;
   showEventsComponent:boolean=false;
   showAdminTagsComponent:boolean=false;
-  showAdminRedigerTagsComponent:boolean=false;
-  showAdminOpretTagsComponent:boolean=false;
+  showAdminUpdateTagsComponent:boolean=false;
+  showAdminCreateTagsComponent:boolean=false;
   showBryggeriComponent:boolean=false;
-  showRolleComponent:boolean=false;
+  showRoleComponent:boolean=false;
   showForumComponent:boolean=false;
-  showBrugernavnComponent:boolean=false;
-  showBrugerEmailComponent:boolean=false;
-  showDeltagerComponent:boolean=false;
+  showUsernameComponent:boolean=false;
+  showUserEmailComponent:boolean=false;
+  showParticipantComponent:boolean=false;
 
   constructor(  public dialog: MatDialog,
     public restApi: RestApiService,
@@ -63,23 +63,23 @@ export class AdminForsideComponent implements OnInit {
   switch (nodeName)
   {
     case 'Med Brugernavn':{
-      this.showBrugernavnComponent=!this.showBrugernavnComponent;
+      this.showUsernameComponent=!this.showUsernameComponent;
       break;
     }
     case 'Med BrugerEfternavn':{
-      this.showBrugernavnComponent=!this.showBrugernavnComponent;
+      this.showUsernameComponent=!this.showUsernameComponent;
       break;
     }
     case 'Med Email':{
-      this.showBrugernavnComponent=!this.showBrugernavnComponent;
+      this.showUsernameComponent=!this.showUsernameComponent;
       break;
     }
     case 'Med events Titel':{
-      this.showBrugernavnComponent=!this.showBrugernavnComponent;
+      this.showUsernameComponent=!this.showUsernameComponent;
       break;
     }
     case 'Med Ølnavn':{
-      this.showOlComponent=!this.showOlComponent;
+      this.showBeerComponent=!this.showBeerComponent;
       break;
     }
     case 'Med Eventstitel':{
@@ -91,7 +91,7 @@ export class AdminForsideComponent implements OnInit {
       break;
     }
     case 'Med EventTitel':{
-      this.showDeltagerComponent=!this.showDeltagerComponent;
+      this.showParticipantComponent=!this.showParticipantComponent;
       break;
     }
     case 'admin-tags':{
@@ -99,15 +99,15 @@ export class AdminForsideComponent implements OnInit {
       break;
     }
     case 'admin-opret-tag':{
-      this.showAdminOpretTagsComponent=!this.showAdminOpretTagsComponent;
+      this.showAdminCreateTagsComponent=!this.showAdminCreateTagsComponent;
       break;
     }
     case 'admin-rediger-tag':{
-      this.showAdminRedigerTagsComponent=!this.showAdminRedigerTagsComponent;
+      this.showAdminUpdateTagsComponent=!this.showAdminUpdateTagsComponent;
       break;
     }
     case 'Certifikant':{
-      this.showCetifikantComponent=!this.showCetifikantComponent;
+      this.showCertificateComponent=!this.showCertificateComponent;
       break;
     }
     case 'Med Bryggerinavn':{
@@ -123,11 +123,11 @@ export class AdminForsideComponent implements OnInit {
       break;
     }
     case 'Med Rollenavn':{
-      this.showRolleComponent=!this.showRolleComponent;
+      this.showRoleComponent=!this.showRoleComponent;
       break;
     }
     case 'Rolle Med Brugernavn':{
-      this.showRolleComponent=!this.showRolleComponent;
+      this.showRoleComponent=!this.showRoleComponent;
       break;
     }
   }

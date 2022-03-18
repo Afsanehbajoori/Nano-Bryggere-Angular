@@ -10,10 +10,10 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./certifikat.component.css']
 })
 export class CertifikatComponent implements OnInit {
-  endpoints = '/Brugere';
-  valgtefil: File;
-  bruger : any;
-  brugerId: number;
+  endpointB = '/Brugere';
+  choosenfile: File;
+  user : any;
+  userId: number;
   file : any;
   url : string = "assets/images/Profil billede.png";
   constructor(
@@ -24,30 +24,31 @@ export class CertifikatComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.brugerId = JSON.parse(localStorage.getItem('kontaktoplysningerId') || '{}');
-    this.loadBruger();
+    this.userId = JSON.parse(localStorage.getItem('kontaktoplysningerId') || '{}');
+    this.onloadUser();
   }
 
-  loadBruger(){
-    return this.restApi.getData(this.brugerId, this.endpoints).subscribe((brugerinfo: {}) => {
-      this.bruger = brugerinfo;
+  onloadUser(){
+    return this.restApi.getData(this.userId, this.endpointB).subscribe((userinfo: {}) => {
+      this.user = userinfo;
     });
   }
 
-  onSubmitCertifikats(event: any) {
+  onSubmitCertificate(event: any) {
     if(event.target.files){
       var reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]);
       reader.onload=(e: any)=>{
         this.url =e.target.result;
-        this.bruger.certifikatImg = e.target.result;
-        this.bruger.certifikat = 0;
+        this.user.certifikatImg = e.target.result;
+        this.user.certifikat = 0;
       }
     }
   };
-  onUploadCertifikat() {
-    console.log(this.bruger);
-    this.restApi.updateData(this.brugerId, this.endpoints, this.bruger).subscribe((data) => {
+
+  onUploadCertificate() {
+    console.log(this.user);
+    this.restApi.updateData(this.userId, this.endpointB, this.user).subscribe((data) => {
       this.router.navigate(['../main/main'])
     });
   }

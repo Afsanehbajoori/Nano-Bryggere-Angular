@@ -11,7 +11,7 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./update-events-dialog-box.component.css']
 })
 export class UpdateEventsDialogBoxComponent implements OnInit {
-  updateEvents: FormGroup = new FormGroup({});
+  updateForm: FormGroup = new FormGroup({});
   eventsList:any;
   endpointE= '/Events';
   eventsId : number;
@@ -31,7 +31,7 @@ export class UpdateEventsDialogBoxComponent implements OnInit {
     .then(data => {
       this.eventsList= data ;
 
-      this.updateEvents = this.formBuilder.group({
+      this.updateForm = this.formBuilder.group({
         eventBilled : new FormControl(this.eventsList.eventBilled),
         titel : new FormControl(this.eventsList.titel),
         beskrivelse: new FormControl(this.eventsList.beskrivelse),

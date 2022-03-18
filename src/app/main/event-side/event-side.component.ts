@@ -11,5 +11,4 @@ export class EventSideComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

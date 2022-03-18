@@ -22,7 +22,6 @@ export class DeltagerAdminSideComponent implements OnInit {
 
   constructor(public dialog: MatDialog,
     public restApi: RestApiService,
-    private router: Router,
     public actRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -61,5 +60,4 @@ export class DeltagerAdminSideComponent implements OnInit {
     this.restApi.deleteData(id , this.endpointP).subscribe(data =>
       this.ngOnInit())
   }
-
 }

@@ -7,13 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edit-password.component.css']
 })
 export class EditPasswordComponent implements OnInit {
-  EditPWForm:FormGroup;
+  editPWForm:FormGroup;
   constructor() { }
 
   ngOnInit(): void {
-    this.EditPWForm = new FormGroup({
+    this.editPWForm = new FormGroup({
       PWCtrl: new FormControl('', [Validators.required]),
       });
   }
-
 }

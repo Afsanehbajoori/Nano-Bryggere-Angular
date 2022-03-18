@@ -26,12 +26,10 @@ export class UpdatePostDialogBoxComponent implements OnInit {
     .toPromise()
     .then(data => {
       this.updatePost= data ;
-
       this.updateForm = this.formBuilder.group({
         titel : new FormControl(this.updatePost.titel),
         indhold : new FormControl(this.updatePost.indhold)
       })
     })
   }
-
 }

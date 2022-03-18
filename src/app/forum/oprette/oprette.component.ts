@@ -35,5 +35,4 @@ export class OpretteComponent implements OnInit {
       console.log('id',data.id);
     })
   }
-
 }

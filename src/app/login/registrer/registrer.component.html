@@ -1,9 +1,9 @@
 <mat-card class="main" id="imgeUp" >
   <h1 class="txt">Indtast dine informationer her, for at bruge denne service</h1>
   <div class="container">
-    <form [formGroup]="BrugerFormGroup"  novalidate>
+    <form [formGroup]="userFormGroup"  novalidate>
 <mat-vertical-stepper>
-      <mat-step [stepControl]="BrugerFormGroup">
+      <mat-step [stepControl]="userFormGroup">
         <ng-template matStepLabel>Indtast din Fornavn</ng-template>
           <mat-form-field appearance="fill">
             <mat-label>Name</mat-label>
@@ -13,7 +13,7 @@
             <button mat-button matStepperNext>Next</button>
           </div>
       </mat-step>
-        <mat-step [stepControl]="BrugerFormGroup">
+        <mat-step [stepControl]="userFormGroup">
           <ng-template matStepLabel>Indtast din Efternavn</ng-template>
           <mat-form-field appearance="fill">
             <mat-label>Efternavn</mat-label>
@@ -24,7 +24,7 @@
             <button mat-button matStepperNext>Next</button>
           </div>
         </mat-step>
-           <mat-step [stepControl]="BrugerFormGroup">
+           <mat-step [stepControl]="userFormGroup">
             <ng-template matStepLabel>Indtast din Adresselinje 1</ng-template>
           <mat-form-field appearance="fill">
             <mat-label>Adresselinje 1</mat-label>
@@ -36,7 +36,7 @@
           </div>
         </mat-step>
 
-        <mat-step [stepControl]="BrugerFormGroup">
+        <mat-step [stepControl]="userFormGroup">
           <ng-template matStepLabel>Indtast din Adresselinje 2</ng-template>
           <mat-form-field appearance="fill">
             <mat-label>Adresselinje 2</mat-label>
@@ -48,7 +48,7 @@
           </div>
         </mat-step>
 
-        <mat-step [stepControl]="BrugerFormGroup">
+        <mat-step [stepControl]="userFormGroup">
           <ng-template matStepLabel>Indtast din PostNr</ng-template>
           <mat-form-field appearance="fill">
             <mat-label>PostNr</mat-label>
@@ -60,7 +60,7 @@
           </div>
         </mat-step>
 
-        <mat-step [stepControl]="BrugerFormGroup">
+        <mat-step [stepControl]="userFormGroup">
           <ng-template matStepLabel>Indtast din By</ng-template>
           <mat-form-field appearance="fill">
             <mat-label>By</mat-label>
@@ -72,7 +72,7 @@
           </div>
         </mat-step>
 
-        <mat-step [stepControl]="BrugerFormGroup">
+        <mat-step [stepControl]="userFormGroup">
           <ng-template matStepLabel>Indtast din E-mail</ng-template>
           <mat-form-field appearance="fill">
             <mat-label>E-mail</mat-label>
@@ -84,7 +84,7 @@
           </div>
         </mat-step>
 
-      <mat-step [stepControl]="BrugerFormGroup">
+      <mat-step [stepControl]="userFormGroup">
         <ng-template matStepLabel>Indtast din TelefonNr.</ng-template>
         <mat-form-field appearance="fill">
           <mat-label>TelefonNr</mat-label>
@@ -96,7 +96,7 @@
         </div>
     </mat-step>
 
-      <mat-step [stepControl]="BrugerFormGroup">
+      <mat-step [stepControl]="userFormGroup">
         <ng-template matStepLabel>Vælg Rolle</ng-template>
         <mat-form-field appearance="fill">
           <mat-label>rolleNavn</mat-label>
@@ -114,7 +114,7 @@
         </div>
       </mat-step>
 
-      <mat-step [stepControl]="BrugerFormGroup">
+      <mat-step [stepControl]="userFormGroup">
         <ng-template matStepLabel>Indtast din brugernavn</ng-template>
         <mat-form-field appearance="fill">
           <mat-label>brugernavn</mat-label>
@@ -126,7 +126,7 @@
         </div>
       </mat-step>
 
-      <mat-step [stepControl]="BrugerFormGroup">
+      <mat-step [stepControl]="userFormGroup">
         <ng-template matStepLabel>Indtast din Password</ng-template>
         <mat-form-field appearance="fill">
           <mat-label>Password</mat-label>

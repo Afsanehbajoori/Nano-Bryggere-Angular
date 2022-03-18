@@ -13,9 +13,9 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 export class LoginSideComponent implements OnInit {
   login: any = {};
   logins: Bruger[];
-  endpoints = '/Logins';
-  endpointK = '/Kontaktoplysninger';
-  endpointB = '/Brugere';
+  endpointL = '/Logins';
+  endpointI = '/Kontaktoplysninger';
+  endpointU = '/Brugere';
 
   loginForm: any = new FormGroup({});
 
@@ -39,7 +39,7 @@ export class LoginSideComponent implements OnInit {
   onSubmitLogin() {
     localStorage.clear();
 
-  this.restApi.getDatas(this.endpointB).subscribe((res) => {
+  this.restApi.getDatas(this.endpointU).subscribe((res) => {
   const user = res.find((a:any) => {
     console.log('infoLogin:' , a.kontaktoplysningerId);
     //this.restApi.getData(a.kontaktoplysningerId , this.endpointK).subscribe(data => {
@@ -56,7 +56,7 @@ export class LoginSideComponent implements OnInit {
      localStorage.setItem('brugerId' ,JSON.stringify(user.id) );
      localStorage.setItem('rolleId' ,JSON.stringify(user.rolleId) );
      this.loginDetails.brugerId = user.id;
-     this.restApi.createData(this.loginDetails , this.endpoints).subscribe((res) => {
+     this.restApi.createData(this.loginDetails , this.endpointL).subscribe((res) => {
       // console.log("brugerId:" ,res.brugerId);
 
 
@@ -75,9 +75,9 @@ export class LoginSideComponent implements OnInit {
     this.router.navigate(['../login/registrer']);
   };
 
-  loadLogin() {
-    return this.restApi.getData(this.login.id, this.endpoints).subscribe((logins) => {
-      this.login = logins;
-    })
-  }
+  // onloadLogin() {
+  //   return this.restApi.getData(this.login.id, this.endpointL).subscribe((logins) => {
+  //     this.login = logins;
+  //   })
+  // }
 }

@@ -2,7 +2,7 @@
     <mat-toolbar class="login-header" style="background: linear-gradient(#238ff5, #23baf5);">
         <form class="example-form" style="justify-content: center; width: 100%;">
             <mat-form-field style="width: 10%;">
-                <input matInput type="search" placeholder="Find øl" [(ngModel)]="searchkey" (ngModelChange)="onFindOl()" [ngModelOptions]="{standalone: true}">
+                <input matInput type="search" placeholder="Find øl" [(ngModel)]="searchkey" (ngModelChange)="onFindBeer()" [ngModelOptions]="{standalone: true}">
             </mat-form-field>
         </form>
         <h1 style="justify-content: center; width: 100%;">Ol Liste</h1>
@@ -15,7 +15,7 @@
                         <p>{{beer.navn}}</p>
                     </mat-panel-title>
                      <mat-action-row class="centers" style="justify-content: center;">
-                        <button mat-button class="btnMainStyle" (click)="onSletOl(beer.id)">Slet Øl</button>
+                        <button mat-button class="btnMainStyle" (click)="onDeleteBeer(beer.id)">Slet Øl</button>
                     </mat-action-row>
                 </mat-expansion-panel-header>
                 <mat-card class="containStyle">

@@ -10,22 +10,19 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
   styleUrls: ['./oprette-events-dialog-box.component.css']
 })
 export class OpretteEventsDialogBoxComponent implements OnInit {
-  @Input() eventOprettelse = {eventBilled:'', titel: '', beskrivelse: '',  lokation: '' ,startDato:'',slutDato:'' };
+  @Input() eventCreation = {eventBilled:'', titel: '', beskrivelse: '',  lokation: '' ,startDato:'',slutDato:'' };
 
-
-  OpretForm: any = new FormGroup({});
+  CreateForm: any = new FormGroup({});
   endpointE = '/Events';
   eventsList:any;
   eventBilled:any;
   constructor(
     public dialogRefOpretteEvents : MatDialogRef<OpretteEventsDialogBoxComponent>,
     public restApi: RestApiService,
-    private formBuilder: FormBuilder,
-    private router: Router,
     public actRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.OpretForm = new FormGroup({
+    this.CreateForm = new FormGroup({
       eventBilled: new FormControl(''),
       titel: new FormControl('', Validators.required),
       beskrivelse: new FormControl('', Validators.required),
@@ -35,7 +32,7 @@ export class OpretteEventsDialogBoxComponent implements OnInit {
     });
   }
 
-  onSubmitCertifikats(event: any) {
+  onSubmitCertificate(event: any) {
     if (event.target.files) {
       var reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]);
@@ -48,14 +45,13 @@ export class OpretteEventsDialogBoxComponent implements OnInit {
   };
 
   onSubmitEvent() {
-    console.log(this.eventOprettelse);
-    this.eventOprettelse.eventBilled=JSON.parse(localStorage.getItem('eventBilled')|| '{}');
-    console.log('image:', this.eventOprettelse.eventBilled);
-    this.restApi.createData(this.eventOprettelse, this.endpointE).subscribe((data) => {
+    console.log(this.eventCreation);
+    this.eventCreation.eventBilled=JSON.parse(localStorage.getItem('eventBilled')|| '{}');
+    console.log('image:', this.eventCreation.eventBilled);
+    this.restApi.createData(this.eventCreation, this.endpointE).subscribe((data) => {
       console.log('oprette ny event:' , data);
       this.dialogRefOpretteEvents.close();
       // this.router.navigate(['../events/events'])
     })
   }
-
 }

@@ -9,10 +9,10 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./oprette-ol.component.css']
 })
 export class OpretteOlComponent implements OnInit {
-  @Input() olOprettelse = { navn: '', type: '', smag: '', procent: null, land: '', bryggeriId: null, etiket: '', beskrivelse:'', antal: '', argang: '' };
+  @Input() beerCreation = { navn: '', type: '', smag: '', procent: null, land: '', bryggeriId: null, etiket: '', beskrivelse:'', antal: '', argang: '' };
   // @Input() olOprettelse = { navn: '', type: '', smag: '', procent: null, land: '', bryggeriId: null, argang: 0, etiket: '', beskrivelse:'', antal: '' };
-  OpretForm : FormGroup;
-  endpoints = '/Øller';
+  createForm : FormGroup;
+  endpointO = '/Øller';
   selected = '';
   constructor(
     public restApi: RestApiService, 
@@ -21,7 +21,7 @@ export class OpretteOlComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.OpretForm = new FormGroup({
+    this.createForm = new FormGroup({
       navn: new FormControl('', Validators.required),
       type: new FormControl('', Validators.required),
       smag: new FormControl('', Validators.required),
@@ -37,13 +37,13 @@ export class OpretteOlComponent implements OnInit {
     });
   }
 
-  onAnnullerOl() {
+  onCancel() {
         return this.router.navigate(['../main/katalog']);
   };
-  onSubmitCertifikats(event: any) {
+  onSubmitCertificate(event: any) {
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
-      reader.onload = (e:any) => this.olOprettelse.etiket = e.target.result;
+      reader.onload = (e:any) => this.beerCreation.etiket = e.target.result;
       reader.readAsDataURL(event.target.files[0])
       // var reader = new FileReader();
       // reader.readAsDataURL(event.target.files[0]);
@@ -54,13 +54,13 @@ export class OpretteOlComponent implements OnInit {
       // }
     }
     else{
-      this.olOprettelse.etiket = '';
+      this.beerCreation.etiket = '';
     }
   };
-  onSubmitOl() {
-    this.olOprettelse.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}');
-    console.log(this.olOprettelse);
-    this.restApi.createData(this.olOprettelse, this.endpoints).subscribe((data) => {
+  onSubmitBeer() {
+    this.beerCreation.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}');
+    console.log(this.beerCreation);
+    this.restApi.createData(this.beerCreation, this.endpointO).subscribe((data) => {
       this.router.navigate(['../main/katalog']);
     });
   }

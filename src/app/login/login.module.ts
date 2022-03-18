@@ -7,7 +7,6 @@ import { RegistrerComponent } from './registrer/registrer.component';
 import { GlemtPasswordComponent } from './glemt-password/glemt-password.component';
 import { EditPasswordComponent } from './edit-password/edit-password.component';
 import { RedigerSletBrugerComponent } from './rediger-slet-bruger/rediger-slet-bruger.component';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon'
 import { MatFormFieldModule } from '@angular/material/form-field';

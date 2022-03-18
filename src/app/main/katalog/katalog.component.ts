@@ -14,7 +14,7 @@ export class KatalogComponent implements OnInit {
   beers: any;
   beerliste: Øl[];
   beer: Øl;
-  endpoints = '/Øller';
+  endpointO = '/Øller';
   searchkey: string;
   bryggeriId: number;
   bryggeriList: any;
@@ -28,12 +28,12 @@ export class KatalogComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.loadOl()
+    this.onloadBeer()
   }
 
-  loadOl() {
+  onloadBeer() {
     if (this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}')) {
-      this.restApi.getDatas(this.endpoints).subscribe((data) => {
+      this.restApi.getDatas(this.endpointO).subscribe((data) => {
         this.beerliste = data.filter((res: any) => {
           return res.bryggeriId === this.bryggeriId;
         });
@@ -41,32 +41,32 @@ export class KatalogComponent implements OnInit {
     }
   }
 
-  onRedigerOl(id: any) {
+  onUpdateBeer(id: any) {
     this.router.navigate(['../main/redigerol/', id]);
   };
 
-  onLager(id: any) {
+  onBeerLayer(id: any) {
     localStorage.setItem('lagerId', JSON.stringify(id));
     this.router.navigate(['../ol/ollager/', id]);
   };
 
-  onOpretOl() {
+  onCreateBeer() {
     this.router.navigate(['../main/opretteol']);
   };
 
-  onSletOl(id: any) {
+  onDeleteBeer(id: any) {
     let dialogRef = this.dialog.open(SletDialogBoxComponent);
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
       if (result == true) {
-        this.restApi.deleteData(id, this.endpoints).subscribe(data => {
-          this.loadOl();
+        this.restApi.deleteData(id, this.endpointO).subscribe(data => {
+          this.onloadBeer();
         })
       }
     });
   };
 
-  onFindOl() {
+  onFindBeer() {
     if (this.searchkey == "") {
       this.ngOnInit();
     }

@@ -11,7 +11,7 @@
       <mat-card-title>Øl List</mat-card-title>
     </span>
       <cdk-virtual-scroll-viewport orientation="horizontal" itemSize="50" class="example-viewport">
-        <div *cdkVirtualFor="let ol of olList" class="example-item" (click)="visOlDetajler(ol.id)" >
+        <div *cdkVirtualFor="let ol of beerList" class="example-item" (click)="onShowBeerDetails(ol.id)" >
           <img [src]="this.ol.etiket" alt="" style="width: 40%; height: 40%;">
            <p>navn:</p>
             <p class="txtStyle">{{ol.navn}}</p>
@@ -24,7 +24,7 @@
       <mat-card-title>Bryggeri List</mat-card-title>
     </span>
     <cdk-virtual-scroll-viewport orientation="horizontal" itemSize="50" class="example-viewport " >
-      <div *cdkVirtualFor="let brygge of bryggeri" class="example-item" (click)="visDetajler(brygge.id)" >
+      <div *cdkVirtualFor="let brygge of bryggeri" class="example-item" (click)="onShowDetails(brygge.id)" >
         <img [src]="this.brygge.logo" alt="" style="width: 40%; height: 40%;">
          <p>Bryggerinavn:</p>
           <p class="txtStyle">{{brygge.navn}}</p>
@@ -37,7 +37,7 @@
       <mat-card-title>Det Sker Der</mat-card-title>
     </span>
     <cdk-virtual-scroll-viewport orientation="horizontal" itemSize="20" class="example-viewport " >
-      <div *cdkVirtualFor="let event of events" class="example-item" (click)="visEventsDetajler(event.id)" >
+      <div *cdkVirtualFor="let event of events" class="example-item" (click)="onShowEventsDetails(event.id)" >
         <img [src]="this.event.eventBilled" alt="" style="width: 40%; height: 40%;">
          <p>Titel:</p>
           <p class="txtStyle">{{event.titel}}</p>

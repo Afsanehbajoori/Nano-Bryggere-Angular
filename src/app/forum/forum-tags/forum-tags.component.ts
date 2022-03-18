@@ -32,7 +32,7 @@ export class ForumTagsComponent implements OnInit {
     });
   }
 
-  onFindOl(){
+  onFindBeer(){
     if(this.searchkey == ""){
       this.ngOnInit();
     }

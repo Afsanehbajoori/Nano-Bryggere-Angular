@@ -12,9 +12,9 @@ const routes: Routes = [
       {path:'',component:LoginSideComponent},
       {path:'login',component: LoginSideComponent},
       {path:'registrer',component:RegistrerComponent},
-      {path:'glemtpassword',component:GlemtPasswordComponent},
+      {path:'forgotpassword',component:GlemtPasswordComponent},
       {path:'editpassword',component:EditPasswordComponent},
-      {path:'redigersletbruger',component:RedigerSletBrugerComponent},
+      {path:'updatedelete',component:RedigerSletBrugerComponent},
       {path:'**', component: NotFoundComponent},
 ];
 

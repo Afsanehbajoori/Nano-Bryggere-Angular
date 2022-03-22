@@ -14,8 +14,8 @@ export class RolleAdminSideComponent implements OnInit {
   searchkeyRolename: string;
   searchkeyUsername: string;
   clickButton: boolean = true;
-  endpointR = '/Roller';
-  endpointU = '/Brugere';
+  endpointR = '/Roles';
+  endpointU = '/Users';
   id = this.actRoute.snapshot.params['id'];
   users: User[];
   roleId: number;
@@ -28,10 +28,10 @@ export class RolleAdminSideComponent implements OnInit {
     public actRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.onloadUser();
+    this.onLoadUser();
   }
 
-  onloadUser() {
+  onLoadUser() {
     return this.restApi.getDatas(this.endpointU).subscribe((res) => {
       this.users = res;
       console.log(this.users);
@@ -88,7 +88,7 @@ export class RolleAdminSideComponent implements OnInit {
         if (result) {
           this.restApi.deleteData(id, this.endpointR).subscribe((data) => {
             console.log('delete:', id);
-            this.onloadUser();
+            this.onLoadUser();
           })
         }
       });

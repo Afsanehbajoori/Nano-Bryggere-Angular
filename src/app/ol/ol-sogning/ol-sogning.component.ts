@@ -18,9 +18,9 @@ export class OlSogningComponent implements OnInit {
   brewery: Brewery
   breweries: Brewery[];
   selected = ''
-  endpointO = '/Øller';
-  endpointB = '/Bryggerier';
-  endpointK = '/Kontaktoplysninger';
+  endpointBr = '/Beers';
+  endpointB = '/Breweries';
+  endpointC = '/ContactInformation';
   searchkey: string;
   search: any;
   data = sessionStorage.getItem('id');
@@ -39,7 +39,7 @@ export class OlSogningComponent implements OnInit {
   }
   onLoadBeer() {
     if (this.breweryId = JSON.parse(localStorage.getItem('breweryId') || '{}')) {
-        this.restApi.getDatas(this.endpointO).subscribe((beer) => {
+        this.restApi.getDatas(this.endpointBr).subscribe((beer) => {
         this.beers = beer.filter((res: any) => {
           return res.breweryId != this.breweryId;
         });
@@ -59,7 +59,7 @@ export class OlSogningComponent implements OnInit {
   }
 
   onShowBeer(id: any) {
-    this.restApi.getData(id, this.endpointO).subscribe(beers => {
+    this.restApi.getData(id, this.endpointBr).subscribe(beers => {
       this.beer = beers;
       this.beerId = this.beer.id;
       console.log(this.beerId);
@@ -67,14 +67,14 @@ export class OlSogningComponent implements OnInit {
       this.restApi.getData(this.beer.breweryId, this.endpointB).subscribe(brew => {
         this.brewery = brew;
         console.log('bryggeriInfo:', this.brewery.contactInformationId)
-        this.restApi.getData(brew.contactInformationId, this.endpointK).subscribe(userInfo => {
+        this.restApi.getData(brew.contactInformationId, this.endpointC).subscribe(userInfo => {
           this.userInfo = userInfo;
           this.userInfoId = this.userInfo.id;
           console.log("kontakt", this.userInfo);
           localStorage.setItem('contactInformationId', JSON.stringify(this.userInfoId));
         })
       })
-      this.router.navigate(['../ol/beerpage/', this.beerId]);
+      this.router.navigate(['../beer/beerpage/', this.beerId]);
     });
   }
 }

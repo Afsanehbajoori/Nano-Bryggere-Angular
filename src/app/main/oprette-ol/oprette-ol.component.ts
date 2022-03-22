@@ -9,10 +9,10 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./oprette-ol.component.css']
 })
 export class OpretteOlComponent implements OnInit {
-  @Input() beerCreation = { name: '', type: '', taste: '', procentage: null, country: '', breweryId: null, label: '', description:'', quantity: '', vintage: '' };
+  @Input() beerCreation = { name: '', type: '', taste: '', percentage: null, country: '', breweryId: null, label: '', description:'', quantity: '', vintage: '' };
   // @Input() olOprettelse = { navn: '', type: '', smag: '', procent: null, land: '', bryggeriId: null, argang: 0, etiket: '', beskrivelse:'', antal: '' };
   createForm : FormGroup;
-  endpointO = '/Øller';
+  endpointB = '/Beers';
   selected = '';
   constructor(
     public restApi: RestApiService, 
@@ -25,7 +25,7 @@ export class OpretteOlComponent implements OnInit {
       name: new FormControl('', Validators.required),
       type: new FormControl('', Validators.required),
       taste: new FormControl('', Validators.required),
-      procentage: new FormControl('', Validators.required),
+      percentage: new FormControl('', Validators.required),
       breweryId: new FormControl('', Validators.required),
       vintage: new FormControl('', Validators.required),
       country: new FormControl('', Validators.required),
@@ -58,9 +58,9 @@ export class OpretteOlComponent implements OnInit {
     }
   };
   onSubmitBeer() {
-    this.beerCreation.breweryId = JSON.parse(localStorage.getItem('bryggeriId') || '{}');
+    this.beerCreation.breweryId = JSON.parse(localStorage.getItem('breweryId') || '{}');
     console.log(this.beerCreation);
-    this.restApi.createData(this.beerCreation, this.endpointO).subscribe((data) => {
+    this.restApi.createData(this.beerCreation, this.endpointB).subscribe((data) => {
       this.router.navigate(['../main/catalog']);
     });
   }

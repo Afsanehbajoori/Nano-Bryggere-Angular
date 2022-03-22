@@ -15,7 +15,7 @@ export class MineEventsComponent implements OnInit {
   events: Events[];
   eventId: number;
   endpointE = '/Events';
-  endpointP = '/Deltageres';
+  endpointP = '/Participation';
   searchkey: string;
   participatione: boolean;
   listParticipation:any;

@@ -13,7 +13,7 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 export class OlAdminSideComponent implements OnInit {
   beers: Beer[];
   beer: Beer;
-  endpointB = '/Øller';
+  endpointB = '/Beers';
   data = sessionStorage.getItem('id');
   searchkey: string;
   constructor(
@@ -24,10 +24,10 @@ export class OlAdminSideComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.onloadBeer()
+    this.onLoadBeer()
   }
 
-  onloadBeer(){
+  onLoadBeer(){
     return this.restApi.getDatas(this.endpointB).subscribe((beer) => {
       this.beers = beer;
     });
@@ -48,7 +48,7 @@ export class OlAdminSideComponent implements OnInit {
     let dialogRef = this.dialog.open(SletDialogBoxComponent);
     dialogRef.afterClosed().subscribe(result => {
       this.restApi.deleteData(id, this.endpointB).subscribe(data => {
-        this.onloadBeer();
+        this.onLoadBeer();
       })
     });
   };

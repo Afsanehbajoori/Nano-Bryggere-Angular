@@ -15,11 +15,11 @@ import { RedigerProfilDialogBoxComponent } from 'src/app/main/rediger-profil-dia
 
 export class BrugerAdminSideComponent implements OnInit {
   dialogRefSlet: MatDialogRef<SletDialogBoxComponent>;
-  dialogRefRedigerProfil: MatDialogRef<RedigerProfilDialogBoxComponent>;
+  dialogRefRedigerProfile: MatDialogRef<RedigerProfilDialogBoxComponent>;
   users: User[];
   user = new User();
-  endpointU='/Brugere'; //endpointB
-  endpointI = '/Kontaktoplysninger'; //endpointK
+  endpointU='/Users'; //endpointB
+  endpointC = '/ContactInformation'; //endpointK
   searchkeyUsername: string;
   searchkeyUserSname:string;
   searchkeyEmail:string;
@@ -39,10 +39,10 @@ export class BrugerAdminSideComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.onloadUser();
+    this.onLoadUser();
   }
 
-  onloadUser(){
+  onLoadUser(){
     return this.restApi.getDatas(this.endpointU).subscribe((res) => {
         this.users = res;
         console.log(this.users);
@@ -53,7 +53,7 @@ export class BrugerAdminSideComponent implements OnInit {
       this.clickButton=false;
       return this.restApi.getData(id , this.endpointU).subscribe((data) => {
         this.userinfoId=data.kontaktoplysningerId;
-        this.restApi.getData(this.userinfoId ,this.endpointI ).subscribe((data) => {
+        this.restApi.getData(this.userinfoId ,this.endpointC ).subscribe((data) => {
           this.userinfo = data;
         })
       })
@@ -120,7 +120,7 @@ export class BrugerAdminSideComponent implements OnInit {
       if(result){
         this.restApi.deleteData(id , this.endpointU).subscribe((data) => {
           console.log('delete:' , id);
-          this.onloadUser();
+          this.onLoadUser();
         })
       }
     });
@@ -134,12 +134,12 @@ export class BrugerAdminSideComponent implements OnInit {
     this.restApi.getData(id , this.endpointU).subscribe((data) => {
     this.userinfoId= data.kontaktoplysningerId;
     console.log("kontId:",this.userinfoId);
-    localStorage.setItem('kontaktoplysningerId' , this.userinfoId.toString());
-    this.dialogRefRedigerProfil = this.dialog.open(RedigerProfilDialogBoxComponent, dialogConfig);
-    this.dialogRefRedigerProfil.afterClosed().subscribe(result => {
+    localStorage.setItem('ContactInformationId' , this.userinfoId.toString());
+    this.dialogRefRedigerProfile = this.dialog.open(RedigerProfilDialogBoxComponent, dialogConfig);
+    this.dialogRefRedigerProfile.afterClosed().subscribe(result => {
       if (result) {
         this.userinfoList = result;
-        this.restApi.updateData(this.userinfoId, this.endpointI, this.userinfoList).subscribe((data) => {
+        this.restApi.updateData(this.userinfoId, this.endpointC, this.userinfoList).subscribe((data) => {
         console.log(this.userinfoList);
         this.onShowUser(id);
         })

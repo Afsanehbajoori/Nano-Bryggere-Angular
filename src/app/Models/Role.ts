@@ -1,5 +1,5 @@
 export enum RoleName{
-  AnonUser = 0,
+  AnonymousUser = 0,
   User = 100,
   Moderator = 200,
   Administrator = 300

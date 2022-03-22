@@ -12,7 +12,7 @@ export class RedigerOlComponent implements OnInit {
   selected = '';
   beerid = this.actRoute.snapshot.params['id'];
   updateForm: FormGroup;
-  endpoints = '/Øller';
+  endpoints = '/Beers';
   beerList : any;
   vintage: Date;
   constructor(

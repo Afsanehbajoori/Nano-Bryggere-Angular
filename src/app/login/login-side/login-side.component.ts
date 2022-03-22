@@ -14,8 +14,8 @@ export class LoginSideComponent implements OnInit {
   login: any = {};
   logins: User[];
   endpointL = '/Logins';
-  endpointI = '/Kontaktoplysninger';
-  endpointU = '/Brugere';
+  endpointI = '/ContactInformation';
+  endpointU = '/Users';
 
   loginForm: any = new FormGroup({});
 

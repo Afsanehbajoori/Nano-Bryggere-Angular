@@ -33,9 +33,9 @@ export class SamarbejdeSideComponent implements OnInit {
   cooperation: Cooperation
   cooperations: Cooperation[];
   cooperationId: number;
-  endpointO = '/Øller';
-  endpointB = '/Bryggerier';
-  endpointS = '/Samarbejder';
+  endpointBr = '/Beers';
+  endpointB = '/Breweries';
+  endpointC = '/Cooperations';
   searchkey: string;
   beerId: number;
   brewery: Brewery;
@@ -51,7 +51,7 @@ export class SamarbejdeSideComponent implements OnInit {
     this.onLoadCooperation();
     // this.onLoadOl();
   }
-  onshowComponent(nodeName: string, id: any) {
+  onShowComponent(nodeName: string, id: any) {
     console.log(this.cooperations);
     switch (nodeName) {
       case 'Vis': {
@@ -64,7 +64,7 @@ export class SamarbejdeSideComponent implements OnInit {
 
   onLoadCooperation() {
     if (this.breweryId = JSON.parse(localStorage.getItem('breweryId') || '{}')) {
-      this.restApi.getDatas(this.endpointS).subscribe((data) => {
+      this.restApi.getDatas(this.endpointC).subscribe((data) => {
         this.cooperations = data.filter((res: any) => {
           return res.breweryId1 === this.breweryId || res.breweryId2 === this.breweryId;
         });

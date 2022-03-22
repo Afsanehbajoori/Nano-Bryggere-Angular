@@ -12,7 +12,7 @@ export class OlLagerComponent implements OnInit {
   // @Input() lagerInput = { antal: 0, flaskeAntal: 0, tondeAntal: 0 };
 
   LayerForm: FormGroup;
-  endpointO = '/Øller';
+  endpointO = '/Beers';
   selected = '';
   beer: any;
   beerid = this.actRoute.snapshot.params['id'];
@@ -25,9 +25,9 @@ export class OlLagerComponent implements OnInit {
 
   ngOnInit(): void {
     this.LayerForm = new FormGroup({
-      qauntity: new FormControl('', Validators.required),
-      bottleQauntity: new FormControl('', Validators.required),
-      barrelQauntity: new FormControl('', Validators.required),
+      quantity: new FormControl('', Validators.required),
+      bottleQuantity: new FormControl('', Validators.required),
+      barrelQuantity: new FormControl('', Validators.required),
       bottleResevationQuantity: new FormControl('', Validators.required)
     });
     this.onLoadBeer();

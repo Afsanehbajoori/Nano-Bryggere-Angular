@@ -10,7 +10,6 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 })
 export class ForumTagsComponent implements OnInit {
   tag: Tags;
-  tags: any;
   tagsList: Tags[];
   searchkey: string;
   search: any;

@@ -39,14 +39,14 @@ export class OpretteEventsDialogBoxComponent implements OnInit {
       reader.onload = (e: any) => {
         this.eventPicture = e.target.result;
         console.log(this.eventPicture);
-        localStorage.setItem('eventBilled', JSON.stringify(this.eventPicture));
+        localStorage.setItem('eventPicture', JSON.stringify(this.eventPicture));
       }
     }
   };
 
   onSubmitEvent() {
     console.log(this.eventCreation);
-    this.eventCreation.eventPicture=JSON.parse(localStorage.getItem('eventBilled')|| '{}');
+    this.eventCreation.eventPicture=JSON.parse(localStorage.getItem('eventPicture')|| '{}');
     console.log('image:', this.eventCreation.eventPicture);
     this.restApi.createData(this.eventCreation, this.endpointE).subscribe((data) => {
       console.log('oprette ny event:' , data);

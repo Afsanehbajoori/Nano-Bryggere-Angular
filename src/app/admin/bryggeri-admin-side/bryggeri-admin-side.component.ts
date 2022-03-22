@@ -17,9 +17,9 @@ export class BryggeriAdminSideComponent implements OnInit {
   dialogRefUpdateBrewery: MatDialogRef<RedigerBryggeriDialogBoxComponent>;
   Brewery: Brewery[];
   Brew = new Brewery;
-  endpointU = '/Brugere';
-  endpointB='/Bryggerier';
-  searchkeyBreweryname: string;
+  endpointU = '/Users';
+  endpointB='/Breweries';
+  searchkeyBreweryName: string;
   searchkeyBreweryCooperation:string;
   id = this.actRoute.snapshot.params['id'];
   clickButton:boolean=true;
@@ -34,10 +34,10 @@ export class BryggeriAdminSideComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.onloadBrewery();
+    this.onLoadBrewery();
   }
   
-  onloadBrewery(){
+  onLoadBrewery(){
     return this.restApi.getDatas(this.endpointB).subscribe((brew) => {
       this.Brewery = brew;
       console.log(this.Brewery);
@@ -52,12 +52,12 @@ export class BryggeriAdminSideComponent implements OnInit {
   };
 
   onFindBreweryname(){
-    if(this.searchkeyBreweryname == ""){
+    if(this.searchkeyBreweryName == ""){
       this.ngOnInit();
     }
     else{
       this.Brewery = this.Brewery.filter(res =>{
-        return res.name.toLowerCase().match(this.searchkeyBreweryname.toLowerCase());
+        return res.name.toLowerCase().match(this.searchkeyBreweryName.toLowerCase());
       })
     }
   }
@@ -83,7 +83,7 @@ export class BryggeriAdminSideComponent implements OnInit {
     let dialogRef = this.dialog.open(SletDialogBoxComponent);
     dialogRef.afterClosed().subscribe(result => {
       this.restApi.deleteData(id, this.endpointB).subscribe(data => {
-        this.onloadBrewery();
+        this.onLoadBrewery();
       })
     });
   };
@@ -101,7 +101,7 @@ export class BryggeriAdminSideComponent implements OnInit {
           this.restApi.updateData(id, this.endpointB, this.BreweryList).subscribe((data) => {
           console.log(this.BreweryList);
           this.onShowBrewery(id);
-          this.onloadBrewery();
+          this.onLoadBrewery();
           })
         }
       });

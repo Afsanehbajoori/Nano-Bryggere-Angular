@@ -11,7 +11,7 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 })
 export class VisDetajlerComponent implements OnInit {
   breweryId:number;
-  endpointB='/Bryggerier';
+  endpointB='/Breweries';
   breweryInfo: any;
   constructor(public restApi: RestApiService) { }
 

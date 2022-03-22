@@ -8,7 +8,7 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 })
 export class VisOlDetajlerComponent implements OnInit {
   beerId:number;
-  endpointO = '/Øller';
+  endpointO = '/Beers';
   beerInfo: any;
   vintage:Date;
 
@@ -16,7 +16,7 @@ export class VisOlDetajlerComponent implements OnInit {
 
   ngOnInit(): void {
     this.beerId= JSON.parse(localStorage.getItem('beerId') || '{}');
-    console.log('beerId' , this.beerId);
+    console.log('beerId', this.beerId);
     this.onLoadBeer();
   }
 

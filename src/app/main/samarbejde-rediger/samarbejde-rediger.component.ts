@@ -10,9 +10,9 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 })
 export class SamarbejdeRedigerComponent implements OnInit {
   selected = '';
-  beerid = this.actRoute.snapshot.params['id'];
+  beerId = this.actRoute.snapshot.params['id'];
   updateForm: FormGroup;
-  endpoints = '/Øller';
+  endpoints = '/Beers';
   beerList : any = {};
   constructor(
     public restApi: RestApiService, 
@@ -38,18 +38,18 @@ export class SamarbejdeRedigerComponent implements OnInit {
   }
 
   onLoadBeer(){
-    return this.restApi.getData(this.beerid, this.endpoints).subscribe((beer: {}) => {
+    return this.restApi.getData(this.beerId, this.endpoints).subscribe((beer: {}) => {
       this.beerList = beer;
     });
   }
 
   onCancel() {
-    return this.router.navigate(['../main/samarbejdeside'])
+    return this.router.navigate(['../main/cooperationpage'])
   };
 
   onSubmitBeer() {
-    this.restApi.updateData(this.beerid, this.endpoints, this.beerList).subscribe((data) => {
-      this.router.navigate(['../main/samarbejdeside'])
+    this.restApi.updateData(this.beerId, this.endpoints, this.beerList).subscribe((data) => {
+      this.router.navigate(['../main/cooperationpage'])
     });
   }
 }

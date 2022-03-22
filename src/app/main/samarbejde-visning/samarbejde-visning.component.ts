@@ -13,7 +13,7 @@ import { SletDialogBoxComponent } from '../slet-dialog-box/slet-dialog-box.compo
 export class SamarbejdeVisningComponent implements OnInit {
   beer: Beer;
   beerId: number;
-  endpointO = '/Øller';
+  endpointO = '/Beers';
   constructor(
     public dialog: MatDialog,
     public restApi: RestApiService,
@@ -33,7 +33,7 @@ export class SamarbejdeVisningComponent implements OnInit {
   }
 
   onUpdateBeer(id: any) {
-    this.router.navigate(['../main/samarbejderediger/', id]);
+    this.router.navigate(['../main/cooperationupdate/', id]);
   };
 
   onDeleteBeer(id: any) {

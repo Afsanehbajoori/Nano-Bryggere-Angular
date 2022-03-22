@@ -10,7 +10,7 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./certifikat.component.css']
 })
 export class CertifikatComponent implements OnInit {
-  endpointB = '/Brugere';
+  endpointU = '/Users';
   choosenfile: File;
   user : any;
   userId: number;
@@ -24,12 +24,12 @@ export class CertifikatComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.userId = JSON.parse(localStorage.getItem('kontaktoplysningerId') || '{}');
-    this.onloadUser();
+    this.userId = JSON.parse(localStorage.getItem('ContactInformationId') || '{}');
+    this.onLoadUser();
   }
 
-  onloadUser(){
-    return this.restApi.getData(this.userId, this.endpointB).subscribe((userinfo: {}) => {
+  onLoadUser(){
+    return this.restApi.getData(this.userId, this.endpointU).subscribe((userinfo: {}) => {
       this.user = userinfo;
     });
   }
@@ -48,7 +48,7 @@ export class CertifikatComponent implements OnInit {
 
   onUploadCertificate() {
     console.log(this.user);
-    this.restApi.updateData(this.userId, this.endpointB, this.user).subscribe((data) => {
+    this.restApi.updateData(this.userId, this.endpointU, this.user).subscribe((data) => {
       this.router.navigate(['../main/main'])
     });
   }

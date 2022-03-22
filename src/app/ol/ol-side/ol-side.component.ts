@@ -15,9 +15,9 @@ export class OlSideComponent implements OnInit {
   userInfo: ContactInformation;
   beer: Beer;
   brewery: Brewery;
-  endpointK = '/Kontaktoplysninger';
-  endpointO = '/Øller';
-  endpointB = '/Bryggerier';
+  endpointC = '/ContactInformation';
+  endpointBr = '/Beers';
+  endpointB = '/Breweries';
   breweryId: Number;
   beerId: number;
   userInfoId: number;
@@ -39,14 +39,14 @@ export class OlSideComponent implements OnInit {
 
   onLoadUserinfo(){
     console.log("Kontakt",this.userInfoId);
-    return this.restApi.getData(this.userInfoId, this.endpointK).subscribe((user) => {
+    return this.restApi.getData(this.userInfoId, this.endpointC).subscribe((user) => {
       this.userInfo = user;
       console.log(this.userInfo);
     })
   }
 
   onLoadBeer(){
-    return this.restApi.getData(this.id, this.endpointO).subscribe((ol) => {
+    return this.restApi.getData(this.id, this.endpointBr).subscribe((ol) => {
       this.beer = ol;
     })
   }

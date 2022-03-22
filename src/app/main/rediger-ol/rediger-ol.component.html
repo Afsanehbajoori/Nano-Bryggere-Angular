@@ -49,13 +49,13 @@
                 </mat-error>
             </mat-form-field>
 
-            <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="number" [(ngModel)]="beerList.breweryId" formControlName="bryggerid"
+            <!-- <mat-form-field class="example-full-width" appearance="fill">
+                <input matInput type="number" [(ngModel)]="beerList.breweryId" formControlName="breweryId"
                     placeholder="{{beerList.breweryId}}" class="input-control">
                 <mat-error>
                     udfyld feltet
                 </mat-error>
-            </mat-form-field>
+            </mat-form-field> -->
 
             <!-- <mat-form-field class="example-full-width" appearance="fill">
                     <mat-select [(value)]="selected" formControlName="bryggeprocess" placeholder="{{beerList.bryggeprocess}}">
@@ -85,7 +85,7 @@
             </mat-form-field>
           
             <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="text" [(ngModel)]="beerList.quantity" formControlName="quantity"
+                <input matInput type="number" [(ngModel)]="beerList.quantity" formControlName="quantity"
                     placeholder="{{beerList.quantity}}" class="input-control">
                 <mat-error>
                     udfyld feltet

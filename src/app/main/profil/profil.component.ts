@@ -26,10 +26,10 @@ export class ProfilComponent implements OnInit {
   userList: any;
   breweryList: any;
   roleList: any;
-  endpointK = '/Kontaktoplysninger';
-  endpointB = '/Bryggerier';
-  endpointS = '/Brugere';
-  endpointR = '/Roller';
+  endpointC = '/ContactInformation';
+  endpointB = '/Breweries';
+  endpointU = '/Users';
+  endpointR = '/Roles';
   showFilesP = false;
   showFilesB = false;
   showFilesOB = false;
@@ -41,7 +41,7 @@ export class ProfilComponent implements OnInit {
   showOB: boolean;
   logo: any;
   url: string;
-  @Input() newBrewery = { logo: '', name: '', discription: '', contactInformationId: 0 };
+  @Input() newBrewery = { logo: '', name: '', description: '', contactInformationId: 0 };
   breweryCreationForm: any = new FormGroup({});
 
   constructor(public dialog: MatDialog,
@@ -55,8 +55,6 @@ export class ProfilComponent implements OnInit {
     this.userInfoId = JSON.parse(localStorage.getItem('contactInformationId') || '{}');
     this.userId = JSON.parse(localStorage.getItem('userId') || '{}');
     this.roleId = JSON.parse(localStorage.getItem('roleId') || '{}');
-    console.log("brugerId:", this.userId)
-    console.log("brugerId:", this.userInfoId)
     this.onLoadUserInformation();
     this.onLoadBrewery();
 
@@ -75,10 +73,10 @@ export class ProfilComponent implements OnInit {
    }  */
 
   onLoadUserInformation() {
-    return this.restApi.getData(this.userId, this.endpointS).subscribe((data) => {
+    return this.restApi.getData(this.userId, this.endpointU).subscribe((data) => {
       this.userList = data;
       console.log("brugernavn:", this.userList.roleId);
-      this.restApi.getData(this.userInfoId, this.endpointK).subscribe((data) => {
+      this.restApi.getData(this.userInfoId, this.endpointC).subscribe((data) => {
         this.userInfoList = data;
         console.log("konId", this.userInfoId);
         console.log(" this.kontaktoplysningerList:", this.userInfoList.Sname);
@@ -96,7 +94,7 @@ export class ProfilComponent implements OnInit {
       console.log('this.bryggeri:', this.breweryList);
       //console.log('id:',this.bryggeriList.id);
       if (this.breweryList !== undefined) {
-        localStorage.setItem('bryggeriId', JSON.stringify(this.breweryList.id));
+        localStorage.setItem('breweryId', JSON.stringify(this.breweryList.id));
         this.url = this.breweryList.logo;
         this.showOB = false;
         console.log(this.showOB);
@@ -127,11 +125,11 @@ export class ProfilComponent implements OnInit {
       console.log("contactInformationId:", this.newBrewery.contactInformationId);
       this.newBrewery.logo = JSON.parse(localStorage.getItem('logo') || '{}');
       this.restApi.createData(this.newBrewery, this.endpointB).subscribe((data) => {
-        localStorage.setItem('bryggeriId', JSON.stringify(data.id));
+        localStorage.setItem('breweryId', JSON.stringify(data.id));
         this.ngOnInit();
         if (data) {
           this.showOB = false;
-          this.snackBar.open('Oprette ny bryggei succed')
+          this.snackBar.open('Nyt bryggeri oprettet')
           this.onClose();
         }
       })
@@ -145,7 +143,7 @@ export class ProfilComponent implements OnInit {
     });
     this.dialogRefDelete.afterClosed().subscribe(result => {
       if (result) {
-        this.restApi.deleteData(this.userInfoId, this.endpointK).subscribe((data) => {
+        this.restApi.deleteData(this.userInfoId, this.endpointC).subscribe((data) => {
           this.userInfoList = data;
           this.snackBar.open("kontakt oplysninger slettet med succes");
         }, err => {
@@ -164,7 +162,7 @@ export class ProfilComponent implements OnInit {
     this.dialogRefUpdateProfile.afterClosed().subscribe(result => {
       if (result) {
         this.userInfoList = result;
-        this.restApi.updateData(this.userInfoId, this.endpointK, this.userInfoList).subscribe((data) => {
+        this.restApi.updateData(this.userInfoId, this.endpointC, this.userInfoList).subscribe((data) => {
           console.log(this.userInfoList);
         })
       }
@@ -207,7 +205,7 @@ export class ProfilComponent implements OnInit {
 
   onClose() {
     this.breweryCreationForm.reset();
-    this.router.navigate(['/main/profil']);
+    this.router.navigate(['/main/profile']);
     this.showFilesOB = false;
   }
 

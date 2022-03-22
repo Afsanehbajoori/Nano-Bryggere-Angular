@@ -13,7 +13,7 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 export class BrugerCertifikatComponent implements OnInit {
   userinfos: ContactInformation[]; //oplysninger
   userinfo = new ContactInformation; //oplysning
-  endpointI = '/Kontaktoplysninger'; 
+  endpointC = '/ContactInformation'; 
   constructor(
     public dialog: MatDialog,
     public restApi: RestApiService, 
@@ -25,14 +25,14 @@ export class BrugerCertifikatComponent implements OnInit {
     this.onloadUser()
   }
   onloadUser(){
-    return this.restApi.getDatas(this.endpointI).subscribe((user) => {
+    return this.restApi.getDatas(this.endpointC).subscribe((user) => {
       this.userinfos = user;
     })
   }
   onGivUserCertificate(id:any) {
     let dialogRef = this.dialog.open(CertifikatDialogBoxComponent)
     dialogRef.afterClosed().subscribe(result => {
-      this.restApi.updateData(id, this.endpointI, this.userinfos).subscribe(data => {
+      this.restApi.updateData(id, this.endpointC, this.userinfos).subscribe(data => {
         this.onloadUser();
       })
     });

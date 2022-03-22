@@ -15,9 +15,9 @@ export class DeltagerAdminSideComponent implements OnInit {
   participantsListB:any;
   participants:any;
   participantsListE:any;
-  endpointP='/Deltageres';
+  endpointP='/Participation';
   endpointE = '/Events';
-  endpointU='/Brugere';
+  endpointU='/Users';
   searchkeyParticipants:string;
 
   constructor(public dialog: MatDialog,
@@ -25,9 +25,9 @@ export class DeltagerAdminSideComponent implements OnInit {
     public actRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.onloadParticipants();
+    this.onLoadParticipants();
   }
-  onloadParticipants(){
+  onLoadParticipants(){
     this.restApi.getDatas(this.endpointP).subscribe(data =>
       this.participants=data
       )}

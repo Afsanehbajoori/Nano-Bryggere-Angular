@@ -15,7 +15,7 @@ export class EventkalenderSideComponent implements OnInit {
   dialogRefDelete: MatDialogRef<SletDialogBoxComponent>;
   events: Events[];
   endpointE = '/Events';
-  endpointP = '/Deltageres';
+  endpointP = '/Participation';
   searchkey: string;
   participation: boolean = false;
   buttonDisabled: boolean ;
@@ -40,17 +40,17 @@ export class EventkalenderSideComponent implements OnInit {
 
   ngOnInit(): void {
     this.userId = JSON.parse(localStorage.getItem('userId') || '{}');
-    this.onloadEvent();
-    this.onloadParticipation();
+    this.onLoadEvent();
+    this.onLoadParticipation();
   }
 
-  onloadEvent() {
+  onLoadEvent() {
     return this.restApi.getDatas(this.endpointE).subscribe((data) => {
       this.events = data;
   });
   }
 
-  onloadParticipation(){
+  onLoadParticipation(){
     this.restApi.getDatas(this.endpointP).subscribe(data => {
       this.listParticipation=data;
       if(this.userId){
@@ -94,7 +94,7 @@ export class EventkalenderSideComponent implements OnInit {
         this.participant.eventsId=id;
         this.participant.isParticipant=true;
         this.restApi.createData(this.participant , this.endpointP).subscribe(data => {
-          this.onloadParticipation();
+          this.onLoadParticipation();
         })
     }
   }

@@ -20,9 +20,9 @@ export class RegistrerComponent implements OnInit {
   city: '', email:'', phoneNr: '' };
 
   userFormGroup:any = new FormGroup({});
-  endpointK = '/Kontaktoplysninger';
-  endpointB= '/Brugere';
-  endpointR= '/Roller';
+  endpointC = '/ContactInformation';
+  endpointU= '/Users';
+  endpointR= '/Roles';
 
   constructor(private _formBuilder: FormBuilder, public restApi: RestApiService, public router: Router) { }
 
@@ -45,13 +45,13 @@ export class RegistrerComponent implements OnInit {
     });
   }
 
-  createUser(){
-   this.restApi.createData(this.newUser, this.endpointK).subscribe((dataK) => {
-     console.log(dataK.id);
-      this.newUser.contactInformationId= dataK.id;
-      if(this.newUser.roleName == 'AnonymBruger')
+  onCreateUser(){
+   this.restApi.createData(this.newUser, this.endpointC).subscribe((dataC) => {
+     console.log(dataC.id);
+      this.newUser.contactInformationId= dataC.id;
+      if(this.newUser.roleName == 'AnonymousUser')
       this.newUser.level=0 + "";
-      if(this.newUser.roleName == 'Bruger')
+      if(this.newUser.roleName == 'User')
       this.newUser.level=100 + "";
       if(this.newUser.roleName == 'Moderator')
       this.newUser.level=200 + "";
@@ -60,10 +60,10 @@ export class RegistrerComponent implements OnInit {
      this.restApi.createData(this.newUser , this.endpointR).subscribe((dataR) => {
       console.log(dataR.id);
       this.newUser.roleId=dataR.id;
-      this.restApi.createData(this.newUser , this.endpointB).subscribe((dataB) => {
+      this.restApi.createData(this.newUser , this.endpointU).subscribe((dataB) => {
         console.log(dataB);
-        var brugerId = dataB.id;
-        console.log("brugerId : " ,brugerId);
+        var userId = dataB.id;
+        console.log("brugerId : " , userId);
         this.router.navigate(["../login/login"]);
        }) ;
      })

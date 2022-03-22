@@ -14,7 +14,7 @@ export class KatalogComponent implements OnInit {
   beers: any;
   beerList: Beer[];
   beer: Beer;
-  endpointO = '/Øller';
+  endpointB = '/Beers';
   searchkey: string;
   breweryId: number;
   breweryList: any;
@@ -28,12 +28,12 @@ export class KatalogComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.onloadBeer()
+    this.onLoadBeer()
   }
 
-  onloadBeer() {
+  onLoadBeer() {
     if (this.breweryId = JSON.parse(localStorage.getItem('breweryId') || '{}')) {
-      this.restApi.getDatas(this.endpointO).subscribe((data) => {
+      this.restApi.getDatas(this.endpointB).subscribe((data) => {
         this.beerList = data.filter((res: any) => {
           return res.breweryId === this.breweryId;
         });
@@ -59,8 +59,8 @@ export class KatalogComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
       if (result == true) {
-        this.restApi.deleteData(id, this.endpointO).subscribe(data => {
-          this.onloadBeer();
+        this.restApi.deleteData(id, this.endpointB).subscribe(data => {
+          this.onLoadBeer();
         })
       }
     });

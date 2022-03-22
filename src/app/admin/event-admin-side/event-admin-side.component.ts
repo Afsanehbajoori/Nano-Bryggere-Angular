@@ -17,14 +17,14 @@ export class EventAdminSideComponent implements OnInit {
   dialogRefDelete: MatDialogRef<SletDialogBoxComponent>;
   dialogRefCreateEvents : MatDialogRef<OpretteEventsDialogBoxComponent>;
   dialogRefUpdateEvents : MatDialogRef<UpdateEventsDialogBoxComponent>;
-  searchkeyEventtitle:string;
+  searchkeyEventTitle:string;
   searchkeyParticipants:string;
   clickButton:boolean=true;
   eventList:any;
   events:Events[];
   //event = new Events();
   endpointE = '/Events';
-  endpointP='/Deltageres';
+  endpointP='/Participation';
   id = this.actRoute.snapshot.params['id'];
   listParticipants:any;
 
@@ -35,11 +35,11 @@ export class EventAdminSideComponent implements OnInit {
     public actRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.onloadEvents();
+    this.onLoadEvents();
     this.onloadParticipation()
   }
 
-  onloadEvents(){
+  onLoadEvents(){
     return this.restApi.getDatas(this.endpointE).subscribe(event => {
       this.events=event;
     })
@@ -60,12 +60,12 @@ export class EventAdminSideComponent implements OnInit {
   }
 
   onFindEventtitle(){
-    if(this.searchkeyEventtitle == ""){
+    if(this.searchkeyEventTitle == ""){
       this.ngOnInit();
     }
     else{
       this.events = this.events.filter(res =>{
-      return  res.title.toLowerCase().match(this.searchkeyEventtitle.toLowerCase());
+      return  res.title.toLowerCase().match(this.searchkeyEventTitle.toLowerCase());
       })
     }
   }
@@ -92,7 +92,7 @@ export class EventAdminSideComponent implements OnInit {
         if(result){
           this.restApi.deleteData(id , this.endpointE).subscribe((data) => {
             console.log('delete:' , id);
-            this.onloadEvents();
+            this.onLoadEvents();
           })
         }
       });

@@ -14,7 +14,7 @@ import { logging } from 'protractor';
 })
 export class RedigerBryggeriDialogBoxComponent implements OnInit {
   breweryList : any;
-  endpointB='/Bryggerier';
+  endpointB='/Breweries';
   updateForm:FormGroup = new FormGroup({});
   breweryId : number ;
 
@@ -32,8 +32,8 @@ export class RedigerBryggeriDialogBoxComponent implements OnInit {
       this.breweryList = data;
       this.updateForm=this.formBuilder.group({
         'logoCtl' : new FormControl(this.breweryList.logo),
-        'navnCtl' : new FormControl(this.breweryList.name),
-        'beskrivelseCtl' : new FormControl(this.breweryList.description)
+        'nameCtl' : new FormControl(this.breweryList.name),
+        'descriptionCtl' : new FormControl(this.breweryList.description)
       });
     })
 
@@ -53,6 +53,6 @@ export class RedigerBryggeriDialogBoxComponent implements OnInit {
 
   onClose(){
     // this.dialogRefRedigerProfil.close();
-    return this.router.navigate(['../main/profil']);
+    return this.router.navigate(['../main/profile']);
   }
 }

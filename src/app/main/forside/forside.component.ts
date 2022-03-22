@@ -25,8 +25,8 @@ export class ForsideComponent implements OnInit {
   beerList: Beer [];
   event = new Events;
   eventList : any = {};
-  endpointB='/Bryggerier';
-  endpointO = '/Øller';
+  endpointB='/Breweries';
+  endpointBr = '/Beers';
   endpointE = '/Events';
 
   constructor(
@@ -55,7 +55,7 @@ export class ForsideComponent implements OnInit {
   }
   
   onLoadBeer(){
-    return this.restApi.getDatas(this.endpointO).subscribe((data) => {
+    return this.restApi.getDatas(this.endpointBr).subscribe((data) => {
       this.beerList = data;
       //console.log('olList:',this.olList);
     })
@@ -68,7 +68,7 @@ export class ForsideComponent implements OnInit {
       height:'300'
 
     });
-    localStorage.setItem('olId' , id);
+    localStorage.setItem('beerId' , id);
   }
 
   onShowDetails(id:any){
@@ -78,7 +78,7 @@ export class ForsideComponent implements OnInit {
       height:'auto'
 
     });
-    localStorage.setItem('bryggeriId' , id);
+    localStorage.setItem('breweryId' , id);
   }
 
   onShowEventsDetails(id:any){

@@ -14,8 +14,8 @@ export class RedigerProfilDialogBoxComponent implements OnInit {
   userList:any;
   userInfoId: number;
   userId:number;
-  endpointK = '/Kontaktoplysninger';
-  endpointB= '/Brugere';
+  endpointK = '/ContactInformation';
+  endpointB= '/Users';
 
   constructor(public dialogRefUpdateProfile: MatDialogRef<RedigerProfilDialogBoxComponent>,
     private formBuilder: FormBuilder,

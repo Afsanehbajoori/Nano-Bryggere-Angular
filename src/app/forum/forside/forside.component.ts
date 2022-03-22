@@ -155,7 +155,7 @@ export class ForsideComponent implements OnInit {
   }
 
   onCreateForum() {
-    this.router.navigate(['../forum/oprette']);
+    this.router.navigate(['../forum/forumcreation']);
   };
 
 

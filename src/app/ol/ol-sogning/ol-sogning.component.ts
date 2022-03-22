@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Bryggeri } from 'src/app/Models/Bryggeri';
-import { Kontaktoplysninger } from 'src/app/Models/Kontaktoplysninger';
-import { Øl } from 'src/app/Models/Øl';
+import { Bryggeri } from 'src/app/Models/Brewery';
+import { Kontaktoplysninger } from 'src/app/Models/ContactInformation';
+import { Beer } from 'src/app/Models/Beer';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 
 @Component({
@@ -12,8 +12,8 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./ol-sogning.component.css']
 })
 export class OlSogningComponent implements OnInit {
-  beer = new Øl;
-  beers: Øl[];
+  beer = new Beer;
+  beers: Beer[];
   userInfo = new Kontaktoplysninger;
   brewery: Bryggeri
   breweries: Bryggeri[];

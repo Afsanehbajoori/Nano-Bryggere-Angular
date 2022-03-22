@@ -1,13 +1,13 @@
-import { Rolle } from 'src/app/Models/Rolle';
+import { Role } from 'src/app/Models/Role';
 import { Component, OnInit, Input , Injectable  } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { RestApiService } from 'src/app/shared/rest-api.service';
-import { Kontaktoplysninger } from 'src/app/Models/Kontaktoplysninger';
+import { ContactInformation } from 'src/app/Models/ContactInformation';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Injectable()
 @Component({
-  providers:  [Rolle , Kontaktoplysninger],
+  providers:  [Role , ContactInformation],
   selector: 'app-registrer',
   templateUrl: './registrer.component.html',
   styleUrls: ['./registrer.component.css']

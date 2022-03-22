@@ -2,13 +2,13 @@ import { Component, OnInit ,ChangeDetectionStrategy , ViewEncapsulation} from '@
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { Bryggeri } from 'src/app/Models/Bryggeri';
+import { Bryggeri } from 'src/app/Models/Brewery';
 import { Events } from 'src/app/Models/Events';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 import { VisDetajlerComponent } from '../vis-detajler/vis-detajler.component';
 import { VisEventsDetajlerComponent } from '../vis-events-detajler/vis-events-detajler.component';
 import { VisOlDetajlerComponent } from '../vis-ol-detajler/vis-ol-detajler.component';
-import { Øl } from 'src/app/Models/Øl';
+import { Beer } from 'src/app/Models/Beer';
 
 
 @Component({
@@ -22,7 +22,7 @@ import { Øl } from 'src/app/Models/Øl';
 export class ForsideComponent implements OnInit {
   events: Events[];
   bryggeri: Bryggeri[];
-  beerList: Øl [];
+  beerList: Beer [];
   event = new Events;
   eventList : any = {};
   endpointB='/Bryggerier';

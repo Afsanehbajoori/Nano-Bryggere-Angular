@@ -41,7 +41,7 @@ export class ProfilComponent implements OnInit {
   showOB:boolean;
   logo:any;
   url: string;
-  @Input() newBrewery = { logo: '', navn: '', beskrivelse: '', kontaktoplysningerId: 0 };
+  @Input() newBrewery = { logo: '', name: '', discription: '', contactInformationId: 0 };
   breweryCreationForm: any = new FormGroup({});
 
   constructor(public dialog: MatDialog,
@@ -62,9 +62,9 @@ export class ProfilComponent implements OnInit {
 
     this.breweryCreationForm = this._formBuilder.group({
       'logo': new FormControl(''),
-      'navn': new FormControl('', Validators.required),
-      'beskrivelse': new FormControl(''),
-      'kontaktoplysningerId': new FormControl('')
+      'name': new FormControl('', Validators.required),
+      'discription': new FormControl(''),
+      'contactInformationId': new FormControl('')
     })
   }
 
@@ -81,7 +81,7 @@ export class ProfilComponent implements OnInit {
       this.restApi.getData( this.userInfoId, this.endpointK).subscribe((data) => {
         this.userInfoList = data;
         console.log("konId" , this.userInfoId);
-        console.log(" this.kontaktoplysningerList:", this.userInfoList.enavn);
+        console.log(" this.kontaktoplysningerList:", this.userInfoList.Sname);
         this.restApi.getData(this.roleId , this.endpointR).subscribe((data) => {
           this.roleList=data;
           console.log('RolleList' , this.roleList)
@@ -121,10 +121,10 @@ export class ProfilComponent implements OnInit {
   };
 
   onCreateBrewery() {
-    if (this.newBrewery.navn != '') {
+    if (this.newBrewery.name != '') {
     console.log("test:", this.userInfoId);
-    this.newBrewery.kontaktoplysningerId = this.userInfoId;
-    console.log("kontaktoplysningerId:" ,  this.newBrewery.kontaktoplysningerId);
+    this.newBrewery.contactInformationId = this.userInfoId;
+    console.log("kontaktoplysningerId:" ,  this.newBrewery.contactInformationId);
     this.newBrewery.logo = JSON.parse(localStorage.getItem('logo') || '{}');
     this.restApi.createData(this.newBrewery, this.endpointB).subscribe((data) => {
       localStorage.setItem('bryggeriId', JSON.stringify(data.id));

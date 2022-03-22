@@ -14,7 +14,7 @@
             <mat-expansion-panel *ngFor="let beer of beerliste" style="margin-top: 10px; background-color: transparent;" expanded="true">
                 <mat-expansion-panel-header style="background: linear-gradient(rgb(30, 122, 228), rgb(75, 127, 185)); justify-content: center; width: 100%;">
                     <mat-panel-title class="centers" style="justify-content: center;">
-                        Titel: {{beer.navn}}
+                        Titel: {{beer.name}}
                     </mat-panel-title>
                     <mat-action-row class="centers" style="justify-content: center;">
                         <button mat-button class="btnMainStyle" (click)="onDeleteBeer(beer.id)">Slet Øl</button>
@@ -28,19 +28,19 @@
                 </mat-card>
                 <mat-card class="containStyle">
                     <p>Procent:</p>
-                    <p>{{beer.procent}}</p>
+                    <p>{{beer.percentage}}</p>
                 </mat-card>
                 <mat-card class="containStyle">
                     <p>Smag:</p>
-                    <p>{{beer.smag}}</p>
+                    <p>{{beer.taste}}</p>
                 </mat-card>
                 <mat-card class="containStyle">
                     <p>Beskrivelse:</p>
-                    <p>{{beer.beskrivelse}}</p>
+                    <p>{{beer.description}}</p>
                 </mat-card>
                 <mat-card class="containStyle">
                     <p>Etiket:</p>
-                    <img [src]="beer.etiket" alt="" style="width: 20%; height: 20%;">
+                    <img [src]="beer.label" alt="" style="width: 20%; height: 20%;">
                 </mat-card>
                 <mat-card class="containStyle">
                     <p>Årgang:</p>
@@ -48,19 +48,19 @@
                 </mat-card>
                 <mat-card class="containStyle">
                     <p>Antal:</p>
-                    <p>{{beer.antal}}</p>
+                    <p>{{beer.quantity}}</p>
                 </mat-card>
                 <mat-card class="containStyle">
                     <p>Antal flasker:</p>
-                    <p>{{beer.flaskeAntal}}</p>
+                    <p>{{beer.bottleQuantity}}</p>
                 </mat-card>
                 <mat-card class="containStyle">
                     <p>Antal tønder:</p>
-                    <p>{{beer.tondeAntal}}</p>
+                    <p>{{beer.barrelQuantity}}</p>
                 </mat-card>
                 <mat-card class="containStyle">
                     <p>Antal reserve flasker:</p>
-                    <p>{{beer.flaskeResAntal}}</p>
+                    <p>{{beer.bottleResevationQuantity}}</p>
                 </mat-card>
             </mat-expansion-panel>
         </mat-accordion>

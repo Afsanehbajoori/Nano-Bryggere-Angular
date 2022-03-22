@@ -11,7 +11,7 @@ import { NotFoundComponent } from '../main/not-found/not-found.component';
 const routes: Routes = [
       {path:'',component:LoginSideComponent},
       {path:'login',component: LoginSideComponent},
-      {path:'registrer',component:RegistrerComponent},
+      {path:'registration',component:RegistrerComponent},
       {path:'forgotpassword',component:GlemtPasswordComponent},
       {path:'editpassword',component:EditPasswordComponent},
       {path:'updatedelete',component:RedigerSletBrugerComponent},

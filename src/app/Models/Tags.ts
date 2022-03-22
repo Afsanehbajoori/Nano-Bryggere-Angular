@@ -1,11 +1,11 @@
 import { Events } from "./Events";
 import { Forum } from "./Forum";
-import { Øl } from "./Øl";
+import { Beer } from "./Beer";
 
 export class Tags{
   public id: number;
-  public navn: string;
+  public name: string;
   public events: Events;
   public forum: Forum;
-  public øl : Øl;
+  public beer : Beer;
 }

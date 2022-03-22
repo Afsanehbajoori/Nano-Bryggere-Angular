@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog , MatDialogConfig ,MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
-import { Bruger } from 'src/app/Models/Bruger';
+import { User } from 'src/app/Models/User';
 import { RestApiService } from 'src/app/shared/rest-api.service';
-import { Kontaktoplysninger } from 'src/app/Models/Kontaktoplysninger';
+import { ContactInformation } from 'src/app/Models/ContactInformation';
 import { RedigerProfilDialogBoxComponent } from 'src/app/main/rediger-profil-dialog-box/rediger-profil-dialog-box.component';
 
 @Component({
@@ -16,8 +16,8 @@ import { RedigerProfilDialogBoxComponent } from 'src/app/main/rediger-profil-dia
 export class BrugerAdminSideComponent implements OnInit {
   dialogRefSlet: MatDialogRef<SletDialogBoxComponent>;
   dialogRefRedigerProfil: MatDialogRef<RedigerProfilDialogBoxComponent>;
-  users: Bruger[];
-  user = new Bruger();
+  users: User[];
+  user = new User();
   endpointU='/Brugere'; //endpointB
   endpointI = '/Kontaktoplysninger'; //endpointK
   searchkeyUsername: string;
@@ -29,7 +29,7 @@ export class BrugerAdminSideComponent implements OnInit {
   userinfoId:number; //kontaktoplysningerId
   clickButton:boolean=true;
   userinfoList: any; //kontaktoplysningerList
-  info:Kontaktoplysninger[]; //kontakt
+  info:ContactInformation[]; //kontakt
 
   constructor(
     public dialog: MatDialog,
@@ -65,7 +65,7 @@ export class BrugerAdminSideComponent implements OnInit {
     }
     else{
       this.users = this.users.filter(res =>{
-      return  res.brugernavn.toLowerCase().match(this.searchkeyUsername.toLowerCase());
+      return  res.username.toLowerCase().match(this.searchkeyUsername.toLowerCase());
 
       })
     }

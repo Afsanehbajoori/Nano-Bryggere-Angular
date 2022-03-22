@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Øl } from 'src/app/Models/Øl';
+import { Beer } from 'src/app/Models/Beer';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 import { SletDialogBoxComponent } from '../slet-dialog-box/slet-dialog-box.component';
 
@@ -11,7 +11,7 @@ import { SletDialogBoxComponent } from '../slet-dialog-box/slet-dialog-box.compo
   styleUrls: ['./samarbejde-visning.component.css']
 })
 export class SamarbejdeVisningComponent implements OnInit {
-  beer: Øl;
+  beer: Beer;
   beerId: number;
   endpointO = '/Øller';
   constructor(

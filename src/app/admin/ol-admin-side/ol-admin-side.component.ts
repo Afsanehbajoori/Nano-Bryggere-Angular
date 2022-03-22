@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
-import { Øl } from 'src/app/Models/Øl';
+import { Beer } from 'src/app/Models/Beer';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 
 @Component({
@@ -11,8 +11,8 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./ol-admin-side.component.css']
 })
 export class OlAdminSideComponent implements OnInit {
-  beers: Øl[];
-  beer: Øl;
+  beers: Beer[];
+  beer: Beer;
   endpointB = '/Øller';
   data = sessionStorage.getItem('id');
   searchkey: string;

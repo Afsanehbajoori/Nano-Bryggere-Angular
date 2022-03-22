@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Øl } from 'src/app/Models/Øl';
+import { Beer } from 'src/app/Models/Beer';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 import { SletDialogBoxComponent } from '../slet-dialog-box/slet-dialog-box.component';
 
@@ -12,8 +12,8 @@ import { SletDialogBoxComponent } from '../slet-dialog-box/slet-dialog-box.compo
 })
 export class KatalogComponent implements OnInit {
   beers: any;
-  beerliste: Øl[];
-  beer: Øl;
+  beerliste: Beer[];
+  beer: Beer;
   endpointO = '/Øller';
   searchkey: string;
   bryggeriId: number;
@@ -42,7 +42,7 @@ export class KatalogComponent implements OnInit {
   }
 
   onUpdateBeer(id: any) {
-    this.router.navigate(['../main/redigerol/', id]);
+    this.router.navigate(['../main/updatebeer/', id]);
   };
 
   onBeerLayer(id: any) {
@@ -51,7 +51,7 @@ export class KatalogComponent implements OnInit {
   };
 
   onCreateBeer() {
-    this.router.navigate(['../main/opretteol']);
+    this.router.navigate(['../main/createbeer']);
   };
 
   onDeleteBeer(id: any) {
@@ -72,7 +72,7 @@ export class KatalogComponent implements OnInit {
     }
     else {
       this.beerliste = this.beerliste.filter(res => {
-        return res.navn.toLowerCase().match(this.searchkey.toLowerCase());
+        return res.name.toLowerCase().match(this.searchkey.toLowerCase());
       })
     }
   }

@@ -26,23 +26,23 @@
 
             <mat-card class="containStyle">
               <span>Fornavn:</span>
-              <span class="txtStyle">{{userInfoList.fnavn}}</span>
+              <span class="txtStyle">{{userInfoList.fname}}</span>
             </mat-card>
             <mat-card class="containStyle">
               <span>Efternavn:</span>
-              <span class="txtStyle">{{userInfoList.enavn}}</span>
+              <span class="txtStyle">{{userInfoList.sname}}</span>
             </mat-card>
             <mat-card class="containStyle">
               <span>Addresselinje1:</span>
-              <span class="txtStyle">{{userInfoList.addresselinje1}}</span>
+              <span class="txtStyle">{{userInfoList.addressline1}}</span>
             </mat-card>
             <mat-card class="containStyle">
               <span>Addresselinje2:</span>
-              <span class="txtStyle">{{userInfoList.addresselinje2}}</span>
+              <span class="txtStyle">{{userInfoList.addressline2}}</span>
             </mat-card>
             <mat-card class="containStyle">
               <span>Telefonnr:</span>
-              <span class="txtStyle">{{userInfoList.telefonnr}}</span>
+              <span class="txtStyle">{{userInfoList.phoneNr}}</span>
             </mat-card>
             <mat-card class="containStyle">
               <span>Email:</span>
@@ -50,19 +50,19 @@
             </mat-card>
             <mat-card class="containStyle">
               <span>Postnr:</span>
-              <span class="txtStyle">{{userInfoList.postnr}}</span>
+              <span class="txtStyle">{{userInfoList.mailNr}}</span>
             </mat-card>
             <mat-card class="containStyle">
               <span>By:</span>
-              <span class="txtStyle">{{userInfoList.by}}</span>
+              <span class="txtStyle">{{userInfoList.city}}</span>
             </mat-card>
             <mat-card class="containStyle">
               <span>Brugernavn:</span>
-              <span class="txtStyle">{{this.userList.brugernavn}}</span>
+              <span class="txtStyle">{{this.userList.username}}</span>
             </mat-card>
             <mat-card class="containStyle">
               <span>Rollenavn:</span>
-              <span class="txtStyle">{{this.roleList.rolleNavn}}</span>
+              <span class="txtStyle">{{this.roleList.roleName}}</span>
             </mat-card>
             <mat-action-row>
               <button mat-button color="primary" (click)="onDeleteProfile()" class="btnMainStyle">Slet Profil</button>
@@ -95,11 +95,11 @@
             </mat-card>
             <mat-card class="containStyle">
               <span>Navn:</span>
-              <span class="txtStyle">{{breweryList.navn}}</span>
+              <span class="txtStyle">{{breweryList.name}}</span>
             </mat-card>
             <mat-card class="containStyle">
               <span>Beskrivelse:</span>
-              <span class="txtStyle">{{breweryList.beskrivelse}}</span>
+              <span class="txtStyle">{{breweryList.discription}}</span>
             </mat-card>
             <mat-action-row>
               <button mat-button color="primary" (click)="onDeleteBrewery()" class="btnMainStyle">Slet Bryggeri</button>
@@ -130,14 +130,14 @@
               </mat-form-field>
               <mat-form-field appearance="fill" class="example-full-width">
                 <mat-label>Navn</mat-label>
-                <input matInput placeholder="billede" formControlName="navn" [(ngModel)]="newBrewery.navn" required>
+                <input matInput placeholder="billede" formControlName="navn" [(ngModel)]="newBrewery.name" required>
                 <mat-error>
                   feltet skal udfyldes
                 </mat-error>
               </mat-form-field>
               <mat-form-field appearance="fill" class="example-full-width">
                 <mat-label>Beskrivelse</mat-label>
-                <input matInput placeholder="billede" formControlName="beskrivelse" [(ngModel)]="newBrewery.beskrivelse">
+                <input matInput placeholder="billede" formControlName="beskrivelse" [(ngModel)]="newBrewery.discription">
               </mat-form-field>
             </form>
             <mat-action-row>

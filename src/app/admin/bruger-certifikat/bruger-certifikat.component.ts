@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CertifikatDialogBoxComponent } from 'src/app/main/certifikat-dialog-box/certifikat-dialog-box.component';
-import { Kontaktoplysninger } from 'src/app/Models/Kontaktoplysninger';
+import { Kontaktoplysninger } from 'src/app/Models/ContactInformation';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 
 @Component({

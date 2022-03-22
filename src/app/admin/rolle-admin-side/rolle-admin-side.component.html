@@ -28,7 +28,7 @@
                     <mat-panel-title class="centers" style="justify-content: center;">
 
                        <span style="font-weight: bold; margin-right: 20px;"> Brugernavn:</span>
-                       <span>{{user.brugernavn}}</span>
+                       <span>{{user.username}}</span>
                     </mat-panel-title>
                     <mat-action-row class="centers" style="justify-content: center;">
                       <button mat-button class="btnMainStyle" (click)="onShowUser(user.id)" >vis </button>  |
@@ -37,14 +37,14 @@
                       <button mat-button class="btnMainStyle" (click)="onDeleteUser(user.id)">Slet </button> 
                     </mat-action-row>
                 </mat-expansion-panel-header>
-                <div  *ngIf="Role">
+                <div  *ngIf="role">
                 <mat-card class="containStyle">
                   <span>Rollenavn:</span>
-                  <span class="txtStyle">{{Role.rolleNavn}}</span>
+                  <span class="txtStyle">{{role.RoleName}}</span>
                 </mat-card>
                 <mat-card class="containStyle">
                   <span>level:</span>
-                  <span class="txtStyle">{{Role.level}}</span>
+                  <span class="txtStyle">{{role.level}}</span>
                 </mat-card>
               </div>
             </mat-expansion-panel>

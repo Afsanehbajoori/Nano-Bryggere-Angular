@@ -5,7 +5,7 @@
         <mat-tab label="Find Events med events titel">
       <form class="example-form" style="justify-content: center; width: 100%;">
         <mat-form-field  class="txtHeader">
-            <input matInput type="search"  [(ngModel)]="searchkeyEventtitel" (ngModelChange)="onFindEventtitel()" [ngModelOptions]="{standalone: true}" >
+            <input matInput type="search"  [(ngModel)]="searchkeyEventtitle" (ngModelChange)="onFindEventtitle()" [ngModelOptions]="{standalone: true}" >
         </mat-form-field>
       </form>
         </mat-tab>
@@ -30,7 +30,7 @@
                     style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236)); justify-content: center; width: 100%;">
                     <mat-panel-title class="centers" style="justify-content: center;">
                        <span style="font-weight: bold; margin-right: 20px;">Events Titel:</span>
-                       <span>{{event.titel}}</span>
+                       <span>{{event.title}}</span>
                     </mat-panel-title>
                     <mat-action-row class="centers" style="justify-content: center;">
                         <button mat-button class="btnMainStyle" (click)="onShowEvent(event.id)">Vis </button> |
@@ -42,36 +42,31 @@
                 <div  *ngIf="eventList">
                   <mat-card class="containStyle">
                     <span>EventBillede:</span>
-                    <span class="txtStyle"><img [src]="eventList.eventBilled" alt="" style="width: 30%; height: 30%;"></span>
+                    <span class="txtStyle"><img [src]="eventList.eventPicture" alt="" style="width: 30%; height: 30%;"></span>
                   </mat-card>
                   <mat-card class="containStyle">
                   <span>Titel:</span>
-                  <span class="txtStyle">{{eventList.titel}}</span>
+                  <span class="txtStyle">{{eventList.title}}</span>
                 </mat-card>
                 <mat-card class="containStyle">
                   <span>Beskrivelse:</span>
-                  <span class="txtStyle">{{eventList.beskrivelse}}</span>
+                  <span class="txtStyle">{{eventList.description}}</span>
                 </mat-card>
                 <mat-card class="containStyle">
                   <span>Lokation:</span>
-                  <span class="txtStyle">{{eventList.lokation}}</span>
+                  <span class="txtStyle">{{eventList.location}}</span>
                 </mat-card>
                 <mat-card class="containStyle">
                   <span>StartDato:</span>
-                  <span class="txtStyle">{{eventList.startDato}}</span>
+                  <span class="txtStyle">{{eventList.startDate}}</span>
                 </mat-card>
                 <mat-card class="containStyle">
                   <span>SlutDato:</span>
-                  <span class="txtStyle">{{eventList.slutDato}}</span>
+                  <span class="txtStyle">{{eventList.endDate}}</span>
                 </mat-card>
-
               </div>
-
-
             </mat-expansion-panel>
         </mat-accordion>
     </table>
   </mat-card>
 </div>
-
-

@@ -11,11 +11,11 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 export class ForumTagsComponent implements OnInit {
   tag: Tags;
   tags: any;
-  tagsliste: Tags[];
+  tagsList: Tags[];
   searchkey: string;
   search: any;
   endpointT = '/Tags';
-  beerid = JSON.parse(localStorage.getItem('bryggeriId') || '{}')
+  beerid = JSON.parse(localStorage.getItem('breweryId') || '{}')
   beerList : any = {};
   constructor(
     public restApi: RestApiService,
@@ -23,12 +23,12 @@ export class ForumTagsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.onloadTags()
+    this.onLoadTags()
   }
 
-  onloadTags() {
+  onLoadTags() {
     return this.restApi.getDatas(this.endpointT).subscribe((tag) => {
-      this.tagsliste = tag;
+      this.tagsList = tag;
     });
   }
 
@@ -37,15 +37,15 @@ export class ForumTagsComponent implements OnInit {
       this.ngOnInit();
     }
     else{
-      this.tagsliste = this.tagsliste.filter(res =>{
-        return res.navn.toLowerCase().match(this.searchkey.toLowerCase());
+      this.tagsList = this.tagsList.filter(res =>{
+        return res.name.toLowerCase().match(this.searchkey.toLowerCase());
       })
     }
   }
 
   onAddTag(id:any){
     this.restApi.updateData(this.beerid, this.endpointT, this.beerList).subscribe((data) => {
-      this.router.navigate(['../main/katalog'])
+      this.router.navigate(['../main/catalog'])
     });
   }
 }

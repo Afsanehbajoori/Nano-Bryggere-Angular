@@ -27,9 +27,8 @@ export class UpdatePostDialogBoxComponent implements OnInit {
     .then(data => {
       this.updatePost= data ;
       this.updateForm = this.formBuilder.group({
-        titel : new FormControl(this.updatePost.titel),
-        indhold : new FormControl(this.updatePost.indhold)
-
+        title : new FormControl(this.updatePost.title),
+        content : new FormControl(this.updatePost.content)
       })
     })
   }

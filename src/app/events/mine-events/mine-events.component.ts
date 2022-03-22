@@ -31,11 +31,11 @@ export class MineEventsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.userId = JSON.parse(localStorage.getItem('brugerId') || '{}');
-    this.onloadParticipation();
+    this.userId = JSON.parse(localStorage.getItem('userId') || '{}');
+    this.onLoadParticipation();
   }
 
-  onloadParticipation(){
+  onLoadParticipation(){
     this.restApi.getDatas(this.endpointP).subscribe(data => {
       this.listParticipation=data
       if(this.userId){
@@ -61,14 +61,14 @@ export class MineEventsComponent implements OnInit {
       this.ngOnInit();
     }
     else{
-     this.restApi.getDeltagerByEventsTitel(this.searchkey , this.endpointE).subscribe(data => {
+     this.restApi.getParticipantByEventsTitle(this.searchkey , this.endpointE).subscribe(data => {
        this.listParticipation=data;
        console.log('hi:', this.listParticipation)
      })
     }
   }
 
-  onAfmeldEvent(id:any){
+  onRejectEvent(id:any){
     this.dialogRefDelete = this.dialog.open(SletDialogBoxComponent, {
       width: '300px',
       disableClose: true

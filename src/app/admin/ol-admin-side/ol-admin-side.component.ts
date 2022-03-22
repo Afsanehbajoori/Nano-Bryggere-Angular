@@ -39,7 +39,7 @@ export class OlAdminSideComponent implements OnInit {
     }
     else{
       this.beers = this.beers.filter(res =>{
-        return res.navn.toLowerCase().match(this.searchkey.toLowerCase());
+        return res.name.toLowerCase().match(this.searchkey.toLowerCase());
       })
     }
   }

@@ -15,7 +15,7 @@ import { UpdatePostDialogBoxComponent } from '../update-post-dialog-box/update-p
 })
 
 export class ForsideComponent implements OnInit {
-  @Input() postCreation = {titel: '', indhold: '' , brugerId:0 ,forumId:0  };
+  @Input() postCreation = {title: '', content: '' , userId:0 ,forumId:0  };
   dialogRefUpdatePost : MatDialogRef<UpdatePostDialogBoxComponent>;
 
   creationForm : any = new FormGroup({});
@@ -46,28 +46,28 @@ export class ForsideComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.userId = JSON.parse(localStorage.getItem('brugerId') || '{}');
+    this.userId = JSON.parse(localStorage.getItem('userId') || '{}');
     this.creationForm = new FormGroup({
-      titel: new FormControl('', Validators.required),
-      indhold: new FormControl('', Validators.required),
-      brugerId:new FormControl('' , Validators.required),
+      title: new FormControl('', Validators.required),
+      content: new FormControl('', Validators.required),
+      userId:new FormControl('' , Validators.required),
       forumId:new FormControl('' , Validators.required)
       //oprettet:new FormControl('', Validators.required)
 
     });
-    this.onloadForum();
-    this.onloadPost();
+    this.onLoadForum();
+    this.onLoadPost();
     //this.loadBruger();
   }
 
-  onloadForum(){
+  onLoadForum(){
     return this.restApi.getDatas(this.endpointF).subscribe((forum) => {
       this.forums = forum;
       console.log('forum:', this.forums)
     })
   }
 
-  onloadPost(){
+  onLoadPost(){
     return this.restApi.getDatas(this.endpointP).subscribe((post) => {
       this.posts = post;
       console.log('posts:',this.posts);
@@ -86,7 +86,7 @@ export class ForsideComponent implements OnInit {
   } */
 
   onApprovePost(id:any){
-    this.postCreation.brugerId= this.userId;
+    this.postCreation.userId= this.userId;
     this.postCreation.forumId=id;
     // this.postOprettelse.oprettet=formatDate(new Date(), 'yyyy-MM-ddThh:mm:ssssZ' , 'en-US').toString();
 /*      if(!this.listArrayBrugerId.includes(Number(this.postOprettelse.brugerId2)))
@@ -95,9 +95,8 @@ export class ForsideComponent implements OnInit {
     }else{ */
 
      this.restApi.createData(this.postCreation, this.endpointP).subscribe((data) => {
-     this.postCreation.indhold='';
-     this.postCreation.titel='';
-
+     this.postCreation.content='';
+     this.postCreation.title='';
 
         // localStorage.setItem('brugerId2' ,JSON.stringify(data.brugerId2) );
        // this.router.navigate(['../main/katalog']);
@@ -121,7 +120,7 @@ export class ForsideComponent implements OnInit {
     }
     else{
       this.forums = this.forums.filter(res =>{
-        return res.titel.toLowerCase().match(this.searchkey.toLowerCase());
+        return res.title.toLowerCase().match(this.searchkey.toLowerCase());
       })
     }
   }
@@ -157,7 +156,6 @@ export class ForsideComponent implements OnInit {
   onCreateForum() {
     this.router.navigate(['../forum/forumcreation']);
   };
-
 
   onDeletePost(id: any) {
     this.restApi.getData(id , this.endpointP).subscribe(data => {

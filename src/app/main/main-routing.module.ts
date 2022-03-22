@@ -18,7 +18,7 @@ const routes: Routes = [
   {path:'main', component:ForsideComponent},
   {path:'event', component:EventSideComponent},
   {path:'certificate', component:CertifikatComponent},
-  {path:'profil', component:ProfilComponent},
+  {path:'profile', component:ProfilComponent},
   {path:'deleteprofil', component:SletProfilComponent},
   {path:'updatebeer/:id', component:RedigerOlComponent},
   {path:'createbeer', component:OpretteOlComponent},

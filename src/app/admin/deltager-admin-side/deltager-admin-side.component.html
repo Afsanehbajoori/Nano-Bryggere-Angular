@@ -15,30 +15,30 @@
   <mat-card>
     <table style="width: 100%; height: 100%; display: flex;" >
         <mat-accordion class="example-headers-align" multi style="width: 100%;">
-             <mat-expansion-panel *ngFor="let deltage of participants" style="margin-top: 10px;"  [disabled]="clickButton" (click)="clickButton=true" >
+             <mat-expansion-panel *ngFor="let participant of participants" style="margin-top: 10px;"  [disabled]="clickButton" (click)="clickButton=true" >
                 <mat-expansion-panel-header
                     style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236)); justify-content: center; width: 100%;">
                     <mat-panel-title class="centers" style="justify-content: center;">
                        <span style="font-weight: bold; margin-right: 20px;">Deltager Id:</span>
-                       <span>{{deltage.id}}</span>
+                       <span>{{participant.id}}</span>
                     </mat-panel-title>
                     <mat-action-row class="centers" style="justify-content: center;">
-                        <button mat-button class="btnMainStyle" (click)="onShowParticipants(deltage.id)">Vis </button> |
-                        <button mat-button class="btnMainStyle" (click)="onAfmeldLoadParticipation(deltage.id)">Afmeld Deltagelse </button>
+                        <button mat-button class="btnMainStyle" (click)="onShowParticipants(participant.id)">Vis </button> |
+                        <button mat-button class="btnMainStyle" (click)="onRejectLoadParticipation(participant.id)">Afmeld Deltagelse </button>
                     </mat-action-row>
                 </mat-expansion-panel-header>
                 <div >
                   <mat-card class="containStyle" *ngIf="participantsListB">
                   <span>Brugernavn:</span>
-                  <span class="txtStyle">{{participantsListB.brugernavn}}</span>
+                  <span class="txtStyle">{{participantsListB.username}}</span>
                 </mat-card>
                 <mat-card class="containStyle" *ngIf="participantsListE">
                   <span>EventsTitel:</span>
-                  <span class="txtStyle">{{participantsListE.titel}}</span>
+                  <span class="txtStyle">{{participantsListE.title}}</span>
                 </mat-card>
                 <mat-card class="containStyle" *ngIf="participantsListD">
                   <span>Is Deltage:</span>
-                  <span class="txtStyle">{{participantsListD.isDeltage}}</span>
+                  <span class="txtStyle">{{participantsListD.isParticipant}}</span>
                 </mat-card>
                 </div>
             </mat-expansion-panel>
@@ -46,6 +46,3 @@
     </table>
   </mat-card>
 </div>
-
-
-

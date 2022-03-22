@@ -3,41 +3,41 @@
   <form class="example-form" [formGroup]="updateForm" *ngIf="eventsList">
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Logo</mat-label>
-      <input matInput formControlName="eventBilled">
-      <img [src]="eventsList.eventBilled" alt="" style="width: 20%; height: 20%;">
+      <input matInput formControlName="eventPicture">
+      <img [src]="eventsList.eventPicture" alt="" style="width: 20%; height: 20%;">
       <input type="file" class="btnMainStyle" (change)="onSubmitCertificate($event)">
     </mat-form-field>
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Titel:</mat-label>
-      <input matInput formControlName="titel" placeholder="{{eventsList.titel}}" [(ngModel)]="eventsList.titel">
+      <input matInput formControlName="title" placeholder="{{eventsList.title}}" [(ngModel)]="eventsList.title">
     </mat-form-field>
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Beskrivelse:</mat-label>
-      <input matInput formControlName="beskrivelse" placeholder="{{eventsList.beskrivelse}}"
-        [(ngModel)]="eventsList.beskrivelse">
+      <input matInput formControlName="description" placeholder="{{eventsList.description}}"
+        [(ngModel)]="eventsList.description">
     </mat-form-field>
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>StartDato:</mat-label>
-      <input matInput [matDatepicker]="picker1" formControlName="startDato" placeholder="{{eventsList.startDato}}"
-        [(ngModel)]="eventsList.startDato">
+      <input matInput [matDatepicker]="picker1" formControlName="startDate" placeholder="{{eventsList.startDate}}"
+        [(ngModel)]="eventsList.startDate">
       <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
       <mat-datepicker #picker1></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>SlutDato:</mat-label>
-      <input matInput [matDatepicker]="picker2" formControlName="slutDato" placeholder="{{eventsList.slutDato}}"
-        [(ngModel)]="eventsList.slutDato">
+      <input matInput [matDatepicker]="picker2" formControlName="endDate" placeholder="{{eventsList.endDate}}"
+        [(ngModel)]="eventsList.endDate">
       <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
       <mat-datepicker #picker2></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Lokation:</mat-label>
-      <input matInput formControlName="lokation" placeholder="{{eventsList.lokation}}"
-        [(ngModel)]="eventsList.lokation">
+      <input matInput formControlName="location" placeholder="{{eventsList.location}}"
+        [(ngModel)]="eventsList.location">
     </mat-form-field>
 
     <div mat-dialog-actions class="btn-container">

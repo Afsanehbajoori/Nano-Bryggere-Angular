@@ -42,7 +42,7 @@ export class AdminTagsComponent implements OnInit {
     }
     else{
       this.tagslist = this.tagslist.filter(res =>{
-        return res.navn.toLowerCase().match(this.searchkey.toLowerCase());
+        return res.name.toLowerCase().match(this.searchkey.toLowerCase());
       })
     }
   }

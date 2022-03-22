@@ -15,9 +15,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 export class RegistrerComponent implements OnInit {
 
-@Input() newUser = { pw:'', brugernavn:'', rolleNavn:'', rolleId:null, level:'', kontaktoplysningerId: null,
- fnavn: '', enavn: '', addresselinje1: '', addresselinje2: '', postnr: '',
-  by: '', email:'', telefonnr: '' };
+@Input() newUser = { pw:'', username:'', roleName:'', roleId:null, level:'', contactInformationId: null,
+ fname: '', sname: '', addressline1: '', addressline2: '', mailNr: '',
+  city: '', email:'', phoneNr: '' };
 
   userFormGroup:any = new FormGroup({});
   endpointK = '/Kontaktoplysninger';
@@ -28,19 +28,19 @@ export class RegistrerComponent implements OnInit {
 
   ngOnInit(): void {
     this.userFormGroup = this._formBuilder.group({
-      'kontaktoplysningerId':new FormControl(''),
-      'fnavn' : new FormControl('' , Validators.required),
-      'enavn': new FormControl('' , Validators.required),
-      'addresselinje1': new FormControl(''),
-      'addresselinje2': new FormControl(''),
-      'postnr' : new FormControl(''),
-      'by': new FormControl(''),
+      'contactInformationId':new FormControl(''),
+      'fname' : new FormControl('' , Validators.required),
+      'sname': new FormControl('' , Validators.required),
+      'addressline1': new FormControl(''),
+      'addressline2': new FormControl(''),
+      'mailNr' : new FormControl(''),
+      'city': new FormControl(''),
       'email' : new FormControl('' , Validators.email ),
-      'telefonnr': new FormControl(''),
-      'brugernavn' : new FormControl(''),
+      'phoneNr': new FormControl(''),
+      'username' : new FormControl(''),
       'pw':new FormControl(''),
-      'rolleId':new FormControl(''),
-      'rolleNavn':new FormControl(''),
+      'roleId':new FormControl(''),
+      'roleName':new FormControl(''),
       'level':new FormControl('')
     });
   }
@@ -48,18 +48,18 @@ export class RegistrerComponent implements OnInit {
   createUser(){
    this.restApi.createData(this.newUser, this.endpointK).subscribe((dataK) => {
      console.log(dataK.id);
-      this.newUser.kontaktoplysningerId= dataK.id;
-      if(this.newUser.rolleNavn == 'AnonymBruger')
+      this.newUser.contactInformationId= dataK.id;
+      if(this.newUser.roleName == 'AnonymBruger')
       this.newUser.level=0 + "";
-      if(this.newUser.rolleNavn == 'Bruger')
+      if(this.newUser.roleName == 'Bruger')
       this.newUser.level=100 + "";
-      if(this.newUser.rolleNavn == 'Moderator')
+      if(this.newUser.roleName == 'Moderator')
       this.newUser.level=200 + "";
-      if(this.newUser.rolleNavn == 'Administrator')
+      if(this.newUser.roleName == 'Administrator')
       this.newUser.level=300 + "";
      this.restApi.createData(this.newUser , this.endpointR).subscribe((dataR) => {
       console.log(dataR.id);
-      this.newUser.rolleId=dataR.id;
+      this.newUser.roleId=dataR.id;
       this.restApi.createData(this.newUser , this.endpointB).subscribe((dataB) => {
         console.log(dataB);
         var brugerId = dataB.id;

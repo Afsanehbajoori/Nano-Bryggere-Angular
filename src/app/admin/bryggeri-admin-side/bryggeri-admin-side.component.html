@@ -5,14 +5,14 @@
         <mat-tab label="Find bryggeri med bryggerinavn">
       <form class="example-form" style="justify-content: center; width: 100%;">
         <mat-form-field  class="txtHeader">
-            <input matInput type="search"  [(ngModel)]="searchkeyBryggeriname" (ngModelChange)="onFindBryggeriname()" [ngModelOptions]="{standalone: true}" >
+            <input matInput type="search"  [(ngModel)]="searchkeyBreweryname" (ngModelChange)="onFindBreweryname()" [ngModelOptions]="{standalone: true}" >
         </mat-form-field>
       </form>
         </mat-tab>
         <mat-tab label="Find bryggeri med bryggeriSamarbejde">
           <form class="example-form" style="justify-content: center; width: 100%;">
             <mat-form-field  class="txtHeader">
-                <input matInput type="search"  [(ngModel)]="searchkeyBryggeriCooperation" (ngModelChange)="onFindBryggeriCooperation()" [ngModelOptions]="{standalone: true}" >
+                <input matInput type="search"  [(ngModel)]="searchkeyBreweryCooperation" (ngModelChange)="onFindBreweryCooperation()" [ngModelOptions]="{standalone: true}" >
             </mat-form-field>
           </form>
             </mat-tab>
@@ -23,33 +23,33 @@
   <mat-card>
     <table style="width: 100%; height: 100%; display: flex;" >
         <mat-accordion class="example-headers-align" multi style="width: 100%;">
-             <mat-expansion-panel *ngFor="let brygge of bryggeri" style="margin-top: 10px;"  [disabled]="clickButton" (click)="clickButton=true" >
+             <mat-expansion-panel *ngFor="let brew of Brewery" style="margin-top: 10px;"  [disabled]="clickButton" (click)="clickButton=true" >
                 <mat-expansion-panel-header
                     style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236)); justify-content: center; width: 100%;">
                     <mat-panel-title class="centers" style="justify-content: center;">
                        <span style="font-weight: bold; margin-right: 20px;"> Bryggerinavn:</span>
-                       <span>{{brygge.navn}}</span>
+                       <span>{{brew.name}}</span>
                     </mat-panel-title>
                     <mat-action-row class="centers" style="justify-content: center;">
-                      <button mat-button class="btnMainStyle" (click)="onShowBryggeri(brygge.id)" >vis </button>  |
-                      <button mat-button class="btnMainStyle" (click)="onUpdateBryggeri(brygge.id)">Update </button> |
-                        <button mat-button class="btnMainStyle" (click)="onDeleteBryggeri(brygge.id)">Slet </button> 
+                      <button mat-button class="btnMainStyle" (click)="onShowBrewery(brew.id)" >vis </button>  |
+                      <button mat-button class="btnMainStyle" (click)="onUpdateBrewery(brew.id)">Update </button> |
+                        <button mat-button class="btnMainStyle" (click)="onDeleteBrewery(brew.id)">Slet </button> 
 
 
                     </mat-action-row>
                 </mat-expansion-panel-header>
-                <div  *ngIf="bryggeri">
+                <div  *ngIf="Brewery">
                 <mat-card class="containStyle">
                   <span>beskrivelse:</span>
-                  <span class="txtStyle">{{brygge.beskrivelse}}</span>
+                  <span class="txtStyle">{{brew.description}}</span>
                 </mat-card>
                 <mat-card class="containStyle">
                   <span>logo:</span>
-                  <span class="txtStyle"><img [src]="this.brygge.logo" alt="" style="width: 20%; height: 20%;"></span>
+                  <span class="txtStyle"><img [src]="this.brew.logo" alt="" style="width: 20%; height: 20%;"></span>
                 </mat-card>
                 <mat-card class="containStyle">
                   <span>Samarbejde:</span>
-                  <span class="txtStyle">{{brygge.samarbejde}}</span>
+                  <span class="txtStyle">{{brew.cooperation}}</span>
                 </mat-card>
 
               </div>

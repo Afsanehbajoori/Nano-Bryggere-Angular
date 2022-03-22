@@ -12,7 +12,7 @@
             <mat-expansion-panel *ngFor="let beer of beers" style="margin-top: 10px;">
                 <mat-expansion-panel-header style="background: linear-gradient(rgb(30, 122, 228), rgb(75, 127, 185)); justify-content: center; width: 100%;">
                     <mat-panel-title class="centers" style="justify-content: center;">
-                        <p>{{beer.navn}}</p>
+                        <p>{{beer.name}}</p>
                     </mat-panel-title>
                      <mat-action-row class="centers" style="justify-content: center;">
                         <button mat-button class="btnMainStyle" (click)="onDeleteBeer(beer.id)">Slet Øl</button>
@@ -24,15 +24,15 @@
                 </mat-card>
                 <mat-card class="containStyle">
                     <p>Beskrivelse:</p>
-                    <p>{{beer.beskrivelse}}</p>
+                    <p>{{beer.description}}</p>
                 </mat-card>
                 <mat-card class="containStyle">
                     <p>Land:</p>
-                    <p>{{beer.land}}</p>
+                    <p>{{beer.country}}</p>
                 </mat-card>
                 <mat-card class="containStyle">
                     <p>Etiket:</p>
-                    <img [src]="beer.etiket" alt="" style="width: 20%; height: 20%;">
+                    <img [src]="beer.label" alt="" style="width: 20%; height: 20%;">
                 </mat-card>
             </mat-expansion-panel>
         </mat-accordion>

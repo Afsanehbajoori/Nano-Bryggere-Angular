@@ -22,22 +22,22 @@ export class SamarbejdeRedigerComponent implements OnInit {
 
   ngOnInit(): void {
     this.updateForm = new FormGroup({
-      navn: new FormControl(''),
+      name: new FormControl(''),
       type: new FormControl(''),
-      smag: new FormControl(''),
-      procent: new FormControl(''),
-      bryggerid: new FormControl(''),
-      // argang: new FormControl('', Validators.required),
-      land: new FormControl(''),
-      process: new FormControl('', Validators.required),
-      etiket: new FormControl(''),
-      beskrivelse: new FormControl(''),
+      taste: new FormControl(''),
+      procentage: new FormControl(''),
+      breweryId: new FormControl(''),
+      vintage: new FormControl('', Validators.required),
+      country: new FormControl(''),
+      // process: new FormControl('', Validators.required),
+      label: new FormControl(''),
+      description: new FormControl(''),
       // billed: new FormControl('', Validators.required),
-      antal: new FormControl(''),
+      qauntity: new FormControl(''),
     });
   }
 
-  onloadBeer(){
+  onLoadBeer(){
     return this.restApi.getData(this.beerid, this.endpoints).subscribe((beer: {}) => {
       this.beerList = beer;
     });

@@ -21,9 +21,9 @@ export class BrugerAdminSideComponent implements OnInit {
   endpointU='/Brugere'; //endpointB
   endpointI = '/Kontaktoplysninger'; //endpointK
   searchkeyUsername: string;
-  searchkeyUserLastname:string;
+  searchkeyUserSname:string;
   searchkeyEmail:string;
-  searchkeyEventsTitel:string;
+  searchkeyEventsTitle:string;
   userinfo:any; //kontaktoplysninger
   id = this.actRoute.snapshot.params['id'];
   userinfoId:number; //kontaktoplysningerId
@@ -71,12 +71,12 @@ export class BrugerAdminSideComponent implements OnInit {
     }
   }
 
-  onFindUserLastname(){
-    if(this.searchkeyUserLastname ==''){
+  onFindUserSname(){
+    if(this.searchkeyUserSname ==''){
       this.ngOnInit();
     }
      else{
-      this.restApi.getDataByEnavn(this.searchkeyUserLastname , this.endpointU).subscribe((data) => {
+      this.restApi.getDataBySname(this.searchkeyUserSname , this.endpointU).subscribe((data) => {
         return this.users=data;
       })
         }
@@ -95,12 +95,12 @@ export class BrugerAdminSideComponent implements OnInit {
      }
   }
 
-  onFindUsernameByEventsTitel(){
-    if(this.searchkeyEventsTitel == ""){
+  onFindUsernameByEventsTitle(){
+    if(this.searchkeyEventsTitle == ""){
       this.ngOnInit();
     }
     else{
-      this.restApi.getBrugerByEventsTitel(this.searchkeyEventsTitel , this.endpointU).subscribe((data) => {
+      this.restApi.getUserByEventsTitle(this.searchkeyEventsTitle , this.endpointU).subscribe((data) => {
         return this.users=data;
       })
      }

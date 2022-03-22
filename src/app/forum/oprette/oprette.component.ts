@@ -10,7 +10,7 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 })
 export class OpretteComponent implements OnInit {
 
-  @Input() forumCreation = { titel: '', beskrivelse: '' , oprettet:''};
+  @Input() forumCreation = { title: '', description: '' , createDate:''};
   createForm: any = new FormGroup({});
   endpointF = '/Forumer';
 
@@ -19,9 +19,9 @@ export class OpretteComponent implements OnInit {
 
   ngOnInit(): void {
     this.createForm = new FormGroup({
-      titel: new FormControl('', Validators.required),
-      beskrivelse: new FormControl('', Validators.required),
-      oprettet:new FormControl('', Validators.required)
+      title: new FormControl('', Validators.required),
+      description: new FormControl('', Validators.required),
+      createDate: new FormControl('', Validators.required)
     });
   }
 
@@ -30,10 +30,7 @@ export class OpretteComponent implements OnInit {
   };
 
   onSubmitForum() {
-
-
     this.restApi.createData(this.forumCreation, this.endpointF).subscribe((data) => {
-
       this.router.navigate(['../forum/forum'])
       localStorage.setItem('forumId' ,JSON.stringify(data.id));
       console.log('id',data.id);

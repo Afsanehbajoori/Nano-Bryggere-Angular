@@ -10,23 +10,22 @@ export class VisOlDetajlerComponent implements OnInit {
   beerId:number;
   endpointO = '/Øller';
   beerInfo: any;
-  argang:Date;
+  vintage:Date;
 
   constructor(public restApi: RestApiService) { }
 
   ngOnInit(): void {
-    this.beerId= JSON.parse(localStorage.getItem('olId') || '{}');
-    console.log('olId' , this.beerId);
+    this.beerId= JSON.parse(localStorage.getItem('beerId') || '{}');
+    console.log('beerId' , this.beerId);
     this.onLoadBeer();
   }
 
   onLoadBeer(){
     this.restApi.getData(this.beerId , this.endpointO).subscribe(data => {
       this.beerInfo = data;
-      console.log('detajler:' , this.beerInfo.årgang)
-      this.argang=this.beerInfo.årgang;
-       console.log('date:' , this.argang)
+      console.log('detajler:' , this.beerInfo.vintage)
+      // this.vintage=this.beerInfo.vintage;
+       console.log('date:' , this.vintage)
     })
   }
-
 }

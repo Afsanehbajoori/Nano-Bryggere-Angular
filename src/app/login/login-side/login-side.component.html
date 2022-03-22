@@ -6,7 +6,7 @@
     <form [formGroup]="loginForm"  class="example-form" >
 
         <mat-form-field class="example-full-width" appearance="fill" >
-            <input matInput formControlName="brugernavn" [(ngModel)]="loginDetails.brugernavn" placeholder="brugernavn" class="input-control">
+            <input matInput formControlName="username" [(ngModel)]="loginDetails.username" placeholder="brugernavn" class="input-control">
             <!-- <mat-error *ngIf="email.errors?.['required']"> -->
             <mat-error>
                 Vær Venlig at udfyld feltet med din brugernavn
@@ -21,7 +21,7 @@
        <button mat-raised-button type="submit" (click)="onSubmitLogin()" class="login-btn">Login</button>
         <div style="margin-top: 20px;">
           <span ><a routerLink="/login/registrer" routerLinkActive="active">Registrer</a></span>
-            <span style="margin-left: 330px;"><a routerLink="/login/glemtpassword" routerLinkActive="active">Glemt Password</a></span>
+            <span style="margin-left: 330px;"><a routerLink="/login/forgotpassword" routerLinkActive="active">Glemt Password</a></span>
           </div>
     </form>
   </mat-card-content>

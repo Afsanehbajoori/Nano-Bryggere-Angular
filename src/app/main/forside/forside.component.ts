@@ -2,7 +2,7 @@ import { Component, OnInit ,ChangeDetectionStrategy , ViewEncapsulation} from '@
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { Bryggeri } from 'src/app/Models/Brewery';
+import { Brewery } from 'src/app/Models/Brewery';
 import { Events } from 'src/app/Models/Events';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 import { VisDetajlerComponent } from '../vis-detajler/vis-detajler.component';
@@ -21,7 +21,7 @@ import { Beer } from 'src/app/Models/Beer';
 
 export class ForsideComponent implements OnInit {
   events: Events[];
-  bryggeri: Bryggeri[];
+  brewery: Brewery[];
   beerList: Beer [];
   event = new Events;
   eventList : any = {};
@@ -35,25 +35,26 @@ export class ForsideComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.onloadEvent();
-    this.onloadBryggeri();
-    this.onloadBeer();
+    this.onLoadEvent();
+    this.onLoadBrewery();
+    this.onLoadBeer();
   }
 
-  onloadEvent() {
+  onLoadEvent() {
     return this.restApi.getDatas(this.endpointE).subscribe((data) => {
       this.events = data;
       //console.log(this.events)
     });
   }
 
-  onloadBryggeri(){
+  onLoadBrewery(){
     return this.restApi.getDatas(this.endpointB).subscribe((data) => {
-      this.bryggeri = data;
+      this.brewery = data;
       //console.log('bryggeriList:',this.bryggeri);
     })
   }
-  onloadBeer(){
+  
+  onLoadBeer(){
     return this.restApi.getDatas(this.endpointO).subscribe((data) => {
       this.beerList = data;
       //console.log('olList:',this.olList);

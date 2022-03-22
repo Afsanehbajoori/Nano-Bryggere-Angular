@@ -17,7 +17,7 @@ export class ForumAdminSideComponent implements OnInit {
   forums:any;
   clickButton:boolean=true;
   posts:any;
-  RedigerForum: FormGroup = new FormGroup({});
+  updateForm: FormGroup = new FormGroup({});
   updateForum:any;
 
   constructor( public dialog: MatDialog,
@@ -27,58 +27,58 @@ export class ForumAdminSideComponent implements OnInit {
     private formBuilder: FormBuilder,) { }
 
   ngOnInit(): void {
-    this.loadForum();
-    this.loadPost();
+    this.onLoadForum();
+    this.onLoadPost();
   }
-  loadForum(){
+  onLoadForum(){
     return this.restApi.getDatas(this.endpointf).subscribe((forum) => {
       this.forums = forum;
       console.log('forum:', this.forums)
     })
   }
-    loadPost(){
+    onLoadPost(){
     return this.restApi.getDatas(this.endpointp).subscribe((post) => {
       this.posts = post;
       console.log('posts:',this.posts);
     })
   }
-  onOpretteForum(){
+  onCreateForum(){
     this.router.navigate(['../forum/oprette']);
   }
 
-  onVisForum(id:any){
+  onShowForum(id:any){
     this.router.navigate(['../forum/forum']);
    }
 
-  onFindForumtitel(){
+  onFindForumtitle(){
 
   }
+
   onUpdateForum(id:any){
     this.clickButton=false;
     this.restApi.getData(id , this.endpointf)
     .toPromise()
     .then(data => {
       this.updateForum= data ;
-      this.RedigerForum = this.formBuilder.group({
-        titel : new FormControl(this.updateForum.titel),
-        beskrivelse : new FormControl(this.updateForum.beskrivelse),
-        oprettet : new FormControl(this.updateForum.oprettet)
+      this.updateForm = this.formBuilder.group({
+        title : new FormControl(this.updateForum.title),
+        description : new FormControl(this.updateForum.description),
+        createDate : new FormControl(this.updateForum.createDate)
       })
     })
-
   }
+
   SaveChanges(id:any){
     this.restApi.updateData(id, this.endpointf,this.updateForum).subscribe(data => {
       this.ngOnInit()
     })
-
   }
+
   onCancel(){
     this.ngOnInit()
   }
 
-
-  onSletForum(id:any){
+  onDeleteForum(id:any){
       this.posts=this.posts.filter((p:any) => p.forumId === id)
       console.log('data:', this.posts)
       if(this.posts.length === 0){
@@ -92,7 +92,5 @@ export class ForumAdminSideComponent implements OnInit {
       alert('All of messages in post page have to delete first!');
       this.router.navigate(['../forum/forum']);
     }
-
-
   }
 }

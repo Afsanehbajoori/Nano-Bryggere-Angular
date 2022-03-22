@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Bryggeri } from 'src/app/Models/Brewery';
-import { Kontaktoplysninger } from 'src/app/Models/ContactInformation';
+import { Brewery } from 'src/app/Models/Brewery';
+import { ContactInformation } from 'src/app/Models/ContactInformation';
 import { Beer } from 'src/app/Models/Beer';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 
@@ -14,9 +14,9 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 export class OlSogningComponent implements OnInit {
   beer = new Beer;
   beers: Beer[];
-  userInfo = new Kontaktoplysninger;
-  brewery: Bryggeri
-  breweries: Bryggeri[];
+  userInfo = new ContactInformation;
+  brewery: Brewery
+  breweries: Brewery[];
   selected = ''
   endpointO = '/Øller';
   endpointB = '/Bryggerier';
@@ -25,7 +25,7 @@ export class OlSogningComponent implements OnInit {
   search: any;
   data = sessionStorage.getItem('id');
   userInfoId: number;
-  olId: number;
+  beerId: number;
   breweryId: number;
   constructor(
     public dialog: MatDialog,
@@ -35,13 +35,13 @@ export class OlSogningComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.onloadBeer();
+    this.onLoadBeer();
   }
-  onloadBeer() {
-    if (this.breweryId = JSON.parse(localStorage.getItem('bryggeriId') || '{}')) {
+  onLoadBeer() {
+    if (this.breweryId = JSON.parse(localStorage.getItem('breweryId') || '{}')) {
         this.restApi.getDatas(this.endpointO).subscribe((beer) => {
         this.beers = beer.filter((res: any) => {
-          return res.bryggeriId != this.breweryId;
+          return res.breweryId != this.breweryId;
         });
       });
     }
@@ -53,7 +53,7 @@ export class OlSogningComponent implements OnInit {
     }
     else {
       this.beers = this.beers.filter(res => {
-        return res.navn.toLowerCase().match(this.searchkey.toLowerCase());
+        return res.name.toLowerCase().match(this.searchkey.toLowerCase());
       })
     }
   }
@@ -61,20 +61,20 @@ export class OlSogningComponent implements OnInit {
   onShowBeer(id: any) {
     this.restApi.getData(id, this.endpointO).subscribe(beers => {
       this.beer = beers;
-      this.olId = this.beer.id;
-      console.log(this.olId);
-      localStorage.setItem('OlId', JSON.stringify(this.olId));
-      this.restApi.getData(this.beer.bryggeriId, this.endpointB).subscribe(bryg => {
-        this.brewery = bryg;
-        console.log('bryggriInfo:', this.brewery.kontaktoplysningerId)
-        this.restApi.getData(bryg.kontaktoplysningerId, this.endpointK).subscribe(userInfo => {
+      this.beerId = this.beer.id;
+      console.log(this.beerId);
+      localStorage.setItem('beerId', JSON.stringify(this.beerId));
+      this.restApi.getData(this.beer.breweryId, this.endpointB).subscribe(brew => {
+        this.brewery = brew;
+        console.log('bryggeriInfo:', this.brewery.contactInformationId)
+        this.restApi.getData(brew.contactInformationId, this.endpointK).subscribe(userInfo => {
           this.userInfo = userInfo;
           this.userInfoId = this.userInfo.id;
           console.log("kontakt", this.userInfo);
-          localStorage.setItem('KId', JSON.stringify(this.userInfoId));
+          localStorage.setItem('contactInformationId', JSON.stringify(this.userInfoId));
         })
       })
-      this.router.navigate(['../ol/olside/', this.olId]);
+      this.router.navigate(['../ol/beerpage/', this.beerId]);
     });
   }
 }

@@ -11,7 +11,7 @@
     </mat-toolbar>
     <table style="width: 100%; height: 100%; display: flex;">
         <mat-accordion class="example-headers-align" multi style="width: 100%;">
-            <mat-expansion-panel *ngFor="let beer of beerliste" style="margin-top: 10px; background-color: transparent;" expanded="true">
+            <mat-expansion-panel *ngFor="let beer of beerList" style="margin-top: 10px; background-color: transparent;" expanded="true">
                 <mat-expansion-panel-header style="background: linear-gradient(rgb(30, 122, 228), rgb(75, 127, 185)); justify-content: center; width: 100%;">
                     <mat-panel-title class="centers" style="justify-content: center;">
                         Titel: {{beer.name}}
@@ -44,7 +44,7 @@
                 </mat-card>
                 <mat-card class="containStyle">
                     <p>Årgang:</p>
-                    <p>{{this.argang}}</p>
+                    <p>{{beer.vintage}}</p>
                 </mat-card>
                 <mat-card class="containStyle">
                     <p>Antal:</p>

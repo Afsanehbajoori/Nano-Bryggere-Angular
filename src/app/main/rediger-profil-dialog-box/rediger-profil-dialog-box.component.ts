@@ -3,8 +3,6 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 
-
-
 @Component({
   selector: 'app-rediger-profil-dialog-box',
   templateUrl: './rediger-profil-dialog-box.component.html',
@@ -25,8 +23,8 @@ export class RedigerProfilDialogBoxComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.userInfoId = JSON.parse(localStorage.getItem('kontaktoplysningerId') || '{}');
-    this.userId = JSON.parse(localStorage.getItem('brugerId') || '{}');
+    this.userInfoId = JSON.parse(localStorage.getItem('contactInformationId') || '{}');
+    this.userId = JSON.parse(localStorage.getItem('userId') || '{}');
     this.restApi.getData(this.userInfoId, this.endpointK)
       .toPromise()
       .then(data => {
@@ -34,17 +32,16 @@ export class RedigerProfilDialogBoxComponent implements OnInit {
 /*
         this.restApi.getData(this.brugerId , this.endpointS).subscribe(res => {
           this.BrugerList=res; */
-
           // build the edit form
           this.updateForm = this.formBuilder.group({
-            FnavnCtl: new FormControl(this.userInfoList.fnavn),
-            EnavnCtl: new FormControl(this.userInfoList.enavn),
-            Add1Ctl: new FormControl(this.userInfoList.addresselinje1),
-            Add2Ctl: new FormControl(this.userInfoList.addresselinje2),
-            TelCtl: new FormControl(this.userInfoList.telefonnr),
+            FnameCtl: new FormControl(this.userInfoList.fname),
+            SnameCtl: new FormControl(this.userInfoList.sname),
+            Add1Ctl: new FormControl(this.userInfoList.addressline1),
+            Add2Ctl: new FormControl(this.userInfoList.addressline2),
+            PhoneCtl: new FormControl(this.userInfoList.phoneNr),
             EmailCtl: new FormControl(this.userInfoList.email),
-            PostCtl: new FormControl(this.userInfoList.postnr),
-            ByCtl: new FormControl(this.userInfoList.by),
+            MailCtl: new FormControl(this.userInfoList.mailNr),
+            CityCtl: new FormControl(this.userInfoList.city),
            // BrugernavnCtl : new FormControl(this.BrugerList.brugernavn)
           });
         // })
@@ -53,5 +50,4 @@ export class RedigerProfilDialogBoxComponent implements OnInit {
   /*  onClose(){
      this.dialogRefRedigerProfil.close();
    } */
-
 }

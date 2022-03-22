@@ -19,7 +19,7 @@ export class LoginSideComponent implements OnInit {
 
   loginForm: any = new FormGroup({});
 
-  @Input() loginDetails = { brugernavn: '', pw: '', brugerId: null };
+  @Input() loginDetails = { username: '', pw: '', userId: null };
 
   constructor(
     public router: Router,
@@ -29,8 +29,8 @@ export class LoginSideComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
-      brugerId: new FormControl(''),
-      brugernavn: new FormControl('', Validators.required),
+      userId: new FormControl(''),
+      username: new FormControl('', Validators.required),
       pw: new FormControl('', [Validators.required, Validators.minLength(3)])
     }
     );
@@ -41,10 +41,10 @@ export class LoginSideComponent implements OnInit {
 
   this.restApi.getDatas(this.endpointU).subscribe((res) => {
   const user = res.find((a:any) => {
-    console.log('infoLogin:' , a.kontaktoplysningerId);
+    console.log('infoLogin:' , a.contactInformation);
     //this.restApi.getData(a.kontaktoplysningerId , this.endpointK).subscribe(data => {
       //console.log('infoLoginKontakt' , data);
-      return a.brugernavn.toLowerCase() === this.loginDetails.brugernavn.toLowerCase() && a.pw === this.loginDetails.pw
+      return a.username.toLowerCase() === this.loginDetails.username.toLowerCase() && a.pw === this.loginDetails.pw
    // })
 
   });
@@ -52,27 +52,23 @@ export class LoginSideComponent implements OnInit {
      /* console.log("kontaktoplysningerId:",user.kontaktoplysningerId);
      console.log("brugerId:",user.id)
      console.log("rolleId:",user.rolleId); */
-     localStorage.setItem('kontaktoplysningerId' ,JSON.stringify(user.kontaktoplysningerId) );
-     localStorage.setItem('brugerId' ,JSON.stringify(user.id) );
-     localStorage.setItem('rolleId' ,JSON.stringify(user.rolleId) );
-     this.loginDetails.brugerId = user.id;
+     localStorage.setItem('contactInformationId' ,JSON.stringify(user.contactInformationId) );
+     localStorage.setItem('userId' ,JSON.stringify(user.id) );
+     localStorage.setItem('roleId' ,JSON.stringify(user.roleId) );
+     this.loginDetails.userId = user.id;
      this.restApi.createData(this.loginDetails , this.endpointL).subscribe((res) => {
       // console.log("brugerId:" ,res.brugerId);
-
-
-    
         })
-        this.router.navigate(['../main/profil']);
+        this.router.navigate(['../main/profile']);
       }
       else {
         alert('user ikke findes')
       }
-
     })
   };
 
   onSubmitRegistre() {
-    this.router.navigate(['../login/registrer']);
+    this.router.navigate(['../login/registration']);
   };
 
   // onloadLogin() {

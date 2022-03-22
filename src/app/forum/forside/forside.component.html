@@ -17,7 +17,7 @@
                     style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236)); justify-content: center; width: 100%;">
                     <mat-panel-title class="centers" style="justify-content: center;">
                         <p>Titel:</p>
-                        {{forum.titel}}
+                        {{forum.title}}
                     </mat-panel-title>
                     <mat-action-row class="centers" style="justify-content: center;">
                         <button mat-button class="btnMainStyle"  (click)="onShowPost(forum.id)">Vis Messages</button>
@@ -25,17 +25,17 @@
                 </mat-expansion-panel-header>
                 <mat-card class="containStyle" >
                     <p>Forum Beskrivelse:</p>
-                    <span>{{forum.beskrivelse}}</span>
-                    <span  style="float: right;">{{forum.oprettet}}</span>
+                    <span>{{forum.description}}</span>
+                    <span  style="float: right;">{{forum.createDate}}</span>
                 </mat-card>
                 <div *ngFor="let post of listPosts"  >
                    <mat-card class="containStyle"  >
                     <div >
                       <span style="color: darkblue;float: left;">Titel:</span>
-                      <span >{{post.titel}}</span>
+                      <span >{{post.title}}</span>
                       <span  style="color: darkblue; margin-left: 200px;" >Indhold:</span>
-                      <span>{{post.indhold}}</span>
-                      <span style="float: right;">{{post.oprettet}}</span>
+                      <span>{{post.content}}</span>
+                      <span style="float: right;">{{post.createDate}}</span>
                      </div>
 
 
@@ -51,7 +51,7 @@
                     <form [formGroup]="creationForm" class="example-form" >
                         <mat-form-field class="example-full-width" appearance="fill"
                             style="justify-content: center; width: 100%;">
-                            <input matInput type="text" [(ngModel)]="postCreation.titel" formControlName="titel"
+                            <input matInput type="text" [(ngModel)]="postCreation.title" formControlName="title"
                                 placeholder="titel" class="input-control" style="width:100%">
                             <mat-error>
                                 Dette felt skal udfyldes
@@ -59,7 +59,7 @@
                         </mat-form-field>
                         <mat-form-field class="example-full-width" appearance="fill"
                             style="justify-content: center; width: 100%;">
-                            <input matInput type="text" [(ngModel)]="postCreation.indhold" formControlName="indhold"
+                            <input matInput type="text" [(ngModel)]="postCreation.content" formControlName="content"
                                 placeholder="indhold" class="input-control" style="width:100%">
                             <mat-error>
                                 Dette felt skal udfyldes

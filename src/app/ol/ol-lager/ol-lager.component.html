@@ -5,7 +5,7 @@
             <h1>Lager Side</h1>
             <mat-form-field class="example-full-width" appearance="fill">
                 <p>Antal</p>
-                <input matInput type="number" [(ngModel)]="beerList.antal" min="0" max="100" formControlName="antal" placeholder="{{beerList.antal}}" class="input-control">
+                <input matInput type="number" [(ngModel)]="beerList.qauntity" min="0" max="100" formControlName="qauntity" placeholder="{{beerList.qauntity}}" class="input-control">
                 <mat-error>
                     Dette felt skal udfyldes
                 </mat-error>
@@ -13,7 +13,7 @@
 
             <mat-form-field class="example-full-width" appearance="fill">
                 <p>Flaske Antal</p>
-                <input matInput type="number" [(ngModel)]="beerList.flaskeAntal" min="0" max="100" formControlName="flaskeAntal" placeholder="{{beerList.flaskeAntal}}" class="input-control">
+                <input matInput type="number" [(ngModel)]="beerList.bottleQauntity" min="0" max="100" formControlName="bottleQauntity" placeholder="{{beerList.bottleQauntity}}" class="input-control">
                 <mat-error>
                     Dette felt skal udfyldes
                 </mat-error>
@@ -21,7 +21,7 @@
 
             <mat-form-field class="example-full-width" appearance="fill">
                 <p>Tønde Antal</p>
-                <input matInput type="number" [(ngModel)]="beerList.tondeAntal" min="0" max="20" formControlName="tondeAntal" placeholder="{{beerList.tondeAntal}}" class="input-control">
+                <input matInput type="number" [(ngModel)]="beerList.barrelQauntity" min="0" max="20" formControlName="barrelQauntity" placeholder="{{beerList.barrelQauntity}}" class="input-control">
                 <mat-error>
                     Dette felt skal udfyldes
                 </mat-error>
@@ -29,7 +29,7 @@
 
             <mat-form-field class="example-full-width" appearance="fill">
                 <p>Flaske Reserve Antal</p>
-                <input matInput type="number" [(ngModel)]="beerList.flaskeResAntal" min="0" max="80" formControlName="flaskeResAntal" placeholder="{{beerList.flaskeResAntal}}" class="input-control">
+                <input matInput type="number" [(ngModel)]="beerList.bottleResevationQuantity" min="0" max="80" formControlName="bottleResevationQuantity" placeholder="{{beerList.bottleResevationQuantity}}" class="input-control">
                 <mat-error>
                     Dette felt skal udfyldes
                 </mat-error>

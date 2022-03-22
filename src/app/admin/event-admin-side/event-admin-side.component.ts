@@ -17,7 +17,7 @@ export class EventAdminSideComponent implements OnInit {
   dialogRefDelete: MatDialogRef<SletDialogBoxComponent>;
   dialogRefCreateEvents : MatDialogRef<OpretteEventsDialogBoxComponent>;
   dialogRefUpdateEvents : MatDialogRef<UpdateEventsDialogBoxComponent>;
-  searchkeyEventtitel:string;
+  searchkeyEventtitle:string;
   searchkeyParticipants:string;
   clickButton:boolean=true;
   eventList:any;
@@ -59,13 +59,13 @@ export class EventAdminSideComponent implements OnInit {
     })
   }
 
-  onFindEventtitel(){
-    if(this.searchkeyEventtitel == ""){
+  onFindEventtitle(){
+    if(this.searchkeyEventtitle == ""){
       this.ngOnInit();
     }
     else{
       this.events = this.events.filter(res =>{
-      return  res.titel.toLowerCase().match(this.searchkeyEventtitel.toLowerCase());
+      return  res.title.toLowerCase().match(this.searchkeyEventtitle.toLowerCase());
       })
     }
   }
@@ -75,7 +75,7 @@ export class EventAdminSideComponent implements OnInit {
       this.ngOnInit();
     }
     else{
-       this.restApi.getEventDeltagelserByBrugernavn(this.searchkeyParticipants.toLowerCase() , this.endpointE).subscribe((data) => {
+       this.restApi.getEventParticipantsByUsername(this.searchkeyParticipants.toLowerCase() , this.endpointE).subscribe((data) => {
          console.log('deltag:', data)
         return this.events=data;
       })
@@ -112,7 +112,6 @@ export class EventAdminSideComponent implements OnInit {
         this.eventList = result;
         console.log('date:', typeof(this.eventList.startDato) );
         this.restApi.updateData(id, this.endpointE, this.eventList).subscribe((data) => {
-
         })
       }
       this.ngOnInit();
@@ -133,6 +132,5 @@ export class EventAdminSideComponent implements OnInit {
 
   /* onJoinEvent(id:any){
     console.log('eventsId ', id)
-
   } */
 }

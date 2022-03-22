@@ -12,13 +12,13 @@ import { SletDialogBoxComponent } from '../slet-dialog-box/slet-dialog-box.compo
 })
 export class KatalogComponent implements OnInit {
   beers: any;
-  beerliste: Beer[];
+  beerList: Beer[];
   beer: Beer;
   endpointO = '/Øller';
   searchkey: string;
-  bryggeriId: number;
-  bryggeriList: any;
-  argang: Date;
+  breweryId: number;
+  breweryList: any;
+  vintage: Date;
 
   constructor(
     public dialog: MatDialog,
@@ -32,10 +32,10 @@ export class KatalogComponent implements OnInit {
   }
 
   onloadBeer() {
-    if (this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}')) {
+    if (this.breweryId = JSON.parse(localStorage.getItem('breweryId') || '{}')) {
       this.restApi.getDatas(this.endpointO).subscribe((data) => {
-        this.beerliste = data.filter((res: any) => {
-          return res.bryggeriId === this.bryggeriId;
+        this.beerList = data.filter((res: any) => {
+          return res.breweryId === this.breweryId;
         });
       })
     }
@@ -46,8 +46,8 @@ export class KatalogComponent implements OnInit {
   };
 
   onBeerLayer(id: any) {
-    localStorage.setItem('lagerId', JSON.stringify(id));
-    this.router.navigate(['../ol/ollager/', id]);
+    localStorage.setItem('layerId', JSON.stringify(id));
+    this.router.navigate(['../ol/beerlayer/', id]);
   };
 
   onCreateBeer() {
@@ -71,7 +71,7 @@ export class KatalogComponent implements OnInit {
       this.ngOnInit();
     }
     else {
-      this.beerliste = this.beerliste.filter(res => {
+      this.beerList = this.beerList.filter(res => {
         return res.name.toLowerCase().match(this.searchkey.toLowerCase());
       })
     }

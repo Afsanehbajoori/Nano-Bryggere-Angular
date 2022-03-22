@@ -10,12 +10,12 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
   styleUrls: ['./oprette-events-dialog-box.component.css']
 })
 export class OpretteEventsDialogBoxComponent implements OnInit {
-  @Input() eventCreation = {eventBilled:'', titel: '', beskrivelse: '',  lokation: '' ,startDato:'',slutDato:'' };
+  @Input() eventCreation = {eventPicture:'', title: '', description: '',  location: '' ,startDate:'',endDate:'' };
 
   CreateForm: any = new FormGroup({});
   endpointE = '/Events';
   eventsList:any;
-  eventBilled:any;
+  eventPicture:any;
   constructor(
     public dialogRefOpretteEvents : MatDialogRef<OpretteEventsDialogBoxComponent>,
     public restApi: RestApiService,
@@ -23,12 +23,12 @@ export class OpretteEventsDialogBoxComponent implements OnInit {
 
   ngOnInit(): void {
     this.CreateForm = new FormGroup({
-      eventBilled: new FormControl(''),
-      titel: new FormControl('', Validators.required),
-      beskrivelse: new FormControl('', Validators.required),
-      startDato: new FormControl('', Validators.required),
-      slutDato: new FormControl('', Validators.required),
-      lokation: new FormControl('', Validators.required)
+      eventPicture: new FormControl(''),
+      title: new FormControl('', Validators.required),
+      description: new FormControl('', Validators.required),
+      startDate: new FormControl('', Validators.required),
+      endDate: new FormControl('', Validators.required),
+      location: new FormControl('', Validators.required)
     });
   }
 
@@ -37,17 +37,17 @@ export class OpretteEventsDialogBoxComponent implements OnInit {
       var reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]);
       reader.onload = (e: any) => {
-        this.eventBilled = e.target.result;
-        console.log(this.eventBilled);
-        localStorage.setItem('eventBilled', JSON.stringify(this.eventBilled));
+        this.eventPicture = e.target.result;
+        console.log(this.eventPicture);
+        localStorage.setItem('eventBilled', JSON.stringify(this.eventPicture));
       }
     }
   };
 
   onSubmitEvent() {
     console.log(this.eventCreation);
-    this.eventCreation.eventBilled=JSON.parse(localStorage.getItem('eventBilled')|| '{}');
-    console.log('image:', this.eventCreation.eventBilled);
+    this.eventCreation.eventPicture=JSON.parse(localStorage.getItem('eventBilled')|| '{}');
+    console.log('image:', this.eventCreation.eventPicture);
     this.restApi.createData(this.eventCreation, this.endpointE).subscribe((data) => {
       console.log('oprette ny event:' , data);
       this.dialogRefOpretteEvents.close();

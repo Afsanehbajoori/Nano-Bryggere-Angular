@@ -50,13 +50,13 @@ export class DeltagerAdminSideComponent implements OnInit {
       this.ngOnInit();
     }
     else{
-      this.restApi.getDeltagerByEventsTitel(this.searchkeyParticipants.toLowerCase() , this.endpointE).subscribe(res => {
+      this.restApi.getParticipantByEventsTitle(this.searchkeyParticipants.toLowerCase() , this.endpointE).subscribe(res => {
         return this.participants=res
       })
     }
   }
 
-  onAfmeldLoadParticipation(id:any){
+  onRejectLoadParticipation(id:any){
     this.restApi.deleteData(id , this.endpointP).subscribe(data =>
       this.ngOnInit())
   }

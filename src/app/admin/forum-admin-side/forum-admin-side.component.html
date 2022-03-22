@@ -5,7 +5,7 @@
         <mat-tab label="Find Forum med forum titel">
       <form class="example-form" style="justify-content: center; width: 100%;">
         <mat-form-field  class="txtHeader">
-            <input matInput type="search"  [(ngModel)]="forumList" (ngModelChange)="onFindForumtitel()" [ngModelOptions]="{standalone: true}" >
+            <input matInput type="search"  [(ngModel)]="forumList" (ngModelChange)="onFindForumtitle()" [ngModelOptions]="{standalone: true}" >
         </mat-form-field>
       </form>
         </mat-tab>
@@ -17,7 +17,7 @@
           </form>
             </mat-tab> -->
             <mat-tab label="Oprette Forum">
-               <button mat-button class="btnOprette" (click)="onOpretteForum()">Klick her til at oprette forum</button>
+               <button mat-button class="btnOprette" (click)="onCreateForum()">Klick her til at oprette forum</button>
             </mat-tab>
   </mat-tab-group>
   </mat-toolbar>
@@ -30,29 +30,29 @@
                     style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236)); justify-content: center; width: 100%;">
                     <mat-panel-title class="centers" style="justify-content: center;">
                        <span style="font-weight: bold; ">Events Titel:</span>
-                       <span style="margin-right: 20px;">{{forum.titel}}</span>
+                       <span style="margin-right: 20px;">{{forum.title}}</span>
                        <span style="font-weight: bold;">Events Beskrivelse:</span>
-                       <span>{{forum.beskrivelse}}</span>
+                       <span>{{forum.description}}</span>
                     </mat-panel-title>
                     <mat-action-row class="centers" style="justify-content: center;">
-                        <button mat-button class="btnMainStyle" (click)="onVisForum(forum.id)">Vis </button> |
+                        <button mat-button class="btnMainStyle" (click)="onShowForum(forum.id)">Vis </button> |
                         <button mat-button class="btnMainStyle" (click)="onUpdateForum(forum.id)" >Update </button> |
-                        <button mat-button class="btnMainStyle" (click)="onSletForum(forum.id)">Slet </button>
+                        <button mat-button class="btnMainStyle" (click)="onDeleteForum(forum.id)">Slet </button>
                     </mat-action-row>
                 </mat-expansion-panel-header>
                 <h1 >Rediger Events</h1>
                 <div >
-                  <form class="example-form" [formGroup]="RedigerForum" *ngIf="updateForum">
+                  <form class="example-form" [formGroup]="updateForm" *ngIf="updateForum">
                      <mat-form-field class="example-full-width" appearance="fill">
                       <mat-label>Titel:</mat-label>
-                      <input matInput formControlName="titel" placeholder="{{updateForum.titel}}" [(ngModel)]="updateForum.titel" >
+                      <input matInput formControlName="title" placeholder="{{updateForum.title}}" [(ngModel)]="updateForum.title" >
                     </mat-form-field>
                     <mat-form-field class="example-full-width" appearance="fill">
                       <mat-label>Beskrivelse:</mat-label>
-                      <input matInput formControlName="beskrivelse" placeholder="{{updateForum.beskrivelse}}" [(ngModel)]="updateForum.beskrivelse">
+                      <input matInput formControlName="description" placeholder="{{updateForum.description}}" [(ngModel)]="updateForum.description">
                     </mat-form-field>
                     <mat-form-field class="example-full-width" appearance="fill">
-                      <input matInput [matDatepicker]="picker1"  [(ngModel)]="updateForum.oprettet" formControlName="oprettet" placeholder="Date" class="input-control">
+                      <input matInput [matDatepicker]="picker1"  [(ngModel)]="updateForum.createDate" formControlName="createDate" placeholder="Date" class="input-control">
                       <mat-datepicker-toggle matSuffix [for]="picker1" ></mat-datepicker-toggle>
                       <mat-datepicker #picker1 ></mat-datepicker>
                       </mat-form-field>
@@ -62,13 +62,8 @@
                 </div>
                 </form>
                 </div>
-
-
            </mat-expansion-panel>
         </mat-accordion>
     </table>
   </mat-card>
 </div>
-
-
-

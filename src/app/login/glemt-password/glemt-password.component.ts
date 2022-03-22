@@ -7,11 +7,11 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./glemt-password.component.css']
 })
 export class GlemtPasswordComponent implements OnInit {
-  glemtPWForm:FormGroup;
+  forgotPWForm:FormGroup;
   constructor() { }
 
   ngOnInit(): void {
-    this.glemtPWForm = new FormGroup({
+    this.forgotPWForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       });
     }

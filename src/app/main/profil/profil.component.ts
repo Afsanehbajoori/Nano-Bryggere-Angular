@@ -23,23 +23,23 @@ export class ProfilComponent implements OnInit {
   dialogRefUpdateProfile: MatDialogRef<RedigerProfilDialogBoxComponent>;
   dialogRefUpdateBrewery: MatDialogRef<RedigerBryggeriDialogBoxComponent>;
   userInfoList: any;
-  userList:any;
+  userList: any;
   breweryList: any;
-  roleList:any;
+  roleList: any;
   endpointK = '/Kontaktoplysninger';
   endpointB = '/Bryggerier';
-  endpointS= '/Brugere';
-  endpointR= '/Roller';
+  endpointS = '/Brugere';
+  endpointR = '/Roller';
   showFilesP = false;
   showFilesB = false;
   showFilesOB = false;
   userInfoId: number;
   breweryId: number;
-  userId:number;
-  roleId:number;
+  userId: number;
+  roleId: number;
   choosenFile: File;
-  showOB:boolean;
-  logo:any;
+  showOB: boolean;
+  logo: any;
   url: string;
   @Input() newBrewery = { logo: '', name: '', discription: '', contactInformationId: 0 };
   breweryCreationForm: any = new FormGroup({});
@@ -52,13 +52,13 @@ export class ProfilComponent implements OnInit {
     public actRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.userInfoId = JSON.parse(localStorage.getItem('kontaktoplysningerId') || '{}');
-    this.userId = JSON.parse(localStorage.getItem('brugerId') || '{}');
-    this.roleId = JSON.parse(localStorage.getItem('rolleId') || '{}');
-    console.log("brugerId:",this.userId)
-    console.log("brugerId:",this.userInfoId)
-    this.onloadUserInformation();
-    this.onloadBrewery();
+    this.userInfoId = JSON.parse(localStorage.getItem('contactInformationId') || '{}');
+    this.userId = JSON.parse(localStorage.getItem('userId') || '{}');
+    this.roleId = JSON.parse(localStorage.getItem('roleId') || '{}');
+    console.log("brugerId:", this.userId)
+    console.log("brugerId:", this.userInfoId)
+    this.onLoadUserInformation();
+    this.onLoadBrewery();
 
     this.breweryCreationForm = this._formBuilder.group({
       'logo': new FormControl(''),
@@ -69,42 +69,42 @@ export class ProfilComponent implements OnInit {
   }
 
   //vi skal kigge på logud
- /*  logud(){
-    localStorage.clear();
-    this.router.navigate(["../login/login"]);
-  }  */
+  /*  logud(){
+     localStorage.clear();
+     this.router.navigate(["../login/login"]);
+   }  */
 
-  onloadUserInformation() {
+  onLoadUserInformation() {
     return this.restApi.getData(this.userId, this.endpointS).subscribe((data) => {
       this.userList = data;
-      console.log("brugernavn:", this.userList.rolleId);
-      this.restApi.getData( this.userInfoId, this.endpointK).subscribe((data) => {
+      console.log("brugernavn:", this.userList.roleId);
+      this.restApi.getData(this.userInfoId, this.endpointK).subscribe((data) => {
         this.userInfoList = data;
-        console.log("konId" , this.userInfoId);
+        console.log("konId", this.userInfoId);
         console.log(" this.kontaktoplysningerList:", this.userInfoList.Sname);
-        this.restApi.getData(this.roleId , this.endpointR).subscribe((data) => {
-          this.roleList=data;
-          console.log('RolleList' , this.roleList)
+        this.restApi.getData(this.roleId, this.endpointR).subscribe((data) => {
+          this.roleList = data;
+          console.log('RoleList', this.roleList)
         })
       })
     })
   };
 
-  onloadBrewery() {
+  onLoadBrewery() {
     this.restApi.getDatas(this.endpointB).subscribe((data) => {
-    this.breweryList = data.find((x:any) => x.kontaktoplysningerId === this.userInfoId);
-    console.log('this.bryggeri:',this.breweryList);
-    //console.log('id:',this.bryggeriList.id);
-    if(this.breweryList !== undefined){
-      localStorage.setItem('bryggeriId' , JSON.stringify(this.breweryList.id));
-      this.url=this.breweryList.logo;
-      this.showOB=false;
-      console.log(this.showOB);
-    }
-    else{
-       this.showOB=true;
-       console.log(this.showOB);
-    }
+      this.breweryList = data.find((x: any) => x.contactInformationId === this.userInfoId);
+      console.log('this.bryggeri:', this.breweryList);
+      //console.log('id:',this.bryggeriList.id);
+      if (this.breweryList !== undefined) {
+        localStorage.setItem('bryggeriId', JSON.stringify(this.breweryList.id));
+        this.url = this.breweryList.logo;
+        this.showOB = false;
+        console.log(this.showOB);
+      }
+      else {
+        this.showOB = true;
+        console.log(this.showOB);
+      }
     })
   }
 
@@ -122,19 +122,19 @@ export class ProfilComponent implements OnInit {
 
   onCreateBrewery() {
     if (this.newBrewery.name != '') {
-    console.log("test:", this.userInfoId);
-    this.newBrewery.contactInformationId = this.userInfoId;
-    console.log("kontaktoplysningerId:" ,  this.newBrewery.contactInformationId);
-    this.newBrewery.logo = JSON.parse(localStorage.getItem('logo') || '{}');
-    this.restApi.createData(this.newBrewery, this.endpointB).subscribe((data) => {
-      localStorage.setItem('bryggeriId', JSON.stringify(data.id));
-      this.ngOnInit();
-      if (data) {
-        this.showOB=false;
-        this.snackBar.open('Oprette ny bryggei succed')
-        this.onClose();
-      }
-    })
+      console.log("test:", this.userInfoId);
+      this.newBrewery.contactInformationId = this.userInfoId;
+      console.log("contactInformationId:", this.newBrewery.contactInformationId);
+      this.newBrewery.logo = JSON.parse(localStorage.getItem('logo') || '{}');
+      this.restApi.createData(this.newBrewery, this.endpointB).subscribe((data) => {
+        localStorage.setItem('bryggeriId', JSON.stringify(data.id));
+        this.ngOnInit();
+        if (data) {
+          this.showOB = false;
+          this.snackBar.open('Oprette ny bryggei succed')
+          this.onClose();
+        }
+      })
     }
   }
 
@@ -172,7 +172,7 @@ export class ProfilComponent implements OnInit {
   }
 
   onUpdateBrewery() {
-    this.breweryId=JSON.parse(localStorage.getItem('bryggeriId') || '{}');
+    this.breweryId = JSON.parse(localStorage.getItem('breweryId') || '{}');
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;

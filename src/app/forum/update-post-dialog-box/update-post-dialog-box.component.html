@@ -3,11 +3,11 @@
   <form class="example-form" [formGroup]="updateForm" *ngIf="updatePost">
      <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Titel:</mat-label>
-      <input matInput formControlName="titel" placeholder="{{updatePost.titel}}" [(ngModel)]="updatePost.titel" [disabled]="true">
+      <input matInput formControlName="title" placeholder="{{updatePost.title}}" [(ngModel)]="updatePost.title" [disabled]="true">
     </mat-form-field>
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Indhold:</mat-label>
-      <input matInput formControlName="indhold" placeholder="{{updatePost.indhold}}" [(ngModel)]="updatePost.indhold">
+      <input matInput formControlName="content" placeholder="{{updatePost.content}}" [(ngModel)]="updatePost.content">
     </mat-form-field>
 <div mat-dialog-actions class="btn-container">
   <button mat-button (click)="dialogRefUpdatePost.close(false)" >Annulere</button>

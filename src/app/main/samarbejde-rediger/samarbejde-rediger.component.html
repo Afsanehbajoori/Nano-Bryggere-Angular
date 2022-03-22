@@ -3,7 +3,7 @@
 
         <form [formGroup]="updateForm" class="example-form" *ngIf="beerList">
             <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="text" [(ngModel)]="beerList.navn" formControlName="navn" placeholder="{{beerList.navn}}" class="input-control">
+                <input matInput type="text" [(ngModel)]="beerList.name" formControlName="name" placeholder="{{beerList.name}}" class="input-control">
                 <!-- <mat-error *ngIf="navn.errors?.['required']"> -->
                 <mat-error>
                     udfyld feltet
@@ -19,39 +19,39 @@
             </mat-form-field>
 
             <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="text" [(ngModel)]="beerList.smag" formControlName="smag"
-                    placeholder="{{beerList.smag}}" class="input-control">
+                <input matInput type="text" [(ngModel)]="beerList.taste" formControlName="taste"
+                    placeholder="{{beerList.taste}}" class="input-control">
                 <mat-error>
                     udfyld feltet
                 </mat-error>
             </mat-form-field>
 
             <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="number" [(ngModel)]="beerList.procent" formControlName="procent"
-                    placeholder="{{beerList.procent}}" class="input-control">
+                <input matInput type="number" [(ngModel)]="beerList.procentage" formControlName="procentage"
+                    placeholder="{{beerList.procentage}}" class="input-control">
                 <mat-error>
                     udfyld feltet
                 </mat-error>
             </mat-form-field>
 
             <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="date" [(ngModel)]="beerList.argang" formControlName="argang" placeholder="{{beerList.argang}}" class="input-control">
+                <input matInput type="date" [(ngModel)]="beerList.vintage" formControlName="vintage" placeholder="{{beerList.vintage}}" class="input-control">
                 <mat-error>
                     Dette felt skal udfyldes
                 </mat-error>
             </mat-form-field>
 
             <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="text" [(ngModel)]="beerList.land" formControlName="land"
-                    placeholder="{{beerList.land}}" class="input-control">
+                <input matInput type="text" [(ngModel)]="beerList.country" formControlName="country"
+                    placeholder="{{beerList.country}}" class="input-control">
                 <mat-error>
                     udfyld feltet
                 </mat-error>
             </mat-form-field>
 
             <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="number" [(ngModel)]="beerList.bryggeriId" formControlName="bryggerid"
-                    placeholder="{{beerList.bryggeriId}}" class="input-control">
+                <input matInput type="number" [(ngModel)]="beerList.breweryId" formControlName="breweryId"
+                    placeholder="{{beerList.breweryId}}" class="input-control">
                 <mat-error>
                     udfyld feltet
                 </mat-error>
@@ -69,24 +69,24 @@
             </mat-form-field> -->
 
             <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="text" [(ngModel)]="beerList.etiket" formControlName="etiket"
-                    placeholder="{{beerList.etiket}}" class="input-control">
+                <input matInput type="text" [(ngModel)]="beerList.label" formControlName="label"
+                    placeholder="{{beerList.label}}" class="input-control">
                 <mat-error>
                     udfyld feltet
                 </mat-error>
             </mat-form-field>
 
             <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="text" [(ngModel)]="beerList.beskrivelse" formControlName="beskrivelse"
-                    placeholder="{{beerList.beskrivelse}}" class="input-control">
+                <input matInput type="text" [(ngModel)]="beerList.description" formControlName="description"
+                    placeholder="{{beerList.description}}" class="input-control">
                 <mat-error>
                     udfyld feltet
                 </mat-error>
             </mat-form-field>
           
             <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="text" [(ngModel)]="beerList.antal" formControlName="antal"
-                    placeholder="{{beerList.antal}}" class="input-control">
+                <input matInput type="text" [(ngModel)]="beerList.qauntity" formControlName="qauntity"
+                    placeholder="{{beerList.qauntity}}" class="input-control">
                 <mat-error>
                     udfyld feltet
                 </mat-error>

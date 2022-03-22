@@ -19,7 +19,7 @@ export class RolleAdminSideComponent implements OnInit {
   id = this.actRoute.snapshot.params['id'];
   users: User[];
   roleId: number;
-  Role: any;
+  role: any;
   level: number;
 
   constructor(public dialog: MatDialog,
@@ -41,9 +41,9 @@ export class RolleAdminSideComponent implements OnInit {
   onShowUser(id: any) {
     this.clickButton = false;
     return this.restApi.getData(id, this.endpointU).subscribe((data) => {
-      this.roleId = data.rolleId;
+      this.roleId = data.roleId;
       this.restApi.getData(this.roleId, this.endpointR).subscribe((data) => {
-        this.Role = data;
+        this.role = data;
 
       })
     })
@@ -65,9 +65,9 @@ export class RolleAdminSideComponent implements OnInit {
       this.ngOnInit();
     }
     else {
-      if (this.searchkeyRolename.toLowerCase() == 'anonymbruger')
+      if (this.searchkeyRolename.toLowerCase() == 'anonUser')
         this.level = 0;
-      if (this.searchkeyRolename.toLowerCase() == 'bruger')
+      if (this.searchkeyRolename.toLowerCase() == 'user')
         this.level = 100;
       if (this.searchkeyRolename.toLowerCase() == 'moderator')
         this.level = 200;
@@ -108,15 +108,15 @@ export class RolleAdminSideComponent implements OnInit {
       }
       else if (upgradeLevel.level == 200) {
         upgradeLevel.level = 100;
-        upgradeLevel.rolleNavn = "Bruger";
+        upgradeLevel.rolleNavn = "User";
       }
       else if (upgradeLevel.level == 100) {
         upgradeLevel.level = 0;
-        upgradeLevel.rolleNavn = "Anonymbruger";
+        upgradeLevel.rolleNavn = "AnonUser";
       }
       else if (upgradeLevel.level == 0) {
         upgradeLevel.level = 0;
-        upgradeLevel.rolleNavn = "Anonymbruger";
+        upgradeLevel.rolleNavn = "AnonUser";
       }
       this.restApi.updateData(rolleId, this.endpointR, upgradeLevel).subscribe(data => {
         console.log('ny:', upgradeLevel.level);
@@ -134,7 +134,7 @@ export class RolleAdminSideComponent implements OnInit {
       console.log('upgradeLevel', upgradeLevel.level)
       if (upgradeLevel.level == 0) {
         upgradeLevel.level = 100;
-        upgradeLevel.rolleNavn = "Bruger";
+        upgradeLevel.rolleNavn = "User";
       }
       else if (upgradeLevel.level == 100) {
         upgradeLevel.level = 200;

@@ -4,11 +4,9 @@
     </mat-card-title>
     <mat-card-content class="container">
 
-
-
         <form [formGroup]="createForm" class="example-form">
             <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="text" [(ngModel)]="forumCreation.titel" class="input-control" formControlName="titel" placeholder="Titel" >
+                <input matInput type="text" [(ngModel)]="forumCreation.title" class="input-control" formControlName="title" placeholder="Titel" >
                 <!-- <mat-error *ngIf="navn.errors?.['required']"> -->
 
                 <mat-error>
@@ -16,22 +14,20 @@
                 </mat-error>
             </mat-form-field>
             <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="text" [(ngModel)]="forumCreation.beskrivelse" formControlName="beskrivelse" placeholder="Beskrivelse" class="input-control">
+                <input matInput type="text" [(ngModel)]="forumCreation.description" formControlName="description" placeholder="Beskrivelse" class="input-control">
                 <mat-error>
                     Dette felt skal udfyldes
                 </mat-error>
             </mat-form-field>
 
             <mat-form-field class="example-full-width" appearance="fill">
-              <input matInput [matDatepicker]="picker1"  [(ngModel)]="forumCreation.oprettet" formControlName="oprettet" placeholder="Date" class="input-control">
+              <input matInput [matDatepicker]="picker1"  [(ngModel)]="forumCreation.createDate" formControlName="createDate" placeholder="Date" class="input-control">
               <mat-datepicker-toggle matSuffix [for]="picker1" ></mat-datepicker-toggle>
               <mat-datepicker #picker1 ></mat-datepicker>
               <mat-error>
                   Dette felt skal udfyldes
               </mat-error>
           </mat-form-field>
-
-
 
             <button mat-raised-button type="submit" (click)="onCancelForum()" class="login-btn" style="background: linear-gradient(#b60d0d, #ff6e6e);">Annuller</button>
             

@@ -13,7 +13,7 @@
     <table style="width: 100%; height: 100%; justify-content: center;">
         <tbody style="justify-content: center; height: 100%; width: 100%; justify-content: center;">
             <tr *ngFor="let tag of tagslist">
-                <mat-card style="width: 20%;"><td style="width: 56%;">{{tag.navn}}</td>
+                <mat-card style="width: 20%;"><td style="width: 56%;">{{tag.name}}</td>
                     <td style="justify-content: right;"><button mat-button class="btnMainStyle" (click)="onUpdateTags(tag.id)"><mat-icon>edit</mat-icon></button>
                 <button mat-button class="btnMainStyle" (click)="onDeleteTags(tag.id)"><mat-icon>delete_forever</mat-icon></button></td>
             </mat-card>

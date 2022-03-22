@@ -22,15 +22,15 @@ export class EventkalenderSideComponent implements OnInit {
   buttonEnabled: boolean;
   eventsId:number;
   userId:number;
-  listparticipation:any;
+  listParticipation:any;
   clickButton:boolean = true;
   eventList:any;
   id = this.actRoute.snapshot.params['id'];
-  arrayListparticipation = new Array();
+  arrayListParticipation = new Array();
   participantId:number;
   list:any;
-  isparticipant:boolean;
- @Input() participant = { brugerId:0 , eventsId:0 , isDeltage:false}
+  isParticipant:boolean;
+ @Input() participant = { userId:0 , eventsId:0 , isParticipant:false}
 
   constructor(
     public dialog: MatDialog,
@@ -39,7 +39,7 @@ export class EventkalenderSideComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.userId = JSON.parse(localStorage.getItem('brugerId') || '{}');
+    this.userId = JSON.parse(localStorage.getItem('userId') || '{}');
     this.onloadEvent();
     this.onloadParticipation();
   }
@@ -52,15 +52,15 @@ export class EventkalenderSideComponent implements OnInit {
 
   onloadParticipation(){
     this.restApi.getDatas(this.endpointP).subscribe(data => {
-      this.listparticipation=data;
+      this.listParticipation=data;
       if(this.userId){
-        this.listparticipation = this.listparticipation.filter((a:any) => a.userId === this.userId);
-        console.log('list:' , this.listparticipation);
-        for(var d =0; d < this.listparticipation.length ; d++)
+        this.listParticipation = this.listParticipation.filter((a:any) => a.userId === this.userId);
+        console.log('list:' , this.listParticipation);
+        for(var d =0; d < this.listParticipation.length ; d++)
         {
-          console.log('listId:' , this.listparticipation[d].eventsId);
-          if(this.listparticipation[d].eventsId){
-            this.arrayListparticipation.push(this.listparticipation[d].eventsId);
+          console.log('listId:' , this.listParticipation[d].eventsId);
+          if(this.listParticipation[d].eventsId){
+            this.arrayListParticipation.push(this.listParticipation[d].eventsId);
           }
         }
       }
@@ -80,19 +80,19 @@ export class EventkalenderSideComponent implements OnInit {
     }
     else{
       this.events = this.events.filter(res =>{
-        return res.titel.toLowerCase().match(this.searchkey.toLowerCase());
+        return res.title.toLowerCase().match(this.searchkey.toLowerCase());
       })
     }
   }
 
   onJoinEvent(id:any){
-    if(this.arrayListparticipation.includes(id) )
+    if(this.arrayListParticipation.includes(id) )
     {
       this.dialog.open(MessageDialogBoxComponent);
     }else{
-        this.participant.brugerId=this.userId;
+        this.participant.userId=this.userId;
         this.participant.eventsId=id;
-        this.participant.isDeltage=true;
+        this.participant.isParticipant=true;
         this.restApi.createData(this.participant , this.endpointP).subscribe(data => {
           this.onloadParticipation();
         })

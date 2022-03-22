@@ -3,7 +3,7 @@ import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dial
 import { ActivatedRoute, Router } from '@angular/router';
 import { RedigerBryggeriDialogBoxComponent } from 'src/app/main/rediger-bryggeri-dialog-box/rediger-bryggeri-dialog-box.component';
 import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
-import { Bryggeri } from 'src/app/Models/Brewery';
+import { Brewery } from 'src/app/Models/Brewery';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 
 
@@ -14,16 +14,16 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 })
 export class BryggeriAdminSideComponent implements OnInit {
   dialogRefDelete: MatDialogRef<SletDialogBoxComponent>;
-  dialogRefUpdateBryggeri: MatDialogRef<RedigerBryggeriDialogBoxComponent>;
-  bryggeri: Bryggeri[];
-  brygge = new Bryggeri;
+  dialogRefUpdateBrewery: MatDialogRef<RedigerBryggeriDialogBoxComponent>;
+  Brewery: Brewery[];
+  Brew = new Brewery;
   endpointU = '/Brugere';
   endpointB='/Bryggerier';
-  searchkeyBryggeriname: string;
-  searchkeyBryggeriCooperation:string;
+  searchkeyBreweryname: string;
+  searchkeyBreweryCooperation:string;
   id = this.actRoute.snapshot.params['id'];
   clickButton:boolean=true;
-  bryggeriList: any;
+  BreweryList: any;
   b: any ='';
 
   constructor(
@@ -34,36 +34,36 @@ export class BryggeriAdminSideComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.onloadBryggeri();
+    this.onloadBrewery();
   }
   
-  onloadBryggeri(){
-    return this.restApi.getDatas(this.endpointB).subscribe((brygge) => {
-      this.bryggeri = brygge;
-      console.log(this.bryggeri);
+  onloadBrewery(){
+    return this.restApi.getDatas(this.endpointB).subscribe((brew) => {
+      this.Brewery = brew;
+      console.log(this.Brewery);
     })
   }
 
-  onShowBryggeri(id:any) {
+  onShowBrewery(id:any) {
     this.clickButton=false;
     return this.restApi.getData(id , this.endpointB).subscribe((data) => {
 
     })
   };
 
-  onFindBryggeriname(){
-    if(this.searchkeyBryggeriname == ""){
+  onFindBreweryname(){
+    if(this.searchkeyBreweryname == ""){
       this.ngOnInit();
     }
     else{
-      this.bryggeri = this.bryggeri.filter(res =>{
-        return res.navn.toLowerCase().match(this.searchkeyBryggeriname.toLowerCase());
+      this.Brewery = this.Brewery.filter(res =>{
+        return res.name.toLowerCase().match(this.searchkeyBreweryname.toLowerCase());
       })
     }
   }
 
 //vi skal kigge på det efter oprette samarbejde component
-  onFindBryggeriCooperation(){
+  onFindBreweryCooperation(){
  /*    if(this.searchkeyBryggeriSamarbejde == ''){
       this.ngOnInit();
     }
@@ -79,29 +79,29 @@ export class BryggeriAdminSideComponent implements OnInit {
         } */
   }
 
-  onDeleteBryggeri(id: any) {
+  onDeleteBrewery(id: any) {
     let dialogRef = this.dialog.open(SletDialogBoxComponent);
     dialogRef.afterClosed().subscribe(result => {
       this.restApi.deleteData(id, this.endpointB).subscribe(data => {
-        this.onloadBryggeri();
+        this.onloadBrewery();
       })
     });
   };
 
-  onUpdateBryggeri(id:any) {
+  onUpdateBrewery(id:any) {
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
       dialogConfig.width = "40%";
       localStorage.setItem('bryggeriId' , id.toString());
-      this.dialogRefUpdateBryggeri = this.dialog.open(RedigerBryggeriDialogBoxComponent, dialogConfig);
-      this.dialogRefUpdateBryggeri.afterClosed().subscribe(result => {
+      this.dialogRefUpdateBrewery = this.dialog.open(RedigerBryggeriDialogBoxComponent, dialogConfig);
+      this.dialogRefUpdateBrewery.afterClosed().subscribe(result => {
         if (result) {
-          this.bryggeriList = result;
-          this.restApi.updateData(id, this.endpointB, this.bryggeriList).subscribe((data) => {
-          console.log(this.bryggeriList);
-          this.onShowBryggeri(id);
-          this.onloadBryggeri();
+          this.BreweryList = result;
+          this.restApi.updateData(id, this.endpointB, this.BreweryList).subscribe((data) => {
+          console.log(this.BreweryList);
+          this.onShowBrewery(id);
+          this.onloadBrewery();
           })
         }
       });

@@ -4,7 +4,6 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { ActivatedRoute } from '@angular/router';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 
-
 @Component({
   selector: 'app-update-events-dialog-box',
   templateUrl: './update-events-dialog-box.component.html',
@@ -32,12 +31,12 @@ export class UpdateEventsDialogBoxComponent implements OnInit {
       this.eventsList= data ;
 
       this.updateForm = this.formBuilder.group({
-        eventBilled : new FormControl(this.eventsList.eventBilled),
-        titel : new FormControl(this.eventsList.titel),
-        beskrivelse: new FormControl(this.eventsList.beskrivelse),
-        startDato: new FormControl(this.eventsList.startDato),
-        slutDato: new FormControl(this.eventsList.slutDato),
-        lokation: new FormControl(this.eventsList.lokation),
+        eventPicture : new FormControl(this.eventsList.eventPicture),
+        title : new FormControl(this.eventsList.title),
+        description: new FormControl(this.eventsList.description),
+        startDate: new FormControl(this.eventsList.startDate),
+        endDate: new FormControl(this.eventsList.endDate),
+        location: new FormControl(this.eventsList.location),
       })
     })
   }
@@ -47,9 +46,9 @@ export class UpdateEventsDialogBoxComponent implements OnInit {
       var reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]);
       reader.onload=(e: any)=>{
-        this.eventsList.eventBilled =e.target.result;
-        console.log( this.eventsList.eventBilled);
-        localStorage.setItem('eventBilled' ,JSON.stringify(this.eventsList.eventBilled));
+        this.eventsList.eventPicture =e.target.result;
+        console.log( this.eventsList.eventPicture);
+        localStorage.setItem('eventPicture' ,JSON.stringify(this.eventsList.eventPicture));
       }
     }
   };

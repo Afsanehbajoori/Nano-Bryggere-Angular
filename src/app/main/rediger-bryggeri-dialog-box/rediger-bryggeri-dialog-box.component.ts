@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Bryggeri } from 'src/app/Models/Brewery';
+import { Brewery } from 'src/app/Models/Brewery';
 import { Router } from '@angular/router';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
@@ -13,7 +13,7 @@ import { logging } from 'protractor';
   styleUrls: ['./rediger-bryggeri-dialog-box.component.css']
 })
 export class RedigerBryggeriDialogBoxComponent implements OnInit {
-  bryggeriList : any;
+  breweryList : any;
   endpointB='/Bryggerier';
   updateForm:FormGroup = new FormGroup({});
   breweryId : number ;
@@ -25,15 +25,15 @@ export class RedigerBryggeriDialogBoxComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.breweryId=JSON.parse(localStorage.getItem('bryggeriId') || '{}');
+    this.breweryId=JSON.parse(localStorage.getItem('breweryId') || '{}');
     this.restApi.getData(this.breweryId , this.endpointB)
     .toPromise()
     .then(data => {
-      this.bryggeriList = data;
+      this.breweryList = data;
       this.updateForm=this.formBuilder.group({
-        'logoCtl' : new FormControl(this.bryggeriList.logo),
-        'navnCtl' : new FormControl(this.bryggeriList.navn),
-        'beskrivelseCtl' : new FormControl(this.bryggeriList.beskrivelse)
+        'logoCtl' : new FormControl(this.breweryList.logo),
+        'navnCtl' : new FormControl(this.breweryList.name),
+        'beskrivelseCtl' : new FormControl(this.breweryList.description)
       });
     })
 
@@ -44,9 +44,9 @@ export class RedigerBryggeriDialogBoxComponent implements OnInit {
       var reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]);
       reader.onload=(e: any)=>{
-        this.bryggeriList.logo =e.target.result;
-        console.log( this.bryggeriList.logo);
-        localStorage.setItem('logo' ,JSON.stringify(this.bryggeriList.logo));
+        this.breweryList.logo =e.target.result;
+        console.log( this.breweryList.logo);
+        localStorage.setItem('logo' ,JSON.stringify(this.breweryList.logo));
       }
     }
   };
@@ -55,10 +55,4 @@ export class RedigerBryggeriDialogBoxComponent implements OnInit {
     // this.dialogRefRedigerProfil.close();
     return this.router.navigate(['../main/profil']);
   }
-
-
-
-
-
-
 }

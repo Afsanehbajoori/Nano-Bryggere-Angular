@@ -3,28 +3,27 @@
   <form class="example-form" [formGroup]="updateForm" *ngIf="userInfoList">
      <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Fornavn:</mat-label>
-      <input matInput formControlName="FnavnCtl" placeholder="{{userInfoList.fnavn}}" [(ngModel)]="userInfoList.fnavn">
+      <input matInput formControlName="FnameCtl" placeholder="{{userInfoList.fname}}" [(ngModel)]="userInfoList.fname">
     </mat-form-field>
 
     <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>EfterNavn:</mat-label>
-      <input matInput formControlName="EnavnCtl" placeholder="{{userInfoList.enavn}}" [(ngModel)]="userInfoList.enavn">
+      <mat-label>Efternavn:</mat-label>
+      <input matInput formControlName="SnameCtl" placeholder="{{userInfoList.sname}}" [(ngModel)]="userInfoList.sname">
     </mat-form-field>
-
 
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Addresselinje1:</mat-label>
-        <input matInput formControlName="Add1Ctl" placeholder="{{userInfoList.addresselinje1}}" [(ngModel)]="userInfoList.addresselinje1">
+        <input matInput formControlName="Add1Ctl" placeholder="{{userInfoList.addressline1}}" [(ngModel)]="userInfoList.addressline1">
       </mat-form-field>
 
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Addresselinje2:</mat-label>
-        <input matInput formControlName="Add2Ctl" placeholder="{{userInfoList.addresselinje2}}" [(ngModel)]="userInfoList.addresselinje2">
+        <input matInput formControlName="Add2Ctl" placeholder="{{userInfoList.addressline2}}" [(ngModel)]="userInfoList.addressline2">
       </mat-form-field>
 
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Telefonnr:</mat-label>
-        <input matInput formControlName="TelCtl" placeholder="{{userInfoList.telefonnr}}" [(ngModel)]="userInfoList.telefonnr">
+        <input matInput formControlName="PhoneCtl" placeholder="{{userInfoList.phoneNr}}" [(ngModel)]="userInfoList.phoneNr">
       </mat-form-field>
 
       <mat-form-field class="example-full-width" appearance="fill">
@@ -34,12 +33,12 @@
 
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Postnr:</mat-label>
-        <input matInput formControlName="PostCtl" placeholder="{{userInfoList.postnr}}" [(ngModel)]="userInfoList.postnr">
+        <input matInput formControlName="MailCtl" placeholder="{{userInfoList.mailNr}}" [(ngModel)]="userInfoList.mailNr">
       </mat-form-field>
 
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>By:</mat-label>
-        <input matInput formControlName="ByCtl" placeholder="{{userInfoList.by}}" [(ngModel)]="userInfoList.by">
+        <input matInput formControlName="CityCtl" placeholder="{{userInfoList.city}}" [(ngModel)]="userInfoList.city">
       </mat-form-field>
 <!--       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Brugernavn:</mat-label>

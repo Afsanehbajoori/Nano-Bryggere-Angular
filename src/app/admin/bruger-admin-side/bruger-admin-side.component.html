@@ -5,7 +5,7 @@
         <mat-tab label="Find bruger med Efternavn" >
           <form class="example-form" style="justify-content: center; width: 100%;">
             <mat-form-field  class="txtHeader">
-                <input matInput type="search"  [(ngModel)]="searchkeyUserLastname" (ngModelChange)="onFindUserLastname()" [ngModelOptions]="{standalone: true}" >
+                <input matInput type="search"  [(ngModel)]="searchkeyUserSname" (ngModelChange)="onFindUserSname()" [ngModelOptions]="{standalone: true}" >
             </mat-form-field>
         </form>
         </mat-tab>
@@ -26,12 +26,11 @@
         <mat-tab label="Find bruger med EventsTitel">
           <form class="example-form" style="justify-content: center; width: 100%;">
             <mat-form-field  class="txtHeader">
-                <input matInput type="search"  [(ngModel)]="searchkeyEventsTitel" (ngModelChange)="onFindUsernameByEventsTitel()" [ngModelOptions]="{standalone: true}" >
+                <input matInput type="search"  [(ngModel)]="searchkeyEventsTitle" (ngModelChange)="onFindUsernameByEventsTitle()" [ngModelOptions]="{standalone: true}" >
             </mat-form-field>
         </form>
         </mat-tab>
       </mat-tab-group>
-
    </mat-toolbar>
   </mat-card>
     <mat-card>
@@ -43,7 +42,7 @@
                     <mat-panel-title class="centers" style="justify-content: center;">
 
                        <span style="font-weight: bold; margin-right: 20px;"> Brugernavn:</span>
-                       <span>{{user.brugernavn}}</span>
+                       <span>{{user.username}}</span>
                     </mat-panel-title>
                     <mat-action-row class="centers" style="justify-content: center;">
                       <button mat-button class="btnMainStyle" (click)="onShowUser(user.id)">Vis </button>  |
@@ -55,23 +54,23 @@
                   <div *ngIf="userinfo">
                     <mat-card class="containStyle">
                       <span>Fornavn:</span>
-                      <span class="txtStyle">{{userinfo.fnavn}}</span>
+                      <span class="txtStyle">{{userinfo.fname}}</span>
                     </mat-card>
                     <mat-card class="containStyle">
                       <span>Efternavn:</span>
-                      <span class="txtStyle">{{userinfo.enavn}}</span>
+                      <span class="txtStyle">{{userinfo.sname}}</span>
                     </mat-card>
                     <mat-card class="containStyle">
                       <span>Addresselinje1:</span>
-                      <span class="txtStyle">{{userinfo.addresselinje1}}</span>
+                      <span class="txtStyle">{{userinfo.addressline1}}</span>
                     </mat-card>
                     <mat-card class="containStyle">
                       <span>Addresselinje2:</span>
-                      <span class="txtStyle">{{userinfo.addresselinje2}}</span>
+                      <span class="txtStyle">{{userinfo.addressline2}}</span>
                     </mat-card>
                     <mat-card class="containStyle">
                       <span>Telefonnr:</span>
-                      <span class="txtStyle">{{userinfo.telefonnr}}</span>
+                      <span class="txtStyle">{{userinfo.phoneNr}}</span>
                     </mat-card>
                     <mat-card class="containStyle">
                       <span>Email:</span>
@@ -79,20 +78,15 @@
                     </mat-card>
                     <mat-card class="containStyle">
                       <span>Postnr:</span>
-                      <span class="txtStyle">{{userinfo.postnr}}</span>
+                      <span class="txtStyle">{{userinfo.mailNr}}</span>
                     </mat-card>
                     <mat-card class="containStyle">
                       <span>By:</span>
-                      <span class="txtStyle">{{userinfo.by}}</span>
+                      <span class="txtStyle">{{userinfo.city}}</span>
                     </mat-card>
                   </div>
-
-
                 </mat-expansion-panel>
               </mat-accordion>
             </table>
           </mat-card>
-
         </div>
-
-

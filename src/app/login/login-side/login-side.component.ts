@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Bruger } from 'src/app/Models/Bruger';
+import { User } from 'src/app/Models/User';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 
@@ -12,7 +12,7 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 
 export class LoginSideComponent implements OnInit {
   login: any = {};
-  logins: Bruger[];
+  logins: User[];
   endpointL = '/Logins';
   endpointI = '/Kontaktoplysninger';
   endpointU = '/Brugere';

@@ -19,17 +19,17 @@ export class AdminOpretTagComponent implements OnInit {
 
   ngOnInit(): void {
     this.createForm = new FormGroup({
-      navn: new FormControl('', Validators.required)
+      name: new FormControl('', Validators.required)
     })
   }
   
-  onAnnullerOl() {
-    return this.router.navigate(['../main/katalog']);
+  onCancel() {
+    return this.router.navigate(['../main/catalog']);
   };
 
-  onSubmitOl() {
+  onSubmitBeer() {
     this.restApi.createData(this.tagCreation, this.endpointT).subscribe((data) => {
-      this.router.navigate(['../main/katalog']);
+      this.router.navigate(['../main/catalog']);
     });
   }
 }

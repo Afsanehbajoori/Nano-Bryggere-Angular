@@ -22,7 +22,7 @@ const routes: Routes = [
   {path:'deleteprofil', component:SletProfilComponent},
   {path:'updatebeer/:id', component:RedigerOlComponent},
   {path:'createbeer', component:OpretteOlComponent},
-  {path:'katalog', component:KatalogComponent},
+  {path:'catalog', component:KatalogComponent},
   {path:'cooperationpage', component:SamarbejdeSideComponent},
   {path:'cooperationupdate/:id', component:SamarbejdeRedigerComponent},
   {path:'cooperationcreation', component:SamarbejdeOprettelseComponent},

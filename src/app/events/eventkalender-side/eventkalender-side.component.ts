@@ -93,7 +93,7 @@ export class EventkalenderSideComponent implements OnInit {
         this.participant.brugerId=this.userId;
         this.participant.eventsId=id;
         this.participant.isDeltage=true;
-        this.restApi.createData(this.participant , this.endpointP ).subscribe(data => {
+        this.restApi.createData(this.participant , this.endpointP).subscribe(data => {
           this.onloadParticipation();
         })
     }

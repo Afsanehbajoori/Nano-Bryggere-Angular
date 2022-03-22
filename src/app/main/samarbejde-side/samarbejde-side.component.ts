@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Bryggeri } from 'src/app/Models/Bryggeri';
-import { Samarbejde } from 'src/app/Models/Samarbejde';
+import { Bryggeri } from 'src/app/Models/Brewery';
+import { Samarbejde } from 'src/app/Models/Cooperation';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 
 interface Search {

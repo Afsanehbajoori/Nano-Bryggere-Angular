@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
-import { Bruger } from 'src/app/Models/Bruger';
+import { User } from 'src/app/Models/User';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 
 @Component({
@@ -17,7 +17,7 @@ export class RolleAdminSideComponent implements OnInit {
   endpointR = '/Roller';
   endpointU = '/Brugere';
   id = this.actRoute.snapshot.params['id'];
-  users: Bruger[];
+  users: User[];
   roleId: number;
   Role: any;
   level: number;
@@ -55,7 +55,7 @@ export class RolleAdminSideComponent implements OnInit {
     }
     else {
       this.users = this.users.filter(res => {
-        return res.brugernavn.toLowerCase().match(this.searchkeyUsername.toLowerCase());
+        return res.username.toLowerCase().match(this.searchkeyUsername.toLowerCase());
       })
     }
   }
@@ -97,8 +97,8 @@ export class RolleAdminSideComponent implements OnInit {
 
   onDowngradeRolename(id: any) {
     var user = this.users.find((x: any) => x.id === id)
-    console.log('info:', user?.rolleId);
-    var rolleId = user?.rolleId;
+    console.log('info:', user?.roleId);
+    var rolleId = user?.roleId;
     this.restApi.getData(rolleId, this.endpointR).subscribe(data => {
       var upgradeLevel = data;
       console.log('upgradeLevel', upgradeLevel.level)
@@ -127,8 +127,8 @@ export class RolleAdminSideComponent implements OnInit {
 
   onUpgradeRolename(id: any) {
     var user = this.users.find((x: any) => x.id === id)
-    console.log('info:', user?.rolleId);
-    var rolleId = user?.rolleId;
+    console.log('info:', user?.roleId);
+    var rolleId = user?.roleId;
     this.restApi.getData(rolleId, this.endpointR).subscribe(data => {
       var upgradeLevel = data;
       console.log('upgradeLevel', upgradeLevel.level)

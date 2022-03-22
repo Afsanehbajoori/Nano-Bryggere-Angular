@@ -1,11 +1,11 @@
-import { Bruger } from "./Bruger";
-import { Kontaktoplysninger } from "./Kontaktoplysninger";
+import { User } from "./User";
+import { ContactInformation } from "./ContactInformation";
 
 export class Archive{
   public id: number;
-  public brugerId:number;
-  public bruger:Bruger;
-  public kontaktolysningerId:number;
-  public kontaktoplysninger:Kontaktoplysninger;
-  public oprettet :Date;
+  public userId:number;
+  public user:User;
+  public contactInformationId:number;
+  public contactInformation:ContactInformation;
+  public createDate :Date;
 }

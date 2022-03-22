@@ -1,16 +1,16 @@
-import { Deltagere } from "./Deltagere";
+import { Participation } from "./Participation";
 import { Tags } from "./Tags";
 
 export class Events{
   public id : number;
-  public titel: string;
-  public beskrivelse:string;
-  public startDato: Date;
-  public slutDato: Date;
-  public lokation:string;
-  public eventBilled:string;
+  public title: string;
+  public description:string;
+  public startDate: Date;
+  public endDate: Date;
+  public location:string;
+  public eventPicture:string;
   public tags:Tags;
-  public deltagere: Deltagere;
+  public participation: Participation;
   //public deltagere : Bruger;
 
 }

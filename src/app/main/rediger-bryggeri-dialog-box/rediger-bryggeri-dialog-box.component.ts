@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Bryggeri } from 'src/app/Models/Bryggeri';
+import { Bryggeri } from 'src/app/Models/Brewery';
 import { Router } from '@angular/router';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';

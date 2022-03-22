@@ -14,7 +14,7 @@ export class RedigerOlComponent implements OnInit {
   updateForm: FormGroup;
   endpoints = '/Øller';
   beerList : any;
-  argang: Date;
+  vintage: Date;
   constructor(
     public restApi: RestApiService, 
     private router: Router,
@@ -22,49 +22,49 @@ export class RedigerOlComponent implements OnInit {
 
   ngOnInit(): void {
     this.updateForm = new FormGroup({
-      navn: new FormControl(''),
-      type: new FormControl(''),
-      smag: new FormControl(''),
-      procent: new FormControl(''),
-      bryggerid: new FormControl(''),
-      argang: new FormControl('', Validators.required),
-      land: new FormControl(''),
+      name: new FormControl('', Validators.required),
+      type: new FormControl('', Validators.required),
+      taste: new FormControl('', Validators.required),
+      procentage: new FormControl('', Validators.required),
+      breweryId: new FormControl('', Validators.required),
+      vintage: new FormControl('', Validators.required),
+      country: new FormControl('', Validators.required),
       process: new FormControl('', Validators.required),
-      etiket: new FormControl(''),
-      beskrivelse: new FormControl(''),
+      label: new FormControl('', Validators.required),
+      description: new FormControl('', Validators.required),
       // billed: new FormControl('', Validators.required),
-      antal: new FormControl(''),
+      quantity: new FormControl('', Validators.required)
     });
-    this.loadOl();
+    this.onLoadBeer();
   }
   
-  loadOl(){
+  onLoadBeer(){
     return this.restApi.getData(this.beerid, this.endpoints).subscribe((beer: {}) => {
       this.beerList = beer;
-      this.argang = this.beerList.årgang;
+      this.vintage = this.beerList.vintage;
     });
   }
 
-  onAnnullerOl() {
-    return this.router.navigate(['../main/katalog'])
+  onCancel() {
+    return this.router.navigate(['../main/catalog'])
   };
 
-  onSubmitOl() {
-    this.beerList.årgang = this.argang;
-    console.log(this.beerList.årgang);
+  onSubmitBeer() {
+    this.beerList.vintage = this.vintage;
+    console.log(this.beerList.vintage);
     this.restApi.updateData(this.beerid, this.endpoints, this.beerList).subscribe((data) => {
-      this.router.navigate(['../main/katalog'])
+      this.router.navigate(['../main/catalog'])
     });
   }
 
-  onSubmitCertifikats(event: any) {
+  onSubmitCertificate(event: any) {
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
-      reader.onload = (e:any) => this.beerList.etiket = e.target.result;
+      reader.onload = (e:any) => this.beerList.label = e.target.result;
       reader.readAsDataURL(event.target.files[0])
     }
     else{
-      this.beerList.etiket = '';
+      this.beerList.label = '';
     }
   };
 }

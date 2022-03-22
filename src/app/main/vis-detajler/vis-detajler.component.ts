@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { timeStamp } from 'console';
 import { browser } from 'protractor';
-import { Bryggeri } from 'src/app/Models/Bryggeri';
+import { Brewery } from 'src/app/Models/Brewery';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 
 @Component({

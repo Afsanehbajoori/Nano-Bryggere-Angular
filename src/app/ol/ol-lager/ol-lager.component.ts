@@ -25,10 +25,10 @@ export class OlLagerComponent implements OnInit {
 
   ngOnInit(): void {
     this.LayerForm = new FormGroup({
-      antal: new FormControl('', Validators.required),
-      flaskeAntal: new FormControl('', Validators.required),
-      tondeAntal: new FormControl('', Validators.required),
-      flaskeResAntal: new FormControl('', Validators.required)
+      qauntity: new FormControl('', Validators.required),
+      bottleQauntity: new FormControl('', Validators.required),
+      barrelQauntity: new FormControl('', Validators.required),
+      bottleResevationQuantity: new FormControl('', Validators.required)
     });
     this.onLoadBeer();
   }
@@ -38,12 +38,12 @@ export class OlLagerComponent implements OnInit {
     });
   }
   onCancel() {
-    return this.router.navigate(['../main/katalog']);
+    return this.router.navigate(['../main/catalog']);
   };
 
   onSubmitBeer() {
     this.restApi.updateData(this.beerid, this.endpointO, this.beerList).subscribe((data) => {
-      this.router.navigate(['../main/katalog']);
+      this.router.navigate(['../main/catalog']);
     });
   }
 }

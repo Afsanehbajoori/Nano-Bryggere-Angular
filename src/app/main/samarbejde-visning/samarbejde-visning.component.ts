@@ -25,7 +25,7 @@ export class SamarbejdeVisningComponent implements OnInit {
     this.onLoadCooperation();
   }
   onLoadCooperation() {
-    if (this.beerId = JSON.parse(localStorage.getItem('sOlId') || '{}')) {
+    if (this.beerId = JSON.parse(localStorage.getItem('cooperationBeerId') || '{}')) {
         this.restApi.getData(this.beerId, this.endpointO).subscribe(data => {
         this.beer = data;
       })

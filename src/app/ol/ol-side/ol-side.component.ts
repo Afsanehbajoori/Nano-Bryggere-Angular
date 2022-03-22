@@ -14,12 +14,12 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 export class OlSideComponent implements OnInit {
   userInfo: ContactInformation;
   beer: Beer;
-  bewery: Brewery;
+  brewery: Brewery;
   endpointK = '/Kontaktoplysninger';
   endpointO = '/Øller';
   endpointB = '/Bryggerier';
-  beweryId: Number;
-  olId: number;
+  breweryId: Number;
+  beerId: number;
   userInfoId: number;
   id = this.actRoute.snapshot.params['id'];
   constructor(
@@ -30,9 +30,9 @@ export class OlSideComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.userInfoId = JSON.parse(localStorage.getItem('KId') || '{}');
+    this.userInfoId = JSON.parse(localStorage.getItem('contactInformationId') || '{}');
     console.log("Ol",this.userInfoId); 
-    this.olId = JSON.parse(localStorage.getItem('OlId') || '{}');
+    this.beerId = JSON.parse(localStorage.getItem('beerId') || '{}');
     this.onLoadBeer();
     this.onLoadUserinfo();
   }
@@ -52,6 +52,6 @@ export class OlSideComponent implements OnInit {
   }
   
   onReturn() {
-    this.router.navigate(['../ol/sogning']);
+    this.router.navigate(['../ol/beersearch']);
   };
 }

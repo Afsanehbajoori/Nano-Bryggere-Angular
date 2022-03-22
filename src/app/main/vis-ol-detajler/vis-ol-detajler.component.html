@@ -1,5 +1,5 @@
 <mat-card *ngIf="beerInfo">
-  <img mat-dialog-title [src]="beerInfo.etiket" alt="" style="width: 100%; height: auto;">
+  <img mat-dialog-title [src]="beerInfo.label" alt="" style="width: 100%; height: auto;">
     <mat-dialog-content mat-dialog-content class="mat-typography">
       <p>Øl Navn:</p>
       <p class="txtStyle">{{beerInfo.name}}</p>
@@ -8,7 +8,7 @@
       <p>Øl Smag:</p>
       <p class="txtStyle">{{beerInfo.taste}}</p>
       <p>Øl Procent:</p>
-      <p class="txtStyle">{{beerInfo.procentage}}</p>
+      <p class="txtStyle">{{beerInfo.percentage}}</p>
       <p>Øl Land:</p>
       <p class="txtStyle">{{beerInfo.country}}</p>
       <p>Øl Bryggeprocess:</p>

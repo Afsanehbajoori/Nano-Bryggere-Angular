@@ -16,7 +16,7 @@ export class VisDetajlerComponent implements OnInit {
   constructor(public restApi: RestApiService) { }
 
   ngOnInit(): void {
-    this.breweryId= JSON.parse(localStorage.getItem('bryggeriId') || '{}');
+    this.breweryId= JSON.parse(localStorage.getItem('breweryId') || '{}');
     console.log('bry' , this.breweryId);
     this.onLoadBrewery();
 

@@ -1,9 +1,9 @@
 .menu{
-    height: 100vh;
+  height: 100vh;
 }
 
 .login-form {
-    padding: 20;
+  padding: 20;
 }
 
 .login-btn{
@@ -17,8 +17,8 @@
 }
 
 .login-header{
-    text-align: center;
-    background-color: rgb(66, 138, 231);
+  text-align: center;
+  background-color: rgb(66, 138, 231);
 }
 
 .example-full-width {
@@ -26,18 +26,19 @@
 }
 
 .input-control{
-    height: 25px;
+  height: 25px;
 }
 
 .mat-card-body{
-    max-width: 600px;
-    margin: 2em auto;
-    text-align: center;
-    height: 500px;
-    max-height: 800px;
+  max-width: 600px;
+  margin: 2em auto;
+  text-align: center;
+  height: 500px;
+  max-height: 800px;
 }
+
 .main{
-  height: 100%;
+  height: 80.2vh;
   background-color: rgb(255, 255, 255);
 }
 
@@ -48,6 +49,7 @@
   background-size: cover;
   width: auto;
 }
+
 .txt{
   margin-bottom: 30px;
   font-weight: bolder;
@@ -63,12 +65,14 @@
   display: flex;
   justify-content: center;
   height: auto;
-  }
+}
+
 .example-form {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
-  }
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
   .example-spacer {
-    flex: 1 1 auto;
-  }
+  flex: 1 1 auto;
+}

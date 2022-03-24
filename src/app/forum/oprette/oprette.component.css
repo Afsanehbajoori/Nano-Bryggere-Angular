@@ -37,7 +37,7 @@
     max-height: 800px;
 }
 .main{
-  height: 100%;
+  min-height: 80.2vh;
   background-color: rgb(255, 255, 255);
 }
 

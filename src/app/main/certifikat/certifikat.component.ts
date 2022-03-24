@@ -11,7 +11,6 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 })
 export class CertifikatComponent implements OnInit {
   endpointU = '/Users';
-  choosenfile: File;
   user : any;
   userId: number;
   file : any;
@@ -24,7 +23,7 @@ export class CertifikatComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.userId = JSON.parse(localStorage.getItem('ContactInformationId') || '{}');
+    this.userId = JSON.parse(localStorage.getItem('userId') || '{}');
     this.onLoadUser();
   }
 
@@ -40,8 +39,8 @@ export class CertifikatComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]);
       reader.onload=(e: any)=>{
         this.url =e.target.result;
-        this.user.certifikatImg = e.target.result;
-        this.user.certifikat = 0;
+        this.user.certificatePicture = e.target.result;
+        this.user.certificate = 0;
       }
     }
   };

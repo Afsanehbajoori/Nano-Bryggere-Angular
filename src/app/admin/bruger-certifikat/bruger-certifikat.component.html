@@ -1,32 +1,55 @@
 <div class="main" id="imgeUp">
-    <mat-toolbar class="login-header" style="background: linear-gradient(#238ff5, #23baf5);">
-        <form class="example-form" style="justify-content: center;">
+    <mat-toolbar class="login-header" style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236));">
+        <form class="example-form" style="margin-left: 20px; justify-content: center; width: 100%;">
             <mat-form-field>
-                <input matInput placeholder="Søgning" type="search">
+                <input matInput type="search" placeholder="Find certificate" [(ngModel)]="searchkey"
+                    (ngModelChange)="onFindUserCertificate()" [ngModelOptions]="{standalone: true}">
             </mat-form-field>
         </form>
-        <h1 style="justify-content: center; width: 100%;">Certifikat Liste</h1>
+        <h1 style="justify-content: center; width: 100%;">Certifikat liste</h1>
     </mat-toolbar>
-    <table style="width: 100%; height: 100%; display: flex;">
-        <mat-accordion class="example-headers-align" multi style="width: 100%;">
-            <mat-expansion-panel *ngFor="let oplysning of userinfos" style="margin-top: 10px;">
-                <mat-card class="containStyle">
-                    <p>Fornavn:</p>
-                    <p>{{oplysning.fname}}</p>
-                </mat-card>
-                <mat-card class="containStyle">
-                    <p>Efternavn:</p>
-                    <p>{{oplysning.sname}}</p>
-                </mat-card>
-                <mat-card class="containStyle">
-                    <p>Email:</p>
-                    <p>{{oplysning.email}}</p>
-                </mat-card>
-                <!-- <mat-card class="containStyle">
-                    <p>Certifikat:</p>
-                    <p>{{oplysning.Certifikat}}</p>
-                </mat-card> -->
-            </mat-expansion-panel>
-        </mat-accordion>
-    </table>
+    <mat-card>
+        <table style="width: 100%; height: 100%; display: flex;">
+            <mat-accordion class="example-headers-align" multi style="width: 100%;">
+                <mat-expansion-panel *ngFor="let info of userList" style="margin-top: 10px;" style="margin-top: 10px;"
+                    [disabled]="clickButton" (click)="clickButton=true">
+                    <mat-expansion-panel-header
+                        style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236)); justify-content: center; width: 100%;">
+                        <mat-panel-title class="centers" style="justify-content: center;">
+                            <span style="font-weight: bold; margin-right: 20px;"> Brugernavn:</span>
+                            <span>{{info.fname}}</span>
+                          </mat-panel-title>
+                          <mat-action-row class="centers" style="justify-content: center;">
+                            <button mat-button class="btnMainStyle" (click)="onShowUserCertificate(info.id)">Vis </button> |
+                            <button mat-button class="btnMainStyle" (click)="onUpdateUserCertificate(info.id)">Update </button> |
+                            <button mat-button class="btnMainStyle" (click)="onDeleteUserCertificate(info.id)">Slet </button>
+              
+                          </mat-action-row>
+                    </mat-expansion-panel-header>
+                    <mat-card class="containStyle">
+                        <span>Fornavn:</span>
+              <span class="txtStyle">{{userinfo.fname}}</span>
+                    </mat-card>
+                    <mat-card class="containStyle">
+                        <span>Efternavn:</span>
+                        <span>{{info.sname}}</span>
+                    </mat-card>
+                    <mat-card class="containStyle">
+                        <span>Email:</span>
+                        <span>{{info.email}}</span>
+                    </mat-card>
+                    <div *ngFor="let certificate of certificateList">
+                        <mat-card class="containStyle">
+                            <span>Certifikat:</span>
+                            <span>{{certificate.certificate}}</span>
+                        </mat-card>
+                        <mat-card class="containStyle">
+                            <span>Certifikat:</span>
+                            <span>{{certificate.certificatePicture}}</span>
+                        </mat-card>
+                    </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </table>
+    </mat-card>
 </div>

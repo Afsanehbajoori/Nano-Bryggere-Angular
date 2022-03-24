@@ -1,59 +1,63 @@
 <mat-card class="main">
   <mat-card-title class="txt" style="margin-top: 10px;">
-      <h1 style="width: 100%;">Opret Events</h1>
+    <h1 style="width: 100%;">Opret Events</h1>
   </mat-card-title>
   <mat-card-content class="container">
-      <form [formGroup]="CreateForm" class="example-form">
-        <mat-form-field appearance="fill" class="example-full-width">
-          <mat-label>Events Billede</mat-label>
-          <input matInput placeholder="billede" formControlName="eventBilled" [(ngModel)]="eventCreation.eventPicture">
-          <input type="file" class="btnMainStyle" (change)="onSubmitCertificate($event)">
-        </mat-form-field>
-        <mat-form-field class="example-full-width" appearance="fill">
-            <input matInput type="text" [(ngModel)]="eventCreation.title" class="input-control" formControlName="titel" placeholder="Titel" >
-            <!-- <mat-error *ngIf="navn.errors?.['required']"> -->
-            <mat-error>
-                feltet skal udfyldes
-            </mat-error>
-        </mat-form-field>
+    <form [formGroup]="CreateForm" class="example-form">
+      <mat-form-field appearance="fill" class="example-full-width">
+        <mat-label>Events Billede</mat-label>
+        <input matInput placeholder="billede" formControlName="eventPicture" [(ngModel)]="eventCreation.eventPicture">
+        <input type="file" class="btnMainStyle" (change)="onSubmitCertificate($event)">
+      </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <input matInput type="text" [(ngModel)]="eventCreation.title" class="input-control" formControlName="title"
+          placeholder="Titel">
+        <!-- <mat-error *ngIf="navn.errors?.['required']"> -->
+        <mat-error>
+          feltet skal udfyldes
+        </mat-error>
+      </mat-form-field>
 
-        <mat-form-field class="example-full-width" appearance="fill">
-            <input matInput type="text" [(ngModel)]="eventCreation.description" formControlName="description" placeholder="Beskrivelse" class="input-control">
-            <mat-error>
-                Dette felt skal udfyldes
-            </mat-error>
-        </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <input matInput type="text" [(ngModel)]="eventCreation.description" formControlName="description"
+          placeholder="Beskrivelse" class="input-control">
+        <mat-error>
+          Dette felt skal udfyldes
+        </mat-error>
+      </mat-form-field>
 
-          <mat-form-field class="example-full-width" appearance="fill">
-            <input matInput  [matDatepicker]="picker1" [(ngModel)]="eventCreation.startDate" formControlName="startDate" placeholder="Start Dato" class="input-control">
-             <mat-error>
-                Dette felt skal udfyldes
-            </mat-error>
-          <mat-datepicker-toggle matSuffix [for]="picker1" ></mat-datepicker-toggle>
-          <mat-datepicker #picker1 ></mat-datepicker>
-          </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <input matInput [matDatepicker]="picker1" [(ngModel)]="eventCreation.startDate" formControlName="startDate"
+          placeholder="Start Dato" class="input-control">
+        <mat-error>
+          Dette felt skal udfyldes
+        </mat-error>
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
 
-          <mat-form-field class="example-full-width"  appearance="fill">
-              <input matInput [matDatepicker]="picker2" [(ngModel)]="eventCreation.endDate" formControlName="endDate" placeholder="Slut Dato" class="input-control">
-             <mat-error>
-                  Dette felt skal udfyldes
-              </mat-error>
-            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-            <mat-datepicker #picker2></mat-datepicker>
-          </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <input matInput [matDatepicker]="picker2" [(ngModel)]="eventCreation.endDate" formControlName="endDate"
+          placeholder="Slut Dato" class="input-control">
+        <mat-error>
+          Dette felt skal udfyldes
+        </mat-error>
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
 
-          <mat-form-field class="example-full-width" appearance="fill">
-              <input matInput type="text" [(ngModel)]="eventCreation.location" formControlName="location" placeholder="Lokation" class="input-control">
-              <mat-error>
-                  Dette felt skal udfyldes
-              </mat-error>
-          </mat-form-field>
-           <div mat-dialog-actions class="btn-container">
-            <button mat-button (click)="dialogRefOpretteEvents.close(false)" >Annulere</button>
-             <button mat-button cdkFocusInitial  (click)="onSubmitEvent(); $event.stopPropagation()">Oprette</button>
-           </div>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <input matInput type="text" [(ngModel)]="eventCreation.location" formControlName="location"
+          placeholder="Lokation" class="input-control">
+        <mat-error>
+          Dette felt skal udfyldes
+        </mat-error>
+      </mat-form-field>
+      <div mat-dialog-actions class="btn-container">
+        <button mat-button (click)="dialogRefOpretteEvents.close(false)">Annulere</button>
+        <button mat-button cdkFocusInitial (click)="onSubmitEvent(); $event.stopPropagation()">Oprette</button>
+      </div>
 
-      </form>
+    </form>
   </mat-card-content>
 </mat-card>
-

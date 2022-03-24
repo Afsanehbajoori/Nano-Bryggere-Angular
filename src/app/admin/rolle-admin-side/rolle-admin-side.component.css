@@ -1,5 +1,5 @@
 .main{
-  height: 100%;
+  height: 80.2vh;
   background-color: rgb(255, 255, 255);
 }
 
@@ -16,8 +16,8 @@
 }
 
 .list-item-set{
-color: black;
-font-weight: bold;
+  color: black;
+  font-weight: bold;
 }
 
 .containStyle{
@@ -27,54 +27,54 @@ font-weight: bold;
   margin-top: 10px;
   padding-left: 40px;
   font-style: oblique;
-
 }
 
 .centers{
-margin: auto;
-width: 20%;
-padding: 10px;
-text-align: center;
-flex: 1 1 auto;
+  margin: auto;
+  width: 20%;
+  padding: 10px;
+  text-align: center;
+  flex: 1 1 auto;
 }
 
 .example-headers-align .mat-expansion-panel-header-title,
 .example-headers-align .mat-expansion-panel-header-description {
-flex-basis: 0;
-margin-top: 10px;
-font-style: oblique;
+  flex-basis: 0;
+  margin-top: 10px;
+  font-style: oblique;
 }
-.example-headers-align .mat-expansion-panel-header-description {
-justify-content: space-between;
-align-items: center;
-}
-.txt{
-margin: 10px;
-font-weight: bolder;
-font-size: 20px;
-font-family: 'Times New Roman', Times, serif;
-font-style: italic;
-text-align: center;
 
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
 }
+
+.txt{
+  margin: 10px;
+  font-weight: bolder;
+  font-size: 20px;
+  font-family: 'Times New Roman', Times, serif;
+  font-style: italic;
+  text-align: center;
+}
+
 .txtStyle{
-font-style: italic;
-font-weight: bold;
-display: flex;
-justify-content: center;
-text-align: center;
+  font-style: italic;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  text-align: center;
 }
 
 .txtHeader{
-font-size: 15px;
-font-style: oblique;
-font-weight: bold;
-width: 50%;
-
-
+  font-size: 15px;
+  font-style: oblique;
+  font-weight: bold;
+  width: 50%;
 }
+
 .mat-tab-group {
-margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 
 

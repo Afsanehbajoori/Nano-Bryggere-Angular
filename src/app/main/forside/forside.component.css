@@ -4,7 +4,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   width: auto;
-  }
+}
 
 h1{
   font-weight: bolder;
@@ -12,8 +12,8 @@ h1{
   font-style: italic;
   text-align: center;
   margin-top: 20px;
-
 }
+
 div img{
   display: block;
   margin-left: auto;
@@ -25,9 +25,7 @@ div img{
 mat-grid-tile {
   background: rgb(248, 250, 252);
   width: 100%;
-
 }
-
 
 mat-grid-tile mat-card {
   height: 250px;
@@ -53,11 +51,11 @@ mat-card-title {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
 #bryggeriImage{
   background-image: url('/assets/images/bryggerilist.jpg');
   height: 250px;
   width: 250px;
-
 }
 
 #eventsImage{
@@ -67,20 +65,17 @@ mat-card-title {
   background-position:center center;
   background-repeat: no-repeat;
   background-size: cover;
-
 }
 
 .cdk-virtual-scroll-data-source-example .example-viewport {
   height:250px;
   width: 1250px;
   border: 1px solid rgb(216, 210, 210);
-
 }
 
 .cdk-virtual-scroll-data-source-example .example-viewport .cdk-virtual-scroll-content-wrapper {
   display: flex;
   flex-direction: row;
-
 }
 
 .cdk-virtual-scroll-data-source-example .example-item {
@@ -90,6 +85,7 @@ mat-card-title {
   border: 1px solid rgb(223, 217, 217);
   /* writing-mode: vertical-lr; */
 }
+
 .txtStyle{
   font-style: italic;
   font-weight: bold;
@@ -97,6 +93,7 @@ mat-card-title {
  justify-content: center;
  text-align: center;
 }
+
 mat-grid-tile span{
   margin-left: 30px;
- }
+}

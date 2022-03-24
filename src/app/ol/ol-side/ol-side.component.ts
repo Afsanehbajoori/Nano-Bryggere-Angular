@@ -52,6 +52,6 @@ export class OlSideComponent implements OnInit {
   }
   
   onReturn() {
-    this.router.navigate(['../ol/beersearch']);
+    this.router.navigate(['../beer/beersearch']);
   };
 }

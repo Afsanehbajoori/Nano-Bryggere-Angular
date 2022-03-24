@@ -14,8 +14,8 @@ import { RedigerProfilDialogBoxComponent } from 'src/app/main/rediger-profil-dia
 })
 
 export class BrugerAdminSideComponent implements OnInit {
-  dialogRefSlet: MatDialogRef<SletDialogBoxComponent>;
-  dialogRefRedigerProfile: MatDialogRef<RedigerProfilDialogBoxComponent>;
+  dialogRefDelete: MatDialogRef<SletDialogBoxComponent>;
+  dialogRefUpdateProfile: MatDialogRef<RedigerProfilDialogBoxComponent>;
   users: User[];
   user = new User();
   endpointU='/Users'; //endpointB
@@ -135,8 +135,8 @@ export class BrugerAdminSideComponent implements OnInit {
     this.userinfoId= data.kontaktoplysningerId;
     console.log("kontId:",this.userinfoId);
     localStorage.setItem('ContactInformationId' , this.userinfoId.toString());
-    this.dialogRefRedigerProfile = this.dialog.open(RedigerProfilDialogBoxComponent, dialogConfig);
-    this.dialogRefRedigerProfile.afterClosed().subscribe(result => {
+    this.dialogRefUpdateProfile = this.dialog.open(RedigerProfilDialogBoxComponent, dialogConfig);
+    this.dialogRefUpdateProfile.afterClosed().subscribe(result => {
       if (result) {
         this.userinfoList = result;
         this.restApi.updateData(this.userinfoId, this.endpointC, this.userinfoList).subscribe((data) => {

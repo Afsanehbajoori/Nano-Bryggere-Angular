@@ -98,27 +98,27 @@ export class RolleAdminSideComponent implements OnInit {
   onDowngradeRolename(id: any) {
     var user = this.users.find((x: any) => x.id === id)
     console.log('info:', user?.roleId);
-    var rolleId = user?.roleId;
-    this.restApi.getData(rolleId, this.endpointR).subscribe(data => {
+    var roleId = user?.roleId;
+    this.restApi.getData(roleId, this.endpointR).subscribe(data => {
       var upgradeLevel = data;
       console.log('upgradeLevel', upgradeLevel.level)
       if (upgradeLevel.level == 300) {
         upgradeLevel.level = 200;
-        upgradeLevel.rolleNavn = "Moderator";
+        upgradeLevel.roleNavn = "Moderator";
       }
       else if (upgradeLevel.level == 200) {
         upgradeLevel.level = 100;
-        upgradeLevel.rolleNavn = "User";
+        upgradeLevel.roleNavn = "User";
       }
       else if (upgradeLevel.level == 100) {
         upgradeLevel.level = 0;
-        upgradeLevel.rolleNavn = "AnonUser";
+        upgradeLevel.roleNavn = "AnonUser";
       }
       else if (upgradeLevel.level == 0) {
         upgradeLevel.level = 0;
-        upgradeLevel.rolleNavn = "AnonUser";
+        upgradeLevel.roleNavn = "AnonUser";
       }
-      this.restApi.updateData(rolleId, this.endpointR, upgradeLevel).subscribe(data => {
+      this.restApi.updateData(roleId, this.endpointR, upgradeLevel).subscribe(data => {
         console.log('ny:', upgradeLevel.level);
         this.ngOnInit();
       })
@@ -128,27 +128,27 @@ export class RolleAdminSideComponent implements OnInit {
   onUpgradeRolename(id: any) {
     var user = this.users.find((x: any) => x.id === id)
     console.log('info:', user?.roleId);
-    var rolleId = user?.roleId;
-    this.restApi.getData(rolleId, this.endpointR).subscribe(data => {
+    var roleId = user?.roleId;
+    this.restApi.getData(roleId, this.endpointR).subscribe(data => {
       var upgradeLevel = data;
       console.log('upgradeLevel', upgradeLevel.level)
       if (upgradeLevel.level == 0) {
         upgradeLevel.level = 100;
-        upgradeLevel.rolleNavn = "User";
+        upgradeLevel.roleNavn = "User";
       }
       else if (upgradeLevel.level == 100) {
         upgradeLevel.level = 200;
-        upgradeLevel.rolleNavn = "Moderator";
+        upgradeLevel.roleNavn = "Moderator";
       }
       else if (upgradeLevel.level == 200) {
         upgradeLevel.level = 300;
-        upgradeLevel.rolleNavn = "Administrator";
+        upgradeLevel.roleNavn = "Administrator";
       }
       else if (upgradeLevel.level == 300) {
         upgradeLevel.level = 300;
-        upgradeLevel.rolleNavn = "Administrator";
+        upgradeLevel.roleNavn = "Administrator";
       }
-      this.restApi.updateData(rolleId, this.endpointR, upgradeLevel).subscribe(data => {
+      this.restApi.updateData(roleId, this.endpointR, upgradeLevel).subscribe(data => {
         console.log('ny:', upgradeLevel.level);
         this.ngOnInit();
       })

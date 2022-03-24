@@ -21,7 +21,7 @@ const TREE_DATA: Search[] = [
     {name: 'Deltager', children:[ {name: 'Med EventTitel'} ]} ,
     {name: 'Forum', children:[ {name: 'Med ForumTitel'}]} ,
     {name: 'Tags', children:[{name: 'admin-tags'} , {name: 'admin-opret-tag'} , {name: 'admin-rediger-tag'}]} ,
-    {name: 'Certifikant'}],
+    {name: 'Certifikat'}],
   }
 ];
 
@@ -106,7 +106,7 @@ export class AdminForsideComponent implements OnInit {
       this.showAdminUpdateTagsComponent=!this.showAdminUpdateTagsComponent;
       break;
     }
-    case 'Certifikant':{
+    case 'Certifikat':{
       this.showCertificateComponent=!this.showCertificateComponent;
       break;
     }

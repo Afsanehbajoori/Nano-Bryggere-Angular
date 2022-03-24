@@ -1,17 +1,21 @@
 <mat-card class="main" id="imgeUp">
-    <table style="width: 100%; height: 100%; display: flex; justify-content: center;">
-        <button style="height: 5%; background-color: transparent; border-color: transparent;" (click)="onReturn()">
-            <a><span class="material-icons black-color">arrow_back</span></a>
-        </button>
-        <mat-card-content *ngIf="beer"
-            style="width: 50%; height: 100%; justify-content: center;">
-            <div fxLayout = “row” class="centers" style="width: 100%; height: 8%; margin-top: 100px; background: linear-gradient(rgb(27, 109, 156), rgb(115, 167, 236));">
-                        <h1 style="font-weight: bold;">{{beer.name}}</h1>
-                        <button style="background-color: transparent; border-color: transparent;"><mat-icon aria-hidden="false" *ngIf="true">grade</mat-icon></button>
+    <table style="display: flex; justify-content: center;">
+        <mat-card-content *ngIf="beer" style="width: 50%; height: 50%; justify-content: center;">
+            <div fxLayout="column" fxLayoutAlign="space-evenly"
+                style=" height: 6%; background: linear-gradient(rgb(27, 109, 156), rgb(115, 167, 236));">
+                <button style="height: 5%; background-color: transparent; border-color: transparent;"
+                    (click)="onReturn()">
+                    <a><span class="material-icons black-color">arrow_back</span></a>
+                </button>
+                <h1 style="font-weight: bold;">{{beer.name}}</h1>
+                <button style="background-color: transparent; border-color: transparent;">
+                    <mat-icon aria-hidden="false" *ngIf="true">grade</mat-icon>
+                </button>
             </div>
-            <img [src]="beer.label" alt="" style="width: 20%; height: 20%;">
-            <div fxlayout="row" fxLayoutAlign="center center" class="row-example"
-                style="width: 100%; height: 60%;">
+            <div class="centers" style="width: 100%; height: 20%;">
+                <img [src]="beer.label" alt="" style="width: 20%; height: 100%; justify-content: center;">
+            </div>
+            <div fxlayout="row" fxLayoutAlign="center center" class="row-example" style="width: 100%; height: 60%;">
                 <mat-grid-list cols="2" rowHeight="2:1" style="width: 100%; height: 20%;">
                     <mat-grid-tile style="width: 50%; height: 100%;">
                         <div>

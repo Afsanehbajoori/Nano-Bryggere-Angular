@@ -1,5 +1,4 @@
 import { Byte } from "@angular/compiler/src/util";
-import { Events } from "./Events";
 import { ContactInformation } from "./ContactInformation";
 import { Role } from "./Role";
 import { Participation } from './Participation';

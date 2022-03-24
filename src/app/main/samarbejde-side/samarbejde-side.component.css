@@ -5,10 +5,12 @@
   background-size: cover;
   width: auto;
 }
+
 .main{
-  height: 100%;
+  height: 80.2vh;
   background-color: rgb(255, 255, 255);
 }
+
 .txt{
   margin: 30px;
   font-weight: bolder;
@@ -21,6 +23,7 @@
 .example-tree-invisible {
     display: none;
 }
+
 .example-tree ul,
 .example-tree li {
   margin-top: 0;
@@ -48,10 +51,9 @@
   justify-content: center;
   cursor: pointer;
   margin: 20px;
-
 }
+
 .example-container {
   width: 100%;
   height: 100%;
 }
-

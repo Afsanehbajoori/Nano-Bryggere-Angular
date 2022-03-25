@@ -17,7 +17,6 @@ import { FormBuilder } from '@angular/forms';
 })
 
 export class ProfilComponent implements OnInit {
-
   @ViewChild(MatAccordion) accordion: MatAccordion;
   dialogRefDelete: MatDialogRef<SletDialogBoxComponent>;
   dialogRefUpdateProfile: MatDialogRef<RedigerProfilDialogBoxComponent>;
@@ -75,14 +74,14 @@ export class ProfilComponent implements OnInit {
   onLoadUserInformation() {
     return this.restApi.getData(this.userId, this.endpointU).subscribe((data) => {
       this.userList = data;
-      console.log("brugernavn:", this.userList.roleId);
+      // console.log("brugernavn:", this.userList.roleId);
       this.restApi.getData(this.userInfoId, this.endpointC).subscribe((data) => {
         this.userInfoList = data;
-        console.log("konId", this.userInfoId);
-        console.log(" this.kontaktoplysningerList:", this.userInfoList.Sname);
+        // console.log("konId", this.userInfoId);
+        // console.log(" this.kontaktoplysningerList:", this.userInfoList.Sname);
         this.restApi.getData(this.roleId, this.endpointR).subscribe((data) => {
           this.roleList = data;
-          console.log('RoleList', this.roleList)
+          // console.log('RoleList', this.roleList)
         })
       })
     })
@@ -91,7 +90,7 @@ export class ProfilComponent implements OnInit {
   onLoadBrewery() {
     this.restApi.getDatas(this.endpointB).subscribe((data) => {
       this.breweryList = data.find((x: any) => x.contactInformationId === this.userInfoId);
-      console.log('this.bryggeri:', this.breweryList);
+      // console.log('this.bryggeri:', this.breweryList);
       //console.log('id:',this.bryggeriList.id);
       if (this.breweryList !== undefined) {
         localStorage.setItem('breweryId', JSON.stringify(this.breweryList.id));
@@ -112,7 +111,7 @@ export class ProfilComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]);
       reader.onload = (e: any) => {
         this.logo = e.target.result;
-        console.log(this.logo);
+        // console.log(this.logo);
         localStorage.setItem('logo', JSON.stringify(this.logo));
       }
     }
@@ -120,9 +119,9 @@ export class ProfilComponent implements OnInit {
 
   onCreateBrewery() {
     if (this.newBrewery.name != '') {
-      console.log("test:", this.userInfoId);
+      // console.log("test:", this.userInfoId);
       this.newBrewery.contactInformationId = this.userInfoId;
-      console.log("contactInformationId:", this.newBrewery.contactInformationId);
+      // console.log("contactInformationId:", this.newBrewery.contactInformationId);
       this.newBrewery.logo = JSON.parse(localStorage.getItem('logo') || '{}');
       this.restApi.createData(this.newBrewery, this.endpointB).subscribe((data) => {
         localStorage.setItem('breweryId', JSON.stringify(data.id));

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog , MatDialogConfig ,MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
 import { User } from 'src/app/Models/User';
@@ -18,18 +18,19 @@ export class BrugerAdminSideComponent implements OnInit {
   dialogRefUpdateProfile: MatDialogRef<RedigerProfilDialogBoxComponent>;
   users: User[];
   user = new User();
-  endpointU='/Users'; //endpointB
+  endpointU = '/Users'; //endpointB
   endpointC = '/ContactInformation'; //endpointK
   searchkeyUsername: string;
-  searchkeyUserSname:string;
-  searchkeyEmail:string;
-  searchkeyEventsTitle:string;
-  userinfo:any; //kontaktoplysninger
+  searchkeyUserSname: string;
+  searchkeyEmail: string;
+  searchkeyEventsTitle: string;
+  userInfo: any; //kontaktoplysninger
+  certificateInfo: any;
   id = this.actRoute.snapshot.params['id'];
-  userinfoId:number; //kontaktoplysningerId
-  clickButton:boolean=true;
+  userinfoId: number; //kontaktoplysningerId
+  clickButton: boolean = true;
   userinfoList: any; //kontaktoplysningerList
-  info:ContactInformation[]; //kontakt
+  info: ContactInformation[]; //kontakt
 
   constructor(
     public dialog: MatDialog,
@@ -42,71 +43,68 @@ export class BrugerAdminSideComponent implements OnInit {
     this.onLoadUser();
   }
 
-  onLoadUser(){
+  onLoadUser() {
     return this.restApi.getDatas(this.endpointU).subscribe((res) => {
-        this.users = res;
-        console.log(this.users);
-      })
+      this.users = res;
+      console.log(this.users);
+    })
   }
 
-  onShowUser(id:any){
-      this.clickButton=false;
-      return this.restApi.getData(id , this.endpointU).subscribe((data) => {
-        this.userinfoId=data.kontaktoplysningerId;
-        this.restApi.getData(this.userinfoId ,this.endpointC ).subscribe((data) => {
-          this.userinfo = data;
-        })
+  onShowUser(id: any) {
+    this.clickButton = false;
+    return this.restApi.getData(id, this.endpointU).subscribe((data) => {
+      this.userinfoId = data.contactInformationId;
+      this.restApi.getData(this.userinfoId, this.endpointC).subscribe((data) => {
+        this.userInfo = data;
       })
+    })
   }
 
-  onFindUsername(){
-    if(this.searchkeyUsername == ""){
+  onFindUsername() {
+    if (this.searchkeyUsername == "") {
       this.ngOnInit();
     }
-    else{
-      this.users = this.users.filter(res =>{
-      return  res.username.toLowerCase().match(this.searchkeyUsername.toLowerCase());
-
+    else {
+      this.users = this.users.filter(res => {
+        return res.username.toLowerCase().match(this.searchkeyUsername.toLowerCase());
       })
     }
   }
 
-  onFindUserSname(){
-    if(this.searchkeyUserSname ==''){
+  onFindUserSname() {
+    if (this.searchkeyUserSname == '') {
       this.ngOnInit();
     }
-     else{
-      this.restApi.getDataBySname(this.searchkeyUserSname , this.endpointU).subscribe((data) => {
-        return this.users=data;
+    else {
+      this.restApi.getDataBySname(this.searchkeyUserSname, this.endpointU).subscribe((data) => {
+        return this.users = data;
       })
-        }
+    }
   }
 
-  onFindEmail(){
-    if(this.searchkeyEmail == ""){
+  onFindEmail() {
+    if (this.searchkeyEmail == "") {
       this.ngOnInit();
     }
-    else{
-      this.restApi.getDataByEmail(this.searchkeyEmail , this.endpointU).subscribe((data) => {
-        return this.users=data;
+    else {
+      this.restApi.getDataByEmail(this.searchkeyEmail, this.endpointU).subscribe((data) => {
+        return this.users = data;
       })
-
-
-     }
+    }
   }
 
-  onFindUsernameByEventsTitle(){
-    if(this.searchkeyEventsTitle == ""){
+  onFindUsernameByEventsTitle() {
+    if (this.searchkeyEventsTitle == "") {
       this.ngOnInit();
     }
-    else{
-      this.restApi.getUserByEventsTitle(this.searchkeyEventsTitle , this.endpointU).subscribe((data) => {
-        return this.users=data;
+    else {
+      this.restApi.getUserByEventsTitle(this.searchkeyEventsTitle, this.endpointU).subscribe((data) => {
+        return this.users = data;
       })
-     }
+    }
   }
 
-//husk at kigge på slet bruger , kan ikke sltettes før slet deltager og login
+  //husk at kigge på slet bruger , kan ikke sltettes før slet deltager og login
   onDeleteUser(id: any) {
     let dialogRef = this.dialog.open(SletDialogBoxComponent);
     dialogRef.afterClosed().subscribe(result => {
@@ -117,34 +115,34 @@ export class BrugerAdminSideComponent implements OnInit {
           this.loadBruger();
         })
       })*/
-      if(result){
-        this.restApi.deleteData(id , this.endpointU).subscribe((data) => {
-          console.log('delete:' , id);
+      if (result) {
+        this.restApi.deleteData(id, this.endpointU).subscribe((data) => {
+          console.log('delete:', id);
           this.onLoadUser();
         })
       }
     });
   }
 
-   onUpdateUser(id:any) {
+  onUpdateUser(id: any) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = "30%";
-    this.restApi.getData(id , this.endpointU).subscribe((data) => {
-    this.userinfoId= data.kontaktoplysningerId;
-    console.log("kontId:",this.userinfoId);
-    localStorage.setItem('ContactInformationId' , this.userinfoId.toString());
-    this.dialogRefUpdateProfile = this.dialog.open(RedigerProfilDialogBoxComponent, dialogConfig);
-    this.dialogRefUpdateProfile.afterClosed().subscribe(result => {
-      if (result) {
-        this.userinfoList = result;
-        this.restApi.updateData(this.userinfoId, this.endpointC, this.userinfoList).subscribe((data) => {
-        console.log(this.userinfoList);
-        this.onShowUser(id);
-        })
-      }
-    });
+    this.restApi.getData(id, this.endpointU).subscribe((data) => {
+      this.userinfoId = data.contactInformationId;
+      console.log("kontId:", this.userinfoId);
+      localStorage.setItem('AdminContactInformationId', this.userinfoId.toString());
+      this.dialogRefUpdateProfile = this.dialog.open(RedigerProfilDialogBoxComponent, dialogConfig);
+      this.dialogRefUpdateProfile.afterClosed().subscribe(result => {
+        if (result) {
+          this.userinfoList = result;
+          this.restApi.updateData(this.userinfoId, this.endpointC, this.userinfoList).subscribe((data) => {
+            console.log(this.userinfoList);
+            this.onShowUser(id);
+          })
+        }
+      });
     })
   };
 }

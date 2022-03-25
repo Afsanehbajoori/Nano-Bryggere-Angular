@@ -33,7 +33,7 @@ export class OpretteComponent implements OnInit {
     this.restApi.createData(this.forumCreation, this.endpointF).subscribe((data) => {
       this.router.navigate(['../forum/forum'])
       localStorage.setItem('forumId' ,JSON.stringify(data.id));
-      console.log('id',data.id);
+      // console.log('id',data.id);
     })
   }
 }

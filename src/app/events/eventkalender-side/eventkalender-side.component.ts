@@ -55,10 +55,10 @@ export class EventkalenderSideComponent implements OnInit {
       this.listParticipation=data;
       if(this.userId){
         this.listParticipation = this.listParticipation.filter((a:any) => a.userId === this.userId);
-        console.log('list:' , this.listParticipation);
+        // console.log('list:' , this.listParticipation);
         for(var d =0; d < this.listParticipation.length ; d++)
         {
-          console.log('listId:' , this.listParticipation[d].eventsId);
+          // console.log('listId:' , this.listParticipation[d].eventsId);
           if(this.listParticipation[d].eventsId){
             this.arrayListParticipation.push(this.listParticipation[d].eventsId);
           }

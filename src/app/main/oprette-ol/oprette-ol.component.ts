@@ -59,7 +59,7 @@ export class OpretteOlComponent implements OnInit {
   };
   onSubmitBeer() {
     this.beerCreation.breweryId = JSON.parse(localStorage.getItem('breweryId') || '{}');
-    console.log(this.beerCreation);
+    // console.log(this.beerCreation);
     this.restApi.createData(this.beerCreation, this.endpointB).subscribe((data) => {
       this.router.navigate(['../main/catalog']);
     });

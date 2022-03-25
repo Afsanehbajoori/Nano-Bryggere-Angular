@@ -41,7 +41,7 @@ export class LoginSideComponent implements OnInit {
 
   this.restApi.getDatas(this.endpointU).subscribe((res) => {
   const user = res.find((a:any) => {
-    console.log('infoLogin:' , a.contactInformation);
+    // console.log('infoLogin:' , a.contactInformation);
     //this.restApi.getData(a.kontaktoplysningerId , this.endpointK).subscribe(data => {
       //console.log('infoLoginKontakt' , data);
       return a.username.toLowerCase() === this.loginDetails.username.toLowerCase() && a.pw === this.loginDetails.pw

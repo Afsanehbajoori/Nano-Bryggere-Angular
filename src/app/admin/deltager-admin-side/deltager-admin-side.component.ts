@@ -30,7 +30,8 @@ export class DeltagerAdminSideComponent implements OnInit {
   onLoadParticipants(){
     this.restApi.getDatas(this.endpointP).subscribe(data =>
       this.participants=data
-      )}
+    )
+  }
 
   onShowParticipants(id:any){
     this.clickButton=false;
@@ -50,7 +51,7 @@ export class DeltagerAdminSideComponent implements OnInit {
       this.ngOnInit();
     }
     else{
-      this.restApi.getParticipantByEventsTitle(this.searchkeyParticipants.toLowerCase() , this.endpointE).subscribe(res => {
+      this.restApi.getParticipantByEventsTitle(this.searchkeyParticipants.toLowerCase(), this.endpointE).subscribe(res => {
         return this.participants=res
       })
     }

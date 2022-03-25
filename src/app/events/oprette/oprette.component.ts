@@ -33,7 +33,7 @@ export class OpretteComponent implements OnInit {
   };
 
   onSubmitEvent() {
-    console.log(this.eventCreation);
+    // console.log(this.eventCreation);
     this.restApi.createData(this.eventCreation, this.endpoints).subscribe((data) => {
       this.router.navigate(['../events/events'])
     })

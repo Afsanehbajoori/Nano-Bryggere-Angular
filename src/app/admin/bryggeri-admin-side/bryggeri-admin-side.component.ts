@@ -51,7 +51,7 @@ export class BryggeriAdminSideComponent implements OnInit {
     })
   };
 
-  onFindBreweryname(){
+  onFindBreweryName(){
     if(this.searchkeyBreweryName == ""){
       this.ngOnInit();
     }

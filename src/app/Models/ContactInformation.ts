@@ -1,4 +1,5 @@
 import { Brewery } from "./Brewery";
+import { User } from "./User";
 
 export class ContactInformation {
   public id: number;
@@ -11,4 +12,6 @@ export class ContactInformation {
   public email: string;
   public phoneNr: string;
   public brewery : Brewery;
+  public userId: number;
+  public user: User;
 }

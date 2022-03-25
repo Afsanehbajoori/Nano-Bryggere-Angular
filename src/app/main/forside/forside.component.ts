@@ -82,13 +82,13 @@ export class ForsideComponent implements OnInit {
   }
 
   onShowEventsDetails(id:any){
-    console.log('click', id);
+    // console.log('click', id);
     this.dialog.open(VisEventsDetajlerComponent , {
       width:'400px',
       height:'auto'
 
     });
     localStorage.setItem('eventsId' , id);
-    console.log('eventsId' , id)
+    // console.log('eventsId' , id)
   }
 }

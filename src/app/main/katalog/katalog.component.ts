@@ -57,7 +57,7 @@ export class KatalogComponent implements OnInit {
   onDeleteBeer(id: any) {
     let dialogRef = this.dialog.open(SletDialogBoxComponent);
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+      // console.log(result);
       if (result == true) {
         this.restApi.deleteData(id, this.endpointB).subscribe(data => {
           this.onLoadBeer();

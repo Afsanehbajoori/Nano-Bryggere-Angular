@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CertifikatDialogBoxComponent } from 'src/app/main/certifikat-dialog-box/certifikat-dialog-box.component';
 import { RedigerProfilDialogBoxComponent } from 'src/app/main/rediger-profil-dialog-box/rediger-profil-dialog-box.component';
 import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
 import { ContactInformation } from 'src/app/Models/ContactInformation';
@@ -15,143 +14,82 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 })
 export class BrugerCertifikatComponent implements OnInit {
   userList: ContactInformation[]; //oplysninger
-  certificateList: User[]; //oplysninger
-  userinfo = new ContactInformation; //oplysning
+  userInfo: ContactInformation;
+  certificateList: User[];
+  certificateInfo: User; //oplysninger
+  userInfoId: number;
   endpointC = '/ContactInformation';
-  endpointU = '/Users'; 
-  clickButton:boolean = false;
+  endpointU = '/Users';
+  clickButton: boolean = true;
   searchkey: string;
   dialogRefDelete: MatDialogRef<SletDialogBoxComponent>;
   dialogRefUpdateProfile: MatDialogRef<RedigerProfilDialogBoxComponent>;
   constructor(
     public dialog: MatDialog,
-    public restApi: RestApiService, 
+    public restApi: RestApiService,
     public router: Router,
-    public actRoute: ActivatedRoute 
+    public actRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    this.onLoadContactInfo();
     this.onLoadUserCertificate();
   }
-  
-  onLoadContactInfo(){
-    return this.restApi.getDatas(this.endpointC).subscribe((contactInfo) => {
-      this.userList = contactInfo;
-    })
-  }
 
-  onLoadUserCertificate(){
+  onLoadUserCertificate() {
     return this.restApi.getDatas(this.endpointU).subscribe((userCertificate) => {
-      this.certificateList = userCertificate;
-    })
-  }
-
-  onFindUserCertificate(){
-    if(this.searchkey == ""){
-      this.ngOnInit();
-    }
-    else{
-     this.restApi.getParticipantByEventsTitle(this.searchkey , this.endpointC).subscribe(data => {
-       this.certificateList=data;
-       console.log('hi:', this.certificateList)
-     })
-    }
-  }
-
-  onGivUserCertificate(id:any) {
-    let dialogRef = this.dialog.open(CertifikatDialogBoxComponent)
-    dialogRef.afterClosed().subscribe(result => {
-      this.restApi.updateData(id, this.endpointC, this.userList).subscribe(data => {
-        this.onLoadUserCertificate();
+      this.certificateList = userCertificate.filter((res: any) => {
+        res.certificateLevel === 1;
+        this.restApi.getDatas(this.endpointC).subscribe((contactInfo) => {
+          this.userList = contactInfo.filter((result: any) => {
+            return result.id === res.id;
+          })
+        })
       })
     });
+  }
+
+  onFindUserCertificate() {
+    if (this.searchkey == "") {
+      this.ngOnInit();
+    }
+    else {
+      this.restApi.getParticipantByEventsTitle(this.searchkey, this.endpointC).subscribe(data => {
+        this.certificateList = data;
+        console.log('hi:', this.certificateList)
+      })
+    }
+  }
+
+  //Godkend certifikat
+  onConfirmCertificate(id: any) {
+    this.restApi.getData(id, this.endpointU).subscribe(data => {
+      this.certificateInfo = data;
+      this.certificateInfo.certificateLevel = 2;
+      this.restApi.updateData(id, this.endpointU, this.certificateInfo).subscribe(data => {
+        this.ngOnInit();
+      })
+    })
   };
 
-  onDeleteUserCertificate(id: any) {
-    let dialogRef = this.dialog.open(SletDialogBoxComponent);
-    dialogRef.afterClosed().subscribe(result => {
-      /* this.restApi.getData(id , this.endpoints).subscribe((data) => {
-        this.kontaktoplysningerId= data.kontaktoplysningerId;
-        console.log("kontId:",this.kontaktoplysningerId);
-        this.restApi.deleteData(this.kontaktoplysningerId, this.endpointK).subscribe(data => {
-          this.loadBruger();
-        })
-      })*/
-      if(result){
-        this.restApi.deleteData(id , this.endpointU).subscribe((data) => {
-          console.log('delete:' , id);
-          this.onLoadUserCertificate();
-        })
-      }
-    });
+  //Benægt certifikat
+  onDenyCertificate(id: any) {
+    this.restApi.getData(id, this.endpointU).subscribe(data => {
+      this.certificateInfo = data;
+      this.certificateInfo.certificateLevel = 0;
+      this.restApi.updateData(id, this.endpointU, this.certificateInfo).subscribe(data => {
+        this.ngOnInit();
+      })
+    })
   }
 
   onShowUserCertificate(id: any) {
-    let dialogRef = this.dialog.open(SletDialogBoxComponent);
-    dialogRef.afterClosed().subscribe(result => {
-      /* this.restApi.getData(id , this.endpoints).subscribe((data) => {
-        this.kontaktoplysningerId= data.kontaktoplysningerId;
-        console.log("kontId:",this.kontaktoplysningerId);
-        this.restApi.deleteData(this.kontaktoplysningerId, this.endpointK).subscribe(data => {
-          this.loadBruger();
-        })
-      })*/
-      if(result){
-        this.restApi.deleteData(id , this.endpointU).subscribe((data) => {
-          console.log('delete:' , id);
-          this.onLoadUserCertificate();
-        })
-      }
-    });
+    this.clickButton = false;
+    return this.restApi.getData(id, this.endpointU).subscribe((data) => {
+      this.userInfoId = data.contactInformationId;
+      this.certificateInfo = data;
+      this.restApi.getData(this.userInfoId, this.endpointC).subscribe((data) => {
+        this.userInfo = data;
+      })
+    })
   }
-
-  onUpdateUserCertificate(id: any) {
-    let dialogRef = this.dialog.open(SletDialogBoxComponent);
-    dialogRef.afterClosed().subscribe(result => {
-      /* this.restApi.getData(id , this.endpoints).subscribe((data) => {
-        this.kontaktoplysningerId= data.kontaktoplysningerId;
-        console.log("kontId:",this.kontaktoplysningerId);
-        this.restApi.deleteData(this.kontaktoplysningerId, this.endpointK).subscribe(data => {
-          this.loadBruger();
-        })
-      })*/
-      if(result){
-        this.restApi.deleteData(id , this.endpointU).subscribe((data) => {
-          console.log('delete:' , id);
-          this.onLoadUserCertificate();
-        })
-      }
-    });
-  }
-
-  // onDowngradeRolename(id: any) {
-  //   var user = this.users.find((x: any) => x.id === id)
-  //   console.log('info:', user?.roleId);
-  //   var rolleId = user?.roleId;
-  //   this.restApi.getData(rolleId, this.endpointR).subscribe(data => {
-  //     var upgradeLevel = data;
-  //     console.log('upgradeLevel', upgradeLevel.level)
-  //     if (upgradeLevel.level == 300) {
-  //       upgradeLevel.level = 200;
-  //       upgradeLevel.rolleNavn = "Moderator";
-  //     }
-  //     else if (upgradeLevel.level == 200) {
-  //       upgradeLevel.level = 100;
-  //       upgradeLevel.rolleNavn = "User";
-  //     }
-  //     else if (upgradeLevel.level == 100) {
-  //       upgradeLevel.level = 0;
-  //       upgradeLevel.rolleNavn = "AnonUser";
-  //     }
-  //     else if (upgradeLevel.level == 0) {
-  //       upgradeLevel.level = 0;
-  //       upgradeLevel.rolleNavn = "AnonUser";
-  //     }
-  //     this.restApi.updateData(rolleId, this.endpointR, upgradeLevel).subscribe(data => {
-  //       console.log('ny:', upgradeLevel.level);
-  //       this.ngOnInit();
-  //     })
-  //   })
-  // }
 }

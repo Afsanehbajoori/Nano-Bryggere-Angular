@@ -2,6 +2,7 @@ import { Byte } from "@angular/compiler/src/util";
 import { ContactInformation } from "./ContactInformation";
 import { Role } from "./Role";
 import { Participation } from './Participation';
+import { Certificate } from "crypto";
 
 export class User {
   public id: number;
@@ -13,6 +14,6 @@ export class User {
   public contactInformation: ContactInformation;
   //public events: Events;
   public participation: Participation;
-  public certificate: Byte;
+  public certificateLevel: Byte;
   public certificatePicture: string;
 }

@@ -63,14 +63,14 @@ export class ForsideComponent implements OnInit {
   onLoadForum(){
     return this.restApi.getDatas(this.endpointF).subscribe((forum) => {
       this.forums = forum;
-      console.log('forum:', this.forums)
+      // console.log('forum:', this.forums)
     })
   }
 
   onLoadPost(){
     return this.restApi.getDatas(this.endpointP).subscribe((post) => {
       this.posts = post;
-      console.log('posts:',this.posts);
+      // console.log('posts:',this.posts);
     })
   }
 

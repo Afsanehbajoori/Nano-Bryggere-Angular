@@ -63,7 +63,7 @@ export class MineEventsComponent implements OnInit {
     else{
      this.restApi.getParticipantByEventsTitle(this.searchkey , this.endpointE).subscribe(data => {
        this.listParticipation=data;
-       console.log('hi:', this.listParticipation)
+      //  console.log('hi:', this.listParticipation)
      })
     }
   }

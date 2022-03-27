@@ -94,7 +94,7 @@ export class ProfilComponent implements OnInit {
           this.restApi.getDatas(this.endpointB).subscribe((data) => {
           this.bryggeriList = data.find((x:any) => x.kontaktoplysningerId === this.BrugerList.kontaktoplysningerId);
           console.log('this.bryggeri:',this.bryggeriList);
-          //console.log('id:',this.bryggeriList.id);
+
           if(this.bryggeriList !== undefined){
             localStorage.setItem('bryggeriId' , JSON.stringify(this.bryggeriList.id));
             this.url=this.bryggeriList.logo;

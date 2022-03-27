@@ -4,7 +4,7 @@
     <form [formGroup]="BrugerFormGroup"  novalidate>
 <mat-vertical-stepper>
       <mat-step [stepControl]="BrugerFormGroup">
-        <ng-template matStepLabel>Indtast din Fornavn</ng-template>
+        <ng-template matStepLabel>Indtast dit Fornavn</ng-template>
           <mat-form-field appearance="fill">
             <mat-label>Name</mat-label>
             <input matInput placeholder="Fx. Alex" formControlName="fnavn" [(ngModel)]="newUser.fnavn" required>
@@ -14,7 +14,7 @@
           </div>
       </mat-step>
         <mat-step [stepControl]="BrugerFormGroup">
-          <ng-template matStepLabel>Indtast din Efternavn</ng-template>
+          <ng-template matStepLabel>Indtast dit Efternavn</ng-template>
           <mat-form-field appearance="fill">
             <mat-label>Efternavn</mat-label>
             <input matInput formControlName="enavn" placeholder="Fx. Nilsen" [(ngModel)]="newUser.enavn" required>
@@ -40,7 +40,7 @@
           <ng-template matStepLabel>Indtast din Adresselinje 2</ng-template>
           <mat-form-field appearance="fill">
             <mat-label>Adresselinje 2</mat-label>
-            <input matInput formControlName="addresselinje2" placeholder="Fx. Telegrafvej 9" [(ngModel)]="newUser.addresselinje2"  required>
+            <input matInput formControlName="addresselinje2" placeholder="Fx. Telegrafvej 9" [(ngModel)]="newUser.addresselinje2">
           </mat-form-field>
           <div>
             <button mat-button matStepperPrevious>Back</button>
@@ -49,7 +49,7 @@
         </mat-step>
 
         <mat-step [stepControl]="BrugerFormGroup">
-          <ng-template matStepLabel>Indtast din PostNr</ng-template>
+          <ng-template matStepLabel>Indtast dit PostNr</ng-template>
           <mat-form-field appearance="fill">
             <mat-label>PostNr</mat-label>
             <input matInput formControlName="postnr" placeholder="Fx. 2750" [(ngModel)]="newUser.postnr" required>
@@ -85,7 +85,7 @@
         </mat-step>
 
       <mat-step [stepControl]="BrugerFormGroup">
-        <ng-template matStepLabel>Indtast din TelefonNr.</ng-template>
+        <ng-template matStepLabel>Indtast dit TelefonNr.</ng-template>
         <mat-form-field appearance="fill">
           <mat-label>TelefonNr</mat-label>
           <input matInput formControlName="telefonnr" placeholder="Fx. 12345678" [(ngModel)]="newUser.telefonnr" required>
@@ -115,7 +115,7 @@
       </mat-step>
 
       <mat-step [stepControl]="BrugerFormGroup">
-        <ng-template matStepLabel>Indtast din brugernavn</ng-template>
+        <ng-template matStepLabel>Indtast dit brugernavn</ng-template>
         <mat-form-field appearance="fill">
           <mat-label>brugernavn</mat-label>
           <input matInput formControlName="brugernavn" placeholder="Fx. nils1236" [(ngModel)]="newUser.brugernavn" required>
@@ -127,10 +127,11 @@
       </mat-step>
 
       <mat-step [stepControl]="BrugerFormGroup">
-        <ng-template matStepLabel>Indtast din Password</ng-template>
+        <ng-template matStepLabel>Indtast dit Password</ng-template>
         <mat-form-field appearance="fill">
           <mat-label>Password</mat-label>
-          <input matInput formControlName="pw" placeholder="password" [(ngModel)]="newUser.pw" required>
+          <input matInput formControlName="pw" placeholder="password" [(ngModel)]="newUser.pw" [type]="hide ? 'password' : 'text'" required>
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </mat-form-field>
         <div>
           <button mat-button matStepperPrevious>Back</button>

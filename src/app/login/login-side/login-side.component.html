@@ -13,7 +13,8 @@
             </mat-error>
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="fill">
-            <input matInput formControlName="pw" [(ngModel)]="loginDetails.pw" placeholder="Password" class="input-control" type="password">
+            <input matInput formControlName="pw" [(ngModel)]="loginDetails.pw" placeholder="Password" class="input-control"[type]="hide ? 'password' : 'text'">
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             <mat-error>
               Vær Venlig at udfylde feltet med dit password
           </mat-error>

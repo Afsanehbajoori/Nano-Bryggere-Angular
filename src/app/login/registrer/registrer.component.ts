@@ -16,7 +16,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class RegistrerComponent implements OnInit {
 
-@Input() newUser = { pw:'', brugernavn:'', rolleNavn:''  ,rolleId:null, level:'',kontaktoplysningerId: null ,
+@Input() newUser = { pw:'', brugernavn:'', rolleNavn:''  ,rolleId:1, level:'',kontaktoplysningerId: null ,
  fnavn: '', enavn: '', addresselinje1: '', addresselinje2: '', postnr: '',
   by: '', email:'', telefonnr: '' };
 
@@ -25,6 +25,7 @@ export class RegistrerComponent implements OnInit {
   endpointK = '/Kontaktoplysninger';
   endpointB= '/Brugere';
   endpointR= '/Roller';
+  hide = true;
   constructor(private _formBuilder: FormBuilder , public restApi: RestApiService ,public router: Router) { }
 
   ngOnInit(): void {
@@ -45,9 +46,6 @@ export class RegistrerComponent implements OnInit {
       'rolleNavn':new FormControl(''),
       'level':new FormControl('')
     });
-
-
-
   }
 
 
@@ -55,18 +53,21 @@ export class RegistrerComponent implements OnInit {
   createUser(){
    this.restApi.createData(this.newUser , this.endpointK).subscribe((dataK) => {
      console.log(dataK.id);
-      this.newUser.kontaktoplysningerId= dataK.id;
-      if(this.newUser.rolleNavn == 'AnonymBruger')
-      this.newUser.level=0 + "";
-      if(this.newUser.rolleNavn == 'Bruger')
-      this.newUser.level=100 + "";
-      if(this.newUser.rolleNavn == 'Moderator')
-      this.newUser.level=200 + "";
-      if(this.newUser.rolleNavn == 'Administrator')
-      this.newUser.level=300 + "";
-     this.restApi.createData(this.newUser , this.endpointR).subscribe((dataR) => {
-      console.log(dataR.id);
-      this.newUser.rolleId=dataR.id;
+     this.newUser.kontaktoplysningerId= dataK.id;
+     switch(this.newUser.rolleNavn){
+       case 'Administrator':
+         this.newUser.rolleId=4;
+         break;
+       case 'Moderator':
+         this.newUser.rolleId=3;
+         break;
+       case 'Bruger':
+         this.newUser.rolleId=2;
+         break;
+       default:
+         this.newUser.rolleId=1;
+     }
+    
       this.restApi.createData(this.newUser , this.endpointB).subscribe((dataB) => {
         console.log(dataB);
         var brugerId = dataB.id;
@@ -74,10 +75,8 @@ export class RegistrerComponent implements OnInit {
         this.router.navigate(["../login/login"]);
        }) ;
 
-     })
-
     } , err => {
-       {alert('udfyldt alle felter')
+       {alert('udfyld alle felter')
 
       }
     })

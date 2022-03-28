@@ -5,11 +5,11 @@
             <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree" class="txt"
                 style="background-color: transparent;">
                 <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
-                    <div class="mat-tree-node btnNode" *ngFor="let cooperation of cooperations">
+                    <div class="mat-tree-node btnNode" *ngFor="let samarbejde of samarbejder">
                         <div>
-                            <h1>{{cooperation.title}}</h1>
-                            <img src="{{cooperation.beerPicture}}" alt="" style="width: 20%; height: 20%; justify-content: center;">
-                            <button mat-icon-button (click)="onShowComponent(node.name, cooperation.beerId)">{{node.name}}</button>
+                            <h1>{{samarbejde.titel}}</h1>
+                            <img src="{{samarbejde.olBilled}}" alt="" style="width: 20%; height: 20%; justify-content: center;">
+                            <button mat-icon-button (click)="onShowComponent(node.name, samarbejde.olId)">{{node.name}}</button>
                         </div>
                     </div>
                     <div [class.example-tree-invisible]="!treeControl.isExpanded(node)" role="group">
@@ -19,7 +19,7 @@
             </mat-tree>
         </div>
     </mat-drawer>
-    <mat-drawer-content *ngIf="showCooperationComponent">
+    <mat-drawer-content *ngIf="showSamarbejdeComponent">
         <app-samarbejde-visning></app-samarbejde-visning>
     </mat-drawer-content>
 </mat-drawer-container>

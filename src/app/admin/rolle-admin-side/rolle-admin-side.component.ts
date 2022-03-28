@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
-import { User } from 'src/app/Models/User';
+import { Bruger } from 'src/app/Models/Bruger';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 
 @Component({
@@ -11,15 +11,15 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./rolle-admin-side.component.css']
 })
 export class RolleAdminSideComponent implements OnInit {
-  searchkeyRolename: string;
-  searchkeyUsername: string;
+  searchkeyRolleNavn: string;
+  searchkeyBrugernavn: string;
   clickButton: boolean = true;
-  endpointR = '/Roles';
-  endpointU = '/Users';
+  endpointR = '/Roller';
+  endpointU = '/Bruger';
   id = this.actRoute.snapshot.params['id'];
-  users: User[];
-  roleId: number;
-  role: any;
+  bruger: Bruger[];
+  rolleId: number;
+  rolle: any;
   level: number;
 
   constructor(public dialog: MatDialog,
@@ -28,113 +28,112 @@ export class RolleAdminSideComponent implements OnInit {
     public actRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.onLoadUser();
+    this.onHentBruger();
   }
 
-  onLoadUser() {
+  onHentBruger() {
     return this.restApi.getDatas(this.endpointU).subscribe((res) => {
-      this.users = res;
-      console.log(this.users);
+      this.bruger = res;
+      // console.log(this.users);
     })
   }
 
-  onShowUser(id: any) {
+  onVisBruger(id: any) {
     this.clickButton = false;
-    return this.restApi.getData(id, this.endpointU).subscribe((data) => {
-      this.roleId = data.roleId;
-      this.restApi.getData(this.roleId, this.endpointR).subscribe((data) => {
-        this.role = data;
-
+    return this.restApi.getData(id, this.endpointU).subscribe((res) => {
+      this.rolleId = res.roleId;
+      this.restApi.getData(this.rolleId, this.endpointR).subscribe((res) => {
+        this.rolle = res;
       })
     })
   }
 
-  onFindUsername() {
-    if (this.searchkeyUsername == "") {
+  onFindBrugernavn() {
+    if (this.searchkeyBrugernavn == "") {
       this.ngOnInit();
     }
     else {
-      this.users = this.users.filter(res => {
-        return res.username.toLowerCase().match(this.searchkeyUsername.toLowerCase());
+      this.bruger = this.bruger.filter(res => {
+        return res.brugernavn.toLowerCase().match(this.searchkeyBrugernavn.toLowerCase());
       })
     }
   }
 
-  onFindRolename() {
-    if (this.searchkeyRolename == "") {
+  onFindRolleNavn() {
+    if (this.searchkeyRolleNavn == "") {
       this.ngOnInit();
     }
     else {
-      if (this.searchkeyRolename.toLowerCase() == 'anonUser')
+      if (this.searchkeyRolleNavn.toLowerCase() == 'anonymBruger')
         this.level = 0;
-      if (this.searchkeyRolename.toLowerCase() == 'user')
+      if (this.searchkeyRolleNavn.toLowerCase() == 'bruger')
         this.level = 100;
-      if (this.searchkeyRolename.toLowerCase() == 'moderator')
+      if (this.searchkeyRolleNavn.toLowerCase() == 'moderator')
         this.level = 200;
-      if (this.searchkeyRolename.toLowerCase() == 'administrator')
+      if (this.searchkeyRolleNavn.toLowerCase() == 'administrator')
         this.level = 300;
       this.restApi.getDataByLevel(this.level, this.endpointU).subscribe((data) => {
-        return this.users = data;
+        return this.bruger = data;
       })
     }
   }
 
-  onDeleteUser(id: any) {
-    if (this.users.length !== 0) {
+  onSletBruger(id: any) {
+    if (this.bruger.length !== 0) {
       alert('Du skal først slette alle brger!')
     } else {
       let dialogRef = this.dialog.open(SletDialogBoxComponent);
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
           this.restApi.deleteData(id, this.endpointR).subscribe((data) => {
-            console.log('delete:', id);
-            this.onLoadUser();
+            // console.log('delete:', id);
+            this.onHentBruger();
           })
         }
       });
     }
   }
 
-  onDowngradeRolename(id: any) {
-    var user = this.users.find((x: any) => x.id === id)
-    console.log('info:', user?.roleId);
-    var roleId = user?.roleId;
-    this.restApi.getData(roleId, this.endpointR).subscribe(data => {
+  onNedgraderRolleNavn(id: any) {
+    var bruger = this.bruger.find((x: any) => x.id === id)
+    // console.log('info:', user?.roleId);
+    var rolleId = bruger?.rolleId;
+    this.restApi.getData(rolleId, this.endpointR).subscribe(data => {
       var upgradeLevel = data;
-      console.log('upgradeLevel', upgradeLevel.level)
+      // console.log('upgradeLevel', upgradeLevel.level);
       if (upgradeLevel.level == 300) {
         upgradeLevel.level = 200;
         upgradeLevel.roleNavn = "Moderator";
       }
       else if (upgradeLevel.level == 200) {
         upgradeLevel.level = 100;
-        upgradeLevel.roleNavn = "User";
+        upgradeLevel.roleNavn = "Bruger";
       }
       else if (upgradeLevel.level == 100) {
         upgradeLevel.level = 0;
-        upgradeLevel.roleNavn = "AnonUser";
+        upgradeLevel.roleNavn = "AnonymBruger";
       }
       else if (upgradeLevel.level == 0) {
         upgradeLevel.level = 0;
-        upgradeLevel.roleNavn = "AnonUser";
+        upgradeLevel.roleNavn = "AnonymBruger";
       }
-      this.restApi.updateData(roleId, this.endpointR, upgradeLevel).subscribe(data => {
-        console.log('ny:', upgradeLevel.level);
+      this.restApi.updateData(rolleId, this.endpointR, upgradeLevel).subscribe(data => {
+        // console.log('ny:', upgradeLevel.level);
         this.ngOnInit();
       })
     })
   }
 
-  onUpgradeRolename(id: any) {
-    var user = this.users.find((x: any) => x.id === id)
-    console.log('info:', user?.roleId);
-    var roleId = user?.roleId;
-    this.restApi.getData(roleId, this.endpointR).subscribe(data => {
+  onOpgraderRolleNavn(id: any) {
+    var bruger = this.bruger.find((x: any) => x.id === id)
+    // console.log('info:', user?.roleId);
+    var rolleId = bruger?.rolleId;
+    this.restApi.getData(rolleId, this.endpointR).subscribe(data => {
       var upgradeLevel = data;
-      console.log('upgradeLevel', upgradeLevel.level)
+      // console.log('upgradeLevel', upgradeLevel.level);
       if (upgradeLevel.level == 0) {
         upgradeLevel.level = 100;
-        upgradeLevel.roleNavn = "User";
+        upgradeLevel.roleNavn = "Bruger";
       }
       else if (upgradeLevel.level == 100) {
         upgradeLevel.level = 200;
@@ -148,8 +147,8 @@ export class RolleAdminSideComponent implements OnInit {
         upgradeLevel.level = 300;
         upgradeLevel.roleNavn = "Administrator";
       }
-      this.restApi.updateData(roleId, this.endpointR, upgradeLevel).subscribe(data => {
-        console.log('ny:', upgradeLevel.level);
+      this.restApi.updateData(rolleId, this.endpointR, upgradeLevel).subscribe(data => {
+        // console.log('ny:', upgradeLevel.level);
         this.ngOnInit();
       })
     })

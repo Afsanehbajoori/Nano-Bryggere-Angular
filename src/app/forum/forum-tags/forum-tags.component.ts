@@ -10,40 +10,40 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 })
 export class ForumTagsComponent implements OnInit {
   tag: Tags;
-  tagsList: Tags[];
+  tagsListe: Tags[];
   searchkey: string;
   search: any;
   endpointT = '/Tags';
-  beerid = JSON.parse(localStorage.getItem('breweryId') || '{}')
-  beerList : any = {};
+  olId = JSON.parse(localStorage.getItem('bryggeriId') || '{}')
+  olListe: any = {};
   constructor(
     public restApi: RestApiService,
     private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.onLoadTags()
+    this.onHentTags()
   }
 
-  onLoadTags() {
+  onHentTags() {
     return this.restApi.getDatas(this.endpointT).subscribe((tag) => {
-      this.tagsList = tag;
+      this.tagsListe = tag;
     });
   }
 
-  onFindBeer(){
+  onFindOl(){
     if(this.searchkey == ""){
       this.ngOnInit();
     }
     else{
-      this.tagsList = this.tagsList.filter(res =>{
-        return res.name.toLowerCase().match(this.searchkey.toLowerCase());
+      this.tagsListe = this.tagsListe.filter(res =>{
+        return res.navn.toLowerCase().match(this.searchkey.toLowerCase());
       })
     }
   }
 
-  onAddTag(id:any){
-    this.restApi.updateData(this.beerid, this.endpointT, this.beerList).subscribe((data) => {
+  onTilføjTag(id:any){
+    this.restApi.updateData(this.olId, this.endpointT, this.olListe).subscribe((data) => {
       this.router.navigate(['../main/catalog'])
     });
   }

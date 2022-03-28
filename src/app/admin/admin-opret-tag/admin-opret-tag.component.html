@@ -1,17 +1,17 @@
 <mat-card class="main" id="imgeUp">
     <mat-card-content class="container">
 
-        <form [formGroup]="createForm" class="example-form">
+        <form [formGroup]="opretForm" class="example-form">
             <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="text" [(ngModel)]="tagCreation.name" formControlName="name" placeholder="Navn" class="input-control">
+                <input matInput type="text" [(ngModel)]="tagOprettelse.navn" formControlName="name" placeholder="Navn" class="input-control">
                 <!-- <mat-error *ngIf="navn.errors?.['required']"> -->
                 <mat-error>
                     feltet skal udfyldes 
                 </mat-error>
             </mat-form-field>
-            <button mat-raised-button type="submit" (click)="onCancel()" class="login-btn" style="background: linear-gradient(#b60d0d, #ff6e6e);">Annuller</button>
+            <button mat-raised-button type="submit" (click)="onAnuller()" class="login-btn" style="background: linear-gradient(#b60d0d, #ff6e6e);">Annuller</button>
             
-            <button mat-raised-button type="submit" (click)="onSubmitBeer()" class="login-btn" style="background: linear-gradient(#33ff00, #41fd70);">Opret Tag</button>
+            <button mat-raised-button type="submit" (click)="onSubmitOl()" class="login-btn" style="background: linear-gradient(#33ff00, #41fd70);">Opret Tag</button>
         </form>
     </mat-card-content>
 </mat-card>

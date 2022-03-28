@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Brewery } from 'src/app/Models/Brewery';
-import { ContactInformation } from 'src/app/Models/ContactInformation';
-import { Beer } from 'src/app/Models/Beer';
+import { Bryggeri } from 'src/app/Models/Bryggeri';
+import { KontaktOplysninger } from 'src/app/Models/KontaktOplysninger';
+import { Øl } from 'src/app/Models/Øl';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 
 @Component({
@@ -12,21 +12,21 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./ol-sogning.component.css']
 })
 export class OlSogningComponent implements OnInit {
-  beer = new Beer;
-  beers: Beer[];
-  userInfo = new ContactInformation;
-  brewery: Brewery
-  breweries: Brewery[];
+  ol = new Øl;
+  oller: Øl[];
+  kontaktOplysning = new KontaktOplysninger;
+  bryggeri: Bryggeri
+  bryggerier: Bryggeri[];
   selected = ''
-  endpointBr = '/Beers';
-  endpointB = '/Breweries';
-  endpointC = '/ContactInformation';
+  endpointO = '/Øller';
+  endpointB = '/Bryggerier';
+  endpointK = '/kontaktOplysninger';
   searchkey: string;
   search: any;
   data = sessionStorage.getItem('id');
-  userInfoId: number;
-  beerId: number;
-  breweryId: number;
+  kontaktOplysningId: number;
+  olId: number;
+  bryggeriId: number;
   constructor(
     public dialog: MatDialog,
     public restApi: RestApiService,
@@ -35,46 +35,46 @@ export class OlSogningComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.onLoadBeer();
+    this.onLoadOl();
   }
-  onLoadBeer() {
-    if (this.breweryId = JSON.parse(localStorage.getItem('breweryId') || '{}')) {
-        this.restApi.getDatas(this.endpointBr).subscribe((beer) => {
-        this.beers = beer.filter((res: any) => {
-          return res.breweryId != this.breweryId;
+  onLoadOl() {
+    if (this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}')) {
+        this.restApi.getDatas(this.endpointO).subscribe((beer) => {
+        this.oller = beer.filter((res: any) => {
+          return res.bryggeriId != this.bryggeriId;
         });
       });
     }
   }
 
-  onFindBeer() {
+  onFindOl() {
     if (this.searchkey == "") {
       this.ngOnInit();
     }
     else {
-      this.beers = this.beers.filter(res => {
-        return res.name.toLowerCase().match(this.searchkey.toLowerCase());
+      this.oller = this.oller.filter(res => {
+        return res.navn.toLowerCase().match(this.searchkey.toLowerCase());
       })
     }
   }
 
-  onShowBeer(id: any) {
-    this.restApi.getData(id, this.endpointBr).subscribe(beers => {
-      this.beer = beers;
-      this.beerId = this.beer.id;
-      console.log(this.beerId);
-      localStorage.setItem('beerId', JSON.stringify(this.beerId));
-      this.restApi.getData(this.beer.breweryId, this.endpointB).subscribe(brew => {
-        this.brewery = brew;
-        console.log('bryggeriInfo:', this.brewery.contactInformationId)
-        this.restApi.getData(brew.contactInformationId, this.endpointC).subscribe(userInfo => {
-          this.userInfo = userInfo;
-          this.userInfoId = this.userInfo.id;
-          console.log("kontakt", this.userInfo);
-          localStorage.setItem('contactInformationId', JSON.stringify(this.userInfoId));
+  onShowOl(id: any) {
+    this.restApi.getData(id, this.endpointO).subscribe(oldata => {
+      this.ol = oldata;
+      this.olId = this.ol.id;
+      // console.log(this.beerId);
+      localStorage.setItem('olId', JSON.stringify(this.olId));
+      this.restApi.getData(this.ol.bryggeriId, this.endpointB).subscribe(brew => {
+        this.bryggeri = brew;
+        // console.log('bryggeriInfo:', this.brewery.contactInformationId);
+        this.restApi.getData(brew.contactInformationId, this.endpointK).subscribe(kontaktOplysningData => {
+          this.kontaktOplysning = kontaktOplysningData;
+          this.kontaktOplysningId = this.kontaktOplysning.id;
+          // console.log("kontakt", this.kontaktOplysning);
+          localStorage.setItem('kontaktOplysningerId', JSON.stringify(this.kontaktOplysningId));
         })
       })
-      this.router.navigate(['../beer/beerpage/', this.beerId]);
+      this.router.navigate(['../beer/beerpage/', this.olId]);
     });
   }
 }

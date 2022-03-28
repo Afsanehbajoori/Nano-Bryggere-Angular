@@ -2,15 +2,15 @@
     <mat-toolbar class="login-header" style="background: linear-gradient(#238ff5, #23baf5);">
         <form class="example-form" style="justify-content: center; width: 100%;">
             <mat-form-field style="width: 20%; justify-content: center;" class="centers">
-                <input matInput type="search" placeholder="Find tags" [(ngModel)]="searchkey" (ngModelChange)="onFindBeer()" [ngModelOptions]="{standalone: true}">
+                <input matInput type="search" placeholder="Find tags" [(ngModel)]="searchkey" (ngModelChange)="onFindOl()" [ngModelOptions]="{standalone: true}">
             </mat-form-field>
         </form>
         <h1 style="width: 100%;">Tags</h1>
     </mat-toolbar>
     <table style="width: 100%; height: 100%; display: flex; justify-content: center;">
         <!-- <mat-card></mat-card> -->
-        <mat-card *ngFor="let tag of tagsList" style="height: 3%; width: 15%; margin-left: 20px; margin-top: 20px;">
-                    <p>{{tag.name}}</p>
+        <mat-card *ngFor="let tag of tagsListe" style="height: 3%; width: 15%; margin-left: 20px; margin-top: 20px;">
+                    <p>{{tag.navn}}</p>
         </mat-card>
     </table>
 </div>

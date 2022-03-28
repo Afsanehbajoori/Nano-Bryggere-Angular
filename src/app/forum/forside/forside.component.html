@@ -2,7 +2,7 @@
     <mat-toolbar class="login-header" style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236)); width: 100%;">
         <button mat-raised-button
             style="background-color: rgb(192, 193, 194), rgb(231, 234, 236); width: 120px; height: 40px; border-width: 0; margin-right: 20px;"
-            (click)="onCreateForum()">Opret Forum</button>
+            (click)="onOpretForum()">Opret Forum</button>
         <form class="example-form" style="justify-content: center;">
             <mat-form-field class="txtHeader">
                 <input matInput type="search" placeholder="Find Forum" [(ngModel)]="searchkey"
@@ -12,23 +12,23 @@
         </mat-toolbar>
     <table style="width: 100%; height: 100%; display: flex;">
         <mat-accordion class="example-headers-align" multi style="width: 100%;">
-            <mat-expansion-panel *ngFor="let forum of forums" style="background-color: transparent;"  [disabled]="clickButton" (click)="clickButton=true">
+            <mat-expansion-panel *ngFor="let forum of forums" [disabled]="clickButton" (click)="clickButton=true">
                 <mat-expansion-panel-header
                     style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236)); justify-content: center; width: 100%;">
                     <mat-panel-title class="centers" style="justify-content: center;">
-                        <p>Titel:</p>
-                        {{forum.title}}
+                        <p>Titel: </p>
+                        <p>{{forum.titel}}</p>
                     </mat-panel-title>
                     <mat-action-row class="centers" style="justify-content: center;">
-                        <button mat-button class="btnMainStyle"  (click)="onShowPost(forum.id)">Vis Messages</button>
+                        <button mat-button class="btnMainStyle"  (click)="onVisPost(forum.id)">Vis Besked</button>
                     </mat-action-row>
                 </mat-expansion-panel-header>
                 <mat-card class="containStyle" >
-                    <p>Forum Beskrivelse:</p>
-                    <span>{{forum.description}}</span>
-                    <span  style="float: right;">{{forum.createDate}}</span>
+                    <p>Forum beskrivelse:</p>
+                    <span>{{forum.beskrivelse}}</span>
+                    <span  style="float: right;">{{forum.oprettelsesDato}}</span>
                 </mat-card>
-                <div *ngFor="let post of listPosts"  >
+                <div *ngFor="let post of postListe"  >
                    <mat-card class="containStyle"  >
                     <div >
                       <span style="color: darkblue;float: left;">Titel:</span>
@@ -40,18 +40,18 @@
 
 
                     <mat-action-row >
-                      <button mat-button class="btnMainStyle"  (click)="onDeletePost(post.id)">Slet Message</button> |
+                      <button mat-button class="btnMainStyle"  (click)="onSletPost(post.id)">Slet Besked</button> |
 
-                      <button mat-button class="btnMainStyle"  (click)="onUpdatePost(post.id)">Update Message</button>
+                      <button mat-button class="btnMainStyle"  (click)="onOpdaterPost(post.id)">Opdater Besked</button>
                   </mat-action-row>
                     <!-- <p >{{this.listBruger.brugernavn}}:</p> -->
                 </mat-card>
                 </div>
                 <mat-card class="messageStyle">
-                    <form [formGroup]="creationForm" class="example-form" >
+                    <form [formGroup]="opretForm" class="example-form" >
                         <mat-form-field class="example-full-width" appearance="fill"
                             style="justify-content: center; width: 100%;">
-                            <input matInput type="text" [(ngModel)]="postCreation.title" formControlName="title"
+                            <input matInput type="text" [(ngModel)]="postOprettelse.titel" formControlName="titel"
                                 placeholder="titel" class="input-control" style="width:100%">
                             <mat-error>
                                 Dette felt skal udfyldes
@@ -59,14 +59,14 @@
                         </mat-form-field>
                         <mat-form-field class="example-full-width" appearance="fill"
                             style="justify-content: center; width: 100%;">
-                            <input matInput type="text" [(ngModel)]="postCreation.content" formControlName="content"
+                            <input matInput type="text" [(ngModel)]="postOprettelse.indhold" formControlName="indhold"
                                 placeholder="indhold" class="input-control" style="width:100%">
                             <mat-error>
                                 Dette felt skal udfyldes
                             </mat-error>
                         </mat-form-field>
                         <mat-action-row class="centers" style="justify-content: center;">
-                            <button mat-button class="btnMainStyle" (click)="onApprovePost(forum.id)"
+                            <button mat-button class="btnMainStyle" (click)="onGodkendPost(forum.id)"
                                 style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236));">Indsend Kommentar</button>
                         </mat-action-row>
 

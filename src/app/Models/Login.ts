@@ -1,9 +1,9 @@
-import { User } from "./User";
+import { Bruger } from "./Bruger";
 
 
 export class Login{
-  public id : number;
-  public userId: number;
-  public user : User;
-  public loginTime :Date;
+  public id: number;
+  public brugerId: number;
+  public bruger: Bruger;
+  public loginTid:Date;
 }

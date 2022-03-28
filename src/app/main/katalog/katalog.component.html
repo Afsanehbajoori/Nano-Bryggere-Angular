@@ -1,67 +1,67 @@
 <div class="main" id="imgeUp">
     <mat-toolbar class="login-header" style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236));">
-        <button mat-raised-button style="background-color: rgb(124, 130, 136); width: 120px; height: 40px; margin-right: 10px;" (click)="onCreateBeer()">Opret øl</button>
+        <button mat-raised-button style="background-color: rgb(124, 130, 136); width: 120px; height: 40px; margin-right: 10px;" (click)="onOpretOl()">Opret øl</button>
         <form class="example-form" style="justify-content: center; width: 100%;">
             <mat-form-field class="txtHeader">
-                <input matInput type="search" placeholder="Find øl" [(ngModel)]="searchkey" (ngModelChange)="onFindBeer()" [ngModelOptions]="{standalone: true}">
+                <input matInput type="search" placeholder="Find øl" [(ngModel)]="searchkey" (ngModelChange)="onFindOl()" [ngModelOptions]="{standalone: true}">
             </mat-form-field>
         </form>
         <h1 style="width: 100%;">Katalog</h1>
     </mat-toolbar>
     <table style="width: 100%; height: 100%; display: flex;">
         <mat-accordion class="example-headers-align" multi style="width: 100%;">
-            <mat-expansion-panel *ngFor="let beer of beerList" style="margin-top: 10px;"
+            <mat-expansion-panel *ngFor="let ol of olListe" style="margin-top: 10px;"
                 expanded="true">
                 <mat-expansion-panel-header
                     style="background: linear-gradient(rgb(30, 122, 228), rgb(75, 127, 185)); justify-content: center; width: 100%;">
                     <mat-panel-title class="centers" style="justify-content: center;">
-                        Titel: {{beer.name}}
+                        Titel: {{ol.navn}}
                     </mat-panel-title>
                     <mat-action-row class="centers" style="justify-content: center;">
-                        <button mat-button class="btnMainStyle" (click)="onDeleteBeer(beer.id)">Slet Øl</button>
-                        <button mat-button class="btnMainStyle" (click)="onUpdateBeer(beer.id)">Rediger Øl</button>
-                        <button mat-button class="btnMainStyle" (click)="onBeerLayer(beer.id)">Ændre Lager</button>
+                        <button mat-button class="btnMainStyle" (click)="onSletOl(ol.id)">Slet Øl</button>
+                        <button mat-button class="btnMainStyle" (click)="onOpdaterOl(ol.id)">Rediger Øl</button>
+                        <button mat-button class="btnMainStyle" (click)="onOlLager(ol.id)">Ændre Lager</button>
                     </mat-action-row>
                 </mat-expansion-panel-header>
                 <mat-card class="containStyle">
                     <p>Type:</p>
-                    <p>{{beer.type}}</p>
+                    <p>{{ol.type}}</p>
                 </mat-card>
                 <mat-card class="containStyle">
                     <p>Procent:</p>
-                    <p>{{beer.percentage}}</p>
+                    <p>{{ol.procent}}</p>
                 </mat-card>
                 <mat-card class="containStyle">
                     <p>Smag:</p>
-                    <p>{{beer.taste}}</p>
+                    <p>{{ol.smag}}</p>
                 </mat-card>
                 <mat-card class="containStyle">
                     <p>Beskrivelse:</p>
-                    <p>{{beer.description}}</p>
+                    <p>{{ol.beskrivelse}}</p>
                 </mat-card>
                 <mat-card class="containStyle">
                     <p>Etiket:</p>
-                    <img [src]="beer.label" alt="" style="width: 20%; height: 20%;">
+                    <img [src]="ol.olBilled" alt="" style="width: 20%; height: 20%;">
                 </mat-card>
                 <mat-card class="containStyle">
                     <p>Årgang:</p>
-                    <p>{{beer.vintage}}</p>
+                    <p>{{ol.argang}}</p>
                 </mat-card>
                 <mat-card class="containStyle">
                     <p>Antal:</p>
-                    <p>{{beer.quantity}}</p>
+                    <p>{{ol.antal}}</p>
                 </mat-card>
                 <mat-card class="containStyle">
                     <p>Antal flasker:</p>
-                    <p>{{beer.bottleQuantity}}</p>
+                    <p>{{ol.flaskeAntal}}</p>
                 </mat-card>
                 <mat-card class="containStyle">
                     <p>Antal tønder:</p>
-                    <p>{{beer.barrelQuantity}}</p>
+                    <p>{{ol.tondeAntal}}</p>
                 </mat-card>
                 <mat-card class="containStyle">
                     <p>Antal reserve flasker:</p>
-                    <p>{{beer.bottleResevationQuantity}}</p>
+                    <p>{{ol.flaskeResevationAntal}}</p>
                 </mat-card>
             </mat-expansion-panel>
         </mat-accordion>

@@ -15,27 +15,26 @@ import { UpdatePostDialogBoxComponent } from '../update-post-dialog-box/update-p
 })
 
 export class ForsideComponent implements OnInit {
-  @Input() postCreation = {title: '', content: '' , userId:0 ,forumId:0  };
-  dialogRefUpdatePost : MatDialogRef<UpdatePostDialogBoxComponent>;
+  @Input() postOprettelse = {titel: '', indhold: '' , brugerId:0 ,forumId:0  };
+  dialogRefOpdaterPost : MatDialogRef<UpdatePostDialogBoxComponent>;
 
-  creationForm : any = new FormGroup({});
+  opretForm : any = new FormGroup({});
 
   forums: Forum[];
   forum = new Forum;
   posts: Post[];
-  listUser:any;
+  brugerListe:any;
+  postListe:any
   endpointF = '/Forumer';
   endpointP = '/Posts';
-  endpointU = '/Brugere';
+  endpointB = '/Bruger';
   searchkey: string;
   showForum = false;
-  userId:number;
+  brugerId:number;
   postInfo:any;
-  listPosts:any;
-  updatePost:any;
+  opdaterPost:any;
   id = this.actRoute.snapshot.params['id'];
   clickButton:boolean=true;
-  listArrayUserId = new Array();
 
   constructor(
     public dialog: MatDialog,
@@ -46,28 +45,28 @@ export class ForsideComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.userId = JSON.parse(localStorage.getItem('userId') || '{}');
-    this.creationForm = new FormGroup({
-      title: new FormControl('', Validators.required),
-      content: new FormControl('', Validators.required),
-      userId:new FormControl('' , Validators.required),
+    this.brugerId = JSON.parse(localStorage.getItem('brugerId') || '{}');
+    this.opretForm = new FormGroup({
+      titel: new FormControl('', Validators.required),
+      indhold: new FormControl('', Validators.required),
+      brugerId:new FormControl('' , Validators.required),
       forumId:new FormControl('' , Validators.required)
       //oprettet:new FormControl('', Validators.required)
 
     });
-    this.onLoadForum();
-    this.onLoadPost();
+    this.onHentForum();
+    this.onHentPost();
     //this.loadBruger();
   }
 
-  onLoadForum(){
+  onHentForum(){
     return this.restApi.getDatas(this.endpointF).subscribe((forum) => {
       this.forums = forum;
       // console.log('forum:', this.forums)
     })
   }
 
-  onLoadPost(){
+  onHentPost(){
     return this.restApi.getDatas(this.endpointP).subscribe((post) => {
       this.posts = post;
       // console.log('posts:',this.posts);
@@ -85,18 +84,18 @@ export class ForsideComponent implements OnInit {
      } )
   } */
 
-  onApprovePost(id:any){
-    this.postCreation.userId= this.userId;
-    this.postCreation.forumId=id;
+  onGodkendPost(id:any){
+    this.opretForm.userId= this.brugerId;
+    this.opretForm.forumId=id;
     // this.postOprettelse.oprettet=formatDate(new Date(), 'yyyy-MM-ddThh:mm:ssssZ' , 'en-US').toString();
 /*      if(!this.listArrayBrugerId.includes(Number(this.postOprettelse.brugerId2)))
     {
       alert('du har valgt bruger som ikke eksister!')
     }else{ */
 
-     this.restApi.createData(this.postCreation, this.endpointP).subscribe((data) => {
-     this.postCreation.content='';
-     this.postCreation.title='';
+     this.restApi.createData(this.postOprettelse, this.endpointP).subscribe((data) => {
+     this.postOprettelse.indhold='';
+     this.postOprettelse.titel='';
 
         // localStorage.setItem('brugerId2' ,JSON.stringify(data.brugerId2) );
        // this.router.navigate(['../main/katalog']);
@@ -104,11 +103,11 @@ export class ForsideComponent implements OnInit {
     //}
   }
 
-  onShowPost(id:any){
+  onVisPost(id:any){
     this.clickButton=false;
     // this.brugerId2=JSON.parse(localStorage.getItem('brugerId2') || '{}');
     // this.listPosts= this.posts.filter((res:any) => res.forumId === id && (res.brugerId2 === this.brugerId2 || res.brugerId1 === this.brugerId1 ))
-     this.listPosts= this.posts.filter((res:any) => res.forumId === id )
+     this.postListe= this.posts.filter((res:any) => res.forumId === id )
     //  console.log('this.postOprettelse.brugerId1:', this.brugerId)
     // console.log('this.postOprettelse.brugerId2:', res.brugerId1)
     // console.log('this.listPosts:', this.listPosts)
@@ -120,15 +119,15 @@ export class ForsideComponent implements OnInit {
     }
     else{
       this.forums = this.forums.filter(res =>{
-        return res.title.toLowerCase().match(this.searchkey.toLowerCase());
+        return res.titel.toLowerCase().match(this.searchkey.toLowerCase());
       })
     }
   }
 
-  onUpdatePost(id:any){
+  onOpdaterPost(id:any){
 
     this.restApi.getData(id , this.endpointP).subscribe(data => {
-    if(this.userId === data.brugerId){
+    if(this.brugerId === data.brugerId){
 
       localStorage.setItem('postId' ,JSON.stringify(id));
       const dialogConfig = new MatDialogConfig();
@@ -136,11 +135,11 @@ export class ForsideComponent implements OnInit {
       dialogConfig.autoFocus = true;
       dialogConfig.width = "40%";
       dialogConfig.height= 'auto';
-      this.dialogRefUpdatePost = this.dialog.open(UpdatePostDialogBoxComponent , dialogConfig);
-      this.dialogRefUpdatePost.afterClosed().subscribe(result => {
+      this.dialogRefOpdaterPost = this.dialog.open(UpdatePostDialogBoxComponent , dialogConfig);
+      this.dialogRefOpdaterPost.afterClosed().subscribe(result => {
         if(result){
-          this.updatePost = result;
-          this.restApi.updateData(id, this.endpointP, this.updatePost).subscribe((data) => {
+          this.opdaterPost = result;
+          this.restApi.updateData(id, this.endpointP, this.opdaterPost).subscribe((data) => {
             //console.log(this.eventList);
             this.ngOnInit();
           })
@@ -153,13 +152,13 @@ export class ForsideComponent implements OnInit {
   })
   }
 
-  onCreateForum() {
+  onOpretForum() {
     this.router.navigate(['../forum/forumcreation']);
   };
 
-  onDeletePost(id: any) {
+  onSletPost(id: any) {
     this.restApi.getData(id , this.endpointP).subscribe(data => {
-      if(this.userId === data.brugerId){
+      if(this.brugerId === data.brugerId){
     let dialogRef = this.dialog.open(SletDialogBoxComponent);
     dialogRef.afterClosed().subscribe(result => {
       this.restApi.deleteData(id, this.endpointP).subscribe(data => {

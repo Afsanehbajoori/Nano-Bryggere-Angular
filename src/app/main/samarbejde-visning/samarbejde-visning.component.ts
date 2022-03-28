@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Beer } from 'src/app/Models/Beer';
+import { Øl } from 'src/app/Models/Øl';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 import { SletDialogBoxComponent } from '../slet-dialog-box/slet-dialog-box.component';
 
@@ -11,9 +11,9 @@ import { SletDialogBoxComponent } from '../slet-dialog-box/slet-dialog-box.compo
   styleUrls: ['./samarbejde-visning.component.css']
 })
 export class SamarbejdeVisningComponent implements OnInit {
-  beer: Beer;
-  beerId: number;
-  endpointO = '/Beers';
+  ol: Øl;
+  olId: number;
+  endpointO = '/Øller';
   constructor(
     public dialog: MatDialog,
     public restApi: RestApiService,
@@ -25,21 +25,21 @@ export class SamarbejdeVisningComponent implements OnInit {
     this.onLoadCooperation();
   }
   onLoadCooperation() {
-    if (this.beerId = JSON.parse(localStorage.getItem('cooperationBeerId') || '{}')) {
-        this.restApi.getData(this.beerId, this.endpointO).subscribe(data => {
-        this.beer = data;
+    if (this.olId = JSON.parse(localStorage.getItem('samarbejdeId') || '{}')) {
+        this.restApi.getData(this.olId, this.endpointO).subscribe(data => {
+        this.ol = data;
       })
     }
   }
 
-  onUpdateBeer(id: any) {
+  onUpdateOl(id: any) {
     this.router.navigate(['../main/cooperationupdate/', id]);
   };
 
-  onDeleteBeer(id: any) {
+  onDeleteOl(id: any) {
     let dialogRef = this.dialog.open(SletDialogBoxComponent);
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+      // console.log(result);
       if (result == true) {
         this.router.navigate(['../admin/admin/']);
       }

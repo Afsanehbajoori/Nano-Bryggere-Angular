@@ -1,18 +1,18 @@
 <div class="main" id="imgeUp">
   <mat-card >
-    <mat-toolbar class="login-header" style="background: linear-gradient(#6c6c6d, #cfd4d6); height: 100px;"  >
+    <mat-toolbar class="login-header" style="background: linear-gradient(#6c6c6d, #cfd4d6); height: 100px;">
       <mat-tab-group>
         <mat-tab label="Find bruger med Rollenavn" >
           <form class="example-form" style="justify-content: center; width: 100%;">
             <mat-form-field  class="txtHeader">
-                <input matInput type="search"  [(ngModel)]="searchkeyRolename" (ngModelChange)="onFindRolename()" [ngModelOptions]="{standalone: true}" >
+                <input matInput type="search"  [(ngModel)]="searchkeyRolleNavn" (ngModelChange)="onFindRolleNavn()" [ngModelOptions]="{standalone: true}" >
             </mat-form-field>
         </form>
         </mat-tab>
         <mat-tab label="Find rollenavn med Brugernavn" >
           <form class="example-form" style="justify-content: center; width: 100%;">
             <mat-form-field  class="txtHeader">
-                <input matInput type="search"  [(ngModel)]="searchkeyUsername" (ngModelChange)="onFindUsername()" [ngModelOptions]="{standalone: true}" >
+                <input matInput type="search"  [(ngModel)]="searchkeyBrugernavn" (ngModelChange)="onFindBrugernavn()" [ngModelOptions]="{standalone: true}" >
             </mat-form-field>
         </form>
         </mat-tab>
@@ -22,29 +22,29 @@
     <mat-card>
     <table style="width: 100%; height: 100%; display: flex;" >
         <mat-accordion class="example-headers-align" multi style="width: 100%;">
-             <mat-expansion-panel *ngFor="let user of users " style="margin-top: 10px;"  [disabled]="clickButton" (click)="clickButton=true" >
+             <mat-expansion-panel *ngFor="let brug of bruger " style="margin-top: 10px;"  [disabled]="clickButton" (click)="clickButton=true" >
                 <mat-expansion-panel-header
                     style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236)); justify-content: center; width: 100%;">
                     <mat-panel-title class="centers" style="justify-content: center;">
 
                        <span style="font-weight: bold; margin-right: 20px;"> Brugernavn:</span>
-                       <span>{{user.username}}</span>
+                       <span>{{brug.brugernavn}}</span>
                     </mat-panel-title>
                     <mat-action-row class="centers" style="justify-content: center;">
-                      <button mat-button class="btnMainStyle" (click)="onShowUser(user.id)" >vis </button>  |
-                      <button mat-button class="btnMainStyle" (click)="onDowngradeRolename(user.id)">Nedgradere </button> |
-                      <button mat-button class="btnMainStyle" (click)="onUpgradeRolename(user.id)">Upgradere </button> |
-                      <button mat-button class="btnMainStyle" (click)="onDeleteUser(user.id)">Slet </button> 
+                      <button mat-button class="btnMainStyle" (click)="onVisBruger(brug.id)" >vis </button>  |
+                      <button mat-button class="btnMainStyle" (click)="onNedgraderRolleNavn(brug.id)">Nedgradere </button> |
+                      <button mat-button class="btnMainStyle" (click)="onOpgraderRolleNavn(brug.id)">Upgradere </button> |
+                      <button mat-button class="btnMainStyle" (click)="onSletBruger(brug.id)">Slet </button> 
                     </mat-action-row>
                 </mat-expansion-panel-header>
-                <div  *ngIf="role">
+                <div  *ngIf="rolle">
                 <mat-card class="containStyle">
                   <span>Rollenavn:</span>
-                  <span class="txtStyle">{{role.RoleName}}</span>
+                  <span class="txtStyle">{{rolle.rolleNavn}}</span>
                 </mat-card>
                 <mat-card class="containStyle">
                   <span>level:</span>
-                  <span class="txtStyle">{{role.level}}</span>
+                  <span class="txtStyle">{{rolle.level}}</span>
                 </mat-card>
               </div>
             </mat-expansion-panel>

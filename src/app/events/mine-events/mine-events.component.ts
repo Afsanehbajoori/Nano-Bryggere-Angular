@@ -11,16 +11,16 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./mine-events.component.css']
 })
 export class MineEventsComponent implements OnInit {
-  dialogRefDelete: MatDialogRef<SletDialogBoxComponent>;
+  dialogRefSlet: MatDialogRef<SletDialogBoxComponent>;
   events: Events[];
   eventId: number;
   endpointE = '/Events';
-  endpointP = '/Participation';
+  endpointP = '/Deltager';
   searchkey: string;
-  participatione: boolean;
-  listParticipation:any;
-  userId:number;
-  eventList:any;
+  deltager: boolean;
+  deltagerListe:any;
+  brugerId:number;
+  eventListe:any;
   id = this.actRoute.snapshot.params['id'];
   clickButton:boolean = true;
 
@@ -31,26 +31,26 @@ export class MineEventsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.userId = JSON.parse(localStorage.getItem('userId') || '{}');
-    this.onLoadParticipation();
+    this.brugerId = JSON.parse(localStorage.getItem('brugerId') || '{}');
+    this.onHentDeltager();
   }
 
-  onLoadParticipation(){
+  onHentDeltager(){
     this.restApi.getDatas(this.endpointP).subscribe(data => {
-      this.listParticipation=data
-      if(this.userId){
-        this.listParticipation = this.listParticipation.filter((a:any) => a.userId === this.userId);
+      this.deltagerListe=data
+      if(this.brugerId){
+        this.deltagerListe = this.deltagerListe.filter((a:any) => a.userId === this.brugerId);
               }
     })
   }
 
-  onShowEvent(id:any){
+  onVisEvent(id:any){
     this.clickButton=false;
     //console.log('id:', id);
     this.restApi.getData(id , this.endpointP).subscribe(data => {
-      this.eventList= data ;
-      this.restApi.getData(this.eventList.eventsId , this.endpointE).subscribe(data => {
-        this.eventList= data ;
+      this.eventListe= data ;
+      this.restApi.getData(this.eventListe.eventsId , this.endpointE).subscribe(data => {
+        this.eventListe= data ;
       })
 
     })
@@ -62,18 +62,18 @@ export class MineEventsComponent implements OnInit {
     }
     else{
      this.restApi.getParticipantByEventsTitle(this.searchkey , this.endpointE).subscribe(data => {
-       this.listParticipation=data;
+       this.deltagerListe=data;
       //  console.log('hi:', this.listParticipation)
      })
     }
   }
 
-  onRejectEvent(id:any){
-    this.dialogRefDelete = this.dialog.open(SletDialogBoxComponent, {
+  onAfmeldEvent(id:any){
+    this.dialogRefSlet = this.dialog.open(SletDialogBoxComponent, {
       width: '300px',
       disableClose: true
     });
-    this.dialogRefDelete.afterClosed().subscribe(result => {
+    this.dialogRefSlet.afterClosed().subscribe(result => {
       if (result) {
     this.restApi.deleteData(id , this.endpointP).subscribe(data => {
       this.ngOnInit();

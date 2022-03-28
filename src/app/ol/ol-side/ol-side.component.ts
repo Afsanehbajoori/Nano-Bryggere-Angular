@@ -1,9 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Brewery } from 'src/app/Models/Brewery';
-import { ContactInformation } from 'src/app/Models/ContactInformation';
-import { Beer } from 'src/app/Models/Beer';
+import { Bryggeri } from 'src/app/Models/Bryggeri';
+import { KontaktOplysninger } from 'src/app/Models/KontaktOplysninger';
+import { Øl } from 'src/app/Models/Øl';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 
 @Component({
@@ -12,15 +12,15 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./ol-side.component.css']
 })
 export class OlSideComponent implements OnInit {
-  userInfo: ContactInformation;
-  beer: Beer;
-  brewery: Brewery;
-  endpointC = '/ContactInformation';
-  endpointBr = '/Beers';
-  endpointB = '/Breweries';
-  breweryId: Number;
-  beerId: number;
-  userInfoId: number;
+  kontaktOplysninger: KontaktOplysninger;
+  ol: Øl;
+  bryggeri: Bryggeri;
+  endpointK = '/KontaktOplysninger';
+  endpointO = '/Øller';
+  endpointB = '/Bryggerier';
+  bryggeriId: Number;
+  olId: number;
+  kontaktOplysningerId: number;
   id = this.actRoute.snapshot.params['id'];
   constructor(
     public dialog: MatDialog,
@@ -30,24 +30,24 @@ export class OlSideComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.userInfoId = JSON.parse(localStorage.getItem('contactInformationId') || '{}');
-    console.log("Ol",this.userInfoId); 
-    this.beerId = JSON.parse(localStorage.getItem('beerId') || '{}');
-    this.onLoadBeer();
-    this.onLoadUserinfo();
+    this.kontaktOplysningerId = JSON.parse(localStorage.getItem('kontaktoplysningerId') || '{}');
+    // console.log("Ol",this.userInfoId); 
+    this.olId = JSON.parse(localStorage.getItem('olId') || '{}');
+    this.onLoadOl();
+    this.onLoadKontaktOplysninger();
   }
 
-  onLoadUserinfo(){
-    console.log("Kontakt",this.userInfoId);
-    return this.restApi.getData(this.userInfoId, this.endpointC).subscribe((user) => {
-      this.userInfo = user;
-      console.log(this.userInfo);
+  onLoadKontaktOplysninger(){
+    // console.log("Kontakt",this.userInfoId);
+    return this.restApi.getData(this.kontaktOplysningerId, this.endpointK).subscribe((oplysninger) => {
+      this.kontaktOplysninger = oplysninger;
+      // console.log(this.userInfo);
     })
   }
 
-  onLoadBeer(){
-    return this.restApi.getData(this.id, this.endpointBr).subscribe((ol) => {
-      this.beer = ol;
+  onLoadOl(){
+    return this.restApi.getData(this.id, this.endpointO).subscribe((ol) => {
+      this.ol = ol;
     })
   }
   

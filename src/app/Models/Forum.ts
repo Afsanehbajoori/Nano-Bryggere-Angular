@@ -3,10 +3,10 @@ import { Tags } from "./Tags";
 
 export class Forum{
   public id:number;
-  public title:string;
-  public description:string;
-  public createDate: Date;
-  public forumPicture: string;
+  public titel:string;
+  public beskrivelse:string;
+  public oprettelsesDato: Date;
+  public forumBilled: string;
   public tags: Tags;
   public post:Post;
  

@@ -5,7 +5,7 @@
         <mat-tab label="Find bruger med Efternavn">
           <form class="example-form" style="justify-content: center; width: 100%;">
             <mat-form-field class="txtHeader">
-              <input matInput type="search" [(ngModel)]="searchkeyUserSname" (ngModelChange)="onFindUserSname()"
+              <input matInput type="search" [(ngModel)]="searchkeyBrugerEnavn" (ngModelChange)="onFindBrugerEnavn()"
                 [ngModelOptions]="{standalone: true}">
             </mat-form-field>
           </form>
@@ -13,7 +13,7 @@
         <mat-tab label="Find bruger med Brugernavn">
           <form class="example-form" style="justify-content: center; width: 100%;">
             <mat-form-field class="txtHeader">
-              <input matInput type="search" [(ngModel)]="searchkeyUsername" (ngModelChange)="onFindUsername()"
+              <input matInput type="search" [(ngModel)]="searchkeyBrugernavn" (ngModelChange)="onFindBrugernavn()"
                 [ngModelOptions]="{standalone: true}">
             </mat-form-field>
           </form>
@@ -29,8 +29,8 @@
         <mat-tab label="Find bruger med EventsTitel">
           <form class="example-form" style="justify-content: center; width: 100%;">
             <mat-form-field class="txtHeader">
-              <input matInput type="search" [(ngModel)]="searchkeyEventsTitle"
-                (ngModelChange)="onFindUsernameByEventsTitle()" [ngModelOptions]="{standalone: true}">
+              <input matInput type="search" [(ngModel)]="searchkeyEventsTitel"
+                (ngModelChange)="onFindBrugernavnByEventsTitel()" [ngModelOptions]="{standalone: true}">
             </mat-form-field>
           </form>
         </mat-tab>
@@ -40,51 +40,51 @@
   <mat-card>
     <table style="width: 100%; height: 100%; display: flex;">
       <mat-accordion class="example-headers-align" multi style="width: 100%;">
-        <mat-expansion-panel *ngFor="let user of users" style="margin-top: 10px;" [disabled]="clickButton" (click)="clickButton=true">
+        <mat-expansion-panel *ngFor="let bruger of brugere" style="margin-top: 10px;" [disabled]="clickButton" (click)="clickButton=true">
           <mat-expansion-panel-header style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236)); justify-content: center; width: 100%;">
             <mat-panel-title class="centers" style="justify-content: center;">
               <span style="font-weight: bold; margin-right: 20px;"> Brugernavn:</span>
-              <span>{{user.username}}</span>
+              <span>{{bruger.brugernavn}}</span>
             </mat-panel-title>
             <mat-action-row class="centers" style="justify-content: center;">
-              <button mat-button class="btnMainStyle" (click)="onShowUser(user.id)">Vis </button> |
-              <button mat-button class="btnMainStyle" (click)="onUpdateUser(user.id)">Update </button> |
-              <button mat-button class="btnMainStyle" (click)="onDeleteUser(user.id)">Slet </button>
+              <button mat-button class="btnMainStyle" (click)="onVisBruger(bruger.id)">Vis </button> |
+              <button mat-button class="btnMainStyle" (click)="onOpdaterBruger(bruger.id)">Update </button> |
+              <button mat-button class="btnMainStyle" (click)="onSletBruger(bruger.id)">Slet </button>
 
             </mat-action-row>
           </mat-expansion-panel-header>
-          <div *ngIf="userInfo">
+          <div *ngIf="kontaktOplysningsListe">
             <mat-card class="containStyle">
               <span>Fornavn:</span>
-              <span class="txtStyle">{{userInfo.fname}}</span>
+              <span class="txtStyle">{{kontaktOplysningsListe.fnavn}}</span>
             </mat-card>
             <mat-card class="containStyle">
               <span>Efternavn:</span>
-              <span class="txtStyle">{{userInfo.sname}}</span>
+              <span class="txtStyle">{{kontaktOplysningsListe.enavn}}</span>
             </mat-card>
             <mat-card class="containStyle">
               <span>Addresselinje1:</span>
-              <span class="txtStyle">{{userInfo.addressline1}}</span>
+              <span class="txtStyle">{{kontaktOplysningsListe.adresseLinje1}}</span>
             </mat-card>
             <mat-card class="containStyle">
               <span>Addresselinje2:</span>
-              <span class="txtStyle">{{userInfo.addressline2}}</span>
+              <span class="txtStyle">{{kontaktOplysningsListe.adresseLinje2}}</span>
             </mat-card>
             <mat-card class="containStyle">
               <span>Telefonnr:</span>
-              <span class="txtStyle">{{userInfo.phoneNr}}</span>
+              <span class="txtStyle">{{kontaktOplysningsListe.telefonNr}}</span>
             </mat-card>
             <mat-card class="containStyle">
               <span>Email:</span>
-              <span class="txtStyle">{{userInfo.email}}</span>
+              <span class="txtStyle">{{kontaktOplysningsListe.email}}</span>
             </mat-card>
             <mat-card class="containStyle">
               <span>Postnr:</span>
-              <span class="txtStyle">{{userInfo.mailNr}}</span>
+              <span class="txtStyle">{{kontaktOplysningsListe.postNr}}</span>
             </mat-card>
             <mat-card class="containStyle">
               <span>By:</span>
-              <span class="txtStyle">{{userInfo.city}}</span>
+              <span class="txtStyle">{{kontaktOplysningsListe.by}}</span>
             </mat-card>
           </div>
         </mat-expansion-panel>

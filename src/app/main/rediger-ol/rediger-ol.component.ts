@@ -51,7 +51,7 @@ export class RedigerOlComponent implements OnInit {
 
   onSubmitBeer() {
     this.beerList.vintage = this.vintage;
-    console.log(this.beerList.vintage);
+    // console.log(this.beerList.vintage);
     this.restApi.updateData(this.beerid, this.endpoints, this.beerList).subscribe((data) => {
       this.router.navigate(['../main/catalog'])
     });

@@ -8,9 +8,9 @@ import { RedigerEventsComponent } from './rediger-events/rediger-events.componen
 const routes: Routes = [
   {path:'',component:EventkalenderSideComponent},
   {path:'events',component:EventkalenderSideComponent},
-  {path:'my-events', component:MineEventsComponent},
-  {path:'creation',component:OpretteComponent},
-  {path:'update/:id',component:RedigerEventsComponent}
+  {path:'mine-events', component:MineEventsComponent},
+  {path:'opretteevent',component:OpretteComponent},
+  {path:'redigerevent/:id',component:RedigerEventsComponent}
 ];
 
 @NgModule({

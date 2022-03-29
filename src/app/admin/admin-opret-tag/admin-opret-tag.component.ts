@@ -24,12 +24,12 @@ export class AdminOpretTagComponent implements OnInit {
   }
   
   onAnuller() {
-    return this.router.navigate(['../main/catalog']);
+    return this.router.navigate(['../main/katalog']);
   };
 
   onSubmitOl() {
     this.restApi.createData(this.opretForm, this.endpointT).subscribe((data) => {
-      this.router.navigate(['../main/catalog']);
+      this.router.navigate(['../main/katalog']);
     });
   }
 }

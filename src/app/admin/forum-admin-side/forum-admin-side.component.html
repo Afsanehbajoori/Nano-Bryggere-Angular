@@ -5,7 +5,7 @@
         <mat-tab label="Find Forum med forum titel">
       <form class="example-form" style="justify-content: center; width: 100%;">
         <mat-form-field  class="txtHeader">
-            <input matInput type="search"  [(ngModel)]="forumList" (ngModelChange)="onFindForumtitle()" [ngModelOptions]="{standalone: true}" >
+            <input matInput type="search"  [(ngModel)]="forumListe" (ngModelChange)="onFindForumtitel()" [ngModelOptions]="{standalone: true}" >
         </mat-form-field>
       </form>
         </mat-tab>
@@ -17,7 +17,7 @@
           </form>
             </mat-tab> -->
             <mat-tab label="Oprette Forum">
-               <button mat-button class="btnOprette" (click)="onCreateForum()">Klick her til at oprette forum</button>
+               <button mat-button class="btnOprette" (click)="onOpretForum()">Klick her til at oprette forum</button>
             </mat-tab>
   </mat-tab-group>
   </mat-toolbar>
@@ -35,30 +35,30 @@
                        <span>{{forum.description}}</span>
                     </mat-panel-title>
                     <mat-action-row class="centers" style="justify-content: center;">
-                        <button mat-button class="btnMainStyle" (click)="onShowForum(forum.id)">Vis </button> |
-                        <button mat-button class="btnMainStyle" (click)="onUpdateForum(forum.id)" >Update </button> |
-                        <button mat-button class="btnMainStyle" (click)="onDeleteForum(forum.id)">Slet </button>
+                        <button mat-button class="btnMainStyle" (click)="onVisForum(forum.id)">Vis </button> |
+                        <button mat-button class="btnMainStyle" (click)="onOpdaterForum(forum.id)" >Update </button> |
+                        <button mat-button class="btnMainStyle" (click)="onSletForum(forum.id)">Slet </button>
                     </mat-action-row>
                 </mat-expansion-panel-header>
                 <h1 >Rediger Events</h1>
                 <div >
-                  <form class="example-form" [formGroup]="updateForm" *ngIf="updateForum">
+                  <form class="example-form" [formGroup]="opdaterForm" *ngIf="opdaterForum">
                      <mat-form-field class="example-full-width" appearance="fill">
                       <mat-label>Titel:</mat-label>
-                      <input matInput formControlName="title" placeholder="{{updateForum.title}}" [(ngModel)]="updateForum.title" >
+                      <input matInput formControlName="title" placeholder="{{opdaterForum.title}}" [(ngModel)]="opdaterForum.title" >
                     </mat-form-field>
                     <mat-form-field class="example-full-width" appearance="fill">
                       <mat-label>Beskrivelse:</mat-label>
-                      <input matInput formControlName="description" placeholder="{{updateForum.description}}" [(ngModel)]="updateForum.description">
+                      <input matInput formControlName="description" placeholder="{{opdaterForum.description}}" [(ngModel)]="opdaterForum.description">
                     </mat-form-field>
                     <mat-form-field class="example-full-width" appearance="fill">
-                      <input matInput [matDatepicker]="picker1"  [(ngModel)]="updateForum.createDate" formControlName="createDate" placeholder="Date" class="input-control">
+                      <input matInput [matDatepicker]="picker1"  [(ngModel)]="opdaterForum.createDate" formControlName="createDate" placeholder="Date" class="input-control">
                       <mat-datepicker-toggle matSuffix [for]="picker1" ></mat-datepicker-toggle>
                       <mat-datepicker #picker1 ></mat-datepicker>
                       </mat-form-field>
                 <div class="btn-container">
-                  <button mat-button (click)="onCancel()" >Annulere</button>
-                  <button mat-button (click)="SaveChanges(updateForum.id)">Gem Ændringer</button>
+                  <button mat-button (click)="onAnuller()" >Annulere</button>
+                  <button mat-button (click)="onGemAndringer(opdaterForum.id)">Gem Ændringer</button>
                 </div>
                 </form>
                 </div>

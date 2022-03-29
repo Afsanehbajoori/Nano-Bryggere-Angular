@@ -18,11 +18,11 @@ export class VisDetajlerComponent implements OnInit {
   ngOnInit(): void {
     this.bryggeriId= JSON.parse(localStorage.getItem('bryggeriId') || '{}');
     // console.log('bry' , this.bryggeriId);
-    this.onLoadBryggeri();
+    this.onHentBryggeri();
 
   }
 
-  onLoadBryggeri(){
+  onHentBryggeri(){
     this.restApi.getData(this.bryggeriId , this.endpointB).subscribe(data => {
       this.bryggeri = data;
       // console.log('detajler:' , this.breweryInfo.navn);

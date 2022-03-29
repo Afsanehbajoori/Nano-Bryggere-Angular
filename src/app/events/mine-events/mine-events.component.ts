@@ -40,7 +40,7 @@ export class MineEventsComponent implements OnInit {
       this.deltagerListe=data
       if(this.brugerId){
         this.deltagerListe = this.deltagerListe.filter((a:any) => a.userId === this.brugerId);
-              }
+      }
     })
   }
 

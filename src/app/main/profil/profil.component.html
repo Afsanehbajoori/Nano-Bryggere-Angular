@@ -3,15 +3,15 @@
     <div class="sidebar">
       <h1 id="headerStyle">Profil Side</h1>
       <img [src]="this.url" alt="" style="width: 20%; height: 20%;">
-      <button class="btnStyle" (click)="showFilesP = !showFilesP">Vis Kontakt Oplysninger</button>
-      <button class="btnStyle" (click)="showFilesB = !showFilesB" [disabled]="this.showOB" >Vis Bryggeri Oplysninger</button>
-      <button class="btnStyle"  (click)="showFilesOB=!showFilesOB" [disabled]="!this.showOB" >Oprette ny Bryggeri</button>
+      <button class="btnStyle" (click)="visFillerP = !visFillerP">Vis Kontakt Oplysninger</button>
+      <button class="btnStyle" (click)="visFillerB = !visFillerB" [disabled]="this.visOB" >Vis Bryggeri Oplysninger</button>
+      <button class="btnStyle"  (click)="visFillerOB=!visFillerOB" [disabled]="!this.visOB" >Oprette ny Bryggeri</button>
       <!-- <button class="btnStyle"  (click)="logud()" >LogUd</button> -->
 
     </div>
   </mat-drawer>
   <mat-drawer-content class="main" id="imgeUp" *ngIf="kontaktOplysningsListe" >
-    <mat-card *ngIf="showFilesP">
+    <mat-card *ngIf="visFillerP">
       <mat-card-content>
         <mat-accordion class="example-headers-align" multi>
           <mat-expansion-panel>
@@ -62,7 +62,7 @@
             </mat-card>
             <mat-card class="containStyle">
               <span>Rollenavn:</span>
-              <span class="txtStyle">{{this.roleList.rolleNavn}}</span>
+              <span class="txtStyle">{{this.rolleListe.rolleNavn}}</span>
             </mat-card>
             <mat-action-row>
               <button mat-button color="primary" (click)="onSletProfil()" class="btnMainStyle">Slet Profil</button>
@@ -73,7 +73,7 @@
         </mat-accordion>
       </mat-card-content>
     </mat-card>
-    <mat-card *ngIf="showFilesB">
+    <mat-card *ngIf="visFillerB">
       <mat-card-content>
         <mat-accordion class="example-headers-align" multi *ngIf="bryggeriListe">
           <mat-expansion-panel>
@@ -110,7 +110,7 @@
       </mat-card-content>
     </mat-card>
 
-    <mat-card *ngIf="showFilesOB">
+    <mat-card *ngIf="visFillerOB">
       <mat-card-content>
         <mat-accordion class="example-headers-align" multi>
           <mat-expansion-panel>

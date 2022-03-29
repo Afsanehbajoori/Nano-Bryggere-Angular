@@ -1,12 +1,12 @@
 <mat-card class="main" id="imgeUp">
     <mat-card-content class="container">
 
-        <form [formGroup]="createForm" class="example-form" style="justify-content: center;">
+        <form [formGroup]="opretForm" class="example-form" style="justify-content: center;">
             <div style="background-color: #028dc4; width: 100%; height: 5%;" class="centers">
                 <h1 style="width: 100%; color: white;">Øl Oprettelses side</h1>
             </div>
             <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="text" [(ngModel)]="beerCreation.name" formControlName="name" placeholder="Navn" class="input-control">
+                <input matInput type="text" [(ngModel)]="olOprettelse.navn" formControlName="navn" placeholder="Navn" class="input-control">
                 <!-- <mat-error *ngIf="navn.errors?.['required']"> -->
                 <mat-error>
                     feltet skal udfyldes 
@@ -14,28 +14,28 @@
             </mat-form-field>
             
             <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="text" [(ngModel)]="beerCreation.type" formControlName="type" placeholder="Type" class="input-control">
+                <input matInput type="text" [(ngModel)]="olOprettelse.type" formControlName="type" placeholder="Type" class="input-control">
                 <mat-error>
                     Dette felt skal udfyldes
                 </mat-error>
             </mat-form-field>
             
             <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="text" [(ngModel)]="beerCreation.taste" formControlName="taste" placeholder="Smag" class="input-control">
+                <input matInput type="text" [(ngModel)]="olOprettelse.smag" formControlName="smag" placeholder="Smag" class="input-control">
                 <mat-error>
                     Dette felt skal udfyldes
                 </mat-error>
             </mat-form-field>
             
             <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="number" [(ngModel)]="beerCreation.percentage" min="0" formControlName="percentage" placeholder="Procent" class="input-control">
+                <input matInput type="number" [(ngModel)]="olOprettelse.procent" min="0" formControlName="procent" placeholder="Procent" class="input-control">
                 <mat-error>
                     Dette felt skal udfyldes
                 </mat-error>
             </mat-form-field>
 
             <mat-form-field class="example-full-width" appearance="fill">             
-                <input matInput type="text" [(ngModel)]="beerCreation.country" formControlName="country" placeholder="Land" class="input-control">
+                <input matInput type="text" [(ngModel)]="olOprettelse.land" formControlName="land" placeholder="Land" class="input-control">
                 <mat-error>
                     Dette felt skal udfyldes
                 </mat-error>
@@ -53,37 +53,37 @@
             </mat-form-field> -->
 
             <mat-form-field class="example-full-width" appearance="fill">             
-                <input matInput type="text" [(ngModel)]="beerCreation.label" formControlName="label" placeholder="Etiket" class="input-control">
-                <input type="file" class="btnMainStyle" (change)="onSubmitCertificate($event)">
+                <input matInput type="text" [(ngModel)]="olOprettelse.olBilled" formControlName="olBilled" placeholder="Øl Billed" class="input-control">
+                <input type="file" class="btnMainStyle" (change)="onSubmitCertifikat($event)">
                 <mat-error>
                     Dette felt skal udfyldes
                 </mat-error>
             </mat-form-field>
             
             <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="text" [(ngModel)]="beerCreation.description" formControlName="description" placeholder="Beskrivelse" class="input-control">
+                <input matInput type="text" [(ngModel)]="olOprettelse.beskrivelse" formControlName="beskrivelse" placeholder="Beskrivelse" class="input-control">
                 <mat-error>
                     Dette felt skal udfyldes
                 </mat-error>
             </mat-form-field>
 
             <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="number" [(ngModel)]="beerCreation.quantity" min="0" formControlName="quantity" placeholder="Antal" class="input-control">
+                <input matInput type="number" [(ngModel)]="olOprettelse.antal" min="0" formControlName="antal" placeholder="Antal" class="input-control">
                 <mat-error>
                     Dette felt skal udfyldes
                 </mat-error>
             </mat-form-field>
 
             <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="date" [(ngModel)]="beerCreation.vintage" formControlName="vintage" placeholder="Årgang" class="input-control">
+                <input matInput type="date" [(ngModel)]="olOprettelse.argang" formControlName="argang" placeholder="Årgang" class="input-control">
                 <mat-error>
                     Dette felt skal udfyldes
                 </mat-error>
             </mat-form-field>
             
-            <button mat-raised-button type="submit" (click)="onCancel()" class="login-btn" style="background: linear-gradient(#b60d0d, #ff6e6e);">Annuller</button>
+            <button mat-raised-button type="submit" (click)="onAnuller()" class="login-btn" style="background: linear-gradient(#b60d0d, #ff6e6e);">Annuller</button>
             
-            <button mat-raised-button type="submit" (click)="onSubmitBeer()" class="login-btn" style="background: linear-gradient(#33ff00, #41fd70);">Opret Øl</button>
+            <button mat-raised-button type="submit" (click)="onSubmitOl()" class="login-btn" style="background: linear-gradient(#33ff00, #41fd70);">Opret Øl</button>
         </form>
     </mat-card-content>
 </mat-card>

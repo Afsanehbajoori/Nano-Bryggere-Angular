@@ -74,7 +74,7 @@ export class OlSogningComponent implements OnInit {
           localStorage.setItem('kontaktOplysningerId', JSON.stringify(this.kontaktOplysningId));
         })
       })
-      this.router.navigate(['../beer/beerpage/', this.olId]);
+      this.router.navigate(['../beer/olside/', this.olId]);
     });
   }
 }

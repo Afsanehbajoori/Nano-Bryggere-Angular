@@ -72,7 +72,7 @@ export class BrugerCertifikatComponent implements OnInit {
   };
 
   //Benægt certifikat
-  onBenaegtCertifikat(id: any) {
+  onBenagtCertifikat(id: any) {
     this.restApi.getData(id, this.endpointBru).subscribe(data => {
       this.certifikat = data;
       this.certifikat.certifikatLevel = 0;

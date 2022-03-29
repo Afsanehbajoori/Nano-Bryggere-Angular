@@ -22,9 +22,9 @@ export class SamarbejdeVisningComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.onLoadCooperation();
+    this.onHentSamarbejde();
   }
-  onLoadCooperation() {
+  onHentSamarbejde() {
     if (this.olId = JSON.parse(localStorage.getItem('samarbejdeId') || '{}')) {
         this.restApi.getData(this.olId, this.endpointO).subscribe(data => {
         this.ol = data;
@@ -32,11 +32,11 @@ export class SamarbejdeVisningComponent implements OnInit {
     }
   }
 
-  onUpdateOl(id: any) {
-    this.router.navigate(['../main/cooperationupdate/', id]);
+  onOpdaterOl(id: any) {
+    this.router.navigate(['../main/samarbejderediger/', id]);
   };
 
-  onDeleteOl(id: any) {
+  onSletOl(id: any) {
     let dialogRef = this.dialog.open(SletDialogBoxComponent);
     dialogRef.afterClosed().subscribe(result => {
       // console.log(result);

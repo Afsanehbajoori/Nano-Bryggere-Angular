@@ -15,9 +15,9 @@ export class KatalogComponent implements OnInit {
   ol: Øl;
   endpointB = '/Øller';
   searchkey: string;
-  breweryId: number;
-  breweryList: any;
-  vintage: Date;
+  bryggeriId: number;
+  bryggeriListe: any;
+  argang: Date;
 
   constructor(
     public dialog: MatDialog,
@@ -31,26 +31,26 @@ export class KatalogComponent implements OnInit {
   }
 
   onHentOl() {
-    if (this.breweryId = JSON.parse(localStorage.getItem('bryggeriId') || '{}')) {
+    if (this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}')) {
       this.restApi.getDatas(this.endpointB).subscribe((data) => {
         this.olListe = data.filter((res: any) => {
-          return res.breweryId === this.breweryId;
+          return res.bryggeriId === this.bryggeriId;
         });
       })
     }
   }
 
   onOpdaterOl(id: any) {
-    this.router.navigate(['../main/updatebeer/', id]);
+    this.router.navigate(['../main/redigerol/', id]);
   };
 
   onOlLager(id: any) {
     localStorage.setItem('lagerId', JSON.stringify(id));
-    this.router.navigate(['../ol/beerlayer/', id]);
+    this.router.navigate(['../ol/ollager/', id]);
   };
 
   onOpretOl() {
-    this.router.navigate(['../main/createbeer']);
+    this.router.navigate(['../main/opretol']);
   };
 
   onSletOl(id: any) {

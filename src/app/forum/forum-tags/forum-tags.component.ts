@@ -44,7 +44,7 @@ export class ForumTagsComponent implements OnInit {
 
   onTilføjTag(id:any){
     this.restApi.updateData(this.olId, this.endpointT, this.olListe).subscribe((data) => {
-      this.router.navigate(['../main/catalog'])
+      this.router.navigate(['../main/katalog'])
     });
   }
 }

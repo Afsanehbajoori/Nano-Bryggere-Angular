@@ -12,8 +12,8 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./certifikat.component.css']
 })
 export class CertifikatComponent implements OnInit {
-  endpointU = '/Users';
-  endpointC = '/ContactInformation';
+  endpointU = '/Bruger';
+  endpointC = '/KontaktOplysninger';
   user: Bruger;
   contact: KontaktOplysninger;
   userList: Bruger[];
@@ -30,11 +30,11 @@ export class CertifikatComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.onLoadUser();
+    this.onHentBruger();
   }
 
-  onLoadUser(){
-    if (this.userId = JSON.parse(localStorage.getItem('userId') || '{}')) {
+  onHentBruger(){
+    if (this.userId = JSON.parse(localStorage.getItem('brugerId') || '{}')) {
       this.restApi.getData(this.userId, this.endpointU).subscribe((data) => {
         // this.userList = data.filter((res: any) => {
         //   return res.id === this.userId;
@@ -45,7 +45,7 @@ export class CertifikatComponent implements OnInit {
     }
   }
 
-  onSubmitCertificate(event: any) {
+  onSubmitCertifikat(event: any) {
     if(event.target.files){
       var reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]);
@@ -58,7 +58,7 @@ export class CertifikatComponent implements OnInit {
     }
   };
 
-  onUploadCertificate() {
+  onUploadCertifikat() {
     console.log(this.user);
     this.restApi.updateData(this.userId, this.endpointU, this.user).subscribe((data) => {
       this.router.navigate(['../main/main'])

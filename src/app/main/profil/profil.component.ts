@@ -20,25 +20,25 @@ import { KontaktOplysninger } from 'src/app/Models/KontaktOplysninger';
 export class ProfilComponent implements OnInit {
   @ViewChild(MatAccordion) accordion: MatAccordion;
   dialogRefSlet: MatDialogRef<SletDialogBoxComponent>;
-  dialogRefOpdaterProfil: MatDialogRef<RedigerProfilDialogBoxComponent>;
-  dialogRefOpdaterBryggeri: MatDialogRef<RedigerBryggeriDialogBoxComponent>;
+  dialogRefRedigerProfil: MatDialogRef<RedigerProfilDialogBoxComponent>;
+  dialogRefRedigerBryggeri: MatDialogRef<RedigerBryggeriDialogBoxComponent>;
   kontaktOplysningsListe: any;
   brugerListe: any;
   bryggeriListe: any;
-  roleList: any;
+  rolleListe: any;
   endpointK = '/KontaktOplysninger';
   endpointB = '/Bryggerier';
   endpointBru = '/Bruger';
   endpointR = '/Roller';
-  showFilesP = false;
-  showFilesB = false;
-  showFilesOB = false;
+  visFillerP = false;
+  visFillerB = false;
+  visFillerOB = false;
   userInfoId: number;
   breweryId: number;
   userId: number;
-  roleId: number;
-  choosenFile: File;
-  showOB: boolean;
+  rolleId: number;
+  chosenFile: File;
+  visOB:boolean;
   bryggeriLogo: any;
   url: string;
   @Input() nytBryggeri = { bryggeriLogo: '', navn: '', beskrivelse: '', kontaktOplysningerId: 0 };
@@ -54,7 +54,7 @@ export class ProfilComponent implements OnInit {
   ngOnInit(): void {
     this.userInfoId = JSON.parse(localStorage.getItem('kontaktOplysningerId') || '{}');
     this.userId = JSON.parse(localStorage.getItem('brugerId') || '{}');
-    this.roleId = JSON.parse(localStorage.getItem('rolleId') || '{}');
+    this.rolleId = JSON.parse(localStorage.getItem('rolleId') || '{}');
     this.onHentBruger();
     this.onHentBryggeri();
 
@@ -80,8 +80,8 @@ export class ProfilComponent implements OnInit {
         this.kontaktOplysningsListe = data;
         // console.log("konId", this.userInfoId);
         // console.log(" this.kontaktoplysningerList:", this.userInfoList.Sname);
-        this.restApi.getData(this.roleId, this.endpointR).subscribe((data) => {
-          this.roleList = data;
+        this.restApi.getData(this.rolleId, this.endpointR).subscribe((data) => {
+          this.rolleListe = data;
           // console.log('RoleList', this.roleList)
         })
       })
@@ -96,11 +96,11 @@ export class ProfilComponent implements OnInit {
       if (this.bryggeriListe !== undefined) {
         localStorage.setItem('bryggeriId', JSON.stringify(this.bryggeriListe.id));
         this.url = this.bryggeriListe.bryggeriLogo;
-        this.showOB = false;
+        this.visFillerOB = false;
         // console.log(this.showOB);
       }
       else {
-        this.showOB = true;
+        this.visFillerOB = true;
         // console.log(this.showOB);
       }
     })
@@ -128,7 +128,7 @@ export class ProfilComponent implements OnInit {
         localStorage.setItem('bryggeriId', JSON.stringify(data.id));
         this.ngOnInit();
         if (data) {
-          this.showOB = false;
+          this.visFillerOB = false;
           this.snackBar.open('Nyt bryggeri oprettet')
           this.onClose();
         }
@@ -158,8 +158,8 @@ export class ProfilComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = "40%";
-    this.dialogRefOpdaterProfil = this.dialog.open(RedigerProfilDialogBoxComponent, dialogConfig);
-    this.dialogRefOpdaterProfil.afterClosed().subscribe(result => {
+    this.dialogRefRedigerProfil = this.dialog.open(RedigerProfilDialogBoxComponent, dialogConfig);
+    this.dialogRefRedigerProfil.afterClosed().subscribe(result => {
       if (result) {
         this.kontaktOplysningsListe = result;
         this.restApi.updateData(this.userInfoId, this.endpointK, this.kontaktOplysningsListe).subscribe((data) => {
@@ -175,8 +175,8 @@ export class ProfilComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = "40%";
-    this.dialogRefOpdaterBryggeri = this.dialog.open(RedigerBryggeriDialogBoxComponent, dialogConfig);
-    this.dialogRefOpdaterBryggeri.afterClosed().subscribe(result => {
+    this.dialogRefRedigerBryggeri = this.dialog.open(RedigerBryggeriDialogBoxComponent, dialogConfig);
+    this.dialogRefRedigerBryggeri.afterClosed().subscribe(result => {
       if (result) {
         this.bryggeriListe = result;
         this.restApi.updateData(this.breweryId, this.endpointB, this.bryggeriListe).subscribe((data) => {
@@ -206,7 +206,7 @@ export class ProfilComponent implements OnInit {
   onClose() {
     this.bryggeriOprettelsesForm.reset();
     this.router.navigate(['/main/profile']);
-    this.showFilesOB = false;
+    this.visFillerOB = false;
   }
 
   onUploadCertifikat() {

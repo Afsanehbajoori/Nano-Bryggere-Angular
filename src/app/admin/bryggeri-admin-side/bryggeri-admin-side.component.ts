@@ -24,7 +24,6 @@ export class BryggeriAdminSideComponent implements OnInit {
   id = this.actRoute.snapshot.params['id'];
   clickButton:boolean=true;
   bryggeriListe: any;
-  b: any ='';
 
   constructor(
     public dialog: MatDialog,

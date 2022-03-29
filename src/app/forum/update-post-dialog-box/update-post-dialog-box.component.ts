@@ -10,12 +10,12 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./update-post-dialog-box.component.css']
 })
 export class UpdatePostDialogBoxComponent implements OnInit {
-  updateForm: FormGroup = new FormGroup({});
-  updatePost:any;
+  redigerForm: FormGroup = new FormGroup({});
+  redigerPost:any;
   endpointP = '/Posts';
   postId:number;
 
-  constructor( public dialogRefUpdatePost : MatDialogRef<UpdatePostDialogBoxComponent>,
+  constructor( public dialogRefRedigerPost : MatDialogRef<UpdatePostDialogBoxComponent>,
     private formBuilder: FormBuilder,
     public restApi: RestApiService,
     public actRoute: ActivatedRoute) { }
@@ -25,10 +25,10 @@ export class UpdatePostDialogBoxComponent implements OnInit {
     this.restApi.getData(this.postId , this.endpointP)
     .toPromise()
     .then(data => {
-      this.updatePost= data ;
-      this.updateForm = this.formBuilder.group({
-        title : new FormControl(this.updatePost.title),
-        content : new FormControl(this.updatePost.content)
+      this.redigerPost= data ;
+      this.redigerForm = this.formBuilder.group({
+        titel : new FormControl(this.redigerPost.titel),
+        indhold : new FormControl(this.redigerPost.indhold)
       })
     })
   }

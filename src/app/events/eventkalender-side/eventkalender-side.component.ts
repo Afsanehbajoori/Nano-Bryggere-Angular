@@ -30,7 +30,7 @@ export class EventkalenderSideComponent implements OnInit {
   deltagerId: number;
   liste: any;
   erDeltagene:boolean;
- @Input() participant = { brugerId:0 , eventsId:0 , isParticipant:false}
+ @Input() deltagelse = { brugerId:0 , eventsId:0 , deltager:false}
 
   constructor(
     public dialog: MatDialog,
@@ -90,10 +90,10 @@ export class EventkalenderSideComponent implements OnInit {
     {
       this.dialog.open(MessageDialogBoxComponent);
     }else{
-        this.participant.brugerId=this.brugerId;
-        this.participant.eventsId=id;
-        this.participant.isParticipant=true;
-        this.restApi.createData(this.participant , this.endpointD).subscribe(data => {
+        this.deltagelse.brugerId=this.brugerId;
+        this.deltagelse.eventsId=id;
+        this.deltagelse.deltager=true;
+        this.restApi.createData(this.deltagelse , this.endpointD).subscribe(data => {
           this.onHentDeltagene();
         })
     }

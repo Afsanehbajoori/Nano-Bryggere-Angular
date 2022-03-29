@@ -11,12 +11,12 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
   styleUrls: ['./rediger-bryggeri-dialog-box.component.css']
 })
 export class RedigerBryggeriDialogBoxComponent implements OnInit {
-  bryggeriListe : Bryggeri;
-  endpointB='/Breweries';
-  updateForm:FormGroup = new FormGroup({});
-  bryggeriId : number ;
+  bryggeriListe: Bryggeri;
+  endpointB='/Bryggerier';
+  redigerForm: FormGroup = new FormGroup({});
+  bryggeriId: number ;
 
-  constructor(public dialogRefUpdateProfil : MatDialogRef<RedigerBryggeriDialogBoxComponent>,
+  constructor(public dialogRefRedigerProfil : MatDialogRef<RedigerBryggeriDialogBoxComponent>,
     public restApi: RestApiService ,
     private router: Router ,
     private formBuilder: FormBuilder
@@ -28,7 +28,7 @@ export class RedigerBryggeriDialogBoxComponent implements OnInit {
     .toPromise()
     .then(data => {
       this.bryggeriListe = data;
-      this.updateForm=this.formBuilder.group({
+      this.redigerForm=this.formBuilder.group({
         'bryggeriLogoCtl' : new FormControl(this.bryggeriListe.bryggeriLogo),
         'navnCtl' : new FormControl(this.bryggeriListe.navn),
         'beskrivelseCtl' : new FormControl(this.bryggeriListe.beskrivelse)
@@ -44,13 +44,13 @@ export class RedigerBryggeriDialogBoxComponent implements OnInit {
       reader.onload=(e: any)=>{
         this.bryggeriListe.bryggeriLogo =e.target.result;
         // console.log( this.breweryList.logo);
-        localStorage.setItem('logo' ,JSON.stringify(this.bryggeriListe.bryggeriLogo));
+        localStorage.setItem('bryggeriLogo' ,JSON.stringify(this.bryggeriListe.bryggeriLogo));
       }
     }
   };
 
-  onClose(){
+  onAnuller(){
     // this.dialogRefRedigerProfil.close();
-    return this.router.navigate(['../main/profile']);
+    return this.router.navigate(['../main/profil']);
   }
 }

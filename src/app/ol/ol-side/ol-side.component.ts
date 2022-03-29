@@ -33,11 +33,11 @@ export class OlSideComponent implements OnInit {
     this.kontaktOplysningerId = JSON.parse(localStorage.getItem('kontaktoplysningerId') || '{}');
     // console.log("Ol",this.userInfoId); 
     this.olId = JSON.parse(localStorage.getItem('olId') || '{}');
-    this.onLoadOl();
-    this.onLoadKontaktOplysninger();
+    this.onHentOl();
+    this.onHentKontaktOplysninger();
   }
 
-  onLoadKontaktOplysninger(){
+  onHentKontaktOplysninger(){
     // console.log("Kontakt",this.userInfoId);
     return this.restApi.getData(this.kontaktOplysningerId, this.endpointK).subscribe((oplysninger) => {
       this.kontaktOplysninger = oplysninger;
@@ -45,13 +45,13 @@ export class OlSideComponent implements OnInit {
     })
   }
 
-  onLoadOl(){
+  onHentOl(){
     return this.restApi.getData(this.id, this.endpointO).subscribe((ol) => {
       this.ol = ol;
     })
   }
   
   onReturn() {
-    this.router.navigate(['../beer/beersearch']);
+    this.router.navigate(['../beer/olsøgning']);
   };
 }

@@ -23,7 +23,7 @@ export class ForsideComponent implements OnInit {
   bryggeriListe: Bryggeri[];
   olListe: Øl [];
   event = new Events;
-  eventList : any = {};
+  eventListe : any = {};
   endpointB='/Bryggerier';
   endpointBr = '/Øller';
   endpointE = '/Events';
@@ -67,7 +67,7 @@ export class ForsideComponent implements OnInit {
       height:'300'
 
     });
-    localStorage.setItem('beerId' , id);
+    localStorage.setItem('olId' , id);
   }
 
   onVisDetaljer(id:any){
@@ -77,7 +77,7 @@ export class ForsideComponent implements OnInit {
       height:'auto'
 
     });
-    localStorage.setItem('breweryId' , id);
+    localStorage.setItem('bryggeriId' , id);
   }
 
   onVisEventsDetaljer(id:any){

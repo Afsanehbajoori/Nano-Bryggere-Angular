@@ -10,10 +10,10 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 })
 export class SamarbejdeRedigerComponent implements OnInit {
   selected = '';
-  beerId = this.actRoute.snapshot.params['id'];
-  updateForm: FormGroup;
-  endpoints = '/Beers';
-  beerList : any = {};
+  olId = this.actRoute.snapshot.params['id'];
+  opdaterForm: FormGroup;
+  endpoints = '/Øller';
+  olListe: any = {};
   constructor(
     public restApi: RestApiService, 
     private router: Router,
@@ -21,35 +21,35 @@ export class SamarbejdeRedigerComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.updateForm = new FormGroup({
-      name: new FormControl(''),
+    this.opdaterForm = new FormGroup({
+      navn: new FormControl(''),
       type: new FormControl(''),
-      taste: new FormControl(''),
-      procentage: new FormControl(''),
-      breweryId: new FormControl(''),
-      vintage: new FormControl('', Validators.required),
-      country: new FormControl(''),
+      smag: new FormControl(''),
+      procent: new FormControl(''),
+      bryggeriId: new FormControl(''),
+      argang: new FormControl('', Validators.required),
+      land: new FormControl(''),
       // process: new FormControl('', Validators.required),
-      label: new FormControl(''),
-      description: new FormControl(''),
+      olBilled: new FormControl(''),
+      beskrivelse: new FormControl(''),
       // billed: new FormControl('', Validators.required),
-      qauntity: new FormControl(''),
+      antal: new FormControl(''),
     });
   }
 
-  onLoadBeer(){
-    return this.restApi.getData(this.beerId, this.endpoints).subscribe((beer: {}) => {
-      this.beerList = beer;
+  onHentOl(){
+    return this.restApi.getData(this.olId, this.endpoints).subscribe((beer: {}) => {
+      this.olListe = beer;
     });
   }
 
-  onCancel() {
-    return this.router.navigate(['../main/cooperationpage'])
+  onAnuller() {
+    return this.router.navigate(['../main/samarbejdeside'])
   };
 
-  onSubmitBeer() {
-    this.restApi.updateData(this.beerId, this.endpoints, this.beerList).subscribe((data) => {
-      this.router.navigate(['../main/cooperationpage'])
+  onSubmitOl() {
+    this.restApi.updateData(this.olId, this.endpoints, this.olListe).subscribe((data) => {
+      this.router.navigate(['../main/samarbejdeside'])
     });
   }
 }

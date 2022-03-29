@@ -11,14 +11,14 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./forum-admin-side.component.css']
 })
 export class ForumAdminSideComponent implements OnInit {
-  forumList:any;
+  forumListe:any;
   endpointf = '/Forumer';
   endpointp = '/Posts';
   forums:any;
   clickButton:boolean=true;
   posts:any;
-  updateForm: FormGroup = new FormGroup({});
-  updateForum:any;
+  opdaterForm: FormGroup = new FormGroup({});
+  opdaterForum:any;
 
   constructor( public dialog: MatDialog,
     public restApi: RestApiService,
@@ -27,58 +27,58 @@ export class ForumAdminSideComponent implements OnInit {
     private formBuilder: FormBuilder,) { }
 
   ngOnInit(): void {
-    this.onLoadForum();
-    this.onLoadPost();
+    this.onHentForum();
+    this.onHentPost();
   }
-  onLoadForum(){
+  onHentForum(){
     return this.restApi.getDatas(this.endpointf).subscribe((forum) => {
       this.forums = forum;
       console.log('forum:', this.forums)
     })
   }
-    onLoadPost(){
+    onHentPost(){
     return this.restApi.getDatas(this.endpointp).subscribe((post) => {
       this.posts = post;
       console.log('posts:',this.posts);
     })
   }
-  onCreateForum(){
+  onOpretForum(){
     this.router.navigate(['../forum/oprette']);
   }
 
-  onShowForum(id:any){
+  onVisForum(id:any){
     this.router.navigate(['../forum/forum']);
    }
 
-  onFindForumtitle(){
+  onFindForumtitel(){
 
   }
 
-  onUpdateForum(id:any){
+  onOpdaterForum(id:any){
     this.clickButton=false;
     this.restApi.getData(id , this.endpointf)
     .toPromise()
     .then(data => {
-      this.updateForum= data ;
-      this.updateForm = this.formBuilder.group({
-        title : new FormControl(this.updateForum.title),
-        description : new FormControl(this.updateForum.description),
-        createDate : new FormControl(this.updateForum.createDate)
+      this.opdaterForum= data ;
+      this.opdaterForm = this.formBuilder.group({
+        title : new FormControl(this.opdaterForum.title),
+        description : new FormControl(this.opdaterForum.description),
+        createDate : new FormControl(this.opdaterForum.createDate)
       })
     })
   }
 
-  SaveChanges(id:any){
-    this.restApi.updateData(id, this.endpointf,this.updateForum).subscribe(data => {
+  onGemAndringer(id:any){
+    this.restApi.updateData(id, this.endpointf,this.opdaterForum).subscribe(data => {
       this.ngOnInit()
     })
   }
 
-  onCancel(){
+  onAnuller(){
     this.ngOnInit()
   }
 
-  onDeleteForum(id:any){
+  onSletForum(id:any){
       this.posts=this.posts.filter((p:any) => p.forumId === id)
       console.log('data:', this.posts)
       if(this.posts.length === 0){

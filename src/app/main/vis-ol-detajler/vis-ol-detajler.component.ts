@@ -7,21 +7,21 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./vis-ol-detajler.component.css']
 })
 export class VisOlDetajlerComponent implements OnInit {
-  beerId:number;
-  endpointO = '/Beers';
+  olId:number;
+  endpointO = '/Øller';
   beerInfo: any;
   vintage:Date;
 
   constructor(public restApi: RestApiService) { }
 
   ngOnInit(): void {
-    this.beerId= JSON.parse(localStorage.getItem('beerId') || '{}');
+    this.olId= JSON.parse(localStorage.getItem('olId') || '{}');
     // console.log('beerId', this.beerId);
-    this.onLoadBeer();
+    this.onHentOl();
   }
 
-  onLoadBeer(){
-    this.restApi.getData(this.beerId , this.endpointO).subscribe(data => {
+  onHentOl(){
+    this.restApi.getData(this.olId , this.endpointO).subscribe(data => {
       this.beerInfo = data;
       // console.log('detajler:' , this.beerInfo.vintage);
       // this.vintage=this.beerInfo.vintage;

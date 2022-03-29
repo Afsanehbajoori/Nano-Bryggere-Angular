@@ -9,13 +9,13 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./rediger-profil-dialog-box.component.css']
 })
 export class RedigerProfilDialogBoxComponent implements OnInit {
-  updateForm: FormGroup = new FormGroup({});
-  userInfoList: any;
-  userList:any;
-  userInfoId: number;
-  userId:number;
-  endpointK = '/ContactInformation';
-  endpointB= '/Users';
+  redigerForm: FormGroup = new FormGroup({});
+  kontaktOplysningsListe: any;
+  brugerListe:any;
+  kontaktoplysningId: number;
+  brugerId:number;
+  endpointK = '/KontaktOplysninger';
+  endpointB= '/Bruger';
 
   constructor(public dialogRefUpdateProfile: MatDialogRef<RedigerProfilDialogBoxComponent>,
     private formBuilder: FormBuilder,
@@ -23,25 +23,25 @@ export class RedigerProfilDialogBoxComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.userInfoId = JSON.parse(localStorage.getItem('contactInformationId') || '{}');
-    this.userId = JSON.parse(localStorage.getItem('userId') || '{}');
-    this.restApi.getData(this.userInfoId, this.endpointK)
+    this.kontaktoplysningId = JSON.parse(localStorage.getItem('kontaktOplysnigsId') || '{}');
+    this.brugerId = JSON.parse(localStorage.getItem('brugerId') || '{}');
+    this.restApi.getData(this.kontaktoplysningId, this.endpointK)
       .toPromise()
       .then(data => {
-        this.userInfoList = data;
+        this.kontaktOplysningsListe = data;
 /*
         this.restApi.getData(this.brugerId , this.endpointS).subscribe(res => {
           this.BrugerList=res; */
           // build the edit form
-          this.updateForm = this.formBuilder.group({
-            FnameCtl: new FormControl(this.userInfoList.fname),
-            SnameCtl: new FormControl(this.userInfoList.sname),
-            Add1Ctl: new FormControl(this.userInfoList.addressline1),
-            Add2Ctl: new FormControl(this.userInfoList.addressline2),
-            PhoneCtl: new FormControl(this.userInfoList.phoneNr),
-            EmailCtl: new FormControl(this.userInfoList.email),
-            MailCtl: new FormControl(this.userInfoList.mailNr),
-            CityCtl: new FormControl(this.userInfoList.city),
+          this.redigerForm = this.formBuilder.group({
+            fnavnCtl: new FormControl(this.kontaktOplysningsListe.fnavn),
+            enavnCtl: new FormControl(this.kontaktOplysningsListe.enavn),
+            adr1Ctl: new FormControl(this.kontaktOplysningsListe.adresseLinje1),
+            adr2Ctl: new FormControl(this.kontaktOplysningsListe.adresseLinje2),
+            telefonNrCtl: new FormControl(this.kontaktOplysningsListe.telefonNr),
+            emailCtl: new FormControl(this.kontaktOplysningsListe.email),
+            postNrCtl: new FormControl(this.kontaktOplysningsListe.postNr),
+            byCtl: new FormControl(this.kontaktOplysningsListe.by),
            // BrugernavnCtl : new FormControl(this.BrugerList.brugernavn)
           });
         // })

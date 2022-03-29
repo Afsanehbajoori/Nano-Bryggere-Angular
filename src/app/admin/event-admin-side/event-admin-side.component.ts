@@ -23,7 +23,7 @@ export class EventAdminSideComponent implements OnInit {
   events: Events[];
   //event = new Events();
   endpointE = '/Events';
-  endpointP = '/Participation';
+  endpointP = '/Deltagelser';
   id = this.actRoute.snapshot.params['id'];
   deltagelseListe: any;
 

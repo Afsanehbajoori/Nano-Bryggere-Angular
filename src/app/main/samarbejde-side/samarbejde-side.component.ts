@@ -33,9 +33,9 @@ export class SamarbejdeSideComponent implements OnInit {
   samarbejde: Samarbejde
   samarbejder: Samarbejde[];
   samarbejdeId: number;
-  endpointO = '/Beers';
-  endpointB = '/Breweries';
-  endpointS = '/Cooperations';
+  endpointO = '/Øller';
+  endpointB = '/Bryggerier';
+  endpointS = '/Samarbejde';
   searchkey: string;
   olId: number;
   bryggeri: Bryggeri;
@@ -48,7 +48,7 @@ export class SamarbejdeSideComponent implements OnInit {
   ) {  this.dataSource.data = TREE_DATA; }
   hasChild = (_: number, node: Search) => !!node.children && node.children.length > 0;
   ngOnInit(): void {
-    this.onLoadSamarbejde();
+    this.onHentSamarbejde();
     // this.onLoadOl();
   }
   onShowComponent(nodeName: string, id: any) {
@@ -62,7 +62,7 @@ export class SamarbejdeSideComponent implements OnInit {
     }
   }
 
-  onLoadSamarbejde() {
+  onHentSamarbejde() {
     if (this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}')) {
       this.restApi.getDatas(this.endpointS).subscribe((data) => {
         this.samarbejder = data.filter((res: any) => {
@@ -75,7 +75,7 @@ export class SamarbejdeSideComponent implements OnInit {
     }
   }
 
-  onUpdateOl(id: any) {
-    this.router.navigate(['../main/cooperationupdate/', id]);
+  onOpdaterOl(id: any) {
+    this.router.navigate(['../main/samarbejderediger/', id]);
   };
 }

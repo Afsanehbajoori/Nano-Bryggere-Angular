@@ -11,54 +11,54 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 
 export class DeltagerAdminSideComponent implements OnInit {
   clickButton:boolean=true;
-  participantsListD:any;
-  participantsListB:any;
-  participants:any;
-  participantsListE:any;
-  endpointP='/Participation';
+  deltagelserListD:any;
+  deltagelserListB:any;
+  deltager:any;
+  deltagelserListE:any;
+  endpointD='/Deltagelser';
   endpointE = '/Events';
-  endpointU='/Users';
-  searchkeyParticipants:string;
+  endpointB='/Bruger';
+  searchkeyDeltager:string;
 
   constructor(public dialog: MatDialog,
     public restApi: RestApiService,
     public actRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.onLoadParticipants();
+    this.onHentDeltagelser();
   }
-  onLoadParticipants(){
-    this.restApi.getDatas(this.endpointP).subscribe(data =>
-      this.participants=data
+  onHentDeltagelser(){
+    this.restApi.getDatas(this.endpointD).subscribe(data =>
+      this.deltager=data
     )
   }
 
-  onShowParticipants(id:any){
+  onVisDeltager(id:any){
     this.clickButton=false;
-    return this.restApi.getData(id , this.endpointP).subscribe(participant => {
-      this.participantsListD=participant;
-      this.restApi.getData(participant.brugerId , this.endpointU).subscribe(bruger => {
-        this.participantsListB=bruger;
+    return this.restApi.getData(id , this.endpointD).subscribe(deltager => {
+      this.deltagelserListD=deltager;
+      this.restApi.getData(deltager.brugerId , this.endpointB).subscribe(bruger => {
+        this.deltagelserListB=bruger;
       })
-      this.restApi.getData(participant.eventsId , this.endpointE).subscribe(data => {
-        this.participantsListE=data;
+      this.restApi.getData(deltager.eventsId , this.endpointE).subscribe(data => {
+        this.deltagelserListE=data;
       })
     })
   }
 
-  onFindParticipants(){
-    if(this.searchkeyParticipants == ""){
+  onFindDeltager(){
+    if(this.searchkeyDeltager == ""){
       this.ngOnInit();
     }
     else{
-      this.restApi.getParticipantByEventsTitle(this.searchkeyParticipants.toLowerCase(), this.endpointE).subscribe(res => {
-        return this.participants=res
+      this.restApi.getParticipantByEventsTitle(this.searchkeyDeltager.toLowerCase(), this.endpointE).subscribe(res => {
+        return this.deltager=res
       })
     }
   }
 
-  onRejectLoadParticipation(id:any){
-    this.restApi.deleteData(id , this.endpointP).subscribe(data =>
+  onAfvisDeltagelse(id:any){
+    this.restApi.deleteData(id , this.endpointD).subscribe(data =>
       this.ngOnInit())
   }
 }

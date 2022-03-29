@@ -5,7 +5,7 @@
       <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree" class="txt"
         style="background-color: transparent;">
         <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle><button class="btnNode"
-            (click)="showComponent(node.name)"> {{node.name}}</button>
+            (click)="onVisComponent(node.name)"> {{node.name}}</button>
         </mat-tree-node>
         <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
           <div class="mat-tree-node btnNode">
@@ -24,37 +24,37 @@
     </div>
   </mat-drawer>
 
-  <mat-drawer-content *ngIf="showUsernameComponent">
+  <mat-drawer-content *ngIf="visBrugernavnComponent">
     <app-bruger-admin-side></app-bruger-admin-side>
   </mat-drawer-content>
-  <mat-drawer-content *ngIf="showRoleComponent">
+  <mat-drawer-content *ngIf="visRollerComponent">
     <app-rolle-admin-side></app-rolle-admin-side>
   </mat-drawer-content>
-  <mat-drawer-content *ngIf="showBryggeriComponent">
+  <mat-drawer-content *ngIf="visBryggeriComponent">
     <app-bryggeri-admin-side></app-bryggeri-admin-side>
   </mat-drawer-content>
-  <mat-drawer-content *ngIf="showBeerComponent">
+  <mat-drawer-content *ngIf="visOlComponent">
     <app-ol-admin-side></app-ol-admin-side>
   </mat-drawer-content>
-  <mat-drawer-content *ngIf="showEventsComponent">
+  <mat-drawer-content *ngIf="visEventsComponent">
     <app-event-admin-side></app-event-admin-side>
   </mat-drawer-content>
-  <mat-drawer-content *ngIf="showParticipantComponent">
+  <mat-drawer-content *ngIf="visDeltageneComponent">
     <app-deltager-admin-side></app-deltager-admin-side>
   </mat-drawer-content>
-  <mat-drawer-content *ngIf="showAdminTagsComponent">
+  <mat-drawer-content *ngIf="visAdminTagsComponent">
     <app-admin-tags></app-admin-tags>
   </mat-drawer-content>
-  <mat-drawer-content *ngIf="showAdminCreateTagsComponent">
+  <mat-drawer-content *ngIf="visAdminOpretTagsComponent">
     <app-admin-opret-tag></app-admin-opret-tag>
   </mat-drawer-content>
-  <mat-drawer-content *ngIf="showAdminUpdateTagsComponent">
+  <mat-drawer-content *ngIf="visAdminOpdaterTagsComponent">
     <app-admin-rediger-tag></app-admin-rediger-tag>
   </mat-drawer-content>
-  <mat-drawer-content *ngIf="showForumComponent">
+  <mat-drawer-content *ngIf="visForumComponent">
     <app-forum-admin-side></app-forum-admin-side>
   </mat-drawer-content>
-  <mat-drawer-content *ngIf="showCertificateComponent">
+  <mat-drawer-content *ngIf="visCertifikatComponent">
     <app-bruger-certifikat></app-bruger-certifikat>
   </mat-drawer-content>
 </mat-drawer-container>

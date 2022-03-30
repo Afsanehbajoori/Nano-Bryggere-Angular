@@ -24,7 +24,7 @@
   <mat-card>
     <table style="width: 100%; height: 100%; display: flex;">
       <mat-accordion class="example-headers-align" multi style="width: 100%;">
-        <mat-expansion-panel *ngFor="let bryg of bryggeriListe" style="margin-top: 10px;" [disabled]="clickButton"
+        <mat-expansion-panel *ngFor="let bryg of bryggeri" style="margin-top: 10px;" [disabled]="clickButton"
           (click)="clickButton=true">
           <mat-expansion-panel-header
             style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236)); justify-content: center; width: 100%;">
@@ -38,18 +38,18 @@
               <button mat-button class="btnMainStyle" (click)="onSletBryggeri(bryg.id)">Slet </button>
             </mat-action-row>
           </mat-expansion-panel-header>
-          <div *ngIf="bryg">
+          <div *ngIf="brygge">
             <mat-card class="containStyle">
               <span>beskrivelse:</span>
-              <span class="txtStyle">{{bryg.beskrivelse}}</span>
+              <span class="txtStyle">{{brygge.beskrivelse}}</span>
             </mat-card>
             <mat-card class="containStyle">
               <span>logo:</span>
-              <span class="txtStyle"><img [src]="this.bryg.bryggeriLogo" alt="" style="width: 20%; height: 20%;"></span>
+              <span class="txtStyle"><img [src]="this.brygge.bryggeriLogo" alt="" style="width: 20%; height: 20%;"></span>
             </mat-card>
             <mat-card class="containStyle">
               <span>Samarbejde:</span>
-              <span class="txtStyle">{{bryg.samarbejde}}</span>
+              <span class="txtStyle">{{brygge.samarbejde}}</span>
             </mat-card>
           </div>
         </mat-expansion-panel>

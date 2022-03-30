@@ -11,12 +11,12 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 export class OlLagerComponent implements OnInit {
   // @Input() lagerInput = { antal: 0, flaskeAntal: 0, tondeAntal: 0 };
 
-  LayerForm: FormGroup;
-  endpointO = '/Beers';
+  LagerForm: FormGroup;
+  endpointO = '/Øller';
   selected = '';
-  beer: any;
-  beerid = this.actRoute.snapshot.params['id'];
-  beerList : any = {};
+  ol: any;
+  olId = this.actRoute.snapshot.params['id'];
+  olListe : any = {};
   constructor(
     public restApi: RestApiService,
     private router: Router,
@@ -24,26 +24,26 @@ export class OlLagerComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.LayerForm = new FormGroup({
-      quantity: new FormControl('', Validators.required),
-      bottleQuantity: new FormControl('', Validators.required),
-      barrelQuantity: new FormControl('', Validators.required),
-      bottleResevationQuantity: new FormControl('', Validators.required)
+    this.LagerForm = new FormGroup({
+      antal: new FormControl('', Validators.required),
+      flaskeAntal: new FormControl('', Validators.required),
+      tondeAntal: new FormControl('', Validators.required),
+      flaskeResevationAntal: new FormControl('', Validators.required)
     });
-    this.onLoadBeer();
+    this.onHentOl();
   }
-  onLoadBeer(){  
-    return this.restApi.getData(this.beerid, this.endpointO).subscribe((beerInfo: {}) => {
-      this.beerList = beerInfo;
+  onHentOl(){  
+    return this.restApi.getData(this.olId, this.endpointO).subscribe((beerInfo: {}) => {
+      this.olListe = beerInfo;
     });
   }
-  onCancel() {
-    return this.router.navigate(['../main/catalog']);
+  onAnuller() {
+    return this.router.navigate(['../main/katalog']);
   };
 
-  onSubmitBeer() {
-    this.restApi.updateData(this.beerid, this.endpointO, this.beerList).subscribe((data) => {
-      this.router.navigate(['../main/catalog']);
+  onSubmitOl() {
+    this.restApi.updateData(this.olId, this.endpointO, this.olListe).subscribe((data) => {
+      this.router.navigate(['../main/katalog']);
     });
   }
 }

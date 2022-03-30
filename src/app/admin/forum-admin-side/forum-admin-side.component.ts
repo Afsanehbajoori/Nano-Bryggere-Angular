@@ -11,14 +11,14 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./forum-admin-side.component.css']
 })
 export class ForumAdminSideComponent implements OnInit {
-  forumList:any;
-  endpointf = '/Forumer';
-  endpointp = '/Posts';
+  forumListe:any;
+  endpointF = '/Forumer';
+  endpointP = '/Posts';
   forums:any;
   clickButton:boolean=true;
   posts:any;
-  updateForm: FormGroup = new FormGroup({});
-  updateForum:any;
+  opdaterForm: FormGroup = new FormGroup({});
+  opdaterForum:any;
 
   constructor( public dialog: MatDialog,
     public restApi: RestApiService,
@@ -27,66 +27,68 @@ export class ForumAdminSideComponent implements OnInit {
     private formBuilder: FormBuilder,) { }
 
   ngOnInit(): void {
-    this.onLoadForum();
-    this.onLoadPost();
+    this.onHentForum();
+    this.onHentPost();
   }
-  onLoadForum(){
-    return this.restApi.getDatas(this.endpointf).subscribe((forum) => {
+  onHentForum(){
+    return this.restApi.getDatas(this.endpointF).subscribe((forum) => {
       this.forums = forum;
       console.log('forum:', this.forums)
     })
   }
-    onLoadPost(){
-    return this.restApi.getDatas(this.endpointp).subscribe((post) => {
+    onHentPost(){
+    return this.restApi.getDatas(this.endpointP).subscribe((post) => {
       this.posts = post;
       console.log('posts:',this.posts);
     })
   }
-  onCreateForum(){
-    this.router.navigate(['../forum/oprette']);
+  onOpretForum(){
+    this.router.navigate(['../forum/opret-forum']);
   }
 
-  onShowForum(id:any){
+  onVisForum(id:any){
     this.router.navigate(['../forum/forum']);
    }
 
-  onFindForumtitle(){
+  onFindForumtitel(){
 
   }
 
-  onUpdateForum(id:any){
+  onOpdaterForum(id:any){
     this.clickButton=false;
-    this.restApi.getData(id , this.endpointf)
+    this.restApi.getData(id , this.endpointF)
     .toPromise()
     .then(data => {
-      this.updateForum= data ;
-      this.updateForm = this.formBuilder.group({
-        title : new FormControl(this.updateForum.title),
-        description : new FormControl(this.updateForum.description),
-        createDate : new FormControl(this.updateForum.createDate)
+      this.opdaterForum= data ;
+      this.opdaterForm = this.formBuilder.group({
+        titel : new FormControl(this.opdaterForum.titel),
+        beskrivelse : new FormControl(this.opdaterForum.beskrivelse),
+        oprettet : new FormControl(this.opdaterForum.oprettet)
       })
     })
   }
 
-  SaveChanges(id:any){
-    this.restApi.updateData(id, this.endpointf,this.updateForum).subscribe(data => {
+  onGemAndringer(id:any){
+    this.restApi.updateData(id, this.endpointF,this.opdaterForum).subscribe(data => {
       this.ngOnInit()
     })
   }
 
-  onCancel(){
+  onAnuller(){
     this.ngOnInit()
   }
 
-  onDeleteForum(id:any){
+  onSletForum(id:any){
       this.posts=this.posts.filter((p:any) => p.forumId === id)
       console.log('data:', this.posts)
       if(this.posts.length === 0){
     let dialogRef = this.dialog.open(SletDialogBoxComponent);
     dialogRef.afterClosed().subscribe(result => {
-      this.restApi.deleteData(id, this.endpointf).subscribe(data => {
-        this.ngOnInit();
-      })
+      if(result == true){
+        this.restApi.deleteData(id, this.endpointF).subscribe(data => {
+          this.ngOnInit();
+        })
+      }
     });
     }else{
       alert('All of messages in post page have to delete first!');

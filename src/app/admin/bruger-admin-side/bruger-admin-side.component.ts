@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
-import { User } from 'src/app/Models/User';
+import { Bruger } from 'src/app/Models/Bruger';
 import { RestApiService } from 'src/app/shared/rest-api.service';
-import { ContactInformation } from 'src/app/Models/ContactInformation';
+import { KontaktOplysninger } from 'src/app/Models/KontaktOplysninger';
 import { RedigerProfilDialogBoxComponent } from 'src/app/main/rediger-profil-dialog-box/rediger-profil-dialog-box.component';
 
 @Component({
@@ -14,23 +14,23 @@ import { RedigerProfilDialogBoxComponent } from 'src/app/main/rediger-profil-dia
 })
 
 export class BrugerAdminSideComponent implements OnInit {
-  dialogRefDelete: MatDialogRef<SletDialogBoxComponent>;
-  dialogRefUpdateProfile: MatDialogRef<RedigerProfilDialogBoxComponent>;
-  users: User[];
-  user = new User();
-  endpointU = '/Users'; //endpointB
-  endpointC = '/ContactInformation'; //endpointK
-  searchkeyUsername: string;
-  searchkeyUserSname: string;
+  dialogRefSlet: MatDialogRef<SletDialogBoxComponent>;
+  dialogRefOpdaterProfil: MatDialogRef<RedigerProfilDialogBoxComponent>;
+  brugere: Bruger[];
+  bruger = new Bruger();
+  endpointB = '/Bruger'; //endpointB
+  endpointK = '/KontaktOplysninger'; //endpointK
+  searchkeyBrugernavn: string;
+  searchkeyBrugerEnavn: string;
   searchkeyEmail: string;
-  searchkeyEventsTitle: string;
-  userInfo: any; //kontaktoplysninger
-  certificateInfo: any;
+  searchkeyEventsTitel: string;
+  kontaktOplysninger: any; //kontaktoplysninger
+  certifikat: any;
   id = this.actRoute.snapshot.params['id'];
-  userinfoId: number; //kontaktoplysningerId
+  kontaktOplysningerId: number; //kontaktoplysningerId
   clickButton: boolean = true;
-  userinfoList: any; //kontaktoplysningerList
-  info: ContactInformation[]; //kontakt
+  kontaktOplysningsListe: any; //kontaktoplysningerList
+  oplysningsListe: KontaktOplysninger[]; //kontakt
 
   constructor(
     public dialog: MatDialog,
@@ -40,44 +40,44 @@ export class BrugerAdminSideComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.onLoadUser();
+    this.onHentBruger();
   }
 
-  onLoadUser() {
-    return this.restApi.getDatas(this.endpointU).subscribe((res) => {
-      this.users = res;
-      console.log(this.users);
+  onHentBruger() {
+    return this.restApi.getDatas(this.endpointB).subscribe((res) => {
+      this.brugere = res;
+      console.log(this.brugere);
     })
   }
 
-  onShowUser(id: any) {
+  onVisBruger(id: any) {
     this.clickButton = false;
-    return this.restApi.getData(id, this.endpointU).subscribe((data) => {
-      this.userinfoId = data.contactInformationId;
-      this.restApi.getData(this.userinfoId, this.endpointC).subscribe((data) => {
-        this.userInfo = data;
+    return this.restApi.getData(id, this.endpointB).subscribe((data) => {
+      this.kontaktOplysningerId = data.kontaktOplysningerId;
+      this.restApi.getData(this.kontaktOplysningerId, this.endpointK).subscribe((data) => {
+        this.kontaktOplysninger = data;
       })
     })
   }
 
-  onFindUsername() {
-    if (this.searchkeyUsername == "") {
+  onFindBrugernavn() {
+    if (this.searchkeyBrugernavn == "") {
       this.ngOnInit();
     }
     else {
-      this.users = this.users.filter(res => {
-        return res.username.toLowerCase().match(this.searchkeyUsername.toLowerCase());
+      this.brugere = this.brugere.filter(res => {
+        return res.brugernavn.toLowerCase().match(this.searchkeyBrugernavn.toLowerCase());
       })
     }
   }
 
-  onFindUserSname() {
-    if (this.searchkeyUserSname == '') {
+  onFindBrugerEnavn() {
+    if (this.searchkeyBrugerEnavn == '') {
       this.ngOnInit();
     }
     else {
-      this.restApi.getDataBySname(this.searchkeyUserSname, this.endpointU).subscribe((data) => {
-        return this.users = data;
+      this.restApi.getDataByEnavn(this.searchkeyBrugerEnavn, this.endpointB).subscribe((data) => {
+        return this.brugere = data;
       })
     }
   }
@@ -87,25 +87,25 @@ export class BrugerAdminSideComponent implements OnInit {
       this.ngOnInit();
     }
     else {
-      this.restApi.getDataByEmail(this.searchkeyEmail, this.endpointU).subscribe((data) => {
-        return this.users = data;
+      this.restApi.getDataByEmail(this.searchkeyEmail, this.endpointB).subscribe((data) => {
+        return this.brugere = data;
       })
     }
   }
 
-  onFindUsernameByEventsTitle() {
-    if (this.searchkeyEventsTitle == "") {
+  onFindBrugernavnByEventsTitel() {
+    if (this.searchkeyEventsTitel == "") {
       this.ngOnInit();
     }
     else {
-      this.restApi.getUserByEventsTitle(this.searchkeyEventsTitle, this.endpointU).subscribe((data) => {
-        return this.users = data;
+      this.restApi.getUserByEventsTitle(this.searchkeyEventsTitel, this.endpointB).subscribe((data) => {
+        return this.brugere = data;
       })
     }
   }
 
   //husk at kigge på slet bruger , kan ikke sltettes før slet deltager og login
-  onDeleteUser(id: any) {
+  onSletBruger(id: any) {
     let dialogRef = this.dialog.open(SletDialogBoxComponent);
     dialogRef.afterClosed().subscribe(result => {
       /* this.restApi.getData(id , this.endpoints).subscribe((data) => {
@@ -116,30 +116,30 @@ export class BrugerAdminSideComponent implements OnInit {
         })
       })*/
       if (result) {
-        this.restApi.deleteData(id, this.endpointU).subscribe((data) => {
+        this.restApi.deleteData(id, this.endpointB).subscribe((data) => {
           console.log('delete:', id);
-          this.onLoadUser();
+          this.onHentBruger();
         })
       }
     });
   }
 
-  onUpdateUser(id: any) {
+  onOpdaterBruger(id: any) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = "30%";
-    this.restApi.getData(id, this.endpointU).subscribe((data) => {
-      this.userinfoId = data.contactInformationId;
-      console.log("kontId:", this.userinfoId);
-      localStorage.setItem('AdminContactInformationId', this.userinfoId.toString());
-      this.dialogRefUpdateProfile = this.dialog.open(RedigerProfilDialogBoxComponent, dialogConfig);
-      this.dialogRefUpdateProfile.afterClosed().subscribe(result => {
+    this.restApi.getData(id, this.endpointB).subscribe((data) => {
+      this.kontaktOplysningerId = data.kontaktOplysningerId;
+      console.log("kontId:", this.kontaktOplysningerId);
+      localStorage.setItem('AdminKontaktOplysningerId', this.kontaktOplysningerId.toString());
+      this.dialogRefOpdaterProfil = this.dialog.open(RedigerProfilDialogBoxComponent, dialogConfig);
+      this.dialogRefOpdaterProfil.afterClosed().subscribe(result => {
         if (result) {
-          this.userinfoList = result;
-          this.restApi.updateData(this.userinfoId, this.endpointC, this.userinfoList).subscribe((data) => {
-            console.log(this.userinfoList);
-            this.onShowUser(id);
+          this.oplysningsListe = result;
+          this.restApi.updateData(this.kontaktOplysningerId, this.endpointK, this.oplysningsListe).subscribe((data) => {
+            console.log(this.oplysningsListe);
+            this.onVisBruger(id);
           })
         }
       });

@@ -14,34 +14,34 @@
                 <mat-expansion-panel-header style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236)); justify-content: center; width: 100%;">
 
                     <mat-panel-title class="centers" style="justify-content: center;">
-                        Titel: {{event.title}}
+                        Titel: {{event.titel}}
                     </mat-panel-title>
                     <mat-action-row class="centers" style="justify-content: center;">
-                         <button mat-button class="btnMainStyle"  (click)="onShowEvent(event.id)">Vis Event</button>  |
-                        <button mat-button class="btnMainStyle"   (click)="onJoinEvent(event.id)" >Join Event</button>  
+                        <button mat-button class="btnMainStyle" (click)="onVisEvent(event.id)">Vis Event</button>  |
+                        <button mat-button class="btnMainStyle" (click)="onDeltagEvent(event.id)" >Join Event</button>  
                         <!-- <button mat-button class="btnMainStyle"   (click)="onAfmeldEvent(event.id)">Afmeld Deltagelse</button> -->
                     </mat-action-row>
                 </mat-expansion-panel-header>
-                <div *ngIf="eventList">
+                <div *ngIf="eventListe">
                   <mat-card class="containStyle">
                     <span>EventBillede:</span>
-                    <span class="txtStyle"><img [src]="eventList.eventPicture" alt="" style="width: 20%; height: 20%;" ></span>
+                    <span class="txtStyle"><img [src]="eventListe.eventBilled" alt="" style="width: 20%; height: 20%;" ></span>
                   </mat-card>
                   <mat-card class="containStyle">
                       <p>Beskrivelse:</p>
-                      <p>{{eventList.description}}</p>
+                      <p>{{eventListe.beskrivelse}}</p>
                   </mat-card>
                   <mat-card class="containStyle">
                       <p>Start:</p>
-                      <p>{{eventList.startDate}}</p>
+                      <p>{{eventListe.startDato}}</p>
                   </mat-card>
                   <mat-card class="containStyle">
                       <p>Slut:</p>
-                      <p>{{eventList.endDate}}</p>
+                      <p>{{eventListe.slutDato}}</p>
                   </mat-card>
                   <mat-card class="containStyle">
                       <p>Lokation:</p>
-                      <p>{{eventList.location}}</p>
+                      <p>{{eventListe.lokation}}</p>
                   </mat-card>
                 </div>
             </mat-expansion-panel>

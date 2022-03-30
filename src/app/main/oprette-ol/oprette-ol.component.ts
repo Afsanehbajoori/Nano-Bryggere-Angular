@@ -9,10 +9,10 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./oprette-ol.component.css']
 })
 export class OpretteOlComponent implements OnInit {
-  @Input() beerCreation = { name: '', type: '', taste: '', percentage: null, country: '', breweryId: null, label: '', description:'', quantity: '', vintage: '' };
+  @Input() olOprettelse = { navn: '', type: '', smag: '', procent: null, land: '', bryggeriId: null, olBilled: '', beskrivelse:'', antal: '', argang: '' };
   // @Input() olOprettelse = { navn: '', type: '', smag: '', procent: null, land: '', bryggeriId: null, argang: 0, etiket: '', beskrivelse:'', antal: '' };
-  createForm : FormGroup;
-  endpointB = '/Beers';
+  opretForm : FormGroup;
+  endpointB = '/Øller';
   selected = '';
   constructor(
     public restApi: RestApiService, 
@@ -21,29 +21,29 @@ export class OpretteOlComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.createForm = new FormGroup({
-      name: new FormControl('', Validators.required),
+    this.opretForm = new FormGroup({
+      navn: new FormControl('', Validators.required),
       type: new FormControl('', Validators.required),
-      taste: new FormControl('', Validators.required),
-      percentage: new FormControl('', Validators.required),
-      breweryId: new FormControl('', Validators.required),
-      vintage: new FormControl('', Validators.required),
-      country: new FormControl('', Validators.required),
+      smag: new FormControl('', Validators.required),
+      procent: new FormControl('', Validators.required),
+      bryggeriId: new FormControl('', Validators.required),
+      argang: new FormControl('', Validators.required),
+      land: new FormControl('', Validators.required),
       process: new FormControl('', Validators.required),
-      label: new FormControl('', Validators.required),
-      description: new FormControl('', Validators.required),
-      // billed: new FormControl('', Validators.required),
-      quantity: new FormControl('', Validators.required)
+      olBilled: new FormControl('', Validators.required),
+      beskrivelse: new FormControl('', Validators.required),
+      // olBilled: new FormControl('', Validators.required),
+      antal: new FormControl('', Validators.required)
     });
   }
 
-  onCancel() {
-        return this.router.navigate(['../main/catalog']);
+  onAnuller() {
+        return this.router.navigate(['../main/katalog']);
   };
-  onSubmitCertificate(event: any) {
+  onSubmitOlBilled(event: any) {
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
-      reader.onload = (e:any) => this.beerCreation.label = e.target.result;
+      reader.onload = (e:any) => this.olOprettelse.olBilled = e.target.result;
       reader.readAsDataURL(event.target.files[0])
       // var reader = new FileReader();
       // reader.readAsDataURL(event.target.files[0]);
@@ -54,14 +54,14 @@ export class OpretteOlComponent implements OnInit {
       // }
     }
     else{
-      this.beerCreation.label = '';
+      this.olOprettelse.olBilled = '';
     }
   };
-  onSubmitBeer() {
-    this.beerCreation.breweryId = JSON.parse(localStorage.getItem('breweryId') || '{}');
-    // console.log(this.beerCreation);
-    this.restApi.createData(this.beerCreation, this.endpointB).subscribe((data) => {
-      this.router.navigate(['../main/catalog']);
+  onSubmitOl() {
+    this.olOprettelse.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}');
+    // console.log(this.olOprettelse);
+    this.restApi.createData(this.olOprettelse, this.endpointB).subscribe((data) => {
+      this.router.navigate(['../main/katalog']);
     });
   }
 }

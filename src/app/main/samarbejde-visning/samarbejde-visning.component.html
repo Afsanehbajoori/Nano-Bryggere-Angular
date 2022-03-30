@@ -8,52 +8,52 @@
                 <mat-expansion-panel-header
                     style="background: linear-gradient(rgb(30, 122, 228), rgb(75, 127, 185)); justify-content: center; width: 100%;">
                     <mat-panel-title class="centers" style="justify-content: center;">
-                        Øl Navn: {{beer.name}}
+                        Øl Navn: {{ol.navn}}
                     </mat-panel-title>
                     <mat-action-row class="centers" style="justify-content: center;">
-                        <button mat-button class="btnMainStyle" (click)="onDeleteBeer(beer.id)">Slet Øl</button>
-                        <button mat-button class="btnMainStyle" (click)="onUpdateBeer(beer.id)">Rediger Øl</button>
+                        <button mat-button class="btnMainStyle" (click)="onSletOl(ol.id)">Slet Øl</button>
+                        <button mat-button class="btnMainStyle" (click)="onOpdaterOl(ol.id)">Rediger Øl</button>
                     </mat-action-row>
                 </mat-expansion-panel-header>
                 <mat-card class="containStyle">
                     <span>Type:</span>
-                    <p>{{beer.type}}</p>
+                    <p>{{ol.type}}</p>
                 </mat-card>
                 <mat-card class="containStyle">
                     <span>Smag:</span>
-                    <p>{{beer.taste}}</p>
+                    <p>{{ol.smag}}</p>
                 </mat-card>
                 <mat-card class="containStyle">
                     <span>Land:</span>
-                    <p>{{beer.country}}</p>
+                    <p>{{ol.land}}</p>
                 </mat-card>
                 <mat-card class="containStyle">
                     <span>Øl Billed:</span>
-                    <img [src]="beer.label" alt="" style="width: 20%; height: 20%;">
+                    <img [src]="ol.olBilled" alt="" style="width: 20%; height: 20%;">
                 </mat-card>
                 <mat-card class="containStyle">
                     <span>Beskrivelse:</span>
-                    <p>{{beer.description}}</p>
+                    <p>{{ol.beskrivelse}}</p>
                 </mat-card>
                 <mat-card class="containStyle">
                     <span>Procent:</span>
-                    <p>{{beer.percentage}}</p>
+                    <p>{{ol.procent}}</p>
                 </mat-card>
                 <!-- <mat-card class="containStyle">
                     <span>Procent:</span>
-                    <p>{{beer.Årgang}}</p>
+                    <p>{{ol.Årgang}}</p>
                 </mat-card> -->
                 <mat-card class="containStyle">
                     <span>Flaske antal:</span>
-                    <p>{{beer.bottleQuantity}}</p>
+                    <p>{{ol.flaskeAntal}}</p>
                 </mat-card>
                 <mat-card class="containStyle">
                     <span>Tønde antal:</span>
-                    <p>{{beer.barrelQuantity}}</p>
+                    <p>{{ol.tondeAntal}}</p>
                 </mat-card>
                 <mat-card class="containStyle">
                     <span>Flaske reserve antal:</span>
-                    <p>{{beer.bottleResevationQuantity}}</p>
+                    <p>{{ol.flaskeResevationAntal}}</p>
                 </mat-card>
             </mat-expansion-panel>
         </mat-accordion>

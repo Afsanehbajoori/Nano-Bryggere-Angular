@@ -1,27 +1,27 @@
 <h1 mat-dialog-title>Rediger Bryggerioplysninger</h1>
 <div mat-dialog-content>
-  <form [formGroup]="updateForm"  class="example-form" *ngIf="breweryList" >
+  <form [formGroup]="redigerForm"  class="example-form" *ngIf="bryggeriListe" >
 
       <mat-form-field class="example-full-width" appearance="fill" >
       <mat-label>Logo</mat-label>
-      <input matInput  formControlName="logoCtl"  >
-      <img [src]="this.breweryList.logo" alt="" style="width: 20%; height: 20%;">
+      <input matInput  formControlName="bryggeriLogoCtl"  >
+      <img [src]="this.bryggeriListe.bryggeriLogo" alt="" style="width: 20%; height: 20%;">
       <input type="file" class="btnMainStyle" (change)="onSubmitCertifikats($event)" >
     </mat-form-field>
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Navn</mat-label>
-      <input matInput  formControlName="nameCtl"  placeholder="{{breweryList.name}}" [(ngModel)]="breweryList.name">
+      <input matInput  formControlName="navnCtl"  placeholder="{{bryggeriListe.navn}}" [(ngModel)]="bryggeriListe.navn">
     </mat-form-field>
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Beskrivelse</mat-label>
-      <input matInput  formControlName="descriptionCtl"  placeholder="{{breweryList.description}}" [(ngModel)]="breweryList.description">
+      <input matInput  formControlName="beskrivelseCtl"  placeholder="{{bryggeriListe.beskrivelse}}" [(ngModel)]="bryggeriListe.beskrivelse">
     </mat-form-field>
 
 <div mat-dialog-actions class="btn-container">
-  <button mat-button (click)="dialogRefUpdateProfil.close(false)" mat-dialog-close mat-dialog-close="false" >Annulere</button>
-  <button mat-button cdkFocusInitial mat-dialog-close [mat-dialog-close]="breweryList"  >Gem Ændringer</button>
+  <button mat-button (click)="dialogRefRedigerProfil.close(false)" mat-dialog-close mat-dialog-close="false" >Annulere</button>
+  <button mat-button cdkFocusInitial mat-dialog-close [mat-dialog-close]="bryggeriListe"  >Gem Ændringer</button>
 
  <!--  <button mat-button (click)="onClose()" mat-dialog-close mat-dialog-close="false" >Annulere</button>
   <button mat-button cdkFocusInitial mat-dialog-close [mat-dialog-close]="bryggeriList"  >Gem Ændringer</button> -->

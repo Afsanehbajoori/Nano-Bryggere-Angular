@@ -1,13 +1,13 @@
-import { Role } from 'src/app/Models/Role';
+import { Rolle } from 'src/app/Models/Rolle';
 import { Component, OnInit, Input , Injectable  } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { RestApiService } from 'src/app/shared/rest-api.service';
-import { ContactInformation } from 'src/app/Models/ContactInformation';
+import { KontaktOplysninger } from 'src/app/Models/KontaktOplysninger';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Injectable()
 @Component({
-  providers:  [Role , ContactInformation],
+  providers:  [Rolle , KontaktOplysninger],
   selector: 'app-registrer',
   templateUrl: './registrer.component.html',
   styleUrls: ['./registrer.component.css']
@@ -15,54 +15,55 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 export class RegistrerComponent implements OnInit {
 
-@Input() newUser = { pw:'', username:'', roleName:'', roleId:null, level:'', contactInformationId: null,
- fname: '', sname: '', addressline1: '', addressline2: '', mailNr: '',
-  city: '', email:'', phoneNr: '' };
+@Input() nyBruger = { pw: '', brugernavn: '', rolleNavn: '', rolleId: null, level: '', kontaktOplysningerId: null,
+ fnavn: '', enavn: '', adresseLinje1: '', adresseLinje2: '', postNr: '',
+  by: '', email: '', telefonNr: ''};
 
-  userFormGroup:any = new FormGroup({});
-  endpointC = '/ContactInformation';
-  endpointU= '/Users';
-  endpointR= '/Roles';
+  brugerFormGroup:any = new FormGroup({});
+  endpointK = '/KontaktOplysninger';
+  endpointB= '/Bruger';
+  endpointR= '/Rolle';
 
   constructor(private _formBuilder: FormBuilder, public restApi: RestApiService, public router: Router) { }
 
   ngOnInit(): void {
-    this.userFormGroup = this._formBuilder.group({
-      'contactInformationId':new FormControl(''),
-      'fname' : new FormControl('' , Validators.required),
-      'sname': new FormControl('' , Validators.required),
-      'addressline1': new FormControl(''),
-      'addressline2': new FormControl(''),
-      'mailNr' : new FormControl(''),
-      'city': new FormControl(''),
+    this.brugerFormGroup = this._formBuilder.group({
+      'kontaktOplysningerId': new FormControl(''),
+      'fnavn' : new FormControl('' , Validators.required),
+      'enavn': new FormControl('' , Validators.required),
+      'adresseLinje1': new FormControl(''),
+      'adresseLinje2': new FormControl(''),
+      'postNr' : new FormControl(''),
+      'by': new FormControl(''),
       'email' : new FormControl('' , Validators.email ),
-      'phoneNr': new FormControl(''),
-      'username' : new FormControl(''),
-      'pw':new FormControl(''),
-      'roleId':new FormControl(''),
-      'roleName':new FormControl(''),
-      'level':new FormControl('')
+      'telefonNr': new FormControl(''),
+      'brugernavn' : new FormControl(''),
+      'pw': new FormControl(''),
+      'rolleId': new FormControl(''),
+      'rolleNavn': new FormControl(''),
+      'level': new FormControl('')
     });
   }
 
-  onCreateUser(){
-   this.restApi.createData(this.newUser, this.endpointC).subscribe((dataC) => {
+  onOpretBruger(){
+   this.restApi.createData(this.nyBruger, this.endpointK).subscribe((dataC) => {
      console.log(dataC.id);
-      this.newUser.contactInformationId= dataC.id;
-      if(this.newUser.roleName == 'AnonymousUser')
-      this.newUser.level=0 + "";
-      if(this.newUser.roleName == 'User')
-      this.newUser.level=100 + "";
-      if(this.newUser.roleName == 'Moderator')
-      this.newUser.level=200 + "";
-      if(this.newUser.roleName == 'Administrator')
-      this.newUser.level=300 + "";
-     this.restApi.createData(this.newUser , this.endpointR).subscribe((dataR) => {
+      this.nyBruger.kontaktOplysningerId= dataC.id;
+      if(this.nyBruger.rolleNavn == 'AnonymBruger')
+      this.nyBruger.level=0 + "";
+      if(this.nyBruger.rolleNavn == 'Bruger')
+      this.nyBruger.level=100 + "";
+      if(this.nyBruger.rolleNavn == 'Moderator')
+      this.nyBruger.level=200 + "";
+      if(this.nyBruger.rolleNavn == 'Administrator')
+      this.nyBruger.level=300 + "";
+     this.restApi.createData(this.nyBruger , this.endpointR).subscribe((dataR) => {
       console.log(dataR.id);
-      this.newUser.roleId=dataR.id;
-      this.restApi.createData(this.newUser , this.endpointU).subscribe((dataB) => {
+      this.nyBruger.rolleId=dataR.id;
+      this.restApi.createData(this.nyBruger , this.endpointB).subscribe((dataB) => {
         console.log(dataB);
         var userId = dataB.id;
+        console.log(dataB);
         console.log("brugerId : " , userId);
         this.router.navigate(["../login/login"]);
        }) ;

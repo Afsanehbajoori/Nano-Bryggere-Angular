@@ -3,15 +3,15 @@
     <div class="sidebar">
       <h1 id="headerStyle">Profil Side</h1>
       <img [src]="this.url" alt="" style="width: 20%; height: 20%;">
-      <button class="btnStyle" (click)="showFilesP = !showFilesP">Vis Kontakt Oplysninger</button>
-      <button class="btnStyle" (click)="showFilesB = !showFilesB" [disabled]="this.showOB" >Vis Bryggeri Oplysninger</button>
-      <button class="btnStyle"  (click)="showFilesOB=!showFilesOB" [disabled]="!this.showOB" >Oprette ny Bryggeri</button>
+      <button class="btnStyle" (click)="visFillerP = !visFillerP">Vis Kontakt Oplysninger</button>
+      <button class="btnStyle" (click)="visFillerB = !visFillerB" [disabled]="this.visOB" >Vis Bryggeri Oplysninger</button>
+      <button class="btnStyle"  (click)="visFillerOB=!visFillerOB" [disabled]="!this.visOB" >Oprette ny Bryggeri</button>
       <!-- <button class="btnStyle"  (click)="logud()" >LogUd</button> -->
 
     </div>
   </mat-drawer>
-  <mat-drawer-content class="main" id="imgeUp" *ngIf="userInfoList" >
-    <mat-card *ngIf="showFilesP">
+  <mat-drawer-content class="main" id="imgeUp" *ngIf="kontaktOplysningsListe" >
+    <mat-card *ngIf="visFillerP">
       <mat-card-content>
         <mat-accordion class="example-headers-align" multi>
           <mat-expansion-panel>
@@ -26,56 +26,56 @@
 
             <mat-card class="containStyle">
               <span>Fornavn:</span>
-              <span class="txtStyle">{{userInfoList.fname}}</span>
+              <span class="txtStyle">{{kontaktOplysningsListe.fnavn}}</span>
             </mat-card>
             <mat-card class="containStyle">
               <span>Efternavn:</span>
-              <span class="txtStyle">{{userInfoList.sname}}</span>
+              <span class="txtStyle">{{kontaktOplysningsListe.enavn}}</span>
             </mat-card>
             <mat-card class="containStyle">
               <span>Addresselinje1:</span>
-              <span class="txtStyle">{{userInfoList.addressline1}}</span>
+              <span class="txtStyle">{{kontaktOplysningsListe.adresseLinje1}}</span>
             </mat-card>
             <mat-card class="containStyle">
               <span>Addresselinje2:</span>
-              <span class="txtStyle">{{userInfoList.addressline2}}</span>
+              <span class="txtStyle">{{kontaktOplysningsListe.adresseLinje1}}</span>
             </mat-card>
             <mat-card class="containStyle">
               <span>Telefonnr:</span>
-              <span class="txtStyle">{{userInfoList.phoneNr}}</span>
+              <span class="txtStyle">{{kontaktOplysningsListe.telefonNr}}</span>
             </mat-card>
             <mat-card class="containStyle">
               <span>Email:</span>
-              <span class="txtStyle">{{userInfoList.email}}</span>
+              <span class="txtStyle">{{kontaktOplysningsListe.email}}</span>
             </mat-card>
             <mat-card class="containStyle">
               <span>Postnr:</span>
-              <span class="txtStyle">{{userInfoList.mailNr}}</span>
+              <span class="txtStyle">{{kontaktOplysningsListe.postNr}}</span>
             </mat-card>
             <mat-card class="containStyle">
               <span>By:</span>
-              <span class="txtStyle">{{userInfoList.city}}</span>
+              <span class="txtStyle">{{kontaktOplysningsListe.by}}</span>
             </mat-card>
             <mat-card class="containStyle">
               <span>Brugernavn:</span>
-              <span class="txtStyle">{{this.userList.username}}</span>
+              <span class="txtStyle">{{this.brugerListe.brugernavn}}</span>
             </mat-card>
             <mat-card class="containStyle">
               <span>Rollenavn:</span>
-              <span class="txtStyle">{{this.roleList.roleName}}</span>
+              <span class="txtStyle">{{this.rolleListe.rolleNavn}}</span>
             </mat-card>
             <mat-action-row>
-              <button mat-button color="primary" (click)="onDeleteProfile()" class="btnMainStyle">Slet Profil</button>
-              <button mat-button color="primary" (click)="onUpdateProfile()" class="btnMainStyle">Rediger Profil</button>
+              <button mat-button color="primary" (click)="onSletProfil()" class="btnMainStyle">Slet Profil</button>
+              <button mat-button color="primary" (click)="onOpdaterProfil()" class="btnMainStyle">Rediger Profil</button>
             </mat-action-row>
 
           </mat-expansion-panel>
         </mat-accordion>
       </mat-card-content>
     </mat-card>
-    <mat-card *ngIf="showFilesB">
+    <mat-card *ngIf="visFillerB">
       <mat-card-content>
-        <mat-accordion class="example-headers-align" multi *ngIf="breweryList">
+        <mat-accordion class="example-headers-align" multi *ngIf="bryggeriListe">
           <mat-expansion-panel>
             <mat-expansion-panel-header>
               <mat-panel-title>
@@ -91,26 +91,26 @@
             </mat-card> -->
             <mat-card class="containStyle">
               <span>Logo:</span>
-              <span class="txtStyle"><img [src]="this.breweryList.logo" alt="" style="width: 20%; height: 20%;"></span>
+              <span class="txtStyle"><img [src]="this.bryggeriListe.bryggeriLogo" alt="" style="width: 20%; height: 20%;"></span>
             </mat-card>
             <mat-card class="containStyle">
               <span>Navn:</span>
-              <span class="txtStyle">{{breweryList.name}}</span>
+              <span class="txtStyle">{{bryggeriListe.navn}}</span>
             </mat-card>
             <mat-card class="containStyle">
               <span>Beskrivelse:</span>
-              <span class="txtStyle">{{breweryList.discription}}</span>
+              <span class="txtStyle">{{bryggeriListe.beskrivelse}}</span>
             </mat-card>
             <mat-action-row>
-              <button mat-button color="primary" (click)="onDeleteBrewery()" class="btnMainStyle">Slet Bryggeri</button>
-              <button mat-button color="primary" (click)="onUpdateBrewery()" class="btnMainStyle">Rediger Bryggeri</button>
+              <button mat-button color="primary" (click)="onSletBryggeri()" class="btnMainStyle">Slet Bryggeri</button>
+              <button mat-button color="primary" (click)="onOpdaterBryggeri()" class="btnMainStyle">Rediger Bryggeri</button>
             </mat-action-row>
           </mat-expansion-panel>
         </mat-accordion>
       </mat-card-content>
     </mat-card>
 
-    <mat-card *ngIf="showFilesOB">
+    <mat-card *ngIf="visFillerOB">
       <mat-card-content>
         <mat-accordion class="example-headers-align" multi>
           <mat-expansion-panel>
@@ -122,27 +122,27 @@
                 <mat-icon>work</mat-icon>
               </mat-panel-description>
             </mat-expansion-panel-header>
-            <form [formGroup]="breweryCreationForm" novalidate class="containStyle">
+            <form [formGroup]="bryggeriOprettelsesForm" novalidate class="containStyle">
               <mat-form-field appearance="fill" class="example-full-width">
                 <mat-label>Logo</mat-label>
-                <input matInput placeholder="billede" formControlName="logo" [(ngModel)]="newBrewery.logo">
-                <input type="file" class="btnMainStyle" (change)="onSubmitCertificate($event)">
+                <input matInput placeholder="Billede" formControlName="bryggeriLogo" [(ngModel)]="nytBryggeri.bryggeriLogo">
+                <input type="file" class="btnMainStyle" (change)="onSubmitCertifikat($event)">
               </mat-form-field>
               <mat-form-field appearance="fill" class="example-full-width">
                 <mat-label>Navn</mat-label>
-                <input matInput placeholder="billede" formControlName="name" [(ngModel)]="newBrewery.name" required>
+                <input matInput placeholder="Navn" formControlName="navn" [(ngModel)]="nytBryggeri.navn" required>
                 <mat-error>
                   feltet skal udfyldes
                 </mat-error>
               </mat-form-field>
               <mat-form-field appearance="fill" class="example-full-width">
                 <mat-label>Beskrivelse</mat-label>
-                <input matInput placeholder="billede" formControlName="discription" [(ngModel)]="newBrewery.description">
+                <input matInput placeholder="Beskrivelse" formControlName="beskrivelse" [(ngModel)]="nytBryggeri.beskrivelse">
               </mat-form-field>
             </form>
             <mat-action-row>
               <button mat-button color="primary" (click)="onClose()" class="btnMainStyle">Annulere</button>
-              <button mat-button color="primary" (click)="onCreateBrewery(); $event.stopPropagation()"
+              <button mat-button color="primary" (click)="onOpretBryggeri(); $event.stopPropagation()"
                 class="btnMainStyle">Oprette Bryggeri</button>
             </mat-action-row>
           </mat-expansion-panel>

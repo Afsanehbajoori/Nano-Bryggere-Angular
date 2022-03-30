@@ -3,8 +3,8 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RedigerProfilDialogBoxComponent } from 'src/app/main/rediger-profil-dialog-box/rediger-profil-dialog-box.component';
 import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
-import { ContactInformation } from 'src/app/Models/ContactInformation';
-import { User } from 'src/app/Models/User';
+import { KontaktOplysninger } from 'src/app/Models/KontaktOplysninger';
+import { Bruger } from 'src/app/Models/Bruger';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 
 @Component({
@@ -13,17 +13,17 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./bruger-certifikat.component.css']
 })
 export class BrugerCertifikatComponent implements OnInit {
-  userList: ContactInformation[]; //oplysninger
-  userInfo: ContactInformation;
-  certificateList: User[];
-  certificateInfo: User; //oplysninger
-  userInfoId: number;
-  endpointC = '/ContactInformation';
-  endpointU = '/Users';
+  kontaktOplysningsListe: KontaktOplysninger[]; //oplysninger
+  kontaktOplysninger: KontaktOplysninger;
+  certifikatListe: Bruger[];
+  certifikat: Bruger; //oplysninger
+  brugerId: number;
+  endpointK = '/KontaktOplysninger';
+  endpointBru = '/Bruger';
   clickButton: boolean = true;
   searchkey: string;
-  dialogRefDelete: MatDialogRef<SletDialogBoxComponent>;
-  dialogRefUpdateProfile: MatDialogRef<RedigerProfilDialogBoxComponent>;
+  dialogRefSlet: MatDialogRef<SletDialogBoxComponent>;
+  dialogRefOpdaterProfil: MatDialogRef<RedigerProfilDialogBoxComponent>;
   constructor(
     public dialog: MatDialog,
     public restApi: RestApiService,
@@ -32,15 +32,15 @@ export class BrugerCertifikatComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.onLoadUserCertificate();
+    this.onHentBrugerCertifikat();
   }
 
-  onLoadUserCertificate() {
-    return this.restApi.getDatas(this.endpointU).subscribe((userCertificate) => {
-      this.certificateList = userCertificate.filter((res: any) => {
+  onHentBrugerCertifikat() {
+    return this.restApi.getDatas(this.endpointBru).subscribe((userCertificate) => {
+      this.certifikatListe = userCertificate.filter((res: any) => {
         res.certificateLevel === 1;
-        this.restApi.getDatas(this.endpointC).subscribe((contactInfo) => {
-          this.userList = contactInfo.filter((result: any) => {
+        this.restApi.getDatas(this.endpointK).subscribe((contactInfo) => {
+          this.kontaktOplysningsListe = contactInfo.filter((result: any) => {
             return result.id === res.id;
           })
         })
@@ -48,47 +48,47 @@ export class BrugerCertifikatComponent implements OnInit {
     });
   }
 
-  onFindUserCertificate() {
+  onFindBrugerCertifikat() {
     if (this.searchkey == "") {
       this.ngOnInit();
     }
     else {
-      this.restApi.getParticipantByEventsTitle(this.searchkey, this.endpointC).subscribe(data => {
-        this.certificateList = data;
-        console.log('hi:', this.certificateList)
+      this.restApi.getParticipantByEventsTitle(this.searchkey, this.endpointK).subscribe(data => {
+        this.certifikatListe = data;
+        console.log('hi:', this.certifikatListe)
       })
     }
   }
 
   //Godkend certifikat
-  onConfirmCertificate(id: any) {
-    this.restApi.getData(id, this.endpointU).subscribe(data => {
-      this.certificateInfo = data;
-      this.certificateInfo.certificateLevel = 2;
-      this.restApi.updateData(id, this.endpointU, this.certificateInfo).subscribe(data => {
+  onBekraftCertifikat(id: any) {
+    this.restApi.getData(id, this.endpointBru).subscribe(data => {
+      this.certifikat = data;
+      this.certifikat.certifikatLevel = 2;
+      this.restApi.updateData(id, this.endpointBru, this.certifikat).subscribe(data => {
         this.ngOnInit();
       })
     })
   };
 
   //Benægt certifikat
-  onDenyCertificate(id: any) {
-    this.restApi.getData(id, this.endpointU).subscribe(data => {
-      this.certificateInfo = data;
-      this.certificateInfo.certificateLevel = 0;
-      this.restApi.updateData(id, this.endpointU, this.certificateInfo).subscribe(data => {
+  onBenagtCertifikat(id: any) {
+    this.restApi.getData(id, this.endpointBru).subscribe(data => {
+      this.certifikat = data;
+      this.certifikat.certifikatLevel = 0;
+      this.restApi.updateData(id, this.endpointBru, this.certifikat).subscribe(data => {
         this.ngOnInit();
       })
     })
   }
 
-  onShowUserCertificate(id: any) {
+  onVisBrugerCertifikat(id: any) {
     this.clickButton = false;
-    return this.restApi.getData(id, this.endpointU).subscribe((data) => {
-      this.userInfoId = data.contactInformationId;
-      this.certificateInfo = data;
-      this.restApi.getData(this.userInfoId, this.endpointC).subscribe((data) => {
-        this.userInfo = data;
+    return this.restApi.getData(id, this.endpointBru).subscribe((data) => {
+      this.brugerId = data.contactInformationId;
+      this.certifikat = data;
+      this.restApi.getData(this.brugerId, this.endpointK).subscribe((data) => {
+        this.kontaktOplysninger = data;
       })
     })
   }

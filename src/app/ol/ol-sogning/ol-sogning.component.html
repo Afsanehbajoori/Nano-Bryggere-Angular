@@ -2,42 +2,42 @@
     <mat-toolbar class="login-header" style="background: linear-gradient(#34b8cf, #3f68ee);">
         <form class="example-form">
             <mat-form-field style="justify-content: center;">
-                <input matInput type="text" placeholder="Find øl" [(ngModel)]="search" (ngModelChange)="onFindBeer()" [ngModelOptions]="{standalone: true}">
+                <input matInput type="text" placeholder="Find øl" [(ngModel)]="search" (ngModelChange)="onFindOl()" [ngModelOptions]="{standalone: true}">
             </mat-form-field>
         </form>
         <h1 style="justify-content: center;">Find Øl</h1>
     </mat-toolbar>
     <table style="width: 100%; height: 100%; display: flex;">
         <mat-accordion class="example-headers-align" multi style="width: 100%;">
-            <mat-expansion-panel *ngFor="let beer of beers" style="margin-top: 10px;">
+            <mat-expansion-panel *ngFor="let ol of oller" style="margin-top: 10px;">
                 <mat-expansion-panel-header
                     style="background: linear-gradient(rgb(30, 122, 228), rgb(75, 127, 185)); justify-content: center; width: 100%;">
                     <mat-panel-title class="centers" style="justify-content: center;">
-                        Øl Navn: {{beer.name}}
+                        Øl Navn: {{ol.navn}}
                     </mat-panel-title>
                     <mat-action-row class="centers" style="justify-content: center;">
-                        <button mat-button class="btnMainStyle" (click)="onShowBeer(beer.id)">Vis øl info</button>
+                        <button mat-button class="btnMainStyle" (click)="onShowOl(ol.id)">Vis øl info</button>
                     </mat-action-row>
                 </mat-expansion-panel-header>
                 <mat-card class="containStyle">
                     <p>Type:</p>
-                    <p>{{beer.type}}</p>
+                    <p>{{ol.type}}</p>
                 </mat-card>
                 <mat-card class="containStyle">
                     <p>Procent:</p>
-                    <p>{{beer.percentage}}</p>
+                    <p>{{ol.procent}}</p>
                 </mat-card>
                 <mat-card class="containStyle">
                     <p>Smag:</p>
-                    <p>{{beer.taste}}</p>
+                    <p>{{ol.smag}}</p>
                 </mat-card>
                 <mat-card class="containStyle">
                     <p>Beskrivelse:</p>
-                    <p>{{beer.description}}</p>
+                    <p>{{ol.beskrivelse}}</p>
                 </mat-card>
                 <mat-card class="containStyle">
                     <p>Etiket:</p>
-                    <img [src]="beer.label" alt="" style="width: 20%; height: 20%;">
+                    <img [src]="ol.olBilled" alt="" style="width: 20%; height: 20%;">
                 </mat-card>
             </mat-expansion-panel>
         </mat-accordion>

@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
-import { Beer } from 'src/app/Models/Beer';
+import { Øl } from 'src/app/Models/Øl';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 
 @Component({
@@ -11,11 +11,11 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./ol-admin-side.component.css']
 })
 export class OlAdminSideComponent implements OnInit {
-  beers: Beer[];
-  beer: Beer;
-  endpointB = '/Beers';
+  oller: Øl[];
+  ol: Øl;
+  endpointB = '/Øller';
   data = sessionStorage.getItem('id');
-  searchkey: string;
+  searchkeyOlNavn: string;
   constructor(
     public dialog: MatDialog,
     public restApi: RestApiService, 
@@ -24,31 +24,31 @@ export class OlAdminSideComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.onLoadBeer()
+    this.onHentOl()
   }
 
-  onLoadBeer(){
+  onHentOl(){
     return this.restApi.getDatas(this.endpointB).subscribe((beer) => {
-      this.beers = beer;
+      this.oller = beer;
     });
   }
 
-  onFindBeer(){
-    if(this.searchkey == ""){
+  onFindOlNavn(){
+    if (this.searchkeyOlNavn == "") {
       this.ngOnInit();
     }
-    else{
-      this.beers = this.beers.filter(res =>{
-        return res.name.toLowerCase().match(this.searchkey.toLowerCase());
+    else {
+      this.oller = this.oller.filter(res => {
+        return res.navn.toLowerCase().match(this.searchkeyOlNavn.toLowerCase());
       })
     }
   }
 
-  onDeleteBeer(id: any) {
+  onSletOl(id: any) {
     let dialogRef = this.dialog.open(SletDialogBoxComponent);
     dialogRef.afterClosed().subscribe(result => {
       this.restApi.deleteData(id, this.endpointB).subscribe(data => {
-        this.onLoadBeer();
+        this.onHentOl();
       })
     });
   };

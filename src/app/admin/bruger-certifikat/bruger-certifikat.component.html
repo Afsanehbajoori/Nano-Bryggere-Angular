@@ -3,7 +3,7 @@
         <form class="example-form" style="margin-left: 20px; justify-content: center; width: 100%;">
             <mat-form-field>
                 <input matInput type="search" placeholder="Find certificate" [(ngModel)]="searchkey"
-                    (ngModelChange)="onFindUserCertificate()" [ngModelOptions]="{standalone: true}">
+                    (ngModelChange)="onFindBrugerCertifikat()" [ngModelOptions]="{standalone: true}">
             </mat-form-field>
         </form>
         <h1 style="justify-content: center; width: 100%;">Certifikat liste</h1>
@@ -11,37 +11,36 @@
     <mat-card>
         <table style="width: 100%; height: 100%; display: flex;">
             <mat-accordion class="example-headers-align" multi style="width: 100%;">
-                <mat-expansion-panel *ngFor="let user of userList" style="margin-top: 10px;" [disabled]="clickButton" (click)="clickButton=true">
+                <mat-expansion-panel *ngFor="let kontakt of kontaktOplysningsListe" style="margin-top: 10px;" [disabled]="clickButton" (click)="clickButton=true">
                     <mat-expansion-panel-header style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236)); justify-content: center; width: 100%;">
                         <mat-panel-title class="centers" style="justify-content: center;">
                             <span style="font-weight: bold; margin-right: 20px;"> Brugernavn: </span>
-                            <span>{{user.fname}}</span>
+                            <span>{{kontakt.fnavn}}</span>
                         </mat-panel-title>
                         <mat-action-row class="centers" style="justify-content: center;">
-                            <button mat-button class="btnMainStyle" (click)="onShowUserCertificate(user.id)">Vis info</button> |
-                            <button mat-button class="btnMainStyle" (click)="onConfirmCertificate(user.id)">Godkend certifikat</button> |
-                            <button mat-button class="btnMainStyle" (click)="onDenyCertificate(user.id)">Afslå certiffikat</button>
-                            
+                            <button mat-button class="btnMainStyle" (click)="onVisBrugerCertifikat(kontakt.id)">Vis info</button> |
+                            <button mat-button class="btnMainStyle" (click)="onBekraftCertifikat(kontakt.id)">Godkend certifikat</button> |
+                            <button mat-button class="btnMainStyle" (click)="onBenagtCertifikat(kontakt.id)">Afslå certiffikat</button>
                         </mat-action-row>
                     </mat-expansion-panel-header>
-                    <div *ngIf="userInfo">
+                    <div *ngIf="kontaktOplysninger">
                         <mat-card class="containStyle">
                             <span>Fornavn: </span>
-                            <span class="txtStyle">{{userInfo.fname}}</span>
+                            <span class="txtStyle">{{kontaktOplysninger.fnavn}}</span>
                         </mat-card>
                         <mat-card class="containStyle">
                             <span>Efternavn: </span>
-                            <span>{{userInfo.sname}}</span>
+                            <span>{{kontaktOplysninger.enavn}}</span>
                         </mat-card>
                         <mat-card class="containStyle">
                             <span>Email: </span>
-                            <span>{{userInfo.email}}</span>
+                            <span>{{kontaktOplysninger.email}}</span>
                         </mat-card>
                     </div>
-                    <div *ngIf="certificateInfo">
+                    <div *ngIf="certifikat">
                         <mat-card class="containStyle">
                             <span>Certifikat billed: </span>
-                            <img [src]="certificateInfo.certificatePicture" alt="" style="width: 20%; height: 20%;">
+                            <img [src]="certifikat.certifikatBilled" alt="" style="width: 20%; height: 20%;">
                         </mat-card>
                     </div>
                 </mat-expansion-panel>

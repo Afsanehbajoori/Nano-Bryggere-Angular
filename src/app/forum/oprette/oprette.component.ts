@@ -10,27 +10,27 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 })
 export class OpretteComponent implements OnInit {
 
-  @Input() forumCreation = { title: '', description: '' , createDate:''};
-  createForm: any = new FormGroup({});
+  @Input() forumOprettelse = { titel: '', beskrivelse: '' , oprettet:''};
+  opretForm: any = new FormGroup({});
   endpointF = '/Forumer';
 
 
   constructor( public restApi: RestApiService, private router: Router, public actRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.createForm = new FormGroup({
-      title: new FormControl('', Validators.required),
-      description: new FormControl('', Validators.required),
-      createDate: new FormControl('', Validators.required)
+    this.opretForm = new FormGroup({
+      titel: new FormControl('', Validators.required),
+      beskrivelse: new FormControl('', Validators.required),
+      oprettet: new FormControl('', Validators.required),
     });
   }
 
-  onCancelForum() {
+  onAnuller() {
     return this.router.navigate(['../forum/forum'])
   };
 
   onSubmitForum() {
-    this.restApi.createData(this.forumCreation, this.endpointF).subscribe((data) => {
+    this.restApi.createData(this.forumOprettelse, this.endpointF).subscribe((data) => {
       this.router.navigate(['../forum/forum'])
       localStorage.setItem('forumId' ,JSON.stringify(data.id));
       // console.log('id',data.id);

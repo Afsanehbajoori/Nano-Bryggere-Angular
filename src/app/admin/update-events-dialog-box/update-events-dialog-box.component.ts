@@ -10,8 +10,8 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./update-events-dialog-box.component.css']
 })
 export class UpdateEventsDialogBoxComponent implements OnInit {
-  updateForm: FormGroup = new FormGroup({});
-  eventsList:any;
+  opdaterForm: FormGroup = new FormGroup({});
+  eventsListe:any;
   endpointE= '/Events';
   eventsId : number;
 
@@ -28,27 +28,27 @@ export class UpdateEventsDialogBoxComponent implements OnInit {
     this.restApi.getData(this.eventsId , this.endpointE)
     .toPromise()
     .then(data => {
-      this.eventsList= data ;
+      this.eventsListe= data ;
 
-      this.updateForm = this.formBuilder.group({
-        eventPicture : new FormControl(this.eventsList.eventPicture),
-        title : new FormControl(this.eventsList.title),
-        description: new FormControl(this.eventsList.description),
-        startDate: new FormControl(this.eventsList.startDate),
-        endDate: new FormControl(this.eventsList.endDate),
-        location: new FormControl(this.eventsList.location),
+      this.opdaterForm = this.formBuilder.group({
+        eventBilled : new FormControl(this.eventsListe.eventBilled),
+        titel : new FormControl(this.eventsListe.titel),
+        beskrivelse: new FormControl(this.eventsListe.beskrivelse),
+        startDato: new FormControl(this.eventsListe.startDato),
+        slutDato: new FormControl(this.eventsListe.slutDato),
+        lokation: new FormControl(this.eventsListe.lokation),
       })
     })
   }
   
-  onSubmitCertificate(event: any) {
+  onSubmitCertifikat(event: any) {
     if(event.target.files){
       var reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]);
       reader.onload=(e: any)=>{
-        this.eventsList.eventPicture =e.target.result;
-        console.log( this.eventsList.eventPicture);
-        localStorage.setItem('eventPicture' ,JSON.stringify(this.eventsList.eventPicture));
+        this.eventsListe.eventBilled =e.target.result;
+        console.log( this.eventsListe.eventBilled);
+        localStorage.setItem('eventBilled' ,JSON.stringify(this.eventsListe.eventBilled));
       }
     }
   };

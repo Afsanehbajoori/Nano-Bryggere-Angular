@@ -9,8 +9,8 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./admin-opret-tag.component.css']
 })
 export class AdminOpretTagComponent implements OnInit {
-  @Input() tagCreation = { name: ''};
-  createForm : FormGroup;
+  @Input() tagOprettelse = { navn: ''};
+  opretForm : FormGroup;
   endpointT = '/Tags';
   constructor(
     public restApi: RestApiService,
@@ -18,18 +18,18 @@ export class AdminOpretTagComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.createForm = new FormGroup({
-      name: new FormControl('', Validators.required)
+    this.opretForm = new FormGroup({
+      navn: new FormControl('', Validators.required)
     })
   }
   
-  onCancel() {
-    return this.router.navigate(['../main/catalog']);
+  onAnuller() {
+    return this.router.navigate(['../main/katalog']);
   };
 
-  onSubmitBeer() {
-    this.restApi.createData(this.tagCreation, this.endpointT).subscribe((data) => {
-      this.router.navigate(['../main/catalog']);
+  onSubmitOl() {
+    this.restApi.createData(this.opretForm, this.endpointT).subscribe((data) => {
+      this.router.navigate(['../main/katalog']);
     });
   }
 }

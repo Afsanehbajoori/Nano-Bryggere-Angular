@@ -1,14 +1,13 @@
 import { Component, OnInit ,ChangeDetectionStrategy , ViewEncapsulation} from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { Brewery } from 'src/app/Models/Brewery';
+import { Bryggeri } from 'src/app/Models/Bryggeri';
 import { Events } from 'src/app/Models/Events';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 import { VisDetajlerComponent } from '../vis-detajler/vis-detajler.component';
 import { VisEventsDetajlerComponent } from '../vis-events-detajler/vis-events-detajler.component';
 import { VisOlDetajlerComponent } from '../vis-ol-detajler/vis-ol-detajler.component';
-import { Beer } from 'src/app/Models/Beer';
+import { Øl } from 'src/app/Models/Øl';
 
 
 @Component({
@@ -21,12 +20,12 @@ import { Beer } from 'src/app/Models/Beer';
 
 export class ForsideComponent implements OnInit {
   events: Events[];
-  brewery: Brewery[];
-  beerList: Beer [];
+  bryggeriListe: Bryggeri[];
+  olListe: Øl [];
   event = new Events;
-  eventList : any = {};
-  endpointB='/Breweries';
-  endpointBr = '/Beers';
+  eventListe : any = {};
+  endpointB='/Bryggerier';
+  endpointBr = '/Øller';
   endpointE = '/Events';
 
   constructor(
@@ -35,58 +34,57 @@ export class ForsideComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.onLoadEvent();
-    this.onLoadBrewery();
-    this.onLoadBeer();
+    this.onHentEvent();
+    this.onHentBryggeri();
+    this.onHentOl();
   }
 
-  onLoadEvent() {
+  onHentEvent() {
     return this.restApi.getDatas(this.endpointE).subscribe((data) => {
       this.events = data;
       //console.log(this.events)
     });
   }
 
-  onLoadBrewery(){
+  onHentBryggeri(){
     return this.restApi.getDatas(this.endpointB).subscribe((data) => {
-      this.brewery = data;
+      this.bryggeriListe = data;
       //console.log('bryggeriList:',this.bryggeri);
     })
   }
   
-  onLoadBeer(){
+  onHentOl(){
     return this.restApi.getDatas(this.endpointBr).subscribe((data) => {
-      this.beerList = data;
+      this.olListe = data;
       //console.log('olList:',this.olList);
     })
   }
 
-  onShowBeerDetails(id:any){
+  onVisOlDetaljer(id:any){
     //console.log('click', id);
     this.dialog.open(VisOlDetajlerComponent , {
       width:'400px',
       height:'300'
 
     });
-    localStorage.setItem('beerId' , id);
+    localStorage.setItem('olId' , id);
   }
 
-  onShowDetails(id:any){
+  onVisDetaljer(id:any){
     //console.log('click', id);
     this.dialog.open(VisDetajlerComponent , {
       width:'400px',
       height:'auto'
 
     });
-    localStorage.setItem('breweryId' , id);
+    localStorage.setItem('bryggeriId' , id);
   }
 
-  onShowEventsDetails(id:any){
+  onVisEventsDetaljer(id:any){
     // console.log('click', id);
     this.dialog.open(VisEventsDetajlerComponent , {
       width:'400px',
       height:'auto'
-
     });
     localStorage.setItem('eventsId' , id);
     // console.log('eventsId' , id)

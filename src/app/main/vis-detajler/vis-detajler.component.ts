@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { timeStamp } from 'console';
 import { browser } from 'protractor';
-import { Brewery } from 'src/app/Models/Brewery';
+import { Bryggeri } from 'src/app/Models/Bryggeri';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 
 @Component({
@@ -10,22 +10,22 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./vis-detajler.component.css']
 })
 export class VisDetajlerComponent implements OnInit {
-  breweryId:number;
-  endpointB='/Breweries';
-  breweryInfo: any;
+  bryggeriId: number;
+  endpointB='/Bryggerier';
+  bryggeri: Bryggeri;
   constructor(public restApi: RestApiService) { }
 
   ngOnInit(): void {
-    this.breweryId= JSON.parse(localStorage.getItem('breweryId') || '{}');
-    console.log('bry' , this.breweryId);
-    this.onLoadBrewery();
+    this.bryggeriId= JSON.parse(localStorage.getItem('bryggeriId') || '{}');
+    // console.log('bry' , this.bryggeriId);
+    this.onHentBryggeri();
 
   }
 
-  onLoadBrewery(){
-    this.restApi.getData(this.breweryId , this.endpointB).subscribe(data => {
-      this.breweryInfo = data;
-      console.log('detajler:' , this.breweryInfo.navn)
+  onHentBryggeri(){
+    this.restApi.getData(this.bryggeriId , this.endpointB).subscribe(data => {
+      this.bryggeri = data;
+      // console.log('detajler:' , this.breweryInfo.navn);
     })
   }
 }

@@ -16,14 +16,14 @@ export class VisEventsDetajlerComponent implements OnInit {
 
   ngOnInit(): void {
     this.eventsId= JSON.parse(localStorage.getItem('eventsId') || '{}');
-    console.log('event' , this.eventsId);
-    this.onLoadBeer();
+    // console.log('event' , this.eventsId);
+    this.onHentEvent();
   }
 
-  onLoadBeer(){
+  onHentEvent(){
     this.restApi.getData(this.eventsId , this.endpointE).subscribe(data => {
       this.eventInfo = data;
-      console.log('detajler:' , this.eventInfo)
+      // console.log('detajler:' , this.eventInfo)
     })
   }
 

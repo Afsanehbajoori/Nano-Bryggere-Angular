@@ -12,25 +12,25 @@ import { MessageDialogBoxComponent } from '../message-dialog-box/message-dialog-
   styleUrls: ['./eventkalender-side.component.css']
 })
 export class EventkalenderSideComponent implements OnInit {
-  dialogRefDelete: MatDialogRef<SletDialogBoxComponent>;
+  dialogRefSlet: MatDialogRef<SletDialogBoxComponent>;
   events: Events[];
   endpointE = '/Events';
-  endpointP = '/Participation';
+  endpointD = '/Deltager';
   searchkey: string;
-  participation: boolean = false;
+  deltagene: boolean = false;
   buttonDisabled: boolean ;
   buttonEnabled: boolean;
-  eventsId:number;
-  userId:number;
-  listParticipation:any;
-  clickButton:boolean = true;
-  eventList:any;
+  eventsId: number;
+  brugerId: number;
+  deltagerListe: any;
+  clickButton: boolean = true;
+  eventListe: any;
   id = this.actRoute.snapshot.params['id'];
-  arrayListParticipation = new Array();
-  participantId:number;
-  list:any;
-  isParticipant:boolean;
- @Input() participant = { userId:0 , eventsId:0 , isParticipant:false}
+  deltagelsesArray = new Array();
+  deltagerId: number;
+  liste: any;
+  Deltagene:boolean;
+ @Input() deltager = { brugerId:0 , eventsId:0 , erDeltagene:false}
 
   constructor(
     public dialog: MatDialog,
@@ -39,38 +39,38 @@ export class EventkalenderSideComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.userId = JSON.parse(localStorage.getItem('userId') || '{}');
-    this.onLoadEvent();
-    this.onLoadParticipation();
+    this.brugerId = JSON.parse(localStorage.getItem('brugerId') || '{}');
+    this.onHentEvent();
+    this.onHentDeltagene();
   }
 
-  onLoadEvent() {
+  onHentEvent() {
     return this.restApi.getDatas(this.endpointE).subscribe((data) => {
       this.events = data;
   });
   }
 
-  onLoadParticipation(){
-    this.restApi.getDatas(this.endpointP).subscribe(data => {
-      this.listParticipation=data;
-      if(this.userId){
-        this.listParticipation = this.listParticipation.filter((a:any) => a.userId === this.userId);
-        // console.log('list:' , this.listParticipation);
-        for(var d =0; d < this.listParticipation.length ; d++)
+  onHentDeltagene(){
+    this.restApi.getDatas(this.endpointD).subscribe(data => {
+      this.deltagerListe=data;
+      if(this.brugerId){
+        this.deltagerListe = this.deltagerListe.filter((a:any) => a.brugerId === this.brugerId);
+        // console.log('list:' , this.deltagerListe);
+        for(var d =0; d < this.deltagerListe.length ; d++)
         {
-          // console.log('listId:' , this.listParticipation[d].eventsId);
-          if(this.listParticipation[d].eventsId){
-            this.arrayListParticipation.push(this.listParticipation[d].eventsId);
+          // console.log('listId:' , this.deltagerListe[d].eventsId);
+          if(this.deltagerListe[d].eventsId){
+            this.deltagelsesArray.push(this.deltagerListe[d].eventsId);
           }
         }
       }
    })
   }
 
- onShowEvent(id:any){
+ onVisEvent(id:any){
     this.clickButton=false;
     return this.restApi.getData(id , this.endpointE).subscribe(data => {
-      this.eventList=data;
+      this.eventListe=data;
     })
   }
 
@@ -80,21 +80,21 @@ export class EventkalenderSideComponent implements OnInit {
     }
     else{
       this.events = this.events.filter(res =>{
-        return res.title.toLowerCase().match(this.searchkey.toLowerCase());
+        return res.titel.toLowerCase().match(this.searchkey.toLowerCase());
       })
     }
   }
 
-  onJoinEvent(id:any){
-    if(this.arrayListParticipation.includes(id) )
+  onDeltagEvent(id:any){
+    if(this.deltagelsesArray.includes(id) )
     {
       this.dialog.open(MessageDialogBoxComponent);
     }else{
-        this.participant.userId=this.userId;
-        this.participant.eventsId=id;
-        this.participant.isParticipant=true;
-        this.restApi.createData(this.participant , this.endpointP).subscribe(data => {
-          this.onLoadParticipation();
+        this.deltager.brugerId=this.brugerId;
+        this.deltager.eventsId=id;
+        this.deltager.erDeltagene=true;
+        this.restApi.createData(this.deltager , this.endpointD).subscribe(data => {
+          this.onHentDeltagene();
         })
     }
   }

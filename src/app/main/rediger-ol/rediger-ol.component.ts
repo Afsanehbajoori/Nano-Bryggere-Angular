@@ -10,61 +10,61 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 })
 export class RedigerOlComponent implements OnInit {
   selected = '';
-  beerid = this.actRoute.snapshot.params['id'];
-  updateForm: FormGroup;
-  endpoints = '/Beers';
-  beerList : any;
-  vintage: Date;
+  olId = this.actRoute.snapshot.params['id'];
+  redigerForm: FormGroup;
+  endpoints = '/Øller';
+  olListe: any;
+  argang: Date;
   constructor(
     public restApi: RestApiService, 
     private router: Router,
     public actRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.updateForm = new FormGroup({
-      name: new FormControl('', Validators.required),
+    this.redigerForm = new FormGroup({
+      navn: new FormControl('', Validators.required),
       type: new FormControl('', Validators.required),
-      taste: new FormControl('', Validators.required),
-      procentage: new FormControl('', Validators.required),
-      breweryId: new FormControl('', Validators.required),
-      vintage: new FormControl('', Validators.required),
-      country: new FormControl('', Validators.required),
+      smag: new FormControl('', Validators.required),
+      procent: new FormControl('', Validators.required),
+      bryggeriId: new FormControl('', Validators.required),
+      argang: new FormControl('', Validators.required),
+      land: new FormControl('', Validators.required),
       process: new FormControl('', Validators.required),
-      label: new FormControl('', Validators.required),
-      description: new FormControl('', Validators.required),
+      olBilled: new FormControl('', Validators.required),
+      beskrivelse: new FormControl('', Validators.required),
       // billed: new FormControl('', Validators.required),
-      quantity: new FormControl('', Validators.required)
+      antal: new FormControl('', Validators.required)
     });
-    this.onLoadBeer();
+    this.onHentOl();
   }
   
-  onLoadBeer(){
-    return this.restApi.getData(this.beerid, this.endpoints).subscribe((beer: {}) => {
-      this.beerList = beer;
-      this.vintage = this.beerList.vintage;
+  onHentOl(){
+    return this.restApi.getData(this.olId, this.endpoints).subscribe((beer: {}) => {
+      this.olListe = beer;
+      this.argang = this.olListe.vintage;
     });
   }
 
-  onCancel() {
-    return this.router.navigate(['../main/catalog'])
+  onAnuller() {
+    return this.router.navigate(['../main/katalog'])
   };
 
-  onSubmitBeer() {
-    this.beerList.vintage = this.vintage;
-    console.log(this.beerList.vintage);
-    this.restApi.updateData(this.beerid, this.endpoints, this.beerList).subscribe((data) => {
-      this.router.navigate(['../main/catalog'])
+  onSubmitOl() {
+    this.olListe.vintage = this.argang;
+    // console.log(this.beerList.vintage);
+    this.restApi.updateData(this.olId, this.endpoints, this.olListe).subscribe((data) => {
+      this.router.navigate(['../main/katalog'])
     });
   }
 
-  onSubmitCertificate(event: any) {
+  onSubmitOlBilled(event: any) {
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
-      reader.onload = (e:any) => this.beerList.label = e.target.result;
+      reader.onload = (e:any) => this.olListe.olBilled = e.target.result;
       reader.readAsDataURL(event.target.files[0])
     }
     else{
-      this.beerList.label = '';
+      this.olListe.olBilled = '';
     }
   };
 }

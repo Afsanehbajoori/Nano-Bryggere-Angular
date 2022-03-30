@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Brewery } from 'src/app/Models/Brewery';
-import { Cooperation } from 'src/app/Models/Cooperation';
+import { Bryggeri } from 'src/app/Models/Bryggeri';
+import { Samarbejde } from 'src/app/Models/Samarbejde';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 
 interface Search {
@@ -26,20 +26,20 @@ const TREE_DATA: Search[] = [
 })
 
 export class SamarbejdeSideComponent implements OnInit {
-  showCooperationComponent:boolean=false;
+  showSamarbejdeComponent:boolean=false;
   dataSource = new MatTreeNestedDataSource<Search>();
   treeControl = new NestedTreeControl<Search>(node => node.children);
   
-  cooperation: Cooperation
-  cooperations: Cooperation[];
-  cooperationId: number;
-  endpointBr = '/Beers';
-  endpointB = '/Breweries';
-  endpointC = '/Cooperations';
+  samarbejde: Samarbejde
+  samarbejder: Samarbejde[];
+  samarbejdeId: number;
+  endpointO = '/Øller';
+  endpointB = '/Bryggerier';
+  endpointS = '/Samarbejder';
   searchkey: string;
-  beerId: number;
-  brewery: Brewery;
-  breweryId: number;
+  olId: number;
+  bryggeri: Bryggeri;
+  bryggeriId: number;
   constructor(
     public dialog: MatDialog,
     public restApi: RestApiService,
@@ -48,34 +48,34 @@ export class SamarbejdeSideComponent implements OnInit {
   ) {  this.dataSource.data = TREE_DATA; }
   hasChild = (_: number, node: Search) => !!node.children && node.children.length > 0;
   ngOnInit(): void {
-    this.onLoadCooperation();
+    this.onHentSamarbejde();
     // this.onLoadOl();
   }
   onShowComponent(nodeName: string, id: any) {
-    console.log(this.cooperations);
+    // console.log(this.cooperations);
     switch (nodeName) {
       case 'Vis': {
-        localStorage.setItem('cooperationBeerId', JSON.stringify(id));
-        this.showCooperationComponent = !this.showCooperationComponent;
+        localStorage.setItem('samarbejdeId', JSON.stringify(id));
+        this.showSamarbejdeComponent = !this.showSamarbejdeComponent;
         break;
       }
     }
   }
 
-  onLoadCooperation() {
-    if (this.breweryId = JSON.parse(localStorage.getItem('breweryId') || '{}')) {
-      this.restApi.getDatas(this.endpointC).subscribe((data) => {
-        this.cooperations = data.filter((res: any) => {
-          return res.breweryId1 === this.breweryId || res.breweryId2 === this.breweryId;
+  onHentSamarbejde() {
+    if (this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}')) {
+      this.restApi.getDatas(this.endpointS).subscribe((data) => {
+        this.samarbejder = data.filter((res: any) => {
+          return res.bryggeriId1 === this.bryggeriId || res.bryggeriId2 === this.bryggeriId;
         });
-        this.cooperations.forEach(function (value){
-          console.log("Value",value.beerId);
+        this.samarbejder.forEach(function (value){
+          // console.log("Value",value.beerId);
         })
       })
     }
   }
 
-  onUpdateBeer(id: any) {
-    this.router.navigate(['../main/cooperationupdate/', id]);
+  onOpdaterOl(id: any) {
+    this.router.navigate(['../main/samarbejderediger/', id]);
   };
 }

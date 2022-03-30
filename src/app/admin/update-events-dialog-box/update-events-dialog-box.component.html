@@ -1,48 +1,48 @@
 <h1 mat-dialog-title>Rediger Events</h1>
 <div mat-dialog-content>
-  <form class="example-form" [formGroup]="updateForm" *ngIf="eventsList">
+  <form class="example-form" [formGroup]="opdaterForm" *ngIf="eventsListe">
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Logo</mat-label>
-      <input matInput formControlName="eventPicture">
-      <img [src]="eventsList.eventPicture" alt="" style="width: 20%; height: 20%;">
-      <input type="file" class="btnMainStyle" (change)="onSubmitCertificate($event)">
+      <input matInput formControlName="eventBilled">
+      <img [src]="eventsListe.eventBilled" alt="" style="width: 20%; height: 20%;">
+      <input type="file" class="btnMainStyle" (change)="onSubmitCertifikat($event)">
     </mat-form-field>
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Titel:</mat-label>
-      <input matInput formControlName="title" placeholder="{{eventsList.title}}" [(ngModel)]="eventsList.title">
+      <input matInput formControlName="titel" placeholder="{{eventsListe.titel}}" [(ngModel)]="eventsListe.titel">
     </mat-form-field>
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Beskrivelse:</mat-label>
-      <input matInput formControlName="description" placeholder="{{eventsList.description}}"
-        [(ngModel)]="eventsList.description">
+      <input matInput formControlName="beskrivelse" placeholder="{{eventsListe.beskrivelse}}"
+        [(ngModel)]="eventsListe.beskrivelse">
     </mat-form-field>
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>StartDato:</mat-label>
-      <input matInput [matDatepicker]="picker1" formControlName="startDate" placeholder="{{eventsList.startDate}}"
-        [(ngModel)]="eventsList.startDate">
+      <input matInput [matDatepicker]="picker1" formControlName="startDato" placeholder="{{eventsListe.startDato}}"
+        [(ngModel)]="eventsListe.startDato">
       <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
       <mat-datepicker #picker1></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>SlutDato:</mat-label>
-      <input matInput [matDatepicker]="picker2" formControlName="endDate" placeholder="{{eventsList.endDate}}"
-        [(ngModel)]="eventsList.endDate">
+      <input matInput [matDatepicker]="picker2" formControlName="slutDato" placeholder="{{eventsListe.slutDato}}"
+        [(ngModel)]="eventsListe.slutDato">
       <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
       <mat-datepicker #picker2></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Lokation:</mat-label>
-      <input matInput formControlName="location" placeholder="{{eventsList.location}}"
-        [(ngModel)]="eventsList.location">
+      <input matInput formControlName="lokation" placeholder="{{eventsListe.lokation}}"
+        [(ngModel)]="eventsListe.lokation">
     </mat-form-field>
 
     <div mat-dialog-actions class="btn-container">
       <button mat-button (click)="dialogRefUpdateEvents.close(false)">Annulere</button>
-      <button mat-button cdkFocusInitial [mat-dialog-close]="eventsList">Gem Ændringer</button>
+      <button mat-button cdkFocusInitial [mat-dialog-close]="eventsListe">Gem Ændringer</button>
     </div>
   </form>
 </div>

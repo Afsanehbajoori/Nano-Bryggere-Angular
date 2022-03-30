@@ -5,7 +5,7 @@
         <mat-tab label="Find Deltager med brugernavn">
       <form class="example-form" style="justify-content: center; width: 100%;">
         <mat-form-field  class="txtHeader">
-            <input matInput type="search"  [(ngModel)]="searchkeyParticipants" (ngModelChange)="onFindParticipants()" [ngModelOptions]="{standalone: true}" >
+            <input matInput type="search"  [(ngModel)]="searchkeyDeltager" (ngModelChange)="onFindDeltager()" [ngModelOptions]="{standalone: true}" >
         </mat-form-field>
       </form>
         </mat-tab>
@@ -15,30 +15,26 @@
   <mat-card>
     <table style="width: 100%; height: 100%; display: flex;" >
         <mat-accordion class="example-headers-align" multi style="width: 100%;">
-             <mat-expansion-panel *ngFor="let participant of participants" style="margin-top: 10px;"  [disabled]="clickButton" (click)="clickButton=true" >
+             <mat-expansion-panel *ngFor="let deltag of deltager" style="margin-top: 10px;"  [disabled]="clickButton" (click)="clickButton=true" >
                 <mat-expansion-panel-header
                     style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236)); justify-content: center; width: 100%;">
                     <mat-panel-title class="centers" style="justify-content: center;">
                        <span style="font-weight: bold; margin-right: 20px;">Deltager Id:</span>
-                       <span>{{participant.id}}</span>
+                       <span>{{deltag.id}}</span>
                     </mat-panel-title>
                     <mat-action-row class="centers" style="justify-content: center;">
-                        <button mat-button class="btnMainStyle" (click)="onShowParticipants(participant.id)">Vis </button> |
-                        <button mat-button class="btnMainStyle" (click)="onRejectLoadParticipation(participant.id)">Afmeld Deltagelse </button>
+                        <button mat-button class="btnMainStyle" (click)="onVisDeltager(deltag.id)">Vis </button> |
+                        <button mat-button class="btnMainStyle" (click)="onAfvisDeltagelse(deltag.id)">Afmeld Deltagelse </button>
                     </mat-action-row>
                 </mat-expansion-panel-header>
                 <div >
-                  <mat-card class="containStyle" *ngIf="participantsListB">
+                  <mat-card class="containStyle" *ngIf="deltagelserListB">
                   <span>Brugernavn:</span>
-                  <span class="txtStyle">{{participantsListB.username}}</span>
+                  <span class="txtStyle">{{deltagelserListB.brugernavn}}</span>
                 </mat-card>
-                <mat-card class="containStyle" *ngIf="participantsListE">
+                <mat-card class="containStyle" *ngIf="deltagelserListE">
                   <span>EventsTitel:</span>
-                  <span class="txtStyle">{{participantsListE.title}}</span>
-                </mat-card>
-                <mat-card class="containStyle" *ngIf="participantsListD">
-                  <span>Is Deltage:</span>
-                  <span class="txtStyle">{{participantsListD.isParticipant}}</span>
+                  <span class="txtStyle">{{deltagelserListE.titel}}</span>
                 </mat-card>
                 </div>
             </mat-expansion-panel>

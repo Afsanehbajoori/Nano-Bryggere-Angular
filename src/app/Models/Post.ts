@@ -1,15 +1,15 @@
-import { User } from "./User";
+import { Bruger } from "./Bruger";
 import { Forum } from "./Forum";
 
 export class Post{
-  public id:number;
-  public userId:number;
-  public user: User;
-  public title:string;
-  public content:string;
-  public createDate:Date;
-  public answeringId:number;
-  public answer: Post;
-  public forumId:number;
-  public forum:Forum;
+  public id: number;
+  public brugerId: number;
+  public bruger: Bruger;
+  public title: string;
+  public indhold: string;
+  public oprettet: Date;
+  public postId: number;
+  public svarer: Post;
+  public forumId: number;
+  public forum: Forum;
 }

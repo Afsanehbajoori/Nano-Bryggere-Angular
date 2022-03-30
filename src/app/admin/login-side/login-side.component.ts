@@ -34,7 +34,7 @@ export class LoginSideComponent implements OnInit {
   onHentLogin(){
     return this.restApi.getDatas(this.endpointL).subscribe(data => {
       this.login=data;
-      console.log('login:' ,this.login);
+      
     }
     )
   }

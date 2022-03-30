@@ -1,0 +1,80 @@
+.main{
+  height: 80.2vh;
+  background-color: rgb(255, 255, 255);
+}
+
+#imgeUp{
+  background-image: url('/assets/images/Background-website-01.jpg');
+  background-position:center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: auto;
+}
+
+.list {
+  justify-content: center;
+}
+
+.list-item-set{
+color: black;
+font-weight: bold;
+}
+
+.containStyle{
+  background-color: rgb(252, 252, 252);
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-top: 10px;
+  padding-left: 40px;
+  font-style: oblique;
+
+}
+
+.centers{
+margin: auto;
+width: 20%;
+padding: 10px;
+text-align: center;
+flex: 1 1 auto;
+}
+
+.example-headers-align .mat-expansion-panel-header-title,
+.example-headers-align .mat-expansion-panel-header-description {
+flex-basis: 0;
+margin-top: 10px;
+font-style: oblique;
+}
+.example-headers-align .mat-expansion-panel-header-description {
+justify-content: space-between;
+align-items: center;
+}
+.txt{
+margin: 10px;
+font-weight: bolder;
+font-size: 20px;
+font-family: 'Times New Roman', Times, serif;
+font-style: italic;
+text-align: center;
+
+}
+.txtStyle{
+font-style: italic;
+font-weight: bold;
+display: flex;
+justify-content: center;
+text-align: center;
+}
+
+.txtHeader{
+font-size: 15px;
+font-style: oblique;
+font-weight: bold;
+width: 30%;
+
+
+}
+.mat-tab-group {
+margin-bottom: 5px;
+}
+
+

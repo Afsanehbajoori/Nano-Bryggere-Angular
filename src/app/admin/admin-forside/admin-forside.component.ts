@@ -21,7 +21,8 @@ const TREE_DATA: Search[] = [
     {name: 'Deltager', children:[ {name: 'Med EventTitel'} ]} ,
     {name: 'Forum', children:[ {name: 'Med ForumTitel'}]} ,
     {name: 'Tags', children:[{name: 'admin-tags'} , {name: 'admin-opret-tag'} , {name: 'admin-rediger-tag'}]} ,
-    {name: 'Certifikat'}],
+    {name: 'Certifikat'},
+    {name: 'Login'}]
   }
 ];
 
@@ -46,6 +47,7 @@ export class AdminForsideComponent implements OnInit {
   visBrugernavnComponent:boolean=false;
   visBrugerEmailComponent:boolean=false;
   visDeltageneComponent:boolean=false;
+  visLoginComponent:boolean=false;
 
   constructor(  public dialog: MatDialog,
     public restApi: RestApiService,
@@ -128,6 +130,10 @@ export class AdminForsideComponent implements OnInit {
     }
     case 'Rolle Med Brugernavn':{
       this.visRollerComponent=!this.visRollerComponent;
+      break;
+    }
+    case 'Login':{
+      this.visLoginComponent=!this.visLoginComponent;
       break;
     }
   }

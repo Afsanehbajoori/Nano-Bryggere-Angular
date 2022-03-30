@@ -24,6 +24,7 @@ export class BryggeriAdminSideComponent implements OnInit {
   id = this.actRoute.snapshot.params['id'];
   clickButton: boolean = true;
   bryggeriListe: Bryggeri[];
+  brygge:any;
 
   constructor(
     public dialog: MatDialog,
@@ -36,17 +37,18 @@ export class BryggeriAdminSideComponent implements OnInit {
     this.onHentBryggeri();
   }
 
-  onHentBryggeri() {
+  onHentBryggeri(){
     return this.restApi.getDatas(this.endpointB).subscribe((brew) => {
-      this.bryggeriListe = brew;
-      console.log(this.bryggeriListe);
+      this.bryggeri = brew;
+      console.log(this.bryggeri);
     })
   }
 
-  onVisBryggeri(id: any) {
-    this.clickButton = false;
-    return this.restApi.getData(id, this.endpointB).subscribe((data) => {
-      this.bryggeri = data;
+
+  onVisBryggeri(id:any) {
+    this.clickButton=false;
+    return this.restApi.getData(id , this.endpointB).subscribe((data) => {
+this.brygge=data;
     })
   };
 
@@ -54,8 +56,8 @@ export class BryggeriAdminSideComponent implements OnInit {
     if (this.searchkeyBryggeriNavn == "") {
       this.ngOnInit();
     }
-    else {
-      this.bryggeriListe = this.bryggeriListe.filter(res => {
+    else{
+      this.bryggeri = this.bryggeri.filter(res => {
         return res.navn.toLowerCase().match(this.searchkeyBryggeriNavn.toLowerCase());
       })
     }
@@ -101,8 +103,8 @@ export class BryggeriAdminSideComponent implements OnInit {
           console.log(this.bryggeriListe);
           this.onVisBryggeri(id);
           this.onHentBryggeri();
-        })
-      }
-    });
-  };
+          })
+        }
+      });
+    };
 }

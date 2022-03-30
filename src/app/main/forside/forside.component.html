@@ -12,9 +12,9 @@
     </span>
       <cdk-virtual-scroll-viewport orientation="horizontal" itemSize="50" class="example-viewport">
         <div *cdkVirtualFor="let ol of olListe" class="example-item" (click)="onVisOlDetaljer(ol.id)" >
-          <img [src]="this.ol.label" alt="" style="width: 40%; height: 40%;">
+          <img [src]="this.ol.olBilled" alt="" style="width: 40%; height: 40%;">
            <p>navn:</p>
-            <p class="txtStyle">{{ol.name}}</p>
+            <p class="txtStyle">{{ol.navn}}</p>
           </div>
       </cdk-virtual-scroll-viewport>
   </mat-grid-tile>
@@ -25,9 +25,9 @@
     </span>
     <cdk-virtual-scroll-viewport orientation="horizontal" itemSize="50" class="example-viewport " >
       <div *cdkVirtualFor="let bryg of bryggeriListe" class="example-item" (click)="onVisDetaljer(bryg.id)" >
-        <img [src]="this.bryg.logo" alt="" style="width: 40%; height: 40%;">
+        <img [src]="this.bryg.bryggeriLogo" alt="" style="width: 40%; height: 40%;">
          <p>Bryggerinavn:</p>
-          <p class="txtStyle">{{bryg.name}}</p>
+          <p class="txtStyle">{{bryg.navn}}</p>
         </div>
     </cdk-virtual-scroll-viewport>
   </mat-grid-tile>
@@ -38,9 +38,9 @@
     </span>
     <cdk-virtual-scroll-viewport orientation="horizontal" itemSize="20" class="example-viewport " >
       <div *cdkVirtualFor="let event of events" class="example-item" (click)="onVisEventsDetaljer(event.id)" >
-        <img [src]="this.event.eventPicture" alt="" style="width: 40%; height: 40%;">
+        <img [src]="this.event.eventBilled" alt="" style="width: 40%; height: 40%;">
          <p>Titel:</p>
-          <p class="txtStyle">{{event.title}}</p>
+          <p class="txtStyle">{{event.titel}}</p>
         </div>
     </cdk-virtual-scroll-viewport>
   </mat-grid-tile>

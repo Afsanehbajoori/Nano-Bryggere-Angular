@@ -7,9 +7,9 @@ export class Post{
   public bruger: Bruger;
   public title: string;
   public indhold: string;
-  public oprettelsesDato: Date;
-  public svarId: number;
-  public svar: Post;
+  public oprettet: Date;
+  public postId: number;
+  public svarer: Post;
   public forumId: number;
   public forum: Forum;
 }

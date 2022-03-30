@@ -10,7 +10,7 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 })
 export class OpretteComponent implements OnInit {
 
-  @Input() forumOprettelse = { titel: '', beskrivelse: '' , opretDato:''};
+  @Input() forumOprettelse = { titel: '', beskrivelse: '' , oprettet:''};
   opretForm: any = new FormGroup({});
   endpointF = '/Forumer';
 
@@ -21,16 +21,16 @@ export class OpretteComponent implements OnInit {
     this.opretForm = new FormGroup({
       titel: new FormControl('', Validators.required),
       beskrivelse: new FormControl('', Validators.required),
-      opretDato: new FormControl('', Validators.required)
+      oprettet: new FormControl('', Validators.required),
     });
   }
 
-  onCancelForum() {
+  onAnuller() {
     return this.router.navigate(['../forum/forum'])
   };
 
   onSubmitForum() {
-    this.restApi.createData(this.opretForm, this.endpointF).subscribe((data) => {
+    this.restApi.createData(this.forumOprettelse, this.endpointF).subscribe((data) => {
       this.router.navigate(['../forum/forum'])
       localStorage.setItem('forumId' ,JSON.stringify(data.id));
       // console.log('id',data.id);

@@ -11,11 +11,11 @@ import { OlAdminSideComponent } from './ol-admin-side/ol-admin-side.component';
 const routes: Routes = [
   {path:'',component:AdminForsideComponent},
   {path:'admin',component:AdminForsideComponent},
-  {path:'brugeradmin', component:BrugerAdminSideComponent},
-  {path:'eventadmin',component:EventAdminSideComponent},
-  {path:'oladmin',component:OlAdminSideComponent},
+  {path:'bruger-admin', component:BrugerAdminSideComponent},
+  {path:'event-admin',component:EventAdminSideComponent},
+  {path:'øl-admin',component:OlAdminSideComponent},
   {path:'certifikat', component:BrugerCertifikatComponent},
-  {path:'tagsadmin', component:AdminTagsComponent},
+  {path:'tags-admin', component:AdminTagsComponent},
   {path:'**', component: NotFoundComponent},
 ];
 

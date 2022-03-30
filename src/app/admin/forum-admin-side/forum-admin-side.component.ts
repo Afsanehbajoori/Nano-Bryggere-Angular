@@ -12,8 +12,8 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 })
 export class ForumAdminSideComponent implements OnInit {
   forumListe:any;
-  endpointf = '/Forumer';
-  endpointp = '/Posts';
+  endpointF = '/Forumer';
+  endpointP = '/Posts';
   forums:any;
   clickButton:boolean=true;
   posts:any;
@@ -31,19 +31,19 @@ export class ForumAdminSideComponent implements OnInit {
     this.onHentPost();
   }
   onHentForum(){
-    return this.restApi.getDatas(this.endpointf).subscribe((forum) => {
+    return this.restApi.getDatas(this.endpointF).subscribe((forum) => {
       this.forums = forum;
       console.log('forum:', this.forums)
     })
   }
     onHentPost(){
-    return this.restApi.getDatas(this.endpointp).subscribe((post) => {
+    return this.restApi.getDatas(this.endpointP).subscribe((post) => {
       this.posts = post;
       console.log('posts:',this.posts);
     })
   }
   onOpretForum(){
-    this.router.navigate(['../forum/oprette']);
+    this.router.navigate(['../forum/opret-forum']);
   }
 
   onVisForum(id:any){
@@ -56,20 +56,20 @@ export class ForumAdminSideComponent implements OnInit {
 
   onOpdaterForum(id:any){
     this.clickButton=false;
-    this.restApi.getData(id , this.endpointf)
+    this.restApi.getData(id , this.endpointF)
     .toPromise()
     .then(data => {
       this.opdaterForum= data ;
       this.opdaterForm = this.formBuilder.group({
-        title : new FormControl(this.opdaterForum.title),
-        description : new FormControl(this.opdaterForum.description),
-        createDate : new FormControl(this.opdaterForum.createDate)
+        titel : new FormControl(this.opdaterForum.titel),
+        beskrivelse : new FormControl(this.opdaterForum.beskrivelse),
+        oprettet : new FormControl(this.opdaterForum.oprettet)
       })
     })
   }
 
   onGemAndringer(id:any){
-    this.restApi.updateData(id, this.endpointf,this.opdaterForum).subscribe(data => {
+    this.restApi.updateData(id, this.endpointF,this.opdaterForum).subscribe(data => {
       this.ngOnInit()
     })
   }
@@ -84,9 +84,11 @@ export class ForumAdminSideComponent implements OnInit {
       if(this.posts.length === 0){
     let dialogRef = this.dialog.open(SletDialogBoxComponent);
     dialogRef.afterClosed().subscribe(result => {
-      this.restApi.deleteData(id, this.endpointf).subscribe(data => {
-        this.ngOnInit();
-      })
+      if(result == true){
+        this.restApi.deleteData(id, this.endpointF).subscribe(data => {
+          this.ngOnInit();
+        })
+      }
     });
     }else{
       alert('All of messages in post page have to delete first!');

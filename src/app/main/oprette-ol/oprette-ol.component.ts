@@ -30,7 +30,7 @@ export class OpretteOlComponent implements OnInit {
       argang: new FormControl('', Validators.required),
       land: new FormControl('', Validators.required),
       process: new FormControl('', Validators.required),
-      label: new FormControl('', Validators.required),
+      olBilled: new FormControl('', Validators.required),
       beskrivelse: new FormControl('', Validators.required),
       // olBilled: new FormControl('', Validators.required),
       antal: new FormControl('', Validators.required)
@@ -40,7 +40,7 @@ export class OpretteOlComponent implements OnInit {
   onAnuller() {
         return this.router.navigate(['../main/katalog']);
   };
-  onSubmitCertifikat(event: any) {
+  onSubmitOlBilled(event: any) {
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
       reader.onload = (e:any) => this.olOprettelse.olBilled = e.target.result;

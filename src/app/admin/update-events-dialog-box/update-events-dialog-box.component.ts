@@ -31,12 +31,12 @@ export class UpdateEventsDialogBoxComponent implements OnInit {
       this.eventsListe= data ;
 
       this.opdaterForm = this.formBuilder.group({
-        eventPicture : new FormControl(this.eventsListe.eventPicture),
-        title : new FormControl(this.eventsListe.title),
-        description: new FormControl(this.eventsListe.description),
-        startDate: new FormControl(this.eventsListe.startDate),
-        endDate: new FormControl(this.eventsListe.endDate),
-        location: new FormControl(this.eventsListe.location),
+        eventBilled : new FormControl(this.eventsListe.eventBilled),
+        titel : new FormControl(this.eventsListe.titel),
+        beskrivelse: new FormControl(this.eventsListe.beskrivelse),
+        startDato: new FormControl(this.eventsListe.startDato),
+        slutDato: new FormControl(this.eventsListe.slutDato),
+        lokation: new FormControl(this.eventsListe.lokation),
       })
     })
   }
@@ -46,9 +46,9 @@ export class UpdateEventsDialogBoxComponent implements OnInit {
       var reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]);
       reader.onload=(e: any)=>{
-        this.eventsListe.eventPicture =e.target.result;
-        console.log( this.eventsListe.eventPicture);
-        localStorage.setItem('eventPicture' ,JSON.stringify(this.eventsListe.eventPicture));
+        this.eventsListe.eventBilled =e.target.result;
+        console.log( this.eventsListe.eventBilled);
+        localStorage.setItem('eventBilled' ,JSON.stringify(this.eventsListe.eventBilled));
       }
     }
   };

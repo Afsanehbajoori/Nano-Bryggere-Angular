@@ -23,7 +23,7 @@ export class EventAdminSideComponent implements OnInit {
   events: Events[];
   //event = new Events();
   endpointE = '/Events';
-  endpointP = '/Deltagelser';
+  endpointP = '/Deltager';
   id = this.actRoute.snapshot.params['id'];
   deltagelseListe: any;
 
@@ -83,7 +83,7 @@ export class EventAdminSideComponent implements OnInit {
 
   onSletEvent(id: any) {
     if (this.deltagelseListe.length !== 0) {
-      alert('der er nogle er deltger i dette events . Først skal afmeld under deltager')
+      alert('der er nogle der deltager i dette events. Først skal de afmelds under deltager')
     }
     else {
       let dialogRef = this.dialog.open(SletDialogBoxComponent);

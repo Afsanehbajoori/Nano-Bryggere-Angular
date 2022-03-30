@@ -11,6 +11,4 @@ export class KontaktOplysninger {
   public by: string;
   public email: string;
   public telefonNr: string;
-  public brugerId: number;
-  public bruger: Bruger;
 }

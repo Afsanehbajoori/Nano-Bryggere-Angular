@@ -15,7 +15,7 @@ export class DeltagerAdminSideComponent implements OnInit {
   deltagelserListB:any;
   deltager:any;
   deltagelserListE:any;
-  endpointD='/Deltagelser';
+  endpointD='/Deltager';
   endpointE = '/Events';
   endpointB='/Bruger';
   searchkeyDeltager:string;
@@ -51,7 +51,7 @@ export class DeltagerAdminSideComponent implements OnInit {
       this.ngOnInit();
     }
     else{
-      this.restApi.getParticipantByEventsTitle(this.searchkeyDeltager.toLowerCase(), this.endpointE).subscribe(res => {
+      this.restApi.getEventParticipantsByUsername(this.searchkeyDeltager.toLowerCase(), this.endpointE).subscribe(res => {
         return this.deltager=res
       })
     }

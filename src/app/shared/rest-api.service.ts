@@ -43,8 +43,8 @@ export class RestApiService {
     )
   }
 
-  getDataBySname(sname:any, endpoint:string): Observable<any>{
-    return this.http.get<any>(this.apiUrl + endpoint+ '/sname/' + sname)
+  getDataByEnavn(enavn:any, endpoint:string): Observable<any>{
+    return this.http.get<any>(this.apiUrl + endpoint+ '/enavn/' + enavn)
     .pipe(
       retry(1),
       catchError(this.handleError)
@@ -59,16 +59,16 @@ export class RestApiService {
     )
   }
 
-  getEventParticipantsByUsername(username:string, endpoint:string): Observable<any>{
-    return this.http.get<any>(this.apiUrl + endpoint+ '/username/' + username)
+  getEventParticipantsByUsername(brugernavn:string, endpoint:string): Observable<any>{
+    return this.http.get<any>(this.apiUrl + endpoint+ '/brugernavn/' + brugernavn)
     .pipe(
       retry(1),
       catchError(this.handleError)
     )
   }
 
-  getUserByEventsTitle(title:string, endpoint:string): Observable<any>{
-    return this.http.get<any>(this.apiUrl + endpoint+ '/title/' + title)
+  getUserByEventsTitle(titel:string, endpoint:string): Observable<any>{
+    return this.http.get<any>(this.apiUrl + endpoint+ '/titel/' + titel)
     .pipe(
       retry(1),
       catchError(this.handleError)
@@ -76,8 +76,8 @@ export class RestApiService {
   }
 
 
-  getParticipantByEventsTitle(title : string , endpoint:string) : Observable<any>{
-    return this.http.get<any>(this.apiUrl + endpoint + '/eventsTitle/' + title)
+  getParticipantByEventsTitle(titel : string , endpoint:string) : Observable<any>{
+    return this.http.get<any>(this.apiUrl + endpoint + '/eventTitel/' + titel)
    .pipe(
       retry(1),
       catchError(this.handleError)

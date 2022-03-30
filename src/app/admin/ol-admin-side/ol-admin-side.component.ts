@@ -15,7 +15,7 @@ export class OlAdminSideComponent implements OnInit {
   ol: Øl;
   endpointB = '/Øller';
   data = sessionStorage.getItem('id');
-  searchkey: string;
+  searchkeyOlNavn: string;
   constructor(
     public dialog: MatDialog,
     public restApi: RestApiService, 
@@ -33,13 +33,13 @@ export class OlAdminSideComponent implements OnInit {
     });
   }
 
-  onFindOl(){
-    if(this.searchkey == ""){
+  onFindOlNavn(){
+    if (this.searchkeyOlNavn == "") {
       this.ngOnInit();
     }
-    else{
-      this.restApi.getParticipantByEventsTitle(this.searchkey.toLowerCase(), this.endpointB).subscribe(res => {
-        return this.oller=res
+    else {
+      this.oller = this.oller.filter(res => {
+        return res.navn.toLowerCase().match(this.searchkeyOlNavn.toLowerCase());
       })
     }
   }

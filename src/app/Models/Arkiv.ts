@@ -7,5 +7,5 @@ export class Arkiv{
   public bruger:Bruger;
   public kontaktOplysningerId:number;
   public kontaktOplysninger:KontaktOplysninger;
-  public oprettelsesDato :Date;
+  public OpretDato :Date;
 }

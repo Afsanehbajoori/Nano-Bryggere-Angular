@@ -6,9 +6,9 @@ import { OlSogningComponent } from './ol-sogning/ol-sogning.component';
 
 const routes: Routes = [
   {path:'' , component: OlSideComponent},
-  {path:'olside/:id', component:OlSideComponent},
-  {path:'ollager/:id', component:OlLagerComponent},
-  {path:'olsøgning', component:OlSogningComponent},
+  {path:'ol-side/:id', component:OlSideComponent},
+  {path:'ol-lager/:id', component:OlLagerComponent},
+  {path:'ol-sogning', component:OlSogningComponent},
 ];
 
 @NgModule({

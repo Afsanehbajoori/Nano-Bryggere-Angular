@@ -57,14 +57,14 @@ export class RedigerOlComponent implements OnInit {
     });
   }
 
-  onSubmitCertifikat(event: any) {
+  onSubmitOlBilled(event: any) {
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
-      reader.onload = (e:any) => this.olListe.label = e.target.result;
+      reader.onload = (e:any) => this.olListe.olBilled = e.target.result;
       reader.readAsDataURL(event.target.files[0])
     }
     else{
-      this.olListe.label = '';
+      this.olListe.olBilled = '';
     }
   };
 }

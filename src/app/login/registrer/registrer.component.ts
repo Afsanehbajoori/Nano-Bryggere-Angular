@@ -20,9 +20,9 @@ export class RegistrerComponent implements OnInit {
   by: '', email: '', telefonNr: ''};
 
   brugerFormGroup:any = new FormGroup({});
-  endpointC = '/KontaktOplysninger';
-  endpointU= '/Bruger';
-  endpointR= '/Roller';
+  endpointK = '/KontaktOplysninger';
+  endpointB= '/Bruger';
+  endpointR= '/Rolle';
 
   constructor(private _formBuilder: FormBuilder, public restApi: RestApiService, public router: Router) { }
 
@@ -45,8 +45,8 @@ export class RegistrerComponent implements OnInit {
     });
   }
 
-  onCreateUser(){
-   this.restApi.createData(this.nyBruger, this.endpointC).subscribe((dataC) => {
+  onOpretBruger(){
+   this.restApi.createData(this.nyBruger, this.endpointK).subscribe((dataC) => {
      console.log(dataC.id);
       this.nyBruger.kontaktOplysningerId= dataC.id;
       if(this.nyBruger.rolleNavn == 'AnonymBruger')
@@ -60,9 +60,10 @@ export class RegistrerComponent implements OnInit {
      this.restApi.createData(this.nyBruger , this.endpointR).subscribe((dataR) => {
       console.log(dataR.id);
       this.nyBruger.rolleId=dataR.id;
-      this.restApi.createData(this.nyBruger , this.endpointU).subscribe((dataB) => {
+      this.restApi.createData(this.nyBruger , this.endpointB).subscribe((dataB) => {
         console.log(dataB);
         var userId = dataB.id;
+        console.log(dataB);
         console.log("brugerId : " , userId);
         this.router.navigate(["../login/login"]);
        }) ;

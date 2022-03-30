@@ -5,7 +5,7 @@
             <h1>Lager Side</h1>
             <mat-form-field class="example-full-width" appearance="fill">
                 <p>Antal</p>
-                <input matInput type="number" [(ngModel)]="olListe.qauntity" min="0" max="100" formControlName="qauntity" placeholder="{{olListe.qauntity}}" class="input-control">
+                <input matInput type="number" [(ngModel)]="olListe.antal" min="0" max="100" formControlName="antal" placeholder="{{olListe.antal}}" class="input-control">
                 <mat-error>
                     Dette felt skal udfyldes
                 </mat-error>
@@ -13,7 +13,7 @@
 
             <mat-form-field class="example-full-width" appearance="fill">
                 <p>Flaske Antal</p>
-                <input matInput type="number" [(ngModel)]="olListe.bottleQauntity" min="0" max="100" formControlName="bottleQauntity" placeholder="{{olListe.bottleQauntity}}" class="input-control">
+                <input matInput type="number" [(ngModel)]="olListe.flaskeAntal" min="0" max="100" formControlName="flaskeAntal" placeholder="{{olListe.flaskeAntal}}" class="input-control">
                 <mat-error>
                     Dette felt skal udfyldes
                 </mat-error>
@@ -21,7 +21,7 @@
 
             <mat-form-field class="example-full-width" appearance="fill">
                 <p>Tønde Antal</p>
-                <input matInput type="number" [(ngModel)]="olListe.barrelQauntity" min="0" max="20" formControlName="barrelQauntity" placeholder="{{olListe.barrelQauntity}}" class="input-control">
+                <input matInput type="number" [(ngModel)]="olListe.tondeAntal" min="0" max="20" formControlName="tondeAntal" placeholder="{{olListe.tondeAntal}}" class="input-control">
                 <mat-error>
                     Dette felt skal udfyldes
                 </mat-error>
@@ -29,7 +29,7 @@
 
             <mat-form-field class="example-full-width" appearance="fill">
                 <p>Flaske Reserve Antal</p>
-                <input matInput type="number" [(ngModel)]="olListe.bottleResevationQuantity" min="0" max="80" formControlName="bottleResevationQuantity" placeholder="{{olListe.bottleResevationQuantity}}" class="input-control">
+                <input matInput type="number" [(ngModel)]="olListe.flaskeResevationAntal" min="0" max="80" formControlName="flaskeResevationAntal" placeholder="{{olListe.flaskeResevationAntal}}" class="input-control">
                 <mat-error>
                     Dette felt skal udfyldes
                 </mat-error>

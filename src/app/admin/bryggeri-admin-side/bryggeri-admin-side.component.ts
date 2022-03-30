@@ -23,7 +23,7 @@ export class BryggeriAdminSideComponent implements OnInit {
   searchkeyBryggeriSamarbejde:string;
   id = this.actRoute.snapshot.params['id'];
   clickButton:boolean=true;
-  bryggeriListe: any;
+  bryggeriListe: Bryggeri[];
 
   constructor(
     public dialog: MatDialog,
@@ -55,7 +55,7 @@ export class BryggeriAdminSideComponent implements OnInit {
       this.ngOnInit();
     }
     else{
-      this.bryggeri = this.bryggeri.filter(res => {
+      this.bryggeriListe = this.bryggeriListe.filter(res => {
         return res.navn.toLowerCase().match(this.searchkeyBryggeriNavn.toLowerCase());
       })
     }

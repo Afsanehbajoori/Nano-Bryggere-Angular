@@ -2,18 +2,10 @@
     <mat-card>
         <mat-toolbar class="login-header" style="background: linear-gradient(#6c6c6d, #cfd4d6);  height: 100px;">
             <mat-tab-group>
-                <mat-tab>
+                <mat-tab label="Find øl med Øl-navn">
                     <form class="example-form" style="justify-content: center; width: 100%;">
-                        <mat-form-field style="width: 10%;">
-                            <input matInput type="search" [(ngModel)]="searchkey" (ngModelChange)="onFindOl()" [ngModelOptions]="{standalone: true}">
-                        </mat-form-field>
-                    </form>
-                </mat-tab>
-                <mat-tab>
-                    <form class="example-form" style="justify-content: center; width: 100%;">
-                        <mat-form-field style="width: 10%;">
-                            <input matInput type="search" placeholder="Find øl" [(ngModel)]="searchkey"
-                                (ngModelChange)="onFindOl()" [ngModelOptions]="{standalone: true}">
+                        <mat-form-field style="width: 40%;">
+                            <input matInput type="search" [(ngModel)]="searchkeyOlNavn" (ngModelChange)="onFindOlNavn()" [ngModelOptions]="{standalone: true}">
                         </mat-form-field>
                     </form>
                 </mat-tab>

@@ -15,9 +15,9 @@ export class EventkalenderSideComponent implements OnInit {
   dialogRefSlet: MatDialogRef<SletDialogBoxComponent>;
   events: Events[];
   endpointE = '/Events';
-  endpointD = '/Participation';
+  endpointD = '/Deltager';
   searchkey: string;
-  deltager: boolean = false;
+  deltagene: boolean = false;
   buttonDisabled: boolean ;
   buttonEnabled: boolean;
   eventsId: number;
@@ -29,8 +29,8 @@ export class EventkalenderSideComponent implements OnInit {
   deltagelsesArray = new Array();
   deltagerId: number;
   liste: any;
-  erDeltagene:boolean;
- @Input() deltagelse = { brugerId:0 , eventsId:0 , deltager:false}
+  Deltagene:boolean;
+ @Input() deltager = { brugerId:0 , eventsId:0 , erDeltagene:false}
 
   constructor(
     public dialog: MatDialog,
@@ -90,10 +90,10 @@ export class EventkalenderSideComponent implements OnInit {
     {
       this.dialog.open(MessageDialogBoxComponent);
     }else{
-        this.deltagelse.brugerId=this.brugerId;
-        this.deltagelse.eventsId=id;
-        this.deltagelse.deltager=true;
-        this.restApi.createData(this.deltagelse , this.endpointD).subscribe(data => {
+        this.deltager.brugerId=this.brugerId;
+        this.deltager.eventsId=id;
+        this.deltager.erDeltagene=true;
+        this.restApi.createData(this.deltager , this.endpointD).subscribe(data => {
           this.onHentDeltagene();
         })
     }

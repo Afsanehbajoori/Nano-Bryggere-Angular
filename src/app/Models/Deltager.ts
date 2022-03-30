@@ -7,5 +7,5 @@ export class Deltager{
   public eventId: number;
   public bruger : Bruger;
   public events: Events;
-  public deltager : boolean;
+  public erDeltagene : boolean;
 }

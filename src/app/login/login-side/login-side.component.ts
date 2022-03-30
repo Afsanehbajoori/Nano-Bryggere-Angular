@@ -14,12 +14,12 @@ export class LoginSideComponent implements OnInit {
   login: any = {};
   logins: Bruger[];
   endpointL = '/Logins';
-  endpointI = '/ContactInformation';
-  endpointU = '/Users';
+  endpointI = '/KontaktOplysninger';
+  endpointU = '/Bruger';
 
   loginForm: any = new FormGroup({});
 
-  @Input() loginDetails = { username: '', pw: '', userId: null };
+  @Input() loginDetaljer = { brugernavn: '', pw: '', brugerId: null };
 
   constructor(
     public router: Router,
@@ -29,8 +29,8 @@ export class LoginSideComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
-      userId: new FormControl(''),
-      username: new FormControl('', Validators.required),
+      brugerId: new FormControl(''),
+      brugernavn: new FormControl('', Validators.required),
       pw: new FormControl('', [Validators.required, Validators.minLength(3)])
     }
     );
@@ -40,26 +40,29 @@ export class LoginSideComponent implements OnInit {
     localStorage.clear();
 
   this.restApi.getDatas(this.endpointU).subscribe((res) => {
+    console.log(res);
   const user = res.find((a:any) => {
     // console.log('infoLogin:' , a.contactInformation);
     //this.restApi.getData(a.kontaktoplysningerId , this.endpointK).subscribe(data => {
       //console.log('infoLoginKontakt' , data);
-      return a.username.toLowerCase() === this.loginDetails.username.toLowerCase() && a.pw === this.loginDetails.pw
+      return a.brugernavn.toLowerCase() === this.loginDetaljer.brugernavn.toLowerCase() && a.pw === this.loginDetaljer.pw
    // })
 
   });
+  console.log(user);
   if(user){
      /* console.log("kontaktoplysningerId:",user.kontaktoplysningerId);
      console.log("brugerId:",user.id)
      console.log("rolleId:",user.rolleId); */
-     localStorage.setItem('contactInformationId' ,JSON.stringify(user.contactInformationId) );
-     localStorage.setItem('userId' ,JSON.stringify(user.id) );
-     localStorage.setItem('roleId' ,JSON.stringify(user.roleId) );
-     this.loginDetails.userId = user.id;
-     this.restApi.createData(this.loginDetails , this.endpointL).subscribe((res) => {
-      // console.log("brugerId:" ,res.brugerId);
+     localStorage.setItem('kontaktOplysningerId' ,JSON.stringify(user.kontaktOplysningerId) );
+     localStorage.setItem('brugerId' ,JSON.stringify(user.id) );
+     localStorage.setItem('rolleId' ,JSON.stringify(user.rolleId) );
+     this.loginDetaljer.brugerId = user.id;
+     this.restApi.createData(this.loginDetaljer , this.endpointL).subscribe((res) => {
+     console.log("brugerId:", res.brugerId);
+     console.log("brugerId:", res);
         })
-        this.router.navigate(['../main/profile']);
+        this.router.navigate(['../main/profil']);
       }
       else {
         alert('user ikke findes')

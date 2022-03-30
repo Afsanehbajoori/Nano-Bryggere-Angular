@@ -41,16 +41,16 @@ export class KatalogComponent implements OnInit {
   }
 
   onOpdaterOl(id: any) {
-    this.router.navigate(['../main/redigerol/', id]);
+    this.router.navigate(['../main/opdater-øl/', id]);
   };
 
   onOlLager(id: any) {
     localStorage.setItem('lagerId', JSON.stringify(id));
-    this.router.navigate(['../ol/ollager/', id]);
+    this.router.navigate(['../ol/ol-lager/', id]);
   };
 
   onOpretOl() {
-    this.router.navigate(['../main/opretol']);
+    this.router.navigate(['../main/opret-øl']);
   };
 
   onSletOl(id: any) {

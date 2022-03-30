@@ -54,7 +54,7 @@
 
             <mat-form-field class="example-full-width" appearance="fill">             
                 <input matInput type="text" [(ngModel)]="olOprettelse.olBilled" formControlName="olBilled" placeholder="Øl Billed" class="input-control">
-                <input type="file" class="btnMainStyle" (change)="onSubmitCertifikat($event)">
+                <input type="file" class="btnMainStyle" (change)="onSubmitOlBilled($event)">
                 <mat-error>
                     Dette felt skal udfyldes
                 </mat-error>

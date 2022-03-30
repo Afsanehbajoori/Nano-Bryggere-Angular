@@ -15,7 +15,7 @@ export class MineEventsComponent implements OnInit {
   events: Events[];
   eventId: number;
   endpointE = '/Events';
-  endpointP = '/Deltager';
+  endpointD = '/Deltager';
   searchkey: string;
   deltager: boolean;
   deltagerListe:any;
@@ -36,10 +36,10 @@ export class MineEventsComponent implements OnInit {
   }
 
   onHentDeltager(){
-    this.restApi.getDatas(this.endpointP).subscribe(data => {
+    this.restApi.getDatas(this.endpointD).subscribe(data => {
       this.deltagerListe=data
       if(this.brugerId){
-        this.deltagerListe = this.deltagerListe.filter((a:any) => a.userId === this.brugerId);
+        this.deltagerListe = this.deltagerListe.filter((a:any) => a.brugerId === this.brugerId);
       }
     })
   }
@@ -47,7 +47,7 @@ export class MineEventsComponent implements OnInit {
   onVisEvent(id:any){
     this.clickButton=false;
     //console.log('id:', id);
-    this.restApi.getData(id , this.endpointP).subscribe(data => {
+    this.restApi.getData(id , this.endpointD).subscribe(data => {
       this.eventListe= data ;
       this.restApi.getData(this.eventListe.eventsId , this.endpointE).subscribe(data => {
         this.eventListe= data ;
@@ -75,7 +75,7 @@ export class MineEventsComponent implements OnInit {
     });
     this.dialogRefSlet.afterClosed().subscribe(result => {
       if (result) {
-    this.restApi.deleteData(id , this.endpointP).subscribe(data => {
+    this.restApi.deleteData(id , this.endpointD).subscribe(data => {
       this.ngOnInit();
       })
     }

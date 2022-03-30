@@ -69,8 +69,8 @@
             </mat-form-field> -->
 
             <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="text" [(ngModel)]="olListe.olBilled" formControlName="olBilled"
-                    placeholder="{{olListe.olBilled}}" class="input-control">
+                <input matInput type="text" [(ngModel)]="olListe.olBilled" formControlName="olBilled" placeholder="Øl Billed" class="input-control">
+                <input type="file" class="btnMainStyle" (change)="onSubmitOlBilled($event)">
                 <mat-error>
                     udfyld feltet
                 </mat-error>

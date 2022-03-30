@@ -9,9 +9,9 @@ import { OpretteComponent } from './oprette/oprette.component';
 const routes: Routes = [
   {path:'',component:ForsideComponent},
   {path:'forum',component:ForsideComponent},
-  {path:'forumpost', component:ForumPostComponent},
-  {path:'forumtags', component:ForumTagsComponent},
-  {path:'opretforum',component:OpretteComponent},
+  {path:'forum-post', component:ForumPostComponent},
+  {path:'forum-tags', component:ForumTagsComponent},
+  {path:'opret-forum',component:OpretteComponent},
   // {path:'redigerslet/:id', component:RedigerSletComponent}
 ];
 

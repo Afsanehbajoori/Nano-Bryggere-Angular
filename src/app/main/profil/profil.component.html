@@ -58,7 +58,7 @@
             </mat-card>
             <mat-card class="containStyle">
               <span>Brugernavn:</span>
-              <span class="txtStyle">{{this.brugerListe.username}}</span>
+              <span class="txtStyle">{{this.brugerListe.brugernavn}}</span>
             </mat-card>
             <mat-card class="containStyle">
               <span>Rollenavn:</span>
@@ -125,19 +125,19 @@
             <form [formGroup]="bryggeriOprettelsesForm" novalidate class="containStyle">
               <mat-form-field appearance="fill" class="example-full-width">
                 <mat-label>Logo</mat-label>
-                <input matInput placeholder="billede" formControlName="logo" [(ngModel)]="nytBryggeri.bryggeriLogo">
+                <input matInput placeholder="Billede" formControlName="bryggeriLogo" [(ngModel)]="nytBryggeri.bryggeriLogo">
                 <input type="file" class="btnMainStyle" (change)="onSubmitCertifikat($event)">
               </mat-form-field>
               <mat-form-field appearance="fill" class="example-full-width">
                 <mat-label>Navn</mat-label>
-                <input matInput placeholder="billede" formControlName="name" [(ngModel)]="nytBryggeri.navn" required>
+                <input matInput placeholder="Navn" formControlName="navn" [(ngModel)]="nytBryggeri.navn" required>
                 <mat-error>
                   feltet skal udfyldes
                 </mat-error>
               </mat-form-field>
               <mat-form-field appearance="fill" class="example-full-width">
                 <mat-label>Beskrivelse</mat-label>
-                <input matInput placeholder="billede" formControlName="discription" [(ngModel)]="nytBryggeri.beskrivelse">
+                <input matInput placeholder="Beskrivelse" formControlName="beskrivelse" [(ngModel)]="nytBryggeri.beskrivelse">
               </mat-form-field>
             </form>
             <mat-action-row>

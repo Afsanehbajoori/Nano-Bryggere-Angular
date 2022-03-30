@@ -9,8 +9,8 @@ const routes: Routes = [
   {path:'',component:EventkalenderSideComponent},
   {path:'events',component:EventkalenderSideComponent},
   {path:'mine-events', component:MineEventsComponent},
-  {path:'opretteevent',component:OpretteComponent},
-  {path:'redigerevent/:id',component:RedigerEventsComponent}
+  {path:'opret-event',component:OpretteComponent},
+  {path:'rediger-event/:id',component:RedigerEventsComponent}
 ];
 
 @NgModule({

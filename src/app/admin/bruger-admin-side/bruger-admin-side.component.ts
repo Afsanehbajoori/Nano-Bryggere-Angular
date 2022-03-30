@@ -18,7 +18,7 @@ export class BrugerAdminSideComponent implements OnInit {
   dialogRefOpdaterProfil: MatDialogRef<RedigerProfilDialogBoxComponent>;
   brugere: Bruger[];
   bruger = new Bruger();
-  endpointBru = '/Bruger'; //endpointB
+  endpointB = '/Bruger'; //endpointB
   endpointK = '/KontaktOplysninger'; //endpointK
   searchkeyBrugernavn: string;
   searchkeyBrugerEnavn: string;
@@ -27,7 +27,7 @@ export class BrugerAdminSideComponent implements OnInit {
   kontaktOplysninger: any; //kontaktoplysninger
   certifikat: any;
   id = this.actRoute.snapshot.params['id'];
-  brugerId: number; //kontaktoplysningerId
+  kontaktOplysningerId: number; //kontaktoplysningerId
   clickButton: boolean = true;
   kontaktOplysningsListe: any; //kontaktoplysningerList
   oplysningsListe: KontaktOplysninger[]; //kontakt
@@ -44,7 +44,7 @@ export class BrugerAdminSideComponent implements OnInit {
   }
 
   onHentBruger() {
-    return this.restApi.getDatas(this.endpointBru).subscribe((res) => {
+    return this.restApi.getDatas(this.endpointB).subscribe((res) => {
       this.brugere = res;
       console.log(this.brugere);
     })
@@ -52,9 +52,9 @@ export class BrugerAdminSideComponent implements OnInit {
 
   onVisBruger(id: any) {
     this.clickButton = false;
-    return this.restApi.getData(id, this.endpointBru).subscribe((data) => {
-      this.brugerId = data.contactInformationId;
-      this.restApi.getData(this.brugerId, this.endpointK).subscribe((data) => {
+    return this.restApi.getData(id, this.endpointB).subscribe((data) => {
+      this.kontaktOplysningerId = data.kontaktOplysningerId;
+      this.restApi.getData(this.kontaktOplysningerId, this.endpointK).subscribe((data) => {
         this.kontaktOplysninger = data;
       })
     })
@@ -76,7 +76,7 @@ export class BrugerAdminSideComponent implements OnInit {
       this.ngOnInit();
     }
     else {
-      this.restApi.getDataBySname(this.searchkeyBrugerEnavn, this.endpointBru).subscribe((data) => {
+      this.restApi.getDataByEnavn(this.searchkeyBrugerEnavn, this.endpointB).subscribe((data) => {
         return this.brugere = data;
       })
     }
@@ -87,7 +87,7 @@ export class BrugerAdminSideComponent implements OnInit {
       this.ngOnInit();
     }
     else {
-      this.restApi.getDataByEmail(this.searchkeyEmail, this.endpointBru).subscribe((data) => {
+      this.restApi.getDataByEmail(this.searchkeyEmail, this.endpointB).subscribe((data) => {
         return this.brugere = data;
       })
     }
@@ -98,7 +98,7 @@ export class BrugerAdminSideComponent implements OnInit {
       this.ngOnInit();
     }
     else {
-      this.restApi.getUserByEventsTitle(this.searchkeyEventsTitel, this.endpointBru).subscribe((data) => {
+      this.restApi.getUserByEventsTitle(this.searchkeyEventsTitel, this.endpointB).subscribe((data) => {
         return this.brugere = data;
       })
     }
@@ -116,7 +116,7 @@ export class BrugerAdminSideComponent implements OnInit {
         })
       })*/
       if (result) {
-        this.restApi.deleteData(id, this.endpointBru).subscribe((data) => {
+        this.restApi.deleteData(id, this.endpointB).subscribe((data) => {
           console.log('delete:', id);
           this.onHentBruger();
         })
@@ -129,15 +129,15 @@ export class BrugerAdminSideComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = "30%";
-    this.restApi.getData(id, this.endpointBru).subscribe((data) => {
-      this.brugerId = data.contactInformationId;
-      console.log("kontId:", this.brugerId);
-      localStorage.setItem('AdminKontaktOplysningerId', this.brugerId.toString());
+    this.restApi.getData(id, this.endpointB).subscribe((data) => {
+      this.kontaktOplysningerId = data.kontaktOplysningerId;
+      console.log("kontId:", this.kontaktOplysningerId);
+      localStorage.setItem('AdminKontaktOplysningerId', this.kontaktOplysningerId.toString());
       this.dialogRefOpdaterProfil = this.dialog.open(RedigerProfilDialogBoxComponent, dialogConfig);
       this.dialogRefOpdaterProfil.afterClosed().subscribe(result => {
         if (result) {
           this.oplysningsListe = result;
-          this.restApi.updateData(this.brugerId, this.endpointK, this.oplysningsListe).subscribe((data) => {
+          this.restApi.updateData(this.kontaktOplysningerId, this.endpointK, this.oplysningsListe).subscribe((data) => {
             console.log(this.oplysningsListe);
             this.onVisBruger(id);
           })

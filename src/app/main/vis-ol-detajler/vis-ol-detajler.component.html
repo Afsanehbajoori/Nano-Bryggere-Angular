@@ -1,25 +1,25 @@
-<mat-card *ngIf="beerInfo">
-  <img mat-dialog-title [src]="beerInfo.label" alt="" style="width: 100%; height: auto;">
+<mat-card *ngIf="olInfo">
+  <img mat-dialog-title [src]="olInfo.olBilled" alt="" style="width: 100%; height: auto;">
     <mat-dialog-content mat-dialog-content class="mat-typography">
       <p>Øl Navn:</p>
-      <p class="txtStyle">{{beerInfo.name}}</p>
+      <p class="txtStyle">{{olInfo.navn}}</p>
       <p>Øl Type:</p>
-      <p class="txtStyle">{{beerInfo.type}}</p>
+      <p class="txtStyle">{{olInfo.type}}</p>
       <p>Øl Smag:</p>
-      <p class="txtStyle">{{beerInfo.taste}}</p>
+      <p class="txtStyle">{{olInfo.smag}}</p>
       <p>Øl Procent:</p>
-      <p class="txtStyle">{{beerInfo.percentage}}</p>
+      <p class="txtStyle">{{olInfo.procent}}</p>
       <p>Øl Land:</p>
-      <p class="txtStyle">{{beerInfo.country}}</p>
+      <p class="txtStyle">{{olInfo.land}}</p>
       <p>Øl Bryggeprocess:</p>
-      <p class="txtStyle">{{beerInfo.brewingprocess}}</p>
+      <p class="txtStyle">{{olInfo.Bryggeprocess}}</p>
       <p>Øl Årgang:</p>
-      <p class="txtStyle" >{{beerInfo.vintage}}</p>
+      <p class="txtStyle" >{{olInfo.argang}}</p>
       <!-- <p class="txtStyle" >&#229;rgang</p> -->
       <p>Øl Antal:</p>
-      <p class="txtStyle">{{beerInfo.quantity}}</p>
+      <p class="txtStyle">{{olInfo.antal}}</p>
       <p>Øl Beskrivelse:</p>
-      <p class="txtStyle">{{beerInfo.description}}</p>
+      <p class="txtStyle">{{olInfo.beskrivelse}}</p>
     </mat-dialog-content>
     <div mat-dialog-actions>
       <button mat-button mat-dialog-close >Close</button>

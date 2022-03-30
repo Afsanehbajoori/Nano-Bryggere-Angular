@@ -33,7 +33,7 @@ export class ProfilComponent implements OnInit {
   visFillerB = false;
   visFillerOB = false;
   kontaktOplysningerId: number;
-  breweryId: number;
+  bryggeriId: number;
   brugerId: number;
   rolleId: number;
   chosenFile: File;
@@ -105,7 +105,7 @@ export class ProfilComponent implements OnInit {
     })
   }
 
-  onSubmitCertifikat(event: any) {
+  onSubmitProfilBilled(event: any) {
     if (event.target.files) {
       var reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]);
@@ -169,7 +169,7 @@ export class ProfilComponent implements OnInit {
   }
 
   onOpdaterBryggeri() {
-    this.breweryId = JSON.parse(localStorage.getItem('bryggeriId') || '{}');
+    this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}');
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
@@ -178,7 +178,7 @@ export class ProfilComponent implements OnInit {
     this.dialogRefRedigerBryggeri.afterClosed().subscribe(result => {
       if (result) {
         this.bryggeriListe = result;
-        this.restApi.updateData(this.breweryId, this.endpointB, this.bryggeriListe).subscribe((data) => {
+        this.restApi.updateData(this.bryggeriId, this.endpointB, this.bryggeriListe).subscribe((data) => {
           this.ngOnInit();
         })
       }
@@ -192,7 +192,7 @@ export class ProfilComponent implements OnInit {
     });
     this.dialogRefSlet.afterClosed().subscribe(result => {
       if (result) {
-        this.restApi.deleteData(this.breweryId, this.endpointB).subscribe((data) => {
+        this.restApi.deleteData(this.bryggeriId, this.endpointB).subscribe((data) => {
           this.bryggeriListe = data;
           this.snackBar.open("Bryggeri oplysninger slettet med succes");
         }, err => {
@@ -208,9 +208,9 @@ export class ProfilComponent implements OnInit {
     this.visFillerOB = false;
   }
 
-  onUploadCertifikat() {
+  onUploadProfilBilled() {
     const fd = new FormData();
-    this.restApi.updateData(this.breweryId, this.endpointB, this.bryggeriListe).subscribe((data) => {
+    this.restApi.updateData(this.bryggeriId, this.endpointB, this.bryggeriListe).subscribe((data) => {
       // console.log(this.breweryList);
     })
   };

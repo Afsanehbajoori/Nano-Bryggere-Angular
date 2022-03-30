@@ -15,9 +15,9 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 export class BrugerCertifikatComponent implements OnInit {
   kontaktOplysningsListe: KontaktOplysninger[]; //oplysninger
   kontaktOplysninger: KontaktOplysninger;
-  certifikatListe: Bruger[];
+  certifikatListe: any;
   certifikat: Bruger; //oplysninger
-  brugerId: number;
+  kontaktOplysningerId: number;
   endpointK = '/KontaktOplysninger';
   endpointBru = '/Bruger';
   clickButton: boolean = true;
@@ -36,15 +36,17 @@ export class BrugerCertifikatComponent implements OnInit {
   }
 
   onHentBrugerCertifikat() {
-    return this.restApi.getDatas(this.endpointBru).subscribe((userCertificate) => {
-      this.certifikatListe = userCertificate.filter((res: any) => {
-        res.certificateLevel === 1;
-        this.restApi.getDatas(this.endpointK).subscribe((contactInfo) => {
-          this.kontaktOplysningsListe = contactInfo.filter((result: any) => {
-            return result.id === res.id;
-          })
-        })
+     this.restApi.getDatas(this.endpointBru).subscribe((brugerCertifikat) => {
+      
+      this.certifikatListe=brugerCertifikat;
+      console.log(this.certifikatListe.certifikatLevel);
+      const b = this.certifikatListe.find((a: any) => {
+        a.certifikatLevel === 2;
       })
+      console.log('list:', b)
+     
+      // res.certificateLevel === 2;
+      
     });
   }
 
@@ -64,6 +66,7 @@ export class BrugerCertifikatComponent implements OnInit {
   onBekraftCertifikat(id: any) {
     this.restApi.getData(id, this.endpointBru).subscribe(data => {
       this.certifikat = data;
+      
       this.certifikat.certifikatLevel = 2;
       this.restApi.updateData(id, this.endpointBru, this.certifikat).subscribe(data => {
         this.ngOnInit();
@@ -85,9 +88,10 @@ export class BrugerCertifikatComponent implements OnInit {
   onVisBrugerCertifikat(id: any) {
     this.clickButton = false;
     return this.restApi.getData(id, this.endpointBru).subscribe((data) => {
-      this.brugerId = data.contactInformationId;
+      this.kontaktOplysningerId = data.kontaktOplysningerId;
       this.certifikat = data;
-      this.restApi.getData(this.brugerId, this.endpointK).subscribe((data) => {
+      console.log(this.certifikat);
+      this.restApi.getData(this.kontaktOplysningerId, this.endpointK).subscribe((data) => {
         this.kontaktOplysninger = data;
       })
     })

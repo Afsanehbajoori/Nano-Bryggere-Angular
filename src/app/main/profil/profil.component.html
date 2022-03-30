@@ -125,8 +125,8 @@
             <form [formGroup]="bryggeriOprettelsesForm" novalidate class="containStyle">
               <mat-form-field appearance="fill" class="example-full-width">
                 <mat-label>Logo</mat-label>
-                <input matInput placeholder="Billede" formControlName="bryggeriLogo" [(ngModel)]="nytBryggeri.bryggeriLogo">
-                <input type="file" class="btnMainStyle" (change)="onSubmitCertifikat($event)">
+                <input matInput placeholder="Billed" formControlName="bryggeriLogo" [(ngModel)]="nytBryggeri.bryggeriLogo">
+                <input type="file" class="btnMainStyle" (change)="onSubmitProfilBilled($event)">
               </mat-form-field>
               <mat-form-field appearance="fill" class="example-full-width">
                 <mat-label>Navn</mat-label>

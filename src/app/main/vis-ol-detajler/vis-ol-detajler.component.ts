@@ -9,7 +9,7 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 export class VisOlDetajlerComponent implements OnInit {
   olId:number;
   endpointO = '/Øller';
-  beerInfo: any;
+  olInfo: any;
   vintage:Date;
 
   constructor(public restApi: RestApiService) { }
@@ -22,7 +22,7 @@ export class VisOlDetajlerComponent implements OnInit {
 
   onHentOl(){
     this.restApi.getData(this.olId , this.endpointO).subscribe(data => {
-      this.beerInfo = data;
+      this.olInfo = data;
       // console.log('detajler:' , this.beerInfo.vintage);
       // this.vintage=this.beerInfo.vintage;
       //  console.log('date:' , this.vintage);

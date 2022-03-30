@@ -15,14 +15,14 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 export class BryggeriAdminSideComponent implements OnInit {
   dialogRefSlet: MatDialogRef<SletDialogBoxComponent>;
   dialogRefOpdaterBryggeri: MatDialogRef<RedigerBryggeriDialogBoxComponent>;
-  bryggeri: Bryggeri[];
+  bryggeri: any;
   bryg = new Bryggeri;
   endpointBru = '/Bruger';
-  endpointB='/Bryggerier';
+  endpointB = '/Bryggerier';
   searchkeyBryggeriNavn: string;
-  searchkeyBryggeriSamarbejde:string;
+  searchkeyBryggeriSamarbejde: string;
   id = this.actRoute.snapshot.params['id'];
-  clickButton:boolean=true;
+  clickButton: boolean = true;
   bryggeriListe: Bryggeri[];
 
   constructor(
@@ -35,47 +35,47 @@ export class BryggeriAdminSideComponent implements OnInit {
   ngOnInit(): void {
     this.onHentBryggeri();
   }
-  
-  onHentBryggeri(){
+
+  onHentBryggeri() {
     return this.restApi.getDatas(this.endpointB).subscribe((brew) => {
       this.bryggeriListe = brew;
       console.log(this.bryggeriListe);
     })
   }
 
-  onVisBryggeri(id:any) {
-    this.clickButton=false;
-    return this.restApi.getData(id , this.endpointB).subscribe((data) => {
-
+  onVisBryggeri(id: any) {
+    this.clickButton = false;
+    return this.restApi.getData(id, this.endpointB).subscribe((data) => {
+      this.bryggeri = data;
     })
   };
 
-  onFindBryggeriNavn(){
-    if(this.searchkeyBryggeriNavn == ""){
+  onFindBryggeriNavn() {
+    if (this.searchkeyBryggeriNavn == "") {
       this.ngOnInit();
     }
-    else{
+    else {
       this.bryggeriListe = this.bryggeriListe.filter(res => {
         return res.navn.toLowerCase().match(this.searchkeyBryggeriNavn.toLowerCase());
       })
     }
   }
 
-//vi skal kigge på det efter oprette samarbejde component
-  onFindBryggeriSamarbejde(){
- /*    if(this.searchkeyBryggeriSamarbejde == ''){
-      this.ngOnInit();
-    }
-    else{
-      this.restApi.getDatas(this.endpointB).subscribe(res => {
-      this. b = res.filter((a:any) => {
-        if(a.id === Number(this.searchkeyBryggeriSamarbejde))
-        {
-          console.log(this.b)
-        }
-        })
-      })
-        } */
+  //vi skal kigge på det efter oprette samarbejde component
+  onFindBryggeriSamarbejde() {
+    /*    if(this.searchkeyBryggeriSamarbejde == ''){
+         this.ngOnInit();
+       }
+       else{
+         this.restApi.getDatas(this.endpointB).subscribe(res => {
+         this. b = res.filter((a:any) => {
+           if(a.id === Number(this.searchkeyBryggeriSamarbejde))
+           {
+             console.log(this.b)
+           }
+           })
+         })
+       } */
   }
 
   onSletBryggeri(id: any) {
@@ -87,22 +87,22 @@ export class BryggeriAdminSideComponent implements OnInit {
     });
   };
 
-  onOpdaterBryggeri(id:any) {
-      const dialogConfig = new MatDialogConfig();
-      dialogConfig.disableClose = true;
-      dialogConfig.autoFocus = true;
-      dialogConfig.width = "40%";
-      localStorage.setItem('bryggeriId' , id.toString());
-      this.dialogRefOpdaterBryggeri = this.dialog.open(RedigerBryggeriDialogBoxComponent, dialogConfig);
-      this.dialogRefOpdaterBryggeri.afterClosed().subscribe(result => {
-        if (result) {
-          this.bryggeriListe = result;
-          this.restApi.updateData(id, this.endpointB, this.bryggeriListe).subscribe((data) => {
+  onOpdaterBryggeri(id: any) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "40%";
+    localStorage.setItem('bryggeriId', id.toString());
+    this.dialogRefOpdaterBryggeri = this.dialog.open(RedigerBryggeriDialogBoxComponent, dialogConfig);
+    this.dialogRefOpdaterBryggeri.afterClosed().subscribe(result => {
+      if (result) {
+        this.bryggeriListe = result;
+        this.restApi.updateData(id, this.endpointB, this.bryggeriListe).subscribe((data) => {
           console.log(this.bryggeriListe);
           this.onVisBryggeri(id);
           this.onHentBryggeri();
-          })
-        }
-      });
-    };
+        })
+      }
+    });
+  };
 }

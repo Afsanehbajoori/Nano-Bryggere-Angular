@@ -3,6 +3,12 @@ import { KontaktOplysninger } from "./KontaktOplysninger";
 import { Rolle } from "./Rolle";
 import { Deltager } from './Deltager';
 
+export enum CertifikatStatus{
+  IkkeSendt = 1,
+  VentTilGodkendt = 2,
+  Godkendt = 3
+}
+
 export class Bruger {
   public id: number;
   public brugernavn: string;
@@ -13,6 +19,7 @@ export class Bruger {
   public kontaktOplysninger: KontaktOplysninger;
   //public events: Events;
   public deltager: Deltager;
-  public certifikatLevel: Byte;
+  public certifikatLevel :number;
+  public certifikatStatus: CertifikatStatus;
   public certifikatBilled: string;
 }

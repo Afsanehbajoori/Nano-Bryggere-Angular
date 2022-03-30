@@ -30,9 +30,10 @@ export class OlSideComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.kontaktOplysningerId = JSON.parse(localStorage.getItem('kontaktoplysningerId') || '{}');
+    this.kontaktOplysningerId = JSON.parse(localStorage.getItem('olKontaktOplysningerId') || '{}');
     // console.log("Ol",this.userInfoId); 
     this.olId = JSON.parse(localStorage.getItem('olId') || '{}');
+    console.log('Kontkakt',this.kontaktOplysningerId);
     this.onHentOl();
     this.onHentKontaktOplysninger();
   }
@@ -51,7 +52,8 @@ export class OlSideComponent implements OnInit {
     })
   }
   
-  onReturn() {
-    this.router.navigate(['../beer/olsøgning']);
+  onTilbage() {
+    localStorage.removeItem('olKontaktOplysningerId');
+    this.router.navigate(['../ol/ol-sogning']);
   };
 }

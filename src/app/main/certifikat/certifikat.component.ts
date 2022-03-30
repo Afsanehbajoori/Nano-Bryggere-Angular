@@ -12,14 +12,14 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./certifikat.component.css']
 })
 export class CertifikatComponent implements OnInit {
-  endpointU = '/Bruger';
-  endpointC = '/KontaktOplysninger';
-  user: Bruger;
-  contact: KontaktOplysninger;
-  userList: Bruger[];
-  certificateId: number;
-  userId: number;
-  contactId: number;
+  endpointB = '/Bruger';
+  endpointK = '/KontaktOplysninger';
+  bruger: Bruger;
+  kontakt: KontaktOplysninger;
+  brugerList: Bruger[];
+  certifikatId: number;
+  brugerId: number;
+  kontaktId: number;
   file : any;
   url : string = "assets/images/Profil billede.png";
   constructor(
@@ -34,13 +34,13 @@ export class CertifikatComponent implements OnInit {
   }
 
   onHentBruger(){
-    if (this.userId = JSON.parse(localStorage.getItem('brugerId') || '{}')) {
-      this.restApi.getData(this.userId, this.endpointU).subscribe((data) => {
-        // this.userList = data.filter((res: any) => {
-        //   return res.id === this.userId;
+    if (this.brugerId = JSON.parse(localStorage.getItem('brugerId') || '{}')) {
+      this.restApi.getData(this.brugerId, this.endpointB).subscribe((data) => {
+        // this.brugerList = data.filter((res: any) => {
+        //   return res.id === this.brugerId;
         // });
-        this.user = data;
-        console.log(this.user);
+        this.bruger = data;
+        console.log(this.bruger);
       })
     }
   }
@@ -51,16 +51,22 @@ export class CertifikatComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]);
       reader.onload=(e: any)=>{
         this.url =e.target.result;
-        this.user.certifikatBilled = e.target.result;
-        this.user.certifikatLevel = 1;
+        this.bruger.certifikatBilled = e.target.result;
+       
+          this.bruger.certifikatLevel = 2;
+        
+        
       }
-      console.log(this.user);
+      console.log(this.bruger);
     }
   };
 
   onUploadCertifikat() {
-    console.log(this.user);
-    this.restApi.updateData(this.userId, this.endpointU, this.user).subscribe((data) => {
+    console.log(this.bruger);
+    if(this.bruger.certifikatStatus == 2){
+
+    }
+    this.restApi.updateData(this.brugerId, this.endpointB, this.bruger).subscribe((data) => {
       this.router.navigate(['../main/main'])
     });
   }

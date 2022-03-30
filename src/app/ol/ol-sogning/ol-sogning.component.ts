@@ -20,7 +20,7 @@ export class OlSogningComponent implements OnInit {
   selected = ''
   endpointO = '/Øller';
   endpointB = '/Bryggerier';
-  endpointK = '/kontaktOplysninger';
+  endpointK = '/KontaktOplysninger';
   searchkey: string;
   search: any;
   data = sessionStorage.getItem('id');
@@ -35,14 +35,16 @@ export class OlSogningComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.onLoadOl();
+    this.onHentOl();
+    console.log('Kontkakt',localStorage.getItem('olKontaktOplysningerId'));
   }
-  onLoadOl() {
+  onHentOl() {
     if (this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}')) {
         this.restApi.getDatas(this.endpointO).subscribe((beer) => {
         this.oller = beer.filter((res: any) => {
           return res.bryggeriId != this.bryggeriId;
         });
+        console.log(beer);
       });
     }
   }
@@ -64,17 +66,18 @@ export class OlSogningComponent implements OnInit {
       this.olId = this.ol.id;
       // console.log(this.beerId);
       localStorage.setItem('olId', JSON.stringify(this.olId));
-      this.restApi.getData(this.ol.bryggeriId, this.endpointB).subscribe(brew => {
-        this.bryggeri = brew;
+      this.restApi.getData(this.ol.bryggeriId, this.endpointB).subscribe(bryg => {
+        this.bryggeri = bryg;
         // console.log('bryggeriInfo:', this.brewery.contactInformationId);
-        this.restApi.getData(brew.contactInformationId, this.endpointK).subscribe(kontaktOplysningData => {
+        this.restApi.getData(bryg.kontaktOplysningerId, this.endpointK).subscribe(kontaktOplysningData => {
           this.kontaktOplysning = kontaktOplysningData;
-          this.kontaktOplysningId = this.kontaktOplysning.id;
+          // this.kontaktOplysningId = this.kontaktOplysning.id;
           // console.log("kontakt", this.kontaktOplysning);
-          localStorage.setItem('kontaktOplysningerId', JSON.stringify(this.kontaktOplysningId));
+          localStorage.setItem('olKontaktOplysningerId', JSON.stringify(this.kontaktOplysning.id));
+          this.router.navigate(['../ol/ol-side/', this.olId]);
         })
       })
-      this.router.navigate(['../beer/olside/', this.olId]);
     });
+    
   }
 }

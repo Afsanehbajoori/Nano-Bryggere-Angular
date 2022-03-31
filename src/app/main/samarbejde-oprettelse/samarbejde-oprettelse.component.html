@@ -1,1 +1,36 @@
-<p>samarbejde-oprettelse works!</p>
+<mat-card class="main" id="imgeUp">
+  <mat-card-content class="container">
+      <form [formGroup]="opretForm" class="example-form" class="containStyle" style="justify-content: center;">
+          <div style=" width: 100%; height: 5%;" class="centers ">
+              <h1 style="width: 100%;" class="txt">Samarbjde Oprettelses side</h1>
+          </div>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>olBilled</mat-label>
+              <input matInput type="text"  formControlName="olBilled" placeholder="ØlBilled" [(ngModel)]="nySamarbejde.olBilled" class="input-control">
+              <input type="file" class="btnMainStyle" (change)="onSubmitProfilBilled($event)">
+              <mat-error>
+                  feltet skal udfyldes
+              </mat-error>
+          </mat-form-field>
+          <mat-form-field class="example-full-width" appearance="fill">
+              <input matInput type="text"  formControlName="titel" placeholder="Titel"  [(ngModel)]="nySamarbejde.titel" class="input-control">
+              <mat-error>
+                  Dette felt skal udfyldes
+              </mat-error>
+          </mat-form-field>
+          <mat-form-field class="example-full-width" appearance="fill" *ngIf="bryggriList">
+            <mat-label>Anden Bryggeri Navn</mat-label>
+            <select matNativeControl formControlName="bryggeriId2" [(ngModel)]="nySamarbejde.bryggeriId2">
+              <option value="" selected></option>
+              <option *ngFor="let item of bryggrisNavn" [value]="item.bryggeriId2">{{item.bryggeinavn}} (bryggeriId : {{item.bryggeriId2}}) </option>
+            </select>
+            <!-- <input matInput type="text"  formControlName="bryggeriId2" placeholder="BryggeriId2"  [(ngModel)]="nySamarbejde.bryggeriId2" class="input-control"> -->
+            <mat-error>
+                Dette felt skal udfyldes
+            </mat-error>
+        </mat-form-field>
+          <button mat-raised-button type="submit" (click)="onAnuller()" class="login-btn" style="background: linear-gradient(#b60d0d, #ff6e6e);">Annuller</button>
+          <button mat-raised-button type="submit" (click)="onSubmitSamarbejde()" class="login-btn" style="background: linear-gradient(#33ff00, #41fd70);">Opret Øl</button>
+      </form>
+  </mat-card-content>
+</mat-card>

@@ -15,7 +15,7 @@ export class OpretteOlComponent implements OnInit {
   endpointB = '/Øller';
   selected = '';
   constructor(
-    public restApi: RestApiService, 
+    public restApi: RestApiService,
     private router: Router,
     public actRoute: ActivatedRoute
   ) { }
@@ -61,6 +61,7 @@ export class OpretteOlComponent implements OnInit {
     this.olOprettelse.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}');
     // console.log(this.olOprettelse);
     this.restApi.createData(this.olOprettelse, this.endpointB).subscribe((data) => {
+      localStorage.setItem('olId', JSON.stringify(data.id));
       this.router.navigate(['../main/katalog']);
     });
   }

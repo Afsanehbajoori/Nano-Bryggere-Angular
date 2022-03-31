@@ -48,7 +48,7 @@ export class RolleAdminSideComponent implements OnInit {
       this.restApi.getData(this.rolleId, this.endpointR).subscribe((res) => {
         this.rolle = res;
         console.log('rolle:', this.rolle);
-        /* if(this.rolle.rolleNavn == 300){
+         if(this.rolle.rolleNavn == 300){
           this.rolleName = 'Administrator'
         }
         if(this.rolle.rolleNavn == 200){
@@ -59,7 +59,7 @@ export class RolleAdminSideComponent implements OnInit {
         }
         if(this.rolle.rolleNavn == 0){
           this.rolleName = 'Anonymbruger'
-        } */
+        } 
 
       })
     })

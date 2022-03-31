@@ -1,8 +1,10 @@
 import { NestedTreeControl } from '@angular/cdk/tree';
+import { JsonpClientBackend } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
 import { ActivatedRoute, Router } from '@angular/router';
+import { isEmpty } from 'rxjs/operators';
 import { Bryggeri } from 'src/app/Models/Bryggeri';
 import { Samarbejde } from 'src/app/Models/Samarbejde';
 import { RestApiService } from 'src/app/shared/rest-api.service';
@@ -14,9 +16,11 @@ interface Search {
 
 const TREE_DATA: Search[] = [
   {
-    name: 'Vis',
-    children: [{ name: 'Bruger'}],
+    name: 'Vis'
+
   }
+
+
 ];
 
 @Component({
@@ -27,9 +31,10 @@ const TREE_DATA: Search[] = [
 
 export class SamarbejdeSideComponent implements OnInit {
   showSamarbejdeComponent:boolean=false;
+  showSamarbejdeOptettComponent:boolean=false;
   dataSource = new MatTreeNestedDataSource<Search>();
   treeControl = new NestedTreeControl<Search>(node => node.children);
-  
+
   samarbejde: Samarbejde
   samarbejder: Samarbejde[];
   samarbejdeId: number;
@@ -40,6 +45,7 @@ export class SamarbejdeSideComponent implements OnInit {
   olId: number;
   bryggeri: Bryggeri;
   bryggeriId: number;
+
   constructor(
     public dialog: MatDialog,
     public restApi: RestApiService,
@@ -47,10 +53,18 @@ export class SamarbejdeSideComponent implements OnInit {
     public actRoute: ActivatedRoute
   ) {  this.dataSource.data = TREE_DATA; }
   hasChild = (_: number, node: Search) => !!node.children && node.children.length > 0;
+
+
   ngOnInit(): void {
+    this.bryggeriId=JSON.parse(localStorage.getItem('bryggeriId') || '{}');
+    console.log('bryggeriId:' ,typeof this.bryggeriId)
+    this.olId=JSON.parse(localStorage.getItem('olId') || '{}');
+    console.log('olId:' , this.olId)
     this.onHentSamarbejde();
+    
     // this.onLoadOl();
   }
+
   onShowComponent(nodeName: string, id: any) {
     // console.log(this.cooperations);
     switch (nodeName) {
@@ -59,6 +73,7 @@ export class SamarbejdeSideComponent implements OnInit {
         this.showSamarbejdeComponent = !this.showSamarbejdeComponent;
         break;
       }
+
     }
   }
 
@@ -75,7 +90,23 @@ export class SamarbejdeSideComponent implements OnInit {
     }
   }
 
+
   onOpdaterOl(id: any) {
     this.router.navigate(['../main/samarbejderediger/', id]);
   };
+
+  opretteSamarbejde(){
+    if(JSON.stringify(this.bryggeriId) === '{}' ){
+      alert('du skal først oprette et bryggri!')
+    }
+    if(JSON.stringify(this.olId) === '{}'){
+      alert('du skal også først oprette Øl')
+    }
+    else{
+      this.showSamarbejdeOptettComponent = !this.showSamarbejdeOptettComponent;
+
+    }
+    }
+
 }
+

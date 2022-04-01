@@ -1,0 +1,80 @@
+<div class="main" id="imgeUp">
+    <mat-card>
+        <mat-toolbar class="login-header" style="background: linear-gradient(#6c6c6d, #cfd4d6); height: 100px;">
+            <mat-tab-group>
+                <mat-tab label="Find Samarbejde med Samarbejde navn">
+                    <form class="example-form" style="justify-content: center; width: 40%;">
+                        <mat-form-field class="txtHeader">
+                            <input matInput type="search" placeholder="Find samarbejde"
+                                [(ngModel)]="searchkeySamarbejdeNavn" (ngModelChange)="onFindSamarbejdeNavn()"
+                                [ngModelOptions]="{standalone: true}">
+                        </mat-form-field>
+                    </form>
+                </mat-tab>
+                <mat-tab label="Find Samarbejde med Øl navn">
+                    <form class="example-form" style="justify-content: center; width: 100%;">
+                        <mat-form-field class="txtHeader">
+                            <input matInput type="search" placeholder="Find samarbejde"
+                                [(ngModel)]="searchkeySamarbejdeBryggeri" (ngModelChange)="onFindSamarbejdeOl()"
+                                [ngModelOptions]="{standalone: true}">
+                        </mat-form-field>
+                    </form>
+                </mat-tab>
+                <mat-tab label="Opret Samarbejde">
+                    <button mat-button class="btnOprette" (click)="onOpretSamarbejde()">Opret Samarbejde</button>
+                </mat-tab>
+            </mat-tab-group>
+        </mat-toolbar>
+    </mat-card>
+    <mat-card>
+        <table style="width: 100%; height: 100%; display: flex;">
+            <mat-accordion class="example-headers-align" multi style="width: 100%;">
+                <mat-expansion-panel *ngFor="let samarbejde of samarbejdeliste" style="margin-top: 10px;" [disabled]="clickButton" (click)="clickButton=true">
+                    <mat-expansion-panel-header
+                        style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236)); justify-content: center; width: 100%;">
+                        <mat-panel-title class="centers" style="justify-content: center;">
+                            <span style="font-weight: bold; margin-right: 20px;"> Samarbejde navn:</span>
+                            <span>{{samarbejde.titel}}</span>
+                        </mat-panel-title>
+                        <mat-action-row class="centers" style="justify-content: center;">
+                            <button mat-button class="btnMainStyle" (click)="onVisSamarbejde(samarbejde.id)">Vis
+                            </button> |
+                            <button mat-button class="btnMainStyle" (click)="onOpdaterSamarbejde(samarbejde.id)">Update
+                            </button> |
+                            <button mat-button class="btnMainStyle" (click)="onSletSamarbejde(samarbejde.id)">Slet
+                            </button>
+                        </mat-action-row>
+                    </mat-expansion-panel-header>
+                    <div *ngIf="bryggeri">
+                        <mat-card class="containStyle">
+                            <span>Navn:</span>
+                            <span class="txtStyle">{{bryggeri.navn}}</span>
+                        </mat-card>
+                        <mat-card class="containStyle">
+                            <span>Land:</span>
+                            <span class="txtStyle">{{bryggeri.beskrivelse}}</span>
+                        </mat-card>
+                        <mat-card class="containStyle">
+                            <span>Type:</span>
+                            <span class="txtStyle">{{bryggeri.bryggeriLogo}}</span>
+                        </mat-card>
+                    </div>
+                    <div *ngIf="bryggeri2">
+                        <mat-card class="containStyle">
+                            <span>Navn:</span>
+                            <span class="txtStyle">{{bryggeri2.navn}}</span>
+                        </mat-card>
+                        <mat-card class="containStyle">
+                            <span>Land:</span>
+                            <span class="txtStyle">{{bryggeri2.beskrivelse}}</span>
+                        </mat-card>
+                        <mat-card class="containStyle">
+                            <span>Type:</span>
+                            <span class="txtStyle">{{bryggeri2.bryggeriLogo}}</span>
+                        </mat-card>
+                    </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </table>
+    </mat-card>
+</div>

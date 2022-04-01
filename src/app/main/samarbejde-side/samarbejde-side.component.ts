@@ -88,7 +88,7 @@ export class SamarbejdeSideComponent implements OnInit {
         });
         console.log(this.bryggeriId);
         this.samarbejder.forEach(function (value){
-          console.log("Value",value.olId);
+          console.log("Value",value.id);
         })
       })
     }

@@ -33,6 +33,9 @@ import { DeltagerAdminSideComponent } from './deltager-admin-side/deltager-admin
 import { LoginSideComponent } from './login-side/login-side.component';
 import { OpretTagDialogBoxComponent } from './opret-tag-dialog-box/opret-tag-dialog-box.component';
 import { OpdaterTagDialogBoxComponent } from './opdater-tag-dialog-box/opdater-tag-dialog-box.component';
+import { SamarbejdeAdminSideComponent } from './samarbejde-admin-side/samarbejde-admin-side.component';
+import { OpretSamarbejdeDialogBoxComponent } from './opret-samarbejde-dialog-box/opret-samarbejde-dialog-box.component';
+import { OpdaterSamarbejdeDialogBoxComponent } from './opdater-samarbejde-dialog-box/opdater-samarbejde-dialog-box.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +55,10 @@ import { OpdaterTagDialogBoxComponent } from './opdater-tag-dialog-box/opdater-t
     DeltagerAdminSideComponent,
     LoginSideComponent,
     OpretTagDialogBoxComponent,
-    OpdaterTagDialogBoxComponent
+    OpdaterTagDialogBoxComponent,
+    SamarbejdeAdminSideComponent,
+    OpretSamarbejdeDialogBoxComponent,
+    OpdaterSamarbejdeDialogBoxComponent
   ],
   imports: [
     CommonModule,

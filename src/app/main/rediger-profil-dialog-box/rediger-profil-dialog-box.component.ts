@@ -9,7 +9,7 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./rediger-profil-dialog-box.component.css']
 })
 export class RedigerProfilDialogBoxComponent implements OnInit {
-  redigerForm: FormGroup = new FormGroup({});
+  opdaterForm: FormGroup = new FormGroup({});
   kontaktOplysningsListe: any;
   brugerListe:any;
   kontaktoplysningId: number;
@@ -29,11 +29,11 @@ export class RedigerProfilDialogBoxComponent implements OnInit {
       .toPromise()
       .then(data => {
         this.kontaktOplysningsListe = data;
-/*
+        /*
         this.restApi.getData(this.brugerId , this.endpointS).subscribe(res => {
           this.BrugerList=res; */
           // build the edit form
-          this.redigerForm = this.formBuilder.group({
+          this.opdaterForm = this.formBuilder.group({
             fnavnCtl: new FormControl(this.kontaktOplysningsListe.fnavn),
             enavnCtl: new FormControl(this.kontaktOplysningsListe.enavn),
             adr1Ctl: new FormControl(this.kontaktOplysningsListe.adresseLinje1),

@@ -53,7 +53,7 @@ export class CertifikatComponent implements OnInit {
         this.url =e.target.result;
         this.bruger.certifikatBilled = e.target.result;
        
-          this.bruger.certifikatLevel = 2;
+          this.bruger.certifikatStatus = 2;
         
         
       }

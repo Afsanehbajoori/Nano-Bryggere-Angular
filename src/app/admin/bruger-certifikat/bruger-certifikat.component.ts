@@ -19,7 +19,7 @@ export class BrugerCertifikatComponent implements OnInit {
   certifikat: Bruger; //oplysninger
   kontaktOplysningerId: number;
   endpointK = '/KontaktOplysninger';
-  endpointBru = '/Bruger';
+  endpointB = '/Bruger';
   clickButton: boolean = true;
   searchkey: string;
   dialogRefSlet: MatDialogRef<SletDialogBoxComponent>;
@@ -36,18 +36,29 @@ export class BrugerCertifikatComponent implements OnInit {
   }
 
   onHentBrugerCertifikat() {
-     this.restApi.getDatas(this.endpointBru).subscribe((brugerCertifikat) => {
-      
-      this.certifikatListe=brugerCertifikat;
-      console.log(this.certifikatListe.certifikatLevel);
-      const b = this.certifikatListe.find((a: any) => {
-        a.certifikatLevel === 2;
+    return this.restApi.getDatas(this.endpointB).subscribe((certifikatData) => {
+      this.certifikatListe = certifikatData.filter((a: any) => {
+        return a.certifikatStatus === 2;
+      });
+      this.restApi.getDatas(this.endpointK).subscribe((kontaktOplysningerData) => {
+        // this.kontaktOplysningsListe = kontaktOplysningerData;
+        this.kontaktOplysningsListe = kontaktOplysningerData.filter((a: any) => {
+          return a.id === this.certifikatListe.kontaktOplysningerId;
+        });
+        // console.log(this.kontaktOplysningsListe);
+        // console.log(this.certifikatListe);
       })
-      console.log('list:', b)
-     
-      // res.certificateLevel === 2;
-      
-    });
+    })
+    //   return this.restApi.getDatas(this.endpointB).subscribe((brugerCertifikat) => {
+    //   this.certifikatListe = brugerCertifikat.filter((a: Bruger) => {
+    //     a.certifikatStatus === 2;
+    //   })
+    //   console.log("certifikatStatus",this.certifikat);
+    //   // const b = this.certifikatListe.filter((a: any) => {
+    //   //   a.certifikatStatus === 2;
+    //   // })
+    //   console.log('list:', brugerCertifikat)     
+    // });
   }
 
   onFindBrugerCertifikat() {
@@ -57,18 +68,18 @@ export class BrugerCertifikatComponent implements OnInit {
     else {
       this.restApi.getParticipantByEventsTitle(this.searchkey, this.endpointK).subscribe(data => {
         this.certifikatListe = data;
-        console.log('hi:', this.certifikatListe)
+        // console.log('hi:', this.certifikatListe)
       })
     }
   }
 
   //Godkend certifikat
   onBekraftCertifikat(id: any) {
-    this.restApi.getData(id, this.endpointBru).subscribe(data => {
+    this.restApi.getData(id, this.endpointB).subscribe(data => {
       this.certifikat = data;
       
-      this.certifikat.certifikatLevel = 2;
-      this.restApi.updateData(id, this.endpointBru, this.certifikat).subscribe(data => {
+      this.certifikat.certifikatStatus = 3;
+      this.restApi.updateData(id, this.endpointB, this.certifikat).subscribe(data => {
         this.ngOnInit();
       })
     })
@@ -76,10 +87,11 @@ export class BrugerCertifikatComponent implements OnInit {
 
   //Benægt certifikat
   onBenagtCertifikat(id: any) {
-    this.restApi.getData(id, this.endpointBru).subscribe(data => {
+    this.restApi.getData(id, this.endpointB).subscribe(data => {
       this.certifikat = data;
-      this.certifikat.certifikatLevel = 0;
-      this.restApi.updateData(id, this.endpointBru, this.certifikat).subscribe(data => {
+      this.certifikat.certifikatStatus = 1;
+      this.certifikat.certifikatBilled = "";
+      this.restApi.updateData(id, this.endpointB, this.certifikat).subscribe(data => {
         this.ngOnInit();
       })
     })
@@ -87,10 +99,10 @@ export class BrugerCertifikatComponent implements OnInit {
 
   onVisBrugerCertifikat(id: any) {
     this.clickButton = false;
-    return this.restApi.getData(id, this.endpointBru).subscribe((data) => {
+    return this.restApi.getData(id, this.endpointB).subscribe((data) => {
       this.kontaktOplysningerId = data.kontaktOplysningerId;
       this.certifikat = data;
-      console.log(this.certifikat);
+      // console.log(this.certifikat);
       this.restApi.getData(this.kontaktOplysningerId, this.endpointK).subscribe((data) => {
         this.kontaktOplysninger = data;
       })

@@ -9,7 +9,7 @@
         <button mat-menu-item [matMenuTriggerFor]="main"><mat-icon aria-hidden="false">home</mat-icon>Main</button>
         <button mat-menu-item [matMenuTriggerFor]="forum"><mat-icon aria-hidden="false">chat</mat-icon>Forum</button>
         <button mat-menu-item [matMenuTriggerFor]="event"><mat-icon aria-hidden="false">calendar_today</mat-icon>Event</button>
-        <button mat-menu-item [matMenuTriggerFor]="beer"><mat-icon aria-hidden="false">local_drink</mat-icon>Øl</button>
+        <button mat-menu-item [matMenuTriggerFor]="ol"><mat-icon aria-hidden="false">local_drink</mat-icon>Øl</button>
         <button mat-menu-item [matMenuTriggerFor]="samarbejde"><mat-icon aria-hidden="false">group</mat-icon>Samarbejde</button>
       </mat-menu>
 
@@ -61,12 +61,12 @@
         </button>
       </mat-menu>
 
-      <mat-menu #beer="matMenu">
+      <mat-menu #ol="matMenu">
         <button mat-menu-item >
           <span><a href="/main/katalog" style="text-decoration:none">Katalog</a></span>
         </button>
         <button mat-menu-item >
-          <span><a href="/ol/ol-sogning" style="text-decoration:none">Find Øl</a></span>
+          <span><a href="/øl/øl-søgning" style="text-decoration:none">Find Øl</a></span>
         </button>
       </mat-menu>
 

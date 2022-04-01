@@ -1,0 +1,18 @@
+<mat-card class="main" id="imgeUp">
+    <mat-card-content class="container centers">
+        <form [formGroup]="opretForm" class="example-form">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <input matInput type="text" [(ngModel)]="tagOprettelse.navn" formControlName="navn" placeholder="Navn"
+                    class="input-control">
+                <!-- <mat-error *ngIf="navn.errors?.['required']"> -->
+                <mat-error>
+                    feltet skal udfyldes
+                </mat-error>
+            </mat-form-field>
+            <div>
+                <button mat-button (click)="dialogRefOpretTag.close(false)">Annulere</button>
+                <button mat-button cdkFocusInitial (click)="onSubmitTag(); $event.stopPropagation()">Opret Tag</button>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

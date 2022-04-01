@@ -41,7 +41,7 @@ export class UpdateEventsDialogBoxComponent implements OnInit {
     })
   }
   
-  onSubmitCertifikat(event: any) {
+  onSubmitEvent(event: any) {
     if(event.target.files){
       var reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]);

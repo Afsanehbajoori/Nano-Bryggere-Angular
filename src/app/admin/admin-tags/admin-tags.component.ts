@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
 import { Tags } from 'src/app/Models/Tags';
 import { RestApiService } from 'src/app/shared/rest-api.service';
+import { OpdaterTagDialogBoxComponent } from '../opdater-tag-dialog-box/opdater-tag-dialog-box.component';
+import { OpretTagDialogBoxComponent } from '../opret-tag-dialog-box/opret-tag-dialog-box.component';
 
 @Component({
   selector: 'app-admin-tags',
@@ -9,10 +13,19 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./admin-tags.component.css']
 })
 export class AdminTagsComponent implements OnInit {
-  tagsliste: Tags[];
-  endpointT = '/Tags';
+  dialogRefSlet: MatDialogRef<SletDialogBoxComponent>;
+  dialogRefOpretTags: MatDialogRef<OpretTagDialogBoxComponent>;
+  dialogRefOpdaterTags: MatDialogRef<OpdaterTagDialogBoxComponent>;
+  searchkeyEventTitel: string;
+  searchkeyDeltagelse: string;
+  clickButton: boolean = true;
   searchkey: string;
+  tagsliste: any;
+  tags: Tags[];
+  endpointT = '/Tags';
+
   constructor(
+    public dialog: MatDialog,
     public restApi: RestApiService,
     private router: Router
   ) { }
@@ -20,28 +33,76 @@ export class AdminTagsComponent implements OnInit {
   ngOnInit(): void {
     this.onHentTags()
   }
+
   onHentTags() {
     return this.restApi.getDatas(this.endpointT).subscribe((tag) => {
       this.tagsliste = tag;
     });
   }
+
+  onVisTags(id: any) {
+    this.clickButton = false;
+    return this.restApi.getData(id, this.endpointT).subscribe(data => {
+      this.tagsliste = data;
+      console.log('TagsListe:', this.tagsliste);
+    })
+  }
+
   onOpretTags() {
-    this.router.navigate(['../admin/tagsadmin']);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "30%";
+    dialogConfig.height = '20%';
+    this.dialogRefOpretTags = this.dialog.open(OpretTagDialogBoxComponent, dialogConfig);
+    this.dialogRefOpretTags.afterClosed().subscribe(result => {
+      this.ngOnInit();
+    })
   }
+
   onOpdaterTags(id:any) {
-    this.router.navigate(['../admin/tagsadmin']);
+    localStorage.setItem('tagId', JSON.stringify(id));
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "40%";
+    dialogConfig.height = 'auto';
+    this.dialogRefOpdaterTags = this.dialog.open(OpdaterTagDialogBoxComponent, dialogConfig);
+    this.dialogRefOpdaterTags.afterClosed().subscribe(result => {
+      if (result) {
+        this.tagsliste = result;
+        console.log('date:', typeof (this.tagsliste.startDato));
+        this.restApi.updateData(id, this.endpointT, this.tagsliste).subscribe((data) => {
+        })
+        console.log("Tags Test",this.tagsliste);
+      }
+      this.ngOnInit();
+    })
   }
+
   onSletTags(id:any) {
-    return this.restApi.deleteData(id,this.endpointT).subscribe((tag) => {
-      this.tagsliste = tag;
-    });
+    if (this.tagsliste.length !== 0) {
+      alert('Der er et problem');
+    }
+    else {
+      let dialogRef = this.dialog.open(SletDialogBoxComponent);
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          this.restApi.deleteData(id, this.endpointT).subscribe((data) => {
+            console.log('slet:', id);
+            this.ngOnInit();
+          })
+        }
+      });
+    }
   }
-  onFindOl(){
+
+  onFindTag(){
     if(this.searchkey == ""){
       this.ngOnInit();
     }
     else{
-      this.tagsliste = this.tagsliste.filter(res =>{
+      this.tags = this.tags.filter(res =>{
         return res.navn.toLowerCase().match(this.searchkey.toLowerCase());
       })
     }

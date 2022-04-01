@@ -125,6 +125,7 @@ export class BrugerAdminSideComponent implements OnInit {
   }
 
   onOpdaterBruger(id: any) {
+    console.log('id', id);
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
@@ -132,7 +133,7 @@ export class BrugerAdminSideComponent implements OnInit {
     this.restApi.getData(id, this.endpointB).subscribe((data) => {
       this.kontaktOplysningerId = data.kontaktOplysningerId;
       console.log("kontId:", this.kontaktOplysningerId);
-      localStorage.setItem('AdminKontaktOplysningerId', this.kontaktOplysningerId.toString());
+      localStorage.setItem('KontaktOplysningerId', this.kontaktOplysningerId.toString());
       this.dialogRefOpdaterProfil = this.dialog.open(RedigerProfilDialogBoxComponent, dialogConfig);
       this.dialogRefOpdaterProfil.afterClosed().subscribe(result => {
         if (result) {

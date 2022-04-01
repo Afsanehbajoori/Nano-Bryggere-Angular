@@ -34,13 +34,13 @@
                       <button mat-button class="btnMainStyle" (click)="onVisBruger(brug.id)" >vis </button>  |
                       <button mat-button class="btnMainStyle" (click)="onNedgraderRolleNavn(brug.id)">Nedgradere </button> |
                       <button mat-button class="btnMainStyle" (click)="onOpgraderRolleNavn(brug.id)">Upgradere </button> |
-                      <button mat-button class="btnMainStyle" (click)="onSletBruger(brug.id)">Slet </button> 
+                      <button mat-button class="btnMainStyle" (click)="onSletBruger(brug.id)">Slet </button>
                     </mat-action-row>
                 </mat-expansion-panel-header>
                 <div  *ngIf="rolle">
                 <mat-card class="containStyle">
                   <span>Rollenavn:</span>
-                  <span class="txtStyle">{{rolle.rolleNavn}}</span>
+                  <span class="txtStyle">{{this.rolleName}}</span>
                 </mat-card>
                 <mat-card class="containStyle">
                   <span>level:</span>

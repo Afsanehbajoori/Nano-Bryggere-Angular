@@ -57,7 +57,9 @@ this.brygge=data;
       this.ngOnInit();
     }
     else{
+
       this.bryggeri = this.bryggeri.filter((res: any) => {
+
         return res.navn.toLowerCase().match(this.searchkeyBryggeriNavn.toLowerCase());
       })
     }

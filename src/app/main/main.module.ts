@@ -42,6 +42,7 @@ import { MatTreeModule } from '@angular/material/tree';
 import {MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS} from '@angular/material/snack-bar';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import { SamarbejdeVisningComponent } from './samarbejde-visning/samarbejde-visning.component';
+import { SamarbejdeKatalogComponent } from './samarbejde-katalog/samarbejde-katalog.component';
 
 
 @NgModule({
@@ -66,7 +67,8 @@ import { SamarbejdeVisningComponent } from './samarbejde-visning/samarbejde-visn
     VisDetajlerComponent,
     VisOlDetajlerComponent,
     VisEventsDetajlerComponent,
-    SamarbejdeVisningComponent
+    SamarbejdeVisningComponent,
+    SamarbejdeKatalogComponent
   ],
   entryComponents:[SletDialogBoxComponent , RedigerProfilDialogBoxComponent , RedigerBryggeriDialogBoxComponent],
   imports: [

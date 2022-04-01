@@ -11,8 +11,6 @@
   background-color: rgb(255, 255, 255);
 }
 
-
-
 .example-tree-invisible {
     display: none;
 }
@@ -78,8 +76,8 @@
 }
 .txtStyle{
   font-style: italic;
-   display: flex;
- justify-content: center;
- text-align: center;
- margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-top: 20px;
 }

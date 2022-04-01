@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RestApiService } from 'src/app/shared/rest-api.service';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-samarbejde-rediger',
@@ -10,46 +11,43 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 })
 export class SamarbejdeRedigerComponent implements OnInit {
   selected = '';
-  olId = this.actRoute.snapshot.params['id'];
-  opdaterForm: FormGroup;
-  endpoints = '/Øller';
-  olListe: any = {};
+  samarbejdeId :number;
+  opdaterForm: FormGroup = new FormGroup({});
+  endpointS = '/Samarbejder';
+   samarbejdeListe:any;
   constructor(
-    public restApi: RestApiService, 
+    public dialogRefRedigerSamarbejde : MatDialogRef<SamarbejdeRedigerComponent>,
+    public restApi: RestApiService,
     private router: Router,
-    public actRoute: ActivatedRoute
+    public actRoute: ActivatedRoute,
+    private formBuilder: FormBuilder
   ) { }
 
   ngOnInit(): void {
-    this.opdaterForm = new FormGroup({
-      navn: new FormControl(''),
-      type: new FormControl(''),
-      smag: new FormControl(''),
-      procent: new FormControl(''),
-      bryggeriId: new FormControl(''),
-      argang: new FormControl('', Validators.required),
-      land: new FormControl(''),
-      // process: new FormControl('', Validators.required),
-      olBilled: new FormControl(''),
-      beskrivelse: new FormControl(''),
-      // billed: new FormControl('', Validators.required),
-      antal: new FormControl(''),
-    });
+    this.samarbejdeId=JSON.parse(localStorage.getItem('samarbejdeId') || '{}');
+    this.restApi.getData(this.samarbejdeId , this.endpointS)
+    .toPromise()
+    .then(data => {
+      this.samarbejdeListe=data;
+      this.opdaterForm = this.formBuilder.group({
+        bryggeriId1: new FormControl(this.samarbejdeListe.bryggeriId1),
+        bryggeriId2: new FormControl(this.samarbejdeListe.bryggeriId2),
+        titel: new FormControl(this.samarbejdeListe.titel),
+        olBilled: new FormControl(this.samarbejdeListe.olBilled)
+      });
+    })
+
   }
 
-  onHentOl(){
-    return this.restApi.getData(this.olId, this.endpoints).subscribe((beer: {}) => {
-      this.olListe = beer;
-    });
-  }
-
-  onAnuller() {
-    return this.router.navigate(['../main/samarbejdeside'])
+  onSubmitCertifikat(event: any) {
+    if(event.target.files){
+      var reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]);
+      reader.onload=(e: any)=>{
+        this.samarbejdeListe.olBilled =e.target.result;
+        console.log( this.samarbejdeListe.olBilled);
+        localStorage.setItem('olBilled' ,JSON.stringify(this.samarbejdeListe.olBilled));
+      }
+    }
   };
-
-  onSubmitOl() {
-    this.restApi.updateData(this.olId, this.endpoints, this.olListe).subscribe((data) => {
-      this.router.navigate(['../main/samarbejdeside'])
-    });
-  }
 }

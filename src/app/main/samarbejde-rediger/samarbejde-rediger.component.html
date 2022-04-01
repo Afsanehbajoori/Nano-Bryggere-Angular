@@ -1,102 +1,32 @@
-<mat-card class="main" id="imgeUp">
-    <mat-card-content class="container">
+<h1 mat-dialog-title>Rediger Samarbejde</h1>
+<div mat-dialog-content>
+  <form class="example-form" [formGroup]="opdaterForm" *ngIf="samarbejdeListe">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>olBilled</mat-label>
+      <input matInput formControlName="olBilled">
+      <img [src]="samarbejdeListe.olBilled" alt="" style="width: 20%; height: 20%;">
+      <input type="file" class="btnMainStyle" (change)="onSubmitCertifikat($event)">
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Titel:</mat-label>
+      <input matInput formControlName="titel" placeholder="{{samarbejdeListe.titel}}" [(ngModel)]="samarbejdeListe.titel">
+    </mat-form-field>
 
-        <form [formGroup]="opdaterForm" class="example-form" *ngIf="olListe">
-            <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="text" [(ngModel)]="olListe.navn" formControlName="navn" placeholder="{{olListe.navn}}" class="input-control">
-                <!-- <mat-error *ngIf="navn.errors?.['required']"> -->
-                <mat-error>
-                    udfyld feltet
-                </mat-error>
-            </mat-form-field>
+    <!-- <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label> "bryggeriId1:</mat-label>
+      <input matInput formControlName="bryggeriId1" placeholder="{{samarbejdeListe.bryggeriId1}}"
+        [(ngModel)]="samarbejdeListe.bryggeriId1">
+    </mat-form-field>
 
-            <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="text" [(ngModel)]="olListe.type" formControlName="type"
-                    placeholder="{{olListe.type}}" class="input-control">
-                <mat-error>
-                    udfyld feltet
-                </mat-error>
-            </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>bryggeriId2:</mat-label>
+      <input matInput formControlName="bryggeriId2" placeholder="{{samarbejdeListe.bryggeriId2}}"
+        [(ngModel)]="samarbejdeListe.bryggeriId2">
+    </mat-form-field> -->
 
-            <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="text" [(ngModel)]="olListe.smag" formControlName="smag"
-                    placeholder="{{olListe.smag}}" class="input-control">
-                <mat-error>
-                    udfyld feltet
-                </mat-error>
-            </mat-form-field>
-
-            <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="number" [(ngModel)]="olListe.procent" formControlName="procent"
-                    placeholder="{{olListe.procent}}" class="input-control">
-                <mat-error>
-                    udfyld feltet
-                </mat-error>
-            </mat-form-field>
-
-            <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="date" [(ngModel)]="olListe.argang" formControlName="argang" placeholder="{{olListe.argang}}" class="input-control">
-                <mat-error>
-                    Dette felt skal udfyldes
-                </mat-error>
-            </mat-form-field>
-
-            <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="text" [(ngModel)]="olListe.land" formControlName="land"
-                    placeholder="{{olListe.land}}" class="input-control">
-                <mat-error>
-                    udfyld feltet
-                </mat-error>
-            </mat-form-field>
-
-            <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="number" [(ngModel)]="olListe.bryggeriId" formControlName="bryggeriId"
-                    placeholder="{{olListe.bryggeriId}}" class="input-control">
-                <mat-error>
-                    udfyld feltet
-                </mat-error>
-            </mat-form-field>
-
-            <!-- <mat-form-field class="example-full-width" appearance="fill">
-                    <mat-select [(value)]="selected" formControlName="bryggeprocess" placeholder="{{olListe.bryggeprocess}}">
-                        <mat-option>Ingen</mat-option>
-                        <mat-option value="optionJa">Ja</mat-option>
-                        <mat-option value="optionNej">Nej</mat-option>
-                    </mat-select>
-                    <mat-error>
-                        udfyld feltet
-                    </mat-error>
-            </mat-form-field> -->
-
-            <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="text" [(ngModel)]="olListe.olBilled" formControlName="olBilled"
-                    placeholder="{{olListe.olBilled}}" class="input-control">
-                <mat-error>
-                    udfyld feltet
-                </mat-error>
-            </mat-form-field>
-
-            <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="text" [(ngModel)]="olListe.beskrivelse" formControlName="beskrivelse"
-                    placeholder="{{olListe.beskrivelse}}" class="input-control">
-                <mat-error>
-                    udfyld feltet
-                </mat-error>
-            </mat-form-field>
-          
-            <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput type="text" [(ngModel)]="olListe.antal" formControlName="antal"
-                    placeholder="{{olListe.antal}}" class="input-control">
-                <mat-error>
-                    udfyld feltet
-                </mat-error>
-            </mat-form-field>
-
-            <button mat-raised-button type="submit" (click)="onAnuller()" class="login-btn"
-                style="background: linear-gradient(#b60d0d, #ff6e6e);">Annuller</button>
-
-            <button mat-raised-button type="submit" (click)="onSubmitOl()" class="login-btn"
-                style="background: linear-gradient(#00ff37, #41fd70);">Rediger Øl</button>
-        </form>
-    </mat-card-content>
-</mat-card>
+    <div mat-dialog-actions class="btn-container">
+      <button mat-button (click)="dialogRefRedigerSamarbejde.close(false)">Annulere</button>
+      <button mat-button cdkFocusInitial [mat-dialog-close]="samarbejdeListe">Gem Ændringer</button>
+    </div>
+  </form>
+</div>

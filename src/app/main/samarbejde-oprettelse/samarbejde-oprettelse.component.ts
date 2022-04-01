@@ -9,14 +9,16 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./samarbejde-oprettelse.component.css']
 })
 export class SamarbejdeOprettelseComponent implements OnInit {
-  @Input() nySamarbejde = { olBilled: '', titel: '', bryggeriId2:0, bryggeriId1:0, olId:0}
+  @Input() nySamarbejde = { olBilled: '', titel: '', bryggeriId2:0, bryggeriId1:0}
   opretForm : any = new FormGroup({});
   olBilled:any;
   bryggeriId:number;
   endpointS='/Samarbejder';
   endpointB = '/Bryggerier';
+  endpointO='/Øller';
   bryggriList:any;
   bryggrisNavn= new Array();
+  samarbejdeId:number;
   constructor(
     public restApi: RestApiService,
     private router: Router,
@@ -34,7 +36,7 @@ export class SamarbejdeOprettelseComponent implements OnInit {
       'titel': new FormControl('', Validators.required),
       'bryggeriId2': new FormControl(''),
       'bryggeriId1': new FormControl(''),
-      'olId': new FormControl('')
+      //'olId': new FormControl('')
     })
 
   }
@@ -43,8 +45,8 @@ export class SamarbejdeOprettelseComponent implements OnInit {
     this.restApi.getDatas(this.endpointB).subscribe(data => {
       this.bryggriList=data;
       for(let i=0; i<data.length;i++ ){
-        const master= {bryggeinavn: this.bryggriList[i].navn , bryggeriId2 : this.bryggriList[i].id}
-        this.bryggrisNavn.push(master)
+        const dropdownInfo= {bryggeinavn: this.bryggriList[i].navn , bryggeriId2 : this.bryggriList[i].id}
+        this.bryggrisNavn.push(dropdownInfo)
       }
       console.log('BryggeriList' , this.bryggrisNavn)
     })
@@ -60,7 +62,6 @@ onSubmitProfilBilled(event: any) {
     reader.readAsDataURL(event.target.files[0]);
     reader.onload = (e: any) => {
       this.olBilled = e.target.result;
-      // console.log(this.logo);
       localStorage.setItem('olBilled', JSON.stringify(this.olBilled));
     }
   }
@@ -68,9 +69,10 @@ onSubmitProfilBilled(event: any) {
 onSubmitSamarbejde(){
   this.nySamarbejde.olBilled = JSON.parse(localStorage.getItem('olBilled') || '{}');
   this.nySamarbejde.bryggeriId1=JSON.parse(localStorage.getItem('bryggeriId') || '{}');
-  this.nySamarbejde.olId=JSON.parse(localStorage.getItem('olId') || '{}');
+  //this.nySamarbejde.olId=JSON.parse(localStorage.getItem('olId') || '{}');
   this.restApi.createData(this.nySamarbejde , this.endpointS).subscribe(data => {
-    console.log(data);
+    localStorage.setItem('samarbejdeId' ,JSON.stringify(data.id) )
+    console.log('samarbejdeId:',data);
     this.ngOnInit();
   })
   }

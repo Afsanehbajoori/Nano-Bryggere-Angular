@@ -11,7 +11,7 @@
                           <p class="txtStyle">Samarbejde Navn:</p>
                           <p class="txtStyle">{{samarbejde.titel}}</p>
                           <img src="{{samarbejde.olBilled}}" alt="" style="width: 20%; height: 20%; justify-content: center; margin-top: 20px;">
-                          <button mat-icon-button (click)="onShowComponent(node.name, samarbejde.olId)" class="btnStyle">{{node.name}}</button>
+                          <button mat-icon-button (click)="onShowComponent(node.name,samarbejde.id)" class="btnStyle">{{node.name}}</button>
                          </div>
                     </div>
                     <div [class.example-tree-invisible]="!treeControl.isExpanded(node)" role="group">
@@ -21,9 +21,12 @@
             </mat-tree>
         </div>
     </mat-drawer>
-    <mat-drawer-content *ngIf="showSamarbejdeComponent">
+<!--     <mat-drawer-content *ngIf="showSamarbejdeComponent">
         <app-samarbejde-visning></app-samarbejde-visning>
-    </mat-drawer-content>
+    </mat-drawer-content> -->
+    <mat-drawer-content *ngIf="showSamarbejdeKatalog">
+      <app-samarbejde-katalog></app-samarbejde-katalog>
+  </mat-drawer-content>
     <mat-drawer-content *ngIf="showSamarbejdeOptettComponent">
       <app-samarbejde-oprettelse></app-samarbejde-oprettelse>
   </mat-drawer-content>

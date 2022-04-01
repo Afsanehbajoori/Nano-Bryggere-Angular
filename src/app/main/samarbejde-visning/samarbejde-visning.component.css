@@ -1,5 +1,5 @@
 .main{
-    height: 80.2vh;
+    height: 100%;
     background-color: rgb(255, 255, 255);
   }
 
@@ -10,13 +10,13 @@
     background-size: cover;
     width: auto;
   }
-  
+
 .list {
     justify-content: center;
   }
 
 .list-item-set{
-  color: black; 
+  color: black;
   font-weight: bold;
   }
 
@@ -29,13 +29,14 @@
     font-style: oblique;
   }
 
-.centers{
-  margin: auto;
-  width: 10%;
-  padding: 10px;
-  text-align: center;
-}
-  
+  .centers{
+    margin: auto;
+    width: 20%;
+    padding: 10px;
+    text-align: center;
+    flex: 1 1 auto;
+  }
+
 .example-headers-align .mat-expansion-panel-header-title,
 .example-headers-align .mat-expansion-panel-header-description {
   flex-basis: 0;

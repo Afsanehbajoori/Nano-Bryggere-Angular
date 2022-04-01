@@ -17,10 +17,7 @@ interface Search {
 const TREE_DATA: Search[] = [
   {
     name: 'Vis'
-
   }
-
-
 ];
 
 @Component({
@@ -32,6 +29,7 @@ const TREE_DATA: Search[] = [
 export class SamarbejdeSideComponent implements OnInit {
   showSamarbejdeComponent:boolean=false;
   showSamarbejdeOptettComponent:boolean=false;
+  showSamarbejdeKatalog:boolean=false;
   dataSource = new MatTreeNestedDataSource<Search>();
   treeControl = new NestedTreeControl<Search>(node => node.children);
 
@@ -57,11 +55,13 @@ export class SamarbejdeSideComponent implements OnInit {
 
   ngOnInit(): void {
     this.bryggeriId=JSON.parse(localStorage.getItem('bryggeriId') || '{}');
-    console.log('bryggeriId:' ,typeof this.bryggeriId)
+    console.log('bryggeriId:' , this.bryggeriId)
     this.olId=JSON.parse(localStorage.getItem('olId') || '{}');
     console.log('olId:' , this.olId)
+    this.samarbejdeId=JSON.parse(localStorage.getItem('samarbejdeId') || '{}');
+    console.log('samarbejdeId:' , this.samarbejdeId)
     this.onHentSamarbejde();
-    
+
     // this.onLoadOl();
   }
 
@@ -69,8 +69,10 @@ export class SamarbejdeSideComponent implements OnInit {
     // console.log(this.cooperations);
     switch (nodeName) {
       case 'Vis': {
-        localStorage.setItem('samarbejdeId', JSON.stringify(id));
-        this.showSamarbejdeComponent = !this.showSamarbejdeComponent;
+        
+        this.showSamarbejdeKatalog=!this.showSamarbejdeKatalog;
+       // localStorage.setItem('samarbejdeId', JSON.stringify(id));
+        //this.showSamarbejdeComponent = !this.showSamarbejdeComponent;
         break;
       }
 
@@ -97,11 +99,11 @@ export class SamarbejdeSideComponent implements OnInit {
 
   opretteSamarbejde(){
     if(JSON.stringify(this.bryggeriId) === '{}' ){
-      alert('du skal først oprette et bryggri!')
+      alert('du skal først oprette et bryggeri!')
     }
-    if(JSON.stringify(this.olId) === '{}'){
+   /*  if(JSON.stringify(this.olId) === '{}'){
       alert('du skal også først oprette Øl')
-    }
+    } */
     else{
       this.showSamarbejdeOptettComponent = !this.showSamarbejdeOptettComponent;
 

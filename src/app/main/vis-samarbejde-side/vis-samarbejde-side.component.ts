@@ -18,8 +18,12 @@ export class VisSamarbejdeSideComponent implements OnInit {
   dialogRefOpdaterSamarbejde : MatDialogRef<SamarbejdeRedigerComponent>;
   searchkey:string;
   samarbejdeList:any;
+  bryggriList:any;
+  bryggiNavn1:any;
   endpointS = '/Samarbejder';
+  endpointB = '/Bryggerier';
   samarbejder:any;
+  bryggrisNavn= new Array();
   id = this.actRoute.snapshot.params['id'];
   clickButton: boolean = true;
   bryggeriId:number;
@@ -32,18 +36,31 @@ export class VisSamarbejdeSideComponent implements OnInit {
   ngOnInit(): void {
     this.bryggeriId=JSON.parse(localStorage.getItem('bryggeriId') || '{}');
     this.onHentSamarbejde();
+    this.onHentBryggeri();
+
+  }
+
+  onHentBryggeri(){
+    this.restApi.getDatas(this.endpointB).subscribe(data => {
+      this.bryggriList=data;
+      console.log('Bryggerier' , this.bryggriList)
+    })
   }
 
   onHentSamarbejde() {
      return this.restApi.getDatas(this.endpointS).subscribe((data) => {
         this.samarbejder=data;
-        console.log(data)
+        //console.log('samarbejde:',data)
       })
     }
     onVisSamarbejde(id:any){
       this.clickButton=false;
       return this.restApi.getData(id , this.endpointS).subscribe((data) => {
         this.samarbejdeList=data;
+        console.log('samarbejdebryggeriId1:',this.samarbejdeList.bryggeriId1)
+        console.log('samarbejdebryggeriId2:',this.samarbejdeList.bryggeriId2)
+        
+
       })
 
     }

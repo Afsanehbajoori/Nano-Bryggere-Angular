@@ -28,7 +28,6 @@ const TREE_DATA: Search[] = [
 
 export class SamarbejdeSideComponent implements OnInit {
   showSamarbejdeComponent:boolean=false;
- 
   showSamarbejdeKatalog:boolean=false;
   showSamarbejdeSideComponent:boolean=false;
   dataSource = new MatTreeNestedDataSource<Search>();
@@ -70,14 +69,14 @@ export class SamarbejdeSideComponent implements OnInit {
       case 'Vis Katalog': {
         this.showSamarbejdeKatalog=!this.showSamarbejdeKatalog;
        // localStorage.setItem('samarbejdeId', JSON.stringify(id));
-        //this.showSamarbejdeComponent = !this.showSamarbejdeComponent;
+        this.showSamarbejdeComponent = !this.showSamarbejdeComponent;
         break;
       }
 
     }
   }
 
-  onHentSamarbejde() {
+   onHentSamarbejde() {
     if (this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}')) {
       this.restApi.getDatas(this.endpointS).subscribe((data) => {
         this.samarbejder = data.filter((res: any) => {

@@ -43,6 +43,7 @@ import {MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS} from '@angular/materia
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import { SamarbejdeVisningComponent } from './samarbejde-visning/samarbejde-visning.component';
 import { SamarbejdeKatalogComponent } from './samarbejde-katalog/samarbejde-katalog.component';
+import { VisSamarbejdeSideComponent } from './vis-samarbejde-side/vis-samarbejde-side.component';
 
 
 @NgModule({
@@ -68,7 +69,8 @@ import { SamarbejdeKatalogComponent } from './samarbejde-katalog/samarbejde-kata
     VisOlDetajlerComponent,
     VisEventsDetajlerComponent,
     SamarbejdeVisningComponent,
-    SamarbejdeKatalogComponent
+    SamarbejdeKatalogComponent,
+    VisSamarbejdeSideComponent
   ],
   entryComponents:[SletDialogBoxComponent , RedigerProfilDialogBoxComponent , RedigerBryggeriDialogBoxComponent],
   imports: [

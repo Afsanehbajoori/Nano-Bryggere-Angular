@@ -1,7 +1,44 @@
-.main{
-  height:100%;
-  background-color: rgb(255, 255, 255);
+.menu{
+  height: 100vh;
+}
 
+.login-form {
+  padding: 20;
+}
+
+.login-btn{
+  margin-top: 40px;
+  margin-left: 20px;
+  margin-right: 20px;
+  height: 50px;
+  background-color: rgb(155, 152, 152);
+  width: 40%;
+  cursor:pointer;
+}
+
+.login-header{
+  text-align: center;
+  background-color: rgb(66, 138, 231);
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.input-control{
+  height: 25px;
+}
+
+.mat-card-body{
+  max-width: 600px;
+  margin: 2em auto;
+  text-align: center;
+  height: 500px;
+  max-height: 800px;
+}
+.main{
+  height: 80.2vh;
+  background-color: rgb(255, 255, 255);
 }
 
 #imgeUp{
@@ -11,44 +48,39 @@
   background-size: cover;
   width: auto;
 }
-
-.example-container {
-  width: 100%;
-  height: 100%;
-
-}
-.containStyle{
-  background-color: rgb(252, 252, 252);
-  margin-left: 200px;
-  margin-right: 200px;
-  padding-left: 40px;
-  font-style: oblique;
-}
-.txtStyle{
-  font-style: italic;
-  font-weight: bold;
-  display: flex;
- justify-content: center;
- text-align: center;
-}
-.example-full-width {
-  margin-top: 40px;
-  width: 100%;
-}
-.login-btn{
-  margin-top: 40px;
-  height: 50px;
-  background-color: rgb(155, 152, 152);
-  width: 100%;
-  cursor:pointer;
-}
 .txt{
   margin-bottom: 30px;
-  margin-top: 50px;
   font-weight: bolder;
   font-size: 25px;
   font-family: 'Times New Roman', Times, serif;
   font-style: italic;
   text-align: center;
 
+}
+.container {
+  margin-top: 100px;
+  font-family: arial;
+  display: flex;
+  justify-content: center;
+  height: auto;
+}
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+.example-spacer {
+  flex: 1 1 auto;
+}
+.btn-container{
+  text-align: center;
+  cursor:pointer;
+  font-style: italic;
+  font-size: 15px;
+  border:none;
+  background-color: white;
+  justify-content: space-between;
+}
+.example-form-field {
+  margin: 0 8px 16px 0;
 }

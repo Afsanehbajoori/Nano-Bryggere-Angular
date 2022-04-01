@@ -16,7 +16,7 @@ interface Search {
 
 const TREE_DATA: Search[] = [
   {
-    name: 'Vis'
+    name: 'Vis Katalog'
   }
 ];
 
@@ -28,8 +28,9 @@ const TREE_DATA: Search[] = [
 
 export class SamarbejdeSideComponent implements OnInit {
   showSamarbejdeComponent:boolean=false;
-  showSamarbejdeOptettComponent:boolean=false;
+ 
   showSamarbejdeKatalog:boolean=false;
+  showSamarbejdeSideComponent:boolean=false;
   dataSource = new MatTreeNestedDataSource<Search>();
   treeControl = new NestedTreeControl<Search>(node => node.children);
 
@@ -61,15 +62,12 @@ export class SamarbejdeSideComponent implements OnInit {
     this.samarbejdeId=JSON.parse(localStorage.getItem('samarbejdeId') || '{}');
     console.log('samarbejdeId:' , this.samarbejdeId)
     this.onHentSamarbejde();
-
-    // this.onLoadOl();
   }
 
   onShowComponent(nodeName: string, id: any) {
     // console.log(this.cooperations);
     switch (nodeName) {
-      case 'Vis': {
-        
+      case 'Vis Katalog': {
         this.showSamarbejdeKatalog=!this.showSamarbejdeKatalog;
        // localStorage.setItem('samarbejdeId', JSON.stringify(id));
         //this.showSamarbejdeComponent = !this.showSamarbejdeComponent;
@@ -99,18 +97,8 @@ export class SamarbejdeSideComponent implements OnInit {
     this.router.navigate(['../main/samarbejderediger/', id]);
   };
 
-  opretteSamarbejde(){
-    if(JSON.stringify(this.bryggeriId) === '{}' ){
-      alert('du skal først oprette et bryggeri!')
-    }
-   /*  if(JSON.stringify(this.olId) === '{}'){
-      alert('du skal også først oprette Øl')
-    } */
-    else{
-      this.showSamarbejdeOptettComponent = !this.showSamarbejdeOptettComponent;
-
-    }
-    }
-
+  VisSamarbejde(){
+    this.showSamarbejdeSideComponent = !this.showSamarbejdeSideComponent;
+  }
 }
 

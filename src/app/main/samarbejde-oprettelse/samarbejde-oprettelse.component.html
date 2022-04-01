@@ -29,8 +29,11 @@
                 Dette felt skal udfyldes
             </mat-error>
         </mat-form-field>
-          <button mat-raised-button type="submit" (click)="onAnuller()" class="login-btn" style="background: linear-gradient(#b60d0d, #ff6e6e);">Annuller</button>
-          <button mat-raised-button type="submit" (click)="onSubmitSamarbejde()" class="login-btn" style="background: linear-gradient(#33ff00, #41fd70);">Opret Samarbejde</button>
+        <div mat-dialog-actions class="btn-container">
+          <button mat-button (click)="dialogRefOpretSamarbejde.close(false)">Annuller</button>
+          <button mat-button cdkFocusInitial (click)="onSubmitSamarbejde(); $event.stopPropagation()">Opret Samarbejde</button>
+        </div>
+
       </form>
   </mat-card-content>
 </mat-card>

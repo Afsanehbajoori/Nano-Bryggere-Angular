@@ -2,6 +2,7 @@ import { Component, OnInit ,Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RestApiService } from 'src/app/shared/rest-api.service';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-samarbejde-oprettelse',
@@ -20,6 +21,7 @@ export class SamarbejdeOprettelseComponent implements OnInit {
   bryggrisNavn= new Array();
   samarbejdeId:number;
   constructor(
+    public dialogRefOpretSamarbejde:MatDialogRef<SamarbejdeOprettelseComponent>,
     public restApi: RestApiService,
     private router: Router,
     public actRoute: ActivatedRoute,
@@ -73,6 +75,7 @@ onSubmitSamarbejde(){
   this.restApi.createData(this.nySamarbejde , this.endpointS).subscribe(data => {
     localStorage.setItem('samarbejdeId' ,JSON.stringify(data.id) )
     console.log('samarbejdeId:',data);
+    this.dialogRefOpretSamarbejde.close();
     this.ngOnInit();
   })
   }

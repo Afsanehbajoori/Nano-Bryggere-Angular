@@ -2,7 +2,7 @@
     <mat-drawer #drawer mode="side" opened class="main" id="imgeUp">
         <div class="sidebar">
             <h1 id="headerStyle">Velkommen til samarbejds siden</h1>
-            <button mat-icon-button class="btnStyle" (click)="opretteSamarbejde()" >Oprettet Samarbejde</button>
+            <button mat-icon-button class="btnStyle" (click)="VisSamarbejde()" >Vis Samarbejde</button>
             <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree"
                 style="background-color: transparent;">
                 <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
@@ -27,7 +27,10 @@
     <mat-drawer-content *ngIf="showSamarbejdeKatalog">
       <app-samarbejde-katalog></app-samarbejde-katalog>
   </mat-drawer-content>
-    <mat-drawer-content *ngIf="showSamarbejdeOptettComponent">
+  <mat-drawer-content *ngIf="showSamarbejdeSideComponent">
+    <app-vis-samarbejde-side></app-vis-samarbejde-side>
+</mat-drawer-content>
+<!--     <mat-drawer-content *ngIf="showSamarbejdeOptettComponent">
       <app-samarbejde-oprettelse></app-samarbejde-oprettelse>
-  </mat-drawer-content>
+  </mat-drawer-content> -->
 </mat-drawer-container>

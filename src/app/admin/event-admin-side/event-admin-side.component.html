@@ -1,72 +1,75 @@
 <div class="main" id="imgeUp">
-  <mat-card >
-    <mat-toolbar class="login-header" style="background: linear-gradient(#6c6c6d, #cfd4d6); height: 100px;"  >
+  <mat-card>
+    <mat-toolbar class="login-header" style="background: linear-gradient(#6c6c6d, #cfd4d6); height: 100px;">
       <mat-tab-group>
         <mat-tab label="Find Events med events titel">
-      <form class="example-form" style="justify-content: center; width: 100%;">
-        <mat-form-field  class="txtHeader">
-            <input matInput type="search"  [(ngModel)]="searchkeyEventTitel" (ngModelChange)="onFindEventTitel()" [ngModelOptions]="{standalone: true}" >
-        </mat-form-field>
-      </form>
+          <form class="example-form" style="justify-content: center; width: 100%;">
+            <mat-form-field class="txtHeader">
+              <input matInput type="search" [(ngModel)]="searchkeyEventTitel" (ngModelChange)="onFindEventTitel()"
+                [ngModelOptions]="{standalone: true}">
+            </mat-form-field>
+          </form>
         </mat-tab>
         <mat-tab label="Find events med deltagelser brugernavn">
           <form class="example-form" style="justify-content: center; width: 100%;">
-            <mat-form-field  class="txtHeader">
-                <input matInput type="search"  [(ngModel)]="searchkeyDeltagelse" (ngModelChange)="onFindDeltagene()" [ngModelOptions]="{standalone: true}" >
+            <mat-form-field class="txtHeader">
+              <input matInput type="search" [(ngModel)]="searchkeyDeltagelse" (ngModelChange)="onFindDeltagene()"
+                [ngModelOptions]="{standalone: true}">
             </mat-form-field>
           </form>
-            </mat-tab>
-            <mat-tab label="Oprette Events">
-               <button mat-button class="btnOprette" (click)="onOpretEvent()">Klik her for at oprette et events</button>
-            </mat-tab>
-  </mat-tab-group>
-  </mat-toolbar>
+        </mat-tab>
+        <mat-tab label="Oprette Events">
+          <button mat-button class="btnOprette" (click)="onOpretEvent()">Klik her for at oprette et events</button>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-toolbar>
   </mat-card>
   <mat-card>
-    <table style="width: 100%; height: 100%; display: flex;" >
-        <mat-accordion class="example-headers-align" multi style="width: 100%;">
-             <mat-expansion-panel *ngFor="let event of events" style="margin-top: 10px;"  [disabled]="clickButton" (click)="clickButton=true" >
-                <mat-expansion-panel-header
-                    style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236)); justify-content: center; width: 100%;">
-                    <mat-panel-title class="centers" style="justify-content: center;">
-                       <span style="font-weight: bold; margin-right: 20px;">Event Titel:</span>
-                       <span>{{event.titel}}</span>
-                    </mat-panel-title>
-                    <mat-action-row class="centers" style="justify-content: center;">
-                        <button mat-button class="btnMainStyle" (click)="onVisEvent(event.id)">Vis </button> |
-                        <button mat-button class="btnMainStyle" (click)="onOpdaterEvent(event.id)" >Update </button> |
-                        <!-- <button mat-button class="btnMainStyle" (click)="onJoinEvent(event.id)" >Join Event </button> | -->
-                        <button mat-button class="btnMainStyle" (click)="onSletEvent(event.id)">Slet </button>
-                    </mat-action-row>
-                </mat-expansion-panel-header>
-                <div  *ngIf="eventListe">
-                  <mat-card class="containStyle">
-                    <span>EventBillede:</span>
-                    <span class="txtStyle"><img [src]="eventListe.eventBilled" alt="" style="width: 30%; height: 30%;"></span>
-                  </mat-card>
-                  <mat-card class="containStyle">
-                  <span>Titel:</span>
-                  <span class="txtStyle">{{eventListe.titel}}</span>
-                </mat-card>
-                <mat-card class="containStyle">
-                  <span>Beskrivelse:</span>
-                  <span class="txtStyle">{{eventListe.beskrivelse}}</span>
-                </mat-card>
-                <mat-card class="containStyle">
-                  <span>Lokation:</span>
-                  <span class="txtStyle">{{eventListe.lokation}}</span>
-                </mat-card>
-                <mat-card class="containStyle">
-                  <span>StartDato:</span>
-                  <span class="txtStyle">{{eventListe.startDato}}</span>
-                </mat-card>
-                <mat-card class="containStyle">
-                  <span>SlutDato:</span>
-                  <span class="txtStyle">{{eventListe.slutDato}}</span>
-                </mat-card>
-              </div>
-            </mat-expansion-panel>
-        </mat-accordion>
+    <table style="width: 100%; height: 100%; display: flex;">
+      <mat-accordion class="example-headers-align" multi style="width: 100%;">
+        <mat-expansion-panel *ngFor="let event of events" style="margin-top: 10px;" [disabled]="clickButton"
+          (click)="clickButton=true">
+          <mat-expansion-panel-header
+            style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236)); justify-content: center; width: 100%;">
+            <mat-panel-title class="centers" style="justify-content: center;">
+              <span style="font-weight: bold; margin-right: 20px;">Event Titel:</span>
+              <span>{{event.titel}}</span>
+            </mat-panel-title>
+            <mat-action-row class="centers" style="justify-content: center;">
+              <button mat-button class="btnMainStyle" (click)="onVisEvent(event.id)">Vis </button> |
+              <button mat-button class="btnMainStyle" (click)="onOpdaterEvent(event.id)">Update </button> |
+              <!-- <button mat-button class="btnMainStyle" (click)="onJoinEvent(event.id)" >Join Event </button> | -->
+              <button mat-button class="btnMainStyle" (click)="onSletEvent(event.id)">Slet </button>
+            </mat-action-row>
+          </mat-expansion-panel-header>
+          <div *ngIf="eventListe">
+            <mat-card class="containStyle">
+              <span>EventBillede:</span>
+              <span class="txtStyle"><img [src]="eventListe.eventBilled" alt="" style="width: 30%; height: 30%;"></span>
+            </mat-card>
+            <mat-card class="containStyle">
+              <span>Titel:</span>
+              <span class="txtStyle">{{eventListe.titel}}</span>
+            </mat-card>
+            <mat-card class="containStyle">
+              <span>Beskrivelse:</span>
+              <span class="txtStyle">{{eventListe.beskrivelse}}</span>
+            </mat-card>
+            <mat-card class="containStyle">
+              <span>Lokation:</span>
+              <span class="txtStyle">{{eventListe.lokation}}</span>
+            </mat-card>
+            <mat-card class="containStyle">
+              <span>StartDato:</span>
+              <span class="txtStyle">{{eventListe.startDato}}</span>
+            </mat-card>
+            <mat-card class="containStyle">
+              <span>SlutDato:</span>
+              <span class="txtStyle">{{eventListe.slutDato}}</span>
+            </mat-card>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
     </table>
   </mat-card>
 </div>

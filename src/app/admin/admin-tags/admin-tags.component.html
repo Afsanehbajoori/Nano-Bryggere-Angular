@@ -1,25 +1,40 @@
-<div>
-    <mat-toolbar class="login-header" style="background: linear-gradient(#238ff5, #23baf5); width: 100%;">
-        <form class="example-form" style="justify-content: center; width: 40%;">
-            <mat-form-field style="width: 30%;">
-                <input matInput type="search" placeholder="Find tags" [(ngModel)]="searchkey"
-                    (ngModelChange)="onFindOl()" [ngModelOptions]="{standalone: true}">
-            </mat-form-field>
-        </form>
-        <button mat-raised-button style="background-color: rgb(30, 122, 228); width: 120px; height: 40px; border-width: 0; margin-right: 20px;"
-        (click)="onOpretTags()">Opret Tags</button>
-        <h1 style="justify-content: center; width: 40%;">Tags</h1>
-    </mat-toolbar>
-    <table style="width: 100%; height: 100%; justify-content: center;">
-        <tbody style="justify-content: center; height: 100%; width: 100%; justify-content: center;">
-            <tr *ngFor="let tag of tagsliste">
-                <mat-card style="width: 20%;"><td style="width: 56%;">{{tag.navn}}</td>
-                    <td style="justify-content: right;"><button mat-button class="btnMainStyle" (click)="onOpdaterTags(tag.id)"><mat-icon>edit</mat-icon></button>
-                <button mat-button class="btnMainStyle" (click)="onSletTags(tag.id)"><mat-icon>delete_forever</mat-icon></button></td>
-            </mat-card>
-            </tr>
-        </tbody>
-    </table>
+<div class="main" id="imgeUp">
+    <mat-card>
+        <mat-toolbar class="login-header" style="background: linear-gradient(#6c6c6d, #cfd4d6); height: 100px;">
+            <mat-tab-group>
+                <mat-tab label="Find Tags med tag navn">
+                    <form class="example-form" style="justify-content: center; width: 40%;">
+                        <mat-form-field class="txtHeader">
+                            <input matInput type="search" placeholder="Find tags" [(ngModel)]="searchkey"
+                                (ngModelChange)="onFindTag()" [ngModelOptions]="{standalone: true}">
+                        </mat-form-field>
+                    </form>
+                </mat-tab>
+                <mat-tab label="Opret Tag">
+                    <button mat-button class="btnOprette" (click)="onOpretTags()">Opret Tags</button>
+                </mat-tab>
+            </mat-tab-group>
+        </mat-toolbar>
+    </mat-card>
+    <mat-card>
+        <table style="width: 100%; height: 100%; display: flex;">
+            <mat-accordion class="example-headers-align" multi style="width: 100%;">
+                <mat-expansion-panel *ngFor="let tag of tagsliste">
+                    <mat-expansion-panel-header
+                        style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236)); justify-content: center; width: 100%;">
+                        <mat-panel-title class="centers" style="justify-content: center;">
+                            <span>Tag navn: </span>
+                            <span>{{tag.navn}}</span>
+                        </mat-panel-title>
+                        <mat-action-row class="centers" style="justify-content: center;">
+                            <button mat-button class="btnMainStyle" (click)="onOpdaterTags(tag.id)">Opdater Tag</button>
+                            <button mat-button class="btnMainStyle" (click)="onSletTags(tag.id)">Slet Tag</button> |
+                        </mat-action-row>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </table>
+    </mat-card>
 </div>
 <!-- <mat-card *ngFor="let tag of tagsliste" style="height: 3%; width: 15%; justify-content: center; margin-left: 20px; margin-top: 20px;">
     <mat-accordion class="example-headers-align" multi style="width: 100%; justify-content: center;">

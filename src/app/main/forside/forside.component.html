@@ -8,7 +8,7 @@
 
   <mat-grid-tile class="cdk-virtual-scroll-data-source-example">
     <span id="beerImage">
-      <mat-card-title>Øl List</mat-card-title>
+      <mat-card-title>Øl Liste</mat-card-title>
     </span>
       <cdk-virtual-scroll-viewport orientation="horizontal" itemSize="50" class="example-viewport">
         <div *cdkVirtualFor="let ol of olListe" class="example-item" (click)="onVisOlDetaljer(ol.id)" >
@@ -21,12 +21,12 @@
 
   <mat-grid-tile class="cdk-virtual-scroll-data-source-example">
     <span id="bryggeriImage">
-      <mat-card-title>Bryggeri List</mat-card-title>
+      <mat-card-title>Bryggeri Liste</mat-card-title>
     </span>
     <cdk-virtual-scroll-viewport orientation="horizontal" itemSize="50" class="example-viewport " >
       <div *cdkVirtualFor="let bryg of bryggeriListe" class="example-item" (click)="onVisDetaljer(bryg.id)" >
         <img [src]="this.bryg.bryggeriLogo" alt="" style="width: 40%; height: 40%;">
-         <p>Bryggerinavn:</p>
+         <p>Bryggeri navn:</p>
           <p class="txtStyle">{{bryg.navn}}</p>
         </div>
     </cdk-virtual-scroll-viewport>

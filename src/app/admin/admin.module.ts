@@ -31,6 +31,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DeltagerAdminSideComponent } from './deltager-admin-side/deltager-admin-side.component';
 import { LoginSideComponent } from './login-side/login-side.component';
+import { OpretTagDialogBoxComponent } from './opret-tag-dialog-box/opret-tag-dialog-box.component';
+import { OpdaterTagDialogBoxComponent } from './opdater-tag-dialog-box/opdater-tag-dialog-box.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import { LoginSideComponent } from './login-side/login-side.component';
     OpretteEventsDialogBoxComponent,
     UpdateEventsDialogBoxComponent,
     DeltagerAdminSideComponent,
-    LoginSideComponent
+    LoginSideComponent,
+    OpretTagDialogBoxComponent,
+    OpdaterTagDialogBoxComponent
   ],
   imports: [
     CommonModule,

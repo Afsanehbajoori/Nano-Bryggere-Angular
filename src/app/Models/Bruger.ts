@@ -19,7 +19,6 @@ export class Bruger {
   public kontaktOplysninger: KontaktOplysninger;
   //public events: Events;
   public deltager: Deltager;
-  public certifikatLevel :number;
   public certifikatStatus: CertifikatStatus;
   public certifikatBilled: string;
 }

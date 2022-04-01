@@ -1,0 +1,15 @@
+<mat-card mat-dialog-content>
+    <mat-card-content class="container centers">
+        <form class="example-form" [formGroup]="opdaterForm" *ngIf="tagListe">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Titel:</mat-label>
+                <input matInput formControlName="navn" placeholder="{{tagListe.navn}}" [(ngModel)]="tagListe.navn">
+            </mat-form-field>
+
+            <div mat-dialog-actions class="btn-container">
+                <button mat-button (click)="dialogRefOpdaterTag.close(false)">Anuller</button>
+                <button mat-button cdkFocusInitial [mat-dialog-close]="tagListe">Gem Ændringer</button>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

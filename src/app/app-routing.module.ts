@@ -9,7 +9,7 @@ const routes: Routes = [
   {path:'admin' , loadChildren : () => import('./admin/admin.module').then(mod => mod.AdminModule)},
   {path:'events' , loadChildren : () => import('./events/events.module').then(mod => mod.EventsModule)},
   {path:'forum' , loadChildren : () => import('./forum/forum.module').then(mod => mod.ForumModule)},
-  {path:'ol' , loadChildren : () => import('./ol/ol.module').then(mod => mod.OlModule)}
+  {path:'øl' , loadChildren : () => import('./ol/ol.module').then(mod => mod.OlModule)}
 ];
 
 @NgModule({

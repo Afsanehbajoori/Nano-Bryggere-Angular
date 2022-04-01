@@ -27,7 +27,6 @@
     margin-top: 10px;
     padding-left: 40px;
     font-style: oblique;
-
   }
 
 .centers{
@@ -44,10 +43,12 @@
   margin-top: 10px;
   font-style: oblique;
 }
+
 .example-headers-align .mat-expansion-panel-header-description {
   justify-content: space-between;
   align-items: center;
 }
+
 .txt{
   margin: 10px;
   font-weight: bolder;
@@ -55,8 +56,8 @@
   font-family: 'Times New Roman', Times, serif;
   font-style: italic;
   text-align: center;
-
 }
+
 .txtStyle{
   font-style: italic;
   font-weight: bold;
@@ -70,11 +71,8 @@
   font-style: oblique;
   font-weight: bold;
   width: 30%;
-
-
 }
+
 .mat-tab-group {
   margin-bottom: 5px;
 }
-
-

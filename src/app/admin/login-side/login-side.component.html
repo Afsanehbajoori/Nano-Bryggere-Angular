@@ -11,6 +11,7 @@
           </form>
         </mat-tab>
       </mat-tab-group> -->
+      <h1 style="justify-content: center;" class="centers">Login liste</h1>
     </mat-toolbar>
   </mat-card>
   <mat-card>
@@ -26,14 +27,14 @@
               <button mat-button class="btnMainStyle" (click)="onVisLogin(log.id)">Vis </button>
             </mat-action-row>
           </mat-expansion-panel-header>
-          <div *ngIf="loginList">
+          <div *ngIf="loginListe">
               <mat-card class="containStyle" *ngIf="brugere">
                 <span>Brugernavn:</span>
                 <span class="txtStyle">{{brugere.brugernavn}}</span>
               </mat-card>
               <mat-card class="containStyle">
               <span>loginTime:</span>
-              <span class="txtStyle">{{loginList.loginTime}}</span>
+              <span class="txtStyle">{{loginListe.loginTime}}</span>
             </mat-card>
           </div>
           </mat-expansion-panel>

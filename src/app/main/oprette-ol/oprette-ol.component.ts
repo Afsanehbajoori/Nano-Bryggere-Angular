@@ -31,6 +31,7 @@ export class OpretteOlComponent implements OnInit {
       land: new FormControl('', Validators.required),
       process: new FormControl('', Validators.required),
       olBilled: new FormControl('', Validators.required),
+      beskrivelse: new FormControl('', Validators.required),
       antal: new FormControl('', Validators.required)
     });
   }

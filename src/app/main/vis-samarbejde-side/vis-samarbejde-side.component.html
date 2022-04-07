@@ -19,7 +19,6 @@
                     <button mat-button class="btnMainStyle" (click)="onVisSamarbejde(samarbejde.id)">Vis Samarbejde</button>  |
                       <button mat-button class="btnMainStyle" (click)="onSletSamarbejde(samarbejde.id)">Slet Samarbejde</button>  |
                       <button mat-button class="btnMainStyle" (click)="onOpdaterSamarbejde(samarbejde.id)">Rediger Samarbejde</button>
-
                   </mat-action-row>
               </mat-expansion-panel-header>
               <div *ngIf="samarbejdeList">
@@ -32,12 +31,24 @@
                   <p><img [src]="samarbejdeList.olBilled" alt="" style="width: 30%; height: 30%;"></p>
               </mat-card>
               <mat-card class="containStyle" >
-                  <p>Bryggeri Navn1:</p>
-                  <p>{{samarbejdeList.bryggeriId1}} </p>
+                <p>Bryggeri Navn1:</p>
+                <p>{{bryggriList1.bryggeriId1}} </p>
+            </mat-card>
+              <mat-card class="containStyle" >
+                <p>Bryggeri Navn2:</p>
+                <p>{{bryggriList2.bryggeriId2}}</p>
+            </mat-card>
+            </div>
+            <div *ngIf="bryggriList1">
+              <mat-card class="containStyle" >
+                  <p>Bryggeri 1:</p>
+                  <p>{{bryggriList1.bryggeriId}} </p>
               </mat-card>
+            </div>
+            <div *ngIf="bryggriList2">
                <mat-card class="containStyle" >
-                  <p>Bryggeri Navn2:</p>
-                  <p>{{samarbejdeList.bryggeriId2}}</p>
+                  <p>Bryggeri 2:</p>
+                  <p>{{bryggriList2.bryggeriId}}</p>
               </mat-card>
             </div>
             </mat-expansion-panel>

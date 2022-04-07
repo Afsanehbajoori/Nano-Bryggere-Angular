@@ -1,5 +1,5 @@
 .menu{
-  height: 100vh;
+  height: 100%;
 }
 
 .login-form {
@@ -35,7 +35,7 @@ width: 100%;
   max-height: 800px;
 }
 .main{
-height: 80.2vh;
+height: 100%;
 background: linear-gradient(#4199fd, #00aeff);
 }
 

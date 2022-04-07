@@ -1,10 +1,8 @@
 import { NestedTreeControl } from '@angular/cdk/tree';
-import { JsonpClientBackend } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
 import { ActivatedRoute, Router } from '@angular/router';
-import { isEmpty } from 'rxjs/operators';
 import { Bryggeri } from 'src/app/Models/Bryggeri';
 import { Samarbejde } from 'src/app/Models/Samarbejde';
 import { RestApiService } from 'src/app/shared/rest-api.service';
@@ -52,14 +50,13 @@ export class SamarbejdeSideComponent implements OnInit {
   ) {  this.dataSource.data = TREE_DATA; }
   hasChild = (_: number, node: Search) => !!node.children && node.children.length > 0;
 
-
   ngOnInit(): void {
-    this.bryggeriId=JSON.parse(localStorage.getItem('bryggeriId') || '{}');
-    console.log('bryggeriId:' , this.bryggeriId)
+    // this.bryggeriId=JSON.parse(localStorage.getItem('bryggeriId') || '{}');
+    // console.log('bryggeriId:' , this.bryggeriId)
     this.olId=JSON.parse(localStorage.getItem('olId') || '{}');
-    console.log('olId:' , this.olId)
+    // console.log('olId:' , this.olId)
     this.samarbejdeId=JSON.parse(localStorage.getItem('samarbejdeId') || '{}');
-    console.log('samarbejdeId:' , this.samarbejdeId)
+    // console.log('samarbejdeId:' , this.samarbejdeId)
     this.onHentSamarbejde();
   }
 
@@ -68,11 +65,10 @@ export class SamarbejdeSideComponent implements OnInit {
     switch (nodeName) {
       case 'Vis Katalog': {
         this.showSamarbejdeKatalog=!this.showSamarbejdeKatalog;
-       // localStorage.setItem('samarbejdeId', JSON.stringify(id));
+       localStorage.setItem('samarbejdeId', JSON.stringify(id));
         this.showSamarbejdeComponent = !this.showSamarbejdeComponent;
         break;
       }
-
     }
   }
 
@@ -85,19 +81,17 @@ export class SamarbejdeSideComponent implements OnInit {
         });
         console.log(this.bryggeriId);
         this.samarbejder.forEach(function (value){
-          console.log("Value",value.id);
+          // console.log("Value",value.id);
         })
       })
     }
   }
 
-
   onOpdaterOl(id: any) {
-    this.router.navigate(['../main/samarbejderediger/', id]);
+    this.router.navigate(['../main/samarbejd-opdater/', id]);
   };
 
   VisSamarbejde(){
     this.showSamarbejdeSideComponent = !this.showSamarbejdeSideComponent;
   }
 }
-

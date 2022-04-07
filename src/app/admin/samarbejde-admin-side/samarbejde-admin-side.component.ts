@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
+import { Bryggeri } from 'src/app/Models/Bryggeri';
 import { Samarbejde } from 'src/app/Models/Samarbejde';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 import { OpdaterSamarbejdeDialogBoxComponent } from '../opdater-samarbejde-dialog-box/opdater-samarbejde-dialog-box.component';
@@ -19,10 +20,13 @@ export class SamarbejdeAdminSideComponent implements OnInit {
   searchkeySamarbejdeNavn: string;
   searchkeySamarbejdeBryggeri: string;
   clickButton: boolean = true;
-  samarbejdeliste: any;
+  samarbejdeListe: any;
+  samarbejde: Samarbejde;
   samarbejder: Samarbejde[];
-  bryggeri1: any;
-  bryggeri2: any;
+  bryggeriId1: Number;
+  bryggeriId2: Number;
+  bryggeri1: Bryggeri;
+  bryggeri2: Bryggeri;
   bryggeri: any;
   bryggeriId: number;
   endpointS = '/Samarbejder';
@@ -39,25 +43,23 @@ export class SamarbejdeAdminSideComponent implements OnInit {
 
   onHentSamarbejde() {
     return this.restApi.getDatas(this.endpointS).subscribe((samarbejde) => {
-      this.samarbejdeliste = samarbejde;
+      this.samarbejdeListe = samarbejde;
     });
   }
 
   onVisSamarbejde(id: any) {
     this.clickButton = false;
-    return this.restApi.getDatas(this.endpointS).subscribe((samarbejde) => {
-      this.samarbejdeliste = samarbejde;
-      this.restApi.getDatas(this.endpointB).subscribe((bryggeri) => {
-        // this.bryggeri1 = bryggeri.filter((res: any) => {
-        //   return res.id === this.samarbejdeliste.bryggeriId1;
-        // });
+    this.restApi.getData(id, this.endpointS).subscribe((samarbejde) => {
+      this.samarbejder = samarbejde;
+      this.bryggeriId1 = samarbejde.bryggeriId1;
+      this.bryggeriId2 = samarbejde.bryggeriId2;
+      console.log("samarbejde",this.samarbejdeListe);
+      this.restApi.getData(this.bryggeriId1, this.endpointB).subscribe((bryggeri) => {
         this.bryggeri1 = bryggeri;
-        this.bryggeri2 = bryggeri.filter((res: any) => {
-          return res.id == this.samarbejdeliste.bryggeriId2;
-        });
-        console.log("samarbejde",this.samarbejdeliste);
-        console.log("bryggeri",this.bryggeri);
         console.log("bryggeri 1",this.bryggeri1);
+      });
+      this.restApi.getData(this.bryggeriId2, this.endpointB).subscribe((bryggeri) => {
+        this.bryggeri2 = bryggeri;
         console.log("bryggeri 2",this.bryggeri2);
       });
     });
@@ -85,18 +87,18 @@ export class SamarbejdeAdminSideComponent implements OnInit {
     this.dialogRefOpdaterSamarbejde = this.dialog.open(OpdaterSamarbejdeDialogBoxComponent, dialogConfig);
     this.dialogRefOpdaterSamarbejde.afterClosed().subscribe(result => {
       if (result) {
-        this.samarbejdeliste = result;
-        console.log('date:', typeof (this.samarbejdeliste.startDato));
-        this.restApi.updateData(id, this.endpointS, this.samarbejdeliste).subscribe((data) => {
+        this.samarbejdeListe = result;
+        console.log('date:', typeof (this.samarbejdeListe.startDato));
+        this.restApi.updateData(id, this.endpointS, this.samarbejdeListe).subscribe((data) => {
         })
-        console.log("Samarbejde Test",this.samarbejdeliste);
+        console.log("Samarbejde Test",this.samarbejdeListe);
       }
       this.ngOnInit();
     })
   }
 
   onSletSamarbejde(id:any) {
-    if (this.samarbejdeliste.length !== 0) {
+    if (this.samarbejdeListe.length !== 0) {
       alert('Der er et problem');
     }
     else {
@@ -122,6 +124,7 @@ export class SamarbejdeAdminSideComponent implements OnInit {
       })
     }
   }
+  
   onFindSamarbejdeOl() {
     if (this.searchkeySamarbejdeBryggeri == '') {
       this.ngOnInit();

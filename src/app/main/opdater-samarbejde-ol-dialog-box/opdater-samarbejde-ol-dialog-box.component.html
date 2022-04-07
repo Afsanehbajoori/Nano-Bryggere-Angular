@@ -1,0 +1,64 @@
+<h1 mat-dialog-title>Rediger Kontaktoplysninger</h1>
+<div mat-dialog-content>
+  <form class="example-form" [formGroup]="opdaterForm" *ngIf="olListe">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Øl navn:</mat-label>
+      <input matInput formControlName="navn" placeholder="{{olListe.navn}}"
+        [(ngModel)]="olListe.navn">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Type:</mat-label>
+      <input matInput formControlName="type" placeholder="{{olListe.type}}"
+        [(ngModel)]="olListe.type">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Land:</mat-label>
+      <input matInput formControlName="land" placeholder="{{olListe.land}}"
+        [(ngModel)]="olListe.land">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Procent:</mat-label>
+      <input matInput type="number" formControlName="procent" placeholder="{{olListe.procent}}"
+        [(ngModel)]="olListe.procent">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Smag:</mat-label>
+      <input matInput formControlName="smag" placeholder="{{olListe.smag}}"
+        [(ngModel)]="olListe.smag">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Beskrivelse:</mat-label>
+      <input matInput formControlName="beskrivelse" placeholder="{{olListe.beskrivelse}}"
+        [(ngModel)]="olListe.beskrivelse">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Billed:</mat-label>
+      <input matInput type="text" [(ngModel)]="olListe.olBilled" formControlName="olBilled" placeholder="Øl Billed" class="input-control">
+      <input type="file" class="btnMainStyle" (change)="onTilfojOlBilled($event)">
+      <mat-error>
+          udfyld feltet
+      </mat-error>
+  </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Årgang:</mat-label>
+      <input matInput type="date" formControlName="argang" placeholder="{{olListe.argang}}"
+        [(ngModel)]="olListe.argang">
+    </mat-form-field>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>antal:</mat-label>
+            <input matInput type="number" formControlName="antal" placeholder="{{this.olListe.antal}}"
+              [(ngModel)]="this.olListe.antal">
+          </mat-form-field>
+    <div mat-dialog-actions class="btn-container">
+      <button mat-button (click)="dialogRefUpdateProfile.close(false)">Anuller</button>
+      <button mat-button cdkFocusInitial [mat-dialog-close]="olListe">Gem Ændringer</button>
+    </div>
+  </form>
+</div>

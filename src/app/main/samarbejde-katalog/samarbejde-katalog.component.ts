@@ -1,7 +1,12 @@
-import { Component, OnInit ,Input } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Samarbejde } from 'src/app/Models/Samarbejde';
+import { Øl } from 'src/app/Models/Øl';
 import { RestApiService } from 'src/app/shared/rest-api.service';
+import { OpdaterSamarbejdeOlDialogBoxComponent } from '../opdater-samarbejde-ol-dialog-box/opdater-samarbejde-ol-dialog-box.component';
+import { OpretSamarbejdeOlDialogBoxComponent } from '../opret-samarbejde-ol-dialog-box/opret-samarbejde-ol-dialog-box.component';
+import { SletDialogBoxComponent } from '../slet-dialog-box/slet-dialog-box.component';
 
 @Component({
   selector: 'app-samarbejde-katalog',
@@ -9,53 +14,91 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./samarbejde-katalog.component.css']
 })
 export class SamarbejdeKatalogComponent implements OnInit {
-  @Input() olOprettelse = { navn: '', type: '', smag: '', procent: null, land: '', olBilled: '', beskrivelse:'', antal: '', argang: '', samarbejdeId:null };
-  opretForm : any = new FormGroup({});
+  dialogRefSlet: MatDialogRef<SletDialogBoxComponent>;
+  dialogRefOpretSamarbejdeOl: MatDialogRef<OpretSamarbejdeOlDialogBoxComponent>;
+  dialogRefOpdaterSamarbejdeOl: MatDialogRef<OpdaterSamarbejdeOlDialogBoxComponent>;
+  ol: Øl;
+  olListe: Øl[];
+  samarbejde: Samarbejde;
+  oller: any;
+  olId: number;
   endpointO = '/Øller';
-  olBilled:any;
-  samarbejdeId:number;
+  endpointS = '/Samarbejder';
+  olBilled: any;
+  samarbejdeId: number;
 
-  constructor( public restApi: RestApiService,
-    private router: Router,
+  constructor(
+    public dialog: MatDialog,
+    public restApi: RestApiService,
+    public router: Router,
     public actRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.opretForm = new FormGroup({
-      navn: new FormControl('', Validators.required),
-      type: new FormControl('', Validators.required),
-      smag: new FormControl('', Validators.required),
-      procent: new FormControl('', Validators.required),
-      samarbejdeId: new FormControl('', Validators.required),
-      argang: new FormControl('', Validators.required),
-      land: new FormControl('', Validators.required),
-      process: new FormControl('', Validators.required),
-      olBilled: new FormControl('' , Validators.required),
-      beskrivelse: new FormControl('', Validators.required),
-      antal: new FormControl('', Validators.required)
-    });
+    this.onHentOl();
   }
-  onAnuller(){
 
-  }
-  onSubmitOlBilled(event: any) {
-    if(event.target.files) {
-      var reader = new FileReader();
-      reader.readAsDataURL(event.target.files[0]);
-      reader.onload = (e: any) => {
-        this.olBilled = e.target.result;
-        localStorage.setItem('olBilled', JSON.stringify(this.olBilled));
-      }
+  onHentOl() {
+    if (this.samarbejdeId = JSON.parse(localStorage.getItem('samarbejdeId') || '{}')) {
+      this.restApi.getDatas(this.endpointO).subscribe(data => {
+      this.olListe = data.filter((res: any) => {
+        return  res.samarbejdeId === this.samarbejdeId;
+        });
+
+      })
     }
-  };
-  onSubmitOl() {
-    this.olOprettelse.samarbejdeId = JSON.parse(localStorage.getItem('samarbejdeId') || '{}');
-    this.olOprettelse.olBilled = JSON.parse(localStorage.getItem('olBilled') || '{}');
-     console.log('samarbejdeId:',this.olOprettelse.samarbejdeId);
-     console.log('oloprettelse', this.olOprettelse);
-    this.restApi.createData(this.olOprettelse, this.endpointO).subscribe((data) => {
-      localStorage.setItem('olId', JSON.stringify(data.id));
-      console.log('info:', data)
-      //this.router.navigate(['../main/katalog']);
-    });
+  }
+
+  onOpretSamarbejde() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "40%";
+    dialogConfig.height = "70%";
+    this.dialogRefOpretSamarbejdeOl = this.dialog.open(OpretSamarbejdeOlDialogBoxComponent, dialogConfig);
+    this.dialogRefOpretSamarbejdeOl.afterClosed().subscribe(result => {
+      this.ngOnInit();
+    })
+  }
+
+  onOpdaterOl(id: any) {
+    localStorage.setItem('ølId', JSON.stringify(id));
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "40%";
+    dialogConfig.height = 'auto';
+    this.dialogRefOpdaterSamarbejdeOl = this.dialog.open(OpdaterSamarbejdeOlDialogBoxComponent, dialogConfig);
+    this.dialogRefOpdaterSamarbejdeOl.afterClosed().subscribe(result => {
+      if (result) {
+        this.oller = result;
+        console.log('date:', typeof (this.oller.startDato));
+        this.restApi.updateData(id, this.endpointO, this.oller).subscribe((data) => {
+          console.log("Samarbejde Test", data);
+        });
+      }
+      this.ngOnInit();
+    })
+  }
+
+  onSletOl(id: any) {
+    if (this.olListe.length !== 0) {
+      alert('der er et problem, tjek op på det')
+    }
+    else {
+      let dialogRef = this.dialog.open(SletDialogBoxComponent);
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          this.restApi.deleteData(id, this.endpointO).subscribe((data) => {
+            console.log('delete:', id);
+            this.onHentOl();
+          })
+        }
+      });
+    }
+  }
+
+  onOlLager(id: any) {
+    localStorage.setItem('SamarbejdelagerId', JSON.stringify(id));
+    this.router.navigate(['../main/samarbejde-øl-lager/', id]);
   }
 }

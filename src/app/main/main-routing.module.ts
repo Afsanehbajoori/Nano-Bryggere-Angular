@@ -12,6 +12,7 @@ import { KatalogComponent } from './katalog/katalog.component';
 import { SamarbejdeSideComponent } from './samarbejde-side/samarbejde-side.component';
 import { SamarbejdeOprettelseComponent } from './samarbejde-oprettelse/samarbejde-oprettelse.component';
 import { SamarbejdeRedigerComponent } from './samarbejde-rediger/samarbejde-rediger.component';
+import { SamarbejdeOlLagerComponent } from './samarbejde-ol-lager/samarbejde-ol-lager.component';
 
 const routes: Routes = [
   {path:'', component:ForsideComponent},
@@ -24,8 +25,9 @@ const routes: Routes = [
   {path:'opret-øl', component:OpretteOlComponent},
   {path:'katalog', component:KatalogComponent},
   {path:'samarbejds-side', component:SamarbejdeSideComponent},
-  {path:'samarbejds-opdater/:id', component:SamarbejdeRedigerComponent},
+  {path:'samarbejd-opdater/:id', component:SamarbejdeRedigerComponent},
   {path:'samarbejds-opretning', component:SamarbejdeOprettelseComponent},
+  {path:'samarbejde-øl-lager/:id', component:SamarbejdeOlLagerComponent},
   {path:'**', component: NotFoundComponent},
 ];
 

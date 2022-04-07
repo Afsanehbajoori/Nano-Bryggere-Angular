@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RedigerBryggeriDialogBoxComponent } from 'src/app/main/rediger-bryggeri-dialog-box/rediger-bryggeri-dialog-box.component';
 import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
 import { Bryggeri } from 'src/app/Models/Bryggeri';
+import { Samarbejde } from 'src/app/Models/Samarbejde';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 
 
@@ -19,12 +20,14 @@ export class BryggeriAdminSideComponent implements OnInit {
   bryg = new Bryggeri;
   endpointBru = '/Bruger';
   endpointB = '/Bryggerier';
+  endpointS = '/Samarbejder';
   searchkeyBryggeriNavn: string;
   searchkeyBryggeriSamarbejde: string;
   id = this.actRoute.snapshot.params['id'];
   clickButton: boolean = true;
   bryggeriListe: Bryggeri[];
-  brygge:any;
+  brygge:Bryggeri;
+  samarbejder:Samarbejde [];
 
   constructor(
     public dialog: MatDialog,
@@ -38,17 +41,22 @@ export class BryggeriAdminSideComponent implements OnInit {
   }
 
   onHentBryggeri(){
-    return this.restApi.getDatas(this.endpointB).subscribe((brew) => {
-      this.bryggeri = brew;
+    return this.restApi.getDatas(this.endpointB).subscribe((data) => {
+      this.bryggeri = data;
       console.log(this.bryggeri);
     })
   }
 
-
   onVisBryggeri(id:any) {
     this.clickButton=false;
     return this.restApi.getData(id , this.endpointB).subscribe((data) => {
-this.brygge=data;
+    this.brygge=data;
+      this.restApi.getDatas(this.endpointS).subscribe((data) =>{
+        this.samarbejder = data.filter((res: any) => {
+          return res.bryggeriId1 === id || res.bryggeriId2 === id;
+        });
+        console.log(this.samarbejder)
+      })
     })
   };
 
@@ -105,8 +113,8 @@ this.brygge=data;
           console.log(this.bryggeriListe);
           this.onVisBryggeri(id);
           this.onHentBryggeri();
-          })
-        }
-      });
-    };
+        })
+      }
+    });
+  };
 }

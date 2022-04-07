@@ -14,7 +14,7 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 export class OlSideComponent implements OnInit {
   kontaktOplysninger: KontaktOplysninger;
   ol: Øl;
-  bryggeri: Bryggeri;
+  bryggeri: any;
   endpointK = '/KontaktOplysninger';
   endpointO = '/Øller';
   endpointB = '/Bryggerier';
@@ -31,29 +31,38 @@ export class OlSideComponent implements OnInit {
 
   ngOnInit(): void {
     this.kontaktOplysningerId = JSON.parse(localStorage.getItem('olKontaktOplysningerId') || '{}');
-    // console.log("Ol",this.userInfoId); 
+    this.bryggeriId = JSON.parse(localStorage.getItem('olBryggeriId') || '{}');
     this.olId = JSON.parse(localStorage.getItem('olId') || '{}');
-    console.log('Kontkakt',this.kontaktOplysningerId);
     this.onHentOl();
     this.onHentKontaktOplysninger();
+    this.onHentBryggeri();
+    // console.log("Ol",this.userInfoId); 
+    // Kconsole.log('Kontkakt',this.kontaktOplysningerId);
   }
 
   onHentKontaktOplysninger(){
     // console.log("Kontakt",this.userInfoId);
-    return this.restApi.getData(this.kontaktOplysningerId, this.endpointK).subscribe((oplysninger) => {
-      this.kontaktOplysninger = oplysninger;
+    return this.restApi.getData(this.kontaktOplysningerId, this.endpointK).subscribe((data) => {
+      this.kontaktOplysninger = data;
       // console.log(this.userInfo);
     })
   }
 
+  onHentBryggeri(){
+    return this.restApi.getData(this.bryggeriId, this.endpointB).subscribe((data) => {
+      this.bryggeri = data;
+    })
+  }
+
   onHentOl(){
-    return this.restApi.getData(this.id, this.endpointO).subscribe((ol) => {
-      this.ol = ol;
+    return this.restApi.getData(this.id, this.endpointO).subscribe((data) => {
+      this.ol = data;
     })
   }
   
   onTilbage() {
     localStorage.removeItem('olKontaktOplysningerId');
-    this.router.navigate(['../ol/ol-sogning']);
+    localStorage.removeItem('olBryggeriId');
+    this.router.navigate(['../øl/øl-søgning']);
   };
 }

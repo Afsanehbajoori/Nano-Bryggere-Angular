@@ -108,4 +108,16 @@ export class BrugerCertifikatComponent implements OnInit {
       })
     })
   }
+
+  onViCertifikat(id: any) {
+    this.clickButton = false;
+    return this.restApi.getData(id, this.endpointB).subscribe((data) => {
+      this.kontaktOplysningerId = data.kontaktOplysningerId;
+      this.certifikat = data;
+      // console.log(this.certifikat);
+      this.restApi.getData(this.kontaktOplysningerId, this.endpointK).subscribe((data) => {
+        this.kontaktOplysninger = data;
+      })
+    })
+  }
 }

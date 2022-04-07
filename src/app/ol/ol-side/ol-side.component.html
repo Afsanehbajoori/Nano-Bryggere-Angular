@@ -7,7 +7,7 @@
                     (click)="onTilbage()">
                     <a><span class="material-icons black-color">arrow_back</span></a>
                 </button>
-                <h1 style="font-weight: bold;">{{ol.navn}}</h1>
+                <h1 class="centers" style="font-weight: bold;">{{ol.navn}}</h1>
                 <button style="background-color: transparent; border-color: transparent;">
                     <mat-icon aria-hidden="false" *ngIf="true">grade</mat-icon>
                 </button>
@@ -15,15 +15,16 @@
             <div class="centers">
                 <img [src]="ol.olBilled" alt="" style="width: 50%; justify-content: center;">
             </div>
-            <div fxlayout="row" fxLayoutAlign="center center" class="row-example" style="margin-top: 50px;" >
-                <mat-grid-list cols="2" rowHeight="2:1"  >
+            <div fxlayout="row" fxLayoutAlign="center center" class="row-example" style="margin-top: 50px;">
+                <mat-grid-list cols="2" rowHeight="2:1">
                     <mat-grid-tile style="width: 50%; height: 100%;">
                         <div>
-                            <p style="font-weight: bold; font-size: 20px;">Øl navn:</p>
+                            <h1 style="font-weight: bold;">Øl Info:</h1>
+                            <p style="font-weight: bold; font-size: 20px;">Titel:</p>
                             <p>{{ol.navn}}</p>
                             <p style="font-weight: bold;  font-size:  20px;">Type:</p>
                             <p>{{ol.type}}</p>
-                            <p style="font-weight: bold;  font-size: 20px;">Procent:</p>
+                            <p style="font-weight: bold;  font-size: 20px;">Alkohol Procent:</p>
                             <p>{{ol.procent}}</p>
                             <p style="font-weight: bold;  font-size:  20px;">Smag:</p>
                             <p>{{ol.smag}}</p>
@@ -32,17 +33,20 @@
                         </div>
                     </mat-grid-tile>
                     <mat-grid-tile style="width: 50%; height: 100%;">
-                        <div *ngIf="kontaktOplysninger">
-                            <p style="font-weight: bold; font-size:  20px;">Fornavn:</p>
-                            <p>{{kontaktOplysninger.fnavn}}</p>
-                            <p style="font-weight: bold; font-size: 20px;">Efternavn:</p>
-                            <p>{{kontaktOplysninger.enavn}}</p>
-                            <p style="font-weight: bold; font-size:  20px;">Addresse:</p>
-                            <p>{{kontaktOplysninger.adresseLinje1}}</p>
-                            <p style="font-weight: bold; font-size:  20px;">Email:</p>
-                            <p>{{kontaktOplysninger.email}}</p>
-                            <p style="font-weight: bold; font-size:  20px;">Telefon Nr:</p>
-                            <p>{{kontaktOplysninger.telefonNr}}</p>
+                        <div>
+                            <div *ngIf="bryggeri">
+                                <h1 style="font-weight: bold;">Brygger Info:</h1>
+                                <h2 style="font-weight: bold;">Bryggeri navn:</h2>
+                                <p>{{bryggeri.navn}}</p>
+                            </div>
+                            <div *ngIf="kontaktOplysninger">
+                                <p style="font-weight: bold; font-size:  20px;">Addresse:</p>
+                                <p>{{kontaktOplysninger.adresseLinje1}}</p>
+                                <p style="font-weight: bold; font-size:  20px;">Email:</p>
+                                <p>{{kontaktOplysninger.email}}</p>
+                                <p style="font-weight: bold; font-size:  20px;">Telefon Nr:</p>
+                                <p>{{kontaktOplysninger.telefonNr}}</p>
+                            </div>
                         </div>
                     </mat-grid-tile>
                 </mat-grid-list>

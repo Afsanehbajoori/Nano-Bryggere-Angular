@@ -44,12 +44,21 @@ export class MineEventsComponent implements OnInit {
     })
   }
 
+  // onHentEvent(){
+  //   this.restApi.getDatas(this.endpointE).subscribe(data => {
+  //     this.eventListe=data
+  //     if(this.brugerId){
+  //       this.eventListe = this.eventListe.filter((a:any) => a.id === this.deltagerListe.eventid);
+  //     }
+  //   })
+  // }
+
   onVisEvent(id:any){
     this.clickButton=false;
     //console.log('id:', id);
     this.restApi.getData(id , this.endpointD).subscribe(data => {
       this.eventListe= data ;
-      this.restApi.getData(this.eventListe.eventsId , this.endpointE).subscribe(data => {
+      this.restApi.getData(this.eventListe.eventsId, this.endpointE).subscribe(data => {
         this.eventListe= data ;
       })
 

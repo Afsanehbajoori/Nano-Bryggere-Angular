@@ -1,0 +1,43 @@
+<mat-card class="main" id="imgeUp">
+    <mat-card-content class="container" style="border-color: black; border-width: medium;">
+
+        <form [formGroup]="LagerForm" class="example-form" style="justify-content: center;" *ngIf="olListe">
+            <h1>Lager Side</h1>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <p>Antal</p>
+                <input matInput type="number" [(ngModel)]="olListe.antal" min="0" max="100" formControlName="antal" placeholder="{{olListe.antal}}" class="input-control">
+                <mat-error>
+                    Dette felt skal udfyldes
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill">
+                <p>Flaske Antal</p>
+                <input matInput type="number" [(ngModel)]="olListe.flaskeAntal" min="0" max="100" formControlName="flaskeAntal" placeholder="{{olListe.flaskeAntal}}" class="input-control">
+                <mat-error>
+                    Dette felt skal udfyldes
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill">
+                <p>Tønde Antal</p>
+                <input matInput type="number" [(ngModel)]="olListe.tondeAntal" min="0" max="20" formControlName="tondeAntal" placeholder="{{olListe.tondeAntal}}" class="input-control">
+                <mat-error>
+                    Dette felt skal udfyldes
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill">
+                <p>Flaske Reserve Antal</p>
+                <input matInput type="number" [(ngModel)]="olListe.flaskeResevationAntal" min="0" max="80" formControlName="flaskeResevationAntal" placeholder="{{olListe.flaskeResevationAntal}}" class="input-control">
+                <mat-error>
+                    Dette felt skal udfyldes
+                </mat-error>
+            </mat-form-field>
+            
+            <button mat-raised-button type="submit" (click)="onAnuller()" class="radius-btn" style="background: linear-gradient(#f53f3f, #ff6e6e);">Annuller</button>
+            
+            <button mat-raised-button type="submit" (click)="onSubmitOl()" class="radius-btn" style="background: linear-gradient(#6cf04b, #41fd70);">Bekræft lager</button>
+        </form>
+    </mat-card-content>
+</mat-card>

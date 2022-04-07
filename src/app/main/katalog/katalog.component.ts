@@ -13,7 +13,7 @@ import { SletDialogBoxComponent } from '../slet-dialog-box/slet-dialog-box.compo
 export class KatalogComponent implements OnInit {
   olListe: Øl[];
   ol: Øl;
-  endpointB = '/Øller';
+  endpointO = '/Øller';
   searchkey: string;
   bryggeriId: number;
   bryggeriListe: any;
@@ -32,7 +32,7 @@ export class KatalogComponent implements OnInit {
 
   onHentOl() {
     if (this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}')) {
-      this.restApi.getDatas(this.endpointB).subscribe((data) => {
+      this.restApi.getDatas(this.endpointO).subscribe((data) => {
         this.olListe = data.filter((res: any) => {
           return res.bryggeriId === this.bryggeriId;
         });
@@ -58,7 +58,7 @@ export class KatalogComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       // console.log(result);
       if (result == true) {
-        this.restApi.deleteData(id, this.endpointB).subscribe(data => {
+        this.restApi.deleteData(id, this.endpointO).subscribe(data => {
           this.onHentOl();
         })
       }

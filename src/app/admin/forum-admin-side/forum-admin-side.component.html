@@ -1,11 +1,11 @@
 <div class="main" id="imgeUp">
   <mat-card >
-    <mat-toolbar class="login-header" style="background: linear-gradient(#6c6c6d, #cfd4d6); height: 100px;"  >
+    <mat-toolbar class="login-header" style="background: linear-gradient(#6c6c6d, #cfd4d6); height: 100px;">
       <mat-tab-group>
         <mat-tab label="Find Forum med forum titel">
       <form class="example-form" style="justify-content: center; width: 100%;">
         <mat-form-field  class="txtHeader">
-            <input matInput type="search" [(ngModel)]="forumListe" (ngModelChange)="onFindForumtitel()" [ngModelOptions]="{standalone: true}" >
+            <input matInput type="search" placeholder="Find Forum" [(ngModel)]="searchkey" (ngModelChange)="onFindForumtitel()" [ngModelOptions]="{standalone: true}" >
         </mat-form-field>
       </form>
         </mat-tab>
@@ -16,52 +16,47 @@
             </mat-form-field>
           </form>
             </mat-tab> -->
-            <mat-tab label="Oprette Forum">
-               <button mat-button class="btnOprette" (click)="onOpretForum()">Klick her til at oprette forum</button>
+            <mat-tab label="Opret Forum">
+               <button mat-button class="btnOprette" (click)="onOpretForum()">Klik her for at oprette forum</button>
             </mat-tab>
   </mat-tab-group>
+  <h1 style="justify-content: center;">Forum liste</h1>
   </mat-toolbar>
   </mat-card>
   <mat-card>
     <table style="width: 100%; height: 100%; display: flex;" >
         <mat-accordion class="example-headers-align" multi style="width: 100%;">
-            <mat-expansion-panel *ngFor="let forum of forums" style="margin-top: 10px;" [disabled]="clickButton" (click)="clickButton=true" >
+            <mat-expansion-panel *ngFor="let forum of forumListe" style="margin-top: 10px;" [disabled]="clickButton" (click)="clickButton=true" >
                 <mat-expansion-panel-header
                     style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236)); justify-content: center; width: 100%;">
                     <mat-panel-title class="centers" style="justify-content: center;">
-                       <span style="font-weight: bold; ">Events Titel:</span>
+                       <span style="font-weight: bold; ">Forum Titel:</span>
                        <span style="margin-right: 20px;">{{forum.titel}}</span>
-                       <span style="font-weight: bold;">Events Beskrivelse:</span>
-                       <span>{{forum.beskrivelse}}</span>
                     </mat-panel-title>
                     <mat-action-row class="centers" style="justify-content: center;">
-                        <button mat-button class="btnMainStyle" (click)="onVisForum(forum.id)">Vis </button> |
-                        <button mat-button class="btnMainStyle" (click)="onOpdaterForum(forum.id)" >Update </button> |
-                        <button mat-button class="btnMainStyle" (click)="onSletForum(forum.id)">Slet </button>
+                        <button mat-button class="btnMainStyle" (click)="onVisPost(forum.id)">Vis Forum</button> 
+                        <button mat-button class="btnMainStyle" (click)="onOpdaterForum(forum.id)" >Opdater Forum</button> 
+                        <button mat-button class="btnMainStyle" (click)="onSletForum(forum.id)">Slet Forum</button>
                     </mat-action-row>
                 </mat-expansion-panel-header>
-                <h1 >Rediger Events</h1>
-                <div >
-                  <form class="example-form" [formGroup]="opdaterForm" *ngIf="opdaterForum">
-                     <mat-form-field class="example-full-width" appearance="fill">
-                      <mat-label>Titel:</mat-label>
-                      <input matInput formControlName="titel" placeholder="{{opdaterForum.titel}}" [(ngModel)]="opdaterForum.titel" >
-                    </mat-form-field>
-                    <mat-form-field class="example-full-width" appearance="fill">
-                      <mat-label>Beskrivelse:</mat-label>
-                      <input matInput formControlName="beskrivelse" placeholder="{{opdaterForum.beskrivelse}}" [(ngModel)]="opdaterForum.beskrivelse">
-                    </mat-form-field>
-                    <mat-form-field class="example-full-width" appearance="fill">
-                      <input matInput [matDatepicker]="picker1"  [(ngModel)]="opdaterForum.oprettet" formControlName="oprettet" placeholder="Date" class="input-control">
-                      <mat-datepicker-toggle matSuffix [for]="picker1" ></mat-datepicker-toggle>
-                      <mat-datepicker #picker1 ></mat-datepicker>
-                      </mat-form-field>
-                <div class="btn-container">
-                  <button mat-button (click)="onAnuller()" >Annulere</button>
-                  <button mat-button (click)="onGemAndringer(opdaterForum.id)">Gem Ændringer</button>
-                </div>
-                </form>
-                </div>
+                    <mat-card class="containStyle">
+                      <span>Beskrivelse:</span>
+                      <span class="txtStyle">{{forum.beskrivelse}}</span>
+                    </mat-card>
+                    <div *ngFor="let post of postListe">
+                      <mat-card class="containStyle">
+                          <div>
+                              <span style="color: darkblue;float: left;">Titel:</span>
+                              <span>{{post.titel}}</span>
+                              <span style="color: darkblue; margin-left: 200px;">Indhold:</span>
+                              <span>{{post.indhold}}</span>
+                          </div>
+                          <mat-action-row>
+                              <button mat-button class="btnMainStyle" (click)="onSletPost(post.id)">Slet Besked</button>
+                              <!-- <button mat-button class="btnMainStyle" [disabled]="clickButtonSvar">Svar Besked</button> -->
+                          </mat-action-row>
+                      </mat-card>                      
+                  </div>
            </mat-expansion-panel>
         </mat-accordion>
     </table>

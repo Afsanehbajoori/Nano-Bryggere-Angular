@@ -24,12 +24,13 @@
                     <button mat-button class="btnOprette" (click)="onOpretSamarbejde()">Opret Samarbejde</button>
                 </mat-tab>
             </mat-tab-group>
+            <h1 style="justify-content: center;">Samarbejds liste</h1>
         </mat-toolbar>
     </mat-card>
     <mat-card>
         <table style="width: 100%; height: 100%; display: flex;">
             <mat-accordion class="example-headers-align" multi style="width: 100%;">
-                <mat-expansion-panel *ngFor="let samarbejde of samarbejdeliste" style="margin-top: 10px;" [disabled]="clickButton" (click)="clickButton=true">
+                <mat-expansion-panel *ngFor="let samarbejde of samarbejdeListe" style="margin-top: 10px;" [disabled]="clickButton" (click)="clickButton=true">
                     <mat-expansion-panel-header
                         style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236)); justify-content: center; width: 100%;">
                         <mat-panel-title class="centers" style="justify-content: center;">
@@ -38,25 +39,25 @@
                         </mat-panel-title>
                         <mat-action-row class="centers" style="justify-content: center;">
                             <button mat-button class="btnMainStyle" (click)="onVisSamarbejde(samarbejde.id)">Vis
-                            </button> |
+                            </button> 
                             <button mat-button class="btnMainStyle" (click)="onOpdaterSamarbejde(samarbejde.id)">Update
-                            </button> |
+                            </button> 
                             <button mat-button class="btnMainStyle" (click)="onSletSamarbejde(samarbejde.id)">Slet
                             </button>
                         </mat-action-row>
                     </mat-expansion-panel-header>
-                    <div *ngIf="bryggeri">
+                    <div *ngIf="bryggeri1">
                         <mat-card class="containStyle">
                             <span>Navn:</span>
-                            <span class="txtStyle">{{bryggeri.navn}}</span>
+                            <span class="txtStyle">{{bryggeri1.navn}}</span>
                         </mat-card>
                         <mat-card class="containStyle">
-                            <span>Land:</span>
-                            <span class="txtStyle">{{bryggeri.beskrivelse}}</span>
+                            <span>Beskrivelse:</span>
+                            <span class="txtStyle">{{bryggeri1.beskrivelse}}</span>
                         </mat-card>
                         <mat-card class="containStyle">
-                            <span>Type:</span>
-                            <span class="txtStyle">{{bryggeri.bryggeriLogo}}</span>
+                            <span>Logo:</span>
+                            <img [src]="bryggeri1.bryggeriLogo" alt="" style="width: 50%; justify-content: center;">
                         </mat-card>
                     </div>
                     <div *ngIf="bryggeri2">
@@ -65,12 +66,12 @@
                             <span class="txtStyle">{{bryggeri2.navn}}</span>
                         </mat-card>
                         <mat-card class="containStyle">
-                            <span>Land:</span>
+                            <span>Beskrivelse:</span>
                             <span class="txtStyle">{{bryggeri2.beskrivelse}}</span>
                         </mat-card>
                         <mat-card class="containStyle">
-                            <span>Type:</span>
-                            <span class="txtStyle">{{bryggeri2.bryggeriLogo}}</span>
+                            <span>Logo:</span>
+                            <img [src]="bryggeri2.bryggeriLogo" alt="" style="width: 50%; justify-content: center;">
                         </mat-card>
                     </div>
                 </mat-expansion-panel>

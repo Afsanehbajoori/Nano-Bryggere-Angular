@@ -97,7 +97,7 @@ export class AdminForsideComponent implements OnInit {
         this.visDeltageneComponent = !this.visDeltageneComponent;
         break;
       }
-      case 'admin-tags': {
+      case 'Med Tag': {
         this.visAdminTagsComponent = !this.visAdminTagsComponent;
         break;
       }

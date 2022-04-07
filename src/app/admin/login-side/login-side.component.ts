@@ -1,8 +1,6 @@
-import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Bruger } from 'src/app/Models/Bruger';
 import { Login } from 'src/app/Models/Login';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 
@@ -13,16 +11,16 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./login-side.component.css']
 })
 export class LoginSideComponent implements OnInit {
-  login:Login[];
-  endpointL='/Logins';
+  login: Login[];
+  endpointL = '/Logins';
   endpointB = '/Bruger';
-  clickButton:boolean=true;
+  clickButton: boolean = true;
   id = this.actRoute.snapshot.params['id'];
-  loginList:any;
+  loginListe: any;
   brugere: any;
- //  searchkeyBrugernavn:string;
+  //  searchkeyBrugernavn:string;
 
-  constructor( public dialog: MatDialog,
+  constructor(public dialog: MatDialog,
     public restApi: RestApiService,
     public router: Router,
     public actRoute: ActivatedRoute) { }
@@ -31,27 +29,20 @@ export class LoginSideComponent implements OnInit {
     this.onHentLogin();
   }
 
-  onHentLogin(){
+  onHentLogin() {
     return this.restApi.getDatas(this.endpointL).subscribe(data => {
-      this.login=data;
-      
-    }
-    )
+      this.login = data;
+    });
   }
 
-  onVisLogin(id:any){
+  onVisLogin(id: any) {
     this.clickButton = false;
     return this.restApi.getData(id, this.endpointL).subscribe(data => {
-      this.loginList= data;
-      this.restApi.getData(this.loginList.brugerId , this.endpointB).subscribe((res) => {
+      this.loginListe = data;
+      this.restApi.getData(this.loginListe.brugerId, this.endpointB).subscribe((res) => {
         this.brugere = res;
-        console.log('bruger:' ,this.brugere.brugernavn);
-      })
-  })
-
+        console.log('bruger:', this.brugere.brugernavn);
+      });
+    });
   }
-
-
-
-
 }

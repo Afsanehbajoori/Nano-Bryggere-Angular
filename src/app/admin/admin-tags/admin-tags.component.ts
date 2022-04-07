@@ -16,10 +16,8 @@ export class AdminTagsComponent implements OnInit {
   dialogRefSlet: MatDialogRef<SletDialogBoxComponent>;
   dialogRefOpretTags: MatDialogRef<OpretTagDialogBoxComponent>;
   dialogRefOpdaterTags: MatDialogRef<OpdaterTagDialogBoxComponent>;
-  searchkeyEventTitel: string;
-  searchkeyDeltagelse: string;
   clickButton: boolean = true;
-  searchkey: string;
+  searchkeyTag: string;
   tagsliste: any;
   tags: Tags[];
   endpointT = '/Tags';
@@ -98,12 +96,12 @@ export class AdminTagsComponent implements OnInit {
   }
 
   onFindTag(){
-    if(this.searchkey == ""){
+    if(this.searchkeyTag == ""){
       this.ngOnInit();
     }
     else{
       this.tags = this.tags.filter(res =>{
-        return res.navn.toLowerCase().match(this.searchkey.toLowerCase());
+        return res.navn.toLowerCase().match(this.searchkeyTag.toLowerCase());
       })
     }
   }

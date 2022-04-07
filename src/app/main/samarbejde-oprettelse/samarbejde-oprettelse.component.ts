@@ -30,7 +30,7 @@ export class SamarbejdeOprettelseComponent implements OnInit {
 
   ngOnInit(): void {
     this.bryggeriId=JSON.parse(localStorage.getItem('bryggeriId') || '{}');
-    console.log('bryggeriId:' , this.bryggeriId)
+    // console.log('bryggeriId:' , this.bryggeriId)
     this.onHentBryggeri();
 
     this.opretForm = this._formBuilder.group({
@@ -50,7 +50,7 @@ export class SamarbejdeOprettelseComponent implements OnInit {
         const dropdownInfo= {bryggeinavn: this.bryggriList[i].navn , bryggeriId2 : this.bryggriList[i].id}
         this.bryggrisNavn.push(dropdownInfo)
       }
-      console.log('BryggeriList' , this.bryggrisNavn)
+      // console.log('BryggeriList' , this.bryggrisNavn)
     })
   }
 onAnuller(){
@@ -74,7 +74,7 @@ onSubmitSamarbejde(){
   //this.nySamarbejde.olId=JSON.parse(localStorage.getItem('olId') || '{}');
   this.restApi.createData(this.nySamarbejde , this.endpointS).subscribe(data => {
     localStorage.setItem('samarbejdeId' ,JSON.stringify(data.id) )
-    console.log('samarbejdeId:',data);
+    // console.log('samarbejdeId:',data);
     this.dialogRefOpretSamarbejde.close();
     this.ngOnInit();
   })

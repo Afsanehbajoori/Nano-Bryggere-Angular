@@ -18,12 +18,14 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
+import { OlSideSamarbejdeComponent } from './ol-side-samarbejde/ol-side-samarbejde.component';
 
 @NgModule({
   declarations: [
     OlSideComponent,
     OlSogningComponent,
     OlLagerComponent,
+    OlSideSamarbejdeComponent,
   ],
   imports: [
     CommonModule,

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { Tags } from 'src/app/Models/Tags';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 })
 export class OpdaterTagDialogBoxComponent implements OnInit {
   opdaterForm: FormGroup = new FormGroup({});
-  tagListe: any;
+  tagListe: Tags;
   tagId: number;
   endpointT = '/Tags';
 

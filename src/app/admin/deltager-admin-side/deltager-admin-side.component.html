@@ -1,44 +1,47 @@
 <div class="main" id="imgeUp">
-  <mat-card >
-    <mat-toolbar class="login-header" style="background: linear-gradient(#6c6c6d, #cfd4d6); height: 100px;"  >
+  <mat-card>
+    <mat-toolbar class="login-header" style="background: linear-gradient(#6c6c6d, #cfd4d6); height: 100px;">
       <mat-tab-group>
         <mat-tab label="Find Deltager med brugernavn">
-      <form class="example-form" style="justify-content: center; width: 100%;">
-        <mat-form-field  class="txtHeader">
-            <input matInput type="search"  [(ngModel)]="searchkeyDeltager" (ngModelChange)="onFindDeltager()" [ngModelOptions]="{standalone: true}" >
-        </mat-form-field>
-      </form>
+          <form class="example-form" style="justify-content: center; width: 100%;">
+            <mat-form-field class="txtHeader">
+              <input matInput type="search" [(ngModel)]="searchkeyDeltager" (ngModelChange)="onFindDeltager()"
+                [ngModelOptions]="{standalone: true}">
+            </mat-form-field>
+          </form>
         </mat-tab>
-  </mat-tab-group>
-  </mat-toolbar>
+      </mat-tab-group>
+      <h1 style="justify-content: center;" class="centers">Deltager liste</h1>
+    </mat-toolbar>
   </mat-card>
   <mat-card>
-    <table style="width: 100%; height: 100%; display: flex;" >
-        <mat-accordion class="example-headers-align" multi style="width: 100%;">
-             <mat-expansion-panel *ngFor="let deltag of deltager" style="margin-top: 10px;"  [disabled]="clickButton" (click)="clickButton=true" >
-                <mat-expansion-panel-header
-                    style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236)); justify-content: center; width: 100%;">
-                    <mat-panel-title class="centers" style="justify-content: center;">
-                       <span style="font-weight: bold; margin-right: 20px;">Deltager Id:</span>
-                       <span>{{deltag.id}}</span>
-                    </mat-panel-title>
-                    <mat-action-row class="centers" style="justify-content: center;">
-                        <button mat-button class="btnMainStyle" (click)="onVisDeltager(deltag.id)">Vis </button> |
-                        <button mat-button class="btnMainStyle" (click)="onAfvisDeltagelse(deltag.id)">Afmeld Deltagelse </button>
-                    </mat-action-row>
-                </mat-expansion-panel-header>
-                <div >
-                  <mat-card class="containStyle" *ngIf="deltagelserListB">
-                  <span>Brugernavn:</span>
-                  <span class="txtStyle">{{deltagelserListB.brugernavn}}</span>
-                </mat-card>
-                <mat-card class="containStyle" *ngIf="deltagelserListE">
-                  <span>EventsTitel:</span>
-                  <span class="txtStyle">{{deltagelserListE.titel}}</span>
-                </mat-card>
-                </div>
-            </mat-expansion-panel>
-        </mat-accordion>
+    <table style="width: 100%; height: 100%; display: flex;">
+      <mat-accordion class="example-headers-align" multi style="width: 100%;">
+        <mat-expansion-panel *ngFor="let deltag of deltager" style="margin-top: 10px;" [disabled]="clickButton"
+          (click)="clickButton=true">
+          <mat-expansion-panel-header
+            style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236)); justify-content: center; width: 100%;">
+            <mat-panel-title class="centers" style="justify-content: center;">
+              <span style="font-weight: bold; margin-right: 20px;">Deltager Id:</span>
+              <span>{{deltag.id}}</span>
+            </mat-panel-title>
+            <mat-action-row class="centers" style="justify-content: center;">
+              <button mat-button class="btnMainStyle" (click)="onVisDeltager(deltag.id)">Vis </button>
+              <button mat-button class="btnMainStyle" (click)="onAfvisDeltagelse(deltag.id)">Afmeld Deltagelse </button>
+            </mat-action-row>
+          </mat-expansion-panel-header>
+          <div>
+            <mat-card class="containStyle" *ngIf="deltagelserListB">
+              <span>Brugernavn:</span>
+              <span class="txtStyle">{{deltagelserListB.brugernavn}}</span>
+            </mat-card>
+            <mat-card class="containStyle" *ngIf="deltagelserListE">
+              <span>EventsTitel:</span>
+              <span class="txtStyle">{{deltagelserListE.titel}}</span>
+            </mat-card>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
     </table>
   </mat-card>
 </div>

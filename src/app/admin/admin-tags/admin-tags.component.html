@@ -5,7 +5,7 @@
                 <mat-tab label="Find Tags med tag navn">
                     <form class="example-form" style="justify-content: center; width: 40%;">
                         <mat-form-field class="txtHeader">
-                            <input matInput type="search" placeholder="Find tags" [(ngModel)]="searchkey"
+                            <input matInput type="search" placeholder="Find tags" [(ngModel)]="searchkeyTag"
                                 (ngModelChange)="onFindTag()" [ngModelOptions]="{standalone: true}">
                         </mat-form-field>
                     </form>
@@ -14,6 +14,7 @@
                     <button mat-button class="btnOprette" (click)="onOpretTags()">Opret Tags</button>
                 </mat-tab>
             </mat-tab-group>
+            <h1 style="justify-content: center; width: 100%;">Tags liste</h1>
         </mat-toolbar>
     </mat-card>
     <mat-card>
@@ -28,7 +29,7 @@
                         </mat-panel-title>
                         <mat-action-row class="centers" style="justify-content: center;">
                             <button mat-button class="btnMainStyle" (click)="onOpdaterTags(tag.id)">Opdater Tag</button>
-                            <button mat-button class="btnMainStyle" (click)="onSletTags(tag.id)">Slet Tag</button> |
+                            <button mat-button class="btnMainStyle" (click)="onSletTags(tag.id)">Slet Tag</button>
                         </mat-action-row>
                     </mat-expansion-panel-header>
                 </mat-expansion-panel>

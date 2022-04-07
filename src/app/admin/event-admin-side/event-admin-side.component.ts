@@ -23,7 +23,7 @@ export class EventAdminSideComponent implements OnInit {
   events: Events[];
   //event = new Events();
   endpointE = '/Events';
-  endpointP = '/Deltager';
+  endpointD = '/Deltager';
   id = this.actRoute.snapshot.params['id'];
   deltagelseListe: any;
 
@@ -44,7 +44,7 @@ export class EventAdminSideComponent implements OnInit {
     })
   }
   onHentDeltagelse() {
-    this.restApi.getDatas(this.endpointP).subscribe(data => {
+    this.restApi.getDatas(this.endpointD).subscribe(data => {
       this.deltagelseListe = data
       console.log('del:', this.deltagelseListe)
     })

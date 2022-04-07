@@ -44,6 +44,9 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
 import { SamarbejdeVisningComponent } from './samarbejde-visning/samarbejde-visning.component';
 import { SamarbejdeKatalogComponent } from './samarbejde-katalog/samarbejde-katalog.component';
 import { VisSamarbejdeSideComponent } from './vis-samarbejde-side/vis-samarbejde-side.component';
+import { OpretSamarbejdeOlDialogBoxComponent } from './opret-samarbejde-ol-dialog-box/opret-samarbejde-ol-dialog-box.component';
+import { OpdaterSamarbejdeOlDialogBoxComponent } from './opdater-samarbejde-ol-dialog-box/opdater-samarbejde-ol-dialog-box.component';
+import { SamarbejdeOlLagerComponent } from './samarbejde-ol-lager/samarbejde-ol-lager.component';
 
 
 @NgModule({
@@ -70,7 +73,10 @@ import { VisSamarbejdeSideComponent } from './vis-samarbejde-side/vis-samarbejde
     VisEventsDetajlerComponent,
     SamarbejdeVisningComponent,
     SamarbejdeKatalogComponent,
-    VisSamarbejdeSideComponent
+    VisSamarbejdeSideComponent,
+    OpretSamarbejdeOlDialogBoxComponent,
+    OpdaterSamarbejdeOlDialogBoxComponent,
+    SamarbejdeOlLagerComponent
   ],
   entryComponents:[SletDialogBoxComponent , RedigerProfilDialogBoxComponent , RedigerBryggeriDialogBoxComponent],
   imports: [

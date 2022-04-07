@@ -35,6 +35,7 @@
           </form>
         </mat-tab>
       </mat-tab-group>
+      <h1 style="justify-content: center;">Bruger liste</h1>
     </mat-toolbar>
   </mat-card>
   <mat-card>
@@ -47,8 +48,8 @@
               <span>{{bruger.brugernavn}}</span>
             </mat-panel-title>
             <mat-action-row class="centers" style="justify-content: center;">
-              <button mat-button class="btnMainStyle" (click)="onVisBruger(bruger.id)">Vis </button> |
-              <button mat-button class="btnMainStyle" (click)="onOpdaterBruger(bruger.id)">Update </button> |
+              <button mat-button class="btnMainStyle" (click)="onVisBruger(bruger.id)">Vis </button> 
+              <button mat-button class="btnMainStyle" (click)="onOpdaterBruger(bruger.id)">Update </button> 
               <button mat-button class="btnMainStyle" (click)="onSletBruger(bruger.id)">Slet </button>
 
             </mat-action-row>

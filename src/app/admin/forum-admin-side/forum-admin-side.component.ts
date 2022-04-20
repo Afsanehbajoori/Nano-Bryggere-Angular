@@ -43,20 +43,21 @@ export class ForumAdminSideComponent implements OnInit {
   onHentForum(){
     return this.restApi.getDatas(this.endpointF).subscribe((forum) => {
       this.forumListe = forum;
-      console.log('forum:', this.forumListe)
+      // console.log('forum:', this.forumListe)
     })
   }
     onHentPost(){
     return this.restApi.getDatas(this.endpointP).subscribe((post) => {
       this.posts = post;
-      console.log('posts:',this.posts);
+      // console.log('posts:',this.posts);
     })
   }
   onHentRolle(){
     this.restApi.getDatas(this.endpointR).subscribe(rolle =>{ 
       this.rolleListe = rolle
       this.rolle = this.rolleListe.find((a:any) => a.level === 300)
-      console.log('roll;' , this.rolle)})
+      // console.log('roll;' , this.rolle)
+    })
   }
   onOpretForum(){
     const dialogConfig = new MatDialogConfig();
@@ -73,7 +74,7 @@ export class ForumAdminSideComponent implements OnInit {
   onVisPost(id:any){
     this.clickButton=false;
         this.postListe = this.posts.filter((res: any) => res.forumId === id);
-        console.log("post id", this.postListe);
+        // console.log("post id", this.postListe);
   }
 
   onFindForumtitel(){
@@ -117,7 +118,7 @@ export class ForumAdminSideComponent implements OnInit {
 
   onSletForum(id:any){
       this.posts=this.posts.filter((p:any) => p.forumId === id)
-      console.log('data:', this.posts)
+      // console.log('data:', this.posts)
     if(this.posts.length === 0){
     let dialogRef = this.dialog.open(SletDialogBoxComponent);
     dialogRef.afterClosed().subscribe(result => {

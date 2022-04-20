@@ -1,57 +1,58 @@
-<div class="main" id="imgeUp">
-  <mat-toolbar class="login-header" style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236));">
-      <button mat-raised-button style="background-color: rgb(124, 130, 136); width: 200px; height: 40px; margin: 50px ;" (click)="onOpretSamarbejde()">Opret Samarbejde</button>
-      <form class="example-form" style="justify-content: center; width: 100%;">
-          <mat-form-field class="txtHeader">
-              <input matInput type="search" placeholder="Find samarbejde" [(ngModel)]="searchkey" (ngModelChange)="onFindSamarbejde()" [ngModelOptions]="{standalone: true}">
-          </mat-form-field>
-      </form>
-  </mat-toolbar>
-  <table style="width: 100%; height: 100%; display: flex;">
-      <mat-accordion class="example-headers-align" multi style="width: 100%;">
-          <mat-expansion-panel *ngFor="let samarbejde of samarbejder" style="margin-top: 10px;" [disabled]="clickButton" (click)="clickButton=true">
-              <mat-expansion-panel-header
-                  style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236)); justify-content: center; width: 100%;">
-                  <mat-panel-title class="centers" style="justify-content: center;">
-                      Titel: {{samarbejde.titel}}
-                  </mat-panel-title>
-                  <mat-action-row class="centers" style="justify-content: center;">
-                    <button mat-button class="btnMainStyle" (click)="onVisSamarbejde(samarbejde.id)">Vis Samarbejde</button>  |
-                      <button mat-button class="btnMainStyle" (click)="onSletSamarbejde(samarbejde.id)">Slet Samarbejde</button>  |
-                      <button mat-button class="btnMainStyle" (click)="onOpdaterSamarbejde(samarbejde.id)">Rediger Samarbejde</button>
-                  </mat-action-row>
-              </mat-expansion-panel-header>
-              <div *ngIf="samarbejdeList">
-              <mat-card class="containStyle">
-                  <p>Titel:</p>
-                  <p>{{samarbejdeList.titel}}</p>
-              </mat-card>
-              <mat-card class="containStyle">
-                  <p>Samarbejde Billed:</p>
-                  <p><img [src]="samarbejdeList.olBilled" alt="" style="width: 30%; height: 30%;"></p>
-              </mat-card>
-              <mat-card class="containStyle" >
-                <p>Bryggeri Navn1:</p>
-                <p>{{bryggriList1.bryggeriId1}} </p>
-            </mat-card>
-              <mat-card class="containStyle" >
-                <p>Bryggeri Navn2:</p>
-                <p>{{bryggriList2.bryggeriId2}}</p>
-            </mat-card>
-            </div>
-            <div *ngIf="bryggriList1">
-              <mat-card class="containStyle" >
-                  <p>Bryggeri 1:</p>
-                  <p>{{bryggriList1.bryggeriId}} </p>
-              </mat-card>
-            </div>
-            <div *ngIf="bryggriList2">
-               <mat-card class="containStyle" >
-                  <p>Bryggeri 2:</p>
-                  <p>{{bryggriList2.bryggeriId}}</p>
-              </mat-card>
-            </div>
+<div class="main">
+    <mat-card>
+        <mat-toolbar style="background: linear-gradient(#6c6c6d, #cfd4d6);">
+        <!-- <mat-toolbar class="login-header" style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236));"> -->
+            <button mat-raised-button
+                style="background-color: rgb(124, 130, 136); width: 200px; height: 40px; margin: 50px ;"
+                (click)="onOpretSamarbejde()">Opret Samarbejde</button>
+            <form class="example-form" style="justify-content: center; width: 100%;">
+                <mat-form-field class="txtHeader">
+                    <input matInput type="search" placeholder="Find samarbejde" [(ngModel)]="searchkey"
+                        (ngModelChange)="onFindSamarbejde()" [ngModelOptions]="{standalone: true}">
+                </mat-form-field>
+            </form>
+        </mat-toolbar>
+    </mat-card>
+    <table style="width: 100%; height: 100%; display: flex;">
+        <mat-accordion class="example-headers-align" multi style="width: 100%;">
+            <mat-expansion-panel *ngFor="let samarbejde of samarbejder" style="margin-top: 10px;"
+                [disabled]="clickButton" (click)="clickButton=true">
+                <mat-expansion-panel-header
+                    style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236)); justify-content: center; width: 100%;">
+                    <mat-panel-title class="centers" style="justify-content: center;">
+                        Titel: {{samarbejde.titel}}
+                    </mat-panel-title>
+                    <mat-action-row class="centers" style="justify-content: center;">
+                        <button mat-button class="btnMainStyle" (click)="onVisSamarbejde(samarbejde.id)">Vis
+                            Samarbejde</button> |
+                        <button mat-button class="btnMainStyle" (click)="onSletSamarbejde(samarbejde.id)">Slet
+                            Samarbejde</button> |
+                        <button mat-button class="btnMainStyle" (click)="onOpdaterSamarbejde(samarbejde.id)">Rediger
+                            Samarbejde</button>
+                    </mat-action-row>
+                </mat-expansion-panel-header>
+                <div *ngIf="samarbejdeList">
+                    <mat-card class="containStyle">
+                        <p>Titel:</p>
+                        <p>{{samarbejdeList.titel}}</p>
+                    </mat-card>
+                    <mat-card class="containStyle">
+                        <p>Samarbejde Billed:</p>
+                        <p><img [src]="samarbejdeList.olBilled" alt="" style="width: 30%; height: 30%;"></p>
+                    </mat-card>
+                    <div>
+                        <mat-card class="containStyle">
+                            <h2>Brygger:</h2>
+                            <div *ngIf="bryggriList1">
+                                <p>{{bryggriList1.navn}} </p>
+                            </div>
+                            <div *ngIf="bryggriList2">
+                                <p>{{bryggriList2.navn}}</p>
+                            </div>
+                        </mat-card>
+                    </div>
+                </div>
             </mat-expansion-panel>
-      </mat-accordion>
-  </table>
+        </mat-accordion>
+    </table>
 </div>

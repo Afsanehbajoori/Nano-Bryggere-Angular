@@ -63,7 +63,7 @@ export class AdminForsideComponent implements OnInit {
   }
 
   onVisComponent(nodeName: string) {
-    console.log(nodeName);
+    // console.log(nodeName);
     switch (nodeName) {
       case 'Med Brugernavn': {
         this.visBrugernavnComponent = !this.visBrugernavnComponent;

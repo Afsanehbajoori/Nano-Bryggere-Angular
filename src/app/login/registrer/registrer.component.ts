@@ -17,7 +17,7 @@ export class RegistrerComponent implements OnInit {
 
 @Input() nyBruger = { pw: '', brugernavn: '', rolleNavn: '', rolleId: null, level: '', kontaktOplysningerId: null,
  fnavn: '', enavn: '', adresseLinje1: '', adresseLinje2: '', postNr: '',
-  by: '', email: '', telefonNr: ''};
+  by: '', email: '', telefonNr: '', certifikatStatus: 1};
 
   brugerFormGroup:any = new FormGroup({});
   endpointK = '/KontaktOplysninger';
@@ -41,11 +41,13 @@ export class RegistrerComponent implements OnInit {
       'pw': new FormControl(''),
       'rolleId': new FormControl(''),
       'rolleNavn': new FormControl(''),
-      'level': new FormControl('')
+      'level': new FormControl(''),
     });
   }
 
   onOpretBruger(){
+   this.nyBruger.certifikatStatus = 1;
+   console.log(this.nyBruger.certifikatStatus);
    this.restApi.createData(this.nyBruger, this.endpointK).subscribe((dataC) => {
      console.log(dataC.id);
       this.nyBruger.kontaktOplysningerId= dataC.id;

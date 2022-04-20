@@ -79,7 +79,7 @@ export class ForsideComponent implements OnInit {
     this.restApi.getDatas(this.endpointR).subscribe(rolle =>{ 
       this.rolleListe = rolle
       this.rolle = this.rolleListe.find((a:any) => a.level === 300)
-      console.log('roll;' , this.rolle)})
+      console.log('rolle:' , this.rolle)})
   }
 
   onGodkendPost(id: any) {
@@ -98,6 +98,24 @@ export class ForsideComponent implements OnInit {
     // this.listPosts= this.posts.filter((res:any) => res.forumId === id && (res.brugerId2 === this.brugerId2 || res.brugerId1 === this.brugerId1 ))
     this.posts = this.postListe.filter((res: any) => res.forumId === id);
     console.log(this.postListe);
+  }
+
+  onSletForum(id: any) {
+    this.restApi.getData(id, this.endpointF).subscribe(data => {
+      console.log("slet",data);
+      if (this.brugerId === data.brugerId  || this.rolle ===300) {
+        let dialogRef = this.dialog.open(SletDialogBoxComponent);
+        dialogRef.afterClosed().subscribe(result => {
+          if (result == true) {
+            this.restApi.deleteData(id, this.endpointF).subscribe(data => {
+              this.ngOnInit();
+            })
+          }
+        });
+      } else {
+        alert('du kan ikke slette denne besked , det er fordi det ikke din!')
+      }
+    })
   }
 
   onFindForum() {

@@ -45,7 +45,7 @@ export class VisSamarbejdeSideComponent implements OnInit {
   onHentBryggeri() {
     this.restApi.getDatas(this.endpointB).subscribe(data => {
       this.bryggriList1 = data;
-      this.bryggriList1 = this.bryggriList1.filter()
+      // this.bryggriList1 = this.bryggriList1.filter()
       console.log('Bryggerier', this.bryggriList1)
     })
   }
@@ -74,6 +74,12 @@ export class VisSamarbejdeSideComponent implements OnInit {
     this.clickButton = false;
     return this.restApi.getData(id, this.endpointS).subscribe((data) => {
       this.samarbejdeList = data;
+      this.restApi.getData(this.samarbejdeList.bryggeriId1, this.endpointB).subscribe((data) =>{
+        this.bryggriList1 = data;
+      })
+      this.restApi.getData(this.samarbejdeList.bryggeriId2, this.endpointB).subscribe((data) =>{
+        this.bryggriList2 = data;
+      })
       console.log('samarbejdebryggeriId1:', this.samarbejdeList.bryggeriId1)
       console.log('samarbejdebryggeriId2:', this.samarbejdeList.bryggeriId2)
     })

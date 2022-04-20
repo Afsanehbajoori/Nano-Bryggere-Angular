@@ -1,3 +1,4 @@
+import { Bruger } from "./Bruger";
 import { Post } from "./Post";
 import { Tags } from "./Tags";
 
@@ -8,6 +9,6 @@ export class Forum{
   public oprettet: Date;
   public tags: Tags;
   public post:Post;
- 
-  
+  public brugerid: number;
+  public bruger: Bruger  
 }

@@ -1,6 +1,6 @@
 .main{
-  height:100%;
-  background-color: rgb(255, 255, 255);
+  height: auto;
+  background-color: transparent;
 }
 
 #imgeUp{
@@ -26,17 +26,15 @@ font-weight: bold;
   margin-right: 50px;
   margin-top: 10px;
   padding-left: 40px;
-  border-width: 2px;
   font-style: oblique;
-  border-style: solid;
-  border-color: darkgray;
 }
 
 .centers{
 margin: auto;
-width: 50%;
+width: 10%;
 padding: 10px;
 text-align: center;
+flex: 1 1 auto;
 }
 
 .example-headers-align .mat-expansion-panel-header-title,
@@ -49,10 +47,33 @@ font-style: oblique;
 justify-content: space-between;
 align-items: center;
 }
+.txt{
+  margin: 10px;
+  font-weight: bolder;
+  font-size: 20px;
+  font-family: 'Times New Roman', Times, serif;
+  font-style: italic;
+  text-align: center;
+
+}
+.txtStyle{
+  font-style: italic;
+  font-weight: bold;
+  display: flex;
+ justify-content: center;
+ text-align: center;
+}
+
 
 .txtHeader{
-font-size: 15px;
-font-style: oblique;
-font-weight: bold;
-width: 30%;
+  font-size: 15px;
+  font-style: oblique;
+  font-weight: bold;
+  width: 30%;
+
+
 }
+.mat-tab-group {
+  margin-bottom: 5px;
+}
+

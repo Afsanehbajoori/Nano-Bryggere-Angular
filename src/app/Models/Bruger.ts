@@ -1,4 +1,3 @@
-import { Byte } from "@angular/compiler/src/util";
 import { KontaktOplysninger } from "./KontaktOplysninger";
 import { Rolle } from "./Rolle";
 import { Deltager } from './Deltager';

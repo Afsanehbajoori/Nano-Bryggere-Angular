@@ -1,4 +1,4 @@
-<div class="main" id="imgeUp">
+<div class="main">
     <mat-card>
         <mat-toolbar class="login-header" style="background: linear-gradient(#6c6c6d, #cfd4d6); height: 100px;">
             <mat-tab-group>
@@ -16,15 +16,15 @@
             </mat-tab-group>
         </mat-toolbar>
     </mat-card>
-    <mat-card>
+    <mat-card style="background-color: transparent;">
         <table style="width: 100%; height: 100%; display: flex;">
             <mat-accordion class="example-headers-align" multi style="width: 100%;">
-                <mat-expansion-panel *ngFor="let tag of tagsliste">
+                <mat-expansion-panel *ngFor="let tag of tagsliste" style="width: 40%;" class="centers">
                     <mat-expansion-panel-header
                         style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236)); justify-content: center; width: 100%;">
                         <mat-panel-title class="centers" style="justify-content: center;">
-                            <span>Tag navn: </span>
-                            <span>{{tag.navn}}</span>
+                            <span>Tag navn:</span>
+                            <p>{{tag.navn}}</p>
                         </mat-panel-title>
                         <mat-action-row class="centers" style="justify-content: center;">
                             <button mat-button class="btnMainStyle" (click)="onOpdaterTags(tag.id)">Opdater Tag</button>
@@ -36,6 +36,7 @@
         </table>
     </mat-card>
 </div>
+
 <!-- <mat-card *ngFor="let tag of tagsliste" style="height: 3%; width: 15%; justify-content: center; margin-left: 20px; margin-top: 20px;">
     <mat-accordion class="example-headers-align" multi style="width: 100%; justify-content: center;">
         <mat-action-row class="centers" style="justify-content: center;">

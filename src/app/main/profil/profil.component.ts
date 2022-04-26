@@ -42,6 +42,7 @@ export class ProfilComponent implements OnInit {
   visB: boolean;
   bryggeriLogo: any;
   url: string;
+  rolleNavn:string;
   @Input() nytBryggeri = { bryggeriLogo: '', navn: '', beskrivelse: '', kontaktOplysningerId: 0 };
   bryggeriOprettelsesForm: any = new FormGroup({});
 
@@ -81,6 +82,18 @@ export class ProfilComponent implements OnInit {
         this.kontaktOplysningsListe = kontaktData;
         this.restApi.getData(this.rolleId, this.endpointR).subscribe((rolleData) => {
           this.rolleListe = rolleData;
+          if(this.rolleListe.rolleNavn == 300){
+            this.rolleNavn = 'Administrator'
+          }
+          if(this.rolleListe.rolleNavn == 200){
+            this.rolleNavn = 'Moderator'
+          }
+          if(this.rolleListe.rolleNavn == 100){
+            this.rolleNavn = 'Bruger'
+          }
+          if(this.rolleListe.rolleNavn == 0){
+            this.rolleNavn = 'Anonymbruger'
+          } 
           console.log("Certifikat Brugerliste", this.brugerListe);
           // console.log("Certifikat",this.brugerListe.certifikatStatus)
           this.onTjekCertifikat();

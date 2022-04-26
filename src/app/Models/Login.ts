@@ -6,4 +6,5 @@ export class Login{
   public brugerId: number;
   public bruger: Bruger;
   public loginTime: Date;
+  // public loginTime: string;
 }

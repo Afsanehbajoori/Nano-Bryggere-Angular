@@ -40,7 +40,7 @@ export class CertifikatComponent implements OnInit {
         //   return res.id === this.brugerId;
         // });
         this.bruger = data;
-        console.log(this.bruger);
+        // console.log(this.bruger);
       })
     }
   }
@@ -57,12 +57,12 @@ export class CertifikatComponent implements OnInit {
         
         
       }
-      console.log(this.bruger);
+      // console.log(this.bruger);
     }
   };
 
   onUploadCertifikat() {
-    console.log(this.bruger);
+    // console.log(this.bruger);
     if(this.bruger.certifikatStatus == 2){
 
     }

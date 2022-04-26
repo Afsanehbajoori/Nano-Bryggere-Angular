@@ -16,6 +16,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { UpdatePostDialogBoxComponent } from './update-post-dialog-box/update-post-dialog-box.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { UpdateForumDialogBoxComponent } from './update-forum-dialog-box/update-forum-dialog-box.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     OpretteComponent,
     ForumPostComponent,
     ForumTagsComponent,
-    UpdatePostDialogBoxComponent
+    UpdatePostDialogBoxComponent,
+    UpdateForumDialogBoxComponent,
   ],
   imports: [
     CommonModule,

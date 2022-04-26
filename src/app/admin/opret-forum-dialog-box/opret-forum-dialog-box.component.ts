@@ -10,12 +10,13 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
   styleUrls: ['./opret-forum-dialog-box.component.css']
 })
 export class OpretForumDialogBoxComponent implements OnInit {
-  @Input() forumOprettelse = {titel: '', indhold: ''};
+  @Input() forumOprettelse = {titel: '', beskrivelse: '', oprettet:'', brugerId: 0};
 
   CreateForm: any = new FormGroup({});
-  endpointE = '/Events';
+  endpointF = '/Forumer';
   eventsList:any;
   eventBilled:any;
+  brugerId:any;
   constructor(
     public dialogRefOpretteEvents : MatDialogRef<OpretForumDialogBoxComponent>,
     public restApi: RestApiService,
@@ -25,13 +26,16 @@ export class OpretForumDialogBoxComponent implements OnInit {
   ngOnInit(): void {
     this.CreateForm = new FormGroup({
       titel: new FormControl('', Validators.required),
-      indhold: new FormControl('', Validators.required)
+      beskrivelse: new FormControl('', Validators.required),
+      oprettet: new FormControl('', Validators.required)
     });
+    this.brugerId = JSON.parse(localStorage.getItem('brugerId') || '{}');
   }
 
   onSubmitEvent() {
+    this.forumOprettelse.brugerId = this.brugerId;
     console.log(this.forumOprettelse);
-    this.restApi.createData(this.forumOprettelse, this.endpointE).subscribe((data) => {
+    this.restApi.createData(this.forumOprettelse, this.endpointF).subscribe((data) => {
       console.log('Opret nyt forum:', data);
       this.dialogRefOpretteEvents.close();
       // this.router.navigate(['../events/events'])

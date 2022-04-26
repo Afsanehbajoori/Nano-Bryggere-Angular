@@ -1,6 +1,6 @@
 <mat-card class="main">
     <mat-card-title class="txt" style="margin-top: 10px;">
-      <h1 style="width: 100%;">Opret Events</h1>
+      <h1 style="width: 100%;">Opret Forum</h1>
     </mat-card-title>
     <mat-card-content class="container">
       <form [formGroup]="CreateForm" class="example-form">
@@ -12,20 +12,25 @@
             feltet skal udfyldes
           </mat-error>
         </mat-form-field>
-  
         <mat-form-field class="example-full-width" appearance="fill">
-          <input matInput type="text" [(ngModel)]="forumOprettelse.indhold" formControlName="beskrivelse"
+          <input matInput type="text" [(ngModel)]="forumOprettelse.beskrivelse" formControlName="beskrivelse"
             placeholder="Beskrivelse" class="input-control">
           <mat-error>
             Dette felt skal udfyldes
           </mat-error>
         </mat-form-field>
-  
+        <mat-form-field class="example-full-width" appearance="fill">
+          <input matInput [matDatepicker]="picker1"  [(ngModel)]="forumOprettelse.oprettet" formControlName="oprettet" placeholder="Dato" class="input-control">
+          <mat-datepicker-toggle matSuffix [for]="picker1" ></mat-datepicker-toggle>
+          <mat-datepicker #picker1 ></mat-datepicker>
+          <mat-error>
+              Dette felt skal udfyldes
+          </mat-error>
+      </mat-form-field>
         <div mat-dialog-actions class="btn-container">
           <button mat-button (click)="dialogRefOpretteEvents.close(false)">Anuller</button>
           <button mat-button cdkFocusInitial (click)="onSubmitEvent(); $event.stopPropagation()">Opret</button>
         </div>
-  
       </form>
     </mat-card-content>
   </mat-card>

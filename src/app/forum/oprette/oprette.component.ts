@@ -14,7 +14,7 @@ export class OpretteComponent implements OnInit {
   opretForm: any = new FormGroup({});
   endpointF = '/Forumer';
   brugerId: number;
-  
+  oprettet: Date;
 
   constructor( public restApi: RestApiService, private router: Router, public actRoute: ActivatedRoute) { }
 
@@ -22,7 +22,7 @@ export class OpretteComponent implements OnInit {
     this.opretForm = new FormGroup({
       titel: new FormControl('', Validators.required),
       beskrivelse: new FormControl('', Validators.required),
-      oprettet: new FormControl('', Validators.required),
+      oprettet: new FormControl('', Validators.required)
     });
     this.brugerId = JSON.parse(localStorage.getItem('brugerId') || '{}');
   }
@@ -33,6 +33,8 @@ export class OpretteComponent implements OnInit {
 
   onSubmitForum() {
     this.forumOprettelse.brugerId = this.brugerId;
+    console.log(this.forumOprettelse);
+    // this.forumOprettelse.oprettet = this.oprettet.getDate.toString();
     this.restApi.createData(this.forumOprettelse, this.endpointF).subscribe((data) => {
       this.router.navigate(['../forum/forum'])
       localStorage.setItem('forumId' ,JSON.stringify(data.id));

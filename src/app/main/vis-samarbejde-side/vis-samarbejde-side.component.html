@@ -15,30 +15,32 @@
     </mat-card>
     <table style="width: 100%; height: 100%; display: flex;">
         <mat-accordion class="example-headers-align" multi style="width: 100%;">
-            <mat-expansion-panel *ngFor="let samarbejde of samarbejder" style="margin-top: 10px;"
-                [disabled]="clickButton" (click)="clickButton=true">
+            <mat-expansion-panel *ngFor="let samarbejde of samarbejder" style="margin-top: 10px; width: 45%;"
+                [disabled]="clickButton" (click)="clickButton=true" class="centers">
+                <!-- <mat-expansion-panel *ngFor="let samarbejde of samarbejder" style="margin-top: 10px; width: 45%;"
+                class="centers" hideToggle="true"> -->
                 <mat-expansion-panel-header
-                    style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236)); justify-content: center; width: 100%;">
-                    <mat-panel-title class="centers" style="justify-content: center;">
+                    style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236)); justify-content: center;">
+                    <mat-panel-title style="justify-content: center;" class="centers">
                         Titel: {{samarbejde.titel}}
                     </mat-panel-title>
-                    <mat-action-row class="centers" style="justify-content: center;">
+                    <mat-action-row style="justify-content: center;">
                         <button mat-button class="btnMainStyle" (click)="onVisSamarbejde(samarbejde.id)">Vis
-                            Samarbejde</button> |
+                            Samarbejde</button> 
                         <button mat-button class="btnMainStyle" (click)="onSletSamarbejde(samarbejde.id)">Slet
-                            Samarbejde</button> |
+                            Samarbejde</button> 
                         <button mat-button class="btnMainStyle" (click)="onOpdaterSamarbejde(samarbejde.id)">Rediger
                             Samarbejde</button>
                     </mat-action-row>
                 </mat-expansion-panel-header>
-                <div *ngIf="samarbejdeList">
+                <!-- <div *ngIf="samarbejdeList"> -->
                     <mat-card class="containStyle">
-                        <p>Titel:</p>
-                        <p>{{samarbejdeList.titel}}</p>
+                        <p> Titel:</p>
+                        <p>{{samarbejde.titel}}</p>
                     </mat-card>
                     <mat-card class="containStyle">
                         <p>Samarbejde Billed:</p>
-                        <p><img [src]="samarbejdeList.olBilled" alt="" style="width: 30%; height: 30%;"></p>
+                        <p><img [src]="samarbejde.olBilled" alt="" style="width: 40%; height: 40%;"></p>
                     </mat-card>
                     <div>
                         <mat-card class="containStyle">
@@ -51,7 +53,7 @@
                             </div>
                         </mat-card>
                     </div>
-                </div>
+                <!-- </div> -->
             </mat-expansion-panel>
         </mat-accordion>
     </table>

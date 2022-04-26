@@ -1,54 +1,52 @@
-.main{
-    min-height: 100%;
-    background-color: rgb(255, 255, 255);
-  }
+.main {
+  min-height: 100%;
+}
 
-#imgeUp{
-    background-image: url('/assets/images/Background-website-01.jpg');
-    background-position:center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: auto;
-
-  }
+#imgeUp {
+  background-image: url('/assets/images/Background-website-01.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: auto;
+}
 
 .list {
-    justify-content: center;
-  }
+  justify-content: center;
+}
 
-.list-item-set{
+.list-item-set {
   color: black;
   font-weight: bold;
-  }
+}
 
-  .containStyle{
-    background-color: rgb(252, 252, 252);
-    margin-left: 50px;
-    margin-right: 50px;
-    margin-top: 10px;
-    padding-left: 40px;
-    font-style: oblique;
-  }
+.containStyle {
+  background-color: rgb(252, 252, 252);
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-top: 10px;
+  padding-left: 40px;
+  font-style: oblique;
+}
 
-  .containPostStyle{
-    background-color: rgb(37, 126, 199);
-    margin-left: 30px;
-    margin-right: 30px;
-    margin-top: 10px;
-    padding-left: 40px;
-    font-style: oblique;
-  }
+.containPostStyle {
+  background-color: rgb(37, 126, 199);
+  margin-left: 30px;
+  margin-right: 30px;
+  margin-top: 10px;
+  padding-left: 40px;
+  font-style: oblique;
+}
 
-  .messageStyle{
-    background-color: rgb(252, 252, 252);
-    margin-left: 150px;
-    width: 30%;
-    margin-top: 10px;
-    padding-left: 40px;
-    font-style: oblique;
-  }
+.messageStyle {
+  background-color: rgb(252, 252, 252);
+  margin-left: 150px;
+  width: 30%;
+  margin-top: 10px;
+  padding-left: 40px;
+  font-style: oblique;
+}
 
-.centers{
+.centers {
   margin: auto;
   width: 50%;
   padding: 10px;
@@ -61,18 +59,15 @@
   margin-top: 10px;
   font-style: oblique;
 }
+
 .example-headers-align .mat-expansion-panel-header-description {
   justify-content: space-between;
   align-items: center;
 }
-.txtHeader{
+
+.txtHeader {
   font-size: 15px;
   font-style: oblique;
   font-weight: bold;
   width: 50%;
 }
-
-
-
-
-

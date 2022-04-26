@@ -4,15 +4,15 @@
       <h1 id="headerStyle">Profil Side</h1>
       <img [src]="this.url" alt="" style="width: 20%; height: 20%;">
       <button class="btnStyle" (click)="visFillerP = !visFillerP">Vis Kontakt Oplysninger</button>
-      <button class="btnStyle" (click)="visFillerB = !visFillerB" [disabled]="this.visB" >Vis Bryggeri Oplysninger</button>
-      <button class="btnStyle"  (click)="visFillerOB= !visFillerOB" [disabled]="this.visOB" >Opret Bryggeri</button>
-      <button class="btnStyle" (click)="onSletProfil()" >Slet Bruger</button>
+      <button class="btnStyle" (click)="visFillerB = !visFillerB" [disabled]="this.visB">Vis Bryggeri
+        Oplysninger</button>
+      <button class="btnStyle" (click)="visFillerOB= !visFillerOB" [disabled]="this.visOB">Opret Bryggeri</button>
+      <button class="btnStyle" (click)="onSletProfil()">Slet Bruger</button>
       <!-- <button class="btnStyle"  (click)="logud()" >LogUd</button> -->
-
     </div>
   </mat-drawer>
-  <mat-drawer-content class="main" id="imgeUp" *ngIf="kontaktOplysningsListe" >
-    <mat-card *ngIf="visFillerP">
+  <mat-drawer-content class="main" id="imgeUp" *ngIf="kontaktOplysningsListe" style="width: 100%;">
+    <mat-card *ngIf="visFillerP" style="width: 50%;" class="centers">
       <mat-card-content>
         <mat-accordion class="example-headers-align" multi>
           <mat-expansion-panel>
@@ -24,56 +24,55 @@
                 <mat-icon>account_circle</mat-icon>
               </mat-panel-description>
             </mat-expansion-panel-header>
-
-            <mat-card class="containStyle">
-              <span>Fornavn:</span>
-              <span class="txtStyle">{{kontaktOplysningsListe.fnavn}}</span>
-            </mat-card>
-            <mat-card class="containStyle">
-              <span>Efternavn:</span>
-              <span class="txtStyle">{{kontaktOplysningsListe.enavn}}</span>
-            </mat-card>
-            <mat-card class="containStyle">
-              <span>Addresselinje1:</span>
-              <span class="txtStyle">{{kontaktOplysningsListe.adresseLinje1}}</span>
-            </mat-card>
-            <mat-card class="containStyle">
-              <span>Addresselinje2:</span>
-              <span class="txtStyle">{{kontaktOplysningsListe.adresseLinje2}}</span>
-            </mat-card>
-            <mat-card class="containStyle">
-              <span>Telefonnr:</span>
-              <span class="txtStyle">{{kontaktOplysningsListe.telefonNr}}</span>
-            </mat-card>
-            <mat-card class="containStyle">
-              <span>Email:</span>
-              <span class="txtStyle">{{kontaktOplysningsListe.email}}</span>
-            </mat-card>
-            <mat-card class="containStyle">
-              <span>Postnr:</span>
-              <span class="txtStyle">{{kontaktOplysningsListe.postNr}}</span>
-            </mat-card>
-            <mat-card class="containStyle">
-              <span>By:</span>
-              <span class="txtStyle">{{kontaktOplysningsListe.by}}</span>
-            </mat-card>
-            <mat-card class="containStyle">
-              <span>Brugernavn:</span>
-              <span class="txtStyle">{{this.brugerListe.brugernavn}}</span>
-            </mat-card>
-            <mat-card class="containStyle">
-              <span>Rollenavn:</span>
-              <span class="txtStyle">{{this.rolleListe.rolleNavn}}</span>
-            </mat-card>
-            <mat-action-row>
-              <button mat-button color="primary" (click)="onOpdaterProfil()" class="btnMainStyle">Rediger Profil</button>
-            </mat-action-row>
-
+              <mat-card class="containStyle">
+                <span >Fornavn:</span>
+                <span class="txtStyle">{{kontaktOplysningsListe.fnavn}}</span>
+              </mat-card>
+              <mat-card class="containStyle">
+                <span>Efternavn:</span>
+                <span class="txtStyle">{{kontaktOplysningsListe.enavn}}</span>
+              </mat-card>
+              <mat-card class="containStyle">
+                <span>Addresselinje1:</span>
+                <span class="txtStyle">{{kontaktOplysningsListe.adresseLinje1}}</span>
+              </mat-card>
+              <mat-card class="containStyle">
+                <span>Addresselinje2:</span>
+                <span class="txtStyle">{{kontaktOplysningsListe.adresseLinje2}}</span>
+              </mat-card>
+              <mat-card class="containStyle">
+                <span>Telefonnr:</span>
+                <span class="txtStyle">{{kontaktOplysningsListe.telefonNr}}</span>
+              </mat-card>
+              <mat-card class="containStyle">
+                <span>Email:</span>
+                <span class="txtStyle">{{kontaktOplysningsListe.email}}</span>
+              </mat-card>
+              <mat-card class="containStyle">
+                <span>Postnr:</span>
+                <span class="txtStyle">{{kontaktOplysningsListe.postNr}}</span>
+              </mat-card>
+              <mat-card class="containStyle">
+                <span>By:</span>
+                <span class="txtStyle">{{kontaktOplysningsListe.by}}</span>
+              </mat-card>
+              <mat-card class="containStyle">
+                <span>Brugernavn:</span>
+                <span class="txtStyle">{{this.brugerListe.brugernavn}}</span>
+              </mat-card>
+              <mat-card class="containStyle">
+                <span>Rollenavn:</span>
+                <span class="txtStyle">{{this.rolleNavn}}</span>
+              </mat-card>
+              <mat-action-row>
+                <button mat-button color="primary" (click)="onOpdaterProfil()" class="btnMainStyle">Rediger
+                  Profil</button>
+              </mat-action-row>
           </mat-expansion-panel>
         </mat-accordion>
       </mat-card-content>
     </mat-card>
-    <mat-card *ngIf="visFillerB">
+    <mat-card *ngIf="visFillerB" style="width: 50%;" class="centers">
       <mat-card-content>
         <mat-accordion class="example-headers-align" multi *ngIf="bryggeriListe">
           <mat-expansion-panel>
@@ -91,7 +90,8 @@
             </mat-card> -->
             <mat-card class="containStyle">
               <span>Logo:</span>
-              <span class="txtStyle"><img [src]="this.bryggeriListe.bryggeriLogo" alt="" style="width: 20%; height: 20%;"></span>
+              <span class="txtStyle"><img [src]="this.bryggeriListe.bryggeriLogo" alt=""
+                  style="width: 20%; height: 20%;"></span>
             </mat-card>
             <mat-card class="containStyle">
               <span>Navn:</span>
@@ -103,7 +103,8 @@
             </mat-card>
             <mat-action-row>
               <button mat-button color="primary" (click)="onSletBryggeri()" class="btnMainStyle">Slet Bryggeri</button>
-              <button mat-button color="primary" (click)="onOpdaterBryggeri()" class="btnMainStyle">Rediger Bryggeri</button>
+              <button mat-button color="primary" (click)="onOpdaterBryggeri()" class="btnMainStyle">Rediger
+                Bryggeri</button>
             </mat-action-row>
           </mat-expansion-panel>
         </mat-accordion>
@@ -125,7 +126,8 @@
             <form [formGroup]="bryggeriOprettelsesForm" novalidate class="containStyle">
               <mat-form-field appearance="fill" class="example-full-width">
                 <mat-label>Logo</mat-label>
-                <input matInput placeholder="Billed" formControlName="bryggeriLogo" [(ngModel)]="nytBryggeri.bryggeriLogo">
+                <input matInput placeholder="Billed" formControlName="bryggeriLogo"
+                  [(ngModel)]="nytBryggeri.bryggeriLogo">
                 <input type="file" class="btnMainStyle" (change)="onSubmitProfilBilled($event)">
               </mat-form-field>
               <mat-form-field appearance="fill" class="example-full-width">
@@ -137,7 +139,8 @@
               </mat-form-field>
               <mat-form-field appearance="fill" class="example-full-width">
                 <mat-label>Beskrivelse</mat-label>
-                <input matInput placeholder="Beskrivelse" formControlName="beskrivelse" [(ngModel)]="nytBryggeri.beskrivelse">
+                <input matInput placeholder="Beskrivelse" formControlName="beskrivelse"
+                  [(ngModel)]="nytBryggeri.beskrivelse">
               </mat-form-field>
             </form>
             <mat-action-row>

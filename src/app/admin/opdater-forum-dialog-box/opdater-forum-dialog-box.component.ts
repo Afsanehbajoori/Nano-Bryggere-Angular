@@ -12,12 +12,12 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 })
 export class OpdaterForumDialogBoxComponent implements OnInit {
   opdaterForm: FormGroup = new FormGroup({});
-  forumListe: Forum;
-  forumId: number;
+  forumListe: any;
   endpointF = '/Forumer';
+  forumId: number;
 
   constructor(
-    public dialogRefOpdaterTag: MatDialogRef<OpdaterForumDialogBoxComponent>,
+    public dialogRefOpdaterForum: MatDialogRef<OpdaterForumDialogBoxComponent>,
     private formBuilder: FormBuilder,
     public restApi: RestApiService,
   ) { }
@@ -30,9 +30,9 @@ export class OpdaterForumDialogBoxComponent implements OnInit {
       .then(data => {
         this.forumListe = data;
         this.opdaterForm = this.formBuilder.group({
-          navn: new FormControl(this.forumListe.titel),
+          titel: new FormControl(this.forumListe.titel),
+          beskrivelse: new FormControl(this.forumListe.beskrivelse),
         })
       })
   }
-
 }

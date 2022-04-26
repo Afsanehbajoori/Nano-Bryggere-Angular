@@ -15,7 +15,7 @@ export class RedigerProfilDialogBoxComponent implements OnInit {
   kontaktoplysningId: number;
   brugerId:number;
   endpointK = '/KontaktOplysninger';
-  endpointB= '/Bruger';
+  endpointB = '/Bruger';
 
   constructor(public dialogRefUpdateProfile: MatDialogRef<RedigerProfilDialogBoxComponent>,
     private formBuilder: FormBuilder,
@@ -23,7 +23,7 @@ export class RedigerProfilDialogBoxComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.kontaktoplysningId = JSON.parse(localStorage.getItem('KontaktOplysningerId') || '{}');
+    this.kontaktoplysningId = JSON.parse(localStorage.getItem('kontaktOplysningerId') || '{}');
     this.brugerId = JSON.parse(localStorage.getItem('brugerId') || '{}');
     this.restApi.getData(this.kontaktoplysningId, this.endpointK)
       .toPromise()

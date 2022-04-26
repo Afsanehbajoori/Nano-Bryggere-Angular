@@ -3,11 +3,15 @@
         <form class="example-form" [formGroup]="opdaterForm" *ngIf="forumListe">
             <mat-form-field class="example-full-width" appearance="fill">
                 <mat-label>Titel:</mat-label>
-                <input matInput formControlName="navn" placeholder="{{forumListe.titel}" [(ngModel)]="forumListe.titel">
+                <input matInput formControlName="titel" placeholder="{{forumListe.titel}}" [(ngModel)]="forumListe.titel">
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Beskrivelse:</mat-label>
+                <input matInput formControlName="beskrivelse" placeholder="{{forumListe.beskrivelse}}" [(ngModel)]="forumListe.beskrivelse">
             </mat-form-field>
 
             <div mat-dialog-actions class="btn-container">
-                <button mat-button (click)="dialogRefOpdaterTag.close(false)">Anuller</button>
+                <button mat-button (click)="dialogRefOpdaterForum.close(false)">Anuller</button>
                 <button mat-button cdkFocusInitial [mat-dialog-close]="forumListe">Gem Ændringer</button>
             </div>
         </form>

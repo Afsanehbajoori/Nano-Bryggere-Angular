@@ -13,13 +13,14 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 export class LoginSideComponent implements OnInit {
   login: any = {};
   logins: Bruger[];
+  loginT: Date;
   endpointL = '/Logins';
-  endpointI = '/KontaktOplysninger';
-  endpointU = '/Bruger';
+  endpointK = '/KontaktOplysninger';
+  endpointB = '/Bruger';
 
   loginForm: any = new FormGroup({});
 
-  @Input() loginDetaljer = { brugernavn: '', pw: '', brugerId: null };
+  @Input() loginDetaljer = { brugernavn: '', pw: '', loginTime: '', brugerId: null };
 
   constructor(
     public router: Router,
@@ -38,29 +39,29 @@ export class LoginSideComponent implements OnInit {
 
   onSubmitLogin() {
     localStorage.clear();
-
-  this.restApi.getDatas(this.endpointU).subscribe((res) => {
-    console.log(res);
-  const user = res.find((a:any) => {
-    // console.log('infoLogin:' , a.contactInformation);
-    //this.restApi.getData(a.kontaktoplysningerId , this.endpointK).subscribe(data => {
-      //console.log('infoLoginKontakt' , data);
-      return a.brugernavn.toLowerCase() === this.loginDetaljer.brugernavn.toLowerCase() && a.pw === this.loginDetaljer.pw
-   // })
-
-  });
-  console.log(user);
-  if(user){
-     /* console.log("kontaktoplysningerId:",user.kontaktoplysningerId);
-     console.log("brugerId:",user.id)
-     console.log("rolleId:",user.rolleId); */
-     localStorage.setItem('kontaktOplysningerId' ,JSON.stringify(user.kontaktOplysningerId) );
-     localStorage.setItem('brugerId' ,JSON.stringify(user.id) );
-     localStorage.setItem('rolleId' ,JSON.stringify(user.rolleId) );
-     this.loginDetaljer.brugerId = user.id;
-     this.restApi.createData(this.loginDetaljer, this.endpointL).subscribe((res) => {
-    //  console.log("brugerId:", res.brugerId);
-    //  console.log("brugerId:", res);
+    // this.loginDetaljer.loginTime = this.loginT.;
+    this.restApi.getDatas(this.endpointB).subscribe((res) => {
+      console.log(res);
+      const user = res.find((a: any) => {
+        // console.log('infoLogin:' , a.contactInformation);
+        //this.restApi.getData(a.kontaktoplysningerId , this.endpointK).subscribe(data => {
+        //console.log('infoLoginKontakt' , data);
+        return a.brugernavn.toLowerCase() === this.loginDetaljer.brugernavn.toLowerCase() && a.pw === this.loginDetaljer.pw
+        // })
+      });
+      console.log(user);
+      if (user) {
+        // this.loginDetaljer.loginTime = this.loginT.getDate().toString();
+        /* console.log("kontaktoplysningerId:",user.kontaktoplysningerId);
+        console.log("brugerId:",user.id)
+        console.log("rolleId:",user.rolleId); */
+        localStorage.setItem('kontaktOplysningerId', JSON.stringify(user.kontaktOplysningerId));
+        localStorage.setItem('brugerId', JSON.stringify(user.id));
+        localStorage.setItem('rolleId', JSON.stringify(user.rolleId));
+        this.loginDetaljer.brugerId = user.id;
+        this.restApi.createData(this.loginDetaljer, this.endpointL).subscribe((res) => {
+          //  console.log("brugerId:", res.brugerId);
+          //  console.log("brugerId:", res);
         })
         this.router.navigate(['../main/profil']);
       }

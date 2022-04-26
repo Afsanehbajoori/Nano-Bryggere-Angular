@@ -89,7 +89,7 @@ export class ForumAdminSideComponent implements OnInit {
   }
 
   onOpdaterForum(id:any){
-    localStorage.setItem('eventsId', JSON.stringify(id));
+    localStorage.setItem('forumId', JSON.stringify(id));
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
@@ -99,6 +99,8 @@ export class ForumAdminSideComponent implements OnInit {
     this.dialogRefOpdaterForum.afterClosed().subscribe(result => {
       if (result) {
         this.forumListe = result;
+        console.log(this.forumListe);
+        console.log(id);
         this.restApi.updateData(id, this.endpointF, this.forumListe).subscribe((data) => {
         })
       }

@@ -6,6 +6,7 @@ import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog
 import { Forum } from 'src/app/Models/Forum';
 import { Rolle } from 'src/app/Models/Rolle';
 import { RestApiService } from 'src/app/shared/rest-api.service';
+import { UpdateForumDialogBoxComponent } from '../update-forum-dialog-box/update-forum-dialog-box.component';
 import { UpdatePostDialogBoxComponent } from '../update-post-dialog-box/update-post-dialog-box.component';
 
 @Component({
@@ -17,9 +18,8 @@ import { UpdatePostDialogBoxComponent } from '../update-post-dialog-box/update-p
 export class ForsideComponent implements OnInit {
   @Input() postOprettelse = { titel: '', indhold: '', brugerId: 0, forumId: 0 };
   dialogRefOpdaterPost: MatDialogRef<UpdatePostDialogBoxComponent>;
-
+  dialogRefOpdaterForum: MatDialogRef<UpdateForumDialogBoxComponent>;
   opretForm: any = new FormGroup({});
-
   forums: any;
   forum: Forum;
   posts: any;
@@ -71,7 +71,7 @@ export class ForsideComponent implements OnInit {
     return this.restApi.getDatas(this.endpointP).subscribe((post) => {
       this.postListe = post;
       // this.postListe = this.postListe.filter((res: any) => res.forumId = this.forums.id);
-       console.log('bruger:',this.postListe);
+      //  console.log('bruger:',this.postListe);
     })
   }
 
@@ -97,7 +97,7 @@ export class ForsideComponent implements OnInit {
     // this.brugerId2=JSON.parse(localStorage.getItem('brugerId2') || '{}');
     // this.listPosts= this.posts.filter((res:any) => res.forumId === id && (res.brugerId2 === this.brugerId2 || res.brugerId1 === this.brugerId1 ))
     this.posts = this.postListe.filter((res: any) => res.forumId === id);
-    console.log(this.postListe);
+    // console.log(this.postListe);
   }
 
   onSletForum(id: any) {
@@ -140,6 +140,31 @@ export class ForsideComponent implements OnInit {
         dialogConfig.height = 'auto';
         this.dialogRefOpdaterPost = this.dialog.open(UpdatePostDialogBoxComponent, dialogConfig);
         this.dialogRefOpdaterPost.afterClosed().subscribe(result => {
+          if (result) {
+            this.opdaterPost = result;
+            this.restApi.updateData(id, this.endpointP, this.opdaterPost).subscribe((data) => {
+              this.ngOnInit();
+            })
+          }
+        })
+      }
+      else {
+        alert('du kan ikke update denne besked , det er fordi det ikke din!')
+      }
+    })
+  }
+
+  onOpdaterForum(id: any) {
+    this.restApi.getData(id, this.endpointF).subscribe(data => {
+      if (this.brugerId === data.brugerId || this.rolle ===300) {
+        localStorage.setItem('postId', JSON.stringify(id));
+        const dialogConfig = new MatDialogConfig();
+        dialogConfig.disableClose = true;
+        dialogConfig.autoFocus = true;
+        dialogConfig.width = "40%";
+        dialogConfig.height = 'auto';
+        this.dialogRefOpdaterForum = this.dialog.open(UpdateForumDialogBoxComponent, dialogConfig);
+        this.dialogRefOpdaterForum.afterClosed().subscribe(result => {
           if (result) {
             this.opdaterPost = result;
             this.restApi.updateData(id, this.endpointP, this.opdaterPost).subscribe((data) => {

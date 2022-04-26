@@ -36,10 +36,6 @@
   height: 500px;
   max-height: 800px;
 }
-.main{
-  height: 80.2vh;
-  background-color: rgb(255, 255, 255);
-}
 
 #imgeUp{
   background-image: url('/assets/images/Background-website-01.jpg');
@@ -58,11 +54,10 @@
 
 }
 .container {
-  margin-top: 100px;
+  margin-top: 48px;
   font-family: arial;
   display: flex;
   justify-content: center;
-  height: auto;
 }
 .example-form {
   min-width: 150px;

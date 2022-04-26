@@ -1,14 +1,6 @@
 .main{
   height: 80.2vh;
-  background-color: rgb(255, 255, 255);
-}
-
-#imgeUp{
-  background-image: url('/assets/images/Background-website-01.jpg');
-  background-position:center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: auto;
+  background-color: transparent;
 }
 
 .list {
@@ -76,5 +68,3 @@
 .mat-tab-group {
   margin-bottom: 5px;
 }
-
-

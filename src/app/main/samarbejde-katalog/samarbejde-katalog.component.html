@@ -2,16 +2,16 @@
     <mat-card>
         <mat-toolbar style="background: linear-gradient(#6c6c6d, #cfd4d6);">
             <button mat-raised-button
-                style="background-color: rgb(124, 130, 136); width: 200px; height: 40px; margin: 50px ;"
-                (click)="onOpretSamarbejde()">Opret Øl</button>
-            <h1 class="centers">Samarbejde katalog</h1>
+            style="background-color: rgb(124, 130, 136); width: 200px; height: 40px; margin: 50px ;"
+            (click)="onOpretSamarbejde()">Opret Øl</button>
+            <h1>Samarbejde katalog</h1>
         </mat-toolbar>
     </mat-card>
     <table style="width: 100%; height: 100%; display: flex;">
         <mat-accordion class="example-headers-align" multi style="width: 100%;">
-            <mat-expansion-panel style="margin-top: 10px;" *ngFor="let ol of olListe">
+            <mat-expansion-panel style="margin-top: 10px; width: 40%;" *ngFor="let ol of olListe" class="centers" hideToggle="true">
                 <mat-expansion-panel-header
-                    style="background: linear-gradient(#6c6c6d, #cfd4d6); justify-content: center; width: 100%;">
+                    style="background: linear-gradient(#6c6c6d, #cfd4d6); justify-content: center;">
                     <mat-panel-title class="centers" style="justify-content: center;">
                         Øl Navn: {{ol.navn}}
                     </mat-panel-title>
@@ -34,8 +34,8 @@
                     <p>{{ol.land}}</p>
                 </mat-card>
                 <mat-card class="containStyle">
-                    <span>Øl Billed:</span>
-                    <img [src]="ol.olBilled" alt="" style="width: 20%; height: 20%;">
+                    <p>Øl Billed:</p>
+                    <img [src]="ol.olBilled" alt="" style="width: 30%; height: 30%;">
                 </mat-card>
                 <mat-card class="containStyle">
                     <span>Beskrivelse:</span>

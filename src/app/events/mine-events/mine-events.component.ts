@@ -55,7 +55,6 @@ export class MineEventsComponent implements OnInit {
 
   onVisEvent(id:any){
     this.clickButton=false;
-    //console.log('id:', id);
     this.restApi.getData(id , this.endpointD).subscribe(data => {
       this.eventListe= data ;
       this.restApi.getData(this.eventListe.eventsId, this.endpointE).subscribe(data => {
@@ -72,7 +71,6 @@ export class MineEventsComponent implements OnInit {
     else{
      this.restApi.getParticipantByEventsTitle(this.searchkey , this.endpointE).subscribe(data => {
        this.deltagerListe=data;
-      //  console.log('hi:', this.listParticipation)
      })
     }
   }

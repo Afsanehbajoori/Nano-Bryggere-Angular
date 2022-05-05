@@ -75,11 +75,12 @@
   margin-right: 200px;
   padding-left: 40px;
   font-style: oblique;
+  justify-content: center;
+  width: 50%;
 }
 
 .txtStyle{
   font-style: italic;
-  font-weight: bold;
   /* display: flex; */
   justify-content: center;
   text-align: center;

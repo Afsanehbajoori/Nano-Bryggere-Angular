@@ -24,7 +24,6 @@ export class UpdateEventsDialogBoxComponent implements OnInit {
 
   ngOnInit(): void {
     this.eventsId=JSON.parse(localStorage.getItem('eventsId') || '{}');
-    console.log('eventsId:', this.eventsId);
     this.restApi.getData(this.eventsId , this.endpointE)
     .toPromise()
     .then(data => {
@@ -47,7 +46,6 @@ export class UpdateEventsDialogBoxComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]);
       reader.onload=(e: any)=>{
         this.eventsListe.eventBilled =e.target.result;
-        console.log( this.eventsListe.eventBilled);
         localStorage.setItem('eventBilled' ,JSON.stringify(this.eventsListe.eventBilled));
       }
     }

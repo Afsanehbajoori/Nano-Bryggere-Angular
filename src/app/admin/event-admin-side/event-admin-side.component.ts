@@ -46,7 +46,6 @@ export class EventAdminSideComponent implements OnInit {
   onHentDeltagelse() {
     this.restApi.getDatas(this.endpointD).subscribe(data => {
       this.deltagelseListe = data
-      // console.log('del:', this.deltagelseListe)
     })
   }
 
@@ -54,7 +53,6 @@ export class EventAdminSideComponent implements OnInit {
     this.clickButton = false;
     return this.restApi.getData(id, this.endpointE).subscribe(data => {
       this.eventListe = data;
-      // console.log('eventList:', this.eventListe);
     })
   }
 
@@ -75,7 +73,6 @@ export class EventAdminSideComponent implements OnInit {
     }
     else {
       this.restApi.getEventParticipantsByUsername(this.searchkeyDeltagelse.toLowerCase(), this.endpointE).subscribe((data) => {
-        // console.log('deltag:', data)
         return this.events = data;
       })
     }
@@ -90,7 +87,6 @@ export class EventAdminSideComponent implements OnInit {
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
           this.restApi.deleteData(id, this.endpointE).subscribe((data) => {
-            // console.log('delete:', id);
             this.onHentEvents();
           })
         }
@@ -109,7 +105,6 @@ export class EventAdminSideComponent implements OnInit {
     this.dialogRefOpdaterEvents.afterClosed().subscribe(result => {
       if (result) {
         this.eventListe = result;
-        // console.log('date:', typeof (this.eventListe.startDato));
         this.restApi.updateData(id, this.endpointE, this.eventListe).subscribe((data) => {
         })
       }
@@ -128,8 +123,4 @@ export class EventAdminSideComponent implements OnInit {
       this.ngOnInit();
     })
   }
-
-  /* onJoinEvent(id:any){
-    console.log('eventsId ', id)
-  } */
 }

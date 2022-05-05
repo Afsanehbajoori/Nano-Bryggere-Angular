@@ -34,7 +34,45 @@
   margin-top: 10px;
   font-style: oblique;
 }
+
 .example-headers-align .mat-expansion-panel-header-description {
   justify-content: space-between;
   align-items: center;
+}
+
+.cards {
+  outline: none;
+  outline-style: none;
+  box-shadow: none;
+  border-color: transparent;
+  background-color: transparent;
+}
+
+.txtStyle{
+  font-style: italic;
+  display: flex;
+ justify-content: center;
+ text-align: center;
+}
+
+.titelStyle{
+  font-style: italic;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.txtbtn {
+  font-size: 14px;
+  color: black;
+  font-style: italic;
+  text-align: center;
+}
+
+.txtHeader {
+  font-size: 15px;
+  font-style: oblique;
+  width: 45%;
+  text-align: center;
 }

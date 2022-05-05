@@ -46,7 +46,6 @@ export class BrugerAdminSideComponent implements OnInit {
   onHentBruger() {
     return this.restApi.getDatas(this.endpointB).subscribe((res) => {
       this.brugere = res;
-      // console.log(this.brugere);
     })
   }
 
@@ -110,14 +109,12 @@ export class BrugerAdminSideComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       /* this.restApi.getData(id , this.endpoints).subscribe((data) => {
         this.kontaktoplysningerId= data.kontaktoplysningerId;
-        console.log("kontId:",this.kontaktoplysningerId);
         this.restApi.deleteData(this.kontaktoplysningerId, this.endpointK).subscribe(data => {
           this.loadBruger();
         })
       })*/
       if (result) {
         this.restApi.deleteData(id, this.endpointB).subscribe((data) => {
-          // console.log('delete:', id);
           this.onHentBruger();
         })
       }
@@ -125,21 +122,18 @@ export class BrugerAdminSideComponent implements OnInit {
   }
 
   onOpdaterBruger(id: any) {
-    // console.log('id', id);
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = "30%";
     this.restApi.getData(id, this.endpointB).subscribe((data) => {
       this.kontaktOplysningerId = data.kontaktOplysningerId;
-      // console.log("kontId:", this.kontaktOplysningerId);
       localStorage.setItem('KontaktOplysningerId', this.kontaktOplysningerId.toString());
       this.dialogRefOpdaterProfil = this.dialog.open(RedigerProfilDialogBoxComponent, dialogConfig);
       this.dialogRefOpdaterProfil.afterClosed().subscribe(result => {
         if (result) {
           this.oplysningsListe = result;
           this.restApi.updateData(this.kontaktOplysningerId, this.endpointK, this.oplysningsListe).subscribe((data) => {
-            // console.log(this.oplysningsListe);
             this.onVisBruger(id);
           })
         }

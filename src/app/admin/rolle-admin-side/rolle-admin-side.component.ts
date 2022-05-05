@@ -35,7 +35,6 @@ export class RolleAdminSideComponent implements OnInit {
   onHentBruger() {
     return this.restApi.getDatas(this.endpointB).subscribe((res) => {
       this.bruger = res;
-       console.log(this.bruger);
     })
   }
 
@@ -43,11 +42,8 @@ export class RolleAdminSideComponent implements OnInit {
     this.clickButton = false;
     return this.restApi.getData(id, this.endpointB).subscribe((res) => {
       this.rolleId = res.rolleId;
-      console.log('id',id);
-      console.log('rolleId', this.rolleId);
       this.restApi.getData(this.rolleId, this.endpointR).subscribe((res) => {
         this.rolle = res;
-        console.log('rolle:', this.rolle);
          if(this.rolle.rolleNavn == 300){
           this.rolleName = 'Administrator'
         }
@@ -103,7 +99,6 @@ export class RolleAdminSideComponent implements OnInit {
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
           this.restApi.deleteData(id, this.endpointR).subscribe((data) => {
-            // console.log('delete:', id);
             this.onHentBruger();
           })
         }
@@ -113,11 +108,9 @@ export class RolleAdminSideComponent implements OnInit {
 
   onNedgraderRolleNavn(id: any) {
     var bruger = this.bruger.find((x: any) => x.id === id)
-     //console.log('info:', bruger.rolleId);
     var rolleId = bruger?.rolleId;
     this.restApi.getData(rolleId, this.endpointR).subscribe(data => {
       var upgradeLevel = data;
-       console.log('upgradeLevel', upgradeLevel.level);
       if (upgradeLevel.level == 300) {
         upgradeLevel.level = 200;
         upgradeLevel.rolleNavn = "Moderator";
@@ -135,7 +128,6 @@ export class RolleAdminSideComponent implements OnInit {
         upgradeLevel.rolleNavn = "AnonymBruger";
       }
       this.restApi.updateData(rolleId, this.endpointR, upgradeLevel).subscribe(data => {
-        // console.log('ny:', upgradeLevel.level);
         this.ngOnInit();
       })
     })
@@ -143,11 +135,9 @@ export class RolleAdminSideComponent implements OnInit {
 
   onOpgraderRolleNavn(id: any) {
     var bruger = this.bruger.find((x: any) => x.id === id)
-    // console.log('info:', user?.rolleId);
     var rolleId = bruger?.rolleId;
     this.restApi.getData(rolleId, this.endpointR).subscribe(data => {
       var upgradeLevel = data;
-      // console.log('upgradeLevel', upgradeLevel.level);
       if (upgradeLevel.level == 0) {
         upgradeLevel.level = 100;
         upgradeLevel.rolleNavn = "Bruger";
@@ -165,7 +155,6 @@ export class RolleAdminSideComponent implements OnInit {
         upgradeLevel.rolleNavn = "Administrator";
       }
       this.restApi.updateData(rolleId, this.endpointR, upgradeLevel).subscribe(data => {
-        // console.log('ny:', upgradeLevel.level);
         this.ngOnInit();
       })
     })

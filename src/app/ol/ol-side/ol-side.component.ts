@@ -36,15 +36,11 @@ export class OlSideComponent implements OnInit {
     this.onHentOl();
     this.onHentKontaktOplysninger();
     this.onHentBryggeri();
-    // console.log("Ol",this.userInfoId); 
-    // Kconsole.log('Kontkakt',this.kontaktOplysningerId);
   }
 
   onHentKontaktOplysninger(){
-    // console.log("Kontakt",this.userInfoId);
     return this.restApi.getData(this.kontaktOplysningerId, this.endpointK).subscribe((data) => {
       this.kontaktOplysninger = data;
-      // console.log(this.userInfo);
     })
   }
 

@@ -18,11 +18,11 @@
                   Dette felt skal udfyldes
               </mat-error>
           </mat-form-field>
-          <mat-form-field class="example-full-width" appearance="fill" *ngIf="bryggriList">
+          <mat-form-field class="example-full-width" appearance="fill" *ngIf="bryggeriList">
             <mat-label>Anden Bryggeri Navn</mat-label>
             <select matNativeControl formControlName="bryggeriId2" [(ngModel)]="nySamarbejde.bryggeriId2">
               <option value="" selected></option>
-              <option *ngFor="let item of bryggrisNavn" [value]="item.bryggeriId2">{{item.bryggeinavn}} (bryggeriId : {{item.bryggeriId2}}) </option>
+              <option *ngFor="let item of bryggeriNavn" [value]="item.bryggeriId2">{{item.bryggeinavn}} (bryggeriId : {{item.bryggeriId2}}) </option>
             </select>
             <!-- <input matInput type="text"  formControlName="bryggeriId2" placeholder="BryggeriId2"  [(ngModel)]="nySamarbejde.bryggeriId2" class="input-control"> -->
             <mat-error>

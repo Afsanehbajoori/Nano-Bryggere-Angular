@@ -33,12 +33,10 @@ export class OpretteComponent implements OnInit {
 
   onSubmitForum() {
     this.forumOprettelse.brugerId = this.brugerId;
-    console.log(this.forumOprettelse);
     // this.forumOprettelse.oprettet = this.oprettet.getDate.toString();
     this.restApi.createData(this.forumOprettelse, this.endpointF).subscribe((data) => {
       this.router.navigate(['../forum/forum'])
       localStorage.setItem('forumId' ,JSON.stringify(data.id));
-      // console.log('id',data.id);
     })
   }
 }

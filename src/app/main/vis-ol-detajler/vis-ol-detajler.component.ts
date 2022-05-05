@@ -15,17 +15,14 @@ export class VisOlDetajlerComponent implements OnInit {
   constructor(public restApi: RestApiService) { }
 
   ngOnInit(): void {
-    this.olId= JSON.parse(localStorage.getItem('olId') || '{}');
-    // console.log('beerId', this.beerId);
+    this.olId= JSON.parse(localStorage.getItem('forsideOlId') || '{}');
     this.onHentOl();
   }
 
   onHentOl(){
     this.restApi.getData(this.olId , this.endpointO).subscribe(data => {
       this.olInfo = data;
-      // console.log('detajler:' , this.beerInfo.vintage);
       // this.vintage=this.beerInfo.vintage;
-      //  console.log('date:' , this.vintage);
     })
   }
 }

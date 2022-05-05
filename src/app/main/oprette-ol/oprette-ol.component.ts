@@ -48,7 +48,6 @@ export class OpretteOlComponent implements OnInit {
       // reader.readAsDataURL(event.target.files[0]);
       // reader.onload = (e: any) => {
       //   this.olOprettelse.etiket = e.target.result;
-      //   console.log(this.olOprettelse.etiket);
       //   localStorage.setItem('logo', JSON.stringify(this.olOprettelse.etiket));
       // }
     }
@@ -58,7 +57,6 @@ export class OpretteOlComponent implements OnInit {
   };
   onSubmitOl() {
     this.olOprettelse.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}');
-    // console.log(this.olOprettelse);
     this.restApi.createData(this.olOprettelse, this.endpointB).subscribe((data) => {
       localStorage.setItem('olId', JSON.stringify(data.id));
       this.router.navigate(['../main/katalog']);

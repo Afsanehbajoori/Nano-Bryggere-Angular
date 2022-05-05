@@ -1,44 +1,45 @@
 <div class="main" id="imgeUp">
     <mat-toolbar class="login-header" style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236));">
-            <form class="example-form" style="justify-content: center; width: 100%;">
+            <form class="example-form" style="justify-content: center;">
                 <mat-form-field  class="txtHeader">
                 <input matInput type="search" placeholder="Find event" [(ngModel)]="searchkey" (ngModelChange)="onFindEvent()" [ngModelOptions]="{standalone: true}">
             </mat-form-field>
         </form>
-        <h1 style="justify-content: center; width: 100%;">Events</h1>
+        <h1 class="centers" >Events</h1>
     </mat-toolbar>
     <table style="width: 100%; height: 100%; display: flex;">
         <mat-accordion class="example-headers-align" multi style="width: 100%;">
             <!-- <mat-expansion-panel *ngFor="let event of events" style="margin-top: 10px; width: 30%;" [disabled]="clickButton" (click)="clickButton=true" class="centers"> -->
                 <mat-expansion-panel *ngFor="let event of events" style="margin-top: 10px; width: 30%;" class="centers" hideToggle="true">
                 <mat-expansion-panel-header style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236)); justify-content: center;">
-                    <mat-panel-title class="centers" style="justify-content: center;">
-                        Titel: {{event.titel}}
+                    <mat-panel-title class="centers" style="color: black;">
+                        <span class="titelStyle" style="margin-right: 10px;">Titel:</span>
+                        <span>{{event.titel}}</span>
                     </mat-panel-title>
-                    <mat-action-row class="centers" style="justify-content: center;">
+                    <mat-action-row class="centers cards" style="justify-content: center;">
                         <!-- <button mat-button class="btnMainStyle" (click)="onVisEvent(event.id)">Vis Event</button> -->
-                        <button mat-button class="btnMainStyle" (click)="onDeltagEvent(event.id)" >Join Event</button>
+                        <button mat-button class="txtBtn" (click)="onDeltagEvent(event.id)">Join event</button>
                         <!-- <button mat-button class="btnMainStyle"   (click)="onAfmeldEvent(event.id)">Afmeld Deltagelse</button> -->
                     </mat-action-row>
                 </mat-expansion-panel-header>
                 <mat-card class="containStyle">
-                    <p>EventBillede:</p>
+                    <p style="font-weight: bold;">Event billede:</p>
                     <p class="txtStyle"><img [src]="event.eventBilled" alt="" style="width: 40%; height: 40%;"></p>
                   </mat-card>
                   <mat-card class="containStyle">
-                      <p>Beskrivelse:</p>
+                      <p style="font-weight: bold;">Beskrivelse:</p>
                       <p>{{event.beskrivelse}}</p>
                   </mat-card>
                   <mat-card class="containStyle">
-                      <p>Start:</p>
+                      <p style="font-weight: bold;">Start dato:</p>
                       <p>{{event.startDato}}</p>
                   </mat-card>
                   <mat-card class="containStyle">
-                      <p>Slut:</p>
+                      <p style="font-weight: bold;">Slut dato:</p>
                       <p>{{event.slutDato}}</p>
                   </mat-card>
                   <mat-card class="containStyle">
-                      <p>Lokation:</p>
+                      <p style="font-weight: bold;">Lokation:</p>
                       <p>{{event.lokation}}</p>
                   </mat-card>
                 <!-- <div *ngIf="eventListe"> -->

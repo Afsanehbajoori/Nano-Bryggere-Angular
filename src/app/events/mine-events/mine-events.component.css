@@ -1,39 +1,47 @@
-.main{
-    min-height: 100%;
-    background-color: rgb(255, 255, 255);
+.main {
+  min-height: 100%;
+  background-color: rgb(255, 255, 255);
 }
 
-#imgeUp{
-    background-image: url('/assets/images/Background-website-01.jpg');
-    background-position:center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: auto;
+#imgeUp {
+  background-image: url('/assets/images/Background-website-01.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: auto;
 }
 
 .list {
-    justify-content: center;
+  justify-content: center;
 }
 
-.list-item-set{
+.list-item-set {
   color: black;
   font-weight: bold;
 }
 
-  .containStyle{
-    background-color: rgb(252, 252, 252);
-    margin-left: 50px;
-    margin-right: 50px;
-    margin-top: 10px;
-    padding-left: 40px;
-    font-style: oblique;
-  }
+.containStyle {
+  background-color: rgb(252, 252, 252);
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-top: 10px;
+  padding-left: 40px;
+  font-style: oblique;
+}
 
-.centers{
+.centers {
   margin: auto;
   width: 50%;
   padding: 10px;
   text-align: center;
+}
+
+.cards {
+  outline: none;
+  outline-style: none;
+  box-shadow: none;
+  border-color: transparent;
+  background-color: transparent;
 }
 
 .example-headers-align .mat-expansion-panel-header-title,
@@ -42,20 +50,34 @@
   margin-top: 10px;
   font-style: oblique;
 }
+
 .example-headers-align .mat-expansion-panel-header-description {
   justify-content: space-between;
   align-items: center;
 }
 
-div h1{
+div h1 {
   justify-content: center;
   width: 100%;
   font-style: oblique;
 }
 
-.txtHeader{
+.txtHeader {
   font-size: 15px;
   font-style: oblique;
+  width: 100%;
+  text-align: center;
+}
+
+.txtBtn{
+  text-align: center;
+  padding: 0px;
+}
+
+.titelStyle{
+  font-style: italic;
   font-weight: bold;
-  width: 30%;
+  display: flex;
+  justify-content: center;
+ text-align: center;
 }

@@ -55,10 +55,8 @@ export class EventkalenderSideComponent implements OnInit {
       this.deltagerListe=data;
       if(this.brugerId){
         this.deltagerListe = this.deltagerListe.filter((a:any) => a.brugerId === this.brugerId);
-        // console.log('list:' , this.deltagerListe);
         for(var d =0; d < this.deltagerListe.length ; d++)
         {
-          // console.log('listId:' , this.deltagerListe[d].eventsId);
           if(this.deltagerListe[d].eventsId){
             this.deltagelsesArray.push(this.deltagerListe[d].eventsId);
           }
@@ -113,7 +111,6 @@ export class EventkalenderSideComponent implements OnInit {
       this.dialogRefSlet.afterClosed().subscribe(result => {
         if (result) {
           this.restApi.deleteData(deltagId.id , this.endpointD).subscribe(data => {
-              console.log('arrayList2:' , this.arrayListDeltager);
             })
       }
     })

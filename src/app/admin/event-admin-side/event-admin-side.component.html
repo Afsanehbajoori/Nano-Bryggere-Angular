@@ -5,7 +5,7 @@
         <mat-tab label="Find Events med events titel">
           <form class="example-form" style="justify-content: center; width: 100%;">
             <mat-form-field class="txtHeader">
-              <input matInput type="search" [(ngModel)]="searchkeyEventTitel" (ngModelChange)="onFindEventTitel()"
+              <input matInput type="search" placeholder="Find event" [(ngModel)]="searchkeyEventTitel" (ngModelChange)="onFindEventTitel()"
                 [ngModelOptions]="{standalone: true}">
             </mat-form-field>
           </form>
@@ -13,7 +13,7 @@
         <mat-tab label="Find events med deltagelser brugernavn">
           <form class="example-form" style="justify-content: center; width: 100%;">
             <mat-form-field class="txtHeader">
-              <input matInput type="search" [(ngModel)]="searchkeyDeltagelse" (ngModelChange)="onFindDeltagene()"
+              <input matInput type="search" placeholder="Find event" [(ngModel)]="searchkeyDeltagelse" (ngModelChange)="onFindDeltagene()"
                 [ngModelOptions]="{standalone: true}">
             </mat-form-field>
           </form>
@@ -24,46 +24,46 @@
       </mat-tab-group>
     </mat-toolbar>
   </mat-card>
-  <mat-card style="background-color: transparent;">
+  <mat-card class="cards">
     <table style="width: 100%; height: 100%; display: flex;">
       <mat-accordion class="example-headers-align" multi style="width: 100%; background-color: transparent;">
         <mat-expansion-panel *ngFor="let event of events" style="margin-top: 10px;  width: 50%;" class="centers" hideToggle="true">
           <mat-expansion-panel-header
             style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236)); justify-content: center;">
             <mat-panel-title class="centers" style="justify-content: center;">
-              <span style="font-weight: bold; margin-right: 20px;">Event Titel:</span>
+              <span style="font-weight: bold; margin-right: 20px;">Event titel:</span>
               <span>{{event.titel}}</span>
             </mat-panel-title>
-            <mat-action-row class="centers" style="justify-content: center;">
+            <mat-action-row class="centers cards" style="justify-content: center;">
               <!-- <button mat-button class="btnMainStyle" (click)="onVisEvent(event.id)">Vis </button>  -->
-              <button mat-button class="btnMainStyle" (click)="onOpdaterEvent(event.id)">Update </button> 
+              <button mat-button class="btnMainStyle" (click)="onOpdaterEvent(event.id)">Opdater</button> 
               <!-- <button mat-button class="btnMainStyle" (click)="onJoinEvent(event.id)" >Join Event </button> | -->
-              <button mat-button class="btnMainStyle" (click)="onSletEvent(event.id)">Slet </button>
+              <button mat-button class="btnMainStyle" (click)="onSletEvent(event.id)">Slet</button>
             </mat-action-row>
           </mat-expansion-panel-header>
           <!-- <div *ngIf="eventListe"> -->
             <mat-card class="containStyle">
-              <span>EventBillede:</span>
+              <span class="titelStyle">Event billede:</span>
               <span class="txtStyle"><img [src]="event.eventBilled" alt="" style="width: 30%; height: 30%;"></span>
             </mat-card>
             <mat-card class="containStyle">
-              <span>Titel:</span>
+              <span class="titelStyle">Titel:</span>
               <span class="txtStyle">{{event.titel}}</span>
             </mat-card>
             <mat-card class="containStyle">
-              <span>Beskrivelse:</span>
+              <span class="titelStyle">Beskrivelse:</span>
               <span class="txtStyle">{{event.beskrivelse}}</span>
             </mat-card>
             <mat-card class="containStyle">
-              <span>Lokation:</span>
+              <span class="titelStyle">Lokation:</span>
               <span class="txtStyle">{{event.lokation}}</span>
             </mat-card>
             <mat-card class="containStyle">
-              <span>StartDato:</span>
+              <span class="titelStyle">Start dato:</span>
               <span class="txtStyle">{{event.startDato}}</span>
             </mat-card>
             <mat-card class="containStyle">
-              <span>SlutDato:</span>
+              <span class="titelStyle">Slut dato:</span>
               <span class="txtStyle">{{event.slutDato}}</span>
             </mat-card>
           <!-- </div> -->

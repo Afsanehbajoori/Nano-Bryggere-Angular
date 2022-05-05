@@ -26,10 +26,7 @@ export class OpretTagDialogBoxComponent implements OnInit {
   }
 
   onSubmitTag() {
-    console.log(this.tagOprettelse);
-    console.log('image:', this.tagOprettelse.navn);
     this.restApi.createData(this.tagOprettelse, this.endpointT).subscribe((data) => {
-      console.log('Opret nyt tag:' , data);
       this.dialogRefOpretTag.close();
       // this.router.navigate(['../events/events'])
     })

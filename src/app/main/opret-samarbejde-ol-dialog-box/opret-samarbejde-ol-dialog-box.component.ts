@@ -51,11 +51,8 @@ export class OpretSamarbejdeOlDialogBoxComponent implements OnInit {
   onSubmitOl() {
     this.olOprettelse.samarbejdeId = JSON.parse(localStorage.getItem('samarbejdeId') || '{}');
     this.olOprettelse.olBilled = JSON.parse(localStorage.getItem('olBilled') || '{}');
-     console.log('samarbejdeId:',this.olOprettelse.samarbejdeId);
-     console.log('oloprettelse', this.olOprettelse);
     this.restApi.createData(this.olOprettelse, this.endpointO).subscribe((olData) => {
       localStorage.setItem('olId', JSON.stringify(olData.id));
-      console.log('info:', olData)
       this.dialogRefOpretSamarbejdeOl.close();
       //this.router.navigate(['../main/katalog']);
     });

@@ -1,54 +1,61 @@
-  <div id="imgeUp"  >
-   <h1 style="font-style: italic;font-weight: bolder;margin-top: 20px;font-family: 'Times New Roman', Times, serif;">Velkommen Til Nano-Bryggere App</h1>
-   <img src="/assets/images/logoNano.png"  >
-  </div>
-  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+<div id="imgeUp">
+  <h1 style="font-style: italic;font-weight: bolder;margin-top: 20px;font-family: 'Times New Roman', Times, serif;">
+    Velkommen Til Nano-Bryggere App</h1>
+  <img src="/assets/images/logoNano.png">
+</div>
+<mat-progress-bar mode="indeterminate"></mat-progress-bar>
 
-<mat-grid-list cols="1" rowHeight="300px" >
+<mat-grid-list cols="1" rowHeight="300px">
 
   <mat-grid-tile class="cdk-virtual-scroll-data-source-example">
     <span id="beerImage">
-      <mat-card-title>Øl Liste</mat-card-title>
+      <div style="background-color: gray; width: 100%; height: 10%; text-align: center; justify-content: center;">
+        <mat-card-title style="color: white;">Øl Liste</mat-card-title>
+      </div>
     </span>
-      <cdk-virtual-scroll-viewport orientation="horizontal" itemSize="50" class="example-viewport">
-        <div *cdkVirtualFor="let ol of olListe" class="example-item" (click)="onVisOlDetaljer(ol.id)" >
-          <img [src]="this.ol.olBilled" alt="" style="width: 40%; height: 40%;">
-           <p>navn:</p>
-            <p class="txtStyle">{{ol.navn}}</p>
-          </div>
-      </cdk-virtual-scroll-viewport>
+    <cdk-virtual-scroll-viewport orientation="horizontal" itemSize="50" class="example-viewport">
+      <div *cdkVirtualFor="let ol of olListe" class="example-item" (click)="onVisOlDetaljer(ol.id)">
+        <img [src]="this.ol.olBilled" alt="" class="centerBilled" style="width: 40%; height: 40%;">
+        <p class="titelStyle centers">Navn:</p>
+        <p class="txtStyle centers">{{ol.navn}}</p>
+      </div>
+    </cdk-virtual-scroll-viewport>
   </mat-grid-tile>
 
   <mat-grid-tile class="cdk-virtual-scroll-data-source-example">
     <span id="bryggeriImage">
-      <mat-card-title>Bryggeri Liste</mat-card-title>
+      <div style="background-color: gray; width: 100%; height: 10%; text-align: center; justify-content: center;">
+        <mat-card-title style="color: white;">Bryggeri Liste</mat-card-title>
+      </div>
     </span>
-    <cdk-virtual-scroll-viewport orientation="horizontal" itemSize="50" class="example-viewport " >
-      <div *cdkVirtualFor="let bryg of bryggeriListe" class="example-item" (click)="onVisDetaljer(bryg.id)" >
-        <img [src]="this.bryg.bryggeriLogo" alt="" style="width: 40%; height: 40%;">
-         <p>Bryggeri navn:</p>
-          <p class="txtStyle">{{bryg.navn}}</p>
-        </div>
+    <cdk-virtual-scroll-viewport orientation="horizontal" itemSize="50" class="example-viewport ">
+      <div *cdkVirtualFor="let bryg of bryggeriListe" class="example-item" (click)="onVisDetaljer(bryg.id)">
+        <img [src]="this.bryg.bryggeriLogo" alt="" class="centerBilled" style="width: 40%; height: 40%;">
+        <p class="titelStyle centers">Bryggeri navn:</p>
+        <p class="txtStyle centers">{{bryg.navn}}</p>
+      </div>
     </cdk-virtual-scroll-viewport>
   </mat-grid-tile>
 
   <mat-grid-tile class="cdk-virtual-scroll-data-source-example">
     <span id="eventsImage">
-      <mat-card-title>Det Sker Der</mat-card-title>
+      <div style="background-color: gray; width: 100%; height: 10%; text-align: center; justify-content: center;">
+        <mat-card-title style="color: white;">Det Sker Der</mat-card-title>
+      </div>
     </span>
-    <cdk-virtual-scroll-viewport orientation="horizontal" itemSize="20" class="example-viewport " >
-      <div *cdkVirtualFor="let event of events" class="example-item" (click)="onVisEventsDetaljer(event.id)" >
-        <img [src]="this.event.eventBilled" alt="" style="width: 40%; height: 40%;">
-         <p>Titel:</p>
-          <p class="txtStyle">{{event.titel}}</p>
-        </div>
+    <cdk-virtual-scroll-viewport orientation="horizontal" itemSize="20" class="example-viewport ">
+      <div *cdkVirtualFor="let event of events" class="example-item" (click)="onVisEventsDetaljer(event.id)">
+        <img [src]="this.event.eventBilled" alt="" class="centerBilled" style="width: 40%; height: 40%;">
+        <p class="titelStyle centers">Titel:</p>
+        <p class="txtStyle centers">{{event.titel}}</p>
+      </div>
     </cdk-virtual-scroll-viewport>
   </mat-grid-tile>
   <mat-grid-tile>
     <!-- kan tilføje mere her -->
   </mat-grid-tile>
 </mat-grid-list>
-  <!-- <div class="div-screen">
+<!-- <div class="div-screen">
     <mat-grid-list cols="2" rowHeight="2:1" >
       <mat-grid-tile >
         <mat-card class="frontCard">
@@ -78,7 +85,7 @@
     </mat-grid-list>
   </div> -->
 
-  <!-- <div class="main" id="imgeUp">
+<!-- <div class="main" id="imgeUp">
     <mat-toolbar class="login-header" style="background: linear-gradient(#238ff5, #23baf5);">
         <button mat-raised-button
             style="background-color: rgb(30, 122, 228); width: 120px; height: 40px; border-width: 0; margin-right: 20px;" (click)="onOpretEvents()">Opret event</button>

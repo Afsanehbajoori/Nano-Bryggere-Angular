@@ -1,12 +1,12 @@
 <div class="main" id="imgeUp">
     <mat-toolbar class="login-header" style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236));">
         <button mat-raised-button style="background-color: rgb(124, 130, 136); width: 120px; height: 40px; margin-right: 10px;" (click)="onOpretOl()">Opret øl</button>
-        <form class="example-form" style="justify-content: center; width: 100%;">
+        <form class="example-form" style="justify-content: center; width: 20%;">
             <mat-form-field class="txtHeader">
                 <input matInput type="search" placeholder="Find øl" [(ngModel)]="searchkey" (ngModelChange)="onFindOl()" [ngModelOptions]="{standalone: true}">
             </mat-form-field>
         </form>
-        <h1 style="width: 100%;">Katalog</h1>
+        <h1 class="centers">Katalog</h1>
     </mat-toolbar>
     <table style="width: 100%; height: 100%; display: flex;">
         <mat-accordion class="example-headers-align" multi style="width: 100%;">
@@ -15,52 +15,53 @@
                 <mat-expansion-panel-header 
                     style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236)); justify-content: center;">
                     <mat-panel-title class="centers" style="justify-content: center;">
-                        Titel: {{ol.navn}}
+                       <span class="titelStyle" style="margin-right: 10px;">Titel:</span>
+                       <span>{{ol.navn}}</span>
                     </mat-panel-title>
-                    <mat-action-row class="centers" style="justify-content: center;">
-                        <button mat-button class="btnMainStyle" (click)="onSletOl(ol.id)">Slet Øl</button>
-                        <button mat-button class="btnMainStyle" (click)="onOpdaterOl(ol.id)">Rediger Øl</button>
-                        <button mat-button class="btnMainStyle" (click)="onOlLager(ol.id)">Ændre Lager</button>
+                    <mat-action-row class="centers cards" style="justify-content: center;">
+                        <button mat-button class="txtBtn" (click)="onSletOl(ol.id)">Slet Øl</button>
+                        <button mat-button class="txtBtn" (click)="onOpdaterOl(ol.id)">Rediger Øl</button>
+                        <button mat-button class="txtBtn" (click)="onOlLager(ol.id)">Ændre Lager</button>
                     </mat-action-row>
                 </mat-expansion-panel-header>
                 <mat-card class="containStyle">
-                    <p>Type:</p>
+                    <p class="titelStyle">Type:</p>
                     <p>{{ol.type}}</p>
                 </mat-card>
                 <mat-card class="containStyle">
-                    <p>Procent:</p>
+                    <p class="titelStyle">Procent:</p>
                     <p>{{ol.procent}}</p>
                 </mat-card>
                 <mat-card class="containStyle">
-                    <p>Smag:</p>
+                    <p class="titelStyle">Smag:</p>
                     <p>{{ol.smag}}</p>
                 </mat-card>
                 <mat-card class="containStyle">
-                    <p>Beskrivelse:</p>
+                    <p class="titelStyle">Beskrivelse:</p>
                     <p>{{ol.beskrivelse}}</p>
                 </mat-card>
                 <mat-card class="containStyle">
-                    <p>Etiket:</p>
+                    <p class="titelStyle">Etiket:</p>
                     <img [src]="ol.olBilled" alt="" style="width: 50%; height: 50%;">
                 </mat-card>
                 <mat-card class="containStyle">
-                    <p>Årgang:</p>
+                    <p class="titelStyle">Årgang:</p>
                     <p>{{ol.argang}}</p>
                 </mat-card>
                 <mat-card class="containStyle">
-                    <p>Antal:</p>
+                    <p class="titelStyle">Antal:</p>
                     <p>{{ol.antal}}</p>
                 </mat-card>
                 <mat-card class="containStyle">
-                    <p>Antal flasker:</p>
+                    <p class="titelStyle">Antal flasker:</p>
                     <p>{{ol.flaskeAntal}}</p>
                 </mat-card>
                 <mat-card class="containStyle">
-                    <p>Antal tønder:</p>
+                    <p class="titelStyle">Antal tønder:</p>
                     <p>{{ol.tondeAntal}}</p>
                 </mat-card>
                 <mat-card class="containStyle">
-                    <p>Antal reserve flasker:</p>
+                    <p class="titelStyle">Antal reserve flasker:</p>
                     <p>{{ol.flaskeResevationAntal}}</p>
                 </mat-card>
             </mat-expansion-panel>

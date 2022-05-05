@@ -56,7 +56,6 @@ export class KatalogComponent implements OnInit {
   onSletOl(id: any) {
     let dialogRef = this.dialog.open(SletDialogBoxComponent);
     dialogRef.afterClosed().subscribe(result => {
-      // console.log(result);
       if (result == true) {
         this.restApi.deleteData(id, this.endpointO).subscribe(data => {
           this.onHentOl();

@@ -41,7 +41,6 @@ export class LoginSideComponent implements OnInit {
       this.loginListe = data;
       this.restApi.getData(this.loginListe.brugerId, this.endpointB).subscribe((res) => {
         this.brugere = res;
-        console.log('bruger:', this.brugere.brugernavn);
       });
     });
   }

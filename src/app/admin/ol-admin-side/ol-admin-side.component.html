@@ -4,8 +4,8 @@
             <mat-tab-group>
                 <mat-tab label="Find øl med Øl-navn">
                     <form class="example-form" style="justify-content: center; width: 100%;">
-                        <mat-form-field style="width: 40%;">
-                            <input matInput type="search" [(ngModel)]="searchkeyOlNavn" (ngModelChange)="onFindOlNavn()" [ngModelOptions]="{standalone: true}">
+                        <mat-form-field class="txtHeader">
+                            <input matInput type="search" placeholder="Find øl" [(ngModel)]="searchkeyOlNavn" (ngModelChange)="onFindOlNavn()" [ngModelOptions]="{standalone: true}">
                         </mat-form-field>
                     </form>
                 </mat-tab>
@@ -18,26 +18,27 @@
                 <mat-expansion-panel-header
                     style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236)); justify-content: center;">
                     <mat-panel-title class="centers" style="justify-content: center;">
-                        <p>{{ol.navn}}</p>
+                        <span style="font-weight: bold; margin-right: 20px; color: black;">Navn:</span>
+                        <span class="txtbtn" style="color: black;">{{ol.navn}}</span>
                     </mat-panel-title>
-                    <mat-action-row class="centers" style="justify-content: center;">
+                    <mat-action-row class="centers cards" style="justify-content: center;">
                         <button mat-button class="btnMainStyle" (click)="onSletOl(ol.id)">Slet Øl</button>
                     </mat-action-row>
                 </mat-expansion-panel-header>
                 <mat-card class="containStyle">
-                    <p>Type:</p>
+                    <p class="titelStyle">Type:</p>
                     <p>{{ol.type}}</p>
                 </mat-card>
                 <mat-card class="containStyle">
-                    <p>Beskrivelse:</p>
+                    <p class="titelStyle">Beskrivelse:</p>
                     <p>{{ol.beskrivelse}}</p>
                 </mat-card>
                 <mat-card class="containStyle">
-                    <p>Land:</p>
+                    <p class="titelStyle">Land:</p>
                     <p>{{ol.land}}</p>
                 </mat-card>
                 <mat-card class="containStyle">
-                    <p>Etiket:</p>
+                    <p class="titelStyle">Etiket:</p>
                     <img [src]="ol.olBilled" alt="" style="width: 30%; height: 30%;">
                 </mat-card>
             </mat-expansion-panel>

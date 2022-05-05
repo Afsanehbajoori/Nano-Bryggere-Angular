@@ -43,7 +43,6 @@ export class RedigerBryggeriDialogBoxComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]);
       reader.onload=(e: any)=>{
         this.bryggeriListe.bryggeriLogo =e.target.result;
-        // console.log( this.breweryList.logo);
         localStorage.setItem('bryggeriLogo' ,JSON.stringify(this.bryggeriListe.bryggeriLogo));
       }
     }

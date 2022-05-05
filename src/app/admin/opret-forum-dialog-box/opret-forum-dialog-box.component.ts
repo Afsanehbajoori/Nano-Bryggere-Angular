@@ -34,9 +34,7 @@ export class OpretForumDialogBoxComponent implements OnInit {
 
   onSubmitEvent() {
     this.forumOprettelse.brugerId = this.brugerId;
-    console.log(this.forumOprettelse);
     this.restApi.createData(this.forumOprettelse, this.endpointF).subscribe((data) => {
-      console.log('Opret nyt forum:', data);
       this.dialogRefOpretteEvents.close();
       // this.router.navigate(['../events/events'])
     })

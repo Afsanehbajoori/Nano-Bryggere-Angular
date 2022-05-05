@@ -52,16 +52,12 @@ export class SamarbejdeSideComponent implements OnInit {
 
   ngOnInit(): void {
     // this.bryggeriId=JSON.parse(localStorage.getItem('bryggeriId') || '{}');
-    // console.log('bryggeriId:' , this.bryggeriId)
     this.olId=JSON.parse(localStorage.getItem('olId') || '{}');
-    // console.log('olId:' , this.olId)
     this.samarbejdeId=JSON.parse(localStorage.getItem('samarbejdeId') || '{}');
-    // console.log('samarbejdeId:' , this.samarbejdeId)
     this.onHentSamarbejde();
   }
 
   onShowComponent(nodeName: string, id: any) {
-    // console.log(this.cooperations);
     switch (nodeName) {
       case 'Vis Katalog': {
         this.showSamarbejdeKatalog=!this.showSamarbejdeKatalog;
@@ -79,9 +75,7 @@ export class SamarbejdeSideComponent implements OnInit {
         this.samarbejder = data.filter((res: any) => {
           return res.bryggeriId1 === this.bryggeriId || res.bryggeriId2 === this.bryggeriId;
         });
-        console.log(this.bryggeriId);
         this.samarbejder.forEach(function (value){
-          // console.log("Value",value.id);
         })
       })
     }

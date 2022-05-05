@@ -10,7 +10,7 @@
         <button mat-menu-item [matMenuTriggerFor]="forum"><mat-icon aria-hidden="false">chat</mat-icon>Forum</button>
         <button mat-menu-item [matMenuTriggerFor]="event"><mat-icon aria-hidden="false">calendar_today</mat-icon>Event</button>
         <button mat-menu-item [matMenuTriggerFor]="ol"><mat-icon aria-hidden="false">local_drink</mat-icon>Øl</button>
-        <button mat-menu-item [matMenuTriggerFor]="samarbejde"><mat-icon aria-hidden="false">group</mat-icon>Samarbejde</button>
+        <button mat-menu-item [matMenuTriggerFor]="samarbejde" *ngIf="erBrygger"><mat-icon aria-hidden="false">group</mat-icon>Samarbejde</button>
         <button mat-menu-item [matMenuTriggerFor]="admin" *ngIf="erAdmin"><mat-icon aria-hidden="false">assignment</mat-icon>Admin</button>
         <!-- <button mat-menu-item [matMenuTriggerFor]="admin" ><mat-icon aria-hidden="false">group</mat-icon>Admin</button> -->
       </mat-menu>
@@ -19,7 +19,7 @@
         <button mat-menu-item [routerLink]="['/login/login']">
           <span><a href="/login/login" style="text-decoration:none; height: 100%; width: 100%;">Login</a></span>
         </button>
-        <button mat-menu-item >
+        <!-- <button mat-menu-item >
           <span><a href="/login/glemte-kodeord" style="text-decoration:none;">Glemt Password</a></span>
         </button>
         <button mat-menu-item >
@@ -27,7 +27,7 @@
         </button>
         <button mat-menu-item >
           <span><a href="/login/registration" style="text-decoration:none;">Registere</a></span>
-        </button>
+        </button> -->
       </mat-menu>
 
       <mat-menu #main="matMenu">
@@ -64,7 +64,8 @@
       </mat-menu>
 
       <mat-menu #ol="matMenu">
-        <button mat-menu-item [routerLink]="['/main/katalog']">
+        <!-- <button mat-menu-item [routerLink]="['/main/katalog']"> -->
+        <button mat-menu-item *ngIf="erBrygger" [routerLink]="['/main/katalog']">
           <span><a>Katalog</a></span>
         </button>
         <button mat-menu-item [routerLink]="['/øl/øl-søgning']">
@@ -73,6 +74,7 @@
       </mat-menu>
 
       <mat-menu #samarbejde="matMenu">
+        <!-- <button mat-menu-item *ngIf="erBrygger" [routerLink]="['/main/samarbejds-side']"> -->
         <button mat-menu-item [routerLink]="['/main/samarbejds-side']">
           <span><a>Samarbejde side</a></span>
         </button>

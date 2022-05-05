@@ -42,51 +42,44 @@ export class ForsideComponent implements OnInit {
   onHentEvent() {
     return this.restApi.getDatas(this.endpointE).subscribe((data) => {
       this.events = data;
-      //console.log(this.events)
     });
   }
 
   onHentBryggeri(){
     return this.restApi.getDatas(this.endpointB).subscribe((data) => {
       this.bryggeriListe = data;
-      //console.log('bryggeriList:',this.bryggeri);
     })
   }
   
   onHentOl(){
     return this.restApi.getDatas(this.endpointBr).subscribe((data) => {
       this.olListe = data;
-      //console.log('olList:',this.olList);
     })
   }
 
   onVisOlDetaljer(id:any){
-    //console.log('click', id);
     this.dialog.open(VisOlDetajlerComponent , {
       width:'400px',
       height:'300'
 
     });
-    localStorage.setItem('olId' , id);
+    localStorage.setItem('forsideOlId' , id);
   }
 
   onVisDetaljer(id:any){
-    //console.log('click', id);
     this.dialog.open(VisDetajlerComponent , {
       width:'400px',
       height:'auto'
 
     });
-    localStorage.setItem('bryggeriId' , id);
+    localStorage.setItem('forsideBryggeriId' , id);
   }
 
   onVisEventsDetaljer(id:any){
-    // console.log('click', id);
     this.dialog.open(VisEventsDetajlerComponent , {
       width:'400px',
       height:'auto'
     });
-    localStorage.setItem('eventsId' , id);
-    // console.log('eventsId' , id)
+    localStorage.setItem('forsideEventsId' , id);
   }
 }

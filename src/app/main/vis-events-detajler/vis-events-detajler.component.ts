@@ -15,15 +15,13 @@ export class VisEventsDetajlerComponent implements OnInit {
   constructor(public restApi: RestApiService , private route : Router) { }
 
   ngOnInit(): void {
-    this.eventsId= JSON.parse(localStorage.getItem('eventsId') || '{}');
-    // console.log('event' , this.eventsId);
+    this.eventsId= JSON.parse(localStorage.getItem('forsideEventsId') || '{}');
     this.onHentEvent();
   }
 
   onHentEvent(){
     this.restApi.getData(this.eventsId , this.endpointE).subscribe(data => {
       this.eventInfo = data;
-      // console.log('detajler:' , this.eventInfo)
     })
   }
 

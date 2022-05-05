@@ -17,12 +17,14 @@ import { UpdatePostDialogBoxComponent } from '../update-post-dialog-box/update-p
 
 export class ForsideComponent implements OnInit {
   @Input() postOprettelse = { titel: '', indhold: '', brugerId: 0, forumId: 0 };
+  @Input() postSvar = { titel: '', indhold: '', brugerId: 0, forumId: 0, postId: 0 };
   dialogRefOpdaterPost: MatDialogRef<UpdatePostDialogBoxComponent>;
   dialogRefOpdaterForum: MatDialogRef<UpdateForumDialogBoxComponent>;
   opretForm: any = new FormGroup({});
   forums: any;
-  forum: Forum;
+  forum: Forum[];
   posts: any;
+  postsId: any;
   brugerListe: any;
   postListe: any
   endpointF = '/Forumer';
@@ -34,10 +36,14 @@ export class ForsideComponent implements OnInit {
   brugerId: number;
   postInfo: any;
   opdaterPost: any;
+  opdaterForum: any;
   id = this.actRoute.snapshot.params['id'];
   clickButton: boolean = true;
-  clickButtonSvar: boolean = true;
-  rolleListe: Rolle [];
+  clickBtnSvar: boolean = true;
+  egenBrugerId: boolean;
+  egenPostId: boolean;
+  egenForumId: boolean;
+  rolleListe: Rolle[];
   rolle: any;
   constructor(
     public dialog: MatDialog,
@@ -53,12 +59,10 @@ export class ForsideComponent implements OnInit {
       indhold: new FormControl('', Validators.required),
       brugerId: new FormControl('', Validators.required),
       forumId: new FormControl('', Validators.required),
-      //oprettet:new FormControl('', Validators.required)
     });
     this.onHentForum();
     this.onHentPost();
     this.onHentRolle();
-    //this.loadBruger();
   }
 
   onHentForum() {
@@ -71,7 +75,6 @@ export class ForsideComponent implements OnInit {
     return this.restApi.getDatas(this.endpointP).subscribe((post) => {
       this.postListe = post;
       // this.postListe = this.postListe.filter((res: any) => res.forumId = this.forums.id);
-      //  console.log('bruger:',this.postListe);
     })
   }
 
@@ -79,12 +82,12 @@ export class ForsideComponent implements OnInit {
     this.restApi.getDatas(this.endpointR).subscribe(rolle =>{ 
       this.rolleListe = rolle
       this.rolle = this.rolleListe.find((a:any) => a.level === 300)
-      console.log('rolle:' , this.rolle)})
+    })
   }
 
   onGodkendPost(id: any) {
-    this.postOprettelse.brugerId = this.brugerId;
     this.postOprettelse.forumId = id;
+    this.postOprettelse.brugerId = this.brugerId;
     this.restApi.createData(this.postOprettelse, this.endpointP).subscribe((data) => {
       this.postOprettelse.indhold = '';
       this.postOprettelse.titel = '';
@@ -92,17 +95,26 @@ export class ForsideComponent implements OnInit {
     });
   }
 
+  onSvarPost(forumId: any, postId: any) {
+    this.postSvar.forumId = forumId;
+    this.postSvar.brugerId = this.brugerId;
+    this.postSvar.postId = postId;
+    this.restApi.createData(this.postSvar, this.endpointP).subscribe((data) => {
+      this.postSvar.indhold = '';
+      this.postSvar.titel = '';
+      this.ngOnInit();
+    });
+  }
+
   onVisPost(id: any) {
     this.clickButton = false;
     // this.brugerId2=JSON.parse(localStorage.getItem('brugerId2') || '{}');
-    // this.listPosts= this.posts.filter((res:any) => res.forumId === id && (res.brugerId2 === this.brugerId2 || res.brugerId1 === this.brugerId1 ))
+    // this.listPosts= this.posts.filter((res:any) => res.forumId === id && (res.brugerId2 === this.brugerId2 || res.brugerId1 === this.brugerId1))
     this.posts = this.postListe.filter((res: any) => res.forumId === id);
-    // console.log(this.postListe);
   }
 
   onSletForum(id: any) {
     this.restApi.getData(id, this.endpointF).subscribe(data => {
-      console.log("slet",data);
       if (this.brugerId === data.brugerId  || this.rolle ===300) {
         let dialogRef = this.dialog.open(SletDialogBoxComponent);
         dialogRef.afterClosed().subscribe(result => {
@@ -112,8 +124,9 @@ export class ForsideComponent implements OnInit {
             })
           }
         });
-      } else {
-        alert('du kan ikke slette denne besked , det er fordi det ikke din!')
+      } 
+      else {
+        alert('Du kan ikke slette denne besked, det er fordi det ikke din!')
       }
     })
   }
@@ -141,7 +154,7 @@ export class ForsideComponent implements OnInit {
         this.dialogRefOpdaterPost = this.dialog.open(UpdatePostDialogBoxComponent, dialogConfig);
         this.dialogRefOpdaterPost.afterClosed().subscribe(result => {
           if (result) {
-            this.opdaterPost = result;
+            this.opdaterForum = result;
             this.restApi.updateData(id, this.endpointP, this.opdaterPost).subscribe((data) => {
               this.ngOnInit();
             })
@@ -149,7 +162,7 @@ export class ForsideComponent implements OnInit {
         })
       }
       else {
-        alert('du kan ikke update denne besked , det er fordi det ikke din!')
+        alert('Du kan ikke update denne besked, det er fordi det ikke din!')
       }
     })
   }
@@ -157,7 +170,7 @@ export class ForsideComponent implements OnInit {
   onOpdaterForum(id: any) {
     this.restApi.getData(id, this.endpointF).subscribe(data => {
       if (this.brugerId === data.brugerId || this.rolle ===300) {
-        localStorage.setItem('postId', JSON.stringify(id));
+        localStorage.setItem('forumId', JSON.stringify(id));
         const dialogConfig = new MatDialogConfig();
         dialogConfig.disableClose = true;
         dialogConfig.autoFocus = true;
@@ -166,15 +179,15 @@ export class ForsideComponent implements OnInit {
         this.dialogRefOpdaterForum = this.dialog.open(UpdateForumDialogBoxComponent, dialogConfig);
         this.dialogRefOpdaterForum.afterClosed().subscribe(result => {
           if (result) {
-            this.opdaterPost = result;
-            this.restApi.updateData(id, this.endpointP, this.opdaterPost).subscribe((data) => {
+            this.opdaterForum = result;
+            this.restApi.updateData(id, this.endpointF, this.opdaterForum).subscribe((data) => {
               this.ngOnInit();
             })
           }
         })
       }
       else {
-        alert('du kan ikke update denne besked , det er fordi det ikke din!')
+        alert('Du kan ikke update denne besked, det er fordi det ikke din!')
       }
     })
   }
@@ -194,8 +207,9 @@ export class ForsideComponent implements OnInit {
             })
           }
         });
-      } else {
-        alert('du kan ikke slette denne besked , det er fordi det ikke din!')
+      } 
+      else {
+        alert('Du kan ikke slette denne besked, det er fordi det ikke din!')
       }
     })
   }

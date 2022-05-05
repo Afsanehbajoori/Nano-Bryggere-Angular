@@ -42,7 +42,6 @@ export class AdminTagsComponent implements OnInit {
     this.clickButton = false;
     return this.restApi.getData(id, this.endpointT).subscribe(data => {
       this.tagsliste = data;
-      // console.log('TagsListe:', this.tagsliste);
     })
   }
 
@@ -69,10 +68,8 @@ export class AdminTagsComponent implements OnInit {
     this.dialogRefOpdaterTags.afterClosed().subscribe(result => {
       if (result) {
         this.tagsliste = result;
-        // console.log('date:', typeof (this.tagsliste.startDato));
         this.restApi.updateData(id, this.endpointT, this.tagsliste).subscribe((data) => {
         })
-        // console.log("Tags Test",this.tagsliste);
       }
       this.ngOnInit();
     })
@@ -87,7 +84,6 @@ export class AdminTagsComponent implements OnInit {
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
           this.restApi.deleteData(id, this.endpointT).subscribe((data) => {
-            // console.log('slet:', id);
             this.ngOnInit();
           })
         }

@@ -1,19 +1,19 @@
-<h1 mat-dialog-title>Rediger Events</h1>
+<h1 mat-dialog-title>Rediger Forum</h1>
 <div mat-dialog-content>
-    <form class="example-form" [formGroup]="redigerForm" *ngIf="redigerPost">
+    <form class="example-form" [formGroup]="redigerForm" *ngIf="redigerForum">
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Titel:</mat-label>
-            <input matInput formControlName="titel" placeholder="{{redigerPost.titel}}" [(ngModel)]="redigerPost.titel"
+            <input matInput formControlName="titel" placeholder="{{redigerForum.titel}}" [(ngModel)]="redigerForum.titel"
                 [disabled]="true">
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Indhold:</mat-label>
-            <input matInput formControlName="indhold" placeholder="{{redigerPost.indhold}}"
-                [(ngModel)]="redigerPost.indhold">
+            <input matInput formControlName="beskrivelse" placeholder="{{redigerForum.beskrivelse}}"
+                [(ngModel)]="redigerForum.beskrivelse">
         </mat-form-field>
         <div mat-dialog-actions class="btn-container">
-            <button mat-button (click)="dialogRefRedigeForum.close(false)">Annulere</button>
-            <button mat-button cdkFocusInitial [mat-dialog-close]="redigerPost">Gem Ændringer</button>
+            <button mat-button (click)="dialogRefRedigeForum.close(false)">Anuller</button>
+            <button mat-button cdkFocusInitial [mat-dialog-close]="redigerForum">Gem Ændringer</button>
         </div>
     </form>
 </div>

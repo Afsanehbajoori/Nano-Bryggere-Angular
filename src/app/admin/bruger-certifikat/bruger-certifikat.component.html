@@ -1,47 +1,53 @@
 <div class="main" id="imgeUp">
     <mat-card>
-    <mat-toolbar class="login-header" style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236));">
-        <form class="example-form" style="margin-left: 20px; justify-content: center; width: 100%;">
-            <mat-form-field>
-                <input matInput type="search" placeholder="Find certificate" [(ngModel)]="searchkey"
-                    (ngModelChange)="onFindBrugerCertifikat()" [ngModelOptions]="{standalone: true}">
-            </mat-form-field>
-        </form>
-    </mat-toolbar>
+        <mat-toolbar class="login-header" style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236));">
+            <form class="example-form" style="margin-left: 20px; justify-content: center; width: 100%;">
+                <mat-form-field class="txtHeader">
+                    <input matInput type="search" placeholder="Find certificate" [(ngModel)]="searchkey"
+                        (ngModelChange)="onFindBrugerCertifikat()" [ngModelOptions]="{standalone: true}">
+                </mat-form-field>
+            </form>
+        </mat-toolbar>
     </mat-card>
     <mat-card>
         <table style="width: 100%; height: 100%; display: flex;">
             <mat-accordion class="example-headers-align" multi style="width: 100%;">
-                <mat-expansion-panel *ngFor="let certifikat of certifikatListe" style="margin-top: 10px;" [disabled]="clickButton" (click)="clickButton=true">
-                    <mat-expansion-panel-header style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236)); justify-content: center; width: 100%;">
+                <mat-expansion-panel *ngFor="let certifikat of certifikatListe" style="margin-top: 10px;"
+                    [disabled]="clickButton" (click)="clickButton=true">
+                    <mat-expansion-panel-header
+                        style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236)); justify-content: center; width: 100%;">
                         <mat-panel-title class="centers" style="justify-content: center;">
-                            <span style="font-weight: bold; margin-right: 20px;"> Brugernavn: </span>
-                            <span>{{certifikat.brugernavn}}</span>
+                            <span style="font-weight: bold; margin-right: 20px; color: black;"> Brugernavn: </span>
+                            <span style="color: black;">{{certifikat.brugernavn}}</span>
                         </mat-panel-title>
-                        <mat-action-row class="centers" style="justify-content: center;">
-                            <button mat-button class="btnMainStyle" (click)="onVisBrugerCertifikat(certifikat.id)">Vis info</button> |
-                            <button mat-button class="btnMainStyle" (click)="onBekraftCertifikat(certifikat.id)">Godkend certifikat</button> |
-                            <button mat-button class="btnMainStyle" (click)="onBenagtCertifikat(certifikat.id)">Afslå certiffikat</button>
+                        <mat-action-row class="centers cards" style="justify-content: center;">
+                            <button mat-button class="btnMainStyle" style="color: black;"
+                                (click)="onVisBrugerCertifikat(certifikat.id)">Vis info</button>
+                            <button mat-button class="btnMainStyle" style="color: black;"
+                                (click)="onBekraftCertifikat(certifikat.id)">Godkend certifikat</button>
+                            <button mat-button class="btnMainStyle" style="color: black;"
+                                (click)="onBenagtCertifikat(certifikat.id)">Afslå certiffikat</button>
                         </mat-action-row>
                     </mat-expansion-panel-header>
                     <div *ngIf="kontaktOplysninger">
                         <mat-card class="containStyle">
-                            <span>Fornavn: </span>
+                            <span class="titelStyle">Fornavn: </span>
                             <span class="txtStyle">{{kontaktOplysninger.fnavn}}</span>
                         </mat-card>
                         <mat-card class="containStyle">
-                            <span>Efternavn: </span>
-                            <span>{{kontaktOplysninger.enavn}}</span>
+                            <span class="titelStyle">Efternavn: </span>
+                            <span class="txtStyle">{{kontaktOplysninger.enavn}}</span>
                         </mat-card>
                         <mat-card class="containStyle">
-                            <span>Email: </span>
-                            <span>{{kontaktOplysninger.email}}</span>
+                            <span class="titelStyle">Email: </span>
+                            <span class="txtStyle">{{kontaktOplysninger.email}}</span>
                         </mat-card>
                     </div>
                     <div *ngIf="certifikat">
                         <mat-card class="containStyle">
-                            <span>Certifikat billed: </span>
-                            <img [src]="certifikat.certifikatBilled" alt="" style="width: 20%; height: 20%;">
+                            <span class="titelStyle">Certifikat billed: </span>
+                            <span class="txtStyle"><img [src]="certifikat.certifikatBilled" alt=""
+                                    style="width: 20%; height: 20%;"></span>
                         </mat-card>
                     </div>
                 </mat-expansion-panel>

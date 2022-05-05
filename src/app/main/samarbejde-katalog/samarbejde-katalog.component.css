@@ -30,6 +30,11 @@
   list-style-type: none;
 }
 
+.example-container {
+  width: 100%;
+  height: 100%;
+}
+
 .example-tree .mat-nested-tree-node div[role=group] {
   padding-left: 40px;
 }
@@ -50,11 +55,6 @@
   justify-content: center;
   cursor: pointer;
   margin: 20px;
-
-}
-.example-container {
-  width: 100%;
-  height: 100%;
 }
 
 .centers{
@@ -63,4 +63,26 @@
   padding: 10px;
   text-align: center;
   flex: 1 1 auto;
+}
+
+.cards {
+  outline: none;
+  outline-style: none;
+  box-shadow: none;
+  border-color: transparent;
+  background-color: transparent;
+}
+
+.titelStyle {
+  font-style: italic;
+  font-weight: bold;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.txtBtn{
+  text-align: center;
+  padding: 0px;
 }

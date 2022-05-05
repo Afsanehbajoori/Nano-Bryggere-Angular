@@ -35,10 +35,12 @@ flex-basis: 0;
 margin-top: 10px;
 font-style: oblique;
 }
+
 .example-headers-align .mat-expansion-panel-header-description {
 justify-content: space-between;
 align-items: center;
 }
+
 .txt{
   margin: 10px;
   font-weight: bolder;
@@ -46,28 +48,34 @@ align-items: center;
   font-family: 'Times New Roman', Times, serif;
   font-style: italic;
   text-align: center;
-
 }
+
 .txtStyle{
   font-style: italic;
-  font-weight: bold;
   display: flex;
  justify-content: center;
  text-align: center;
 }
 
+.titelStyle{
+  font-style: italic;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
 
 .txtHeader{
   font-size: 15px;
   font-style: oblique;
-  font-weight: bold;
   width: 30%;
-
-
+  text-align: center;
 }
+
 .mat-tab-group {
   margin-bottom: 5px;
 }
+
 .btn-container{
   text-align: center;
   cursor:pointer;
@@ -78,12 +86,10 @@ align-items: center;
   justify-content: space-between;
 }
 
-.mat-dialog-title
-{
+.mat-dialog-title{
   font-size: 20px;
   font-style: oblique;
 }
-
 
 .example-form {
   min-width: 150px;
@@ -99,6 +105,17 @@ td {
   padding-right: 8px;
 }
 
+.txtBtn {
+  color: black;
+  font-style: italic;
+  text-align: center;
+  padding: 0px;
+}
 
-
-
+.cards {
+  outline: none;
+  outline-style: none;
+  box-shadow: none;
+  border-color: transparent;
+  background-color: transparent;
+}

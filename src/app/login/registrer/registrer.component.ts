@@ -47,9 +47,7 @@ export class RegistrerComponent implements OnInit {
 
   onOpretBruger(){
    this.nyBruger.certifikatStatus = 1;
-   console.log(this.nyBruger.certifikatStatus);
    this.restApi.createData(this.nyBruger, this.endpointK).subscribe((dataC) => {
-     console.log(dataC.id);
       this.nyBruger.kontaktOplysningerId= dataC.id;
       if(this.nyBruger.rolleNavn == 'AnonymBruger')
       this.nyBruger.level=0 + "";
@@ -60,13 +58,9 @@ export class RegistrerComponent implements OnInit {
       if(this.nyBruger.rolleNavn == 'Administrator')
       this.nyBruger.level=300 + "";
      this.restApi.createData(this.nyBruger , this.endpointR).subscribe((dataR) => {
-      console.log(dataR.id);
       this.nyBruger.rolleId=dataR.id;
       this.restApi.createData(this.nyBruger , this.endpointB).subscribe((dataB) => {
-        console.log(dataB);
         var userId = dataB.id;
-        console.log(dataB);
-        console.log("brugerId : " , userId);
         this.router.navigate(["../login/login"]);
        }) ;
      })

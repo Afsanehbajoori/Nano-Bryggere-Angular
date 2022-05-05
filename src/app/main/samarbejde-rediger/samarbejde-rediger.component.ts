@@ -45,7 +45,6 @@ export class SamarbejdeRedigerComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]);
       reader.onload=(e: any)=>{
         this.samarbejdeListe.olBilled =e.target.result;
-        console.log( this.samarbejdeListe.olBilled);
         localStorage.setItem('olBilled' ,JSON.stringify(this.samarbejdeListe.olBilled));
       }
     }

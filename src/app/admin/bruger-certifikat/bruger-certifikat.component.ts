@@ -45,19 +45,15 @@ export class BrugerCertifikatComponent implements OnInit {
         this.kontaktOplysningsListe = kontaktOplysningerData.filter((a: any) => {
           return a.id === this.certifikatListe.kontaktOplysningerId;
         });
-        // console.log(this.kontaktOplysningsListe);
-        // console.log(this.certifikatListe);
       })
     })
     //   return this.restApi.getDatas(this.endpointB).subscribe((brugerCertifikat) => {
     //   this.certifikatListe = brugerCertifikat.filter((a: Bruger) => {
     //     a.certifikatStatus === 2;
     //   })
-    //   console.log("certifikatStatus",this.certifikat);
     //   // const b = this.certifikatListe.filter((a: any) => {
     //   //   a.certifikatStatus === 2;
-    //   // })
-    //   console.log('list:', brugerCertifikat)     
+    //   // })    
     // });
   }
 
@@ -68,7 +64,6 @@ export class BrugerCertifikatComponent implements OnInit {
     else {
       this.restApi.getParticipantByEventsTitle(this.searchkey, this.endpointK).subscribe(data => {
         this.certifikatListe = data;
-        // console.log('hi:', this.certifikatListe)
       })
     }
   }
@@ -102,7 +97,6 @@ export class BrugerCertifikatComponent implements OnInit {
     return this.restApi.getData(id, this.endpointB).subscribe((data) => {
       this.kontaktOplysningerId = data.kontaktOplysningerId;
       this.certifikat = data;
-      // console.log(this.certifikat);
       this.restApi.getData(this.kontaktOplysningerId, this.endpointK).subscribe((data) => {
         this.kontaktOplysninger = data;
       })
@@ -114,7 +108,6 @@ export class BrugerCertifikatComponent implements OnInit {
     return this.restApi.getData(id, this.endpointB).subscribe((data) => {
       this.kontaktOplysningerId = data.kontaktOplysningerId;
       this.certifikat = data;
-      // console.log(this.certifikat);
       this.restApi.getData(this.kontaktOplysningerId, this.endpointK).subscribe((data) => {
         this.kontaktOplysninger = data;
       })

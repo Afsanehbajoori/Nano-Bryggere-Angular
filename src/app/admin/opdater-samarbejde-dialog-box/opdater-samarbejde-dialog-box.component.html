@@ -1,1 +1,39 @@
-<p>opdater-samarbejde-dialog-box works!</p>
+<h1 mat-dialog-title>Rediger Events</h1>
+<div mat-dialog-content>
+  <form class="example-form" [formGroup]="opdaterForm" *ngIf="samarbejdeListe">
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Bryggeri nr.1:</mat-label>
+      <select matNativeControl formControlName="bryggeriId1" [(ngModel)]="samarbejdeListe.bryggeriId1">
+        <option value="" selected></option>
+        <option *ngFor="let item of bryggeriNavn" [value]="item.bryggeriId1">{{item.bryggeinavn}} (bryggeriId : {{item.bryggeriId1}}) </option>
+      </select>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Bryggeri nr.2:</mat-label>
+      <select matNativeControl formControlName="bryggeriId2" [(ngModel)]="samarbejdeListe.bryggeriId2">
+        <option value="" selected></option>
+        <option *ngFor="let item of bryggeriNavn" [value]="item.bryggeriId2">{{item.bryggeinavn}} (bryggeriId : {{item.bryggeriId2}}) </option>
+      </select>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Titel:</mat-label>
+      <input matInput formControlName="titel" placeholder="{{samarbejdeListe.titel}}"
+        [(ngModel)]="samarbejdeListe.titel">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Samarbejde billed</mat-label>
+        <input matInput formControlName="olBilled">
+        <img [src]="samarbejdeListe.olBilled" alt="" style="width: 20%; height: 20%;">
+        <input type="file" class="btnMainStyle" (change)="onSubmitSamarbejde($event)">
+      </mat-form-field>
+
+    <div mat-dialog-actions class="btn-container">
+      <button mat-button (click)="dialogRefOpdaterSamarbejde.close(false)">Anuller</button>
+      <button mat-button cdkFocusInitial [mat-dialog-close]="samarbejdeListe">Gem ændringer</button>
+    </div>
+  </form>
+</div>

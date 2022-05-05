@@ -24,7 +24,6 @@ export class OpdaterForumDialogBoxComponent implements OnInit {
 
   ngOnInit(): void {
     this.forumId = JSON.parse(localStorage.getItem('forumId') || '{}');
-    console.log('forumId:', this.forumId);
     this.restApi.getData(this.forumId, this.endpointF)
       .toPromise()
       .then(data => {

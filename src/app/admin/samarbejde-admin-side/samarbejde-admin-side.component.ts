@@ -53,14 +53,11 @@ export class SamarbejdeAdminSideComponent implements OnInit {
       this.samarbejder = samarbejde;
       this.bryggeriId1 = samarbejde.bryggeriId1;
       this.bryggeriId2 = samarbejde.bryggeriId2;
-      console.log("samarbejde",this.samarbejdeListe);
       this.restApi.getData(this.bryggeriId1, this.endpointB).subscribe((bryggeri) => {
         this.bryggeri1 = bryggeri;
-        console.log("bryggeri 1",this.bryggeri1);
       });
       this.restApi.getData(this.bryggeriId2, this.endpointB).subscribe((bryggeri) => {
         this.bryggeri2 = bryggeri;
-        console.log("bryggeri 2",this.bryggeri2);
       });
     });
   }
@@ -88,10 +85,8 @@ export class SamarbejdeAdminSideComponent implements OnInit {
     this.dialogRefOpdaterSamarbejde.afterClosed().subscribe(result => {
       if (result) {
         this.samarbejdeListe = result;
-        console.log('date:', typeof (this.samarbejdeListe.startDato));
         this.restApi.updateData(id, this.endpointS, this.samarbejdeListe).subscribe((data) => {
         })
-        console.log("Samarbejde Test",this.samarbejdeListe);
       }
       this.ngOnInit();
     })
@@ -106,7 +101,6 @@ export class SamarbejdeAdminSideComponent implements OnInit {
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
           this.restApi.deleteData(id, this.endpointS).subscribe((data) => {
-            console.log('slet:', id);
             this.ngOnInit();
           })
         }

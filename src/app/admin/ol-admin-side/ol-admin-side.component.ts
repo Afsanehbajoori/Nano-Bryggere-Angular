@@ -47,9 +47,12 @@ export class OlAdminSideComponent implements OnInit {
   onSletOl(id: any) {
     let dialogRef = this.dialog.open(SletDialogBoxComponent);
     dialogRef.afterClosed().subscribe(result => {
-      this.restApi.deleteData(id, this.endpointB).subscribe(data => {
-        this.onHentOl();
-      })
+      if(result)
+      {
+        this.restApi.deleteData(id, this.endpointB).subscribe(data => {
+          this.onHentOl();
+        })
+      }
     });
   };
 }

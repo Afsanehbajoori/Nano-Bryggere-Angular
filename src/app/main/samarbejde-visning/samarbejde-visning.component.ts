@@ -39,7 +39,6 @@ export class SamarbejdeVisningComponent implements OnInit {
   onSletOl(id: any) {
     let dialogRef = this.dialog.open(SletDialogBoxComponent);
     dialogRef.afterClosed().subscribe(result => {
-      // console.log(result);
       if (result == true) {
         this.router.navigate(['../admin/admin/']);
       }

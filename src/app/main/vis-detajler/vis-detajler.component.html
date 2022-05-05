@@ -1,14 +1,12 @@
 <mat-card *ngIf="bryggeri">
 <img mat-dialog-title [src]="bryggeri.bryggeriLogo" alt="" style="width: 100%; height: auto;">
   <mat-dialog-content mat-dialog-content class="mat-typography">
-    <p>Bryggerinavn:</p>
+    <p class="titelStyle">Bryggeri navn:</p>
     <p class="txtStyle">{{bryggeri.navn}}</p>
-    <p>beskrivelse:</p>
+    <p class="titelStyle">beskrivelse:</p>
     <p class="txtStyle">{{bryggeri.beskrivelse}}</p>
   </mat-dialog-content>
   <div mat-dialog-actions>
     <button mat-button mat-dialog-close >Close</button>
   </div>
 </mat-card>
-
-

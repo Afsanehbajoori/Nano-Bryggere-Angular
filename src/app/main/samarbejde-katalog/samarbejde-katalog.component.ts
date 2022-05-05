@@ -71,9 +71,7 @@ export class SamarbejdeKatalogComponent implements OnInit {
     this.dialogRefOpdaterSamarbejdeOl.afterClosed().subscribe(result => {
       if (result) {
         this.oller = result;
-        console.log('date:', typeof (this.oller.startDato));
         this.restApi.updateData(id, this.endpointO, this.oller).subscribe((data) => {
-          console.log("Samarbejde Test", data);
         });
       }
       this.ngOnInit();
@@ -89,7 +87,6 @@ export class SamarbejdeKatalogComponent implements OnInit {
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
           this.restApi.deleteData(id, this.endpointO).subscribe((data) => {
-            console.log('delete:', id);
             this.onHentOl();
           })
         }

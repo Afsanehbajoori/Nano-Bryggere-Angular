@@ -3,17 +3,17 @@
         <mat-card-content class="container centers">
             <form>
                 <mat-panel-title class="centers" style="justify-content: center;">
-                    <h1>Certifikat Side</h1>
+                    <h1 class="centers" style="border-width: medium; border-style: solid; font-weight: bold; width: 60%;">Certifikat Side</h1>
+                    <h2 style="margin-top: 20px;">Vælg Certifikat Billed</h2>
                 </mat-panel-title>
-                <div style="height: 100%;" class="centers">
+                <div style="border-width: medium; border-style: solid; background-color: white;" class="centers">
                     <!-- <img src="" alt="" style="width: 100%; height: 80%;"> -->
-                    <h2>Bryggeri Billed</h2>
-                    <img [src]="url" style="height: 60%; width: 60%;">
-                    <input type="file" class="btnMainStyle" (change)="onSubmitCertifikat($event)">
+                    <img [src]="url" style="height: 100%; width: 100%;">
+                    <input type="file" (change)="onSubmitCertifikat($event)">
+                    <mat-action-row class="cards">
+                        <button mat-button style="background-color: rgb(47, 255, 109);" (click)="onUploadCertifikat()">Godkend Certifikat</button>
+                    </mat-action-row>
                 </div>
-                <mat-action-row >
-                    <button mat-button style="background-color: rgb(47, 255, 109);" class="btnMainStyle" (click)="onUploadCertifikat()">Godkend Certifikat</button>
-                </mat-action-row>
             </form>
         </mat-card-content>
     </mat-card>

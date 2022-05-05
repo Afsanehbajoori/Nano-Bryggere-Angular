@@ -40,25 +40,20 @@ export class OlSideSamarbejdeComponent implements OnInit {
 
   ngOnInit(): void {
     this.samarbejdeId = JSON.parse(localStorage.getItem('olSamarbejdeId') || '{}');
-    // console.log("Ol",this.userInfoId); 
     this.olId = JSON.parse(localStorage.getItem('olId') || '{}');
-    console.log('Samarbejde', this.samarbejdeId);
     this.onHentOl();
     this.onHentKontaktOplysninger();
     this.onHentBryggerier();
   }
   onHentKontaktOplysninger() {
-    // console.log("Kontakt",this.userInfoId);
     return this.restApi.getData(this.samarbejdeId, this.endpointS).subscribe((oplysninger) => {
       this.kontaktOplysningerId1 = oplysninger.bryggeriId1;
       this.kontaktOplysningerId2 = oplysninger.bryggeriId2;
       this.restApi.getData(this.kontaktOplysningerId1, this.endpointK).subscribe((oplysninger) => {
         this.kontaktOplysninger1 = oplysninger;
-        console.log('kontaktOplysninger1', this.kontaktOplysninger1);
       })
       this.restApi.getData(this.kontaktOplysningerId2, this.endpointK).subscribe((oplysninger) => {
         this.kontaktOplysninger2 = oplysninger;
-        console.log('kontaktOplysninger2', this.kontaktOplysninger2);
       })
     })
   }
@@ -69,11 +64,9 @@ export class OlSideSamarbejdeComponent implements OnInit {
       this.bryggeriId2 = oplysninger.bryggeriId2;
       this.restApi.getData(this.bryggeriId1, this.endpointB).subscribe((data) => {
         this.bryggeri1 = data;
-        console.log('bryggeri1', this.bryggeri1);
       })
       this.restApi.getData(this.bryggeriId2, this.endpointB).subscribe((data) => {
         this.bryggeri2 = data;
-        console.log('bryggeri2', this.bryggeri2);
       })
     })
   }

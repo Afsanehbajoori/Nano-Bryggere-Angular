@@ -40,6 +40,10 @@
   align-items: center;
 }
 
+.mat-tab-group {
+  margin-bottom: 5px;
+}
+
 .txt{
   margin: 10px;
   font-weight: bolder;
@@ -49,9 +53,16 @@
   text-align: center;
 }
 
-.txtStyle{
+.titelStyle{
   font-style: italic;
   font-weight: bold;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.txtStyle{
+  font-style: italic;
   display: flex;
  justify-content: center;
  text-align: center;
@@ -60,10 +71,21 @@
 .txtHeader{
   font-size: 15px;
   font-style: oblique;
-  font-weight: bold;
-  width: 30%;
+  width: 20%;
+  text-align: center;
 }
 
-.mat-tab-group {
-  margin-bottom: 5px;
+.txtbtn {
+  font-size: 14px;
+  color: black;
+  font-style: italic;
+  text-align: center;
+}
+
+.cards {
+  outline: none;
+  outline-style: none;
+  box-shadow: none;
+  border-color: transparent;
+  background-color: transparent;
 }

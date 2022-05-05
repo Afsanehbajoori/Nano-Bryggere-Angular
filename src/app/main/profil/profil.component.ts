@@ -9,7 +9,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm, FormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormBuilder } from '@angular/forms';
-import { type } from 'os';
 
 @Component({
   selector: 'app-profil',
@@ -77,7 +76,6 @@ export class ProfilComponent implements OnInit {
   onHentBruger() {
     return this.restApi.getData(this.brugerId, this.endpointBru).subscribe((brugerData) => {
       this.brugerListe = brugerData;
-      console.log("brugernavn:", this.brugerListe);
       this.restApi.getData(this.kontaktOplysningerId, this.endpointK).subscribe((kontaktData) => {
         this.kontaktOplysningsListe = kontaktData;
         this.restApi.getData(this.rolleId, this.endpointR).subscribe((rolleData) => {
@@ -93,50 +91,38 @@ export class ProfilComponent implements OnInit {
           }
           if(this.rolleListe.rolleNavn == 0){
             this.rolleNavn = 'Anonymbruger'
-          } 
-          console.log("Certifikat Brugerliste", this.brugerListe);
-          // console.log("Certifikat",this.brugerListe.certifikatStatus)
+          }
           this.onTjekCertifikat();
-          // console.log('RoleList', this.roleList)
         })
       })
     })
   };
-
   onTjekCertifikat() {
     // this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}');
-    console.log("localStorage bryggeriId: ", localStorage.getItem('bryggeriId'))
     if (this.brugerListe.certifikatStatus == 3) {
       // this.restApi.getDatas(this.endpointB).subscribe((bryggeri) => {
       //   this.bryggeriListe = bryggeri.find((x: any) => x.kontaktOplysningerId === this.kontaktOplysningerId);
-        // console.log('bryggeriListe i tjek', this.bryggeriListe);
-        // console.log("har certifikat", this.bryggeriId);
         // if (typeof(this.bryggeriId) !== 'undefined' || typeof(this.bryggeriId !== '{}')){
         if(localStorage.getItem('bryggeriId') !== null){
-        console.log("brugerliste godkendt, Har bryggeri", this.brugerListe, this.bryggeriId);
           this.visOB = true;
           this.visB = false;
         }
         else {
-          console.log("brugerliste godkendt, intet bryggeri", this.brugerListe);
           this.visOB = false;
         }
       // })
     }
     else {
       this.visOB = true;
-      console.log("brugerliste ikke godkendt", this.brugerListe);
     }
   }
 
   onHentBryggeri() {
     this.restApi.getDatas(this.endpointB).subscribe((data) => {
       this.bryggeriListe = data.find((x: any) => x.kontaktOplysningerId === this.kontaktOplysningerId);
-      // console.log('data:', data);
       if (this.bryggeriListe !== undefined) {
         localStorage.setItem('bryggeriId', JSON.stringify(this.bryggeriListe.id));
         this.url = this.bryggeriListe.bryggeriLogo;
-        console.log('bryggeriliste', this.bryggeriListe);
         // this.visOB = true;
         // this.visB = false;
       }
@@ -156,9 +142,7 @@ export class ProfilComponent implements OnInit {
 
   onOpretBryggeri() {
     if (this.nytBryggeri.navn != '') {
-      // console.log("test:", this.kontaktOplysningerId);
       this.nytBryggeri.kontaktOplysningerId = this.kontaktOplysningerId;
-      // console.log("contactInformationId:", this.nytBryggeri.contactInformationId);
       this.nytBryggeri.bryggeriLogo = JSON.parse(localStorage.getItem('bryggeriLogo') || '{}');
       this.restApi.createData(this.nytBryggeri, this.endpointB).subscribe((data) => {
         localStorage.setItem('bryggeriId', JSON.stringify(data.id));
@@ -205,7 +189,6 @@ export class ProfilComponent implements OnInit {
       if (result) {
         this.kontaktOplysningsListe = result;
         this.restApi.updateData(this.kontaktOplysningerId, this.endpointK, this.kontaktOplysningsListe).subscribe((data) => {
-          // console.log(this.userInfoList);
         })
       }
     });

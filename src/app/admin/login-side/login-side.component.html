@@ -14,26 +14,26 @@
       <h1 class="centers">Login side</h1>
     </mat-toolbar>
   </mat-card>
-  <mat-card style="background-color: transparent;">
+  <mat-card class="cards">
     <table style="width: 100%; height: 100%; display: flex;">
       <mat-accordion class="example-headers-align" multi style="width: 100%;">
-        <mat-expansion-panel *ngFor="let log of login" style="margin-top: 10px; width: 30%;" [disabled]="clickButton" (click)="clickButton=true" class="centers">
+        <mat-expansion-panel *ngFor="let log of login" style="margin-top: 10px; width: 35%;" [disabled]="clickButton" (click)="clickButton=true" class="centers">
           <mat-expansion-panel-header style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236)); justify-content: center;">
             <mat-panel-title class="centers" style="justify-content: center;">
-              <span style="font-weight: bold; margin-right: 20px;"> BrugerId:</span>
-              <span>{{log.brugerId}}</span>
+              <span style="font-weight: bold; margin-right: 20px; color: black;"> BrugerId:</span>
+              <span style="color: black;">{{log.brugerId}}</span>
             </mat-panel-title>
-            <mat-action-row class="centers" style="justify-content: center;">
-              <button mat-button class="btnMainStyle" (click)="onVisLogin(log.id)">Vis </button>
+            <mat-action-row class="centers cards" style="justify-content: center;">
+              <button mat-button class="btnMainStyle" style="color: black;" (click)="onVisLogin(log.id)">Vis </button>
             </mat-action-row>
           </mat-expansion-panel-header>
           <div *ngIf="loginListe">
               <mat-card class="containStyle" *ngIf="brugere">
-                <span>Brugernavn:</span>
+                <span class="titelStyle">Brugernavn:</span>
                 <span class="txtStyle">{{brugere.brugernavn}}</span>
               </mat-card>
               <mat-card class="containStyle">
-              <span>loginTime:</span>
+              <span class="titelStyle">login tid:</span>
               <span class="txtStyle">{{loginListe.loginTime}}</span>
             </mat-card>
           </div>

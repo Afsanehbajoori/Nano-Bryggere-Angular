@@ -23,7 +23,6 @@ export class OpdaterTagDialogBoxComponent implements OnInit {
 
   ngOnInit(): void {
     this.tagId = JSON.parse(localStorage.getItem('tagId') || '{}');
-    console.log('tagId:', this.tagId);
     this.restApi.getData(this.tagId, this.endpointT)
       .toPromise()
       .then(data => {

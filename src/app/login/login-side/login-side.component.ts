@@ -33,40 +33,30 @@ export class LoginSideComponent implements OnInit {
       brugerId: new FormControl(''),
       brugernavn: new FormControl('', Validators.required),
       pw: new FormControl('', [Validators.required, Validators.minLength(3)])
-    }
-    );
+    });
+    localStorage.clear();
   }
 
   onSubmitLogin() {
-    localStorage.clear();
     // this.loginDetaljer.loginTime = this.loginT.;
     this.restApi.getDatas(this.endpointB).subscribe((res) => {
-      console.log(res);
       const user = res.find((a: any) => {
-        // console.log('infoLogin:' , a.contactInformation);
         //this.restApi.getData(a.kontaktoplysningerId , this.endpointK).subscribe(data => {
-        //console.log('infoLoginKontakt' , data);
         return a.brugernavn.toLowerCase() === this.loginDetaljer.brugernavn.toLowerCase() && a.pw === this.loginDetaljer.pw
         // })
       });
-      console.log(user);
       if (user) {
         // this.loginDetaljer.loginTime = this.loginT.getDate().toString();
-        /* console.log("kontaktoplysningerId:",user.kontaktoplysningerId);
-        console.log("brugerId:",user.id)
-        console.log("rolleId:",user.rolleId); */
         localStorage.setItem('kontaktOplysningerId', JSON.stringify(user.kontaktOplysningerId));
         localStorage.setItem('brugerId', JSON.stringify(user.id));
         localStorage.setItem('rolleId', JSON.stringify(user.rolleId));
         this.loginDetaljer.brugerId = user.id;
         this.restApi.createData(this.loginDetaljer, this.endpointL).subscribe((res) => {
-          //  console.log("brugerId:", res.brugerId);
-          //  console.log("brugerId:", res);
         })
         this.router.navigate(['../main/profil']);
       }
       else {
-        alert('user ikke findes')
+        alert('user ikke findes');
       }
     })
   };

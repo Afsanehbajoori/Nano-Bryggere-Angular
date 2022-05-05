@@ -11,23 +11,23 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 })
 export class UpdateForumDialogBoxComponent implements OnInit {
   redigerForm: FormGroup = new FormGroup({});
-  redigerPost:any;
-  endpointP = '/Posts';
-  postId:number;
+  redigerForum:any;
+  endpointF = '/Forumer';
+  forumId:number;
   constructor(  public dialogRefRedigeForum : MatDialogRef<UpdateForumDialogBoxComponent>,
     private formBuilder: FormBuilder,
     public restApi: RestApiService,
     public actRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.postId=JSON.parse(localStorage.getItem('postId') || '{}');
-    this.restApi.getData(this.postId , this.endpointP)
+    this.forumId=JSON.parse(localStorage.getItem('forumId') || '{}');
+    this.restApi.getData(this.forumId , this.endpointF)
     .toPromise()
     .then(data => {
-      this.redigerPost= data ;
+      this.redigerForum= data ;
       this.redigerForm = this.formBuilder.group({
-        titel : new FormControl(this.redigerPost.titel),
-        indhold : new FormControl(this.redigerPost.indhold)
+        titel : new FormControl(this.redigerForum.titel),
+        beskrivelse : new FormControl(this.redigerForum.beskrivelse)
       })
     })
   }

@@ -16,17 +16,17 @@
             </mat-tab-group>
         </mat-toolbar>
     </mat-card>
-    <mat-card style="background-color: transparent;">
+    <mat-card class="cards">
         <table style="width: 100%; height: 100%; display: flex;">
             <mat-accordion class="example-headers-align" multi style="width: 100%;">
                 <mat-expansion-panel *ngFor="let tag of tagsliste" style="width: 40%;" class="centers">
                     <mat-expansion-panel-header
                         style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236)); justify-content: center; width: 100%;">
                         <mat-panel-title class="centers" style="justify-content: center;">
-                            <span>Tag navn:</span>
+                            <span style="font-weight: bold; margin-right: 20px;">Tag navn:</span>
                             <p>{{tag.navn}}</p>
                         </mat-panel-title>
-                        <mat-action-row class="centers" style="justify-content: center;">
+                        <mat-action-row class="centers cards" style="justify-content: center;">
                             <button mat-button class="btnMainStyle" (click)="onOpdaterTags(tag.id)">Opdater Tag</button>
                             <button mat-button class="btnMainStyle" (click)="onSletTags(tag.id)">Slet Tag</button>
                         </mat-action-row>

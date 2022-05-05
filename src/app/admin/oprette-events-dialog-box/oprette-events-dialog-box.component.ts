@@ -38,18 +38,14 @@ export class OpretteEventsDialogBoxComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]);
       reader.onload = (e: any) => {
         this.eventBilled = e.target.result;
-        console.log(this.eventBilled);
         localStorage.setItem('eventBilled', JSON.stringify(this.eventBilled));
       }
     }
   };
 
   onSubmitEvent() {
-    console.log(this.eventOprettelse);
     this.eventOprettelse.eventBilled=JSON.parse(localStorage.getItem('eventBilled')|| '{}');
-    console.log('image:', this.eventOprettelse.eventBilled);
     this.restApi.createData(this.eventOprettelse, this.endpointE).subscribe((data) => {
-      console.log('oprette ny event:' , data);
       this.dialogRefOpretteEvents.close();
       // this.router.navigate(['../events/events'])
     })

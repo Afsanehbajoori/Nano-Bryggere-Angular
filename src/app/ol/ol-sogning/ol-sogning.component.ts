@@ -39,7 +39,6 @@ export class OlSogningComponent implements OnInit {
 
   ngOnInit(): void {
     this.onHentOl();
-    // console.log('Kontkakt',localStorage.getItem('olKontaktOplysningerId'));
   }
 
   onHentOl() {
@@ -48,7 +47,6 @@ export class OlSogningComponent implements OnInit {
         this.oller = data.filter((res: any) => {
           return res.bryggeriId != this.bryggeriId;
         });
-        console.log("øl info",data);
       });
     }
   }
@@ -68,22 +66,15 @@ export class OlSogningComponent implements OnInit {
     this.restApi.getData(id, this.endpointO).subscribe(data => {
       this.ol = data;
       this.olId = this.ol.id;
-      // console.log(this.beerId);
-      console.log("øl:",this.ol);
-      console.log("øl:",this.olId);
       localStorage.setItem('olId', JSON.stringify(this.olId));
       if(this.ol.bryggeriId){
         this.restApi.getData(this.ol.bryggeriId, this.endpointB).subscribe(bryg => {
           this.bryggeri = bryg;
           localStorage.setItem('olBryggeriId', JSON.stringify(this.bryggeri.id));
-          console.log("Test",this.bryggeri.id);
-          // console.log('bryggeriInfo:', this.brewery.contactInformationId);
           this.restApi.getData(this.bryggeri.kontaktOplysningerId, this.endpointK).subscribe(kontaktOplysningData => {
             this.kontaktOplysning = kontaktOplysningData;
             // this.kontaktOplysningId = this.kontaktOplysning.id;
-            // console.log("kontakt", this.kontaktOplysning);
             localStorage.setItem('olKontaktOplysningerId', JSON.stringify(this.kontaktOplysning.id));
-            console.log("øl ID:",this.olId);
             this.router.navigate(['../øl/øl-side/', this.olId]);
           });
         });
@@ -91,13 +82,10 @@ export class OlSogningComponent implements OnInit {
       if(this.ol.samarbejdeId){
         this.restApi.getData(this.ol.samarbejdeId, this.endpointS).subscribe(samarbejde => {
           this.samarbejde = samarbejde;
-          // console.log('bryggeriInfo:', this.brewery.contactInformationId);
           this.restApi.getData(this.samarbejde.id, this.endpointS).subscribe(samarbejdeData => {
             this.samarbejde = samarbejdeData;
             // this.kontaktOplysningId = this.kontaktOplysning.id;
-            // console.log("kontakt", this.kontaktOplysning);
             localStorage.setItem('olSamarbejdeId', JSON.stringify(this.samarbejde.id));
-            console.log("øl ID:",this.olId);
             this.router.navigate(['../øl/øl-side-samarbejde/', this.olId]);
           });
         });

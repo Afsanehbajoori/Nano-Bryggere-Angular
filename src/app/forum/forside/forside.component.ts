@@ -21,6 +21,7 @@ export class ForsideComponent implements OnInit {
   dialogRefOpdaterPost: MatDialogRef<UpdatePostDialogBoxComponent>;
   dialogRefOpdaterForum: MatDialogRef<UpdateForumDialogBoxComponent>;
   opretForm: any = new FormGroup({});
+  svarForm: any = new FormGroup({});
   forums: any;
   forum: Forum[];
   posts: any;
@@ -39,12 +40,13 @@ export class ForsideComponent implements OnInit {
   opdaterForum: any;
   id = this.actRoute.snapshot.params['id'];
   clickButton: boolean = true;
-  clickBtnSvar: boolean = true;
+  clickBtnSvar = false;
   egenBrugerId: boolean;
   egenPostId: boolean;
   egenForumId: boolean;
   rolleListe: Rolle[];
   rolle: any;
+  
   constructor(
     public dialog: MatDialog,
     public restApi: RestApiService,
@@ -59,6 +61,13 @@ export class ForsideComponent implements OnInit {
       indhold: new FormControl('', Validators.required),
       brugerId: new FormControl('', Validators.required),
       forumId: new FormControl('', Validators.required),
+    });
+    this.svarForm = new FormGroup({
+      titel: new FormControl('', Validators.required),
+      indhold: new FormControl('', Validators.required),
+      brugerId: new FormControl('', Validators.required),
+      forumId: new FormControl('', Validators.required),
+      postid: new FormControl('', Validators.required)
     });
     this.onHentForum();
     this.onHentPost();
@@ -93,6 +102,10 @@ export class ForsideComponent implements OnInit {
       this.postOprettelse.titel = '';
       this.ngOnInit();
     });
+  }
+
+  onSvarToggle() {
+    this.clickBtnSvar = !this.clickBtnSvar;
   }
 
   onSvarPost(forumId: any, postId: any) {

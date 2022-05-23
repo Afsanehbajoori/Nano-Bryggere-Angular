@@ -87,7 +87,7 @@ export class EventAdminSideComponent implements OnInit {
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
           this.restApi.deleteData(id, this.endpointE).subscribe((data) => {
-            this.onHentEvents();
+            this.ngOnInit();
           })
         }
       });
@@ -106,9 +106,9 @@ export class EventAdminSideComponent implements OnInit {
       if (result) {
         this.eventListe = result;
         this.restApi.updateData(id, this.endpointE, this.eventListe).subscribe((data) => {
+          this.ngOnInit();
         })
       }
-      this.ngOnInit();
     })
   }
 

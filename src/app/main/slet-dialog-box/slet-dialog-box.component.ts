@@ -12,7 +12,6 @@ export class SletDialogBoxComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }
 
 

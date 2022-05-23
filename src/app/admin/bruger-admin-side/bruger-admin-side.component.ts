@@ -115,7 +115,7 @@ export class BrugerAdminSideComponent implements OnInit {
       })*/
       if (result) {
         this.restApi.deleteData(id, this.endpointB).subscribe((data) => {
-          this.onHentBruger();
+          this.ngOnInit();
         })
       }
     });

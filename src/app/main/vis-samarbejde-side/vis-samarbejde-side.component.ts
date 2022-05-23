@@ -5,7 +5,6 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 import { SletDialogBoxComponent } from '../slet-dialog-box/slet-dialog-box.component';
 import { SamarbejdeOprettelseComponent } from './../samarbejde-oprettelse/samarbejde-oprettelse.component';
 import { SamarbejdeRedigerComponent } from './../samarbejde-rediger/samarbejde-rediger.component';
-import { Samarbejde } from 'src/app/Models/Samarbejde';
 
 @Component({
   selector: 'app-vis-samarbejde-side',
@@ -92,7 +91,7 @@ export class VisSamarbejdeSideComponent implements OnInit {
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
-      dialogConfig.width = "40%";
+      dialogConfig.width = "25%";
       dialogConfig.height = '50%';
       this.dialogRefOpretSamarbejde = this.dialog.open(SamarbejdeOprettelseComponent, dialogConfig);
       this.dialogRefOpretSamarbejde.afterClosed().subscribe(result => {
@@ -124,9 +123,9 @@ export class VisSamarbejdeSideComponent implements OnInit {
       if (result) {
         this.samarbejdeList = result;
         this.restApi.updateData(id, this.endpointS, this.samarbejdeList).subscribe((data) => {
+          this.ngOnInit();
         })
       }
-      this.ngOnInit();
     })
   }
 }

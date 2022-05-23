@@ -146,11 +146,11 @@ export class ProfilComponent implements OnInit {
       this.nytBryggeri.bryggeriLogo = JSON.parse(localStorage.getItem('bryggeriLogo') || '{}');
       this.restApi.createData(this.nytBryggeri, this.endpointB).subscribe((data) => {
         localStorage.setItem('bryggeriId', JSON.stringify(data.id));
-        this.ngOnInit();
         if (data) {
           this.visOB = true;
           this.visB = false;
           this.snackBar.open('Nyt bryggeri oprettet')
+          this.ngOnInit();
           this.onClose();
         }
       })
@@ -189,6 +189,7 @@ export class ProfilComponent implements OnInit {
       if (result) {
         this.kontaktOplysningsListe = result;
         this.restApi.updateData(this.kontaktOplysningerId, this.endpointK, this.kontaktOplysningsListe).subscribe((data) => {
+          this.ngOnInit();
         })
       }
     });
@@ -221,6 +222,7 @@ export class ProfilComponent implements OnInit {
         this.restApi.deleteData(this.bryggeriId, this.endpointB).subscribe((data) => {
           this.bryggeriListe = data;
           this.snackBar.open("Bryggeri oplysninger slettet med succes");
+          this.ngOnInit();
         }, err => {
           this.snackBar.open("Øl skal slettes først");
         })

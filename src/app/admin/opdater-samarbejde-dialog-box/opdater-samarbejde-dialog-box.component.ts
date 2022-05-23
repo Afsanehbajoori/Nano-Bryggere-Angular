@@ -3,7 +3,6 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { RestApiService } from 'src/app/shared/rest-api.service';
-import { UpdateEventsDialogBoxComponent } from '../update-events-dialog-box/update-events-dialog-box.component';
 
 @Component({
   selector: 'app-opdater-samarbejde-dialog-box',
@@ -13,11 +12,11 @@ import { UpdateEventsDialogBoxComponent } from '../update-events-dialog-box/upda
 export class OpdaterSamarbejdeDialogBoxComponent implements OnInit {
   opdaterForm: FormGroup = new FormGroup({});
   samarbejdeListe:any;
+  bryggeriListe:any;
+  samarbejdeId : number;
   endpointS= '/Samarbejder';
   endpontsB= '/Bryggerier'
-  samarbejdeId : number;
-  bryggeriList:any;
-  bryggeriNavn= new Array();
+  bryggeriNavn = new Array();
   constructor( 
     public dialogRefOpdaterSamarbejde : MatDialogRef<OpdaterSamarbejdeDialogBoxComponent>,
     private formBuilder: FormBuilder,
@@ -28,10 +27,10 @@ export class OpdaterSamarbejdeDialogBoxComponent implements OnInit {
   ngOnInit(): void {
     this.samarbejdeId=JSON.parse(localStorage.getItem('samarbejdeId') || '{}');
     this.restApi.getDatas(this.endpontsB).subscribe(data => {
-      this.bryggeriList=data;
+      this.bryggeriListe=data;
       for(let i=0; i<data.length;i++ ){
-        const dropdownInfo= {bryggeinavn: this.bryggeriList[i].navn , bryggeriId2 : this.bryggeriList[i].id}
-        this.bryggeriNavn.push(dropdownInfo)
+        const dropdownInfo = {bryggerinavn: this.bryggeriListe[i].navn , bryggeriId1 : this.bryggeriListe[i].id, bryggeriId2 : this.bryggeriListe[i].id}
+        this.bryggeriNavn.push(dropdownInfo);
       }
     })
     this.restApi.getData(this.samarbejdeId , this.endpointS)
@@ -58,5 +57,4 @@ export class OpdaterSamarbejdeDialogBoxComponent implements OnInit {
       }
     }
   };
-
 }

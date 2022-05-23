@@ -17,7 +17,6 @@ export class BryggeriAdminSideComponent implements OnInit {
   dialogRefSlet: MatDialogRef<SletDialogBoxComponent>;
   dialogRefOpdaterBryggeri: MatDialogRef<RedigerBryggeriDialogBoxComponent>;
   bryggeri: any;
-  bryg = new Bryggeri;
   endpointBru = '/Bruger';
   endpointB = '/Bryggerier';
   endpointS = '/Samarbejder';
@@ -26,8 +25,8 @@ export class BryggeriAdminSideComponent implements OnInit {
   id = this.actRoute.snapshot.params['id'];
   clickButton: boolean = true;
   bryggeriListe: Bryggeri[];
-  brygge:Bryggeri;
-  samarbejder:Samarbejde [];
+  brygge: Bryggeri;
+  samarbejder: Samarbejde[];
 
   constructor(
     public dialog: MatDialog,
@@ -40,17 +39,17 @@ export class BryggeriAdminSideComponent implements OnInit {
     this.onHentBryggeri();
   }
 
-  onHentBryggeri(){
+  onHentBryggeri() {
     return this.restApi.getDatas(this.endpointB).subscribe((data) => {
       this.bryggeri = data;
     })
   }
 
-  onVisBryggeri(id:any) {
-    this.clickButton=false;
-    return this.restApi.getData(id , this.endpointB).subscribe((data) => {
-    this.brygge=data;
-      this.restApi.getDatas(this.endpointS).subscribe((data) =>{
+  onVisBryggeri(id: any) {
+    this.clickButton = false;
+    return this.restApi.getData(id, this.endpointB).subscribe((data) => {
+      this.brygge = data;
+      this.restApi.getDatas(this.endpointS).subscribe((data) => {
         this.samarbejder = data.filter((res: any) => {
           return res.bryggeriId1 === id || res.bryggeriId2 === id;
         });
@@ -62,7 +61,7 @@ export class BryggeriAdminSideComponent implements OnInit {
     if (this.searchkeyBryggeriNavn == "") {
       this.ngOnInit();
     }
-    else{
+    else {
 
       this.bryggeri = this.bryggeri.filter((res: any) => {
 
@@ -90,12 +89,20 @@ export class BryggeriAdminSideComponent implements OnInit {
   onSletBryggeri(id: any) {
     let dialogRef = this.dialog.open(SletDialogBoxComponent);
     dialogRef.afterClosed().subscribe(result => {
-      this.restApi.deleteData(id, this.endpointB).subscribe(data => {
-        this.onHentBryggeri();
-      })
+      if (result) {
+        this.onOpdaterBruger(id);    
+        this.restApi.deleteData(id, this.endpointB).subscribe(data => {
+          this.ngOnInit();
+        })
+      }
     });
   };
 
+  onOpdaterBruger(id:any){
+    this.restApi.updateData(id, this.endpointBru, this.bryggeri).subscribe(data => {
+
+    })
+  }
   onOpdaterBryggeri(id: any) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;

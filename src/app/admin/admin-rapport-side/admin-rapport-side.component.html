@@ -1,0 +1,73 @@
+<div class="main">
+  <mat-card>
+    <mat-toolbar class="login-header" style="background: linear-gradient(#6c6c6d, #cfd4d6); height: 100px;">
+      <mat-tab-group>
+        <mat-tab label="Find rapport via Brugernavn" style="color: black;">
+          <form class="example-form" style="justify-content: center; width: 100%;">
+            <mat-form-field class="txtHeader">
+              <input matInput type="search" placeholder="Find bruger" [(ngModel)]="searchkeyBrugernavn"
+                (ngModelChange)="onFindBrugernavn()" [ngModelOptions]="{standalone: true}">
+            </mat-form-field>
+          </form>
+        </mat-tab>
+        <mat-tab label="Find rapport via type">
+          <form class="example-form" style="justify-content: center; width: 100%; height: 50%;">
+            <mat-form-field style="font-size: 12px; font-style: oblique; width: 25%; height: 50%; text-align: center;">
+              <!-- <input matInput type="search" placeholder="Find type" [(ngModel)]="searchkeyTitel" (ngModelChange)="onFindTitel()"
+                  [ngModelOptions]="{standalone: true}"> -->
+              <select matNativeControl class="input-control" style="width: 100%;" placeholder="Type">
+                <option value="" selected></option>
+                <option *ngFor="let item of items" [value]="item.name">{{item.name}})</option>
+              </select>
+            </mat-form-field>
+          </form>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-toolbar>
+  </mat-card>
+  <mat-card class="cards">
+    <table style="width: 100%; height: 100%; display: flex;">
+      <mat-accordion class="example-headers-align" multi style="width: 100%;">
+        <mat-expansion-panel *ngFor="let rapport of rapports" style="margin-top: 10px; width: 60%;" class="centers"
+          [disabled]="clickButton" (click)="clickButton=true">
+          <mat-expansion-panel-header
+            style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236)); justify-content: center;">
+            <mat-panel-title class="centers" style="justify-content: center;">
+              <span style="font-weight: bold; margin-right: 20px; color: black;"> Brugernavn:</span>
+              <span class="txtbtn" style="color: black;">{{bruger.brugernavn}}</span>
+            </mat-panel-title>
+            <mat-action-row class="centers cards" style="justify-content: center;">
+              <button mat-button class="txtbtn" style="color: black;" (click)="onVisInfo(rapport.id)">Vis info</button>
+              <button mat-button class="txtbtn" style="color: black;" (click)="onGodtagBesked(rapport.id)">Godkend
+                besked</button>
+              <button mat-button class="txtbtn" style="color: black;" (click)="onSletBesked(rapport.id)">Fjern
+                besked</button>
+            </mat-action-row>
+          </mat-expansion-panel-header>
+          <div>
+            <mat-card class="containStyle">
+              <span class="titelStyle">Type:</span>
+              <span class="txtStyle">{{rapport.type}}</span>
+            </mat-card>
+            <mat-card class="containStyle">
+              <span class="titelStyle">Titel:</span>
+              <span class="txtStyle">{{rapport.titel}}</span>
+            </mat-card>
+            <mat-card class="containStyle">
+              <span class="titelStyle">Bruger id:</span>
+              <span class="txtStyle">{{rapport.brugerId}}</span>
+            </mat-card>
+            <mat-card class="containStyle">
+              <span class="titelStyle">Besked:</span>
+              <span class="txtStyle">{{rapport.besked}}</span>
+            </mat-card>
+            <mat-card class="containStyle" *ngIf="rapport.type == 'Anmeld bruger'">
+              <span class="titelStyle">Anklaget bruger:</span>
+              <span class="txtStyle">{{rapport.anklagetBrugerId}}</span>
+            </mat-card>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </table>
+  </mat-card>
+</div>

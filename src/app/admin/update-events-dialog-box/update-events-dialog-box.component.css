@@ -27,3 +27,9 @@
 td {
   padding-right: 8px;
 }
+
+.centers {
+  margin: auto;
+  padding: 10px;
+  text-align: center;
+}

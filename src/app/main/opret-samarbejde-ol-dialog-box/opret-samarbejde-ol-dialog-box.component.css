@@ -60,7 +60,7 @@
   }
   
   .container {
-    margin-top: 150px;
+    margin-top: 25px;
     font-family: arial;
     display: flex;
     justify-content: center;
@@ -83,4 +83,11 @@
     padding: 10px;
     text-align: center;
     flex: 1 1 auto;
+  }
+  
+  .centersFields{
+    margin: auto;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
   }

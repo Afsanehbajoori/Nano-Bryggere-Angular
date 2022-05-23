@@ -82,8 +82,8 @@ export class MineEventsComponent implements OnInit {
     });
     this.dialogRefSlet.afterClosed().subscribe(result => {
       if (result) {
-    this.restApi.deleteData(id , this.endpointD).subscribe(data => {
-      this.ngOnInit();
+        this.restApi.deleteData(id , this.endpointD).subscribe(data => {
+        this.ngOnInit();
       })
     }
   });

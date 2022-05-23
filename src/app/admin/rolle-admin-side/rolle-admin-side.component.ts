@@ -99,7 +99,7 @@ export class RolleAdminSideComponent implements OnInit {
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
           this.restApi.deleteData(id, this.endpointR).subscribe((data) => {
-            this.onHentBruger();
+            this.ngOnInit();
           })
         }
       });

@@ -75,21 +75,21 @@ export class ForsideComponent implements OnInit {
   }
 
   onHentForum() {
-    return this.restApi.getDatas(this.endpointF).subscribe((forum) => {
-      this.forums = forum;
+    return this.restApi.getDatas(this.endpointF).subscribe((dataF) => {
+      this.forums = dataF;
     })
   }
 
   onHentPost() {
-    return this.restApi.getDatas(this.endpointP).subscribe((post) => {
-      this.postListe = post;
+    return this.restApi.getDatas(this.endpointP).subscribe((dataP) => {
+      this.postListe = dataP;
       // this.postListe = this.postListe.filter((res: any) => res.forumId = this.forums.id);
     })
   }
 
   onHentRolle(){
-    this.restApi.getDatas(this.endpointR).subscribe(rolle =>{ 
-      this.rolleListe = rolle
+    this.restApi.getDatas(this.endpointR).subscribe(dataR =>{ 
+      this.rolleListe = dataR
       this.rolle = this.rolleListe.find((a:any) => a.level === 300)
     })
   }
@@ -97,7 +97,7 @@ export class ForsideComponent implements OnInit {
   onGodkendPost(id: any) {
     this.postOprettelse.forumId = id;
     this.postOprettelse.brugerId = this.brugerId;
-    this.restApi.createData(this.postOprettelse, this.endpointP).subscribe((data) => {
+    this.restApi.createData(this.postOprettelse, this.endpointP).subscribe((dataP) => {
       this.postOprettelse.indhold = '';
       this.postOprettelse.titel = '';
       this.ngOnInit();
@@ -112,7 +112,7 @@ export class ForsideComponent implements OnInit {
     this.postSvar.forumId = forumId;
     this.postSvar.brugerId = this.brugerId;
     this.postSvar.postId = postId;
-    this.restApi.createData(this.postSvar, this.endpointP).subscribe((data) => {
+    this.restApi.createData(this.postSvar, this.endpointP).subscribe((dataP) => {
       this.postSvar.indhold = '';
       this.postSvar.titel = '';
       this.ngOnInit();
@@ -127,12 +127,12 @@ export class ForsideComponent implements OnInit {
   }
 
   onSletForum(id: any) {
-    this.restApi.getData(id, this.endpointF).subscribe(data => {
-      if (this.brugerId === data.brugerId  || this.rolle ===300) {
+    this.restApi.getData(id, this.endpointF).subscribe(dataF => {
+      if (this.brugerId === dataF.brugerId  || this.rolle ===300) {
         let dialogRef = this.dialog.open(SletDialogBoxComponent);
         dialogRef.afterClosed().subscribe(result => {
           if (result == true) {
-            this.restApi.deleteData(id, this.endpointF).subscribe(data => {
+            this.restApi.deleteData(id, this.endpointF).subscribe(dataF => {
               this.ngOnInit();
             })
           }
@@ -156,8 +156,8 @@ export class ForsideComponent implements OnInit {
   }
 
   onOpdaterPost(id: any) {
-    this.restApi.getData(id, this.endpointP).subscribe(data => {
-      if (this.brugerId === data.brugerId || this.rolle ===300) {
+    this.restApi.getData(id, this.endpointP).subscribe(dataP => {
+      if (this.brugerId === dataP.brugerId || this.rolle ===300) {
         localStorage.setItem('postId', JSON.stringify(id));
         const dialogConfig = new MatDialogConfig();
         dialogConfig.disableClose = true;
@@ -168,7 +168,7 @@ export class ForsideComponent implements OnInit {
         this.dialogRefOpdaterPost.afterClosed().subscribe(result => {
           if (result) {
             this.opdaterForum = result;
-            this.restApi.updateData(id, this.endpointP, this.opdaterPost).subscribe((data) => {
+            this.restApi.updateData(id, this.endpointP, this.opdaterPost).subscribe((dataP) => {
               this.ngOnInit();
             })
           }
@@ -181,8 +181,8 @@ export class ForsideComponent implements OnInit {
   }
 
   onOpdaterForum(id: any) {
-    this.restApi.getData(id, this.endpointF).subscribe(data => {
-      if (this.brugerId === data.brugerId || this.rolle ===300) {
+    this.restApi.getData(id, this.endpointF).subscribe(dataF => {
+      if (this.brugerId === dataF.brugerId || this.rolle ===300) {
         localStorage.setItem('forumId', JSON.stringify(id));
         const dialogConfig = new MatDialogConfig();
         dialogConfig.disableClose = true;
@@ -193,7 +193,7 @@ export class ForsideComponent implements OnInit {
         this.dialogRefOpdaterForum.afterClosed().subscribe(result => {
           if (result) {
             this.opdaterForum = result;
-            this.restApi.updateData(id, this.endpointF, this.opdaterForum).subscribe((data) => {
+            this.restApi.updateData(id, this.endpointF, this.opdaterForum).subscribe((dataF) => {
               this.ngOnInit();
             })
           }
@@ -210,12 +210,12 @@ export class ForsideComponent implements OnInit {
   };
 
   onSletPost(id: any) {
-    this.restApi.getData(id, this.endpointP).subscribe(data => {
-      if (this.brugerId === data.brugerId  || this.rolle ===300) {
+    this.restApi.getData(id, this.endpointP).subscribe(dataP => {
+      if (this.brugerId === dataP.brugerId  || this.rolle ===300) {
         let dialogRef = this.dialog.open(SletDialogBoxComponent);
         dialogRef.afterClosed().subscribe(result => {
           if (result == true) {
-            this.restApi.deleteData(id, this.endpointP).subscribe(data => {
+            this.restApi.deleteData(id, this.endpointP).subscribe(dataP => {
               this.ngOnInit();
             })
           }

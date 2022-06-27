@@ -3,6 +3,7 @@ import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dial
 import { ActivatedRoute, Router } from '@angular/router';
 import { RedigerBryggeriDialogBoxComponent } from 'src/app/main/rediger-bryggeri-dialog-box/rediger-bryggeri-dialog-box.component';
 import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
+import { Bruger } from 'src/app/Models/Bruger';
 import { Bryggeri } from 'src/app/Models/Bryggeri';
 import { Samarbejde } from 'src/app/Models/Samarbejde';
 import { RestApiService } from 'src/app/shared/rest-api.service';
@@ -17,6 +18,9 @@ export class BryggeriAdminSideComponent implements OnInit {
   dialogRefSlet: MatDialogRef<SletDialogBoxComponent>;
   dialogRefOpdaterBryggeri: MatDialogRef<RedigerBryggeriDialogBoxComponent>;
   bryggeri: any;
+  bryggeritest: Bryggeri;
+  brugertest: any;
+  bruger: Bruger;
   endpointBru = '/Bruger';
   endpointB = '/Bryggerier';
   endpointS = '/Samarbejder';
@@ -70,6 +74,7 @@ export class BryggeriAdminSideComponent implements OnInit {
     }
   }
 
+  //#region find
   //vi skal kigge på det efter oprette samarbejde component
   onFindBryggeriSamarbejde() {
     /*    if(this.searchkeyBryggeriSamarbejde == ''){
@@ -85,12 +90,13 @@ export class BryggeriAdminSideComponent implements OnInit {
          })
        } */
   }
+  //#endregion
 
   onSletBryggeri(id: any) {
     let dialogRef = this.dialog.open(SletDialogBoxComponent);
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.onOpdaterBruger(id);    
+        this.onOpdaterBruger(id);
         this.restApi.deleteData(id, this.endpointB).subscribe(data => {
           this.ngOnInit();
         })
@@ -98,11 +104,28 @@ export class BryggeriAdminSideComponent implements OnInit {
     });
   };
 
-  onOpdaterBruger(id:any){
-    this.restApi.updateData(id, this.endpointBru, this.bryggeri).subscribe(data => {
+  //SKAL TESTES
+  onOpdaterBruger(id: any) {
+    this.restApi.getData(id, this.endpointB).subscribe(data => {
+      this.bryggeritest = data;
 
+      this.restApi.getDatas(this.endpointBru).subscribe(data => {
+        this.brugertest = data;
+        for (let i = 0; i < this.brugertest.length; i++) {
+          if (this.brugertest[i].kontaktOplysningerId == this.bryggeritest.kontaktOplysningerId) {
+            this.bruger = this.brugertest[i];
+            this.bruger.certifikatStatus = 1;
+            this.bruger.certifikatBilled = "";
+            localStorage.setItem("brugerTest", this.bruger.kontaktOplysningerId.toString());
+          }
+        }
+        this.restApi.updateData(localStorage.getItem("brugerTest"), this.endpointBru, this.bruger).subscribe(data => {
+
+        })
+      })
     })
   }
+
   onOpdaterBryggeri(id: any) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;

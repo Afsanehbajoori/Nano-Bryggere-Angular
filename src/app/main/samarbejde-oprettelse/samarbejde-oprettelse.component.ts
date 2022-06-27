@@ -11,11 +11,11 @@ import { Samarbejde } from 'src/app/Models/Samarbejde';
   styleUrls: ['./samarbejde-oprettelse.component.css']
 })
 export class SamarbejdeOprettelseComponent implements OnInit {
-  @Input() nySamarbejde = { olBilled: '', titel: '', bryggeriId1: 0, bryggeriId2: 0 }
+  @Input() nySamarbejde = {bryggeriId1: 0, bryggeriId2: 0, brygger1Svar: true}
   opretForm: any = new FormGroup({});
   olBilled: any;
   bryggeriId: number;
-  endpointS = '/Samarbejder';
+  endpointSA = '/SamarbejdeAnmodning';
   endpointB = '/Bryggerier';
   endpointO = '/Øller';
   bryggeriList: any;
@@ -34,30 +34,12 @@ export class SamarbejdeOprettelseComponent implements OnInit {
   ngOnInit(): void {
     this.bryggeriId = JSON.parse(localStorage.getItem('bryggeriId') || '{}');
     this.onHentBryggeri();
-    // this.onHentSamarbejde();
+    console.log(this.bryggeriId);
     this.opretForm = this._formBuilder.group({
-      'olBilled': new FormControl(''),
-      'titel': new FormControl('', Validators.required),
       'bryggeriId1': new FormControl(''),
       'bryggeriId2': new FormControl(''),
-      //'olId': new FormControl('')
     })
   }
-
-  // onHentSamarbejde() {
-  //   this.restApi.getDatas(this.endpointS).subscribe(data => {
-  //     this.samarbejdeList = data;
-  //     this.samarbejdeList.find(x => x.bryggeriId2 == this.nySamarbejde.bryggeriId2);
-  //   })
-  // }
-
-  // if(this.nySamarbejde.bryggeriId2 != data.bryggeriId2){
-  //   this.restApi.createData(this.nySamarbejde, this.endpointS).subscribe(data => {
-  //     console.log(data);
-  //     localStorage.setItem('samarbejdeId', JSON.stringify(data.id))
-  //     this.dialogRefOpretSamarbejde.close();
-  //   })
-  // }
 
   // Stop visning af bruger med samarbejde mellem hinanden.
   // If bryggeriId allered er i et samarbejde med egen brygger.
@@ -87,44 +69,27 @@ export class SamarbejdeOprettelseComponent implements OnInit {
   //     }
   //   })
   // }
-  // onHentBryggeriListe() {
-  //   this.restApi.getDatas(this.endpointB).subscribe(data => {
-  //     this.bryggeriList = data;
-  //     console.log(data);
-  //     for (let i = 0; i < data.length; i++) {
-  //       const dropdownInfo = { bryggerinavn: this.bryggeriList[i].navn, bryggeriId2: this.bryggeriList[i].id }
-  //       if (this.bryggeriId != dropdownInfo.bryggeriId2) {
-  //         this.restApi.getData(dropdownInfo.bryggeriId2, this.endpointS).subscribe(data => {
-  //           this.samarbejdeId = data;
-  //           console.log('Samarbejde Check', this.samarbejdeId);
-  //           if (this.samarbejdeId.bryggeriId1 != this.bryggeriId) {
-  //             this.bryggeriNavn.push(dropdownInfo)
-  //           }
-  //         })
-  //       }
-  //     }
-  //   })
-  // }
+  
   onHentBryggeri() {
     this.restApi.getDatas(this.endpointB).subscribe(dataB => {
       // this.onHentBryggeriListe();
-      this.restApi.getDatas(this.endpointS).subscribe(dataS => {
-        this.samarbejdeList = dataS;
-        console.log("dataS",dataS);
-        for (let s = 0; s < dataS.length; s++){
-          const samarbejdelist = { bryggeriId1: this.samarbejdeList[s].bryggeriId1, bryggeriId2: this.samarbejdeList[s].bryggeriId2}
-          console.log("update", this.samarbejdeList);
-          if(this.bryggeriId != samarbejdelist.bryggeriId1 || this.bryggeriId != samarbejdelist.bryggeriId2){
-            this.samarbejdeNavn.push(samarbejdelist)
-            console.log(this.samarbejdeNavn);
-          }
-        }
+      this.restApi.getDatas(this.endpointSA).subscribe(dataSA => {
+        // this.samarbejdeList = dataSA;
+        console.log("dataS",dataSA);
+        // for (let s = 0; s < dataSA.length; s++){
+        //   const samarbejdelist = { bryggeriId1: this.samarbejdeList[s].bryggeriId1, bryggeriId2: this.samarbejdeList[s].bryggeriId2}
+        //   console.log("update", this.samarbejdeList);
+        //   if(this.bryggeriId != samarbejdelist.bryggeriId1 || this.bryggeriId != samarbejdelist.bryggeriId2){
+        //     this.samarbejdeNavn.push(samarbejdelist)
+        //     console.log(this.samarbejdeNavn);
+        //   }
+        // }
         this.bryggeriList = dataB;
         for (let b = 0; b < dataB.length; b++) {
           const dropdownInfo = { bryggerinavn: this.bryggeriList[b].navn, bryggeriId2: this.bryggeriList[b].id }
           console.log("Check",this.samarbejdeNavn[b]);
-          if (this.bryggeriId != dropdownInfo.bryggeriId2) {
-            if(this.samarbejdeNavn[b].bryggeriId2 != dropdownInfo.bryggeriId2)
+          if (dropdownInfo.bryggeriId2 != this.bryggeriId) {
+            // if(this.samarbejdeNavn[b].bryggeriId2 != dropdownInfo.bryggeriId2)
             { 
               this.bryggeriNavn.push(dropdownInfo)
             }
@@ -133,40 +98,23 @@ export class SamarbejdeOprettelseComponent implements OnInit {
       }) 
     })
   }
-  // onHentBryggeri() {
-  //   this.onHentBryggeriListe();
-  //   this.restApi.getDatas(this.endpointB).subscribe(data => {
-  //     this.bryggeriList = data;
-  //     for (let i = 0; i < data.length; i++) {
-  //       const dropdownInfo = { bryggerinavn: this.bryggeriList[i].navn, bryggeriId2: this.bryggeriList[i].id }
-  //       console.log("Check",this.samarbejdeList);
-  //       if (this.bryggeriId != dropdownInfo.bryggeriId2 && dropdownInfo.bryggeriId2 != this.samarbejdeNavn.indexOf(dropdownInfo.bryggeriId2)) {
-  //         this.bryggeriNavn.push(dropdownInfo)
-  //       }
-  //     }
-  //   })
-  // }
 
   onAnuller() {
     this.opretForm.reset();
     this.router.navigate(['/main/samarbejds-side'])
   }
 
-  onSubmitProfilBilled(event: any) {
-    if (event.target.files) {
-      var reader = new FileReader();
-      reader.readAsDataURL(event.target.files[0]);
-      reader.onload = (e: any) => {
-        this.olBilled = e.target.result;
-        localStorage.setItem('olBilled', JSON.stringify(this.olBilled));
-      }
-    }
-  };
-
   onSubmitSamarbejde() {
-    this.nySamarbejde.olBilled = JSON.parse(localStorage.getItem('olBilled') || '{}');
+    // this.nySamarbejde.olBilled = JSON.parse(localStorage.getItem('olBilled') || '{}');
     this.nySamarbejde.bryggeriId1 = JSON.parse(localStorage.getItem('bryggeriId') || '{}');
-
+    // this.anmodning.anmodersNavn = this.bryggeriNavn.
+    this.nySamarbejde.brygger1Svar = true;
+    console.log(this.nySamarbejde);
+    // console.log(this.nySamarbejde);
+    this.restApi.createData(this.nySamarbejde, this.endpointSA).subscribe((data) => {
+      this.dialogRefOpretSamarbejde.close();
+      // this.router.navigate(['../events/events'])
+    })
     // console.log(data);
     // if (this.nySamarbejde.bryggeriId1 == data.bryggeriId1 && this.nySamarbejde.bryggeriId2 == data.bryggeriId2) {   
     // }

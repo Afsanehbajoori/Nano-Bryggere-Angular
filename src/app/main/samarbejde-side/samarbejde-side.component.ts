@@ -28,6 +28,7 @@ export class SamarbejdeSideComponent implements OnInit {
   showSamarbejdeComponent:boolean=false;
   showSamarbejdeKatalog:boolean=false;
   showSamarbejdeSideComponent:boolean=false;
+  showSamarbejdeAnmodningSideComponent:boolean=false;
   dataSource = new MatTreeNestedDataSource<Search>();
   treeControl = new NestedTreeControl<Search>(node => node.children);
 
@@ -87,5 +88,8 @@ export class SamarbejdeSideComponent implements OnInit {
 
   VisSamarbejde(){
     this.showSamarbejdeSideComponent = !this.showSamarbejdeSideComponent;
+  }
+  VisAnmodninger(){
+    this.showSamarbejdeAnmodningSideComponent = !this.showSamarbejdeAnmodningSideComponent;
   }
 }

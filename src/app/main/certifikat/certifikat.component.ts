@@ -52,14 +52,15 @@ export class CertifikatComponent implements OnInit {
         this.url = e.target.result;
         this.bruger.certifikatBilled = e.target.result;
         this.bruger.certifikatStatus = 2;
+        console.log(this.bruger);
       }
     }
   };
 
   onUploadCertifikat() {
-    if (this.bruger.certifikatStatus == 2) {
-
-    }
+    // if (this.bruger.certifikatStatus == 2) {
+    //   return;
+    // }
     this.restApi.updateData(this.brugerId, this.endpointB, this.bruger).subscribe((data) => {
       this.router.navigate(['../main/main'])
     });

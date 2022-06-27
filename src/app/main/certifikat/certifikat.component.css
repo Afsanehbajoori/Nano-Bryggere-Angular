@@ -81,6 +81,12 @@ border-color: transparent;
   text-align: center;
 }
 
+.center-input{
+  margin: auto;
+  padding: 10px;
+  text-align: center;
+}
+
 .example-form {
   min-width: 150px;
   max-width: 500px;

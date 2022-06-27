@@ -60,7 +60,6 @@ export class MineEventsComponent implements OnInit {
       this.restApi.getData(this.eventListe.eventsId, this.endpointE).subscribe(data => {
         this.eventListe= data ;
       })
-
     })
   }
 

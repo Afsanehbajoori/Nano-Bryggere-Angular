@@ -1,20 +1,21 @@
 <div class="main" id="imgeUp">
     <mat-card class="cards">
-        <mat-card-content class="container centers">
-            <form class="example-form" style="justify-content: center; width: 100%;">
-                <mat-panel-title class="centers" style="justify-content: center;">
-                    <h1 class="centers" style="border-width: medium; border-style: solid; font-weight: bold; width: 60%;">Certifikat Side</h1>
-                    <h2 style="margin-top: 20px;">Vælg Certifikat Billed</h2>
-                </mat-panel-title>
-                <div style="border-width: medium; border-style: solid; background-color: white; width: 300px; height: 340px;" class="centers">
-                    <!-- <img src="" alt="" style="width: 100%; height: 80%;"> -->
-                    <img [src]="url" style="height: 280px; width: 280px;">
-                    <input type="file" (change)="onSubmitCertifikat($event)">
-                    <mat-action-row class="cards">
-                        <button mat-button style="background-color: rgb(47, 255, 109);" (click)="onUploadCertifikat()">Godkend Certifikat</button>
-                    </mat-action-row>
-                </div>
-            </form>
+        <mat-card-content class="container">
+            <div style="border-width: medium; border-style: solid; background-color: white; width: 450px; height: 450px; margin-top: 150px;"
+                class="centers">
+                <form class="example-form centers" style="justify-content: center; width: 100%;">
+                    <mat-panel-title class="centers" style="justify-content: center;">
+                        <h1 class="centers"
+                            style="border-width: medium; border-style: solid; font-weight: bold; width: 60%;">Certifikat
+                            Side</h1>
+                        <h2 style="margin-top: 20px;" class="centers">Vælg Certifikat</h2>
+                        <h3>vælg imellem pdf, jpg eller png</h3>
+                    </mat-panel-title>
+                    <input type="file" accept=".jpg,.png,.pdf" (change)="onSubmitCertifikat($event)" class="center-input ">
+                        <button mat-button style="background-color: rgb(47, 255, 109);"
+                            (click)="onUploadCertifikat()" class="centers">Godkend Certifikat</button>
+                </form>
+            </div>
         </mat-card-content>
     </mat-card>
 </div>

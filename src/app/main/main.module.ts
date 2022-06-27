@@ -48,6 +48,8 @@ import { OpretSamarbejdeOlDialogBoxComponent } from './opret-samarbejde-ol-dialo
 import { OpdaterSamarbejdeOlDialogBoxComponent } from './opdater-samarbejde-ol-dialog-box/opdater-samarbejde-ol-dialog-box.component';
 import { SamarbejdeOlLagerComponent } from './samarbejde-ol-lager/samarbejde-ol-lager.component';
 import { RapportSideComponent } from './rapport-side/rapport-side.component';
+import { VisSamarbejdeAnsogningsSideComponent } from './vis-samarbejde-ansognings-side/vis-samarbejde-ansognings-side.component';
+import { OpretRapportDialogBoxComponent } from './opret-rapport-dialog-box/opret-rapport-dialog-box.component';
 
 
 @NgModule({
@@ -78,7 +80,9 @@ import { RapportSideComponent } from './rapport-side/rapport-side.component';
     OpretSamarbejdeOlDialogBoxComponent,
     OpdaterSamarbejdeOlDialogBoxComponent,
     SamarbejdeOlLagerComponent,
-    RapportSideComponent
+    RapportSideComponent,
+    VisSamarbejdeAnsogningsSideComponent,
+    OpretRapportDialogBoxComponent
   ],
   entryComponents:[SletDialogBoxComponent , RedigerProfilDialogBoxComponent , RedigerBryggeriDialogBoxComponent],
   imports: [

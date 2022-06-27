@@ -12,14 +12,14 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   styleUrls: ['./admin-rapport-side.component.css']
 })
 export class AdminRapportSideComponent implements OnInit {
-dialogRefSlet: MatDialogRef<SletDialogBoxComponent>;
+  dialogRefSlet: MatDialogRef<SletDialogBoxComponent>;
   rapports: Rapport[];
   rapportId: number;
   brugerId: number;
-  rapport = new Rapport();
+  rapport: Rapport;
   bruger = new Bruger();
-  endpointB = '/Bruger'; //endpointB
-  endpointR = '/Rapport'; //endpointK
+  endpointB = '/Bruger';
+  endpointR = '/Rapport';
   searchkeyBrugernavn: string;
   searchkeyType: string;
   certifikat: any;
@@ -43,17 +43,16 @@ dialogRefSlet: MatDialogRef<SletDialogBoxComponent>;
 
   onHentRapport() {
     return this.restApi.getDatas(this.endpointR).subscribe((res) => {
-      this.rapports = res;
+      for (let i = 0; i < res.length; i++) {
+        if(res.RapportId)
+        {
+          this.rapports = res[i]; 
+        }
+      }
     });
   }
 
-  onHentBruger() {
-    return this.restApi.getData(this.rapport.anklagetBrugerId,this.endpointB).subscribe((res) => {
-      this.bruger = res;
-    });
-  }
-
-  onVisInfo(id: any) {
+  onVisRapportInfo(id: any) {
     this.clickButton = false;
     return this.restApi.getData(id, this.endpointR).subscribe((data) => {
       this.rapportId = data.id;
@@ -82,16 +81,15 @@ dialogRefSlet: MatDialogRef<SletDialogBoxComponent>;
     }
   }
 
-  //husk at kigge på slet bruger, kan ikke sltettes før slet deltager og login
-  onSletBesked(id: any) {
+  //husk at kigge på slet bruger, kan ikke slettes før slet deltager og login
+  onSletRapportBesked(id: any) {
    this.restApi.deleteData(id, this.endpointR).subscribe((data) => {
-
    });
   }
 
   onGodtagBesked(id: any) {
-    this.restApi.updateData(id, this.endpointR, Rapport).subscribe((data) => {
-
+    this.rapport.godtaget = true;
+    this.restApi.updateData(id, this.endpointR, this.rapport).subscribe((data) => {
     });
   }
 }

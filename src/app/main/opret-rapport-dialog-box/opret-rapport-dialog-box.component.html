@@ -1,0 +1,25 @@
+<div class="main" id="imgeUp">
+    <mat-card class="cards">
+        <mat-card-content class="container centers">
+            <form class="example-form" style="justify-content: center; width: 100%;">
+                <mat-panel-title class="centers" style="justify-content: center;">
+                    <h2 class="centers" style="font-weight: bold; width: 60%;">Angiv rapport type:</h2>
+                    <select matNativeControl class="input-control" style="width: 35%;" placeholder="Type">
+                        <option value="" selected></option>
+                        <option *ngFor="let item of items" [value]="item.name">{{item.name}})</option>
+                    </select>
+                    <h2 style=" font-weight: bold; margin-top: 20px;">Hvad vil du rapporter:</h2>
+                    <input matInput type="text" placeholder="Titel" class="input-control" style="width: 35%;">
+                    <h2 style=" font-weight: bold; margin-top: 20px;">Beskrivelse:</h2>
+                    <input matInput type="text" placeholder="Besked" class="input-control" style="width: 35%;">
+                </mat-panel-title>
+                <div class="centers" style="margin-top: 10px;">
+                    <mat-action-row class="cards">
+                        <button mat-button style="background-color: rgb(20, 206, 75); color: rgb(82, 82, 82);" (click)="onUploadRapport()">Send
+                            Rapport</button>
+                    </mat-action-row>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

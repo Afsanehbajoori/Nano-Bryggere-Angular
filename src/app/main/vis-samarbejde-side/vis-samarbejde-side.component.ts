@@ -40,6 +40,7 @@ export class VisSamarbejdeSideComponent implements OnInit {
 
   }
 
+  //#region API
   //Vis bryggeri navn for eget bryggeri og den anden bryggeries navn
   onHentBryggeri() {
     this.restApi.getDatas(this.endpointB).subscribe(data => {
@@ -55,7 +56,8 @@ export class VisSamarbejdeSideComponent implements OnInit {
       });
     })
   }
-  
+  //#endregion
+
   onFindSamarbejde() {
     if (this.searchkey == "") {
       this.ngOnInit();

@@ -39,6 +39,7 @@ import { OpdaterSamarbejdeDialogBoxComponent } from './opdater-samarbejde-dialog
 import { OpdaterForumDialogBoxComponent } from './opdater-forum-dialog-box/opdater-forum-dialog-box.component';
 import { OpretForumDialogBoxComponent } from './opret-forum-dialog-box/opret-forum-dialog-box.component';
 import { AdminRapportSideComponent } from './admin-rapport-side/admin-rapport-side.component';
+import { OpretRapportDialogBoxComponent } from './opret-rapport-dialog-box/opret-rapport-dialog-box.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { AdminRapportSideComponent } from './admin-rapport-side/admin-rapport-si
     OpdaterSamarbejdeDialogBoxComponent,
     OpdaterForumDialogBoxComponent,
     OpretForumDialogBoxComponent,
-    AdminRapportSideComponent
+    AdminRapportSideComponent,
+    OpretRapportDialogBoxComponent
   ],
   imports: [
     CommonModule,

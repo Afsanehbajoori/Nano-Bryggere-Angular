@@ -136,7 +136,7 @@ export class VisSamarbejdeAnsogningsSideComponent implements OnInit {
       console.log(this.godkendSamarbejde);
       return this.restApi.createData(this.godkendSamarbejde, this.endpointS).subscribe((data) => {
         this.restApi.deleteData(aId, this.endpointSA).subscribe((data)=> {
-
+          this.ngOnInit();
         })
       })
   }

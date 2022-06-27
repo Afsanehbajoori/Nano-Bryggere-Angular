@@ -54,6 +54,7 @@ export class ProfilComponent implements OnInit {
 
   ngOnInit(): void {
     this.kontaktOplysningerId = JSON.parse(localStorage.getItem('kontaktOplysningerId') || '{}');
+    console.log("id",this.kontaktOplysningerId);
     this.brugerId = JSON.parse(localStorage.getItem('brugerId') || '{}');
     this.rolleId = JSON.parse(localStorage.getItem('rolleId') || '{}');
     this.onHentBryggeri();

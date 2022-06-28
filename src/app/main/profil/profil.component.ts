@@ -9,6 +9,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm, FormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormBuilder } from '@angular/forms';
+import { JsonpClientBackend } from '@angular/common/http';
 
 @Component({
   selector: 'app-profil',
@@ -34,6 +35,7 @@ export class ProfilComponent implements OnInit {
   visFillerOB = false;
   kontaktOplysningerId: number;
   bryggeriId: number;
+  olId:number;
   brugerId: number;
   rolleId: number;
   chosenFile: File;
@@ -42,6 +44,8 @@ export class ProfilComponent implements OnInit {
   bryggeriLogo: any;
   url: string;
   rolleNavn:string;
+  endpoints = '/Øller';
+  olListe: any;
   @Input() nytBryggeri = { bryggeriLogo: '', navn: '', beskrivelse: '', kontaktOplysningerId: 0 };
   bryggeriOprettelsesForm: any = new FormGroup({});
 
@@ -57,8 +61,10 @@ export class ProfilComponent implements OnInit {
     console.log("id",this.kontaktOplysningerId);
     this.brugerId = JSON.parse(localStorage.getItem('brugerId') || '{}');
     this.rolleId = JSON.parse(localStorage.getItem('rolleId') || '{}');
-    this.onHentBryggeri();
+    this.olId = JSON.parse(localStorage.getItem('olId') || '{}');
+    this.onHentBryggeri();          
     this.onHentBruger();
+    this.onHentOl();
     this.visOB = false;
     this.visB = true;
     this.bryggeriOprettelsesForm = this._formBuilder.group({
@@ -74,6 +80,13 @@ export class ProfilComponent implements OnInit {
      this.router.navigate(["../login/login"]);
    }  */
 
+   onHentOl(){
+    return this.restApi.getData(this.olId, this.endpoints).subscribe((beer: {}) => {
+      this.olListe = beer;
+      console.log("øl:" , this.olListe.id);
+      
+    });
+  }
   onHentBruger() {
     return this.restApi.getData(this.brugerId, this.endpointBru).subscribe((brugerData) => {
       this.brugerListe = brugerData;
@@ -121,7 +134,9 @@ export class ProfilComponent implements OnInit {
   onHentBryggeri() {
     this.restApi.getDatas(this.endpointB).subscribe((data) => {
       this.bryggeriListe = data.find((x: any) => x.kontaktOplysningerId === this.kontaktOplysningerId);
+      
       if (this.bryggeriListe !== undefined) {
+        
         localStorage.setItem('bryggeriId', JSON.stringify(this.bryggeriListe.id));
         this.url = this.bryggeriListe.bryggeriLogo;
         // this.visOB = true;
@@ -220,9 +235,15 @@ export class ProfilComponent implements OnInit {
     });
     this.dialogRefSlet.afterClosed().subscribe(result => {
       if (result) {
+        if(this.olListe.id === null){
+          
+        }
         this.restApi.deleteData(this.bryggeriId, this.endpointB).subscribe((data) => {
-          this.bryggeriListe = data;
-          this.snackBar.open("Bryggeri oplysninger slettet med succes");
+        this.bryggeriListe = data;
+        console.log("exist:" , this.bryggeriListe);
+          
+        this.snackBar.open("Bryggeri oplysninger slettet med succes");
+          //localStorage.clear();
           this.ngOnInit();
         }, err => {
           this.snackBar.open("Øl skal slettes først");

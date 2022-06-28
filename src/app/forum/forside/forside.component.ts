@@ -167,7 +167,7 @@ export class ForsideComponent implements OnInit {
         this.dialogRefOpdaterPost = this.dialog.open(UpdatePostDialogBoxComponent, dialogConfig);
         this.dialogRefOpdaterPost.afterClosed().subscribe(result => {
           if (result) {
-            this.opdaterForum = result;
+            this.opdaterPost = result;
             this.restApi.updateData(id, this.endpointP, this.opdaterPost).subscribe((dataP) => {
               this.ngOnInit();
             })
@@ -211,10 +211,10 @@ export class ForsideComponent implements OnInit {
 
   onSletPost(id: any) {
     this.restApi.getData(id, this.endpointP).subscribe(dataP => {
-      if (this.brugerId === dataP.brugerId  || this.rolle ===300) {
+      if (this.brugerId === dataP.brugerId  || this.rolle.level ===300) {
         let dialogRef = this.dialog.open(SletDialogBoxComponent);
         dialogRef.afterClosed().subscribe(result => {
-          if (result == true) {
+          if (result) {
             this.restApi.deleteData(id, this.endpointP).subscribe(dataP => {
               this.ngOnInit();
             })

@@ -41,6 +41,7 @@ export class ForumAdminSideComponent implements OnInit {
   ngOnInit(): void {
     this.onHentForum();
     this.onHentPost();
+    this.onHentRolle();
   }
   onHentForum(){
     return this.restApi.getDatas(this.endpointF).subscribe((forum) => {
@@ -56,6 +57,7 @@ export class ForumAdminSideComponent implements OnInit {
     this.restApi.getDatas(this.endpointR).subscribe(roller =>{ 
       this.rolleListe = roller
       this.rolle = this.rolleListe.find((a:any) => a.level === 300)
+      console.log("rolle:", this.rolle.level);
     })
   }
   onOpretForum(){
@@ -134,7 +136,9 @@ export class ForumAdminSideComponent implements OnInit {
   
   onSletPost(id: any) {
     this.restApi.getData(id, this.endpointP).subscribe(data => {
-      if(this.rolle ===300) {
+      console.log("brugerId:" , data);
+      console.log("rolleId:" , this.rolle);
+      if(this.rolle.level ===300) {
         let dialogRef = this.dialog.open(SletDialogBoxComponent);
         dialogRef.afterClosed().subscribe(result => {
           if (result == true) {

@@ -122,7 +122,7 @@ export class VisSamarbejdeAnsogningsSideComponent implements OnInit {
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
       dialogConfig.width = "25%";
-      dialogConfig.height = '34%';
+      dialogConfig.height = '50%';
       this.dialogRefOpretSamarbejde = this.dialog.open(SamarbejdeOprettelseComponent, dialogConfig);
       this.dialogRefOpretSamarbejde.afterClosed().subscribe(result => {
         this.ngOnInit();

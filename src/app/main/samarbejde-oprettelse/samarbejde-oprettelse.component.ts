@@ -11,7 +11,7 @@ import { Samarbejde } from 'src/app/Models/Samarbejde';
   styleUrls: ['./samarbejde-oprettelse.component.css']
 })
 export class SamarbejdeOprettelseComponent implements OnInit {
-  @Input() nySamarbejde = { bryggeriId1: 0, bryggeriId2: 0, brygger1Svar: true }
+  @Input() nySamarbejde = { bryggeriId1: 0, bryggeriId2: 0 , samarbejdeBilled:'', titel:'' }
   opretForm: any = new FormGroup({});
   olBilled: any;
   bryggeriId: number;
@@ -42,7 +42,10 @@ export class SamarbejdeOprettelseComponent implements OnInit {
     console.log(this.bryggeriId);
     this.opretForm = this._formBuilder.group({
       'bryggeriId1': new FormControl(''),
-      'bryggeriId2': new FormControl(''),
+      'bryggeriId2': new FormControl(''), 
+      'samarbejdeBilled': new FormControl(''),
+      'titel': new FormControl('') 
+
     })
   }
 
@@ -123,10 +126,10 @@ export class SamarbejdeOprettelseComponent implements OnInit {
         if (dropdownInfo.bryggeriId2 != this.bryggeriId) {
           {
             console.log(dropdownInfo.bryggerinavn, dropdownInfo.bryggeriId2)
-            if (dropdownInfo.bryggeriId2 != this.samarbejdeId[b].bryggeriId1 || dropdownInfo.bryggeriId2 != this.samarbejdeId[b].bryggeriId2) {
+            // if (dropdownInfo.bryggeriId2 != this.samarbejdeId[b].bryggeriId1 || dropdownInfo.bryggeriId2 != this.samarbejdeId[b].bryggeriId2) {
               this.bryggeriNavn.push(dropdownInfo)
               console.log(this.bryggeriNavn)
-            }
+            // }
           }
         }
       }
@@ -138,12 +141,31 @@ export class SamarbejdeOprettelseComponent implements OnInit {
     this.router.navigate(['/main/samarbejds-side'])
   }
 
+  onSubmitSamarbejdeBilled(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader();
+      reader.onload = (e:any) => this.nySamarbejde.samarbejdeBilled = e.target.result;
+      reader.readAsDataURL(event.target.files[0])
+      // var reader = new FileReader();
+      // reader.readAsDataURL(event.target.files[0]);
+      // reader.onload = (e: any) => {
+      //   this.olOprettelse.etiket = e.target.result;
+      //   localStorage.setItem('logo', JSON.stringify(this.olOprettelse.etiket));
+      // }
+    }
+    else{
+      this.nySamarbejde.samarbejdeBilled = '';
+    }
+  };
+
   onSubmitSamarbejde() {
     this.nySamarbejde.bryggeriId1 = JSON.parse(localStorage.getItem('bryggeriId') || '{}');
     // this.anmodning.anmodersNavn = this.bryggeriNavn.
-    this.nySamarbejde.brygger1Svar = true;
+    // this.nySamarbejde.brygger1Svar = true;
+    
+    this.nySamarbejde.bryggeriId2 = Number(this.nySamarbejde.bryggeriId2);
+    console.log(typeof this.nySamarbejde.bryggeriId2);
     console.log(this.nySamarbejde);
-
     this.restApi.createData(this.nySamarbejde, this.endpointSA).subscribe((data) => {
       this.dialogRefOpretSamarbejde.close();
     })

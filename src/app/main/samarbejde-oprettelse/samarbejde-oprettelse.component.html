@@ -4,20 +4,7 @@
           <div style=" width: 100%; height: 5%;">
               <h1 class="txt">Samarbjde Oprettelses side</h1>
           </div>
-          <!-- <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>olBilled</mat-label>
-              <input matInput type="text" formControlName="olBilled" placeholder="Logo Billed" [(ngModel)]="nySamarbejde.olBilled" class="input-control">
-              <input type="file" class="btnMainStyle" (change)="onSubmitProfilBilled($event)">
-              <mat-error>
-                  feltet skal udfyldes
-              </mat-error>
-          </mat-form-field> -->
-          <!-- <mat-form-field class="example-full-width" appearance="fill">
-              <input matInput type="text"  formControlName="titel" placeholder="Titel"  [(ngModel)]="nySamarbejde.titel" class="input-control">
-              <mat-error>
-                  Dette felt skal udfyldes
-              </mat-error>
-          </mat-form-field> -->
+
           <mat-form-field class="example-full-width" appearance="fill" *ngIf="bryggeriList">
             <mat-label>Anden Bryggeri Navn</mat-label>
             <select matNativeControl formControlName="bryggeriId2" [(ngModel)]="nySamarbejde.bryggeriId2">
@@ -28,6 +15,20 @@
                 Dette felt skal udfyldes
             </mat-error>
         </mat-form-field>
+         <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>SamarbejdeBilled</mat-label>
+              <input matInput type="text" formControlName="samarbejdeBilled" placeholder="SamarbejdeBilled" [(ngModel)]="nySamarbejde.samarbejdeBilled" class="input-control">
+              <input type="file" class="btnMainStyle" (change)="onSubmitSamarbejdeBilled($event)">
+              <mat-error>
+                  feltet skal udfyldes
+              </mat-error>
+          </mat-form-field>
+          <mat-form-field class="example-full-width" appearance="fill">
+              <input matInput type="text"  formControlName="titel" placeholder="Titel"  [(ngModel)]="nySamarbejde.titel" class="input-control">
+              <mat-error>
+                  Dette felt skal udfyldes
+              </mat-error>
+          </mat-form-field> 
         <mat-action-row mat-dialog-actions class="btn-container">
           <button mat-button (click)="dialogRefOpretSamarbejde.close(false)">Annuller</button>
           <button mat-button cdkFocusInitial (click)="onSubmitSamarbejde(); $event.stopPropagation()">Opret Samarbejde</button>

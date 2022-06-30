@@ -49,6 +49,12 @@ export class BryggeriAdminSideComponent implements OnInit {
     })
   }
 
+ /*  onHentBruger(){
+    return this.restApi.getDatas(this.endpointBru).subscribe((data) => {
+      this.
+    })
+  } */
+
   onVisBryggeri(id: any) {
     this.clickButton = false;
     return this.restApi.getData(id, this.endpointB).subscribe((data) => {
@@ -96,8 +102,8 @@ export class BryggeriAdminSideComponent implements OnInit {
     let dialogRef = this.dialog.open(SletDialogBoxComponent);
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.onOpdaterBruger(id);
-        this.restApi.deleteData(id, this.endpointB).subscribe(data => {
+        this.onOpdaterBruger(id);      
+        this.restApi.deleteData(id, this.endpointB).subscribe(data => {             
           this.ngOnInit();
         })
       }
@@ -120,7 +126,7 @@ export class BryggeriAdminSideComponent implements OnInit {
           }
         }
         this.restApi.updateData(localStorage.getItem("brugerTest"), this.endpointBru, this.bruger).subscribe(data => {
-
+          console.log("test:" , data);
         })
       })
     })

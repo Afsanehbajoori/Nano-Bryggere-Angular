@@ -12,7 +12,7 @@ export class RedigerProfilDialogBoxComponent implements OnInit {
   opdaterForm: FormGroup = new FormGroup({});
   kontaktOplysningsListe: any;
   brugerListe:any;
-  kontaktoplysningId: number;
+  kontaktOplysningerId: number;
   brugerId:number;
   endpointK = '/KontaktOplysninger';
   endpointB = '/Bruger';
@@ -23,9 +23,9 @@ export class RedigerProfilDialogBoxComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.kontaktoplysningId = JSON.parse(localStorage.getItem('KontaktOplysningerId') || '{}');
+    this.kontaktOplysningerId = JSON.parse(localStorage.getItem('kontaktOplysningerId') || '{}');
     this.brugerId = JSON.parse(localStorage.getItem('brugerId') || '{}');
-    this.restApi.getData(this.kontaktoplysningId, this.endpointK)
+    this.restApi.getData(this.kontaktOplysningerId, this.endpointK)
       .toPromise()
       .then(data => {
         this.kontaktOplysningsListe = data;

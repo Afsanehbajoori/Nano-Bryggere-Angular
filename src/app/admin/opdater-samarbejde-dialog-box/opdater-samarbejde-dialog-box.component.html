@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>Rediger Events</h1>
+<h1 mat-dialog-title>Rediger Samarbejde</h1>
 <div mat-dialog-content>
   <form class="example-form" [formGroup]="opdaterForm" *ngIf="samarbejdeListe">
 
@@ -6,7 +6,7 @@
       <mat-label>Bryggeri nr.1:</mat-label>
       <select matNativeControl formControlName="bryggeriId1" [(ngModel)]="samarbejdeListe.bryggeriId1">
         <option value="" selected></option>
-        <option *ngFor="let item of bryggeriNavn" [value]="item.bryggeriId1">{{item.bryggeinavn}} (bryggeriId : {{item.bryggeriId1}}) </option>
+        <option *ngFor="let item of bryggeriNavn" [value]="item.bryggeriId1">(bryggeriNavn : {{item.bryggerinavn}} (bryggeriId : {{item.bryggeriId1}}) </option>
       </select>
     </mat-form-field>
 
@@ -14,7 +14,7 @@
       <mat-label>Bryggeri nr.2:</mat-label>
       <select matNativeControl formControlName="bryggeriId2" [(ngModel)]="samarbejdeListe.bryggeriId2">
         <option value="" selected></option>
-        <option *ngFor="let item of bryggeriNavn" [value]="item.bryggeriId2">{{item.bryggeinavn}} (bryggeriId : {{item.bryggeriId2}}) </option>
+        <option *ngFor="let item of bryggeriNavn" [value]="item.bryggeriId2">(bryggeriNavn : {{item.bryggerinavn}} (bryggeriId : {{item.bryggeriId2}}) </option>
       </select>
     </mat-form-field>
 

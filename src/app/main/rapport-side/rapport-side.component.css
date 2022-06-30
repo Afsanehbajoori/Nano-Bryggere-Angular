@@ -1,0 +1,92 @@
+.main {
+    min-height: 100%;
+    background-color: rgb(255, 255, 255);
+  }
+  
+  #imgeUp {
+    background-image: url('/assets/images/Background-website-01.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: auto;
+  }
+  
+  .menu{
+    height: 100%;
+  }
+  
+  .login-form {
+    padding: 20;
+  }
+  
+  .login-btn{
+  margin-top: 40px;
+  height: 50px;
+  background-color: rgb(155, 152, 152);
+  width: 100%;
+  cursor:pointer;
+  }
+  
+  .login-header{
+    text-align: center;
+    background-color: rgb(66, 138, 231);
+  }
+  
+  .example-full-width {
+  width: 100%;
+  }
+  
+  .input-control{
+    height: 25px;
+  }
+  
+  .mat-card-body{
+    max-width: 600px;
+    margin: 2em auto;
+    text-align: center;
+    height: 500px;
+    max-height: 800px;
+  }
+  
+  .txt{
+  margin-bottom: 30px;
+  font-weight: bolder;
+  font-size: 25px;
+  font-family: 'Times New Roman', Times, serif;
+  font-style: italic;
+  text-align: center;
+  }
+  
+  .container {
+  margin-top: 150px;
+  font-family: arial;
+  display: flex;
+  justify-content: center;
+  height: 60%;
+  border-color: transparent;
+  }
+  
+  .cards {
+    outline: none;
+    outline-style: none;
+    box-shadow: none;
+    border-color: transparent;
+    background-color: transparent;
+  }
+  
+  .centers{
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+    border-color: transparent;
+  }
+  .example-spacer {
+    flex: 1 1 auto;
+  }

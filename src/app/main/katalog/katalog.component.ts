@@ -58,7 +58,7 @@ export class KatalogComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result == true) {
         this.restApi.deleteData(id, this.endpointO).subscribe(data => {
-          this.onHentOl();
+          this.ngOnInit();
         })
       }
     });

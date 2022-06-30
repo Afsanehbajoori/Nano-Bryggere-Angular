@@ -23,7 +23,8 @@ const TREE_DATA: Search[] = [
     { name: 'Tags', children: [{ name: 'Med Tag' }] },
     { name: 'Samarbejde', children: [{ name: 'Med Samarbejde navn' }, { name: 'Med Øl navn' }] },
     { name: 'Certifikat' },
-    { name: 'Login' }]
+    { name: 'Login' },
+    { name: 'Rapporteringer'}]
   }
 ];
 
@@ -50,6 +51,7 @@ export class AdminForsideComponent implements OnInit {
   visDeltageneComponent: boolean = false;
   visLoginComponent: boolean = false;
   visSamarbejdeComponent: boolean = false;
+  visRapportComponent: boolean = false;
 
   constructor(public dialog: MatDialog,
     public restApi: RestApiService,
@@ -143,6 +145,10 @@ export class AdminForsideComponent implements OnInit {
       }
       case 'Med Øl navn': {
         this.visSamarbejdeComponent = !this.visSamarbejdeComponent;
+        break;
+      }
+      case 'Rapporteringer': {
+        this.visRapportComponent = !this.visRapportComponent;
         break;
       }
     }

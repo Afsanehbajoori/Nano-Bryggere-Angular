@@ -1,0 +1,28 @@
+<mat-card class="main">
+    <mat-card-title class="txt" style="margin-top: 10px;">
+      <h1 style="width: 100%;">Opret Forum</h1>
+    </mat-card-title>
+    <mat-card-content class="container">
+      <form [formGroup]="CreateForm" class="example-form">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <input matInput type="text" [(ngModel)]="forumOprettelse.titel" class="input-control" formControlName="titel"
+            placeholder="Titel">
+          <!-- <mat-error *ngIf="navn.errors?.['required']"> -->
+          <mat-error>
+            Feltet skal udfyldes
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <input matInput type="text" [(ngModel)]="forumOprettelse.besked" formControlName="besked"
+            placeholder="Besked" class="input-control">
+          <mat-error>
+            Feltet skal udfyldes
+          </mat-error>
+        </mat-form-field>
+        <div mat-dialog-actions class="btn-container">
+          <button mat-button (click)="dialogRefOpretteEvents.close(false)">Anuller</button>
+          <button mat-button cdkFocusInitial (click)="onSubmitEvent(); $event.stopPropagation()">Opret</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>

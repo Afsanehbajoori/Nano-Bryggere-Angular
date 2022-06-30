@@ -12,7 +12,7 @@
     </div>
   </mat-drawer>
   <mat-drawer-content class="main" id="imgeUp" *ngIf="kontaktOplysningsListe" style="width: 100%;">
-    <mat-card *ngIf="visFillerP" style="width: 50%;" class="centers">
+    <mat-card *ngIf="visFillerP" style="width: 30%;" class="centers">
       <mat-card-content>
         <mat-accordion class="example-headers-align" multi>
           <mat-expansion-panel hideToggle="true">
@@ -24,43 +24,43 @@
                 <mat-icon>account_circle</mat-icon>
               </mat-panel-description>
             </mat-expansion-panel-header>
-              <mat-card class="containStyle centers" style="width: 50%;">
+              <mat-card class="containStyle centers" style="width: 80%;">
                 <span style="font-weight: bold; margin-right: 20px; color: black;">Fornavn:</span>
                 <span class="txtStyle">{{kontaktOplysningsListe.fnavn}}</span>
               </mat-card>
-              <mat-card class="containStyle centers" style="width: 50%;">
+              <mat-card class="containStyle centers" style="width: 80%;">
                 <span style="font-weight: bold; margin-right: 20px; color: black;">Efternavn:</span>
                 <span class="txtStyle">{{kontaktOplysningsListe.enavn}}</span>
               </mat-card>
-              <mat-card class="containStyle centers" style="width: 50%;">
+              <mat-card class="containStyle centers" style="width: 80%;">
                 <span style="font-weight: bold; margin-right: 20px; color: black;">Addresselinje1:</span>
                 <span class="txtStyle">{{kontaktOplysningsListe.adresseLinje1}}</span>
               </mat-card>
-              <mat-card class="containStyle centers" style="width: 50%;">
+              <mat-card class="containStyle centers" style="width: 80%;">
                 <span style="font-weight: bold; margin-right: 20px; color: black;">Addresselinje2:</span>
                 <span class="txtStyle">{{kontaktOplysningsListe.adresseLinje2}}</span>
               </mat-card>
-              <mat-card class="containStyle centers" style="width: 50%;">
+              <mat-card class="containStyle centers" style="width: 80%;">
                 <span style="font-weight: bold; margin-right: 20px; color: black;">Telefonnr:</span>
                 <span class="txtStyle">{{kontaktOplysningsListe.telefonNr}}</span>
               </mat-card>
-              <mat-card class="containStyle centers" style="width: 50%;">
+              <mat-card class="containStyle centers" style="width: 80%;">
                 <span style="font-weight: bold; margin-right: 20px; color: black;">Email:</span>
                 <span class="txtStyle">{{kontaktOplysningsListe.email}}</span>
               </mat-card>
-              <mat-card class="containStyle centers" style="width: 50%;">
+              <mat-card class="containStyle centers" style="width: 80%;">
                 <span style="font-weight: bold; margin-right: 20px; color: black;">Postnr:</span>
                 <span class="txtStyle">{{kontaktOplysningsListe.postNr}}</span>
               </mat-card>
-              <mat-card class="containStyle centers" style="width: 50%;">
+              <mat-card class="containStyle centers" style="width: 80%;">
                 <span style="font-weight: bold; margin-right: 20px; color: black;">By:</span>
                 <span class="txtStyle">{{kontaktOplysningsListe.by}}</span>
               </mat-card>
-              <mat-card class="containStyle centers" style="width: 50%;">
+              <mat-card class="containStyle centers" style="width: 80%;">
                 <span style="font-weight: bold; margin-right: 20px; color: black;">Brugernavn:</span>
                 <span class="txtStyle">{{this.brugerListe.brugernavn}}</span>
               </mat-card>
-              <mat-card class="containStyle centers" style="width: 50%;">
+              <mat-card class="containStyle centers" style="width: 80%;">
                 <span style="font-weight: bold; margin-right: 20px; color: black;">Rolle:</span>
                 <span class="txtStyle">{{this.rolleNavn}}</span>
               </mat-card>
@@ -72,7 +72,7 @@
         </mat-accordion>
       </mat-card-content>
     </mat-card>
-    <mat-card *ngIf="visFillerB" style="width: 50%;" class="centers">
+    <mat-card *ngIf="visFillerB" style="width: 30%;" class="centers">
       <mat-card-content>
         <mat-accordion class="example-headers-align" multi *ngIf="bryggeriListe">
           <mat-expansion-panel hideToggle="true">
@@ -88,16 +88,16 @@
               <span>Id:</span>
               <span class="txtStyle">{{bryggeri.Id}}</span>
             </mat-card> -->
-            <mat-card class="containStyle centers" style="width: 50%;">
+            <mat-card class="containStyle centers" style="width: 80%;">
               <span style="font-weight: bold; margin-right: 20px; color: black;">Logo:</span>
               <span class="txtStyle"><img [src]="this.bryggeriListe.bryggeriLogo" alt=""
                   style="width: 20%; height: 20%;"></span>
             </mat-card>
-            <mat-card class="containStyle centers"  style="width: 50%;">
+            <mat-card class="containStyle centers"  style="width: 80%;">
               <span style="font-weight: bold; margin-right: 20px; color: black;">Navn:</span>
               <span class="txtStyle">{{bryggeriListe.navn}}</span>
             </mat-card>
-            <mat-card class="containStyle centers"  style="width: 50%;">
+            <mat-card class="containStyle centers"  style="width: 80%;">
               <span style="font-weight: bold; margin-right: 20px; color: black;">Beskrivelse:</span>
               <span class="txtStyle">{{bryggeriListe.beskrivelse}}</span>
             </mat-card>

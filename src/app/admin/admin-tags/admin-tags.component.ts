@@ -18,7 +18,7 @@ export class AdminTagsComponent implements OnInit {
   dialogRefOpdaterTags: MatDialogRef<OpdaterTagDialogBoxComponent>;
   clickButton: boolean = true;
   searchkeyTag: string;
-  tagsliste: any;
+  tagListe: any;
   tags: Tags[];
   endpointT = '/Tags';
 
@@ -34,14 +34,14 @@ export class AdminTagsComponent implements OnInit {
 
   onHentTags() {
     return this.restApi.getDatas(this.endpointT).subscribe((tag) => {
-      this.tagsliste = tag;
+      this.tags = tag;
     });
   }
 
   onVisTags(id: any) {
     this.clickButton = false;
     return this.restApi.getData(id, this.endpointT).subscribe(data => {
-      this.tagsliste = data;
+      this.tagListe = data;
     })
   }
 
@@ -67,16 +67,16 @@ export class AdminTagsComponent implements OnInit {
     this.dialogRefOpdaterTags = this.dialog.open(OpdaterTagDialogBoxComponent, dialogConfig);
     this.dialogRefOpdaterTags.afterClosed().subscribe(result => {
       if (result) {
-        this.tagsliste = result;
-        this.restApi.updateData(id, this.endpointT, this.tagsliste).subscribe((data) => {
+        this.tagListe = result;
+        this.restApi.updateData(id, this.endpointT, this.tagListe).subscribe((data) => {
+          this.ngOnInit();
         })
       }
-      this.ngOnInit();
     })
   }
 
   onSletTags(id:any) {
-    if (this.tagsliste.length !== 0) {
+    if (this.tagListe.length !== 0) {
       alert('Der er et problem');
     }
     else {

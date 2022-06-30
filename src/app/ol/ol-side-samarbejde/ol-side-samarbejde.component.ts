@@ -45,6 +45,7 @@ export class OlSideSamarbejdeComponent implements OnInit {
     this.onHentKontaktOplysninger();
     this.onHentBryggerier();
   }
+  
   onHentKontaktOplysninger() {
     return this.restApi.getData(this.samarbejdeId, this.endpointS).subscribe((oplysninger) => {
       this.kontaktOplysningerId1 = oplysninger.bryggeriId1;

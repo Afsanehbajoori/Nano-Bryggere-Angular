@@ -1,6 +1,6 @@
 <mat-card class="main" id="imgeUp">
     <table style="display: flex; justify-content: center;">
-        <mat-card-content *ngIf="ol" style="width: 50%; height: 80%; justify-content: center;">
+        <mat-card-content *ngIf="ol" style="width: 50%; height: 100%; justify-content: center;">
             <div fxLayout="column" fxLayoutAlign="space-evenly"
                 style=" height: 6%; background: linear-gradient(rgb(27, 109, 156), rgb(115, 167, 236));">
                 <button style="height: 5%; background-color: transparent; border-color: transparent;"
@@ -16,50 +16,53 @@
                 <img [src]="ol.olBilled" alt="" style="width: 50%; justify-content: center;">
             </div>
             <!-- <div style="width: 100%; height: 80%; border-width: medium; border-style: solid;"> -->
-            <div>
-                <mat-grid-list cols="3" rowHeight="1:1">
-                    <mat-grid-tile style="width: 33%;">
+            <div style="height: 100%;">
+                <mat-grid-list cols="3" rowHeight="1:1" style="height: 100%;">
+                    <mat-grid-tile style="width: 33%; height: 100%;">
                         <div style="height: 100%;">
-                            <h2 style="font-weight: bold;">Titel:</h2>
+                            <h2 style="font-weight: bold;">Øl Info:</h2>
+                            <p style="font-weight: bold; font-size: 14px; margin: 0%;">Titel:</p>
                             <p>{{ol.navn}}</p>
-                            <h2 style="font-weight: bold;">Type:</h2>
+                            <h2 style="font-weight: bold; font-size: 14px; margin: 0%;">Type:</h2>
                             <p>{{ol.type}}</p>
-                            <h2 style="font-weight: bold;">Procent:</h2>
+                            <h2 style="font-weight: bold; font-size: 14px; margin: 0%;">Procent:</h2>
                             <p>{{ol.procent}}</p>
-                            <h2 style="font-weight: bold;">Smag:</h2>
+                            <h2 style="font-weight: bold; font-size: 14px; margin: 0%;">Smag:</h2>
                             <p>{{ol.smag}}</p>
-                            <h2 style="font-weight: bold;">Beskrivelse:</h2>
+                            <h2 style="font-weight: bold; font-size: 14px; margin: 0%;">Beskrivelse:</h2>
                             <p>{{ol.beskrivelse}}</p>
                         </div>
                     </mat-grid-tile>
-                    <mat-grid-tile style="width: 33%;">
+                    <mat-grid-tile style="width: 33%; height: 35%;">
                         <div>
                             <div *ngIf="bryggeri1">
-                                <h2 style="font-weight: bold;">Bryggeri navn:</h2>
+                                <h2 style="font-weight: bold;">Bryggeri 1 Info:</h2>
+                                <p style="font-weight: bold; font-size: 14px; margin: 0%;">Bryggeri navn:</p>
                                 <p>{{bryggeri1.navn}}</p>
                             </div>
                             <div *ngIf="kontaktOplysninger1">
-                                <h2 style="font-weight: bold;">Addresse:</h2>
+                                <h2 style="font-weight: bold; font-size: 14px; margin: 0%;">Addresse:</h2>
                                 <p>{{kontaktOplysninger1.adresseLinje1}}</p>
-                                <h2 style="font-weight: bold;">Email:</h2>
+                                <h2 style="font-weight: bold; font-size: 14px; margin: 0%;">Email:</h2>
                                 <p>{{kontaktOplysninger1.email}}</p>
-                                <h2 style="font-weight: bold;">Telefon nr:</h2>
+                                <h2 style="font-weight: bold; font-size: 14px; margin: 0%;">Telefon nr:</h2>
                                 <p>{{kontaktOplysninger1.telefonNr}}</p>
                             </div>
                         </div>
                     </mat-grid-tile>
-                    <mat-grid-tile style="width: 33%;">
+                    <mat-grid-tile style="width: 33%; height: 35%;">
                         <div>
                             <div *ngIf="bryggeri2">
-                                <h2 style="font-weight: bold;">Bryggeri navn:</h2>
+                                <h2 style="font-weight: bold;">Bryggeri 1 Info:</h2>
+                                <p style="font-weight: bold; font-size: 14px; margin: 0%;">Bryggeri navn:</p>
                                 <p>{{bryggeri2.navn}}</p>
                             </div>
                             <div *ngIf="kontaktOplysninger2">
-                                <h2 style="font-weight: bold;">Addresse:</h2>
+                                <h2 style="font-weight: bold; font-size: 14px; margin: 0%;">Addresse:</h2>
                                 <p>{{kontaktOplysninger2.adresseLinje1}}</p>
-                                <h2 style="font-weight: bold;">Email:</h2>
+                                <h2 style="font-weight: bold; font-size: 14px; margin: 0%;">Email:</h2>
                                 <p>{{kontaktOplysninger2.email}}</p>
-                                <h2 style="font-weight: bold;">Telefon nr:</h2>
+                                <h2 style="font-weight: bold; font-size: 14px; margin: 0%;">Telefon nr:</h2>
                                 <p>{{kontaktOplysninger2.telefonNr}}</p>
                             </div>
                         </div>

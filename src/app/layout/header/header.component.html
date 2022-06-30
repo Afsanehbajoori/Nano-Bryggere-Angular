@@ -37,8 +37,11 @@
         <button mat-menu-item [routerLink]="['/main/profil']">
           <a>Profil</a>
         </button>
-        <button mat-menu-item [routerLink]="['/main/certifikat']">
+        <button mat-menu-item *ngIf="!erBrygger" [routerLink]="['/main/certifikat']">
           <span><a>Certifikat</a></span>
+        </button>
+        <button mat-menu-item [routerLink]="['/main/rapporter']">
+          <span><a>Rapporter</a></span>
         </button>
       </mat-menu>
 

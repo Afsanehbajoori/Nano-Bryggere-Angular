@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Bruger } from 'src/app/Models/Bruger';
@@ -13,7 +13,9 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 })
 
 export class RapportSideComponent implements OnInit {
-  endpointR = '/Rapport';
+  @Input() nyRapport = { brugerId: 0, titel: "", besked: "", typenavn: 0 }
+  
+  endpointR = '/Rapports';
   rapport: Rapport;
   brugerList: Bruger[];
   brugerId: number;
@@ -21,6 +23,7 @@ export class RapportSideComponent implements OnInit {
   typeN: any;
   items: any[] = [
     { id: 1, name: "Anmeld bruger" },
+    { id: 2, name: "Andet"},
     { id: 2, name: "Spørgsmål" },
     { id: 3, name: "Meld fejl" }
   ];
@@ -38,15 +41,36 @@ export class RapportSideComponent implements OnInit {
 
   onHentBruger() {
     if (this.brugerId = JSON.parse(localStorage.getItem('brugerId') || '{}')) {
-      this.restApi.getData(this.brugerId, this.endpointR).subscribe((data) => {
-        this.rapport = data;
+      this.restApi.getDatas(this.endpointR).subscribe((data) => {
+        for (let r = 0; r < data.length; r++) {
+          if(data[r].brugerId == this.brugerId)
+          this.rapport = data[r];  
+        }
       })
     }
   }
 
+  onHentRapport(){
+    this.restApi.getDatas(this.endpointR).subscribe((data) => {
+      for (let r = 0; r < data.length; r++) {
+        if(data[r].brugerId == this.brugerId)
+        this.rapport = data[r];  
+      }
+    })
+  }
+
   onUploadRapport() {
     this.onRapportType();
-    this.restApi.updateData(this.brugerId, this.endpointR, this.rapport).subscribe((data) => {
+    console.log("rapport ", this.rapport);
+    this.restApi.createData(this.rapport, this.endpointR).subscribe((data) => {
+      console.log("rapport ", this.rapport);
+      this.ngOnInit();
+    });
+  }
+
+  onRedigerRapport(id: any) {
+    this.onRapportType();
+    this.restApi.updateData(id, this.endpointR, this.rapport).subscribe((data) => {
       console.log("rapport ", this.rapport);
       this.router.navigate(['../main/main'])
     });
@@ -55,16 +79,16 @@ export class RapportSideComponent implements OnInit {
   onRapportType() {
     this.typeN = this.items.map((item) => item.name)
     switch (this.typeN) {
-      case 'Andet':
+      case 'Andet)':
         this.rapport.typeNavn = 0;
         break;
-      case 'Anmeld bruger':
+      case 'Anmeld bruger)':
         this.rapport.typeNavn = 1;
         break;
-      case 'Spørgsmål':
+      case 'Spørgsmål)':
         this.rapport.typeNavn = 2;
         break;
-      case 'Meld fejl':
+      case 'Meld fejl)':
         this.rapport.typeNavn = 3;
         break;
       default:

@@ -16,10 +16,10 @@ export class AdminRapportSideComponent implements OnInit {
   rapports: Rapport[];
   rapportId: number;
   brugerId: number;
-  rapport: Rapport;
+  rapport: any;
   bruger = new Bruger();
   endpointB = '/Bruger';
-  endpointR = '/Rapport';
+  endpointR = '/Rapports';
   searchkeyBrugernavn: string;
   searchkeyType: string;
   certifikat: any;
@@ -42,14 +42,17 @@ export class AdminRapportSideComponent implements OnInit {
   }
 
   onHentRapport() {
-    return this.restApi.getDatas(this.endpointR).subscribe((res) => {
-      for (let i = 0; i < res.length; i++) {
-        if(res.RapportId)
-        {
-          this.rapports = res[i]; 
-        }
-      }
-    });
+    return this.restApi.getDatas(this.endpointR).subscribe((dataR) => {
+      this.rapports = dataR;
+    })
+    // return this.restApi.getDatas(this.endpointR).subscribe((res) => {
+    //   for (let i = 0; i < res.length; i++) {
+    //     if(res.RapportId)
+    //     {
+    //       this.rapports = res[i]; 
+    //     }
+    //   }
+    // });
   }
 
   onVisRapportInfo(id: any) {

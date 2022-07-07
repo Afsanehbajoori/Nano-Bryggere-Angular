@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Samarbejde } from 'src/app/Models/Samarbejde';
+import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 @Component({
   selector: 'app-samarbejde-oprettelse',
@@ -39,7 +40,7 @@ export class SamarbejdeOprettelseComponent implements OnInit {
     this.onHentSamarbejde();
     this.onHentSamarbejdeAnmodning();
     this.onHentBryggeri();
-    console.log(this.bryggeriId);
+   // console.log(this.bryggeriId);
     this.opretForm = this._formBuilder.group({
       'bryggeriId1': new FormControl(''),
       'bryggeriId2': new FormControl(''), 
@@ -94,7 +95,8 @@ export class SamarbejdeOprettelseComponent implements OnInit {
   onHentSamarbejde() {
     this.restApi.getDatas(this.endpointS).subscribe(dataS => {
       this.samarbejdeList = dataS;
-
+      console.log("SAList:",  this.samarbejdeList);
+     // console.log("SAList:",  this.samarbejdeList[1].bryggeriId2);
       for (let s = 0; s < dataS.length; s++) {
         const dropdownInfo = { bryggeriId1: this.samarbejdeList[s].bryggeriId1, bryggeriId2: this.samarbejdeList[s].bryggeriId2 }
         if (dropdownInfo.bryggeriId2 != this.bryggeriId || dropdownInfo.bryggeriId1 != this.bryggeriId) {
@@ -125,10 +127,10 @@ export class SamarbejdeOprettelseComponent implements OnInit {
         // if(this.samarbejdeNavn[b].bryggeriId2 != dropdownInfo.bryggeriId2)
         if (dropdownInfo.bryggeriId2 != this.bryggeriId) {
           {
-            console.log(dropdownInfo.bryggerinavn, dropdownInfo.bryggeriId2)
+            //console.log(dropdownInfo.bryggerinavn, dropdownInfo.bryggeriId2)
             // if (dropdownInfo.bryggeriId2 != this.samarbejdeId[b].bryggeriId1 || dropdownInfo.bryggeriId2 != this.samarbejdeId[b].bryggeriId2) {
               this.bryggeriNavn.push(dropdownInfo)
-              console.log(this.bryggeriNavn)
+             // console.log(this.bryggeriNavn)
             // }
           }
         }
@@ -164,10 +166,21 @@ export class SamarbejdeOprettelseComponent implements OnInit {
     // this.nySamarbejde.brygger1Svar = true;
     
     this.nySamarbejde.bryggeriId2 = Number(this.nySamarbejde.bryggeriId2);
-    console.log(typeof this.nySamarbejde.bryggeriId2);
-    console.log(this.nySamarbejde);
-    this.restApi.createData(this.nySamarbejde, this.endpointSA).subscribe((data) => {
-      this.dialogRefOpretSamarbejde.close();
-    })
+   // console.log(typeof this.nySamarbejde.bryggeriId2);
+   // console.log(this.nySamarbejde);
+   let existBryggeriIdISamarbejde = this.samarbejdeList.find((x:any) => x.bryggeriId2 === this.nySamarbejde.bryggeriId2 && x.bryggeriId1 === this.bryggeriId);
+   let existBryggeriIdISamarbejdeAnmodning = this.samarbejdeAnmodning.find((x:any) => x.bryggeriId2 === this.nySamarbejde.bryggeriId2);
+   console.log("exist1:" ,existBryggeriIdISamarbejde );
+   console.log("exist2:" ,existBryggeriIdISamarbejdeAnmodning );
+   if(existBryggeriIdISamarbejde !==undefined  || existBryggeriIdISamarbejdeAnmodning !== undefined){
+      alert('Du har allerede en samarbejde med valgt bryggeri!!');
+    }
+    else{
+      this.restApi.createData(this.nySamarbejde, this.endpointSA).subscribe((data) => {
+        this.dialogRefOpretSamarbejde.close();
+        
+      })
+    }
+
   }
 }

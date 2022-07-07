@@ -46,6 +46,7 @@ export class BryggeriAdminSideComponent implements OnInit {
   onHentBryggeri() {
     return this.restApi.getDatas(this.endpointB).subscribe((data) => {
       this.bryggeri = data;
+      //console.log('testB:' , this.bryggeri);
     })
   }
 
@@ -63,6 +64,7 @@ export class BryggeriAdminSideComponent implements OnInit {
         this.samarbejder = data.filter((res: any) => {
           return res.bryggeriId1 === id || res.bryggeriId2 === id;
         });
+        
       })
     })
   };

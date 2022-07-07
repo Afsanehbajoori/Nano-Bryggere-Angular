@@ -38,12 +38,13 @@ export class VisSamarbejdeAnsogningsSideComponent implements OnInit {
     console.log(this.bryggeriId);
     this.onHentSamarbejdeListe();
     this.onHentSamarbejdeAnmodning();
+
   }
 
   onHentSamarbejdeAnmodning(){
     return this.restApi.getDatas(this.endpointSA).subscribe((dataSA) => {
       this.samarbejdeAnmodningsListe1=dataSA;
-      //console.log('SA:', this.samarbejdeAnmodningsListe);
+      console.log('SAAnmodningList:', this.samarbejdeAnmodningsListe1);
     })
   }
 
@@ -64,6 +65,8 @@ export class VisSamarbejdeAnsogningsSideComponent implements OnInit {
       })
     })
   } 
+
+
 
   // onHentSamarbejde() {
   //   return this.restApi.getData(id, this.endpointSA).subscribe((data) => {
@@ -128,15 +131,17 @@ export class VisSamarbejdeAnsogningsSideComponent implements OnInit {
       alert('du skal først oprette et bryggeri!')
     }
     else {
-      const dialogConfig = new MatDialogConfig();
-      dialogConfig.disableClose = true;
-      dialogConfig.autoFocus = true;
-      dialogConfig.width = "25%";
-      dialogConfig.height = '50%';
-      this.dialogRefOpretSamarbejde = this.dialog.open(SamarbejdeOprettelseComponent, dialogConfig);
-      this.dialogRefOpretSamarbejde.afterClosed().subscribe(result => {
-        this.ngOnInit();
-      })
+        const dialogConfig = new MatDialogConfig();
+        dialogConfig.disableClose = true;
+        dialogConfig.autoFocus = true;
+        dialogConfig.width = "25%";
+        dialogConfig.height = '50%';
+        this.dialogRefOpretSamarbejde = this.dialog.open(SamarbejdeOprettelseComponent, dialogConfig);
+        this.dialogRefOpretSamarbejde.afterClosed().subscribe(result => {
+          this.ngOnInit();
+          //this.clickButton=false;
+        })
+  
     }
   }
 

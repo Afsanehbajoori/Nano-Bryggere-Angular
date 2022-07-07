@@ -42,7 +42,7 @@ export class OpdaterSamarbejdeDialogBoxComponent implements OnInit {
         bryggeriId1 : new FormControl(this.samarbejdeListe.bryggeriId1),
         bryggeriId2 : new FormControl(this.samarbejdeListe.bryggeriId2),
         titel: new FormControl(this.samarbejdeListe.titel),
-        olBilled: new FormControl(this.samarbejdeListe.olBilled),
+        samarbejdeBilled: new FormControl(this.samarbejdeListe.samarbejdeBilled),
       })
     })
   }
@@ -52,8 +52,8 @@ export class OpdaterSamarbejdeDialogBoxComponent implements OnInit {
       var reader = new FileReader();
       reader.readAsDataURL(samarbejde.target.files[0]);
       reader.onload=(s: any)=>{
-        this.samarbejdeListe.olBilled =s.target.result;
-        localStorage.setItem('samarbejdeBilled' ,JSON.stringify(this.samarbejdeListe.olBilled));
+        this.samarbejdeListe.samarbejdeBilled =s.target.result;
+        localStorage.setItem('samarbejdeBilled' ,JSON.stringify(this.samarbejdeListe.samarbejdeBilled));
       }
     }
   };

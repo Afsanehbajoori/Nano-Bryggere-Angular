@@ -42,7 +42,9 @@ export class SamarbejdeKatalogComponent implements OnInit {
       this.restApi.getDatas(this.endpointO).subscribe(data => {
       this.olListe = data.filter((res: any) => {
         return  res.samarbejdeId === this.samarbejdeId;
+        
         });
+        //console.log("test:" , this.olListe);
       })
     }
   }
@@ -78,7 +80,7 @@ export class SamarbejdeKatalogComponent implements OnInit {
   }
 
   onSletOl(id: any) {
-    if (this.olListe.length !== 0) {
+    if (this.olListe.length === 0) {
       alert('der er et problem, tjek op på det')
     }
     else {

@@ -15,7 +15,7 @@
                     <form class="example-form" style="justify-content: center; width: 100%;">
                         <mat-form-field class="txtHeader">
                             <input matInput style="font-size: 13px; width: 100%;" type="search" placeholder="Find samarbejde"
-                                [(ngModel)]="searchkeySamarbejdeBryggeri" (ngModelChange)="onFindSamarbejdeOl()"
+                                [(ngModel)]="searchkeySamarbejdeOl" (ngModelChange)="onFindSamarbejdeOl()"
                                 [ngModelOptions]="{standalone: true}">
                         </mat-form-field>
                     </form>
@@ -28,13 +28,16 @@
     </mat-card>
     <mat-card class="cards">
         <table style="width: 100%; height: 100%; display: flex;">
-            <mat-accordion class="example-headers-align" multi style="width: 100%;">
-                <mat-expansion-panel *ngFor="let samarbejde of samarbejder" style="margin-top: 10px; width: 50%;" class="centers" [disabled]="clickButton" (click)="clickButton=true">
+            <mat-accordion class="example-headers-align" multi style="width: 100%;" >
+                <mat-expansion-panel *ngFor="let samarbejde of samarbejder"  style="margin-top: 10px; width: 50%;" class="centers" [disabled]="clickButton" (click)="clickButton=true">
                     <mat-expansion-panel-header
                         style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236)); justify-content: center;">
                         <mat-panel-title class="centers" style="justify-content: center;">
-                            <span style="font-weight: bold; margin-right: 20px; color: black;">Samarbejde navn:</span>
+                            <span><img [src]="samarbejde.samarbejdeBilled" alt="" style="width: 50%; justify-content: Center;"></span>
+                            <!-- <span style="font-weight: bold; margin-right: 20px; color: black;">Samarbejde navn:</span> -->
                             <span class="txtbtn">{{samarbejde.titel}}</span>
+                            
+                            
                         </mat-panel-title>
                         <mat-action-row class="centers cards" style="justify-content: center;">
                             <button mat-button class="txtbtn" (click)="onVisSamarbejde(samarbejde.id)">Vis
@@ -47,30 +50,60 @@
                     </mat-expansion-panel-header>
                     <div *ngIf="bryggeri1">
                         <mat-card class="containStyle">
-                            <span class="titelStyle">Navn:</span>
+                            <span class="titelStyle">Bryggeri1 Navn:</span>
                             <span class="txtStyle">{{bryggeri1.navn}}</span>
                         </mat-card>
                         <mat-card class="containStyle">
-                            <span class="titelStyle">Beskrivelse:</span>
+                            <span class="titelStyle">Bryggeri1 Beskrivelse:</span>
                             <span class="txtStyle">{{bryggeri1.beskrivelse}}</span>
                         </mat-card>
                         <mat-card class="containStyle">
-                            <span class="titelStyle">Logo:</span>
+                            <span class="titelStyle">Bryggeri1 Logo:</span>
                             <img [src]="bryggeri1.bryggeriLogo" alt="" style="width: 50%; justify-content: center;">
                         </mat-card>
                     </div>
                     <div *ngIf="bryggeri2">
                         <mat-card class="containStyle">
-                            <span class="titelStyle">Navn:</span>
+                            <span class="titelStyle">Bryggeri2 Navn:</span>
                             <span class="txtStyle">{{bryggeri2.navn}}</span>
                         </mat-card>
                         <mat-card class="containStyle">
-                            <span class="titelStyle">Beskrivelse:</span>
+                            <span class="titelStyle">Bryggeri2 Beskrivelse:</span>
                             <span class="txtStyle">{{bryggeri2.beskrivelse}}</span>
                         </mat-card>
                         <mat-card class="containStyle">
-                            <span class="titelStyle">Logo:</span>
+                            <span class="titelStyle">Bryggeri2 Logo:</span>
                             <img [src]="bryggeri2.bryggeriLogo" alt="" style="width: 50%; justify-content: center;">
+                        </mat-card>
+                    </div>
+                    <div *ngFor="let ol of olList" >
+                        <mat-card class="containStyle">
+                            <span class="titelStyle">Samarbejdesøl Navn:</span>
+                            <span class="txtStyle">{{ol.navn}}</span>
+                        </mat-card>
+                        <mat-card class="containStyle">
+                            <span class="titelStyle">Samarbejdesøl Beskrivelse:</span>
+                            <span class="txtStyle">{{ol.beskrivelse}}</span>
+                        </mat-card>
+                        <mat-card class="containStyle">
+                            <span class="titelStyle">Samarbejdesøl Logo:</span>
+                            <img [src]="ol.olBilled" alt="" style="width: 50%; justify-content: center;">
+                        </mat-card>
+                        <mat-card class="containStyle">
+                            <span class="titelStyle">Samarbejdesøl Land:</span>
+                            <span class="txtStyle">{{ol.land}}</span>
+                        </mat-card>
+                        <mat-card class="containStyle">
+                            <span class="titelStyle">Samarbejdesøl Type:</span>
+                            <span class="txtStyle">{{ol.type}}</span>
+                        </mat-card>
+                        <mat-card class="containStyle">
+                            <span class="titelStyle">Samarbejdesøl Procent:</span>
+                            <span class="txtStyle">{{ol.procent}}</span>
+                        </mat-card>
+                        <mat-card class="containStyle">
+                            <span class="titelStyle">Samarbejdesøl Årgang:</span>
+                            <span class="txtStyle">{{ol.argang}}</span>
                         </mat-card>
                     </div>
                 </mat-expansion-panel>

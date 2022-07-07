@@ -15,7 +15,7 @@
     </mat-card>
     <table style="width: 100%; height: 100%; display: flex;">
         <mat-accordion class="example-headers-align" multi style="width: 100%;">
-            <mat-expansion-panel *ngFor="let anmodning of samarbejdeAnmodningsListe" style="margin-top: 10px; width: 55%;"
+            <mat-expansion-panel *ngFor="let anmodning of samarbejdeAnmodningsListe1" style="margin-top: 10px; width: 55%;"
                 [disabled]="clickButton" (click)="clickButton=true" expanded="false" class="centers">
                 <!-- <mat-expansion-panel *ngFor="let samarbejde of samarbejder" style="margin-top: 10px; width: 45%;"
                 class="centers" hideToggle="true"> -->
@@ -25,16 +25,30 @@
                     </mat-panel-title>
                     <mat-action-row class="cards" style="justify-content: center;">
                         <button mat-button class="txtBtn" style="color: black;" (click)="onVisBrygger(anmodning.id)">Vis</button>
-                        <button mat-button class="txtBtn" style="color: black;" (click)="onAccepterSamarbejde(anmodning.bryggeriId1, anmodning.bryggeriId2, anmodning.id)">Accepter</button> 
+                        <button mat-button class="txtBtn" style="color: black;" (click)="onAccepterSamarbejde(anmodning.bryggeriId1, anmodning.bryggeriId2, anmodning.id , anmodning.titel , anmodning.samarbejdeBilled)">Accepter</button> 
                         <button mat-button class="txtBtn" style="color: black;" (click)="onAfslaSamarbejde(anmodning.id)">Afslå</button> 
                     </mat-action-row>
                 </mat-expansion-panel-header>
-                <div *ngIf="bryg">
+<!--                 <div *ngIf="bryg">
                 <mat-card class="containStyle">
                     <p class="titelStyle">Brygger:</p>
                     <span>{{bryg.navn}}</span>
                 </mat-card>
-                </div>
+                </div> -->
+
+                <div *ngIf="samarbejde">
+                    <mat-card class="containStyle">
+                        <p class="titelStyle">samarbejde titel:</p>
+                        <span>{{samarbejde.titel}}</span>
+                        <p class="titelStyle">samarbejde Billed:</p>
+                        <span><img [src]="samarbejde.samarbejdeBilled" alt="" style="width: 50%; justify-content: Center;"></span>
+                        
+<!--                         <p class="titelStyle">Brygger1:</p>
+                        <span>{{samarbejde.bryggeriId1}}</span>
+                        <p class="titelStyle">Brygger2:</p>
+                        <span>{{samarbejde.bryggeriId2}}</span> -->
+                    </mat-card>
+                    </div>
             </mat-expansion-panel>
         </mat-accordion>
     </table>

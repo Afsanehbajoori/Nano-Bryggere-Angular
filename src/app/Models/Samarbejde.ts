@@ -9,5 +9,5 @@ export class Samarbejde{
   //public olId:number;
   public ol: Øl;
   public titel:string;
-  public olBilled: string;
+  public samarbejdeBilled: string;
 }

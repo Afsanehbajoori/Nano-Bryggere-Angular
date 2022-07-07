@@ -2,9 +2,9 @@
     <mat-card>
         <mat-toolbar style="background: linear-gradient(#6c6c6d, #cfd4d6);">
         <!-- <mat-toolbar class="login-header" style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236));"> -->
-            <button mat-raised-button
+          <!--   <button mat-raised-button
                 style="background-color: rgb(124, 130, 136); width: 200px; height: 40px; margin: 50px ;"
-                (click)="onOpretSamarbejde()">Opret Øl</button>
+                (click)="onOpretSamarbejde()">Opret Øl</button> -->
             <form class="example-form" style="justify-content: center; width: 100%;">
                 <mat-form-field class="txtHeader">
                     <input matInput type="search" placeholder="Find samarbejde" [(ngModel)]="searchkey"
@@ -41,7 +41,7 @@
                     </mat-card>
                     <mat-card class="containStyle">
                         <p class="titelStyle">Samarbejde billed:</p>
-                        <p><img [src]="samarbejde.olBilled" alt="" style="width: 40%; height: 40%;"></p>
+                        <p><img [src]="samarbejde.samarbejdeBilled" alt="" style="width: 40%; height: 40%;"></p>
                     </mat-card>
                     <div>
                         <mat-card class="containStyle">

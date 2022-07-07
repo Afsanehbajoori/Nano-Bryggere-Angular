@@ -14,7 +14,7 @@ interface Search {
 
 const TREE_DATA: Search[] = [
   {
-    name: 'Vis Katalog'
+    name: 'Katalog'
   }
 ];
 
@@ -60,7 +60,7 @@ export class SamarbejdeSideComponent implements OnInit {
 
   onShowComponent(nodeName: string, id: any) {
     switch (nodeName) {
-      case 'Vis Katalog': {
+      case 'Katalog': {
         this.showSamarbejdeKatalog=!this.showSamarbejdeKatalog;
        localStorage.setItem('samarbejdeId', JSON.stringify(id));
         this.showSamarbejdeComponent = !this.showSamarbejdeComponent;

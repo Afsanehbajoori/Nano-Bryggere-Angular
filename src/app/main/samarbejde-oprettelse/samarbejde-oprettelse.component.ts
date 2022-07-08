@@ -169,17 +169,20 @@ export class SamarbejdeOprettelseComponent implements OnInit {
    // console.log(typeof this.nySamarbejde.bryggeriId2);
    // console.log(this.nySamarbejde);
    let existBryggeriIdISamarbejde = this.samarbejdeList.find((x:any) => x.bryggeriId2 === this.nySamarbejde.bryggeriId2 && x.bryggeriId1 === this.bryggeriId);
-   let existBryggeriIdISamarbejdeAnmodning = this.samarbejdeAnmodning.find((x:any) => x.bryggeriId2 === this.nySamarbejde.bryggeriId2);
+   let existBryggeriIdISamarbejdeAnmodning = this.samarbejdeAnmodning.find((x:any) => x.bryggeriId2 === this.nySamarbejde.bryggeriId2 && x.bryggeriId1 === this.bryggeriId);
    console.log("exist1:" ,existBryggeriIdISamarbejde );
    console.log("exist2:" ,existBryggeriIdISamarbejdeAnmodning );
-   if(existBryggeriIdISamarbejde !==undefined  || existBryggeriIdISamarbejdeAnmodning !== undefined){
-      alert('Du har allerede en samarbejde med valgt bryggeri!!');
+   if(!existBryggeriIdISamarbejdeAnmodning && !existBryggeriIdISamarbejde)
+   
+  {
+    this.restApi.createData(this.nySamarbejde, this.endpointSA).subscribe((data) => {
+      this.dialogRefOpretSamarbejde.close();
+      
+    })
     }
     else{
-      this.restApi.createData(this.nySamarbejde, this.endpointSA).subscribe((data) => {
-        this.dialogRefOpretSamarbejde.close();
-        
-      })
+      alert('Du har allerede en samarbejde med valgt bryggeri!!');
+
     }
 
   }

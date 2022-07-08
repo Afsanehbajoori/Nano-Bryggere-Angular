@@ -160,7 +160,7 @@ export class VisSamarbejdeAnsogningsSideComponent implements OnInit {
 
   onAfslaSamarbejde(id: any) {
     this.restApi.deleteData(id, this.endpointSA).subscribe((data) => {
-      this.onHentSamarbejdeListe();
+      //this.onHentSamarbejdeListe();
     })
   }
 }

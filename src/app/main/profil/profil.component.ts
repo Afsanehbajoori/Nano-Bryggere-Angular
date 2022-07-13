@@ -54,6 +54,7 @@ export class ProfilComponent implements OnInit {
     public actRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    
     this.kontaktOplysningerId = JSON.parse(localStorage.getItem('kontaktOplysningerId') || '{}');
     console.log("id",this.kontaktOplysningerId);
     this.brugerId = JSON.parse(localStorage.getItem('brugerId') || '{}');

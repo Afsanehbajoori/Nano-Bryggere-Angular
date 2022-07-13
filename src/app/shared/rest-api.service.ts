@@ -5,7 +5,8 @@ import { retry, catchError} from 'rxjs/operators'
 
 @Injectable({
   providedIn: 'root'
-})
+}) 
+
 export class RestApiService {
   apiUrl = 'https://localhost:7142/api';
   constructor(private http: HttpClient) { }

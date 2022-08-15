@@ -13,6 +13,7 @@ import { SamarbejdeSideComponent } from './samarbejde-side/samarbejde-side.compo
 import { SamarbejdeOprettelseComponent } from './samarbejde-oprettelse/samarbejde-oprettelse.component';
 import { SamarbejdeRedigerComponent } from './samarbejde-rediger/samarbejde-rediger.component';
 import { SamarbejdeOlLagerComponent } from './samarbejde-ol-lager/samarbejde-ol-lager.component';
+import { RapportSideComponent } from './rapport-side/rapport-side.component';
 
 const routes: Routes = [
   {path:'', component:ForsideComponent},
@@ -28,6 +29,7 @@ const routes: Routes = [
   {path:'samarbejd-opdater/:id', component:SamarbejdeRedigerComponent},
   {path:'samarbejds-opretning', component:SamarbejdeOprettelseComponent},
   {path:'samarbejde-øl-lager/:id', component:SamarbejdeOlLagerComponent},
+  {path:'rapporter', component:RapportSideComponent},
   {path:'**', component: NotFoundComponent},
 ];
 

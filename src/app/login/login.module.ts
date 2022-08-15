@@ -38,7 +38,7 @@ import {MatSelectModule} from '@angular/material/select';
     ReactiveFormsModule,
     MatStepperModule,
     MatIconModule,
-    MatSelectModule
+    MatSelectModule,
 
   ],
   exports:[

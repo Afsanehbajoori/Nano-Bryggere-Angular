@@ -3,6 +3,7 @@
         <div class="sidebar">
             <h1 id="headerStyle">Velkommen til samarbejds siden</h1>
             <button mat-icon-button class="btnStyle" (click)="VisSamarbejde()" >Vis samarbejde</button>
+            <button mat-icon-button class="btnStyle" (click)="VisAnmodninger()" >Vis anmodninger</button>
             <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree"
                 style="background-color: transparent;">
                 <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
@@ -29,6 +30,9 @@
   </mat-drawer-content> -->
   <mat-drawer-content *ngIf="showSamarbejdeSideComponent">
     <app-vis-samarbejde-side></app-vis-samarbejde-side>
+</mat-drawer-content>
+<mat-drawer-content *ngIf="showSamarbejdeAnmodningSideComponent">
+    <app-vis-samarbejde-ansognings-side></app-vis-samarbejde-ansognings-side>
 </mat-drawer-content>
 <!--     <mat-drawer-content *ngIf="showSamarbejdeOptettComponent">
       <app-samarbejde-oprettelse></app-samarbejde-oprettelse>

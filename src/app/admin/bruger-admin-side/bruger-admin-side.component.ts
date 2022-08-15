@@ -19,12 +19,14 @@ export class BrugerAdminSideComponent implements OnInit {
   brugere: Bruger[];
   bruger = new Bruger();
   endpointB = '/Bruger'; //endpointB
+  endpointL = '/Logins'; //endpointL
   endpointK = '/KontaktOplysninger'; //endpointK
   searchkeyBrugernavn: string;
   searchkeyBrugerEnavn: string;
   searchkeyEmail: string;
   searchkeyEventsTitel: string;
   kontaktOplysninger: any; //kontaktoplysninger
+  login: any;
   certifikat: any;
   id = this.actRoute.snapshot.params['id'];
   kontaktOplysningerId: number; //kontaktoplysningerId
@@ -114,8 +116,19 @@ export class BrugerAdminSideComponent implements OnInit {
         })
       })*/
       if (result) {
-        this.restApi.deleteData(id, this.endpointB).subscribe((data) => {
-          this.onHentBruger();
+        this.restApi.getDatas(this.endpointL).subscribe((data) => {
+          for (let l = 0; l < data.length; l++) {
+            const loginInfo = { brugerId: data[l].brugerId, id: data[l].id };
+            if (loginInfo.brugerId = id) {
+              this.login = loginInfo;
+            }
+          }
+          console.log(this.login);
+          this.restApi.deleteData(this.login.id, this.endpointL).subscribe(data => {
+            this.restApi.deleteData(id, this.endpointB).subscribe((data) => {
+              this.ngOnInit();
+            })
+          })
         })
       }
     });

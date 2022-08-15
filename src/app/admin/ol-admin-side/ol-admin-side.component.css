@@ -57,8 +57,9 @@
 }
 
 .txtHeader {
+  margin: auto;
   font-size: 14px;
   font-style: oblique;
-  width: 70%;
+  width: 100%;
   text-align: center;
 }

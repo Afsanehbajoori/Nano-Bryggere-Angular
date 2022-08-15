@@ -10,7 +10,7 @@
                     (ngModelChange)="onFindForum()" [ngModelOptions]="{standalone: true}">
             </mat-form-field>
         </form>
-        <h1 class="centers">Forum</h1>
+        <h1 class="centersheader">Forum</h1>
     </mat-toolbar>
     <table style="width: 100%; height: 100%; justify-content: center;">
         <mat-accordion class="example-headers-align" multi style="width: 100%; justify-content: center;">
@@ -45,39 +45,44 @@
                         <mat-action-row>
                             <button mat-button class="btnMainStyle" *ngIf="brugerId == post.brugerId" (click)="onSletPost(post.id)">Slet Besked</button>
                             <button mat-button class="btnMainStyle" *ngIf="brugerId == post.brugerId" (click)="onOpdaterPost(post.id)">Opdater Besked</button>
-                            <button mat-button class="btnMainStyle" *ngIf="brugerId != post.brugerId" (click)="onSvarPost(forum.id, post.id)">Svar Besked</button>
+                            <mat-card class="containStyle" *ngIf="brugerId != post.brugerId">
+                                <form [formGroup]="svarForm" class="example-form">
+                                    <mat-form-field class="example-full-width" appearance="fill"
+                                        style="justify-content: center; width: 100%;">
+                                        <input matInput type="text" [(ngModel)]="postSvar.titel" formControlName="titel"
+                                            placeholder="titel" class="input-control" style="width:100%">
+                                        <mat-error>
+                                            Dette felt skal udfyldes
+                                        </mat-error>
+                                    </mat-form-field>
+                                    <mat-form-field class="example-full-width" appearance="fill"
+                                        style="justify-content: center; width: 100%;">
+                                        <input matInput type="text" [(ngModel)]="postSvar.indhold"
+                                            formControlName="indhold" placeholder="indhold" class="input-control"
+                                            style="width:100%">
+                                        <mat-error>
+                                            Dette felt skal udfyldes
+                                        </mat-error>
+                                    </mat-form-field>
+                                    <mat-action-row class="centers" style="justify-content: center;">
+                                        <button mat-button class="btnMainStyle" (click)="onSvarPost(forum.id, post.id)"
+                                            style="padding: 0px; background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236));">Svar besked</button>
+                                    </mat-action-row>
+                                </form>
+                            </mat-card>
                         </mat-action-row>
+                        <div *ngIf="postSvar.postId">
+                            <span class="titelStyle">Titel:</span>
+                            <span >{{post.titel}}</span>
+                            <span class="titelStyle">Indhold:</span>
+                            <span>{{post.indhold}}</span>
+                            <span style="float: right;">{{post.opretDato}}</span>
+                        </div>
                         <!-- <p >{{this.listBruger.brugernavn}}:</p> -->
                     </mat-card>
                     <!-- Svar Besked Sektion -->
-                    <mat-card class="centers messageStyle">
-                        <form [formGroup]="opretForm" class="example-form">
-                            <mat-form-field class="example-full-width" appearance="fill"
-                                style="justify-content: center; width: 100%;">
-                                <input matInput type="text" [(ngModel)]="postSvar.titel" formControlName="titel"
-                                    placeholder="titel" class="input-control" style="width:100%">
-                                <mat-error>
-                                    Dette felt skal udfyldes
-                                </mat-error>
-                            </mat-form-field>
-                            <mat-form-field class="example-full-width" appearance="fill"
-                                style="justify-content: center; width: 100%;">
-                                <input matInput type="text" [(ngModel)]="postSvar.indhold"
-                                    formControlName="indhold" placeholder="indhold" class="input-control"
-                                    style="width:100%">
-                                <mat-error>
-                                    Dette felt skal udfyldes
-                                </mat-error>
-                            </mat-form-field>
-                            <mat-action-row class="centers" style="justify-content: center;">
-                                <button mat-button class="btnMainStyle" (click)="onGodkendPost(forum.id)"
-                                    style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236));">Indsend
-                                    Kommentar</button>
-                            </mat-action-row>
-                        </form>
-                    </mat-card>
                 </div>
-                <mat-card class="centers messageStyle">
+                <mat-card class="containStyle">
                     <form [formGroup]="opretForm" class="example-form">
                         <mat-form-field class="example-full-width" appearance="fill"
                             style="justify-content: center; width: 100%;">

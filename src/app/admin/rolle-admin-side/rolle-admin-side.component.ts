@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
 import { Bruger } from 'src/app/Models/Bruger';
@@ -10,6 +10,7 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
   templateUrl: './rolle-admin-side.component.html',
   styleUrls: ['./rolle-admin-side.component.css']
 })
+
 export class RolleAdminSideComponent implements OnInit {
   searchkeyRolleNavn: string;
   searchkeyBrugernavn: string;
@@ -23,10 +24,12 @@ export class RolleAdminSideComponent implements OnInit {
   level: number;
   rolleName:string;
 
-  constructor(public dialog: MatDialog,
+  constructor(
+    public dialog: MatDialog,
     public restApi: RestApiService,
     public router: Router,
-    public actRoute: ActivatedRoute) { }
+    public actRoute: ActivatedRoute
+    ) { }
 
   ngOnInit(): void {
     this.onHentBruger();
@@ -56,7 +59,6 @@ export class RolleAdminSideComponent implements OnInit {
         if(this.rolle.rolleNavn == 0){
           this.rolleName = 'Anonymbruger'
         } 
-
       })
     })
   }
@@ -99,7 +101,7 @@ export class RolleAdminSideComponent implements OnInit {
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
           this.restApi.deleteData(id, this.endpointR).subscribe((data) => {
-            this.onHentBruger();
+            this.ngOnInit();
           })
         }
       });

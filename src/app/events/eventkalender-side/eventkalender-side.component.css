@@ -31,7 +31,6 @@
 
 .centers {
   margin: auto;
-  width: 50%;
   padding: 10px;
   text-align: center;
 }
@@ -59,7 +58,6 @@
 .txtHeader {
   font-size: 15px;
   font-style: oblique;
-  width: 100%;
   text-align: center;
 }
 

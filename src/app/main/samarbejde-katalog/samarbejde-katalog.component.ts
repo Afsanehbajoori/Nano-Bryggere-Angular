@@ -43,7 +43,6 @@ export class SamarbejdeKatalogComponent implements OnInit {
       this.olListe = data.filter((res: any) => {
         return  res.samarbejdeId === this.samarbejdeId;
         });
-
       })
     }
   }
@@ -72,9 +71,9 @@ export class SamarbejdeKatalogComponent implements OnInit {
       if (result) {
         this.oller = result;
         this.restApi.updateData(id, this.endpointO, this.oller).subscribe((data) => {
+          this.ngOnInit();
         });
       }
-      this.ngOnInit();
     })
   }
 

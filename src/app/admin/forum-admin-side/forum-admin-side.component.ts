@@ -3,6 +3,7 @@ import { FormBuilder, FormControl,FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
+import { Forum } from 'src/app/Models/Forum';
 import { Rolle } from 'src/app/Models/Rolle';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 import { OpdaterForumDialogBoxComponent } from '../opdater-forum-dialog-box/opdater-forum-dialog-box.component';
@@ -17,6 +18,7 @@ export class ForumAdminSideComponent implements OnInit {
   dialogRefSlet: MatDialogRef<SletDialogBoxComponent>;
   dialogRefOpretForum: MatDialogRef<OpretForumDialogBoxComponent>;
   dialogRefOpdaterForum: MatDialogRef<OpdaterForumDialogBoxComponent>;
+  forums: Forum[];
   forumListe: any;
   endpointF = '/Forumer';
   endpointP = '/Posts';
@@ -42,7 +44,7 @@ export class ForumAdminSideComponent implements OnInit {
   }
   onHentForum(){
     return this.restApi.getDatas(this.endpointF).subscribe((forum) => {
-      this.forumListe = forum;
+      this.forums = forum;
     })
   }
     onHentPost(){
@@ -51,8 +53,8 @@ export class ForumAdminSideComponent implements OnInit {
     })
   }
   onHentRolle(){
-    this.restApi.getDatas(this.endpointR).subscribe(rolle =>{ 
-      this.rolleListe = rolle
+    this.restApi.getDatas(this.endpointR).subscribe(roller =>{ 
+      this.rolleListe = roller
       this.rolle = this.rolleListe.find((a:any) => a.level === 300)
     })
   }
@@ -79,13 +81,13 @@ export class ForumAdminSideComponent implements OnInit {
     }
     else {
       this.restApi.getUserByEventsTitle(this.searchkey, this.endpointF).subscribe(data => {
-        this.forumListe = data;
+        this.forums = data;
       })
     }
   }
 
   onOpdaterForum(id:any){
-    localStorage.setItem('forumId', JSON.stringify(id));
+    localStorage.setItem('forumsId', JSON.stringify(id));
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
@@ -95,15 +97,16 @@ export class ForumAdminSideComponent implements OnInit {
     this.dialogRefOpdaterForum.afterClosed().subscribe(result => {
       if (result) {
         this.forumListe = result;
+        console.log(this.forumListe);
         this.restApi.updateData(id, this.endpointF, this.forumListe).subscribe((data) => {
+          this.ngOnInit();
         })
       }
-      this.ngOnInit();
     })
   }
 
   onGemAndringer(id:any){
-    this.restApi.updateData(id, this.endpointF,this.opdaterForum).subscribe(data => {
+    this.restApi.updateData(id, this.endpointF, this.opdaterForum).subscribe(data => {
       this.ngOnInit()
     })
   }
@@ -125,7 +128,7 @@ export class ForumAdminSideComponent implements OnInit {
     });
     }
     else{
-      alert('All of messages in post page have to delete first!');
+      alert('alle beskeder i forumet skal slettes først!');
     }
   }
   
@@ -141,7 +144,7 @@ export class ForumAdminSideComponent implements OnInit {
           }
         });
       } else {
-        alert('du kan ikke slette denne besked , det er fordi det ikke din!')
+        alert('du kan ikke slette denne besked, du er kun en bruger!')
       }
     })
   }

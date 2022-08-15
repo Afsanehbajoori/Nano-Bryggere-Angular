@@ -50,7 +50,7 @@ export class OlAdminSideComponent implements OnInit {
       if(result)
       {
         this.restApi.deleteData(id, this.endpointB).subscribe(data => {
-          this.onHentOl();
+          this.ngOnInit();
         })
       }
     });

@@ -30,8 +30,8 @@ export class UpdateEventsDialogBoxComponent implements OnInit {
       this.eventsListe= data ;
 
       this.opdaterForm = this.formBuilder.group({
-        eventBilled : new FormControl(this.eventsListe.eventBilled),
-        titel : new FormControl(this.eventsListe.titel),
+        eventBilled: new FormControl(this.eventsListe.eventBilled),
+        titel: new FormControl(this.eventsListe.titel),
         beskrivelse: new FormControl(this.eventsListe.beskrivelse),
         startDato: new FormControl(this.eventsListe.startDato),
         slutDato: new FormControl(this.eventsListe.slutDato),

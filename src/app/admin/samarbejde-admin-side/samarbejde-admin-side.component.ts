@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
-import { Router } from '@angular/router';
 import { SletDialogBoxComponent } from 'src/app/main/slet-dialog-box/slet-dialog-box.component';
 import { Bryggeri } from 'src/app/Models/Bryggeri';
 import { Samarbejde } from 'src/app/Models/Samarbejde';
@@ -21,20 +20,17 @@ export class SamarbejdeAdminSideComponent implements OnInit {
   searchkeySamarbejdeBryggeri: string;
   clickButton: boolean = true;
   samarbejdeListe: any;
-  samarbejde: Samarbejde;
   samarbejder: Samarbejde[];
   bryggeriId1: Number;
   bryggeriId2: Number;
   bryggeri1: Bryggeri;
   bryggeri2: Bryggeri;
-  bryggeri: any;
   bryggeriId: number;
   endpointS = '/Samarbejder';
   endpointB = '/Bryggerier';
   constructor(
     public dialog: MatDialog,
     public restApi: RestApiService,
-    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -43,14 +39,14 @@ export class SamarbejdeAdminSideComponent implements OnInit {
 
   onHentSamarbejde() {
     return this.restApi.getDatas(this.endpointS).subscribe((samarbejde) => {
-      this.samarbejdeListe = samarbejde;
+      this.samarbejder = samarbejde;
     });
   }
 
   onVisSamarbejde(id: any) {
     this.clickButton = false;
     this.restApi.getData(id, this.endpointS).subscribe((samarbejde) => {
-      this.samarbejder = samarbejde;
+      this.samarbejdeListe = samarbejde;
       this.bryggeriId1 = samarbejde.bryggeriId1;
       this.bryggeriId2 = samarbejde.bryggeriId2;
       this.restApi.getData(this.bryggeriId1, this.endpointB).subscribe((bryggeri) => {
@@ -75,7 +71,7 @@ export class SamarbejdeAdminSideComponent implements OnInit {
   }
 
   onOpdaterSamarbejde(id:any) {
-    localStorage.setItem('tagId', JSON.stringify(id));
+    localStorage.setItem('samarbejdeId', JSON.stringify(id));
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
@@ -86,9 +82,9 @@ export class SamarbejdeAdminSideComponent implements OnInit {
       if (result) {
         this.samarbejdeListe = result;
         this.restApi.updateData(id, this.endpointS, this.samarbejdeListe).subscribe((data) => {
+          this.ngOnInit();
         })
       }
-      this.ngOnInit();
     })
   }
 

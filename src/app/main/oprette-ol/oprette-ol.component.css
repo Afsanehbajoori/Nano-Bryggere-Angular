@@ -76,3 +76,9 @@
   .example-spacer {
   flex: 1 1 auto;
 }
+
+.centers {
+  margin: auto;
+  padding: 10px;
+  text-align: center;
+}

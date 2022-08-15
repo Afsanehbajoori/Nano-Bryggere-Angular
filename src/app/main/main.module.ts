@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MainRoutingModule } from './main-routing.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {ScrollingModule} from '@angular/cdk/scrolling';
+
 import { NotFoundComponent } from './not-found/not-found.component';
 import { EventSideComponent } from './event-side/event-side.component';
 import { ForsideComponent } from './forside/forside.component';
@@ -11,7 +15,6 @@ import { RedigerOlComponent } from './rediger-ol/rediger-ol.component';
 import { SletProfilComponent } from './slet-profil/slet-profil.component';
 import { ProfilComponent } from './profil/profil.component';
 import { KatalogComponent } from './katalog/katalog.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SletDialogBoxComponent } from './slet-dialog-box/slet-dialog-box.component';
 import { RedigerProfilDialogBoxComponent } from './rediger-profil-dialog-box/rediger-profil-dialog-box.component';
 import { RedigerBryggeriDialogBoxComponent } from './rediger-bryggeri-dialog-box/rediger-bryggeri-dialog-box.component';
@@ -23,7 +26,16 @@ import { VisDetajlerComponent } from './vis-detajler/vis-detajler.component';
 import { VisOlDetajlerComponent } from './vis-ol-detajler/vis-ol-detajler.component';
 import { VisEventsDetajlerComponent } from './vis-events-detajler/vis-events-detajler.component';
 
-import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { SamarbejdeVisningComponent } from './samarbejde-visning/samarbejde-visning.component';
+import { SamarbejdeKatalogComponent } from './samarbejde-katalog/samarbejde-katalog.component';
+import { VisSamarbejdeSideComponent } from './vis-samarbejde-side/vis-samarbejde-side.component';
+import { OpretSamarbejdeOlDialogBoxComponent } from './opret-samarbejde-ol-dialog-box/opret-samarbejde-ol-dialog-box.component';
+import { OpdaterSamarbejdeOlDialogBoxComponent } from './opdater-samarbejde-ol-dialog-box/opdater-samarbejde-ol-dialog-box.component';
+import { SamarbejdeOlLagerComponent } from './samarbejde-ol-lager/samarbejde-ol-lager.component';
+import { RapportSideComponent } from './rapport-side/rapport-side.component';
+import { VisSamarbejdeAnsogningsSideComponent } from './vis-samarbejde-ansognings-side/vis-samarbejde-ansognings-side.component';
+import { OpretRapportDialogBoxComponent } from './opret-rapport-dialog-box/opret-rapport-dialog-box.component';
+
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -38,15 +50,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTreeModule } from '@angular/material/tree';
-
 import {MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS} from '@angular/material/snack-bar';
-import {ScrollingModule} from '@angular/cdk/scrolling';
-import { SamarbejdeVisningComponent } from './samarbejde-visning/samarbejde-visning.component';
-import { SamarbejdeKatalogComponent } from './samarbejde-katalog/samarbejde-katalog.component';
-import { VisSamarbejdeSideComponent } from './vis-samarbejde-side/vis-samarbejde-side.component';
-import { OpretSamarbejdeOlDialogBoxComponent } from './opret-samarbejde-ol-dialog-box/opret-samarbejde-ol-dialog-box.component';
-import { OpdaterSamarbejdeOlDialogBoxComponent } from './opdater-samarbejde-ol-dialog-box/opdater-samarbejde-ol-dialog-box.component';
-import { SamarbejdeOlLagerComponent } from './samarbejde-ol-lager/samarbejde-ol-lager.component';
+import { OlOpskriftComponent } from './ol-opskrift/ol-opskrift.component';
+import { OlLommeregnerComponent } from './ol-lommeregner/ol-lommeregner.component';
+
 
 
 @NgModule({
@@ -76,7 +83,12 @@ import { SamarbejdeOlLagerComponent } from './samarbejde-ol-lager/samarbejde-ol-
     VisSamarbejdeSideComponent,
     OpretSamarbejdeOlDialogBoxComponent,
     OpdaterSamarbejdeOlDialogBoxComponent,
-    SamarbejdeOlLagerComponent
+    SamarbejdeOlLagerComponent,
+    RapportSideComponent,
+    VisSamarbejdeAnsogningsSideComponent,
+    OpretRapportDialogBoxComponent,
+    OlOpskriftComponent,
+    OlLommeregnerComponent
   ],
   entryComponents:[SletDialogBoxComponent , RedigerProfilDialogBoxComponent , RedigerBryggeriDialogBoxComponent],
   imports: [

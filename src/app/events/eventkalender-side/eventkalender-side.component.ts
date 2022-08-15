@@ -18,8 +18,7 @@ export class EventkalenderSideComponent implements OnInit {
   endpointD = '/Deltager';
   searchkey: string;
   deltagene: boolean = false;
-  buttonDisabled: boolean ;
-  buttonEnabled: boolean;
+  joinning: boolean
   eventsId: number;
   brugerId: number;
   deltagerListe: any;
@@ -29,8 +28,8 @@ export class EventkalenderSideComponent implements OnInit {
   deltagelsesArray = new Array();
   deltagerId: number;
   liste: any;
-  Deltagene:boolean;
- @Input() deltager = { brugerId:0 , eventsId:0 , erDeltagene:false}
+  Deltagene: boolean;
+  @Input() deltager = { brugerId: 0, eventsId: 0, erDeltagene: false }
 
   constructor(
     public dialog: MatDialog,
@@ -47,53 +46,52 @@ export class EventkalenderSideComponent implements OnInit {
   onHentEvent() {
     return this.restApi.getDatas(this.endpointE).subscribe((data) => {
       this.events = data;
-  });
+    });
   }
 
-  onHentDeltagene(){
+  onHentDeltagene() {
     this.restApi.getDatas(this.endpointD).subscribe(data => {
-      this.deltagerListe=data;
-      if(this.brugerId){
-        this.deltagerListe = this.deltagerListe.filter((a:any) => a.brugerId === this.brugerId);
-        for(var d =0; d < this.deltagerListe.length ; d++)
-        {
-          if(this.deltagerListe[d].eventsId){
+      this.deltagerListe = data;
+      if (this.brugerId) {
+        this.deltagerListe = this.deltagerListe.filter((a: any) => a.brugerId === this.brugerId);
+        for (var d = 0; d < this.deltagerListe.length; d++) {
+          if (this.deltagerListe[d].eventsId) {
             this.deltagelsesArray.push(this.deltagerListe[d].eventsId);
           }
         }
       }
-   })
-  }
-
- onVisEvent(id:any){
-    this.clickButton=false;
-    return this.restApi.getData(id , this.endpointE).subscribe(data => {
-      this.eventListe=data;
     })
   }
 
-  onFindEvent(){
-    if(this.searchkey == ""){
+  onVisEvent(id: any) {
+    this.clickButton = false;
+    return this.restApi.getData(id, this.endpointE).subscribe(data => {
+      this.eventListe = data;
+    })
+  }
+
+  onFindEvent() {
+    if (this.searchkey == "") {
       this.ngOnInit();
     }
-    else{
-      this.events = this.events.filter(res =>{
+    else {
+      this.events = this.events.filter(res => {
         return res.titel.toLowerCase().match(this.searchkey.toLowerCase());
       })
     }
   }
 
-  onDeltagEvent(id:any){
-    if(this.deltagelsesArray.includes(id) )
-    {
+  onDeltagEvent(id: any) {
+    if (this.deltagelsesArray.includes(id)) {
       this.dialog.open(MessageDialogBoxComponent);
-    }else{
-        this.deltager.brugerId=this.brugerId;
-        this.deltager.eventsId=id;
-        this.deltager.erDeltagene=true;
-        this.restApi.createData(this.deltager , this.endpointD).subscribe(data => {
-          this.onHentDeltagene();
-        })
+    }
+    else {
+      this.deltager.brugerId = this.brugerId;
+      this.deltager.eventsId = id;
+      this.deltager.erDeltagene = true;
+      this.restApi.createData(this.deltager, this.endpointD).subscribe(data => {
+        this.onHentDeltagene();
+      })
     }
   }
 

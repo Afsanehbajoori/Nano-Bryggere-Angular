@@ -74,7 +74,14 @@ export class RestApiService {
       catchError(this.handleError)
     )
   }
-
+  
+  getRapportByType(titel:string, endpoint:string): Observable<any>{
+    return this.http.get<any>(this.apiUrl + endpoint+ '/titel/' + titel)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
 
   getParticipantByEventsTitle(titel : string , endpoint:string) : Observable<any>{
     return this.http.get<any>(this.apiUrl + endpoint + '/eventTitel/' + titel)
@@ -95,7 +102,6 @@ export class RestApiService {
 
   updateData(id: any, endpoint: string, data: any): Observable<any>{
     return this.http.put<any>(this.apiUrl + endpoint +'/'+ id, JSON.stringify(data), this.httpOptions)
-
     .pipe(
       retry(1),
       catchError(this.handleError)
@@ -104,12 +110,19 @@ export class RestApiService {
 
   deleteData(id: any, endpoint: string){
     return this.http.delete<any>(this.apiUrl + endpoint +'/'+ id, this.httpOptions)
-
     .pipe(
       retry(1),
       catchError(this.handleError)
     )
   }
+
+  // deleteAllData(data: any[], endpoint: string){
+  //   return this.http.delete<any>(this.apiUrl + endpoint, JSON.stringify(data), this.httpOptions)
+  //   .pipe(
+  //     retry(1),
+  //     catchError(this.handleError)
+  //   )
+  // }
 
   handleError(error: any) {
     let errorMessage = '';

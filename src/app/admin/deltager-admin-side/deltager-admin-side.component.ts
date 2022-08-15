@@ -35,12 +35,12 @@ export class DeltagerAdminSideComponent implements OnInit {
 
   onVisDeltager(id:any){
     this.clickButton=false;
-    return this.restApi.getData(id , this.endpointD).subscribe(deltager => {
-      this.deltagelserListD=deltager;
-      this.restApi.getData(deltager.brugerId , this.endpointB).subscribe(bruger => {
+    return this.restApi.getData(id, this.endpointD).subscribe(deltager => {
+      // this.deltagelserListD=deltager;
+      this.restApi.getData(deltager.brugerId, this.endpointB).subscribe(bruger => {
         this.deltagelserListB=bruger;
       })
-      this.restApi.getData(deltager.eventsId , this.endpointE).subscribe(data => {
+      this.restApi.getData(deltager.eventsId, this.endpointE).subscribe(data => {
         this.deltagelserListE=data;
       })
     })

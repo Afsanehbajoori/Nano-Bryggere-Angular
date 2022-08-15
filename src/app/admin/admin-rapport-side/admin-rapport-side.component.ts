@@ -22,7 +22,6 @@ export class AdminRapportSideComponent implements OnInit {
   endpointR = '/Rapports';
   searchkeyBrugernavn: string;
   searchkeyType: string;
-  certifikat: any;
   id = this.actRoute.snapshot.params['id'];
   clickButton: boolean = true;
   items: any[] = [
@@ -57,8 +56,11 @@ export class AdminRapportSideComponent implements OnInit {
 
   onVisRapportInfo(id: any) {
     this.clickButton = false;
+    // console.log(id)
     return this.restApi.getData(id, this.endpointR).subscribe((data) => {
-      this.rapportId = data.id;
+      // this.rapportId = data.id;
+      this.rapport = data;
+      console.log(this.rapport);
     });
   }
 

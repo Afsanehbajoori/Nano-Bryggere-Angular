@@ -10,14 +10,13 @@ import { SamarbejdeOprettelseComponent } from '../samarbejde-oprettelse/samarbej
   styleUrls: ['./vis-samarbejde-ansognings-side.component.css']
 })
 export class VisSamarbejdeAnsogningsSideComponent implements OnInit {
-  @Input() godkendSamarbejde = {bryggeriId1: 0, bryggeriId2: 0, titel: ""}
-  @Input() anmodernavn = {navn: ""}
+  @Input() godkendSamarbejde = { bryggeriId1: 0, bryggeriId2: 0, titel: "" }
+  @Input() anmodernavn = { navn: "" }
   dialogRefOpretSamarbejde: MatDialogRef<SamarbejdeOprettelseComponent>;
   searchkey: string;
   bryggeriList1: any;
-  bryggeriList2: any;
-  brygger: any;
-  brygs: any;
+  bryggeriN1: any;
+  bryggeriN2: any;
   bryg: any;
   endpointSA = '/SamarbejdeAnmodning';
   endpointS = '/Samarbejder';
@@ -47,7 +46,7 @@ export class VisSamarbejdeAnsogningsSideComponent implements OnInit {
       this.restApi.getDatas(this.endpointB).subscribe(dataB => {
         this.bryggeriList1 = dataB;
         for (let i = 0; i < this.bryggeriList1.length; i++) {
-          if(this.samarbejdeAnmodningsListe.bryggeriId1 = this.bryggeriList1[i].id){
+          if (this.samarbejdeAnmodningsListe.bryggeriId1 = this.bryggeriList1[i].id) {
             // this.brygger = this.bryggeriList1[i];
             this.anmodernavn.navn = this.bryggeriList1[i];
           }
@@ -130,16 +129,48 @@ export class VisSamarbejdeAnsogningsSideComponent implements OnInit {
     }
   }
 
-  onAccepterSamarbejde(bId1: any, bId2: any, aId: any) {
-      this.godkendSamarbejde.bryggeriId1 = bId1;
-      this.godkendSamarbejde.bryggeriId2 = bId2;
-      console.log(this.godkendSamarbejde);
-      return this.restApi.createData(this.godkendSamarbejde, this.endpointS).subscribe((data) => {
-        this.restApi.deleteData(aId, this.endpointSA).subscribe((data)=> {
-          this.ngOnInit();
-        })
+  onTestSamarbejdeNavn(aId: any) {
+    this.restApi.getData(aId, this.endpointSA).subscribe(dataSA => {
+      this.samarbejdeAnmodning =  dataSA;
+      this.restApi.getData(this.samarbejdeAnmodning.bryggeriId1, this.endpointB).subscribe(dataB => {
+        this.bryggeriN1 = dataB;      
       })
+      this.restApi.getData(this.samarbejdeAnmodning.bryggeriId2, this.endpointB).subscribe(dataB => {
+        this.bryggeriN2 = dataB;
+      })
+    })
+    // console.log("godkendelse af samarbejde", this.godkendSamarbejde);
+    // return this.restApi.createData(this.godkendSamarbejde, this.endpointS).subscribe((data) => {
+    //   this.restApi.deleteData(this.endpointSA).subscribe((data)=> {
+    //     this.ngOnInit();
+    //   })
+    // })
   }
+
+  onTestAccepterSamarbejde(bId1: any, bId2: any, aId: any) {
+    this.onTestSamarbejdeNavn(aId);
+    this.godkendSamarbejde.bryggeriId1 = bId1;
+    this.godkendSamarbejde.bryggeriId2 = bId2;
+    this.godkendSamarbejde.titel = this.bryggeriN1.navn + this.bryggeriN2.navn;
+    // console.log("godkendelse af samarbejde", this.godkendSamarbejde);
+    return this.restApi.createData(this.godkendSamarbejde, this.endpointS).subscribe((data) => {
+      this.restApi.deleteData(aId, this.endpointSA).subscribe((data) => {
+        this.ngOnInit();
+      })
+    })
+  }
+
+  // onAccepterSamarbejde(bId1: any, bId2: any, aId: any) {
+  //     this.godkendSamarbejde.bryggeriId1 = bId1;
+  //     this.godkendSamarbejde.bryggeriId2 = bId2;
+  //     this.godkendSamarbejde.titel = bId1 + bId2;
+  //     // console.log("godkendelse af samarbejde", this.godkendSamarbejde);
+  //     return this.restApi.createData(this.godkendSamarbejde, this.endpointS).subscribe((data) => {
+  //       this.restApi.deleteData(aId, this.endpointSA).subscribe((data)=> {
+  //         this.ngOnInit();
+  //       })
+  //     })
+  // }
 
   onAfslaSamarbejde(id: any) {
     this.restApi.deleteData(id, this.endpointSA).subscribe((data) => {

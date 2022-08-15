@@ -10,13 +10,14 @@ const routes: Routes = [
   {path:'main' , loadChildren :() => import('./main/main.module').then(mod => mod.MainModule), 
       canActivate: [IsAuthenticatedGuard, HasRoleGuard],
       data:{
-        clearance: 'Bruger',
+        // clearance: 'Bruger Administrator', 
+        clearance: 10, 
       },
     },
   {path:'admin' , loadChildren : () => import('./admin/admin.module').then(mod => mod.AdminModule), 
   canActivate: [IsAuthenticatedGuard, HasRoleGuard],
   data:{
-    clearance: 'Administrator',
+    clearance: 999,
   },
 },
   {path:'events' , loadChildren : () => import('./events/events.module').then(mod => mod.EventsModule)},

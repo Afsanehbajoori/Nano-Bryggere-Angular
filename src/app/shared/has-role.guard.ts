@@ -13,8 +13,8 @@ export class HasRoleGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    const isAuthorized = this.authService.rolle === route.data.clearance
-      console.log('clearance lvl <------------------------------',this.authService.rolle + ' & ' + route.data.clearance)
+    const isAuthorized = this.authService.clearance$.level> route.data.clearance
+      console.log('clearance lvl <------------------------------',this.authService.clearance$.level + ' & ' + route.data.clearance)
     if (!isAuthorized){
       alert('You do not have the privileges required to see this precious page')
     }

@@ -1,8 +1,8 @@
 export enum RolleNavn{
   AnonymBruger = 0,
   Bruger = 100,
-  Moderator = 200,
-  Administrator = 300
+  Moderator = 650,
+  Administrator = 1000
 }
 
 export class Rolle{

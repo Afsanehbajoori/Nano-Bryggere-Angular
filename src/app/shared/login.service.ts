@@ -25,9 +25,13 @@ export class LoginService {
   get rolle(): any{
     return localStorage.getItem('rolle')
   }
+  get level(): any{
+    return localStorage.getItem('level')
+  }
   constructor(private apiservice: RestApiService, private jwtHelper: JwtHelperService) {
     this._isLoggedIn$.next(!!this.token)
     this._clearance$.role = this.rolle
+    this._clearance$.level = this.level
    }
 
   login(username: string, pw: string){
@@ -38,8 +42,10 @@ export class LoginService {
       this._clearance$.id = dt.Id
       this._clearance$.name = dt.Name
       this._clearance$.role = dt.Role
+      this._clearance$.level = dt.Level
         localStorage.setItem('brugerId' , this.clearance$.id.toString()) ;
         localStorage.setItem('rolle' , this.clearance$.role);
+        localStorage.setItem('level' , this.clearance$.level);
         this._isLoggedIn$.next(true)
         console.log('log of response', response)
         console.log('this.bruger......................................', this.rolle)
@@ -49,7 +55,7 @@ export class LoginService {
   //   return JSON.parse(atob(token.split('.')[1])) as Rolle;
   // }
   getTokenDecoded(token: any) {
-    console.log("decoded token",this.jwtHelper.decodeToken(token))
+    console.log("decoded token ------------------- : ",this.jwtHelper.decodeToken(token))
     return this.jwtHelper.decodeToken(token) ;
   }
 }

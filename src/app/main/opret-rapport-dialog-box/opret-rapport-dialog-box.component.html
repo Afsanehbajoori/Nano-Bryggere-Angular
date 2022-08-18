@@ -1,25 +1,38 @@
 <div class="main" id="imgeUp">
     <mat-card class="cards">
-        <mat-card-content class="container centers">
-            <form class="example-form" style="justify-content: center; width: 100%;">
-                <mat-panel-title class="centers" style="justify-content: center;">
-                    <h2 class="centers" style="font-weight: bold; width: 60%;">Angiv rapport type:</h2>
-                    <select matNativeControl class="input-control" style="width: 35%;" placeholder="Type">
-                        <option value="" selected></option>
-                        <option *ngFor="let item of items" [value]="item.name">{{item.name}})</option>
-                    </select>
-                    <h2 style=" font-weight: bold; margin-top: 20px;">Hvad vil du rapporter:</h2>
-                    <input matInput type="text" placeholder="Titel" class="input-control" style="width: 35%;">
-                    <h2 style=" font-weight: bold; margin-top: 20px;">Beskrivelse:</h2>
-                    <input matInput type="text" placeholder="Besked" class="input-control" style="width: 35%;">
-                </mat-panel-title>
-                <div class="centers" style="margin-top: 10px;">
-                    <mat-action-row class="cards">
-                        <button mat-button style="background-color: rgb(20, 206, 75); color: rgb(82, 82, 82);" (click)="onUploadRapport()">Send
-                            Rapport</button>
-                    </mat-action-row>
-                </div>
-            </form>
-        </mat-card-content>
+      <mat-card-content class="container centers">
+        <form [formGroup]="opretForm" class="example-form" style="justify-content: center; width: 100%;">
+          <mat-form-field class="example-full-width" appearance="fill">
+            
+            <!-- <select matNativeControl class="input-control" formControlName="typenavn" [(ngModel)]="nyRapport.typenavn"
+            style="width: 35%;" placeholder="Type">
+            <option *ngFor="let item of items" [value]="item.name">{{item.name}})</option>
+          </select> -->
+
+            <select matNativeControl class="input-control" formControlName="typenavn" [(ngModel)]="opretRapport.typenavn"
+              style="width: 100%; height: 100%;" placeholder="Type">
+              <option *ngFor="let item of items" [value]="item.id">{{item.name}})</option>
+            </select>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width" appearance="fill">
+            <input matInput type="text" [(ngModel)]="opretRapport.titel" class="input-control" formControlName="titel"
+              placeholder="Titel">
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width" appearance="fill">
+            <input matInput type="text" [(ngModel)]="opretRapport.besked" formControlName="besked"
+              placeholder="Besked" class="input-control">
+            <mat-error>
+              Dette felt skal udfyldes
+            </mat-error>
+          </mat-form-field>
+
+          <div mat-dialog-actions class="btn-container">
+            <button mat-button (click)="dialogRefOpretRapport.close(false)">Anuller</button>
+            <button mat-button cdkFocusInitial (click)="onUploadRapport(); $event.stopPropagation()">Send rapport</button>
+          </div>
+        </form>
+      </mat-card-content>
     </mat-card>
 </div>

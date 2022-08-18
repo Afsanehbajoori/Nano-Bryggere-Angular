@@ -90,3 +90,15 @@
   .example-spacer {
     flex: 1 1 auto;
   }
+
+  .containStyle {
+    background-color: rgb(252, 252, 252);
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 10px;
+    padding-left: 40px;
+    border-width: 2px;
+    font-style: oblique;
+    border-style: solid;
+    border-color: darkgray;
+  }

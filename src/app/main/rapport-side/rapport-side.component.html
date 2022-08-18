@@ -1,12 +1,16 @@
 <div class="main" id="imgeUp">
-  <mat-card class="cards">
+  <mat-toolbar class="login-header" style="background: linear-gradient(rgb(192, 193, 194), rgb(231, 234, 236));">
+    <button mat-raised-button style="background-color: rgb(124, 130, 136); width: 120px; height: 40px; margin-right: 10px;" (click)="onOpretRapport()">Opret rapport</button>
+    <h1 class="centers">Rapport</h1>
+</mat-toolbar>
+<!-- <mat-card class="cards">
     <mat-card-content class="container centers">
       <form [formGroup]="opretForm" class="example-form" style="justify-content: center; width: 100%;">
         <mat-panel-title class="centers" style="justify-content: center;">
           <h2 class="centers" style="font-weight: bold; width: 60%;">Angiv rapport type:</h2>
           <select matNativeControl class="input-control" formControlName="typenavn" [(ngModel)]="nyRapport.typenavn"
             style="width: 35%;" placeholder="Type">
-            <option *ngFor="let item of items" [value]="item.id">{{item.name}})</option>
+            <option *ngFor="let item of items" [value]="item.name">{{item.name}})</option>
           </select>
           <h2 style=" font-weight: bold; margin-top: 20px;">Hvad vil du rapporter:</h2>
           <input matInput type="text" placeholder="Titel" formControlName="titel" [(ngModel)]="nyRapport.titel"
@@ -14,8 +18,8 @@
           <h2 style=" font-weight: bold; margin-top: 20px;">Beskrivelse:</h2>
           <input matInput type="text" placeholder="Besked" formControlName="besked" [(ngModel)]="nyRapport.besked"
             class="input-control" style="width: 35%;">
-          <!-- <h2 style=" font-weight: bold; margin-top: 20px;">Anklaget bruger:</h2>
-                    <input matInput type="text" placeholder="Anklaget bruger" formControlName="anklagetbruger" [(ngModel)]="nyRapport.anklagetbruger" class="input-control" style="width: 35%;"> -->
+          <h2 style=" font-weight: bold; margin-top: 20px;">Anklaget bruger:</h2>
+                    <input matInput type="text" placeholder="Anklaget bruger" formControlName="anklagetbruger" [(ngModel)]="nyRapport.anklagetbruger" class="input-control" style="width: 35%;">
         </mat-panel-title>
         <div class="centers" style="margin-top: 10px;">
           <mat-action-row class="cards">
@@ -25,8 +29,8 @@
         </div>
       </form>
     </mat-card-content>
-  </mat-card>
-    <!-- <mat-card class="cards">
+  </mat-card> -->
+    <mat-card class="cards">
       <mat-card-content>
         <mat-expansion-panel *ngFor="let rapport of rapportListe" style="margin-top: 10px; width: 60%;" class="centers"
           [disabled]="clickButton" (click)="clickButton=true">
@@ -40,23 +44,23 @@
           </mat-expansion-panel-header>
           <div *ngIf="listeTest">
             <mat-card class="containStyle">
-              <span class="titelStyle">Type:</span>
+              <span class="titelStyle">Type: </span>
               <span class="txtStyle">{{listeTest.typeNavn}}</span>
             </mat-card>
             <mat-card class="containStyle">
-              <span class="titelStyle">Titel:</span>
+              <span class="titelStyle">Titel: </span>
               <span class="txtStyle">{{listeTest.titel}}</span>
             </mat-card>
             <mat-card class="containStyle">
-              <span class="titelStyle">Bruger id:</span>
-              <span class="txtStyle">{{listeTest.brugerId}}</span>
+              <span class="titelStyle">Godkendt: </span>
+              <span class="txtStyle">{{listeTest.godtaget}}</span>
             </mat-card>
             <mat-card class="containStyle">
-              <span class="titelStyle">Besked:</span>
+              <span class="titelStyle">Besked: </span>
               <span class="txtStyle">{{listeTest.besked}}</span>
             </mat-card>
           </div>
         </mat-expansion-panel>
       </mat-card-content>
-    </mat-card> -->
+    </mat-card>
 </div>

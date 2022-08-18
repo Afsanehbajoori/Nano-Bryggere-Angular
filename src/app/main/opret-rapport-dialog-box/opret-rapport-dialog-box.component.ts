@@ -1,10 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { Bruger } from 'src/app/Models/Bruger';
-import { Rapport } from 'src/app/Models/Rapport';
 import { RestApiService } from 'src/app/shared/rest-api.service';
 
 @Component({
@@ -14,43 +12,54 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 })
 
 export class OpretRapportDialogBoxComponent implements OnInit {
-  endpointR = '/Rapport';
-  rapport: Rapport;
-  brugerList: Bruger[];
-  rapportList: Rapport[];
+  @Input() opretRapport = { brugerId: 0, titel: "", besked: "", typenavn: 0, godtaget: false, anklagetbruger: 0 }
+  opretForm: any = new FormGroup({});
+  endpointR = '/Rapports';
+  endpointB = '/Bruger';
+  clickButton: boolean = true;
+  bruger: any;
+  brugerListe: any;
+  rapport: any;
+  rapports: any;
+  listeTest: any;
+  rapportListe = new Array;
   brugerId: number;
   rapportId: number;
+  typeN: any;
   items: any[] = [
-    {id:1, name: "Anmeld bruger"},
-    {id:2, name: "Spørgsmål"},
-    {id:3, name: "Meld fejl"}
+    { id: 0, name: "Anmeld bruger" },
+    { id: 1, name: "Andet" },
+    { id: 2, name: "Spørgsmål" },
+    { id: 3, name: "Meld fejl" }
   ];
-  
+  // 
+
   constructor(
+    public dialogRefOpretRapport: MatDialogRef<OpretRapportDialogBoxComponent>,
     public dialog: MatDialog,
     public restApi: RestApiService,
     public router: Router,
-    private snackBar: MatSnackBar,
-    public http: HttpClient
+    public http: HttpClient,
+    private _formBuilder: FormBuilder
   ) { }
 
   ngOnInit(): void {
-    this.onHentBruger();
-  }
-
-  onHentBruger() {
-    if (this.brugerId = JSON.parse(localStorage.getItem('brugerId') || '{}')) {
-      this.restApi.getData(this.brugerId, this.endpointR).subscribe((data) => {
-        this.rapport = data;
-      })
-    }
+    this.brugerId = JSON.parse(localStorage.getItem('brugerId') || '{}');
+    // this.onHentBruger();
+    // this.onHentRapport();
+    this.opretRapport.brugerId = this.brugerId;
+    this.opretForm = this._formBuilder.group({
+      'titel': new FormControl(''),
+      'besked': new FormControl(''),
+      'typenavn': new FormControl(''),
+      'anklagetbruger': new FormControl(''),
+    })
   }
 
   onUploadRapport() {
-    // this.restApi.updateData(this.brugerId, this.endpointR, this.rapport).subscribe((data) => {
-      console.log("rapport ",this.rapport);
-      this.snackBar.open("Bruger skal slettes først");
-      // this.router.navigate(['../main/main'])
-    // });
+    // console.log("ny rapport", this.opretRapport);
+    this.restApi.createData(this.opretRapport, this.endpointR).subscribe((data) => {
+      this.dialogRefOpretRapport.close();
+    });
   }
 }

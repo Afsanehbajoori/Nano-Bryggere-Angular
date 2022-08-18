@@ -1,10 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { Rapport } from 'src/app/Models/Rapport';
 import { RestApiService } from 'src/app/shared/rest-api.service';
+import { OpretRapportDialogBoxComponent } from '../opret-rapport-dialog-box/opret-rapport-dialog-box.component';
 
 @Component({
   selector: 'app-rapport-side',
@@ -13,47 +12,31 @@ import { RestApiService } from 'src/app/shared/rest-api.service';
 })
 
 export class RapportSideComponent implements OnInit {
-  @Input() nyRapport = { brugerId: 0, titel: "", besked: "", typenavn: 0, godtaget: false, anklagetbruger: 0 }
-  opretForm: any = new FormGroup({});
+  dialogRefOpretRapport: MatDialogRef<OpretRapportDialogBoxComponent>;
   endpointR = '/Rapports';
   endpointB = '/Bruger';
-  // opretRapport: Rapport;
   clickButton: boolean = true;
   bruger: any;
   brugerListe: any;
-  rapport: any;
   rapports: any;
   listeTest: any;
   rapportListe = new Array;
   brugerId: number;
   rapportId: number;
   typeN: any;
-  items: any[] = [
-    { id: 0, name: "Anmeld bruger" },
-    { id: 1, name: "Andet" },
-    { id: 2, name: "Spørgsmål" },
-    { id: 3, name: "Meld fejl" }
-  ];
 
   constructor(
     public dialog: MatDialog,
     public restApi: RestApiService,
     public router: Router,
     public http: HttpClient,
-    private _formBuilder: FormBuilder
   ) { }
 
   ngOnInit(): void {
     this.brugerId = JSON.parse(localStorage.getItem('brugerId') || '{}');
     this.onHentBruger();
     this.onHentRapport();
-    this.nyRapport.brugerId = this.brugerId;
-    this.opretForm = this._formBuilder.group({
-      'titel': new FormControl(''),
-      'besked': new FormControl(''),
-      'typenavn': new FormControl(''),
-      'anklagetbruger': new FormControl(''),
-    })
+    // this.nyRapport.brugerId = this.brugerId;
   }
 
   onHentBruger() {
@@ -61,7 +44,7 @@ export class RapportSideComponent implements OnInit {
       this.restApi.getDatas(this.endpointB).subscribe((data) => {
         this.brugerListe = data;
         for (let b = 0; b < data.length; b++) {
-          const listDrop = {id: this.brugerListe[b].id} 
+          const listDrop = {id: this.brugerListe[b].id}
           if (listDrop.id == this.brugerId)
             this.bruger = listDrop;
         }
@@ -71,69 +54,90 @@ export class RapportSideComponent implements OnInit {
 
   onHentRapport() {
     this.restApi.getDatas(this.endpointR).subscribe((data) => {
-      // console.log(data);
       this.rapports = data;
       for (let r = 0; r < data.length; r++) {
-        const listDrop = {brugerId: this.rapports[r].brugerId, titel: this.rapports[r].titel, besked: this.rapports[r].besked, typeNavn: this.rapports[r].typeNavn} 
-        // console.log("BrugerId", listDrop);
+        const listDrop = {brugerId: this.rapports[r].brugerId, godtaget: this.rapports[r].godtaget, titel: this.rapports[r].titel, besked: this.rapports[r].besked, typeNavn: this.rapports[r].typeNavn, id: this.rapports[r].id}
         if (listDrop.brugerId == this.brugerId) {
           this.rapportListe.push(listDrop);
-          console.log("Rapports", this.rapportListe);
+          // console.log("Rapports", this.rapportListe);
         }
       }
     })
   }
 
-  onUploadRapport() {
-    this.onRapportType();
-    // console.log("ny rapport", this.nyRapport);
-    this.restApi.createData(this.nyRapport, this.endpointR).subscribe((data) => {
-      // console.log("ny rapport", this.nyRapport);
-      this.ngOnInit();
-    });
+  onVisRapportInfo(id: any) {
+    // console.log(id);
+    this.clickButton = false;
+    return this.restApi.getData(id, this.endpointR).subscribe((data) => {
+        this.listeTest = data;
+        // console.log(this.listeTest.godtaget);
+        this.onRapportType(this.listeTest.typeNavn);
+        this.onRapportGodtagelse(this.listeTest.godtaget);
+      })
   }
 
-  // onRedigerRapport(id: any) {
-  //   this.onRapportType();
-  //   this.restApi.updateData(id, this.endpointR, this.rapport).subscribe((data) => {
-  //     console.log("rapport ", this.rapport);
-  //     this.router.navigate(['../main/main'])
-  //   });
-  // }
-
-  onRapportType() {
-    this.typeN = this.items.map((item) => item.id)
-    // console.log(this.typeN);
-    switch (this.typeN) {
-      case '0':
-        this.nyRapport.typenavn = 0;
-        // console.log(this.nyRapport.typenavn);
+  onRapportType(type: any) {
+    // console.log(godtaget);
+    switch (type) {
+      case 0:
+        type = "Anmeld bruger";
+        this.listeTest.typeNavn = type;
+        // console.log(type);
         break;
 
-      case '1':
-        this.nyRapport.typenavn = 1;
-        // console.log(this.nyRapport.typenavn);
+      case 1:
+        type = "Andet";
+        this.listeTest.typeNavn = type;
+        // console.log(type);
         break;
-
-      case '2':
-        this.nyRapport.typenavn = 2;
-        // console.log(this.nyRapport.typenavn);
+        case 2:
+        type = "Spørgsmål";
+        this.listeTest.typeNavn = type;
+        // console.log(type);
         break;
-
-      case '3':
-        this.nyRapport.typenavn = 3;
-        // console.log(this.nyRapport.typenavn);
+        case 3:
+        type = "Meld fejl";
+        this.listeTest.typeNavn = type;
+        // console.log(type);
         break;
-
       default:
         break;
     }
   }
 
-  onVisRapportInfo(id: any) {
-    this.clickButton = false;
-    return this.restApi.getData(id, this.endpointR).subscribe((data) => {
-        this.listeTest = data;
+  onRapportGodtagelse(godtaget: any) {
+    // console.log(godtaget);
+    switch (godtaget) {
+      case false:
+        godtaget = "Ikke set";
+        this.listeTest.godtaget = godtaget;
+        // console.log(godtaget);
+        break;
+
+      case true:
+        godtaget = "Godkendt";
+        this.listeTest.godtaget = godtaget;
+        // console.log(godtaget);
+        break;
+      default:
+        break;
+    }
+  }
+
+  onOpretRapport() {
+    if (JSON.stringify(this.brugerId) === '{}') {
+      alert('tjek at du har en bruger!')
+    }
+    else {
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.disableClose = true;
+      dialogConfig.autoFocus = true;
+      dialogConfig.width = "25%";
+      dialogConfig.height = '50%';
+      this.dialogRefOpretRapport = this.dialog.open(OpretRapportDialogBoxComponent, dialogConfig);
+      this.dialogRefOpretRapport.afterClosed().subscribe(result => {
+        // this.ngOnInit();
       })
+    }
   }
 }

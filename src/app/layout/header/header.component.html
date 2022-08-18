@@ -68,11 +68,17 @@
 
       <mat-menu #ol="matMenu">
         <!-- <button mat-menu-item [routerLink]="['/main/katalog']"> -->
+          <button mat-menu-item [routerLink]="['/øl/øl-søgning']">
+            <span><a>Find Øl</a></span>
+          </button>
         <button mat-menu-item *ngIf="erBrygger" [routerLink]="['/main/katalog']">
           <span><a>Katalog</a></span>
         </button>
-        <button mat-menu-item [routerLink]="['/øl/øl-søgning']">
-          <span><a>Find Øl</a></span>
+        <button mat-menu-item *ngIf="erBrygger" [routerLink]="['/øl/øl-lommeregner']">
+          <span><a>Lommeregner</a></span>
+        </button>
+        <button mat-menu-item *ngIf="erBrygger" [routerLink]="['/øl/øl-opskrift']">
+          <span><a>Opskrift</a></span>
         </button>
       </mat-menu>
 

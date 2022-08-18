@@ -51,8 +51,6 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTreeModule } from '@angular/material/tree';
 import {MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS} from '@angular/material/snack-bar';
-import { OlOpskriftComponent } from './ol-opskrift/ol-opskrift.component';
-import { OlLommeregnerComponent } from './ol-lommeregner/ol-lommeregner.component';
 
 
 
@@ -87,8 +85,6 @@ import { OlLommeregnerComponent } from './ol-lommeregner/ol-lommeregner.componen
     RapportSideComponent,
     VisSamarbejdeAnsogningsSideComponent,
     OpretRapportDialogBoxComponent,
-    OlOpskriftComponent,
-    OlLommeregnerComponent
   ],
   entryComponents:[SletDialogBoxComponent , RedigerProfilDialogBoxComponent , RedigerBryggeriDialogBoxComponent],
   imports: [

@@ -18,6 +18,7 @@ export class AdminRapportSideComponent implements OnInit {
   brugerId: number;
   rapport: any;
   bruger = new Bruger();
+  testliste: any;
   endpointB = '/Bruger';
   endpointR = '/Rapports';
   searchkeyBrugernavn: string;
@@ -60,6 +61,7 @@ export class AdminRapportSideComponent implements OnInit {
     return this.restApi.getData(id, this.endpointR).subscribe((data) => {
       // this.rapportId = data.id;
       this.rapport = data;
+      this.onRapportNavn(this.rapport.brugerId);
       console.log(this.rapport);
     });
   }
@@ -96,5 +98,26 @@ export class AdminRapportSideComponent implements OnInit {
     this.rapport.godtaget = true;
     this.restApi.updateData(id, this.endpointR, this.rapport).subscribe((data) => {
     });
+  }
+
+  onRapportNavn(id: any) {
+    return this.restApi.getData(id, this.endpointR).subscribe((data) => {
+      // this.rapportId = data.id;
+      this.testliste = data;
+      console.log("navn", this.testliste.brugernavn);
+      this.rapport.brugerId = this.testliste.brugernavn;
+      console.log("navn id", this.rapport.brugerId);
+      // console.log(this.testliste);
+    });
+    // // console.log(godtaget);
+    // switch (navn) {
+    //   case 0:
+    //     navn = "Anmeld bruger";
+    //     this.rapport.brugerId = navn;
+    //     // console.log(navn);
+    //     break;
+    //   default:
+    //     break;
+    // }
   }
 }
